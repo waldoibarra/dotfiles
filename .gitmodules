@@ -1,8 +1,8 @@
 [submodule "dotbot"]
 	path = dotbot
-	url = https://github.com/anishathalye/dotbot
+	url = git@github.com:anishathalye/dotbot.git
 	ignore = dirty
 [submodule "config/opencode"]
 	path = config/opencode
-	url = https://github.com/waldoibarra/my-opencode-global-config
+	url = git@github.com:waldoibarra/my-opencode-global-config.git
 	branch = main
