@@ -17,3 +17,10 @@ The [Dotbot](https://github.com/anishathalye/dotbot)'s script is idempotent, can
 ## Customization
 
 Edit the [install.conf.yaml](install.conf.yaml) file and re-run the [install](install) script.
+
+## Brew Bundle
+
+```bash
+# Update all supported packages into a single file (~/.Brewfile).
+brew bundle dump --global --force --describe
+```

@@ -15,13 +15,19 @@
     ~/projects:
 
 - shell:
-  - git submodule update --init --recursive
+  -
+    command: git submodule update --init --recursive
+    description: Initialize, clone, and update all submodules (including nested ones) —
   -
     command: test -d "$HOME/.oh-my-zsh" || RUNZSH="no" KEEP_ZSHRC="yes" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     description: Install oh-my-zsh if missing —
   -
     command: test -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
     description: Install powerlevel10k if missing —
+  -
+    command: command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    description: Install brew if missing —
+
 
 - link:
     ~/.gitconfig:
@@ -34,7 +40,17 @@
       backup: true
     ~/.zlogin:
     ~/.p10k.zsh:
+    ~/.Brewfile:
+      backup: true
     ~/.config/opencode:
       path: config/opencode/
     ~/.config/wezterm:
       path: config/wezterm/
+
+- shell:
+  -
+    command: brew bundle cleanup --global --force
+    description: Cleanup anything that's not in the Brewfile —
+  -
+    command: brew bundle check --global || brew bundle install --global
+    description: Take instructions from the Brewfile to install or upgrade packages —
