@@ -1,0 +1,31 @@
+- defaults:
+  link:
+    relink: true
+    create: true
+
+- clean: ['~']
+
+# - clean:
+#   ~/.config:
+#     recursive: true
+
+# - create:
+#   ~/.ssh:
+#     mode: 0700
+#   ~/projects:
+
+# - link:
+#   ~/.gitconfig:
+#   ~/.ssh/config:
+#   ~/.zshenv:
+#     force: true
+#     path: zshenv
+#   ~/.zprofile:
+#   ~/.zshrc:
+#   ~/.zlogin:
+#   ~/.p10k.zsh:
+#   ~/.config/opencode:
+#   ~/.config/wezterm:
+
+- shell:
+  - [git submodule update --init --recursive, Installing/updating submodules]

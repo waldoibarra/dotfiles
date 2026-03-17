@@ -1,0 +1,20 @@
+[user]
+	name = Waldo Ibarra
+	email = waldo.ibarra@linux.com
+	signingkey = CAC9607611E995AC
+[commit]
+	gpgsign = true
+[gpg]
+	program = /opt/homebrew/bin/gpg
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+	side-by-side = true
+[merge]
+	conflictStyle = zdiff3
