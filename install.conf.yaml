@@ -1,31 +1,34 @@
 - defaults:
-  link:
-    relink: true
-    create: true
+    link:
+      relink: true
+      force: true
+      create: true
 
-- clean: ['~']
+- clean:
+    '~':
+    ~/.config:
+      recursive: true
 
-# - clean:
-#   ~/.config:
-#     recursive: true
-
-# - create:
-#   ~/.ssh:
-#     mode: 0700
-#   ~/projects:
-
-# - link:
-#   ~/.gitconfig:
-#   ~/.ssh/config:
-#   ~/.zshenv:
-#     force: true
-#     path: zshenv
-#   ~/.zprofile:
-#   ~/.zshrc:
-#   ~/.zlogin:
-#   ~/.p10k.zsh:
-#   ~/.config/opencode:
-#   ~/.config/wezterm:
+- create:
+    ~/.ssh:
+      mode: 0700
+    ~/projects:
 
 - shell:
-  - [git submodule update --init --recursive, Installing/updating submodules]
+  - git submodule update --init --recursive
+
+- link:
+    ~/.gitconfig:
+      backup: true
+    ~/.ssh/config:
+      backup: true
+    ~/.zshenv:
+    ~/.zprofile:
+    ~/.zshrc:
+      backup: true
+    ~/.zlogin:
+    ~/.p10k.zsh:
+    ~/.config/opencode:
+      path: config/opencode
+    ~/.config/wezterm:
+      path: config/wezterm
