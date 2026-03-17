@@ -16,6 +16,12 @@
 
 - shell:
   - git submodule update --init --recursive
+  -
+    command: test -d "$HOME/.oh-my-zsh" || RUNZSH="no" KEEP_ZSHRC="yes" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    description: Install oh-my-zsh if missing —
+  -
+    command: test -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+    description: Install powerlevel10k if missing —
 
 - link:
     ~/.gitconfig:
