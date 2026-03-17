@@ -29,6 +29,6 @@
     ~/.zlogin:
     ~/.p10k.zsh:
     ~/.config/opencode:
-      path: config/opencode
+      path: config/opencode/
     ~/.config/wezterm:
-      path: config/wezterm
+      path: config/wezterm/
