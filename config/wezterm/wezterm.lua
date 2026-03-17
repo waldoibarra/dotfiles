@@ -6,8 +6,7 @@ local config = {}
 -- │                                   FONT                                       │
 -- └──────────────────────────────────────────────────────────────────────────────┘
 
--- config.font = wezterm.font 'IosevkaTerm NF'
--- config.font_size = 14.0
+config.font_size = 12.5
 
 -- ┌──────────────────────────────────────────────────────────────────────────────┐
 -- │                                  WINDOW                                      │
@@ -17,7 +16,10 @@ config.window_background_opacity = 0.7
 config.macos_window_background_blur = 20
 
 config.window_padding = {
-    bottom = 111
+    top = 0,
+    right = 0,
+    bottom = 0,
+    left = 0
 }
 
 config.enable_scroll_bar = false
@@ -26,6 +28,7 @@ config.window_decorations = 'RESIZE | MACOS_FORCE_SQUARE_CORNERS'
 
 wezterm.on('gui-startup', function(cmd)
   local tab, pane, window = mux.spawn_window(cmd or {})
+
   window:gui_window():maximize()
 end)
 
