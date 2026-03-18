@@ -13,6 +13,7 @@
 - create:
     ~/.ssh:
       mode: 0700
+    ~/.nvm:
     ~/projects:
 
 - shell:
