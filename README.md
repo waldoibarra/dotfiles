@@ -2,6 +2,17 @@
 
 My personal OS configuration files, currently using MacOS.
 
+## Project Structure
+
+The idea is simple, it mirrors the actual directory structure of `$HOME/`.
+Just adding a leading dot for files in the root directory.
+
+> ⚠️ There might be exceptions that don't follow the structure; there are
+`README.md` files in such directories specifying this deviation.
+
+It can also be easily seen by looking at the [install.conf.yaml](install.conf.yaml)
+file, in the `link` directive.
+
 ## Setup
 
 To install your dotfiles on a new machine or after updates:
