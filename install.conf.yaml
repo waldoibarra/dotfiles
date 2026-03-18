@@ -1,5 +1,6 @@
 - defaults:
     link:
+      backup: true
       relink: true
       force: true
       create: true
@@ -31,26 +32,28 @@
 
 - link:
     ~/.gitconfig:
-      backup: true
     ~/.ssh/config:
-      backup: true
     ~/.zshenv:
     ~/.zprofile:
     ~/.zshrc:
-      backup: true
     ~/.zlogin:
     ~/.p10k.zsh:
     ~/.Brewfile:
-      backup: true
-    ~/.config/opencode:
-      path: config/opencode/
     ~/.config/wezterm:
       path: config/wezterm/
+    '~/Library/Application Support/Code/User':
+      glob: true
+      path: config/Code/User/*
+      exclude: [ config/Code/User/README.md ]
+    ~/.config/opencode:
+      path: config/opencode/
 
 - shell:
   -
     command: brew bundle cleanup --global --force
     description: Cleanup anything that's not in the Brewfile —
+    stdout: true
   -
     command: brew bundle check --global || brew bundle install --global
     description: Take instructions from the Brewfile to install or upgrade packages —
+    stdout: true

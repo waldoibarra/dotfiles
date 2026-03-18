@@ -47,5 +47,12 @@ brew "zsh"
 brew "gentleman-programming/tap/engram"
 # Collaboration platform for API development
 cask "postman"
+# Open-source code editor
+cask "visual-studio-code"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm@nightly"
+vscode "eamodio.gitlens"
+vscode "editorconfig.editorconfig"
+vscode "esbenp.prettier-vscode"
+vscode "foxundermoon.shell-format"
+vscode "timonwong.shellcheck"
