@@ -42,6 +42,8 @@ brew "shellcheck"
 brew "tfenv"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # UNIX shell (command interpreter)

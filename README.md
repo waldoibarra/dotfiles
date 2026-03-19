@@ -27,7 +27,8 @@ The [Dotbot](https://github.com/anishathalye/dotbot)'s script is idempotent, can
 
 ### Customization
 
-Edit the [install.conf.yaml](install.conf.yaml) file and re-run the [install.sh](install.sh) script.
+Edit the [install.conf.yaml](install.conf.yaml) file and re-run the [install.sh](install.sh)
+script.
 
 ```bash
 ./install.sh
@@ -64,9 +65,12 @@ brew bundle upgrade --global
 
 ## The Complete Z Shell Load Order
 
-> Just a reminder: when you open a new terminal window, Zsh reads configuration files in this specific sequence.
+> Just a reminder: when you open a new terminal window, Zsh reads configuration files in this
+specific sequence.
 
 1. `~/.zshenv`: Always loaded first for every Zsh session (including scripts).
-2. `~/.zprofile`: Loaded only for login shells. On macOS, every new terminal window is treated as a login shell by default.
-3. `~/.zshrc`: Loaded for interactive shells. This is where most of your day-to-day configuration lives.
+2. `~/.zprofile`: Loaded only for login shells. On macOS, every new terminal window is treated as a
+login shell by default.
+3. `~/.zshrc`: Loaded for interactive shells. This is where most of your day-to-day configuration
+lives.
 4. `~/.zlogin`: Loaded last, but only for login shells.
