@@ -1,4 +1,3 @@
-tap "felixkratz/formulae"
 tap "gentleman-programming/tap"
 # Official Amazon AWS command-line interface
 brew "awscli"
@@ -22,8 +21,6 @@ brew "gnutls"
 brew "libksba"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-# Ambitious Vim-fork focused on extensibility and agility
-brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
 # Manage multiple Node.js versions
@@ -48,11 +45,8 @@ brew "uv"
 brew "yt-dlp"
 # UNIX shell (command interpreter)
 brew "zsh"
-# Custom macOS statusbar with shell plugin, interaction and graph support
-brew "felixkratz/formulae/sketchybar"
 # Persistent memory for AI coding agents. Agent-agnostic, single binary, zero dependencies.
 brew "gentleman-programming/tap/engram"
-cask "font-hack-nerd-font"
 # Collaboration platform for API development
 cask "postman"
 # Open-source code editor

@@ -14,5 +14,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "chat.mcp.gallery.enabled": true,
-  "editor.rulers": [100]
+  "editor.rulers": [100],
+  "files.associations": {
+    ".Brewfile": "ruby"
+  }
 }
