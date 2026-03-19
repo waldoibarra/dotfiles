@@ -1,3 +1,4 @@
+tap "felixkratz/formulae"
 tap "gentleman-programming/tap"
 # Official Amazon AWS command-line interface
 brew "awscli"
@@ -45,8 +46,11 @@ brew "tree"
 brew "yt-dlp"
 # UNIX shell (command interpreter)
 brew "zsh"
+# Custom macOS statusbar with shell plugin, interaction and graph support
+brew "felixkratz/formulae/sketchybar"
 # Persistent memory for AI coding agents. Agent-agnostic, single binary, zero dependencies.
 brew "gentleman-programming/tap/engram"
+cask "font-hack-nerd-font"
 # Collaboration platform for API development
 cask "postman"
 # Open-source code editor

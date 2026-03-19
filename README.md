@@ -1,14 +1,14 @@
 # Dotfiles
 
-My personal OS configuration files, currently using MacOS.
+My personal OS **configuration files**, currently using **MacOS**.
 
 ## Project Structure
 
-The idea is simple, it mirrors the actual directory structure of `$HOME/`.
-Just adding a leading dot for files in the root directory.
+The idea is simple, the `home/` directory in this repository mirrors the actual
+directory structure of `$HOME/` in the OS.
 
 > ⚠️ There might be exceptions that don't follow the structure; there are
-`README.md` files in such directories specifying this deviation.
+> `README.md` files in such directories specifying this deviation.
 
 It can also be easily seen by looking at the [install.conf.yaml](install.conf.yaml)
 file, in the `link` directive.
@@ -18,16 +18,20 @@ file, in the `link` directive.
 To install your dotfiles on a new machine or after updates:
 
 ```bash
-git clone git@github.com:waldoibarra/dotfiles.git ~/.dotfiles
+git clone --recurse-submodules git@github.com:waldoibarra/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-./install
+./install.sh
 ```
 
 The [Dotbot](https://github.com/anishathalye/dotbot)'s script is idempotent, can be ran many times.
 
-## Customization
+### Customization
 
-Edit the [install.conf.yaml](install.conf.yaml) file and re-run the [install](install) script.
+Edit the [install.conf.yaml](install.conf.yaml) file and re-run the [install.sh](install.sh) script.
+
+```bash
+./install.sh
+```
 
 ## Installing Latest Node.js / Python
 

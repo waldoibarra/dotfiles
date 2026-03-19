@@ -2,7 +2,7 @@
 	path = dotbot
 	url = git@github.com:anishathalye/dotbot.git
 	ignore = dirty
-[submodule "config/opencode"]
-	path = config/opencode
+[submodule "home/config/opencode"]
+	path = home/config/opencode
 	url = git@github.com:waldoibarra/my-opencode-global-config.git
 	branch = main

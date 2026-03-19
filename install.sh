@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Copied from dotbot's repository, as indicated in their documentation.
+# cp dotbot/tools/git-submodule/install install.sh
+
 set -e
 
 CONFIG="install.conf.yaml"

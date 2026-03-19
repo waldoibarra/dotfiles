@@ -30,24 +30,36 @@
     command: command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     description: Install brew if missing —
 
-
 - link:
-    ~/.gitconfig:
-    ~/.ssh/config:
-    ~/.zshenv:
-    ~/.zprofile:
-    ~/.zshrc:
-    ~/.zlogin:
-    ~/.p10k.zsh:
+    # Files directly in $HOME.
     ~/.Brewfile:
-    ~/.config/wezterm:
-      path: config/wezterm/
+      path: home/.Brewfile
+    ~/.gitconfig:
+      path: home/.gitconfig
+    ~/.p10k.zsh:
+      path: home/.p10k.zsh
+    ~/.zlogin:
+      path: home/.zlogin
+    ~/.zprofile:
+      path: home/.zprofile
+    ~/.zshenv:
+      path: home/.zshenv
+    ~/.zshrc:
+      path: home/.zshrc
+
+    # Files inside directories.
+    ~/.ssh/config:
+      path: home/.ssh/config
     '~/Library/Application Support/Code/User':
       glob: true
-      path: config/Code/User/*
-      exclude: [ config/Code/User/README.md ]
+      path: home/config/Code/User/*
+      exclude: [ home/config/Code/User/README.md ]
+
+    # Directories.
     ~/.config/opencode:
-      path: config/opencode/
+      path: home/config/opencode/
+    ~/.config/wezterm:
+      path: home/config/wezterm/
 
 - shell:
   -
