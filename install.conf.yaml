@@ -8,7 +8,8 @@
 - clean:
     '~':
     ~/.config:
-      recursive: true
+    ~/.ssh:
+    '~/Library/Application Support/Code/User':
 
 - create:
     ~/.ssh:
@@ -20,48 +21,32 @@
   -
     command: git submodule update --init --recursive
     description: Initialize, clone, and update all submodules (including nested ones) —
-  -
-    command: test -d "$HOME/.oh-my-zsh" || RUNZSH="no" KEEP_ZSHRC="yes" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    description: Install oh-my-zsh if missing —
-  -
-    command: test -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
-    description: Install powerlevel10k if missing —
-  -
-    command: command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    description: Install brew if missing —
 
 - link:
-    # Files directly in $HOME.
-    ~/.Brewfile:
-      path: home/.Brewfile
-    ~/.gitconfig:
-      path: home/.gitconfig
-    ~/.p10k.zsh:
-      path: home/.p10k.zsh
-    ~/.zlogin:
-      path: home/.zlogin
-    ~/.zprofile:
-      path: home/.zprofile
-    ~/.zshenv:
-      path: home/.zshenv
-    ~/.zshrc:
-      path: home/.zshrc
+    # Files in $HOME root.
+    ~/.Brewfile: home/.Brewfile
+    ~/.gitconfig: home/.gitconfig
+    ~/.p10k.zsh: home/.p10k.zsh
+    ~/.zlogin: home/.zlogin
+    ~/.zprofile: home/.zprofile
+    ~/.zshenv: home/.zshenv
+    ~/.zshrc: home/.zshrc
 
-    # Files inside directories.
-    ~/.ssh/config:
-      path: home/.ssh/config
+    # Files.
+    ~/.ssh/config: home/.ssh/config
     '~/Library/Application Support/Code/User':
       glob: true
       path: home/config/Code/User/*
       exclude: [ home/config/Code/User/README.md ]
 
     # Directories.
-    ~/.config/opencode:
-      path: home/config/opencode/
-    ~/.config/wezterm:
-      path: home/config/wezterm/
+    ~/.config/opencode: home/config/opencode/
+    ~/.config/wezterm: home/config/wezterm/
 
 - shell:
+  -
+    command: command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    description: Install brew if missing —
   -
     command: brew bundle cleanup --global --force
     description: Cleanup anything that's not in the Brewfile —
@@ -70,3 +55,9 @@
     command: brew bundle check --global || brew bundle install --global
     description: Take instructions from the Brewfile to install or upgrade packages —
     stdout: true
+  -
+    command: test -d "$HOME/.oh-my-zsh" || RUNZSH="no" KEEP_ZSHRC="yes" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    description: Install oh-my-zsh if missing —
+  -
+    command: test -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+    description: Install powerlevel10k if missing —
