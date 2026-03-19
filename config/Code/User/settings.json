@@ -13,5 +13,6 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "chat.mcp.gallery.enabled": true
+  "chat.mcp.gallery.enabled": true,
+  "editor.rulers": [100]
 }
