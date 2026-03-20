@@ -3,6 +3,8 @@ tap "gentleman-programming/tap"
 brew "awscli"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Modern, maintained replacement for ls
+brew "eza"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # GNU compiler collection

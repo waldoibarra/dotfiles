@@ -18,7 +18,9 @@ fi
 # -------------------- #
 
 export ZSH="$HOME/.oh-my-zsh"
-export ZSH_THEME="powerlevel10k/powerlevel10k"
+export ZSH_THEME="random"
+export ZSH_THEME_RANDOM_QUIET=true
+# export ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:update' mode auto
 zstyle ':omz:plugins:nvm' lazy yes
 
@@ -60,3 +62,9 @@ eval "$(pyenv init - zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# ------- #
+# Aliases #
+# ------- #
+
+alias lso="eza -aal --octal-permissions"

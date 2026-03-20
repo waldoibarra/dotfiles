@@ -1,4 +1,6 @@
 - defaults:
+    create:
+      mode: 0755
     link:
       backup: true
       relink: true
