@@ -8,10 +8,11 @@
       create: true
 
 - clean:
-    '~':
+    "~":
     ~/.config:
     ~/.ssh:
-    '~/Library/Application Support/Code/User':
+    ~/Library/Application Support/Code/User:
+    ~/Library/LaunchAgents:
 
 - create:
     ~/.ssh:
@@ -20,9 +21,8 @@
     ~/projects:
 
 - shell:
-  -
-    command: git submodule update --init --recursive
-    description: Initialize, clone, and update all submodules (including nested ones) —
+    - command: git submodule update --init --recursive
+      description: Initialize, clone, and update all submodules (including nested ones) —
 
 - link:
     # Files in $HOME root.
@@ -36,30 +36,27 @@
 
     # Files.
     ~/.ssh/config: home/.ssh/config
-    '~/Library/Application Support/Code/User':
+    "~/Library/Application Support/Code/User":
       glob: true
       path: home/config/Code/User/*
-      exclude: [ home/config/Code/User/README.md ]
+      exclude: [home/config/Code/User/README.md]
 
     # Directories.
     ~/.config/opencode: home/config/opencode/
     ~/.config/wezterm: home/config/wezterm/
 
 - shell:
-  -
-    command: command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    description: Install brew if missing —
-  -
-    command: brew bundle cleanup --global --force
-    description: Cleanup anything that's not in the Brewfile —
-    stdout: true
-  -
-    command: brew bundle check --global || brew bundle install --global
-    description: Take instructions from the Brewfile to install or upgrade packages —
-    stdout: true
-  -
-    command: test -d "$HOME/.oh-my-zsh" || RUNZSH="no" KEEP_ZSHRC="yes" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    description: Install oh-my-zsh if missing —
-  -
-    command: test -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
-    description: Install powerlevel10k if missing —
+    - command: command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      description: Install brew if missing —
+    - command: brew bundle cleanup --global --force
+      description: Cleanup anything that's not in the Brewfile —
+      stdout: true
+    - command: brew bundle check --global || brew bundle install --global
+      description: Take instructions from the Brewfile to install or upgrade packages —
+      stdout: true
+    - command: test -d "$HOME/.oh-my-zsh" || RUNZSH="no" KEEP_ZSHRC="yes" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      description: Install oh-my-zsh if missing —
+    - command: test -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+      description: Install powerlevel10k if missing —
+    - command: ./scripts/restart-brew-service-with-custom-plist.sh ollama
+      description: Restarting Ollama with custom plist —

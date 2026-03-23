@@ -6,8 +6,5 @@
 export EDITOR="vim"
 export VISUAL="vim"
 
-# Disable all .claude support.
+# Disable all OpenCode ~/.claude support.
 export OPENCODE_DISABLE_CLAUDE_CODE=1
-
-# Mantain Ollama models loaded for 15 minutes, refreshed on use.
-export OLLAMA_KEEP_ALIVE="15m"

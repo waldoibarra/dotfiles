@@ -65,7 +65,7 @@ brew bundle upgrade --global
 
 ## The Complete Z Shell Load Order
 
-> Just a reminder: when you open a new terminal window, Zsh reads configuration files in this
+> Just a reminder: when you open a terminal window, Zsh reads configuration files in this
 specific sequence.
 
 1. `~/.zshenv`: Always loaded first for every Zsh session (including scripts).
@@ -74,3 +74,8 @@ login shell by default.
 3. `~/.zshrc`: Loaded for interactive shells. This is where most of your day-to-day configuration
 lives.
 4. `~/.zlogin`: Loaded last, but only for login shells.
+
+## Custom Homebrew Service Plists
+
+Some Homebrew services require environment variables. See
+[home/Library/LaunchAgents/README.md](home/Library/LaunchAgents/README.md) for details.
