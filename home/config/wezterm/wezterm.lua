@@ -3,6 +3,16 @@ local mux = wezterm.mux
 local config = {}
 
 -- ┌──────────────────────────────────────────────────────────────────────────────┐
+-- │                                 SHORTCUTS                                    │
+-- └──────────────────────────────────────────────────────────────────────────────┘
+
+-- Defaults:
+-- Split pane vertically (top/bottom): C-M-S-"
+-- Split pane horizontally (left/right): C-M-S-%
+-- Switch pane: C-S-<up/right/down/left>
+-- Maximize a pane: C-S-z
+
+-- ┌──────────────────────────────────────────────────────────────────────────────┐
 -- │                                   FONT                                       │
 -- └──────────────────────────────────────────────────────────────────────────────┘
 
@@ -37,9 +47,6 @@ end)
 -- └──────────────────────────────────────────────────────────────────────────────┘
 
 config.default_cursor_style = "BlinkingBar"
--- config.cursor_blink_rate = 500
--- config.cursor_blink_ease_in = "Constant"
--- config.cursor_blink_ease_out = "Constant"
 
 -- ┌──────────────────────────────────────────────────────────────────────────────┐
 -- │                            NEOVIM OPTIMIZATIONS                              │

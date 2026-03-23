@@ -20,7 +20,6 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="random"
 export ZSH_THEME_RANDOM_QUIET=true
-# export ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:update' mode auto
 zstyle ':omz:plugins:nvm' lazy yes
 
@@ -33,7 +32,7 @@ plugins=(
   # docker
   # docker-compose
   # dotenv
-  # fancy-ctrl-z
+  fancy-ctrl-z
   # gh
   # git
   # macos
