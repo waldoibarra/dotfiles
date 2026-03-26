@@ -23,6 +23,8 @@ brew "gnutls"
 brew "libksba"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Find what models run on your hardware
+brew "llmfit"
 # Port scanning utility for large networks
 brew "nmap"
 # Manage multiple Node.js versions
