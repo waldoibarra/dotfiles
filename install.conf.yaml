@@ -21,7 +21,7 @@
     ~/projects:
 
 - shell:
-    - command: git submodule update --init --recursive
+    - command: git submodule update --init --recursive --remote
       description: Initialize, clone, and update all submodules (including nested ones) —
 
 - link:
