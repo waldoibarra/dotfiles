@@ -7,9 +7,6 @@ My personal OS **configuration files**, currently using **MacOS**.
 The idea is simple, the `home/` directory in this repository mirrors the actual
 directory structure of `$HOME/` in the OS.
 
-> ⚠️ There might be exceptions that don't follow the structure; there are
-> `README.md` files in such directories specifying this deviation.
-
 It can also be easily seen by looking at the [install.conf.yaml](install.conf.yaml)
 file, in the `link` directive.
 

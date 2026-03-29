@@ -38,11 +38,9 @@
     ~/.ssh/config: home/.ssh/config
     "~/Library/Application Support/Code/User":
       glob: true
-      path: home/.config/Code/User/*
-      exclude: [home/.config/Code/User/README.md]
+      path: "home/Library/Application Support/Code/User/*"
 
     # Directories.
-    ~/.config/opencode: home/.config/opencode/
     ~/.config/wezterm: home/.config/wezterm/
 
 - shell:
