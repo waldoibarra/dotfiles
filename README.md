@@ -76,3 +76,7 @@ lives.
 
 Some Homebrew services require environment variables. See
 [home/Library/LaunchAgents/README.md](home/Library/LaunchAgents/README.md) for details.
+
+## Utility Scripts
+
+There is a `scripts/` directory, read its [documentation](/scripts/README.md).

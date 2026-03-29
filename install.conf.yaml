@@ -10,8 +10,9 @@
 - clean:
     "~":
     ~/.config:
+    ~/.config/opencode:
     ~/.ssh:
-    ~/Library/Application Support/Code/User:
+    "~/Library/Application Support/Code/User":
     ~/Library/LaunchAgents:
 
 - create:
@@ -35,6 +36,7 @@
     ~/.zshrc: home/.zshrc
 
     # Files.
+    ~/.config/opencode/opencode.json: home/.config/opencode/opencode.json
     ~/.ssh/config: home/.ssh/config
     "~/Library/Application Support/Code/User":
       glob: true
