@@ -38,12 +38,12 @@
     ~/.ssh/config: home/.ssh/config
     "~/Library/Application Support/Code/User":
       glob: true
-      path: home/config/Code/User/*
-      exclude: [home/config/Code/User/README.md]
+      path: home/.config/Code/User/*
+      exclude: [home/.config/Code/User/README.md]
 
     # Directories.
-    ~/.config/opencode: home/config/opencode/
-    ~/.config/wezterm: home/config/wezterm/
+    ~/.config/opencode: home/.config/opencode/
+    ~/.config/wezterm: home/.config/wezterm/
 
 - shell:
     - command: command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
