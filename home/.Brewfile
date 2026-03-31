@@ -25,6 +25,8 @@ brew "libksba"
 brew "gnupg"
 # Find what models run on your hardware
 brew "llmfit"
+# Utility for directing compilation
+brew "make"
 # Port scanning utility for large networks
 brew "nmap"
 # Manage multiple Node.js versions

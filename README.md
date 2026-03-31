@@ -17,7 +17,7 @@ To install your dotfiles on a new machine or after updates:
 ```bash
 git clone --recurse-submodules git@github.com:waldoibarra/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-./install.sh
+make install
 ```
 
 The [Dotbot](https://github.com/anishathalye/dotbot)'s script is idempotent, can be ran many times.
@@ -28,7 +28,7 @@ Edit the [install.conf.yaml](install.conf.yaml) file and re-run the [install.sh]
 script.
 
 ```bash
-./install.sh
+make install
 ```
 
 ## Installing Latest Node.js / Python
@@ -45,31 +45,27 @@ pyenv global 3
 pyenv versions
 ```
 
-## Updating packages
+## Updating Brew Packages
 
-### Brew
+Install, dump, clean up, and upgrade.
 
 ```bash
-# Install a package.
 brew install <package_name>
-
-# Update all supported packages into a single file (~/.Brewfile).
-brew bundle dump --global --force --describe
-
-# Upgrade all items in the Brewfile.
-brew bundle upgrade --global
+make brew-dump
+make brew-cleanup
+make brew-upgrade
 ```
 
 ## The Complete Z Shell Load Order
 
 > Just a reminder: when you open a terminal window, Zsh reads configuration files in this
-specific sequence.
+> specific sequence.
 
 1. `~/.zshenv`: Always loaded first for every Zsh session (including scripts).
 2. `~/.zprofile`: Loaded only for login shells. On macOS, every new terminal window is treated as a
-login shell by default.
+   login shell by default.
 3. `~/.zshrc`: Loaded for interactive shells. This is where most of your day-to-day configuration
-lives.
+   lives.
 4. `~/.zlogin`: Loaded last, but only for login shells.
 
 ## Custom Homebrew Service Plists
