@@ -1,3 +1,4 @@
+tap "anomalyco/tap"
 tap "gentleman-programming/tap"
 # Official Amazon AWS command-line interface
 brew "awscli"
@@ -51,6 +52,8 @@ brew "uv"
 brew "yt-dlp"
 # UNIX shell (command interpreter)
 brew "zsh"
+# The AI coding agent built for the terminal.
+brew "anomalyco/tap/opencode"
 # Persistent memory for AI coding agents. Agent-agnostic, single binary, zero dependencies.
 brew "gentleman-programming/tap/engram"
 # AI Gentle Stack — One command to configure any AI coding agent on any OS.
