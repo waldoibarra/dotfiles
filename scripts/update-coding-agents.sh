@@ -6,13 +6,13 @@ readonly SCRIPTS_DIR
 _source_lib_functions() {
   source "$SCRIPTS_DIR/lib/constants.sh"
   source "$SCRIPTS_DIR/lib/shell-helpers.sh"
-  source "$SCRIPTS_DIR/lib/ai-gentle-stack.sh"
-  source "$SCRIPTS_DIR/lib/sync-global-skills-symlinks.sh"
+  source "$SCRIPTS_DIR/lib/update-gentleman-ai-ecosystem.sh"
+  source "$SCRIPTS_DIR/lib/sync-global-skills-from-lock.sh"
 }
 
 _update_ai_agents() {
   update_gentleman_ai_ecosystem
-  sync_global_skills
+  sync_global_skills_from_lock
 }
 
 main() {

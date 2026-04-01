@@ -74,8 +74,8 @@ _update_all_skills_to_latest_version() {
   npx skills update
 }
 
-sync_global_skills() {
-  print_separator "Synchronizing global skills (from ~/.agents/skills)"
+sync_global_skills_from_lock() {
+  print_separator "Synchronizing global skills (from ~/.agents/.skills-lock.json)"
 
   _install_global_skills_from_global_skills_lock_json
   _ensure_global_skills_are_symlinked_to_opencode
