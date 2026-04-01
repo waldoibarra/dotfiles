@@ -20,12 +20,13 @@ cd ~/.dotfiles
 make install
 ```
 
+> Might need to set Zsh as default shell and restart machine.
+
 The [Dotbot](https://github.com/anishathalye/dotbot)'s script is idempotent, can be ran many times.
 
 ### Customization
 
-Edit the [install.conf.yaml](install.conf.yaml) file and re-run the install.
-script.
+Edit the [install.conf.yaml](install.conf.yaml) file and re-run the install script.
 
 ```bash
 make install
@@ -56,11 +57,6 @@ make brew-cleanup
 make brew-upgrade
 ```
 
-### Brew Services
-
-For some services (like Ollama), we might want to use a custom plist file, see the
-[LaunchAgents docs](/home/Library/LaunchAgents/README.md) for more information.
-
 ## The Complete Z Shell Load Order
 
 > Just a reminder: when you open a terminal window, Zsh reads configuration files in this
@@ -72,11 +68,6 @@ For some services (like Ollama), we might want to use a custom plist file, see t
 3. `~/.zshrc`: Loaded for interactive shells. This is where most of your day-to-day configuration
    lives.
 4. `~/.zlogin`: Loaded last, but only for login shells.
-
-## Custom Homebrew Service Plists
-
-Some Homebrew services require environment variables. See
-[home/Library/LaunchAgents/README.md](home/Library/LaunchAgents/README.md) for details.
 
 ## Utility Scripts
 

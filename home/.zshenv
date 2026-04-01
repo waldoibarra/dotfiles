@@ -8,3 +8,6 @@ export VISUAL="vim"
 
 # Disable all OpenCode ~/.claude support.
 export OPENCODE_DISABLE_CLAUDE_CODE=1
+
+# Environment variables for Brew services.
+launchctl setenv OLLAMA_KEEP_ALIVE "15m"

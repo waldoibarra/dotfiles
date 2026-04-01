@@ -2,8 +2,7 @@
 
 This directory contains scripts to:
 
-* Restart Brew service with a custom plist ([restart-brew-service-with-custom-plist.sh](restart-brew-service-with-custom-plist.sh))
-* Update coding agents ([update-coding-agents.sh](update-coding-agents.sh))
+- Update coding agents ([update-coding-agents.sh](update-coding-agents.sh))
 
 ## Update Coding Agents
 
