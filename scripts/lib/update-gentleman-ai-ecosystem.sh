@@ -19,9 +19,9 @@ _relink_file_if_needed() {
 
 _check_for_new_versions_and_install() {
   brew update
-  brew upgrade gentle-ai
-  brew upgrade engram
-  brew upgrade gga
+  brew upgrade --quiet gentle-ai
+  brew upgrade --quiet engram
+  brew upgrade --quiet gga
 }
 
 _sync_managed_assets_to_current_version() {
