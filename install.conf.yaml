@@ -61,5 +61,5 @@
       description: Install oh-my-zsh if missing —
     - command: test -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
       description: Install powerlevel10k if missing —
-    - command: ./scripts/restart-brew-service-with-custom-plist.sh ollama
+    - command: make brew-restart-service FORMULA=ollama
       description: Restarting Ollama with custom plist —

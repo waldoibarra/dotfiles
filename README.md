@@ -4,7 +4,7 @@ My personal OS **configuration files**, currently using **MacOS**.
 
 ## Project Structure
 
-The idea is simple, the `home/` directory in this repository mirrors the actual
+The idea is simple, the [home/](/home/) directory in this repository mirrors the actual
 directory structure of `$HOME/` in the OS.
 
 It can also be easily seen by looking at the [install.conf.yaml](install.conf.yaml)
@@ -24,7 +24,7 @@ The [Dotbot](https://github.com/anishathalye/dotbot)'s script is idempotent, can
 
 ### Customization
 
-Edit the [install.conf.yaml](install.conf.yaml) file and re-run the [install.sh](install.sh)
+Edit the [install.conf.yaml](install.conf.yaml) file and re-run the install.
 script.
 
 ```bash
@@ -55,6 +55,11 @@ make brew-dump
 make brew-cleanup
 make brew-upgrade
 ```
+
+### Brew Services
+
+For some services (like Ollama), we might want to use a custom plist file, see the
+[LaunchAgents docs](/home/Library/LaunchAgents/README.md) for more information.
 
 ## The Complete Z Shell Load Order
 
