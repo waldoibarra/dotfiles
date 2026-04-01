@@ -5,9 +5,9 @@ _check_for_new_versions_and_install() {
   brew upgrade gga
 }
 
-_refresh_managed_assets_to_current_version() {
-  gentle-ai install --agent opencode --persona neutral --preset full-gentleman
-  # gentle-ai sync --agent opencode --include-permissions
+_sync_managed_assets_to_current_version() {
+  # gentle-ai install --agent opencode --persona neutral --preset full-gentleman
+  gentle-ai sync --agent opencode --include-permissions
 }
 
 _copy_new_opencode_json_and_relink() {
@@ -24,7 +24,7 @@ update_gentleman_ai_ecosystem() {
   print_separator "Updating CLIs: $_tool_names"
 
   _check_for_new_versions_and_install
-  _refresh_managed_assets_to_current_version
+  _sync_managed_assets_to_current_version
   _copy_new_opencode_json_and_relink
 
   print_separator "Done updating CLI: $_tool_names"
