@@ -1,86 +1,109 @@
+# Syncs global skills from ~/.agents/.skills-lock.json, creates symlinks to OpenCode.
+#
 # Install a global skill like this:
 # npx skills add https://github.com/vercel-labs/skills -s find-skills -a opencode -g -y
 
-_get_installed_skill_names() {
-  # Returns space-separated list of currently installed global skill names
-  # Filters for skills in ~/.agents/skills/ directory using npx skills ls -g --json
-  local skills_path="$HOME/.agents/skills/"
-  npx skills ls -g --json 2>/dev/null | jq -r --arg path "$skills_path" '.[] | select(.path | startswith($path)) | .name' | sort -u
+_get_global_skills_json() {
+  npx skills ls -g --json 2>/dev/null
 }
 
-_install_global_skills_from_global_skills_lock_json() {
-  local lockfile="$HOME/.agents/.skill-lock.json"
+_get_skills_in_agents_dir() {
+  local -r _skills_json=$(_get_global_skills_json)
 
-  if [[ ! -f "$lockfile" ]]; then
-    echo "Lockfile not found: $lockfile"
+  jq -r --arg path "$_agents_path" '.[] | select(.path | startswith($path)) | .name' <<<"$_skills_json" | sort -u
+}
+
+_skill_is_registered_with_opencode() {
+  local -r _skills_json="$1"
+  local -r _skill_name="$2"
+
+  jq -e --arg name "$_skill_name" --arg agent "OpenCode" '.[] | select(.name == $name) | .agents | index($agent)' <<<"$_skills_json" >/dev/null 2>&1
+}
+
+_install_skill() {
+  local -r _skill_name="$1"
+  local -r _source_url="$2"
+  local -r _agent_flags=("$@")
+  local -r _url="${_source_url%.git}"
+
+  echo "Installing: $_skill_name"
+  npx skills add "$_url" --skill "$_skill_name" "${_agent_flags[@]}" -g -y >/dev/null 2>&1
+}
+
+_install_skills_from_lockfile() {
+  local -r _lockfile="$HOME/.agents/.skill-lock.json"
+
+  if [[ ! -f "$_lockfile" ]]; then
+    echo "Lockfile not found: $_lockfile"
     return 1
   fi
 
-  # Get list of currently installed skills
-  local installed_skills
-  installed_skills=$(_get_installed_skill_names)
+  local -r _installed_skills=$(_get_skills_in_agents_dir)
+  local _agent_flags=()
 
-  local agent_flags=()
   while IFS= read -r agent; do
-    agent_flags+=(-a "$agent")
-  done < <(jq -r '.lastSelectedAgents[]' "$lockfile")
+    _agent_flags+=(-a "$agent")
+  done < <(jq -r '.lastSelectedAgents[]' "$_lockfile")
 
   while IFS=$'\t' read -r -u 3 skill_name source_url; do
-    # Check if skill is already installed
-    if echo "$installed_skills" | grep -qx "$skill_name"; then
+    if echo "$_installed_skills" | grep -qx "$skill_name"; then
       continue
     fi
 
-    local url="${source_url%.git}"
-    echo "Installing: $skill_name"
-    npx skills add "$url" --skill "$skill_name" "${agent_flags[@]}" -g -y >/dev/null 2>&1
-  done 3< <(jq -r '.skills | to_entries[] | "\(.key)\t\(.value.sourceUrl)"' "$lockfile")
+    _install_skill "$skill_name" "$source_url" "${_agent_flags[@]}"
+  done 3< <(jq -r '.skills | to_entries[] | "\(.key)\t\(.value.sourceUrl)"' "$_lockfile")
 }
 
-_ensure_global_skills_are_symlinked_to_opencode() {
-  mkdir -p "$OPENCODE_DIR/skills"
+_link_skill_to_opencode() {
+  local -r _skill_name="$1"
+  local -r _skill_path="$2"
 
-  local skills_path="$HOME/.agents/skills/"
-  local json
-  json=$(npx skills ls -g --json 2>/dev/null)
+  ln -sfn "$_skill_path" "$_opencode_skills_dir/$_skill_name"
+  echo "Linked: $_skill_name"
+}
 
-  # Filter for skills in ~/.agents/skills/ that don't have OpenCode in agents list
+_ensure_opencode_skills_symlinks() {
+  mkdir -p "$_opencode_skills_dir"
+
+  local -r _skills_json=$(_get_global_skills_json)
+
   while IFS=$'\t' read -r -u 3 skill_name skill_path; do
-    # Check if OpenCode agent is already registered for this skill
-    if echo "$json" | jq -e --arg name "$skill_name" --arg agent "OpenCode" '.[] | select(.name == $name) | .agents | index($agent)' >/dev/null 2>&1; then
-      continue
+    if ! _skill_is_registered_with_opencode "$_skills_json" "$skill_name"; then
+      _link_skill_to_opencode "$skill_name" "$skill_path"
     fi
-
-    # Create symlink
-    ln -sfn "$skill_path" "$OPENCODE_DIR/skills/$skill_name"
-    echo "Linked: $skill_name"
-  done 3< <(jq -r --arg path "$skills_path" '.[] | select(.path | startswith($path)) | "\(.name)\t\(.path)"' <<<"$json")
+  done 3< <(jq -r --arg path "$_agents_path" '.[] | select(.path | startswith($path)) | "\(.name)\t\(.path)"' <<<"$_skills_json")
 }
 
-_prune_dangling_opencode_skills_symlinks() {
-  if [[ -d "$OPENCODE_DIR/skills" ]]; then
-    pruned=0
-    while IFS= read -r -d '' link; do
-      rm -f "$link"
-      echo "Pruned OpenCode symlink: $(basename "$link")"
-      ((pruned++))
-    done < <(find -L "$OPENCODE_DIR/skills" -maxdepth 1 -type l -print0)
-
-    [[ $pruned -eq 0 ]] && echo "No dangling symlinks to prune."
+_prune_invalid_opencode_symlinks() {
+  if [[ ! -d "$_opencode_skills_dir" ]]; then
+    return
   fi
+
+  local _pruned=0
+
+  while IFS= read -r -d '' link; do
+    rm -f "$link"
+    echo "Pruned OpenCode symlink: $(basename "$link")"
+    ((_pruned++))
+  done < <(find -L "$_opencode_skills_dir" -maxdepth 1 -type l -print0)
+
+  [[ $_pruned -eq 0 ]] && echo "No dangling symlinks to prune."
 }
 
-_update_all_skills_to_latest_version() {
+_update_all_skills() {
   npx skills update
 }
 
 sync_global_skills_from_lock() {
+  local -r _agents_path="$HOME/.agents/skills/"
+  local -r _opencode_skills_dir="$OPENCODE_DIR/skills"
+
   print_separator "Synchronizing global skills (from ~/.agents/.skills-lock.json)"
 
-  _install_global_skills_from_global_skills_lock_json
-  _ensure_global_skills_are_symlinked_to_opencode
-  _prune_dangling_opencode_skills_symlinks
-  _update_all_skills_to_latest_version
+  _install_skills_from_lockfile
+  _ensure_opencode_skills_symlinks
+  _prune_invalid_opencode_symlinks
+  _update_all_skills
 
   print_separator "Done synchronizing global skills"
 }
