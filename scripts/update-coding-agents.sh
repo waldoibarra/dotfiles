@@ -1,7 +1,10 @@
 #!/bin/bash
 
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$(dirname "$SCRIPTS_DIR")"
+
 readonly SCRIPTS_DIR
+readonly DOTFILES_DIR
 
 _source_lib_functions() {
   source "$SCRIPTS_DIR/lib/constants.sh"
