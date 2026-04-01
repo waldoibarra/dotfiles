@@ -9,6 +9,7 @@
 
 - clean:
     "~":
+    ~/.agents:
     ~/.config:
     ~/.config/opencode:
     ~/.ssh:
@@ -16,9 +17,10 @@
     ~/Library/LaunchAgents:
 
 - create:
+    ~/.agents:
+    ~/.nvm:
     ~/.ssh:
       mode: 0700
-    ~/.nvm:
     ~/projects:
 
 - shell:
@@ -36,6 +38,7 @@
     ~/.zshrc: home/.zshrc
 
     # Files.
+    ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.config/opencode/opencode.json: home/.config/opencode/opencode.json
     ~/.ssh/config: home/.ssh/config
     "~/Library/Application Support/Code/User":

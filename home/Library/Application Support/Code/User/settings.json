@@ -1,6 +1,5 @@
 {
   "editor.renderWhitespace": "all",
-  "workbench.iconTheme": "vscode-icons",
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -20,5 +19,6 @@
   "files.associations": {
     ".Brewfile": "ruby"
   },
-  "editor.wordWrap": "on"
+  "editor.wordWrap": "on",
+  "window.autoDetectColorScheme": true
 }

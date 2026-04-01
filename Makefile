@@ -18,8 +18,8 @@ install:
 	./install.sh
 
 check: ## Use ShellCheck to check for bugs on shell scripts.
-	shellcheck scripts/restart-brew-service-with-custom-plist.sh
-	shellcheck scripts/update-opencode-config.sh
+	shellcheck -a scripts/restart-brew-service-with-custom-plist.sh
+	shellcheck -a scripts/update-coding-agents.sh
 
-update-oc: ## Update OpenCode configuration.
-	./scripts/update-opencode-config.sh
+update-ca: ## Update coding agents.
+	./scripts/update-coding-agents.sh

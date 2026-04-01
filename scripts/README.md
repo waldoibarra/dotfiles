@@ -3,18 +3,19 @@
 This directory contains scripts to:
 
 * Restart Brew service with a custom plist ([restart-brew-service-with-custom-plist.sh](restart-brew-service-with-custom-plist.sh))
-* Update OpenCode configuration ([update-opencode-config.sh](update-opencode-config.sh))
+* Update coding agents ([update-coding-agents.sh](update-coding-agents.sh))
 
-## OpenCode Configuration
+## Update Coding Agents
 
 It will update the following:
 
 - [AI Gentle Stack](https://github.com/Gentleman-Programming/gentle-ai)
+- [Globally installed skills](https://skills.sh/)
 
 ### Usage
 
 ```bash
-make update-oc
+make update-ca
 ```
 
 ## Development
