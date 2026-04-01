@@ -42,6 +42,8 @@ brew "pycparser"
 brew "pyenv"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Autoformat shell script source code
+brew "shfmt"
 # Terraform version manager inspired by rbenv
 brew "tfenv"
 # Display directories as trees (with optional color/HTML output)
@@ -71,6 +73,6 @@ cask "zen"
 vscode "eamodio.gitlens"
 vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
-vscode "foxundermoon.shell-format"
 vscode "github.vscode-github-actions"
+vscode "mkhl.shfmt"
 vscode "timonwong.shellcheck"
