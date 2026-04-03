@@ -11,11 +11,13 @@ _source_lib_functions() {
   source "$SCRIPTS_DIR/lib/shell-helpers.sh"
   source "$SCRIPTS_DIR/lib/update-gentleman-ai-ecosystem.sh"
   source "$SCRIPTS_DIR/lib/sync-global-skills-from-lock.sh"
+  source "$SCRIPTS_DIR/lib/register-superpowers-plugin.sh"
 }
 
 _update_ai_agents() {
   update_gentleman_ai_ecosystem
   sync_global_skills_from_lock
+  register_superpowers_plugin
 }
 
 main() {
