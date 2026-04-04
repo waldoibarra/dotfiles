@@ -18,6 +18,7 @@ brew-upgrade: ## Upgrade all items in the global Brewfile.
 	brew bundle upgrade --global
 
 check: ## Use ShellCheck to check for bugs on shell scripts.
+	shellcheck scripts/install-dotfiles.sh
 	shellcheck -a scripts/update-coding-agents.sh
 
 update-ca: ## Update coding agents.
