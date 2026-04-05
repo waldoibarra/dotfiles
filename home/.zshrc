@@ -1,69 +1,49 @@
 # Loaded for every interactive shell. This handles the "look and feel" and tool integrations.
 # This is for the interactive experience. It stays snappy because the environment is already set.
 
-# ------------------------------------------------------ #
-# Powerlevel10k instant prompt (Must be at the very top) #
-# ------------------------------------------------------ #
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                          Bootstrap                                            ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
+antigen use oh-my-zsh
 
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                         Configuration                                         ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
-# -------------------- #
-# Oh My Zsh Framework. #
-# -------------------- #
-
-export ZSH="$HOME/.oh-my-zsh"
-export ZSH_THEME="random"
-export ZSH_THEME_RANDOM_QUIET=true
-zstyle ':omz:update' mode auto
 zstyle ':omz:plugins:nvm' lazy yes
 
-# https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
-plugins=(
-  aws
-  # colemak # vi navigation
-  # colorize
-  command-not-found
-  # docker
-  # docker-compose
-  # dotenv
-  fancy-ctrl-z
-  # gh
-  # git
-  # macos
-  nvm
-  # ssh
-)
-# bindkey -v # Enable vi mode.
-source $ZSH/oh-my-zsh.sh
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                           Bundles                                             ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
+antigen bundle aws
+antigen bundle command-not-found
+antigen bundle fancy-ctrl-z
+antigen bundle nvm
 
-# ----------------------------------------------------- #
-# Tool hooks (Required for interactive shell features). #
-# ----------------------------------------------------- #
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                            Theme                                              ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
-# Load pyenv.
+antigen theme random
+export ZSH_THEME_RANDOM_QUIET=true
+
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                            Apply                                              ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+antigen apply
+
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                            Tools                                              ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+
 eval "$(pyenv init - zsh)"
 
-# Load NVM.
-[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
-[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
-
-
-# ---------------------------- #
-# Theme & Plugin Configuration #
-# ---------------------------- #
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# ------- #
-# Aliases #
-# ------- #
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                           Aliases                                             ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
 alias lso="eza -aal --octal-permissions"

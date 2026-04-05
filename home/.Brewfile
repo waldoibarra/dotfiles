@@ -1,5 +1,7 @@
 tap "anomalyco/tap"
 tap "gentleman-programming/tap"
+# Plugin manager for zsh, inspired by oh-my-zsh and vundle
+brew "antigen"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # GNU File, Shell, and Text utilities

@@ -1,17 +1,29 @@
 # Loaded once per login session. This is the ideal place for Homebrew, pyenv, and your global $PATH.
 # This runs once at login. It is the best place for heavy initializations like Brew, NVM, and Pyenv paths.
 
-export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                          Homebrew                                             ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
-# Homebrew initialization
 export BREW_BIN="/opt/homebrew/bin"
-if [[ -n "$BREW_BIN" && -f "$BREW_BIN/brew" ]]; then
-    eval "$($BREW_BIN/brew shellenv)"
-fi
+[[ -f "$BREW_BIN/brew" ]] && eval "$($BREW_BIN/brew shellenv)"
 
-# Pyenv path setup.
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                             PATH                                              ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+export PATH="$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PATH:$PYENV_ROOT/bin"
+[[ -d "$PYENV_ROOT/bin" ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
-# NVM path setup.
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                            Tools                                              ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+
 export NVM_DIR="$HOME/.nvm"
+
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                         Brew Services                                         ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+launchctl setenv OLLAMA_KEEP_ALIVE "15m"
