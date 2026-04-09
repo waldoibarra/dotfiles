@@ -4,7 +4,7 @@
 # npx skills add https://github.com/vercel-labs/skills -s find-skills -a opencode -g -y
 
 _get_global_skills_json() {
-  npx skills ls -g --json 2>/dev/null
+  npx -y skills ls -g --json 2>/dev/null
 }
 
 _get_skills_in_agents_dir() {
@@ -20,7 +20,7 @@ _install_skill() {
   local -r _url="${_source_url%.git}"
 
   echo "Installing: $_skill_name"
-  npx skills add "$_url" --skill "$_skill_name" "${_agent_flags[@]}" -g -y >/dev/null 2>&1
+  npx -y skills add "$_url" --skill "$_skill_name" "${_agent_flags[@]}" -g -y >/dev/null 2>&1
 }
 
 _install_skills_from_lockfile() {
@@ -48,7 +48,7 @@ _install_skills_from_lockfile() {
 }
 
 _update_all_skills() {
-  npx skills update
+  npx -y skills update
 }
 
 sync_global_skills_from_lock() {
