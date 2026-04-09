@@ -32,5 +32,8 @@
     "https://schemastore.azurewebsites.net/": true,
     "https://www.schemastore.org/": true,
     "https://raw.githubusercontent.com/jsonresume/resume-schema/": true
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

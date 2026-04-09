@@ -26,6 +26,8 @@ brew "gnutls"
 brew "libksba"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Handy way to save and run project-specific commands
+brew "just"
 # Find what models run on your hardware
 brew "llmfit"
 # Utility for directing compilation
@@ -72,9 +74,17 @@ cask "visual-studio-code"
 cask "wezterm@nightly"
 # Gecko based web browser
 cask "zen"
+vscode "charliermarsh.ruff"
 vscode "eamodio.gitlens"
 vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
 vscode "github.vscode-github-actions"
 vscode "mkhl.shfmt"
+vscode "ms-python.debugpy"
+vscode "ms-python.mypy-type-checker"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-python.vscode-python-envs"
+vscode "nefrob.vscode-just-syntax"
+vscode "tamasfe.even-better-toml"
 vscode "timonwong.shellcheck"
