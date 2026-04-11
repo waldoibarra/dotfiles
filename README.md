@@ -17,8 +17,10 @@ To install your dotfiles on a new machine or after updates:
 ```bash
 git clone --recurse-submodules git@github.com:waldoibarra/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-make install
+./scripts/install-dotfiles.sh
 ```
+
+After the first run, use `just install` for all subsequent runs.
 
 > Might need to set Zsh as default shell and restart machine.
 
@@ -26,10 +28,10 @@ The [Dotbot](https://github.com/anishathalye/dotbot)'s script is idempotent, can
 
 ### Customization
 
-Edit the [install.conf.yaml](install.conf.yaml) file and re-run the install script.
+Edit the [install.conf.yaml](install.conf.yaml) file and re-run:
 
 ```bash
-make install
+just install
 ```
 
 ## Installing Latest Node.js / Python
@@ -52,9 +54,13 @@ Install, dump, clean up, and upgrade.
 
 ```bash
 brew install <package_name>
-make brew-dump
-make brew-cleanup
-make brew-upgrade
+just brew
+
+# Or run them one by one.
+
+just brew-dump
+just brew-cleanup
+just brew-upgrade
 ```
 
 ## The Complete Z Shell Load Order

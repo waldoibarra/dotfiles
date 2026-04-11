@@ -1,25 +1,11 @@
 {
   "editor.renderWhitespace": "all",
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "chat.mcp.gallery.enabled": true,
+  "editor.tabSize": 2,
   "editor.rulers": [
     100
   ],
-  "files.associations": {
-    ".Brewfile": "ruby"
-  },
   "editor.wordWrap": "on",
+  "chat.mcp.gallery.enabled": true,
   "window.autoDetectColorScheme": true,
   "json.schemaDownload.trustedDomains": {
     "https://developer.microsoft.com/json-schemas/": true,
@@ -32,6 +18,22 @@
     "https://schemastore.azurewebsites.net/": true,
     "https://www.schemastore.org/": true,
     "https://raw.githubusercontent.com/jsonresume/resume-schema/": true
+  },
+  "files.associations": {
+    ".Brewfile": "ruby",
+    "justfile": "makefile"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

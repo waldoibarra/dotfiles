@@ -14,7 +14,7 @@ It will update the following:
 ### Usage
 
 ```bash
-make update-ca
+just update-ca
 ```
 
 ## Development
@@ -22,5 +22,5 @@ make update-ca
 When modifying the setup scripts, make sure to use ShellCheck to analyze for bugs.
 
 ```bash
-make check
+just check
 ```
