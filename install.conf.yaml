@@ -55,3 +55,6 @@
     - command: brew bundle check --global || brew bundle install --global
       description: Take instructions from the Brewfile to install or upgrade packages —
       stdout: true
+    - command: mise install
+      description: Install all missing tools in global mise config —
+      stdout: true
