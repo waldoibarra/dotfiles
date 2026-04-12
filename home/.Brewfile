@@ -2,8 +2,6 @@ tap "anomalyco/tap"
 tap "gentleman-programming/tap"
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
 brew "antigen"
-# Official Amazon AWS command-line interface
-brew "awscli"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Modern, maintained replacement for ls
@@ -30,12 +28,8 @@ brew "gnupg"
 brew "just"
 # Find what models run on your hardware
 brew "llmfit"
-# Utility for directing compilation
-brew "make"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
-# Port scanning utility for large networks
-brew "nmap"
 # Create, run, and share large language models (LLMs)
 brew "ollama", restart_service: :changed
 # Package compiler and linker metadata toolkit
@@ -46,8 +40,6 @@ brew "pycparser"
 brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
-# Terraform version manager inspired by rbenv
-brew "tfenv"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Feature-rich command-line audio/video downloader
@@ -81,5 +73,4 @@ vscode "ms-python.mypy-type-checker"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
 vscode "ms-python.vscode-python-envs"
-vscode "tamasfe.even-better-toml"
 vscode "timonwong.shellcheck"
