@@ -43,6 +43,7 @@
       path: "home/Library/Application Support/Code/User/*"
 
     # Directories.
+    ~/.config/mise: home/.config/mise/
     ~/.config/wezterm: home/.config/wezterm/
 
 - shell:

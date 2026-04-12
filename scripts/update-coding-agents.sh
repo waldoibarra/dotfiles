@@ -1,10 +1,5 @@
 #!/bin/bash
 
-_ensure_nvm_loaded() {
-  # shellcheck disable=SC1091
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-}
-
 _source_dependencies() {
   local -r _scripts_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -22,7 +17,6 @@ _update_ai_agents() {
 }
 
 main() {
-  _ensure_nvm_loaded
   _source_dependencies
   _update_ai_agents
 

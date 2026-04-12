@@ -1,0 +1,8 @@
+[tools]
+node = "lts"
+python = "3.12"
+uv = "latest"
+
+[settings]
+env_file = '.env'
+idiomatic_version_file_enable_tools = ["python", "node"]

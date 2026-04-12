@@ -32,18 +32,16 @@ brew "just"
 brew "llmfit"
 # Utility for directing compilation
 brew "make"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
 # Port scanning utility for large networks
 brew "nmap"
-# Manage multiple Node.js versions
-brew "nvm"
 # Create, run, and share large language models (LLMs)
 brew "ollama", restart_service: :changed
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
 # C parser in Python
 brew "pycparser"
-# Python version management
-brew "pyenv"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Autoformat shell script source code
@@ -52,8 +50,6 @@ brew "shfmt"
 brew "tfenv"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Extremely fast Python package installer and resolver, written in Rust
-brew "uv"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # UNIX shell (command interpreter)

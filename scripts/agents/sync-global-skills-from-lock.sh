@@ -48,7 +48,7 @@ _install_skills_from_lockfile() {
 }
 
 _update_all_skills() {
-  npx -y skills update
+  npx -y skills update -g
 }
 
 sync_global_skills_from_lock() {

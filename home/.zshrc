@@ -9,12 +9,6 @@ source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
 antigen use oh-my-zsh
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
-# ║                                         Configuration                                         ║
-# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
-
-zstyle ':omz:plugins:nvm' lazy yes
-
-# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                           Bundles                                             ║
 # ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
@@ -22,7 +16,6 @@ zstyle ':omz:plugins:nvm' lazy yes
 antigen bundle aws
 antigen bundle command-not-found
 antigen bundle fancy-ctrl-z
-antigen bundle nvm
 
 # Generate random Quotes and Facts(nerd, funny, love, inspire, facts).
 antigen bundle vkolagotla/zsh-random-quotes
@@ -44,7 +37,7 @@ antigen apply
 # ║                                            Tools                                              ║
 # ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
-eval "$(pyenv init - zsh)"
+eval "$(mise activate zsh)"
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                           Aliases                                             ║
