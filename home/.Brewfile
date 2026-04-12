@@ -4,6 +4,8 @@ tap "gentleman-programming/tap"
 brew "antigen"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Apjanke's fork of the classic cowsay project
+brew "cowsay"
 # Modern, maintained replacement for ls
 brew "eza"
 # Play, record, convert, and stream select audio and video codecs

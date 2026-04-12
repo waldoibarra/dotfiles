@@ -12,13 +12,22 @@ antigen use oh-my-zsh
 # ║                                           Bundles                                             ║
 # ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle aws
-antigen bundle command-not-found
-antigen bundle fancy-ctrl-z
+local _bundles=(
+  # Bundles from the default repo (robbyrussell's oh-my-zsh).
+  command-not-found
+  emoji
+  emotty
+  fancy-ctrl-z
 
-# Generate random Quotes and Facts(nerd, funny, love, inspire, facts).
-antigen bundle vkolagotla/zsh-random-quotes
+  # Generate random Quotes and Facts(nerd, funny, love, inspire, facts).
+  vkolagotla/zsh-random-quotes
+)
+
+for bundle in $_bundles; do
+  antigen bundle $bundle
+done
+
+unset _bundles
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                            Theme                                              ║
