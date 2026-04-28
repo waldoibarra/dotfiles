@@ -56,6 +56,12 @@ brew "gentleman-programming/tap/engram"
 brew "gentleman-programming/tap/gentle-ai"
 # Gentleman Guardian Angel - Provider-agnostic code review using AI (Claude, Gemini, Codex, OpenCode, Ollama)
 brew "gentleman-programming/tap/gga"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
+# Open-source software for live streaming and screen recording
+cask "obs"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
 # Collaboration platform for API development
 cask "postman"
 # Open-source code editor
@@ -68,6 +74,7 @@ vscode "charliermarsh.ruff"
 vscode "eamodio.gitlens"
 vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
+vscode "github.copilot-chat"
 vscode "github.vscode-github-actions"
 vscode "mkhl.shfmt"
 vscode "ms-python.debugpy"
