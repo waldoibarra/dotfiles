@@ -37,6 +37,7 @@
 
     # Files.
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
+    ~/.aws/config: home/.aws/config
     ~/.ssh/config: home/.ssh/config
     "~/Library/Application Support/Code/User":
       glob: true
