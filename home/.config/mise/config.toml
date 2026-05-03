@@ -1,5 +1,6 @@
 [tools]
 aws-cli = { version = "latest", symlink_bins = "true" }
+claude = "latest"
 node = "lts"
 python = ["latest", "3.12"]
 uv = "latest"
