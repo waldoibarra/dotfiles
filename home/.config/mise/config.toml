@@ -1,9 +1,18 @@
 [tools]
 aws-cli = { version = "latest", symlink_bins = "true" }
 claude = "latest"
+cowsay = "latest"
+delta = "latest"
+eza = "latest"
+just = "latest"
+llmfit = "latest"
 node = "lts"
+opencode = "latest"
 python = ["latest", "3.12"]
+shellcheck = "latest"
+shfmt = "latest"
 uv = "latest"
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 
 [settings]
 env_file = '.env'
