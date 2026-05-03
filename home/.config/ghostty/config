@@ -1,0 +1,51 @@
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                           Shortcuts                                           ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+# Defaults:
+# Split down:             S-s-D
+# Split right:            s-D
+# Zoom split:             S-s-RET
+# Select previous split:  s-[
+# Select next split:      s-]
+# Select split:           M-s-<up/right/down/left>
+
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                      Window & Performance                                     ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+# Starts the window maximized on launch.
+maximize = true
+
+# Removes title bar and borders for a square, chromeless look.
+window-decoration = none
+
+# Resizes window in character-cell increments to prevent rendering artifacts.
+window-step-resize = true
+
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                       Colors & Effects                                        ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+# Pure black background for maximum contrast (OLED friendly).
+background = #000000
+
+# Controls transparency (0.0 to 1.0). Set to 1.0 for solid black.
+background-opacity = 1.0
+
+# Enables background blurring (useful when opacity is < 1.0).
+background-blur = false
+
+# The color of the line between split panes.
+split-divider-color = #282c34
+
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                      Layout & Typography                                      ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+# Internal spacing (horizontal and vertical).
+window-padding-x = 2
+window-padding-y = 2
+
+# Distributes extra pixel space evenly around the text grid.
+window-padding-balance = true
+
+# Font configuration.
+font-size = 13

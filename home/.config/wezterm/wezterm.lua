@@ -22,8 +22,8 @@ config.font_size = 12.5
 -- │                                  WINDOW                                      │
 -- └──────────────────────────────────────────────────────────────────────────────┘
 
-config.window_background_opacity = 0.7
-config.macos_window_background_blur = 20
+-- config.window_background_opacity = 0.7
+-- config.macos_window_background_blur = 20
 
 config.window_padding = {
     top = 0,

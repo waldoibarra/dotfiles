@@ -44,6 +44,7 @@
       path: "home/Library/Application Support/Code/User/*"
 
     # Directories.
+    ~/.config/ghostty: home/.config/ghostty/
     ~/.config/mise: home/.config/mise/
     ~/.config/wezterm: home/.config/wezterm/
 

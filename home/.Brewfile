@@ -39,6 +39,8 @@ brew "gentleman-programming/tap/gentle-ai"
 brew "gentleman-programming/tap/gga"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Open-source software for live streaming and screen recording
 cask "obs"
 # Knowledge base that works on top of a local folder of plain text Markdown files
@@ -57,6 +59,7 @@ vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
 vscode "github.vscode-github-actions"
 vscode "mkhl.shfmt"
+vscode "ms-azuretools.vscode-containers"
 vscode "ms-python.debugpy"
 vscode "ms-python.mypy-type-checker"
 vscode "ms-python.python"
