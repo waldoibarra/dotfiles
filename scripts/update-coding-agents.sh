@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 _source_dependencies() {
   local -r _scripts_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
