@@ -7,8 +7,6 @@ brew "coreutils"
 brew "ffmpeg"
 # GNU compiler collection
 brew "gcc"
-# GitHub command-line tool
-brew "gh"
 # Distributed revision control system
 brew "git"
 # Validating, recursive, caching DNS resolver
@@ -33,7 +31,7 @@ brew "tree"
 brew "zsh"
 # Persistent memory for AI coding agents. Agent-agnostic, single binary, zero dependencies.
 brew "gentleman-programming/tap/engram"
-# AI Gentle Stack — One command to configure any AI coding agent on any OS.
+# Gentle-AI — Ecosystem, Frameworks, Workflows for AI coding agents.
 brew "gentleman-programming/tap/gentle-ai"
 # Gentleman Guardian Angel - Provider-agnostic code review using AI (Claude, Gemini, Codex, OpenCode, Ollama)
 brew "gentleman-programming/tap/gga"
@@ -65,4 +63,5 @@ vscode "ms-python.mypy-type-checker"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
 vscode "ms-python.vscode-python-envs"
+vscode "tamasfe.even-better-toml"
 vscode "timonwong.shellcheck"
