@@ -1,4 +1,5 @@
 [tools]
 hk = "latest"
+markdownlint-cli2 = "latest"
 pkl = "latest"
 shellcheck = "latest"

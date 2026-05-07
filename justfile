@@ -63,6 +63,11 @@ lint-sh:
   shellcheck scripts/install-dotfiles.sh
   shellcheck -a scripts/update-coding-agents.sh
 
+# Use markdownlint-cli2 to lint Markdown files.
+[group("Linting")]
+lint-md:
+  markdownlint-cli2 "**/*.md"
+
 # Run pre-commit hook against all files to verify hook configuration.
 [group("Linting")]
 check-hooks:

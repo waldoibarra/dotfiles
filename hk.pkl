@@ -7,6 +7,10 @@ hooks {
         glob = List("scripts/**/*.sh", "scripts/.shellcheckrc")
         check = "just lint-sh"
       }
+      ["markdownlint"] {
+        glob = List("**/*.md", ".markdownlint-cli2.yaml")
+        check = "just lint-md"
+      }
     }
   }
 }
