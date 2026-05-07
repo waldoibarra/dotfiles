@@ -22,5 +22,5 @@ just update-ca
 When modifying the setup scripts, make sure to use ShellCheck to analyze for bugs.
 
 ```bash
-just check
+just lint-sh
 ```

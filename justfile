@@ -68,16 +68,6 @@ lint-sh:
 lint-md:
   markdownlint-cli2 "**/*.md"
 
-# Run pre-commit hook against all files to verify hook configuration.
-[group("Linting")]
-check-hooks:
-  hk run pre-commit --all
-
-# Use committed to lint a commit message file.
-[group("Linting")]
-lint-commit msg_file:
-  committed --commit-file {{msg_file}}
-
 # Use editorconfig-checker to lint all files against .editorconfig rules.
 [group("Linting")]
 lint-ec:
@@ -87,3 +77,13 @@ lint-ec:
 [group("Linting")]
 lint-yaml:
   yamlfmt -lint "**/*.yaml" "**/*.yml"
+
+# Use committed to lint a commit message file.
+[group("Linting")]
+lint-commit msg_file:
+  committed --commit-file {{msg_file}}
+
+# Run pre-commit hook against all files to verify hook configuration.
+[group("Debug")]
+check-hooks:
+  hk run pre-commit --all
