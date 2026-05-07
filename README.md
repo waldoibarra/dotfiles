@@ -32,10 +32,11 @@ Run these commands only 1 time; after the initial setup, use the commands below.
 Edit the [install.conf.yaml](install.conf.yaml) file and sync the configuration by running:
 
 ```bash
+# Runs Dotbot, upgrades Brew packages, Mise tools, and coding agents.
 just sync
 ```
 
-The [Dotbot](https://github.com/anishathalye/dotbot)'s script is idempotent, can be ran many times.
+The [Dotbot](https://github.com/anishathalye/dotbot) script is idempotent and can be run many times.
 
 ## Managing Developer Tools
 

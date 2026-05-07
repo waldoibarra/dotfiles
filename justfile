@@ -3,9 +3,9 @@
 default:
   @just --list --unsorted
 
-# Idempotently sync OS configuration, sync Brew packages, upgrade Mise tools.
+# Idempotently sync OS configuration, sync Brew packages, upgrade Mise tools, update coding agents.
 [group("Management")]
-sync: && brew mise-up
+sync: && brew mise-up update-ca
   ./scripts/install-dotfiles.sh
 
 # Brew bundle: dump, cleanup, upgrade.
