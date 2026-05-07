@@ -3,6 +3,23 @@
 default:
   @just --list --unsorted
 
+# Set up local project tools and Git hooks.
+[group("Setup")]
+setup: install-local-tools install-git-hooks
+
+# Install local project-level tools (separate from global Mise tools).
+[group("Setup")]
+[private]
+install-local-tools:
+  mise trust
+  mise install
+
+# Install Git hooks for this repository.
+[group("Setup")]
+[private]
+install-git-hooks:
+  hk install
+
 # Idempotently sync OS configuration, sync Brew packages, upgrade Mise tools, update coding agents.
 [group("Management")]
 sync: && brew mise-up update-ca
@@ -40,8 +57,13 @@ mise-up:
 update-ca:
   ./scripts/update-coding-agents.sh
 
-# Use ShellCheck to check for bugs on shell scripts.
+# Use ShellCheck to lint shell scripts.
 [group("Linting")]
-check:
+lint-sh:
   shellcheck scripts/install-dotfiles.sh
   shellcheck -a scripts/update-coding-agents.sh
+
+# Run pre-commit hook against all files to verify hook configuration.
+[group("Linting")]
+check-hooks:
+  hk run pre-commit --all
