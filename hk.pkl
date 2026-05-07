@@ -14,6 +14,10 @@ hooks {
       ["editorconfig-checker"] {
         check = "just lint-ec"
       }
+      ["yamlfmt"] {
+        glob = List("**/*.yaml", "**/*.yml")
+        check = "just lint-yaml"
+      }
     }
   }
   ["commit-msg"] {

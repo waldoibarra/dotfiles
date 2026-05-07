@@ -82,3 +82,8 @@ lint-commit msg_file:
 [group("Linting")]
 lint-ec:
   ec
+
+# Use yamlfmt to lint YAML files.
+[group("Linting")]
+lint-yaml:
+  yamlfmt -lint "**/*.yaml" "**/*.yml"
