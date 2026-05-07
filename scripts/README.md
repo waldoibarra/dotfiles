@@ -9,9 +9,7 @@ This directory contains scripts to:
 
 It will update the following:
 
-- [AI Gentle Stack](https://github.com/Gentleman-Programming/gentle-ai)
 - [Globally installed skills](https://skills.sh/)
-- [Superpowers](https://github.com/obra/superpowers)
 
 ### Usage
 
