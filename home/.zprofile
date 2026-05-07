@@ -1,5 +1,6 @@
-# Loaded once per login session. This is the ideal place for Homebrew, pyenv, and your global $PATH.
-# This runs once at login. It is the best place for heavy initializations like Brew, NVM, and Pyenv paths.
+# Loaded once per login session. This is the ideal place for Homebrew, pyenv, and your global
+# $PATH. This runs once at login. It is the best place for heavy initializations like Brew, NVM,
+# and Pyenv paths.
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                           Homebrew                                            ║

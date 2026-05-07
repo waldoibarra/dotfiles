@@ -11,6 +11,9 @@ hooks {
         glob = List("**/*.md", ".markdownlint-cli2.yaml")
         check = "just lint-md"
       }
+      ["editorconfig-checker"] {
+        check = "just lint-ec"
+      }
     }
   }
   ["commit-msg"] {

@@ -77,3 +77,8 @@ check-hooks:
 [group("Linting")]
 lint-commit msg_file:
   committed --commit-file {{msg_file}}
+
+# Use editorconfig-checker to lint all files against .editorconfig rules.
+[group("Linting")]
+lint-ec:
+  ec

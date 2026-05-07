@@ -11,3 +11,12 @@ charset = utf-8
 
 [*.md]
 max_line_length = off
+
+# Git config format uses tabs by design and aliases can exceed 100 chars.
+[{.gitconfig,home/.gitconfig,.gitmodules}]
+indent_style = tab
+max_line_length = off
+
+# Brewfile descriptions and install.conf.yaml shell commands can exceed 100 chars.
+[{home/.Brewfile,install.conf.yaml}]
+max_line_length = off

@@ -1,5 +1,6 @@
 [tools]
 committed = "latest"
+editorconfig-checker = "latest"
 hk = "latest"
 markdownlint-cli2 = "latest"
 pkl = "latest"
