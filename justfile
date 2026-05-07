@@ -76,7 +76,7 @@ lint-ec:
 # Use yamlfmt to lint YAML files.
 [group("Linting")]
 lint-yaml:
-  yamlfmt -lint "**/*.yaml" "**/*.yml"
+  yamlfmt -lint "**/*.yaml"
 
 # Use committed to lint a commit message file.
 [group("Linting")]

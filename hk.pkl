@@ -17,7 +17,7 @@ hooks {
         check = "just lint-ec"
       }
       ["yamlfmt"] {
-        glob = List("**/*.yaml", "**/*.yml")
+        glob = List("**/*.yaml")
         check = "just lint-yaml"
       }
     }

@@ -1,0 +1,108 @@
+# Learnings
+
+Temporary file. Will be used to draft the final AGENTS.md.
+
+## Meta
+
+- Always research and apply best practices before implementing anything — don't default to the
+  first working solution.
+- Before writing the final AGENTS.md, research best practices for AGENTS.md files specifically:
+  what agents need, what format works best, what sections are essential.
+
+## Linters and Tools
+
+- Each linter needs its own `just lint-*` recipe — don't use hk builtins directly.
+- Add the linter's config file to the hk step glob so the step re-runs when config changes.
+- Always exclude `dotbot/` from every linter — it's a submodule we don't own.
+- Tool choices: prefer self-contained binaries (Go, Rust) over tools that require a runtime
+  dependency when both options are equivalent. Avoids accidental coupling.
+- After adding a linter, always run `just check-hooks` before committing to verify it passes
+  against all files in the repo.
+- `ec` (editorconfig-checker) catches violations across all files — run it early to surface
+  issues like tabs in git config files, missing final newlines, and long lines.
+- Git config files (`.gitconfig`, `.gitmodules`) use tabs by design — add `.editorconfig`
+  overrides rather than fighting the format.
+- When a file legitimately can't conform to a rule (URLs, shell commands in YAML), add an
+  `.editorconfig` override scoped to that file rather than disabling the rule globally.
+
+## hk
+
+- hk's `exclude` filters which files trigger a step and are passed as `{{files}}`, but if the
+  `just` recipe does its own file discovery (e.g. `markdownlint-cli2 "**/*.md"`), hk's exclusion
+  has no effect — the tool finds files itself. Submodule exclusions must also live in the tool's
+  own config file.
+- Commit subjects must be ≤50 chars. Use the body to explain why, the footer for metadata.
+- When a linter runs via a `just` recipe rather than receiving `{{files}}` from hk, the glob in
+  the hk step is only used to decide _whether_ to trigger the step — not to scope what the tool
+  lints.
+
+## AGENTS.md Best Practices (OpenCode)
+
+- `AGENTS.md` should be a concise entry point, not a document that duplicates existing docs.
+- Use the `instructions` field in `opencode.json` to automatically include other files
+  (e.g. `README.md`, `scripts/README.md`) — this is the recommended approach.
+- Alternatively, use lazy-loading instructions in `AGENTS.md`: tell the agent to read specific
+  files on demand when relevant to the task, not preemptively.
+- Most of what an agent needs is already documented in this repo: `README.md`,
+  `scripts/README.md`, `justfile`, `hk.pkl`, `mise.toml`. AGENTS.md should orient and route,
+  not repeat.
+- Pattern: AGENTS.md = project overview + key conventions + pointers to where detail lives.
+
+## Repository
+
+- `home/` mirrors `$HOME`. Every config file lives here and is symlinked by Dotbot.
+- Never edit files directly in `$HOME` — always edit the source in `home/` and run `just sync`.
+- `install.conf.yaml` is the OS bootstrap manifest (Dotbot). Its job is to configure the OS,
+  not manage packages.
+- `just sync` = full sync: Dotbot + Brew + Mise + coding agents. Safe to re-run anytime.
+- `just setup` = one-time repo setup after cloning: installs local tools (hk, pkl, shellcheck)
+  and Git hooks.
+- Brew manages GUI apps and system-level packages. Mise manages developer tools and CLIs.
+  Never add to Brew what Mise can manage.
+- Global tools live in `home/.config/mise/config.toml`. Project-level tools live in `mise.toml`
+  at the repo root.
+- `just brew` handles day-to-day Brew package management (dump → cleanup → upgrade). Cleanup was
+  intentionally removed from `install.conf.yaml` because forgetting to dump first would delete
+  installed packages.
+- Shell scripts all live under `scripts/` and must have `.sh` extensions. ShellCheck config lives
+  at `scripts/.shellcheckrc`.
+- All shell scripts must pass `just lint-sh` (shellcheck) before committing. hk enforces this
+  automatically on pre-commit.
+
+## Code Style
+
+- Shell: bash, two-space indent, shellcheck-clean, formatted with shfmt.
+- YAML/TOML/JSON: two-space indent, LF, UTF-8, no trailing whitespace.
+- Commit messages: imperative mood, present tense, no period, concise
+  (e.g. `Add shellcheck pre-commit hook with hk`).
+- No commented-out code. No dead files. Git history is the backup — revert if needed.
+- No stale notes or unresolved TODOs in docs.
+
+## Git Hygiene
+
+- Atomic commits. One concern per commit.
+- Always check `git diff` and `git status` before committing to ensure the right files are staged
+  and changes align with the current concern.
+- Understand changes fully before committing — don't just stage and commit blindly.
+- Amend is acceptable when the commit hasn't been pushed and the fix belongs to the same concern.
+- Always test before committing.
+
+## Working with the User
+
+- Ask one clarifying question at a time — don't front-load multiple questions.
+- Propose a plan and confirm before implementing non-trivial changes.
+- When the user pushes back, investigate first before defending a position — they are often right.
+- Don't over-engineer. If something adds complexity without clear benefit, the user will reject it.
+- The user values clean separations of concern: bootstrap vs maintenance, global vs local,
+  manual vs automated.
+- The user thinks in atomic commits and will catch if changes from different concerns are mixed.
+- The user expects docs to stay accurate. If a change affects documented behaviour, update the
+  docs in the same commit.
+- The user will catch dead code, stale references, and misleading wording. Proactively remove them.
+- When the user says "do you agree?", give an honest answer with reasoning — don't just validate.
+- Anticipate follow-up: after implementing something, consider what the user is likely to notice
+  or ask next and address it proactively.
+- The user prefers explicit, descriptive naming (e.g. `install-local-tools`, `install-git-hooks`)
+  over short but ambiguous names.
+- The user will ask "why?" if an argument doesn't hold up to scrutiny. Make sure reasoning is
+  sound before stating it.
