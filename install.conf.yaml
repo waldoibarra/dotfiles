@@ -39,9 +39,7 @@
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.aws/config: home/.aws/config
     ~/.ssh/config: home/.ssh/config
-    "~/Library/Application Support/Code/User":
-      glob: true
-      path: "home/Library/Application Support/Code/User/*"
+    "~/Library/Application Support/Code/User/settings.json": "home/Library/Application Support/Code/User/settings.json"
 
     # Directories.
     ~/.config/ghostty: home/.config/ghostty/
@@ -51,9 +49,6 @@
 - shell:
     - command: command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       description: Install brew if missing —
-    - command: brew bundle cleanup --global --force
-      description: Cleanup anything that's not in the Brewfile —
-      stdout: true
     - command: brew bundle check --global || brew bundle install --global
       description: Take instructions from the Brewfile to install or upgrade packages —
       stdout: true
