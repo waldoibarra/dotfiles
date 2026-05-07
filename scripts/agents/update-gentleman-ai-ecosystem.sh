@@ -7,7 +7,7 @@ _check_for_new_versions_and_install() {
 
 _sync_managed_assets_to_current_version() {
   # gentle-ai install --agent claude-code,opencode --persona neutral --preset full-gentleman
-  gentle-ai sync --agent claude-code,opencode --include-permissions
+  gentle-ai sync --agent claude-code,opencode --include-permissions --sdd-profile-strategy generated-multi
 }
 
 update_gentleman_ai_ecosystem() {
