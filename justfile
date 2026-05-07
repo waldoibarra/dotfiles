@@ -72,3 +72,8 @@ lint-md:
 [group("Linting")]
 check-hooks:
   hk run pre-commit --all
+
+# Use committed to lint a commit message file.
+[group("Linting")]
+lint-commit msg_file:
+  committed --commit-file {{msg_file}}

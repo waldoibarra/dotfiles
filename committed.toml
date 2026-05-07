@@ -1,0 +1,4 @@
+style = "conventional"
+
+# Conventional commits are lowercase by design (e.g. "feat: add something").
+subject_capitalized = false

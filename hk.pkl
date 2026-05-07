@@ -13,4 +13,11 @@ hooks {
       }
     }
   }
+  ["commit-msg"] {
+    steps {
+      ["committed"] {
+        check = "just lint-commit {{commit_msg_file}}"
+      }
+    }
+  }
 }
