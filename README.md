@@ -25,7 +25,14 @@ cd ~/.dotfiles
 
 Run these commands only 1 time; after the initial setup, use the commands below.
 
-> Might need to set Zsh as default shell and restart machine (I need to test this in the future).
+### One-time Setup
+
+Run after cloning to set Homebrew zsh as the default shell, install local project tools, and
+install Git hooks. May prompt for a password.
+
+```bash
+just setup
+```
 
 ### Customization
 
