@@ -1,4 +1,3 @@
-tap "gentleman-programming/tap"
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
 brew "antigen"
 # GNU File, Shell, and Text utilities
@@ -29,12 +28,6 @@ brew "pycparser"
 brew "tree"
 # UNIX shell (command interpreter)
 brew "zsh"
-# Persistent memory for AI coding agents. Agent-agnostic, single binary, zero dependencies.
-brew "gentleman-programming/tap/engram"
-# Gentle-AI — Ecosystem, Frameworks, Workflows for AI coding agents.
-brew "gentleman-programming/tap/gentle-ai"
-# Gentleman Guardian Angel - Provider-agnostic code review using AI (Claude, Gemini, Codex, OpenCode, Ollama)
-brew "gentleman-programming/tap/gga"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Terminal emulator that uses platform-native UI and GPU acceleration
