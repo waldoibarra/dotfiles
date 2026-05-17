@@ -15,13 +15,19 @@ file, in the `link` directive.
 Install this dotfiles configuration on a new machine.
 
 ```bash
-git clone --recurse-submodules git@github.com:waldoibarra/dotfiles.git ~/.dotfiles
+git clone --recurse-submodules https://github.com/waldoibarra/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 # Only run this Shell script directly on a fresh OS (when the OS does not have Brew/Mise/just).
 # Run with `just sync` for all subsequent runs.
 ./scripts/install-dotfiles.sh
 ```
+
+> **On machines where you have SSH configured with GitHub**, you can clone via SSH instead:
+>
+> ```bash
+> git clone --recurse-submodules git@github.com:waldoibarra/dotfiles.git ~/.dotfiles
+> ```
 
 Run these commands only 1 time; after the initial setup, use the commands below.
 
