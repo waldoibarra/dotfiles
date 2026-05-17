@@ -6,14 +6,23 @@
 # ║                                           Homebrew                                            ║
 # ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
-export BREW_BIN="/opt/homebrew/bin"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export BREW_BIN="/opt/homebrew/bin"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  export BREW_BIN="/home/linuxbrew/.linuxbrew/bin"
+fi
+
 [[ -f "$BREW_BIN/brew" ]] && eval "$($BREW_BIN/brew shellenv)"
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                         Brew Services                                         ║
 # ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
-launchctl setenv OLLAMA_KEEP_ALIVE "15m"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  launchctl setenv OLLAMA_KEEP_ALIVE "15m"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  export OLLAMA_KEEP_ALIVE="15m"
+fi
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                             Mise                                              ║

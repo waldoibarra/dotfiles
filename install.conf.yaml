@@ -38,7 +38,12 @@
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.aws/config: home/.aws/config
     ~/.ssh/config: home/.ssh/config
-    "~/Library/Application Support/Code/User/settings.json": "home/Library/Application Support/Code/User/settings.json"
+    "~/Library/Application Support/Code/User/settings.json":
+      path: "home/.config/Code/User/settings.json"
+      if: '[[ "$(uname)" == "Darwin" ]]'
+    "~/.config/Code/User/settings.json":
+      path: "home/.config/Code/User/settings.json"
+      if: '[[ "$(uname)" == "Linux" ]]'
 
     # Directories.
     ~/.config/ghostty: home/.config/ghostty/
@@ -46,11 +51,7 @@
     ~/.config/wezterm: home/.config/wezterm/
 
 - shell:
-    - command: command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      description: Install brew if missing —
-    - command: brew bundle check --global || brew bundle install --global
-      description: Take instructions from the Brewfile to install or upgrade packages —
+    - command: ./scripts/install-os-packages.sh
+      description: Install OS packages (Homebrew, Mise) —
       stdout: true
-    - command: mise install
-      description: Install all missing tools in global mise config —
-      stdout: true
+      stderr: true
