@@ -2,8 +2,27 @@
 
 set -e
 
+readonly BREW_MAC="/opt/homebrew/bin/brew"
+readonly BREW_LINUX="/home/linuxbrew/.linuxbrew/bin/brew"
+
 _get_os_name() {
   uname -s
+}
+
+_is_brew_installed() {
+  local -r _os=$(_get_os_name)
+
+  if [[ "$_os" == "Darwin" ]]; then
+    [[ -x "$BREW_MAC" ]] && return 0
+  elif [[ "$_os" == "Linux" ]]; then
+    [[ -x "$BREW_LINUX" ]] && return 0
+  fi
+
+  if command -v brew >/dev/null 2>&1; then
+    return 0
+  fi
+
+  return 1
 }
 
 _install_brew_deps() {
@@ -11,7 +30,9 @@ _install_brew_deps() {
 
   if [[ "$_os" == "Darwin" ]]; then
     # https://docs.brew.sh/Installation#macos-requirements
-    xcode-select --install 2>/dev/null
+    if ! xcode-select -p &>/dev/null; then
+      xcode-select --install 2>/dev/null
+    fi
   elif [[ "$_os" == "Linux" ]]; then
     # https://docs.brew.sh/Homebrew-on-Linux#requirements
     sudo apt-get install -y build-essential procps curl file git
@@ -19,18 +40,25 @@ _install_brew_deps() {
 }
 
 _run_brew_install_script() {
-  NONINTERACTIVE=1 \
+  local -r _os=$(_get_os_name)
+
+  if [[ "$_os" == "Darwin" ]]; then
     /bin/bash -c \
-    "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  elif [[ "$_os" == "Linux" ]]; then
+    NONINTERACTIVE=1 \
+      /bin/bash -c \
+      "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
 }
 
 _add_brew_to_path() {
   local -r _os=$(_get_os_name)
 
   if [[ "$_os" == "Darwin" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    eval "$($BREW_MAC shellenv)"
   elif [[ "$_os" == "Linux" ]]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    eval "$($BREW_LINUX shellenv)"
   fi
 }
 
@@ -64,7 +92,7 @@ _add_to_allowed_shells() {
   local -r _brew_zsh="$(_get_brew_zsh_path)"
 
   if grep -qx "$_brew_zsh" /etc/shells; then
-    echo "Already in /etc/shells: $_brew_zsh"
+    echo "Zsh is already in /etc/shells: $_brew_zsh"
     return
   fi
 
@@ -80,8 +108,12 @@ _set_default_shell() {
 }
 
 _install_brew() {
-  if command -v brew >/dev/null 2>&1; then
+  if _is_brew_installed; then
     echo "Homebrew is already installed. ✅"
+
+    if ! command -v brew >/dev/null 2>&1; then
+      _add_brew_to_path
+    fi
   else
     _install_brew_deps
     _run_brew_install_script
