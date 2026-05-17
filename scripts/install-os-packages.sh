@@ -96,15 +96,21 @@ _add_to_allowed_shells() {
     return
   fi
 
-  echo "Adding $_brew_zsh to /etc/shells (requires sudo) —"
+  echo "Adding $_brew_zsh to /etc/shells"
   echo "$_brew_zsh" | sudo tee -a /etc/shells >/dev/null
 }
 
 _set_default_shell() {
+  local -r _os=$(_get_os_name)
   local -r _brew_zsh="$(_get_brew_zsh_path)"
 
-  echo "Setting default shell to $_brew_zsh (requires password) —"
-  chsh -s "$_brew_zsh"
+  echo "Setting default shell to $_brew_zsh."
+
+  if [[ "$_os" == "Darwin" ]]; then
+    chsh -s "$_brew_zsh"
+  elif [[ "$_os" == "Linux" ]]; then
+    sudo chsh -s "$_brew_zsh" "$USER"
+  fi
 }
 
 _install_brew() {
@@ -140,6 +146,7 @@ _install_git_hooks() {
 }
 
 _set_brew_zsh_as_default_shell() {
+  local -r _os=$(_get_os_name)
   local -r _brew_zsh="$(_get_brew_zsh_path)"
 
   if [ "$SHELL" = "$_brew_zsh" ]; then
@@ -150,7 +157,12 @@ _set_brew_zsh_as_default_shell() {
   _add_to_allowed_shells
   _set_default_shell
   echo "Changed default shell to $_brew_zsh. ✅"
-  echo "Open a new terminal session now. ❤️"
+
+  if [[ "$_os" == "Darwin" ]]; then
+    echo "Open a new terminal session. ❤️"
+  elif [[ "$_os" == "Linux" ]]; then
+    echo "Log out and log back in. ❤️"
+  fi
 }
 
 main() {
