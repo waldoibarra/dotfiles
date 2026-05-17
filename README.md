@@ -1,6 +1,6 @@
 # Dotfiles
 
-My personal OS **configuration files**, currently using **MacOS**.
+My personal OS **configuration files**, currently using **MacOS** and **Linux (Debian)**.
 
 ## Project Structure
 
@@ -15,7 +15,7 @@ file, in the `link` directive.
 A fresh OS installation might not have `git` available, so you must install it manually to clone
 this repository. You can do that by running:
 
-- MacOS: `xcode-select --install`\
+- MacOS: `xcode-select --install`
 - Linux (Debian): `sudo apt-get install -y git`
 
 To install this dotfiles configuration on a new machine, run these 3 commands:

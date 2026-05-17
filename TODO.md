@@ -1,6 +1,6 @@
 # TO DO
 
-There are some MacOS specific Brew packages, need to figure out how to install them on Ubuntu.
+There are some MacOS specific Brew packages, need to figure out how to install them on Linux (Debian).
 
 - [ ] docker-desktop
 - [ ] ghostty
