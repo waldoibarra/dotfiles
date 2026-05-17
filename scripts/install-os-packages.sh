@@ -43,13 +43,14 @@ _run_brew_install_script() {
   local -r _os=$(_get_os_name)
 
   if [[ "$_os" == "Darwin" ]]; then
-    /bin/bash -c \
-      "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  elif [[ "$_os" == "Linux" ]]; then
-    NONINTERACTIVE=1 \
-      /bin/bash -c \
-      "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Prompt for password on MacOS before running the Brew installer as it will throw an error
+    # with a warning about `stdin` not being a TTY.
+    sudo -v
   fi
+
+  NONINTERACTIVE=1 \
+    /bin/bash -c \
+    "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 _add_brew_to_path() {
