@@ -1,6 +1,3 @@
-# Loaded for every interactive shell. This handles the "look and feel" and tool integrations.
-# This is for the interactive experience. It stays snappy because the environment is already set.
-
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                          Bootstrap                                            ║
 # ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝

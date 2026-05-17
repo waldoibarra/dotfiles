@@ -95,6 +95,22 @@ Temporary file. Will be used to draft the final AGENTS.md.
 - Amend is acceptable when the commit hasn't been pushed and the fix belongs to the same concern.
 - Always test before committing.
 
+## Zsh Configuration
+
+- `.zshenv` is read for every process including scripts — keep it minimal, no side effects.
+- `.zprofile` is for login-session setup (PATH, tool initializations, session-wide env vars).
+- `.zshrc` is for interactive shell experience only (plugins, themes, aliases, completions).
+- `.zlogin` is for login-only tasks that run after everything else is set up (e.g. welcome message).
+- Scope machine-local overrides to the file that needs them — not `.zshenv`. A `~/.zlogin.local`
+  sourced by `.zlogin` is the right pattern when only `.zlogin` needs the value.
+- File-level comments that just describe the file's purpose belong in docs, not in the file itself.
+
+## Markdown / Docs
+
+- In GitHub-flavored Markdown, links starting with `/` are relative to the repository root —
+  use them instead of `../` when linking to files from within a `docs/` subdirectory.
+- Rename a doc file to match its `# Title` heading for consistency.
+
 ## Working with the User
 
 - Ask one clarifying question at a time — don't front-load multiple questions.
@@ -114,3 +130,7 @@ Temporary file. Will be used to draft the final AGENTS.md.
   over short but ambiguous names.
 - The user will ask "why?" if an argument doesn't hold up to scrutiny. Make sure reasoning is
   sound before stating it.
+- Don't jump into implementation before discussing tradeoffs on non-trivial decisions — the user
+  will call it out.
+- When unsure about a claim, look it up before defending it — the user is often right and will
+  push back until you verify.

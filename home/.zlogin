@@ -1,4 +1,4 @@
-# Loaded last, after everything else is set up.
+[[ -f "$HOME/.zlogin.local" ]] && source "$HOME/.zlogin.local"
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                            Colors                                             ║
@@ -49,7 +49,7 @@ _random_quote() {
 }
 
 _show_welcome_message() {
-  local -r _user="Waldo"
+  local -r _user="${NICKNAME:-$USER}"
   local -r _greeting="What's your main ${_cyan}focus$_reset today?"
   local -r _quote="$(_random_quote | cowsay -r -C)"
 
