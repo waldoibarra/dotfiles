@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 _get_os_name() {
   uname -s
 }
@@ -32,6 +34,51 @@ _add_brew_to_path() {
   fi
 }
 
+_get_current_shell() {
+  if [ -n "$ZSH_VERSION" ]; then
+    CURRENT_SHELL="zsh"
+  elif [ -n "$BASH_VERSION" ]; then
+    CURRENT_SHELL="bash"
+  else
+    CURRENT_SHELL="${SHELL##*/}"
+  fi
+
+  echo "$CURRENT_SHELL"
+}
+
+_activate_mise_tools() {
+  local -r _current_shell=$(_get_current_shell)
+
+  if [[ "$_current_shell" == "bash" ]]; then
+    eval "$(mise activate bash)"
+  elif [[ "$_current_shell" == "zsh" ]]; then
+    eval "$(mise activate zsh)"
+  fi
+}
+
+_get_brew_zsh_path() {
+  echo "$(brew --prefix)/bin/zsh"
+}
+
+_add_to_allowed_shells() {
+  local -r _brew_zsh="$(_get_brew_zsh_path)"
+
+  if grep -qx "$_brew_zsh" /etc/shells; then
+    echo "Already in /etc/shells: $_brew_zsh"
+    return
+  fi
+
+  echo "Adding $_brew_zsh to /etc/shells (requires sudo) —"
+  echo "$_brew_zsh" | sudo tee -a /etc/shells >/dev/null
+}
+
+_set_default_shell() {
+  local -r _brew_zsh="$(_get_brew_zsh_path)"
+
+  echo "Setting default shell to $_brew_zsh (requires password) —"
+  chsh -s "$_brew_zsh"
+}
+
 _install_brew() {
   if command -v brew >/dev/null 2>&1; then
     echo "Homebrew is already installed. ✅"
@@ -51,13 +98,35 @@ _install_brew_packages() {
 _install_mise_tools() {
   mise trust
   mise install
+  _activate_mise_tools
   echo "Installed missing Mise-managed tools. ✅"
+}
+
+_install_git_hooks() {
+  hk install
+  echo "Installed Git hooks. ✅"
+}
+
+_set_brew_zsh_as_default_shell() {
+  local -r _brew_zsh="$(_get_brew_zsh_path)"
+
+  if [ "$SHELL" = "$_brew_zsh" ]; then
+    echo "Default shell is already $_brew_zsh. ✅"
+    return
+  fi
+
+  _add_to_allowed_shells
+  _set_default_shell
+  echo "Changed default shell to $_brew_zsh. ✅"
+  echo "Open a new terminal session now. ❤️"
 }
 
 main() {
   _install_brew
   _install_brew_packages
   _install_mise_tools
+  _install_git_hooks
+  _set_brew_zsh_as_default_shell
 }
 
 main

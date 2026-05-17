@@ -3,29 +3,6 @@
 default:
   @just --list --unsorted
 
-# Set up local project tools and Git hooks.
-[group("Setup")]
-setup: set-default-shell install-local-tools install-git-hooks
-
-# Set Homebrew zsh as the default shell.
-[group("Setup")]
-[private]
-set-default-shell:
-  ./scripts/set-default-shell.sh
-
-# Install local project-level tools (separate from global Mise tools).
-[group("Setup")]
-[private]
-install-local-tools:
-  mise trust
-  mise install
-
-# Install Git hooks for this repository.
-[group("Setup")]
-[private]
-install-git-hooks:
-  hk install
-
 # Idempotently sync OS configuration, sync Brew packages, upgrade Mise tools, update coding agents.
 [group("Management")]
 sync: brew-clean brew-dump && brew-up mise-up update-ca
@@ -69,7 +46,7 @@ update-ca:
 [group("Linting")]
 lint-sh:
   shellcheck scripts/install-dotfiles.sh
-  shellcheck scripts/set-default-shell.sh
+  shellcheck scripts/install-os-packages.sh
   shellcheck -a scripts/update-coding-agents.sh
 
 # Use markdownlint-cli2 to lint Markdown files.

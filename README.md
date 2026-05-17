@@ -23,22 +23,13 @@ cd ~/.dotfiles
 ./scripts/install-dotfiles.sh
 ```
 
-> **On machines where you have SSH configured with GitHub**, you can clone via SSH instead:
+> On machines where you have **SSH configured** with GitHub, you can clone via SSH instead:
 >
 > ```bash
 > git clone --recurse-submodules git@github.com:waldoibarra/dotfiles.git ~/.dotfiles
 > ```
 
 Run these commands only 1 time; after the initial setup, use the commands below.
-
-### One-time Setup
-
-Run after cloning to set Homebrew zsh as the default shell, install local project tools, and
-install Git hooks. May prompt for a password.
-
-```bash
-just setup
-```
 
 ### Customization
 

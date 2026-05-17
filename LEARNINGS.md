@@ -13,7 +13,6 @@ Temporary file. Will be used to draft the final AGENTS.md.
 
 - New shell scripts must be added to `just lint-sh` immediately — don't leave them unlinted.
 - Use `set -euo pipefail` for safety. Use `local -r` for read-only locals.
-- Scripts that prompt for a password (sudo, chsh) belong in `just setup`, not `just sync`.
 - When a script is idempotent, make each sub-step independently idempotent with a guard check,
   and print a clear message for both the skip and the run case.
 - `$(brew --prefix)/bin/zsh` is the correct way to reference the Homebrew zsh — works on both
@@ -69,8 +68,6 @@ Temporary file. Will be used to draft the final AGENTS.md.
 - `install.conf.yaml` is the OS bootstrap manifest (Dotbot). Its job is to configure the OS,
   not manage packages.
 - `just sync` = full sync: Dotbot + Brew + Mise + coding agents. Safe to re-run anytime.
-- `just setup` = one-time repo setup after cloning: installs local tools (hk, pkl, shellcheck)
-  and Git hooks.
 - Brew manages GUI apps and system-level packages. Mise manages developer tools and CLIs.
   Never add to Brew what Mise can manage.
 - Global tools live in `home/.config/mise/config.toml`. Project-level tools live in `mise.toml`
