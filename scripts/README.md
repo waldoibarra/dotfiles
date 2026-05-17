@@ -10,7 +10,7 @@ This directory contains scripts to:
 ## Install Dotfiles
 
 It is a slightly modified copy of the DotBot install script, it calls the DotBot installer with the
-[install.config.yaml](/install.config.yaml) configuration file; it then will:
+[install.conf.yaml](/install.conf.yaml) configuration file; it then will:
 
 - Manage the dotfiles symlinks.
 - Run the `install-os-packages.sh` script.

@@ -49,8 +49,6 @@ is set up, making it the right place for one-time login tasks like printing a we
 
 **Currently:** Welcome message with a random quote and greeting.
 
----
-
 ## Machine-local configuration
 
 `~/.zlogin.local` is sourced by `.zlogin` if it exists. Use it to set values that should
