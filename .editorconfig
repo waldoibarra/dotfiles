@@ -20,3 +20,7 @@ max_line_length = off
 # Brewfile descriptions and install.conf.yaml shell commands can exceed 100 chars.
 [{home/.Brewfile,install.conf.yaml}]
 max_line_length = off
+
+# `npx skills update` command modifies this JSON file, leaving no new line at the end of the file.
+[home/.agents/.skill-lock.json]
+insert_final_newline = false

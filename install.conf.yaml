@@ -17,7 +17,6 @@
 
 - create:
     ~/.agents:
-    ~/.nvm:
     ~/.ssh:
       mode: 0700
     ~/projects:

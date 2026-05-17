@@ -9,6 +9,20 @@ Temporary file. Will be used to draft the final AGENTS.md.
 - Before writing the final AGENTS.md, research best practices for AGENTS.md files specifically:
   what agents need, what format works best, what sections are essential.
 
+## Shell Scripts
+
+- New shell scripts must be added to `just lint-sh` immediately — don't leave them unlinted.
+- Use `set -euo pipefail` for safety. Use `local -r` for read-only locals.
+- Scripts that prompt for a password (sudo, chsh) belong in `just setup`, not `just sync`.
+- When a script is idempotent, make each sub-step independently idempotent with a guard check,
+  and print a clear message for both the skip and the run case.
+- `$(brew --prefix)/bin/zsh` is the correct way to reference the Homebrew zsh — works on both
+  Apple Silicon (`/opt/homebrew`) and Intel (`/usr/local`) Macs.
+- Use `grep -qx` to match a whole line exactly in `/etc/shells` — `-qF` doesn't anchor the match.
+- Always update `scripts/README.md` when adding a new script.
+- Duplicate `### Usage` headings across sections in the same markdown file will fail MD024.
+  Either rename headings or remove the redundant one and reference the right recipe inline.
+
 ## Linters and Tools
 
 - Each linter needs its own `just lint-*` recipe — don't use hk builtins directly.
