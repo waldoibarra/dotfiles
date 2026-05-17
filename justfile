@@ -28,8 +28,10 @@ install-git-hooks:
 
 # Idempotently sync OS configuration, sync Brew packages, upgrade Mise tools, update coding agents.
 [group("Management")]
-sync: && brew mise-up update-ca
+sync: brew-clean brew-dump && brew-up mise-up update-ca
+  @printf "\n🔷 Going to synchronize the dotfiles. 🔷\n"
   ./scripts/install-dotfiles.sh
+  @printf "🔷 Finished synchronizing the dotfiles. 🔷\n\n"
 
 # Brew bundle: dump, cleanup, upgrade.
 [group("Management")]

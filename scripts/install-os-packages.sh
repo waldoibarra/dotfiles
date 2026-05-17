@@ -49,6 +49,7 @@ _install_brew_packages() {
 }
 
 _install_mise_tools() {
+  mise trust
   mise install
   echo "Installed missing Mise-managed tools. ✅"
 }
