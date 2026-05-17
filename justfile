@@ -18,7 +18,7 @@ brew: brew-dump brew-clean brew-up
 [group("Management")]
 [private]
 brew-dump:
-  brew bundle dump --global --force --describe
+  brew bundle dump --global --force --describe --no-vscode
 
 # Clean up anything that's not in the global Brewfile.
 [group("Management")]
