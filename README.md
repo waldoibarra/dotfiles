@@ -12,18 +12,22 @@ file, in the `link` directive.
 
 ## Initial Setup
 
-Install this dotfiles configuration on a new machine.
+A fresh OS installation might not have `git` available, so you must install it manually to clone
+this repository. You can do that by running:
+
+- MacOS: `xcode-select --install`\
+- Linux (Debian): `sudo apt-get install -y git`
+
+To install this dotfiles configuration on a new machine, run these 3 commands:
 
 ```bash
 git clone --recurse-submodules https://github.com/waldoibarra/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-
-# Only run this Shell script directly on a fresh OS (when the OS does not have Brew/Mise/just).
-# Run with `just sync` for all subsequent runs.
 ./scripts/install-dotfiles.sh
 ```
 
-> On machines where you have **SSH configured** with GitHub, you can clone via SSH instead:
+> On machines where you have **SSH configured** with GitHub (for write access ease), you can clone
+> via SSH instead:
 >
 > ```bash
 > git clone --recurse-submodules git@github.com:waldoibarra/dotfiles.git ~/.dotfiles
@@ -31,37 +35,26 @@ cd ~/.dotfiles
 
 Run these commands only 1 time; after the initial setup, use the commands below.
 
-### Customization
+## Sync
 
-Edit the [install.conf.yaml](install.conf.yaml) file and sync the configuration by running:
+This command is idempotent, it can be ran many times.
 
 ```bash
-# Runs Dotbot, upgrades Brew packages, Mise tools, and coding agents.
 just sync
 ```
 
-The [Dotbot](https://github.com/anishathalye/dotbot) script is idempotent and can be run many times.
+What it does:
 
-## Managing Developer Tools
-
-Use [mise](https://github.com/jdx/mise), the language agnostic dev tools manager. Global default
-tool versions are defined in [~/.config/mise/config.toml](home/.config/mise/config.toml), they
-define which version is active when no project-level file overrides it.
-
-```bash
-# Upgrade outdated tools.
-just mise-up
-```
-
-## Managing Homebrew Packages
-
-Use [Homebrew](https://brew.sh/) to install apps, libraries, or dev tools (but prefer Mise for dev
-tools). Installed Brew packages are defined in the global [~/.Brewfile](home/.Brewfile).
-
-```bash
-# Brew bundle: dump, cleanup, upgrade.
-just brew
-```
+- Use [DotBot](https://github.com/anishathalye/dotbot), a dotfiles bootstrapper, to update the
+  symlinks and ensure all OS packages are installed. It uses the [install.conf.yaml](install.conf.yaml)
+  file.
+- Use [Homebrew](https://brew.sh/) to upgrade apps, libraries, or dev tools (but prefer Mise for dev
+  tools). Installed Brew packages are defined in the global [~/.Brewfile](home/.Brewfile).
+- Use [mise](https://github.com/jdx/mise), the language agnostic dev tools manager to update global
+  default tool versions that are defined in [~/.config/mise/config.toml](home/.config/mise/config.toml),
+  they define which version is active when no project-level file overrides it.
+- Update coding agents configuration by running the [scripts/update-coding-agents.sh](scripts/update-coding-agents.sh)
+  script.
 
 ## Utility Scripts
 

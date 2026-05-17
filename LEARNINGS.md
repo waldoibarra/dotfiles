@@ -72,9 +72,6 @@ Temporary file. Will be used to draft the final AGENTS.md.
   Never add to Brew what Mise can manage.
 - Global tools live in `home/.config/mise/config.toml`. Project-level tools live in `mise.toml`
   at the repo root.
-- `just brew` handles day-to-day Brew package management (dump → cleanup → upgrade). Cleanup was
-  intentionally removed from `install.conf.yaml` because forgetting to dump first would delete
-  installed packages.
 - Shell scripts all live under `scripts/` and must have `.sh` extensions. ShellCheck config lives
   at `scripts/.shellcheckrc`.
 - All shell scripts must pass `just lint-sh` (shellcheck) before committing. hk enforces this
