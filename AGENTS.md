@@ -4,9 +4,8 @@
 
 Personal dotfiles for macOS (primary) and Debian Linux (partial).
 
-- The [`home/`](home/) directory mirrors `$HOME` and every config file is
+The [`home/`](home/) directory mirrors `$HOME` and every config file is
 symlinked there by Dotbot.
-- The [`scripts/`](scripts/) directory has utility scripts.
 
 ## Conventions
 
@@ -30,5 +29,6 @@ symlinked there by Dotbot.
 
 ## Reference docs
 
-- [`docs/tooling.md`](/docs/tooling.md) — just, hk, committed, Homebrew, mise
-- [`docs/zsh-configuration.md`](/docs/zsh-configuration.md) — zsh startup files and `.local` overrides
+- [`docs/tooling.md`](/docs/tooling.md) — just, hk, committed, Homebrew, mise.
+- [`docs/zsh-configuration.md`](/docs/zsh-configuration.md) — zsh startup files and `.local` overrides.
+- [`scripts/README.md`](/scripts/README.md) — what each script does and when it runs.
