@@ -45,6 +45,7 @@ just sync
 
 What it does:
 
+- Fetch changes on the dotfiles configuration (`git pull`).
 - Use [DotBot](https://github.com/anishathalye/dotbot), a dotfiles bootstrapper, to update the
   symlinks and ensure all OS packages are installed. It uses the [install.conf.yaml](install.conf.yaml)
   file.
