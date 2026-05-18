@@ -49,6 +49,18 @@ Temporary file. Will be used to draft the final AGENTS.md.
   the hk step is only used to decide _whether_ to trigger the step — not to scope what the tool
   lints.
 
+## AGENTS.md Best Practices (Research-backed)
+
+- Auto-generated AGENTS.md files reduce task success rates — always write it by hand.
+- Codebase overviews don't help agents navigate faster — skip directory trees and file listings.
+- Code style guidelines don't belong here — linters and formatters handle that deterministically.
+- Task-specific instructions that only apply sometimes dilute focus — keep it universal.
+- Tools mentioned in AGENTS.md get used 160x more often — explicitly name mise, just, hk, etc.
+- Keep it under 300 lines; aim for under 100. Every line goes into every session.
+- Use progressive disclosure: keep AGENTS.md short, point to other files for task-specific detail.
+- Prefer pointers (`file:line`) over embedded code snippets that go stale.
+- The HOW is what matters most: build, test, verify commands and non-obvious tooling choices.
+
 ## AGENTS.md Best Practices (OpenCode)
 
 - `AGENTS.md` should be a concise entry point, not a document that duplicates existing docs.

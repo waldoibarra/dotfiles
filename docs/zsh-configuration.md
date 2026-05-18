@@ -51,13 +51,17 @@ is set up, making it the right place for one-time login tasks like printing a we
 
 ## Machine-local configuration
 
-`~/.zlogin.local` is sourced by `.zlogin` if it exists. Use it to set values that should
-differ per machine.
+`.zlogin` sources `~/.zlogin.local` if it exists. It is the only startup file with a `.local`
+override — `.zprofile`, `.zshrc`, and `.zshenv` have no equivalent.
+
+`~/.zlogin.local` is intentionally **not** tracked by this repo. It must be created directly
+in `$HOME` on each machine. Do not add it to `install.conf.yaml` and do not create it under
+`home/` or symlink it.
 
 ### Customizing the welcome message name
 
 By default the welcome message uses `$USER` (your OS username). To display a different name,
-create `~/.zlogin.local` with:
+create `~/.zlogin.local` directly in `$HOME` with:
 
 ```sh
 export NICKNAME="Waldo"
