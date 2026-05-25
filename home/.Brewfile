@@ -8,12 +8,12 @@ brew "ffmpeg"
 brew "gcc"
 # Distributed revision control system
 brew "git"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
 # X.509 and CMS library
 brew "libksba"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Polyglot runtime manager (asdf rust clone)
@@ -38,6 +38,8 @@ cask "obs"
 cask "obsidian"
 # Collaboration platform for API development
 cask "postman"
+# Team communication and collaboration software
+cask "slack"
 # Open-source code editor
 cask "visual-studio-code"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
