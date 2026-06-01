@@ -51,12 +51,20 @@ is set up, making it the right place for one-time login tasks like printing a we
 
 ## Machine-local configuration
 
-`.zlogin` sources `~/.zlogin.local` if it exists. It is the only startup file with a `.local`
-override — `.zprofile`, `.zshrc`, and `.zshenv` have no equivalent.
+`.zprofile` and `.zlogin` each source a `.local` counterpart if it exists.
+`.zshrc` and `.zshenv` have no equivalent.
 
-`~/.zlogin.local` is intentionally **not** tracked by this repo. It must be created directly
-in `$HOME` on each machine. Do not add it to `install.conf.yaml` and do not create it under
-`home/` or symlink it.
+These files are intentionally **not** tracked by this repo. They must be created directly
+in `$HOME` on each machine. Do not add them to `install.conf.yaml` and do not create them under
+`home/` or symlink them.
+
+### Machine-local session environment variables
+
+Use `~/.zprofile.local` for machine-specific environment variables such as API keys:
+
+```sh
+export LINEAR_API_KEY="your-key-here"
+```
 
 ### Customizing the welcome message name
 
