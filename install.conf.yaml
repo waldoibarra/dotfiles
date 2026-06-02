@@ -47,8 +47,14 @@
       if: '[[ "$(uname)" == "Linux" ]]'
 
     # Directories.
+    ~/.claude/:
+      glob: true
+      path: home/.claude/*
     ~/.config/ghostty: home/.config/ghostty/
     ~/.config/mise: home/.config/mise/
+    ~/.config/opencode/:
+      glob: true
+      path: home/.config/opencode/*
     ~/.config/wezterm: home/.config/wezterm/
 
 - shell:

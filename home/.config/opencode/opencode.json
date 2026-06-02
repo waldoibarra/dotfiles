@@ -1,0 +1,31 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "opencode-claude-auth@latest",
+    "@slkiser/opencode-quota"
+  ],
+  "mcp": {
+    "linear": {
+      "type": "remote",
+      "url": "https://mcp.linear.app/mcp",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer {env:LINEAR_API_KEY}"
+      }
+    }
+  },
+  "provider": {
+    "ollama": {
+      "models": {
+        "qwen3": {
+          "name": "Qwen3 (latest)"
+        }
+      },
+      "name": "Ollama (local)",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      }
+    }
+  }
+}
