@@ -50,3 +50,4 @@ eval "$(mise activate zsh)"
 # ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
 alias lso="eza -aal --octal-permissions"
+alias claude="claude --dangerously-skip-permissions"
