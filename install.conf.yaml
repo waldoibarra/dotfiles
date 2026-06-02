@@ -62,3 +62,11 @@
       description: Install OS packages (Homebrew, Mise) —
       stdout: true
       stderr: true
+    - command: ./scripts/setup-env.sh
+      description: Set up machine environment (default shell) —
+      stdout: true
+      stderr: true
+    - command: ./scripts/setup-repo.sh
+      description: Set up repo environment (Git hooks, CLAUDE.md symlink) —
+      stdout: true
+      stderr: true

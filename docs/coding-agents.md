@@ -1,7 +1,8 @@
 # Coding Agents
 
-Configuration files for Claude Code and OpenCode are tracked in this repo and symlinked into
-`$HOME` via Dotbot.
+This is a dotfiles repo — its primary purpose is managing configuration files for the current
+machine. The global configuration files for Claude Code and OpenCode are tracked here and symlinked
+into `$HOME` via DotBot, the same way every other dotfile is.
 
 ## Tracked files
 
@@ -19,6 +20,16 @@ Configuration files for Claude Code and OpenCode are tracked in this repo and sy
 effectively the same prompt — any change to one must be mirrored to the other. The only intentional
 difference is the contextual skills loading section: each tool references available skills differently
 based on its own system prompt format.
+
+## Local project instructions
+
+Like any other repo, this dotfiles repo has its own local agent instruction files:
+
+- [`AGENTS.md`](/AGENTS.md) — the source of truth for both tools, committed to the repo.
+- [`CLAUDE.md`](/CLAUDE.md) — a symlink to `AGENTS.md`, gitignored, created by [`scripts/setup-repo.sh`](/scripts/setup-repo.sh).
+
+Claude Code picks up `CLAUDE.md` and OpenCode picks up `AGENTS.md` automatically at the project
+root. Both point to the same content via the symlink.
 
 ## How symlinks are managed
 

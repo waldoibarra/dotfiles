@@ -48,6 +48,8 @@ update-ca:
 lint-sh:
   shellcheck scripts/install-dotfiles.sh
   shellcheck scripts/install-os-packages.sh
+  shellcheck scripts/setup-env.sh
+  shellcheck scripts/setup-repo.sh
   shellcheck -a scripts/update-coding-agents.sh
 
 # Use markdownlint-cli2 to lint Markdown files.
