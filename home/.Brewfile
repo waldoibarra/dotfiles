@@ -36,6 +36,8 @@ cask "ghostty"
 cask "obs"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# AI usage tracker for Cursor, Claude Code, Codex, Copilot and more
+cask "openusage"
 # Collaboration platform for API development
 cask "postman"
 # Team communication and collaboration software
