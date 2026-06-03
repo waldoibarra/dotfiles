@@ -29,7 +29,7 @@
     # Files in $HOME root.
     ~/.Brewfile: home/.Brewfile
     ~/.gitconfig: home/.gitconfig
-    ~/.gitconfig-parasiempre: home/.gitconfig-parasiempre
+    ~/.gitconfig-royalytics: home/.gitconfig-royalytics
     ~/.zlogin: home/.zlogin
     ~/.zprofile: home/.zprofile
     ~/.zshenv: home/.zshenv
