@@ -20,5 +20,5 @@
 	conflictStyle = zdiff3
 [init]
 	defaultBranch = main
-[includeIf "gitdir:~/projects/royalytics/"]
-	path = ~/.gitconfig-royalytics
+[includeIf "gitdir:~/projects/royalytics-ai/"]
+	path = ~/.gitconfig-royalytics-ai
