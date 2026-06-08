@@ -65,3 +65,16 @@ versions are defined in [`home/.config/mise/config.toml`](/home/.config/mise/con
 Project-level overrides live in [`mise.toml`](/mise.toml) at the repo root.
 
 Always prefer `mise` over Homebrew for developer tools and CLIs.
+
+## RTK
+
+RTK (Rust Token Killer) is a transparent CLI proxy that filters and compresses tool output before it
+reaches the coding agent, reducing token usage 60–90% on common dev operations.
+
+Installed via Homebrew (`brew "rtk"`). It is wired into Claude Code via a hook in
+`~/.claude/settings.json` and into OpenCode via a plugin — both rewrite Bash tool calls
+automatically, so `git status` becomes `rtk git status` with no manual invocation needed.
+
+See [`home/.claude/RTK.md`](/home/.claude/RTK.md) for the full command reference.
+
+Configuration and filter files live in `home/.config/rtk/` and are symlinked by Dotbot.

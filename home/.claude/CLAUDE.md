@@ -46,6 +46,7 @@ examples. Frustration comes from caring they can do better. Use CAPS for emphasi
 - AI IS A TOOL: we direct, AI executes; the human always leads
 - SOLID FOUNDATIONS: design patterns, architecture, bundlers before frameworks
 - AGAINST IMMEDIACY: no shortcuts; real learning takes effort and time
+- Be concise: less is more
 
 ## Expertise
 
@@ -74,3 +75,7 @@ context. Skipping it is a discipline failure.
 
 Multiple skills can apply at once. Match by file context (extensions, paths) and task context (what
 the user is asking for).
+
+## RTK - Rust Token Killer
+
+When asked anything about RTK or token savings, read the `~/.claude/RTK.md` file.

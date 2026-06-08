@@ -13,6 +13,18 @@ into `$HOME` via DotBot, the same way every other dotfile is.
 | OpenCode | `home/.config/opencode/AGENTS.md` | `~/.config/opencode/AGENTS.md` |
 | OpenCode | `home/.config/opencode/opencode.json` | `~/.config/opencode/opencode.json` |
 | OpenCode | `home/.config/opencode/tui.json` | `~/.config/opencode/tui.json` |
+| RTK | `home/.claude/RTK.md` | `~/.claude/RTK.md` |
+| RTK | `home/.config/rtk/config.toml` | `~/Library/Application Support/rtk/config.toml` (macOS), `~/.config/rtk/config.toml` (Linux) |
+| RTK | `home/.config/rtk/filters.toml` | same pattern as `config.toml` |
+
+## RTK integration
+
+`RTK.md` is placed in `~/.claude/` by `rtk init -g` because RTK injects context only into Claude
+Code. Both `CLAUDE.md` and `AGENTS.md` reference `~/.claude/RTK.md` directly, so OpenCode also
+benefits from the same file without duplicating it.
+
+`RTK.md` is maintained manually — its content may diverge from what `rtk init -g` generates by
+default.
 
 ## Keeping prompts in sync
 

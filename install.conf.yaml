@@ -42,8 +42,16 @@
     "~/Library/Application Support/Code/User/settings.json":
       path: "home/.config/Code/User/settings.json"
       if: '[[ "$(uname)" == "Darwin" ]]'
+    "~/Library/Application Support/rtk/":
+      glob: true
+      path: "home/.config/rtk/*"
+      if: '[[ "$(uname)" == "Darwin" ]]'
     "~/.config/Code/User/settings.json":
       path: "home/.config/Code/User/settings.json"
+      if: '[[ "$(uname)" == "Linux" ]]'
+    "~/.config/rtk/":
+      glob: true
+      path: "home/.config/rtk/*"
       if: '[[ "$(uname)" == "Linux" ]]'
 
     # Directories.

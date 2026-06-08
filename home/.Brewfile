@@ -24,6 +24,8 @@ brew "ollama", restart_service: :changed
 brew "pkgconf"
 # C parser in Python
 brew "pycparser"
+# CLI proxy to minimize LLM token consumption
+brew "rtk"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # UNIX shell (command interpreter)
