@@ -5,15 +5,15 @@ default:
 
 # Idempotently sync OS configuration, sync Brew packages, upgrade Mise tools, update coding agents.
 [group("Management")]
-sync: && brew mise-up update-ca
-  @printf "\n🔷 Going to synchronize the dotfiles. 🔷\n"
+sync: && print-separator brew mise-up update-ca
   git pull
   ./scripts/install-dotfiles.sh
-  @printf "🔷 Finished synchronizing the dotfiles. 🔷\n\n"
+  @echo "🌧️ Finished synchronizing the dotfiles. 🕉️"
 
 # Brew bundle: dump, cleanup, upgrade.
 [group("Management")]
-brew: brew-dump brew-clean brew-up
+brew: brew-dump brew-clean brew-up && print-separator
+  @echo "🌧️ Finished the Homebrew bundle cycle — dump, clean, ugrade. 🕉️"
 
 # Dump all installed packages into the global Brewfile.
 [group("Management")]
@@ -35,13 +35,21 @@ brew-up:
 
 # Upgrade outdated (Mise managed) tools to their latests versions.
 [group("Management")]
-mise-up:
+mise-up: && print-separator
   mise upgrade
+  @echo "🌧️ Finished upgrading Mise tools. 🕉️"
 
 # Update coding agents configuration.
 [group("Management")]
-update-ca:
+update-ca: && print-separator
   ./scripts/update-coding-agents.sh
+  @echo "🌧️ Finished updating AI coding agents configuration. 🕉️"
+
+# Print 80 chars long separator.
+[private]
+[group("Management")]
+print-separator:
+  @printf '%*s\n' 80 | tr ' ' '-' && printf "\n"
 
 # Use ShellCheck to lint shell scripts.
 [group("Linting")]
