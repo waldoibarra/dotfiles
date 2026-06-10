@@ -30,6 +30,8 @@ symlinked there by Dotbot.
 ## Reference docs
 
 - [`docs/coding-agents.md`](/docs/coding-agents.md) — Claude Code and OpenCode config tracking.
+- [`docs/git-configuration.md`](/docs/git-configuration.md) — Git shared vs local config and
+  `.gitconfig.local` setup.
 - [`docs/tooling.md`](/docs/tooling.md) — just, hk, committed, Homebrew, mise.
 - [`docs/zsh-configuration.md`](/docs/zsh-configuration.md) — zsh startup files and `.local` overrides.
 - [`scripts/README.md`](/scripts/README.md) — what each script does and when it runs.

@@ -35,6 +35,20 @@ cd ~/.dotfiles
 
 Run these commands only 1 time; after the initial setup, use the commands below.
 
+## Local configuration
+
+Some settings are intentionally not tracked in this repo and must be created manually on each
+machine after the initial setup. See [docs/git-configuration.md](docs/git-configuration.md)
+for the full reference.
+
+**Required:** create `$HOME/.gitconfig.local` with at minimum your Git identity:
+
+```gitconfig
+[user]
+    name = Your Name
+    email = you@example.com
+```
+
 ## Sync
 
 This command is idempotent, it can be ran many times.

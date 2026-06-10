@@ -1,9 +1,5 @@
-[user]
-	name = Waldo Ibarra
-	email = waldo.ibarra@linux.com
-	signingkey = CAC9607611E995AC
-[commit]
-	gpgsign = true
+[include]
+	path = ~/.gitconfig.local
 [gpg]
 	program = gpg
 [alias]
@@ -20,7 +16,5 @@
 	conflictStyle = zdiff3
 [init]
 	defaultBranch = main
-[includeIf "gitdir:~/projects/royalytics-ai/"]
-	path = ~/.gitconfig-royalytics-ai
 [fetch]
 	prune = true

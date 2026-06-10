@@ -29,7 +29,6 @@
     # Files in $HOME root.
     ~/.Brewfile: home/.Brewfile
     ~/.gitconfig: home/.gitconfig
-    ~/.gitconfig-royalytics-ai: home/.gitconfig-royalytics-ai
     ~/.zlogin: home/.zlogin
     ~/.zprofile: home/.zprofile
     ~/.zshenv: home/.zshenv
