@@ -60,11 +60,7 @@ in `$HOME` on each machine. Do not add them to `install.conf.yaml` and do not cr
 
 ### Machine-local session environment variables
 
-Use `~/.zprofile.local` for machine-specific environment variables such as API keys:
-
-```sh
-export LINEAR_API_KEY="your-key-here"
-```
+Use `~/.zprofile.local` for machine-specific environment variables such as API keys.
 
 ### Customizing the welcome message name
 

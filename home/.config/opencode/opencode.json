@@ -4,16 +4,6 @@
     "opencode-claude-auth@latest",
     "@slkiser/opencode-quota"
   ],
-  "mcp": {
-    "linear": {
-      "type": "remote",
-      "url": "https://mcp.linear.app/mcp",
-      "enabled": true,
-      "headers": {
-        "Authorization": "Bearer {env:LINEAR_API_KEY}"
-      }
-    }
-  },
   "provider": {
     "ollama": {
       "models": {
