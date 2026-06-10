@@ -43,7 +43,6 @@ This `setup-env.sh` script is used by `install-dotfiles.sh` script, which is ran
 What this script does:
 
 - Ensure this repo's Git hooks are installed.
-- Ensure the local [`CLAUDE.md`](/CLAUDE.md) symlink to [`AGENTS.md`](/AGENTS.md) exists.
 
 This `setup-repo.sh` script is used by `install-dotfiles.sh` script, which is ran with the
 `just sync` command.

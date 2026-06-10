@@ -38,10 +38,11 @@ based on its own system prompt format.
 Like any other repo, this dotfiles repo has its own local agent instruction files:
 
 - [`AGENTS.md`](/AGENTS.md) — the source of truth for both tools, committed to the repo.
-- [`CLAUDE.md`](/CLAUDE.md) — a symlink to `AGENTS.md`, gitignored, created by [`scripts/setup-repo.sh`](/scripts/setup-repo.sh).
+- [`CLAUDE.md`](/CLAUDE.md) — a committed file that uses Claude Code's `@`-include syntax (`@AGENTS.md`)
+  to pull in the full content of `AGENTS.md` at load time.
 
-Claude Code picks up `CLAUDE.md` and OpenCode picks up `AGENTS.md` automatically at the project
-root. Both point to the same content via the symlink.
+Claude Code picks up `CLAUDE.md` (which includes `AGENTS.md` via `@`).
+OpenCode picks up `AGENTS.md` directly. `AGENTS.md` remains the single source of truth.
 
 ## How symlinks are managed
 
