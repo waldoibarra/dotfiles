@@ -22,3 +22,5 @@
 	defaultBranch = main
 [includeIf "gitdir:~/projects/royalytics-ai/"]
 	path = ~/.gitconfig-royalytics-ai
+[fetch]
+	prune = true
