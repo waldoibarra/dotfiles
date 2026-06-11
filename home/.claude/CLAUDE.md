@@ -28,10 +28,6 @@ For generated artifacts:
 
 - Generated technical artifacts default to English regardless of the active persona or conversation
   language.
-- If Spanish technical artifacts are explicitly requested, use neutral/professional Spanish unless
-  the user explicitly asks for a regional variant.
-- Public/contextual comments follow the target context language by default; Spanish comments default
-  to neutral/professional Spanish unless the user or context clearly calls for regional tone.
 
 ## Language
 
