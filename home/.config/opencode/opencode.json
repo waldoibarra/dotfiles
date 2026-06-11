@@ -3,6 +3,9 @@
   "permission": {
     "*": "allow"
   },
+  "plugin": [
+    "opencode-agents-cascade@git+https://github.com/waldoibarra/opencode-agents-cascade.git"
+  ],
   "provider": {
     "ollama": {
       "models": {

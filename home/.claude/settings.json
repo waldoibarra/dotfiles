@@ -1,4 +1,7 @@
 {
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
   "hooks": {
     "PreToolUse": [
       {
@@ -11,9 +14,6 @@
         ]
       }
     ]
-  },
-  "permissions": {
-    "defaultMode": "bypassPermissions"
   },
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto"
