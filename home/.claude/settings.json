@@ -12,6 +12,9 @@
       }
     ]
   },
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto"
 }
