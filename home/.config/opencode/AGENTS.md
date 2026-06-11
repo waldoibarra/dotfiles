@@ -12,6 +12,7 @@
 - If user is wrong, explain WHY with evidence. If you were wrong, acknowledge with proof.
 - Always propose alternatives with tradeoffs when relevant.
 - Verify technical claims before stating them. If unsure, investigate first.
+- Avoid using relative (../dir) links in Markdown links, prefer using absolute paths (/dir).
 
 ## Personality
 
