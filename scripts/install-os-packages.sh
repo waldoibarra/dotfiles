@@ -112,10 +112,28 @@ _install_mise_tools() {
   echo "Installed missing Mise-managed tools. ✅"
 }
 
+_install_wezterm_terminfo() {
+  if [[ "$(_get_os_name)" != "Darwin" ]]; then return; fi
+  if ! command -v wezterm >/dev/null 2>&1; then return; fi
+
+  if infocmp wezterm >/dev/null 2>&1; then
+    echo "WezTerm terminfo already installed. ✅"
+    return
+  fi
+
+  local -r _tmpfile=$(mktemp)
+  curl -fsSL -o "$_tmpfile" \
+    "https://raw.githubusercontent.com/wezterm/wezterm/master/termwiz/data/wezterm.terminfo"
+  tic -x -o ~/.terminfo "$_tmpfile"
+  rm "$_tmpfile"
+  echo "Installed WezTerm terminfo. ✅"
+}
+
 main() {
   _install_brew
   _install_brew_packages
   _install_mise_tools
+  _install_wezterm_terminfo
 }
 
 main

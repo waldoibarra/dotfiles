@@ -25,6 +25,7 @@ What this script does:
 - Ensure Homebrew and its dependencies are installed.
 - Ensure Homebrew packages are installed.
 - Ensure Mise tools are installed.
+- Ensure WezTerm terminfo entry is installed (macOS only).
 
 This `install-os-packages.sh` script is used by `install-dotfiles.sh` script, which is ran with the
 `just sync` command.
