@@ -19,7 +19,7 @@ brew: brew-dump brew-clean brew-up && print-separator
 [group("Management")]
 [private]
 brew-dump:
-  brew bundle dump --global --force --describe --no-vscode
+  brew bundle dump --global --force --no-vscode
 
 # Clean up anything that's not in the global Brewfile.
 [group("Management")]
