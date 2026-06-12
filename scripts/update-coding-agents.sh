@@ -8,13 +8,17 @@ _source_dependencies() {
   source "$_scripts_dir/agents/sync-global-skills-from-lock.sh"
 }
 
-_update_ai_agents() {
-  sync_global_skills_from_lock
+_clear_opencode_cache() {
+  if [[ -d "$OPENCODE_CACHE_DIR" ]]; then
+    rm -rf "$OPENCODE_CACHE_DIR"
+    printf "\nOpenCode cache cleared. 🗑️\n"
+  fi
 }
 
 main() {
   _source_dependencies
-  _update_ai_agents
+  _clear_opencode_cache
+  sync_global_skills_from_lock
 
   echo "✅ Done updating. Restart OpenCode if it's open."
 }
