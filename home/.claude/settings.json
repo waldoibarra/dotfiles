@@ -15,6 +15,7 @@
       }
     ]
   },
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto"
 }
