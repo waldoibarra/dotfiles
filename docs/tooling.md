@@ -75,6 +75,10 @@ Installed via Homebrew (`brew "rtk"`). It is wired into Claude Code via a hook i
 `~/.claude/settings.json` and into OpenCode via a plugin — both rewrite Bash tool calls
 automatically, so `git status` becomes `rtk git status` with no manual invocation needed.
 
+The OpenCode plugin (`~/.config/opencode/plugins/rtk.ts`) is not tracked in dotfiles — it is
+managed by RTK itself. `update-coding-agents.sh` runs `rtk init -g --opencode` on every
+`just sync` to install or update it idempotently.
+
 See [`home/.claude/RTK.md`](/home/.claude/RTK.md) for the full command reference.
 
 Configuration and filter files live in `home/.config/rtk/` and are symlinked by Dotbot.

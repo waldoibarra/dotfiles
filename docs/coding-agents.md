@@ -26,6 +26,11 @@ benefits from the same file without duplicating it.
 `RTK.md` is maintained manually — its content may diverge from what `rtk init -g` generates by
 default.
 
+The OpenCode plugin (`~/.config/opencode/plugins/rtk.ts`) is intentionally not tracked in the
+table above. RTK embeds the plugin at compile time and is the authoritative source for the correct
+version. It is installed and kept current by `rtk init -g --opencode`, which runs automatically
+via `update-coding-agents.sh` on every `just sync`.
+
 ## Keeping prompts in sync
 
 [`CLAUDE.md`](/home/.claude/CLAUDE.md) and [`AGENTS.md`](/home/.config/opencode/AGENTS.md) are

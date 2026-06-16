@@ -53,5 +53,6 @@ This `setup-repo.sh` script is used by `install-dotfiles.sh` script, which is ra
 It will update the following:
 
 - [Globally installed skills](https://skills.sh/)
+- RTK OpenCode plugin (`~/.config/opencode/plugins/rtk.ts`) via `rtk init -g --opencode`
 
 This script is used automatically by the `just sync` command.

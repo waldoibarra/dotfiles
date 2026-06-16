@@ -15,9 +15,20 @@ _clear_opencode_cache() {
   fi
 }
 
+_install_rtk_opencode_plugin() {
+  # https://github.com/rtk-ai/rtk/tree/develop/hooks/opencode
+  if ! command -v rtk >/dev/null 2>&1; then
+    echo "rtk not found, skipping OpenCode plugin install."
+    return
+  fi
+  rtk init -g --opencode
+  echo "RTK OpenCode plugin up to date. ✅"
+}
+
 main() {
   _source_dependencies
   _clear_opencode_cache
+  _install_rtk_opencode_plugin
   sync_global_skills_from_lock
 
   echo "✅ Done updating. Restart OpenCode if it's open."
