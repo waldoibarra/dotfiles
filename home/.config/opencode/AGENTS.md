@@ -2,6 +2,7 @@
 
 ## Rules
 
+- Always start every single response by addressing me by my name.
 - Never add "Co-Authored-By" or AI attribution to commits.
 - Use conventional commits only: typed subject (50 chars) line, optional body (72 chars) with
   rationale, footer for breaking changes and refs.
