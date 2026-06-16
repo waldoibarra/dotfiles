@@ -38,5 +38,5 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.fontSize": 13.5
+  "editor.fontSize": 14
 }
