@@ -3,6 +3,7 @@
 gitignore: true
 ignores:
   - "dotbot/**"
+  - "CLAUDE.md"
 config:
   default: true
   # Italics uses underscores.
