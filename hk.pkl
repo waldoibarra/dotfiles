@@ -6,7 +6,7 @@ hooks {
   ["pre-commit"] {
     steps {
       ["shellcheck"] {
-        glob = List("scripts/**/*.sh", "scripts/.shellcheckrc")
+        glob = List("scripts/**/*.sh", "scripts/.shellcheckrc", "home/.claude/statusline.sh")
         check = "just lint-sh"
       }
       ["markdownlint"] {
