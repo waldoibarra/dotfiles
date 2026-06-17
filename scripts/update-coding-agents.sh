@@ -21,8 +21,12 @@ _install_rtk_opencode_plugin() {
     echo "rtk not found, skipping OpenCode plugin install."
     return
   fi
+  if rtk init -g --opencode --dry-run 2>&1 | grep -q "Nothing written"; then
+    echo "RTK OpenCode plugin already up to date. ✅"
+    return
+  fi
   rtk init -g --opencode
-  echo "RTK OpenCode plugin up to date. ✅"
+  echo "RTK OpenCode plugin installed. ✅"
 }
 
 main() {
