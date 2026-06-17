@@ -10,6 +10,7 @@ into `$HOME` via DotBot, the same way every other dotfile is.
 | --- | --- | --- |
 | Claude Code | `home/.claude/CLAUDE.md` | `~/.claude/CLAUDE.md` |
 | Claude Code | `home/.claude/settings.json` | `~/.claude/settings.json` |
+| Claude Code | `home/.claude/statusline.sh` | `~/.claude/statusline.sh` |
 | OpenCode | `home/.config/opencode/AGENTS.md` | `~/.config/opencode/AGENTS.md` |
 | OpenCode | `home/.config/opencode/opencode.json` | `~/.config/opencode/opencode.json` |
 | OpenCode | `home/.config/opencode/tui.json` | `~/.config/opencode/tui.json` |
