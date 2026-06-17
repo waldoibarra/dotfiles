@@ -29,9 +29,13 @@ symlinked there by Dotbot.
 
 ## Reference docs
 
-- [`docs/coding-agents.md`](/docs/coding-agents.md) — Claude Code and OpenCode config tracking.
-- [`docs/git-configuration.md`](/docs/git-configuration.md) — Git shared vs local config and
-  `.gitconfig.local` setup.
-- [`docs/tooling.md`](/docs/tooling.md) — just, hk, committed, Homebrew, mise.
-- [`docs/zsh-configuration.md`](/docs/zsh-configuration.md) — zsh startup files and `.local` overrides.
-- [`scripts/README.md`](/scripts/README.md) — what each script does and when it runs.
+Each doc is the source of truth for a convention you can't infer from the code alone. Read the
+relevant one **before** you touch the area it covers.
+
+| Doc | Read it before… |
+| --- | --- |
+| [`docs/coding-agents.md`](/docs/coding-agents.md) | editing either global prompt (`home/.claude/CLAUDE.md` or `home/.config/opencode/AGENTS.md`) or any tracked Claude Code / OpenCode / RTK config. |
+| [`docs/git-configuration.md`](/docs/git-configuration.md) | changing `home/.gitconfig`, or anything touching Git identity, GPG signing, or per-directory overrides. |
+| [`docs/tooling.md`](/docs/tooling.md) | adding or changing a tool (Homebrew or mise), editing `hk.pkl` or `committed.toml`, or adding/running `just` recipes. |
+| [`docs/zsh-configuration.md`](/docs/zsh-configuration.md) | editing any zsh startup file (`.zshenv`, `.zprofile`, `.zshrc`, `.zlogin`). |
+| [`scripts/README.md`](/scripts/README.md) | editing anything under `scripts/`, or changing what runs during `just sync`. |
