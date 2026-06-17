@@ -50,4 +50,4 @@ eval "$(mise activate zsh)"
 # ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
 alias lso="eza -aal --octal-permissions"
-alias dots-sync='just --justfile ~/.dotfiles/justfile --working-directory ~/.dotfiles sync'
+alias dots='just --justfile ~/.dotfiles/justfile --working-directory ~/.dotfiles sync'

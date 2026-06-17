@@ -57,6 +57,8 @@ This command is idempotent, it can be ran many times.
 just sync
 ```
 
+> The `dots` shell alias runs `just sync` from anywhere without changing directories.
+
 What it does:
 
 - Fetch changes on the dotfiles configuration (`git pull`).
