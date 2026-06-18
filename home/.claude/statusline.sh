@@ -1,19 +1,62 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
-_parse_input() {
-  local -r _input="$1"
-  echo "$_input" | jq -r '[
-    .model.display_name // "claude",
-    (.context_window.used_percentage // 0 | round),
-    (.cost.total_cost_usd // 0),
-    (.cost.total_duration_ms // 0),
-    (.workspace.current_dir // "")
-  ] | @tsv'
+readonly COLOR_MAGENTA="\033[35m"
+readonly COLOR_RED="\033[31m"
+readonly COLOR_YELLOW="\033[33m"
+readonly COLOR_CYAN="\033[36m"
+readonly COLOR_GREEN="\033[32m"
+readonly COLOR_NC="\033[0m" # No color.
+
+readonly COLOR_CRITICAL="$COLOR_RED"
+readonly COLOR_WARNING="$COLOR_YELLOW"
+readonly COLOR_HEALTHY="$COLOR_CYAN"
+
+main() {
+  local -r _input=$(cat)
+
+  local -r _model_section=$(_build_model_section "$_input")
+  local -r _bar_section=$(_build_bar_section "$_input")
+  local -r _cost_section=$(_build_cost_section "$_input")
+  local -r _duration_section=$(_build_duration_section "$_input")
+  local -r _directory_section=$(_build_directory_section "$_input")
+  local -r _git_section=$(_build_git_section)
+
+  # Edit order here to rearrange the status line.
+  local -a _sections=(
+    "$_model_section"
+    "$_bar_section"
+    "$_cost_section"
+    "$_duration_section"
+    "$_directory_section"
+    "$_git_section"
+  )
+
+  _print_status_line "${_sections[@]}"
 }
 
-_build_context_bar() {
-  local -r _pct="$1"
+_print_status_line() {
+  local _status_line="" _separator="" _section
+  for _section in "$@"; do
+    [[ -n "$_section" ]] || continue
+    _status_line+="${_separator}${_section}"
+    _separator=" | "
+  done
+
+  printf '%b\n' "$_status_line"
+}
+
+_build_model_section() {
+  local -r _input="$1"
+  local -r _model=$(echo "$_input" | jq -r '.model.display_name')
+
+  echo "${COLOR_MAGENTA}[$_model]${COLOR_NC}"
+}
+
+_build_bar_section() {
+  local -r _input="$1"
+  local -r _pct=$(echo "$_input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
   local -r _width=10
   local -r _filled=$((_pct * _width / 100))
   local -r _empty=$((_width - _filled))
@@ -22,123 +65,73 @@ _build_context_bar() {
   ((_filled > 0)) && printf -v _fill '%*s' "$_filled" ""
   ((_empty > 0)) && printf -v _pad '%*s' "$_empty" ""
 
-  echo "${_fill// /▓}${_pad// /░}"
+  local -r _bar_color=$(_get_color_for_bar "$_pct")
+  local -r _bar="${_fill// /▓}${_pad// /░}"
+
+  echo "${_bar_color}${_bar}${COLOR_NC} ${_pct}%"
 }
 
-_color_for_pct() {
+_build_cost_section() {
+  local -r _input="$1"
+  local -r _cost=$(echo "$_input" | jq -r '.cost.total_cost_usd // 0')
+
+  printf "💰 $%.2f" "$_cost"
+}
+
+_build_duration_section() {
+  local -r _input="$1"
+  local -r _duration_ms=$(echo "$_input" | jq -r '.cost.total_duration_ms // 0')
+  local -r _secs=$((_duration_ms / 1000))
+  local -r _icon="⏱️"
+
+  if ((_secs >= 3600)); then
+    echo "$_icon $((_secs / 3600))h $((_secs % 3600 / 60))m"
+  elif ((_secs >= 60)); then
+    echo "$_icon $((_secs / 60))m $((_secs % 60))s"
+  else
+    echo "$_icon ${_secs}s"
+  fi
+}
+
+_build_directory_section() {
+  local -r _input="$1"
+  local -r _dir=$(echo "$_input" | jq -r '.workspace.current_dir')
+  local -r _dir_name="${_dir##*/}" # Extract just the folder name.
+  local -r _remote_url=$(git remote get-url origin 2>/dev/null | \
+    sed 's/git@github.com:/https:\/\/github.com\//' | sed 's/\.git$//')
+
+  if [[ -n "$_remote_url" ]]; then
+    # OSC 8 format: \e]8;;URL\a then TEXT then \e]8;;\a
+    printf '%b' "\e]8;;${_remote_url}\a🔗 ${_dir_name}\e]8;;\a"
+  else
+    echo "📁 ${_dir_name}"
+  fi
+}
+
+_build_git_section() {
+  local -r _branch=$(git branch --show-current 2>/dev/null)
+  local -r _staged=$(git diff --cached --numstat 2>/dev/null | wc -l | tr -d ' ')
+  local -r _modified=$(git diff --numstat 2>/dev/null | wc -l | tr -d ' ')
+
+  local _status=""
+  ((_staged > 0)) && _status+=" ${COLOR_GREEN}+${_staged}${COLOR_NC}"
+  ((_modified > 0)) && _status+=" ${COLOR_YELLOW}~${_modified}${COLOR_NC}"
+
+  if [[ -n "$_branch" ]]; then
+    echo "🌳${_status} ${_branch}"
+  fi
+}
+
+_get_color_for_bar() {
   local -r _pct="$1"
 
   if ((_pct >= 90)); then
-    printf "%s" "\033[31m" # red: critical
+    echo "$COLOR_CRITICAL"
   elif ((_pct >= 70)); then
-    printf "%s" "\033[33m" # yellow: warning
+    echo "$COLOR_WARNING"
   else
-    printf "%s" "\033[36m" # cyan: healthy
+    echo "$COLOR_HEALTHY"
   fi
-}
-
-_format_duration() {
-  local -r _ms="$1"
-  local -r _s=$((_ms / 1000))
-
-  if ((_s >= 3600)); then
-    echo "$((_s / 3600))h $((_s % 3600 / 60))m"
-  elif ((_s >= 60)); then
-    echo "$((_s / 60))m $((_s % 60))s"
-  else
-    echo "${_s}s"
-  fi
-}
-
-_format_cost() {
-  local -r _usd="$1"
-  printf '$%.2f' "$_usd"
-}
-
-_resolve_git() {
-  if ! git rev-parse --git-dir >/dev/null 2>&1; then
-    return
-  fi
-
-  local _remote="" _branch _staged _modified
-
-  _remote=$(git remote get-url origin 2>/dev/null |
-    sed -E 's/git@github\.com:/https:\/\/github.com\//; s/\.git$//' 2>/dev/null) || true
-  _branch=$(git branch --show-current 2>/dev/null)
-  _staged=$(git diff --cached --numstat 2>/dev/null | wc -l | tr -d ' ')
-  _modified=$(git diff --numstat 2>/dev/null | wc -l | tr -d ' ')
-
-  echo "${_remote}|${_branch}|${_staged}|${_modified}"
-}
-
-_format_dir() {
-  local -r _dir="$1"
-  local -r _remote="$2"
-  local -r _dirname="${_dir##*/}"
-
-  if [[ -n "$_remote" ]]; then
-    printf '%b' "🔗 \e]8;;${_remote}\a${_dirname}\e]8;;\a"
-  else
-    printf '%s' "📁 ${_dirname}"
-  fi
-}
-
-_format_git_status() {
-  local -r _branch="$1"
-  local -r _staged="$2"
-  local -r _modified="$3"
-  local -r _green="\033[32m"
-  local -r _yellow="\033[33m"
-  local -r _reset="\033[0m"
-
-  local _status="🌳 $_branch"
-  ((_staged > 0)) && _status+=" ${_green}+${_staged}${_reset}"
-  ((_modified > 0)) && _status+=" ${_yellow}~${_modified}${_reset}"
-
-  printf '%s' "$_status"
-}
-
-main() {
-  local _input
-  _input=$(cat)
-
-  local _model _pct _cost_raw _duration_ms _dir
-  IFS=$'\t' read -r _model _pct _cost_raw _duration_ms _dir < <(_parse_input "$_input")
-
-  local -r _bar=$(_build_context_bar "$_pct")
-  local -r _color=$(_color_for_pct "$_pct")
-  local -r _reset="\033[0m"
-  local -r _magenta="\033[35m"
-  local -r _duration=$(_format_duration "$_duration_ms")
-  local -r _cost=$(_format_cost "$_cost_raw")
-
-  local _remote="" _branch="" _staged="0" _modified="0"
-  local _git_raw
-  _git_raw=$(_resolve_git)
-  [[ -n "$_git_raw" ]] && IFS='|' read -r _remote _branch _staged _modified <<<"$_git_raw"
-
-  local -r _dir_display=$(_format_dir "$_dir" "$_remote")
-  local _git_status=""
-  [[ -n "$_branch" ]] && _git_status=$(_format_git_status "$_branch" "$_staged" "$_modified")
-
-  # Edit order here to rearrange the status line.
-  local -a _parts=(
-    "${_magenta}[$_model]${_reset}"
-    "${_color}${_bar} ${_pct}%${_reset}"
-    "💰 $_cost"
-    "⏱️ $_duration"
-    "$_dir_display"
-    "$_git_status"
-  )
-
-  local _line="" _sep="" _part
-  for _part in "${_parts[@]}"; do
-    [[ -n "$_part" ]] || continue
-    _line+="${_sep}${_part}"
-    _sep=" | "
-  done
-
-  printf '%b\n' "$_line"
 }
 
 main
