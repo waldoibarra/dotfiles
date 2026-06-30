@@ -4,8 +4,8 @@
 	program = gpg
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	ds = diff --shortstat origin/main
-	dsc = diff --shortstat origin/main...HEAD
+	ds = "!git fetch --quiet && git diff --shortstat origin/main"
+	dsc = "!git fetch --quiet && git diff --shortstat origin/main...HEAD"
 [core]
 	pager = delta
 [interactive]
