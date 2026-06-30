@@ -38,5 +38,10 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.fontSize": 14
+  "editor.fontSize": 14,
+  "workbench.editorAssociations": {
+    "*.md": "default",
+    "*.markdown": "default",
+    "*.csv": "default"
+  }
 }
