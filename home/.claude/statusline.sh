@@ -36,17 +36,6 @@ main() {
   _print_status_line "${_sections[@]}"
 }
 
-_print_status_line() {
-  local _status_line="" _separator="" _section
-  for _section in "$@"; do
-    [[ -n "$_section" ]] || continue
-    _status_line+="${_separator}${_section}"
-    _separator=" | "
-  done
-
-  printf '%b\n' "$_status_line"
-}
-
 _build_model_section() {
   local -r _input="$1"
   local -r _model=$(echo "$_input" | jq -r '.model.display_name')
@@ -120,6 +109,17 @@ _build_git_section() {
   if [[ -n "$_branch" ]]; then
     echo "🌳${_status} ${_branch}"
   fi
+}
+
+_print_status_line() {
+  local _status_line="" _separator="" _section
+  for _section in "$@"; do
+    [[ -n "$_section" ]] || continue
+    _status_line+="${_separator}${_section}"
+    _separator=" | "
+  done
+
+  printf '%b\n' "$_status_line"
 }
 
 _get_color_for_bar() {
