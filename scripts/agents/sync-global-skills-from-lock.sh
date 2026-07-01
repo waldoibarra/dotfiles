@@ -53,6 +53,22 @@ _update_all_skills() {
   npx -y skills update -g
 }
 
+_git_commit_and_push_skills_lockfile() {
+  local -r _lockfile="home/.agents/.skill-lock.json"
+
+  # The lockfile only changes when a skill actually published a new version.
+  git diff --quiet -- "$_lockfile" && return 0
+
+  git commit -m "$(
+    cat <<'EOF'
+chore(agents): update skill lock file
+
+Skills were updated via `npx skills update -g`.
+EOF
+  )" -- "$_lockfile"
+  git push
+}
+
 sync_global_skills_from_lock() {
   local -r _agents_path="$HOME/.agents/skills/"
   local -r _opencode_skills_dir="$OPENCODE_DIR/skills"
@@ -61,6 +77,7 @@ sync_global_skills_from_lock() {
 
   _install_skills_from_lockfile
   _update_all_skills
+  _git_commit_and_push_skills_lockfile
 
   print_separator "Done synchronizing global skills"
 }
