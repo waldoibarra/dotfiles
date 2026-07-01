@@ -53,7 +53,7 @@ _show_welcome_message() {
   local -r _greeting="What's your main ${_cyan}focus$_reset today?"
   local -r _quote="$(_random_quote | cowsay -r -C)"
 
-  [[ -n "$_quote" ]] && printf "\n  $_quote\n"
+  [[ -n "$_quote" ]] && printf "\n  %s\n" "$_quote"
   printf "\n"
   printf "  Welcome, $_bold_magenta$_user$_reset.\n"
   printf "  $_greeting\n"
