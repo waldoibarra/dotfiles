@@ -19,11 +19,14 @@ symlinked there by Dotbot.
 - If a change affects documented behaviour, update the docs in the same commit.
 - When the user says "do you agree?", give an honest answer with reasoning — don't just validate.
 - Prefer explicit, descriptive naming over short but ambiguous names.
+- Run `just sync` only when the change needs a Dotbot re-link or the other sync steps (new file,
+  renamed file, Brewfile/mise config change) — editing the contents of an already-symlinked file
+  takes effect immediately, since `just sync` also runs `git pull`, Homebrew, and mise upgrades, not
+  just linking.
 
 ### Don't
 
-- **Never edit files directly in `$HOME`.** Always edit the source under `home/` and run
-  `just sync` to apply.
+- **Never edit files directly in `$HOME`.** Always edit the source under `home/`.
 - Don't over-engineer. If something adds complexity without clear benefit, the user will reject it.
 - Don't jump into implementation before discussing tradeoffs on non-trivial decisions.
 
