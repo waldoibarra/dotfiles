@@ -42,7 +42,8 @@
   "workbench.editorAssociations": {
     "*.md": "default",
     "*.markdown": "default",
-    "*.csv": "default"
+    "*.csv": "default",
+    "*.tsv": "default"
   },
   "python.languageServer": "Default"
 }
