@@ -51,3 +51,7 @@ eval "$(mise activate zsh)"
 
 alias lso="eza -aal --octal-permissions"
 alias dots='just --justfile ~/.dotfiles/justfile --working-directory ~/.dotfiles sync'
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias claude="caffeinate -i claude"
+fi
