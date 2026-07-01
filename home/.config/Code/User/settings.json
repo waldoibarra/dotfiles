@@ -43,5 +43,6 @@
     "*.md": "default",
     "*.markdown": "default",
     "*.csv": "default"
-  }
+  },
+  "python.languageServer": "Default"
 }
