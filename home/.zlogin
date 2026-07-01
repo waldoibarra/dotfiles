@@ -7,6 +7,7 @@
 typeset +r _reset="\e[0m"
 typeset +r _cyan="\e[36m"
 typeset +r _bold_magenta="\e[1;35m"
+typeset +r _green="\033[0;32m"
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                        Welcome Message                                        ║
@@ -26,7 +27,9 @@ _random_metaphysical_quote() {
     "Silence is the language of the absolute."
   )
 
-  echo "${_metaphysical_quotes[$RANDOM % ${#_metaphysical_quotes[@]} + 1]}"
+  local -r _quote="${_metaphysical_quotes[$RANDOM % ${#_metaphysical_quotes[@]} + 1]}"
+
+  echo "$_green$_quote$_reset"
 }
 
 _random_quote() {
@@ -42,7 +45,7 @@ _random_quote() {
   _result=$("$_cmd" 2>/dev/null)
 
   if [[ -n "$_result" ]]; then
-    echo "$_result"
+    echo "$_result$_reset"
   else
     _random_metaphysical_quote
   fi
