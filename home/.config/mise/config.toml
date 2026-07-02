@@ -18,3 +18,4 @@ yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 [settings]
 env_file = '.env'
 idiomatic_version_file_enable_tools = ["python", "node"]
+minimum_release_age = "0s"
