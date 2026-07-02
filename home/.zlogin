@@ -54,7 +54,7 @@ _random_quote() {
 _show_welcome_message() {
   local -r _user="${NICKNAME:-$USER}"
   local -r _greeting="What's your main ${_cyan}focus$_reset today?"
-  local -r _quote="$(_random_quote | cowsay -r -C)"
+  local -r _quote="$(_random_quote | cowsay -r --think -W $COLUMNS)"
 
   [[ -n "$_quote" ]] && printf "\n  %s\n" "$_quote"
   printf "\n"
