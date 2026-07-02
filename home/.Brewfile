@@ -2,6 +2,8 @@
 brew "antigen"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# SDL2 compatibility layer that uses SDL3 behind the scenes
+brew "sdl2-compat"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # GNU compiler collection
