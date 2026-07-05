@@ -14,8 +14,6 @@ brew "git"
 brew "gnutls"
 # X.509 and CMS library
 brew "libksba"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Polyglot runtime manager (asdf rust clone)
@@ -30,6 +28,8 @@ brew "pycparser"
 brew "rtk"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
 # UNIX shell (command interpreter)
 brew "zsh"
 # App to build and share containerised applications and microservices
