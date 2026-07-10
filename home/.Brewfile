@@ -32,6 +32,8 @@ brew "tree"
 brew "unbound"
 # UNIX shell (command interpreter)
 brew "zsh"
+# Write, edit, and chat about your code with AI
+cask "cursor"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Terminal emulator that uses platform-native UI and GPU acceleration
