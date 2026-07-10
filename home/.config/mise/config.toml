@@ -1,8 +1,8 @@
 [tools]
 aws-cli = { version = "latest", symlink_bins = "true" }
+"cargo:eza" = "latest"
 cowsay = "latest"
 delta = "latest"
-eza = "latest"
 gh = "latest"
 just = "latest"
 llmfit = "latest"
@@ -10,6 +10,7 @@ node = "lts"
 "npm:@anthropic-ai/claude-code" = { version = "latest", npm_args = "--ignore-scripts=false" }
 opencode = "latest"
 python = ["latest", "3.12"]
+rust = "latest"
 shellcheck = "latest"
 shfmt = "latest"
 uv = "latest"
