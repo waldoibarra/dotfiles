@@ -5,7 +5,8 @@ default:
 
 # Idempotently sync OS configuration, sync Brew packages, upgrade Mise tools, update coding agents.
 [group("Management")]
-sync: && print-separator brew mise-up update-ca
+sync: && print-separator brew mise-up update-ca sudo-invalidate
+  @printf "Caching password to avoid asking for it later while this runs. " && sudo -v
   git pull
   ./scripts/install-dotfiles.sh
   @echo "🌧️ Finished synchronizing the dotfiles. 🕉️"
@@ -45,6 +46,12 @@ update-ca: && print-separator
   ./scripts/update-coding-agents.sh
   @echo "🌧️ Finished updating AI coding agents configuration. 🕉️"
 
+# Invalidate sudo credentials after sync.
+[private]
+[group("Management")]
+sudo-invalidate:
+  @sudo -k
+
 # Print 80 chars long separator.
 [private]
 [group("Management")]
@@ -56,6 +63,7 @@ print-separator:
 lint-sh:
   shellcheck scripts/install-dotfiles.sh
   shellcheck scripts/install-os-packages.sh
+  shellcheck -a scripts/configure-sudo-timestamp-type.sh
   shellcheck -a scripts/setup-env.sh
   shellcheck -a scripts/setup-repo.sh
   shellcheck -a scripts/update-coding-agents.sh

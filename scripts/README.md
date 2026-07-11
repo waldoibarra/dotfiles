@@ -30,6 +30,17 @@ What this script does:
 This `install-os-packages.sh` script is used by `install-dotfiles.sh` script, which is ran with the
 `just sync` command.
 
+## Configure Sudo Timestamp Type
+
+What this script does:
+
+- Ensure `/etc/sudoers.d/timestamp_type` sets `timestamp_type=global` so sudo credentials are cached
+per-user rather than per-TTY.
+
+This `configure-sudo-timestamp-type.sh` script is used by `install-dotfiles.sh` script, which is
+ran with the `just sync` command. It runs before `install-os-packages.sh` so the sudoers file is
+written while the sudo credential (from `sudo -v` in `just sync`) is still warm.
+
 ## Setup Env
 
 What this script does:
