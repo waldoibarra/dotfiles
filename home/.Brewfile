@@ -1,3 +1,4 @@
+tap "steipete/tap"
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
 brew "antigen"
 # GNU File, Shell, and Text utilities
@@ -32,6 +33,8 @@ brew "tree"
 brew "unbound"
 # UNIX shell (command interpreter)
 brew "zsh"
+# Menu bar usage monitor for Codex and Claude
+cask "steipete/tap/codexbar", trusted: true
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # App to build and share containerised applications and microservices
@@ -44,8 +47,6 @@ cask "gimp"
 cask "obs"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# AI usage tracker for Cursor, Claude Code, Codex, Copilot and more
-cask "openusage"
 # Collaboration platform for API development
 cask "postman"
 # Team communication and collaboration software
