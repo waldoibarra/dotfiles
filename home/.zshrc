@@ -54,4 +54,5 @@ alias dots='just --justfile ~/.dotfiles/justfile --working-directory ~/.dotfiles
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias claude="caffeinate -i claude"
+  alias opencode="caffeinate -i opencode"
 fi
