@@ -56,7 +56,9 @@ The following casks are macOS-only and have no Linux equivalent managed here yet
 - `zen`
 
 Never add a tool to Homebrew that Mise can manage. Note: `mise` itself is installed via
-Homebrew as a bootstrapping step — that is intentional.
+Homebrew as a bootstrapping step — that is intentional. A tool may also stay in Homebrew
+when Mise's only backend for it is unmaintained, or a different implementation than the
+maintained Homebrew formula.
 
 ## mise
 

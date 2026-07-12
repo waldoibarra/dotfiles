@@ -3,10 +3,14 @@ tap "steipete/tap"
 brew "antigen"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Apjanke's fork of the classic cowsay project
+brew "cowsay"
 # SDL2 compatibility layer that uses SDL3 behind the scenes
 brew "sdl2-compat"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# Infamous electronic fortune-cookie generator
+brew "fortune"
 # GNU compiler collection
 brew "gcc"
 # Distributed revision control system
@@ -17,6 +21,8 @@ brew "gnutls"
 brew "libksba"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Rainbows and unicorns in your console!
+brew "lolcat"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
 # Create, run, and share large language models (LLMs)
