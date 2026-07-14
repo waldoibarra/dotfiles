@@ -1,6 +1,8 @@
 tap "steipete/tap"
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
 brew "antigen"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Apjanke's fork of the classic cowsay project
