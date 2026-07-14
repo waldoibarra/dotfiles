@@ -65,7 +65,7 @@
     ~/.config/wezterm: home/.config/wezterm/
 
 - shell:
-    - command: ./scripts/configure-sudo-timestamp-type.sh
+    - command: ./scripts/configure-sudo-credential-cache.sh
       description: Configure sudo settings (/etc/sudoers.d/timestamp_type) —
       stdout: true
       stderr: true

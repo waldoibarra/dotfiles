@@ -63,7 +63,7 @@ print-separator:
 lint-sh:
   shellcheck scripts/install-dotfiles.sh
   shellcheck scripts/install-os-packages.sh
-  shellcheck -a scripts/configure-sudo-timestamp-type.sh
+  shellcheck -a scripts/configure-sudo-credential-cache.sh
   shellcheck -a scripts/setup-env.sh
   shellcheck -a scripts/setup-repo.sh
   shellcheck -a scripts/update-coding-agents.sh
