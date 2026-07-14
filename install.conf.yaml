@@ -9,7 +9,10 @@
 
 - clean:
     "~":
+    ~/.agents/skills:
     ~/.agents:
+    ~/.claude/skills:
+    ~/.claude:
     ~/.config:
     ~/.ssh:
     "~/Library/Application Support/Code/User":
@@ -17,6 +20,9 @@
 
 - create:
     ~/.agents:
+    ~/.agents/skills:
+    ~/.claude:
+    ~/.claude/skills:
     ~/.ssh:
       mode: 0700
     ~/projects:
@@ -54,9 +60,15 @@
       if: '[[ "$(uname)" == "Linux" ]]'
 
     # Directories.
+    ~/.agents/skills/:
+      glob: true
+      path: home/.agents/skills/*
     ~/.claude/:
       glob: true
       path: home/.claude/*
+    ~/.claude/skills/:
+      glob: true
+      path: home/.agents/skills/*
     ~/.config/ghostty: home/.config/ghostty/
     ~/.config/mise: home/.config/mise/
     ~/.config/opencode/:
