@@ -58,6 +58,10 @@ sudo-invalidate:
 print-separator:
   @printf '%*s\n' 80 | tr ' ' '-' && printf "\n"
 
+# Lint all.
+[group("Linting")]
+lint: lint-ec lint-md lint-yaml lint-sh
+
 # Use ShellCheck to lint shell scripts.
 [group("Linting")]
 lint-sh:
@@ -68,6 +72,9 @@ lint-sh:
   shellcheck -a scripts/setup-repo.sh
   shellcheck -a scripts/update-coding-agents.sh
   shellcheck home/.claude/statusline.sh
+  shellcheck home/.agents/skills/shell-scripting/assets/template.sh
+  shellcheck home/.agents/skills/shell-scripting/assets/template-linear.sh
+  shellcheck home/.config/opencode/skills/non-vision-image-reader/scripts/recover-pasted-images.sh
 
 # Use markdownlint-cli2 to lint Markdown files.
 [group("Linting")]
