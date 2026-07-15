@@ -32,6 +32,14 @@ table above. RTK embeds the plugin at compile time and is the authoritative sour
 version. It is installed and kept current by `rtk init -g --opencode`, which runs automatically
 via `update-coding-agents.sh` on every `just sync`.
 
+## Global skills lockfile
+
+`scripts/agents/sync-global-skills-from-lock.sh` keeps globally installed Claude Code / OpenCode
+skills in sync with [`home/.agents/.skill-lock.json`](/home/.agents/.skill-lock.json): it installs
+any skill listed there that isn't already present, runs `npx skills update -g` to update all of
+them, then **commits and pushes the lockfile to the repo's remote** if the update changed its
+content. It runs automatically via `update-coding-agents.sh` on every `just sync`.
+
 ## Keeping prompts in sync
 
 [`CLAUDE.md`](/home/.claude/CLAUDE.md) and [`AGENTS.md`](/home/.config/opencode/AGENTS.md) are
