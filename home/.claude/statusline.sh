@@ -16,6 +16,15 @@ readonly COLOR_CRITICAL="$COLOR_RED"
 readonly COLOR_WARNING="$COLOR_YELLOW"
 readonly COLOR_HEALTHY="$COLOR_CYAN"
 
+#######################################
+# Map a percentage to the color for its severity band.
+# Globals:
+#   COLOR_CRITICAL, COLOR_WARNING, COLOR_HEALTHY
+# Arguments:
+#   Percentage (0-100).
+# Outputs:
+#   Writes the matching ANSI color code to STDOUT.
+#######################################
 get_color_for_bar() {
   local pct="$1"
 
@@ -28,6 +37,14 @@ get_color_for_bar() {
   fi
 }
 
+#######################################
+# Join non-empty section strings with " | " and print the result.
+# Arguments:
+#   One or more section strings; empty strings are skipped.
+# Outputs:
+#   Writes the assembled status line to STDOUT, interpreting \-escapes
+#   (e.g. the color codes embedded in each section).
+#######################################
 print_status_line() {
   local status_line="" separator="" section
   for section in "$@"; do
@@ -39,6 +56,15 @@ print_status_line() {
   printf '%b\n' "$status_line"
 }
 
+#######################################
+# Build the git branch/status section (staged and modified file counts).
+# Globals:
+#   COLOR_GREEN, COLOR_YELLOW, COLOR_NC
+# Arguments:
+#   None
+# Outputs:
+#   Writes the git section to STDOUT; nothing outside a repo or in detached HEAD.
+#######################################
 build_git_section() {
   # Outside a git repo these all fail loudly (128/129) and, with pipefail,
   # that propagates through the trailing wc/tr stages — bail out early
@@ -60,6 +86,13 @@ build_git_section() {
   echo "🌳${status} ${branch}"
 }
 
+#######################################
+# Build the current directory section, hyperlinked to the GitHub remote when one exists.
+# Arguments:
+#   Claude Code's JSON status payload.
+# Outputs:
+#   Writes the directory section to STDOUT (plain text, or an OSC 8 hyperlink).
+#######################################
 build_directory_section() {
   local input="$1"
   local dir
@@ -81,6 +114,13 @@ build_directory_section() {
   fi
 }
 
+#######################################
+# Build the session duration section.
+# Arguments:
+#   Claude Code's JSON status payload.
+# Outputs:
+#   Writes the formatted duration (e.g. "1h 5m") to STDOUT.
+#######################################
 build_duration_section() {
   local input="$1"
   local duration_ms
@@ -97,6 +137,13 @@ build_duration_section() {
   fi
 }
 
+#######################################
+# Build the session cost section.
+# Arguments:
+#   Claude Code's JSON status payload.
+# Outputs:
+#   Writes the formatted cost (e.g. "$0.42") to STDOUT.
+#######################################
 build_cost_section() {
   local input="$1"
   local cost
@@ -105,6 +152,15 @@ build_cost_section() {
   printf "💰 \$%.2f" "$cost"
 }
 
+#######################################
+# Build the context-window usage bar.
+# Globals:
+#   COLOR_NC
+# Arguments:
+#   Claude Code's JSON status payload.
+# Outputs:
+#   Writes the colored usage bar and percentage to STDOUT.
+#######################################
 build_bar_section() {
   local input="$1"
   local pct
@@ -124,6 +180,15 @@ build_bar_section() {
   echo "${bar_color}${bar}${COLOR_NC} ${pct}%"
 }
 
+#######################################
+# Build the active model name section.
+# Globals:
+#   COLOR_MAGENTA, COLOR_NC
+# Arguments:
+#   Claude Code's JSON status payload.
+# Outputs:
+#   Writes the bracketed, colored model name to STDOUT.
+#######################################
 build_model_section() {
   local input="$1"
   local model
