@@ -3,6 +3,9 @@
 # Script copied from dotbot's repository, as indicated in their documentation.
 # Updated $BASEDIR to point to the project root, as we copied to scripts/ dir.
 # cp dotbot/tools/git-submodule/install scripts/install-dotfiles.sh
+#
+# Deliberately kept at `set -e` only (not -u/pipefail), matching upstream: this
+# script has no pipelines and no optionally-unset variables for -u to guard.
 
 set -e
 
