@@ -144,6 +144,9 @@ deviation and its reason are noted so you can explain it.
   fi
   ```
 
+  **Order the helpers themselves bottom-up by call depth** — `main`'s direct
+  calls sit directly above it in call order, their callees sit above those, and
+  so on outward. See `references/checklist.md` §8 for the worked example.
   `source` at the **top level, never inside a function** (see the trap below).
 - **Output** — normal status to **STDOUT**; errors and warnings to **STDERR**,
   via an `err()` helper. No decorative emoji — they bury the signal you actually

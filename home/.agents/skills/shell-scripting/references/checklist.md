@@ -196,6 +196,28 @@ placeholder. Check meaning first, then apply the case rules below.
   hand.
 - Functions grouped below constants; **no executable code between functions.**
   Only includes, `set`, and constants precede function definitions.
+- **Order helper functions bottom-up by call depth.** Read the file from
+  `main` (bottom-most, depth 0) upward: directly above `main` sit the functions
+  it calls, in the order it calls them (depth 1); above those sit the functions
+  _they_ call, in their call order (depth 2); and so on outward. Reading
+  bottom-to-top walks the call graph breadth-first, from the entry point out to
+  its leaves. _Why:_ gives every function one deterministic slot — no guessing
+  between alphabetical, "logical grouping," or first-appearance — and it extends
+  `main`'s own bottom-most placement instead of contradicting it with a
+  top-down reading for everything else.
+
+  ```text
+  get_color_for_bar        # depth 2 — build_bar_section's only callee
+  print_status_line        # depth 1 — main's last call
+  build_git_section        # depth 1 — main's 6th call
+  build_directory_section  # depth 1 — main's 5th call
+  build_duration_section   # depth 1 — main's 4th call
+  build_cost_section       # depth 1 — main's 3rd call
+  build_bar_section        # depth 1 — main's 2nd call; calls get_color_for_bar
+  build_model_section      # depth 1 — main's 1st call
+  main                     # depth 0
+  ```
+
 - **`source` at the top level, not inside a function** — this matches Google's
   "includes before functions," keeps dependencies visible, and avoids wrapping the
   path-resolving `local dir="$(...)"` in the masking bug above. Don't hide `source`
