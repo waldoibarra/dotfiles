@@ -81,6 +81,10 @@
       description: Configure sudo settings (/etc/sudoers.d/timestamp_type) —
       stdout: true
       stderr: true
+    - command: ./scripts/configure-touch-id-for-sudo.sh
+      description: Enable Touch ID for sudo (/etc/pam.d/sudo_local) —
+      stdout: true
+      stderr: true
     - command: ./scripts/install-os-packages.sh
       description: Install OS packages (Homebrew, Mise) —
       stdout: true

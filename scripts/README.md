@@ -41,6 +41,18 @@ This `configure-sudo-credential-cache.sh` script is used by `install-dotfiles.sh
 ran with the `just sync` command. It runs before `install-os-packages.sh` so the sudoers file is
 written while the sudo credential (from `sudo -v` in `just sync`) is still warm.
 
+## Configure Touch ID for Sudo
+
+What this script does:
+
+- Ensure `/etc/pam.d/sudo_local` enables Touch ID (`pam_tid.so`) so the terminal
+authenticates via Touch ID instead of a password prompt. macOS only — the script
+no-ops on Linux.
+
+This `configure-touch-id-for-sudo.sh` script is used by `install-dotfiles.sh` script, which is ran
+with the `just sync` command. It runs alongside `configure-sudo-credential-cache.sh` so both `/etc`
+files are written while the sudo credential (from `sudo -v` in `just sync`) is still warm.
+
 ## Setup Env
 
 What this script does:
