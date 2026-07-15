@@ -40,6 +40,23 @@ any skill listed there that isn't already present, runs `npx skills update -g` t
 them, then **commits and pushes the lockfile to the repo's remote** if the update changed its
 content. It runs automatically via `update-coding-agents.sh` on every `just sync`.
 
+## Repo-managed skills
+
+Most global skills are installed and pinned by the lockfile (see [Global skills
+lockfile](#global-skills-lockfile)). Two skills are instead **authored as source**
+in the repo and edited here directly — never installed, never in the lockfile:
+
+| Skill | Repo source | Symlinked to |
+| --- | --- | --- |
+| [`shell-scripting`](/home/.agents/skills/shell-scripting/SKILL.md) | `home/.agents/skills/shell-scripting` | `~/.agents/skills/` **and** `~/.claude/skills/` (shared source via two Dotbot globs) |
+| [`non-vision-image-reader`](/home/.config/opencode/skills/non-vision-image-reader/SKILL.md) | `home/.config/opencode/skills/non-vision-image-reader` | `~/.config/opencode/skills/` (opencode global skills) |
+
+Dotbot relinks these on every `just sync`, so edits in the repo are picked up
+once the tool reloads its config (restart opencode / Claude Code). Because they
+are symlink targets, **never edit them under `~/.agents/skills/`,
+`~/.claude/skills/`, or `~/.config/opencode/skills/`** — always edit the repo
+source under `home/`.
+
 ## Keeping prompts in sync
 
 [`CLAUDE.md`](/home/.claude/CLAUDE.md) and [`AGENTS.md`](/home/.config/opencode/AGENTS.md) are
