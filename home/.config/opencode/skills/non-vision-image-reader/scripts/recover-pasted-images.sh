@@ -28,6 +28,12 @@ if [[ -z "${MSGID:-}" ]]; then
   exit 1
 fi
 
+if [[ ! "$MSGID" =~ ^[A-Za-z0-9_-]+$ ]]; then
+  echo "ERROR: unexpected message_id format: $MSGID" >&2
+  rm -rf "$TMP"
+  exit 1
+fi
+
 i=0
 paths=()
 while IFS= read -r url; do
