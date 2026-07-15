@@ -23,11 +23,11 @@ install_rtk_opencode_plugin() {
     return
   fi
   if rtk init -g --opencode --dry-run 2>&1 | grep -q "Nothing written"; then
-    echo "RTK OpenCode plugin already up to date. ✅"
+    echo "RTK OpenCode plugin already up to date."
     return
   fi
   rtk init -g --opencode
-  echo "RTK OpenCode plugin installed. ✅"
+  echo "RTK OpenCode plugin installed."
 }
 
 #######################################
@@ -41,7 +41,7 @@ install_rtk_opencode_plugin() {
 clear_opencode_cache() {
   if [[ -d "$OPENCODE_CACHE_DIR" ]]; then
     rm -rf "$OPENCODE_CACHE_DIR"
-    echo "OpenCode cache cleared. 🗑️"
+    echo "OpenCode cache cleared."
   fi
 }
 
@@ -50,7 +50,7 @@ main() {
   install_rtk_opencode_plugin
   sync_global_skills_from_lock
 
-  echo "✅ Done updating. Restart OpenCode if it's open."
+  echo "Done updating. Restart OpenCode if it's open."
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
