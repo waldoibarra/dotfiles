@@ -12,7 +12,7 @@ python = ["latest", "3.12"]
 rust = "latest"
 shellcheck = "latest"
 shfmt = "latest"
-uv = "latest"
+"asdf:asdf-community/asdf-uv" = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 
 [settings]
