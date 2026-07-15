@@ -5,7 +5,8 @@
 
 set -euo pipefail
 
-# Apple Silicon only — Intel Macs install Homebrew to /usr/local instead.
+# This repo targets Apple Silicon Macs only; Intel's /usr/local Homebrew
+# prefix is intentionally not handled here.
 readonly BREW_MAC="/opt/homebrew/bin/brew"
 readonly BREW_LINUX="/home/linuxbrew/.linuxbrew/bin/brew"
 
