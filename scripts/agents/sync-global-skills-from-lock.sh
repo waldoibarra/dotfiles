@@ -18,7 +18,7 @@ _get_skills_in_agents_dir() {
 _install_skill() {
   local -r _skill_name="$1"
   local -r _source_url="$2"
-  local -r _agent_flags=("$@")
+  local -r _agent_flags=("${@:3}")
   local -r _url="${_source_url%.git}"
 
   echo "Installing: $_skill_name"
