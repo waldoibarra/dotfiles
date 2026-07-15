@@ -75,6 +75,47 @@ Like any other repo, this dotfiles repo has its own local agent instruction file
 Claude Code picks up `CLAUDE.md` (which includes `AGENTS.md` via `@`).
 OpenCode picks up `AGENTS.md` directly. `AGENTS.md` remains the single source of truth.
 
+## Preventing double-injection of global instruction files
+
+The global instruction files tracked in this repo —
+[`home/.claude/CLAUDE.md`](/home/.claude/CLAUDE.md) and
+[`home/.config/opencode/AGENTS.md`](/home/.config/opencode/AGENTS.md) — live
+inside the project tree. Without exclusion, both tools load them **twice**: once
+as the global instruction file (via the symlink to `$HOME`) and again as a
+project-level file discovered by traversing the repo.
+
+### Claude Code
+
+Claude Code solves this with `claudeMdExcludes` in the project-level
+[`.claude/settings.json`](/.claude/settings.json):
+
+```json
+{
+  "claudeMdExcludes": [
+    "**/home/.claude/CLAUDE.md"
+  ]
+}
+```
+
+This prevents the global `CLAUDE.md` source file from being injected as a
+project-level instruction when working in this repo.
+
+### OpenCode
+
+OpenCode has **no equivalent** of `claudeMdExcludes`. The `instructions` field in
+`opencode.json` is additive only — it cannot suppress the default `AGENTS.md`
+discovery. Feature requests have been filed repeatedly and consistently closed as
+"not planned" ([#17990](https://github.com/anomalyco/opencode/issues/17990),
+[#31697](https://github.com/anomalyco/opencode/issues/31697)); community PRs to
+implement exclusion
+([#17980](https://github.com/anomalyco/opencode/pull/17980),
+[#20784](https://github.com/anomalyco/opencode/pull/20784)) were abandoned.
+
+Until an exclusion mechanism lands upstream, `home/.config/opencode/AGENTS.md`
+will be double-injected when working in this repo. A potential workaround would
+be a plugin using the `experimental.chat.system.transform` hook to strip the
+duplicate at runtime, but this has not been implemented.
+
 ## How symlinks are managed
 
 Dotbot uses glob patterns in `install.conf.yaml` to symlink every file inside each directory:
