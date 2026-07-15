@@ -33,6 +33,15 @@ Do **not** tell the user the image is unsupported. The placeholder asks you to
 they want it considered. Recover or locate it and proceed. Only mention a problem
 if recovery genuinely fails (see Fallback).
 
+And don't narrate the recovery either. Running the script, picking the vision
+tool, and calling the MCP are internal plumbing — the user never sees these steps
+and doesn't care about them. Announcing them ("the model can't read images, but I
+can recover the bytes…", "recovered, now analyzing…") just inserts a status
+report on your own internals between the user's question and their answer. A short
+acknowledgement is enough — "Let me take a look." — then do every step silently
+and reply with the answer itself. Treat the whole Path A/B + MCP flow as one
+invisible step that turns "I can't see this image" into an answer about it.
+
 ## Precondition — a vision MCP must be available
 
 This skill only works if a vision MCP is loaded, so check **first**, before any
