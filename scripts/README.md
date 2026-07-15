@@ -5,7 +5,6 @@ This directory contains scripts to:
 - Idempotently install the dotfiles configuration ([install-dotfiles.sh](install-dotfiles.sh))
 - Install Homebrew (and its packages) and Mise (and its tools) ([install-os-packages.sh](install-os-packages.sh))
 - Set the Homebrew Zsh as the default shell ([set-brew-zsh-as-default-shell.sh](set-brew-zsh-as-default-shell.sh))
-- Set up the repo environment ([setup-repo.sh](setup-repo.sh))
 - Update coding agents ([update-coding-agents.sh](update-coding-agents.sh))
 
 ## Install Dotfiles
@@ -61,15 +60,6 @@ What this script does:
 
 This `set-brew-zsh-as-default-shell.sh` script is used by `install-dotfiles.sh` script, which is
 ran with the `just sync` command.
-
-## Setup Repo
-
-What this script does:
-
-- Ensure this repo's Git hooks are installed.
-
-This `setup-repo.sh` script is used by `install-dotfiles.sh` script, which is ran with the
-`just sync` command.
 
 ## Update Coding Agents
 

@@ -93,7 +93,3 @@
       description: Set the Homebrew Zsh as the default shell —
       stdout: true
       stderr: true
-    - command: ./scripts/setup-repo.sh
-      description: Set up repo environment (Git hooks, CLAUDE.md symlink) —
-      stdout: true
-      stderr: true

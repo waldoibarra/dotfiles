@@ -5,7 +5,7 @@ default:
 
 # Idempotently sync OS configuration, sync Brew packages, upgrade Mise tools, update coding agents.
 [group("Management")]
-sync: && print-separator brew mise-up update-ca sudo-invalidate
+sync: && print-separator brew mise-up update-ca hooks sudo-invalidate
   @echo "Caching password to avoid asking for it later while this runs. " && sudo -v
   git pull
   ./scripts/install-dotfiles.sh
@@ -46,6 +46,11 @@ update-ca: && print-separator
   ./scripts/update-coding-agents.sh
   @echo "🌧️ Finished updating AI coding agents configuration. 🕉️"
 
+# Install this repo's Git hooks.
+[group("Management")]
+hooks:
+  @hk install --quiet
+
 # Invalidate sudo credentials after sync.
 [private]
 [group("Management")]
@@ -70,7 +75,6 @@ lint-sh:
   shellcheck -a scripts/configure-sudo-credential-cache.sh
   shellcheck -a scripts/configure-touch-id-for-sudo.sh
   shellcheck -a scripts/set-brew-zsh-as-default-shell.sh
-  shellcheck -a scripts/setup-repo.sh
   shellcheck -a scripts/update-coding-agents.sh
   shellcheck home/.claude/statusline.sh
   shellcheck home/.agents/skills/shell-scripting/assets/template.sh
