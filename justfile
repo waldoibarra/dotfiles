@@ -69,7 +69,7 @@ lint-sh:
   shellcheck scripts/install-os-packages.sh
   shellcheck -a scripts/configure-sudo-credential-cache.sh
   shellcheck -a scripts/configure-touch-id-for-sudo.sh
-  shellcheck -a scripts/setup-env.sh
+  shellcheck -a scripts/set-brew-zsh-as-default-shell.sh
   shellcheck -a scripts/setup-repo.sh
   shellcheck -a scripts/update-coding-agents.sh
   shellcheck home/.claude/statusline.sh

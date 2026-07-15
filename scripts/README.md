@@ -4,7 +4,7 @@ This directory contains scripts to:
 
 - Idempotently install the dotfiles configuration ([install-dotfiles.sh](install-dotfiles.sh))
 - Install Homebrew (and its packages) and Mise (and its tools) ([install-os-packages.sh](install-os-packages.sh))
-- Set up the machine environment ([setup-env.sh](setup-env.sh))
+- Set the Homebrew Zsh as the default shell ([set-brew-zsh-as-default-shell.sh](set-brew-zsh-as-default-shell.sh))
 - Set up the repo environment ([setup-repo.sh](setup-repo.sh))
 - Update coding agents ([update-coding-agents.sh](update-coding-agents.sh))
 
@@ -14,7 +14,7 @@ It is a slightly modified copy of the DotBot install script, it calls the DotBot
 [install.conf.yaml](/install.conf.yaml) configuration file; it then will:
 
 - Manage the dotfiles symlinks.
-- Run the `install-os-packages.sh`, `setup-env.sh`, and `setup-repo.sh` scripts.
+- Run the `install-os-packages.sh`, `set-brew-zsh-as-default-shell.sh`, and `setup-repo.sh` scripts.
 
 This `install-dotfiles.sh` script is ran with the `just sync` command.
 
@@ -53,14 +53,14 @@ This `configure-touch-id-for-sudo.sh` script is used by `install-dotfiles.sh` sc
 with the `just sync` command. It runs alongside `configure-sudo-credential-cache.sh` so both `/etc`
 files are written while the sudo credential (from `sudo -v` in `just sync`) is still warm.
 
-## Setup Env
+## Set Brew Zsh as Default Shell
 
 What this script does:
 
 - Ensure `zsh` (from Brew) is the default shell.
 
-This `setup-env.sh` script is used by `install-dotfiles.sh` script, which is ran with the
-`just sync` command.
+This `set-brew-zsh-as-default-shell.sh` script is used by `install-dotfiles.sh` script, which is
+ran with the `just sync` command.
 
 ## Setup Repo
 

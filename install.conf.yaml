@@ -89,8 +89,8 @@
       description: Install OS packages (Homebrew, Mise) —
       stdout: true
       stderr: true
-    - command: ./scripts/setup-env.sh
-      description: Set up machine environment (default shell) —
+    - command: ./scripts/set-brew-zsh-as-default-shell.sh
+      description: Set the Homebrew Zsh as the default shell —
       stdout: true
       stderr: true
     - command: ./scripts/setup-repo.sh
