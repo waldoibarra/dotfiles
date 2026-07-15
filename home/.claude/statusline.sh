@@ -102,8 +102,9 @@ build_directory_section() {
 
   if git rev-parse --git-dir >/dev/null 2>&1; then
     # No `origin` remote is a normal, non-error case — don't let it trip set -e.
-    remote_url=$(git remote get-url origin 2>/dev/null | \
-      sed 's/git@github.com:/https:\/\/github.com\//' | sed 's/\.git$//') || true
+    remote_url=$(git remote get-url origin 2>/dev/null) || true
+    remote_url="${remote_url/git@github.com:/https://github.com/}"
+    remote_url="${remote_url%.git}"
   fi
 
   if [[ -n "$remote_url" ]]; then
