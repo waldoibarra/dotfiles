@@ -158,7 +158,7 @@ install_wezterm_terminfo() {
   if ! command -v wezterm >/dev/null 2>&1; then return; fi
 
   if infocmp wezterm >/dev/null 2>&1; then
-    echo "WezTerm terminfo already installed. ✅"
+    echo "WezTerm terminfo already installed."
     return
   fi
 
@@ -169,7 +169,7 @@ install_wezterm_terminfo() {
   curl -fsSL -o "$tmpfile" \
     "https://raw.githubusercontent.com/wezterm/wezterm/master/termwiz/data/wezterm.terminfo"
   tic -x -o ~/.terminfo "$tmpfile"
-  echo "Installed WezTerm terminfo. ✅"
+  echo "Installed WezTerm terminfo."
 }
 
 #######################################
@@ -179,10 +179,10 @@ install_wezterm_terminfo() {
 #   None
 #######################################
 install_mise_tools() {
-  mise trust
+  mise trust --quiet
   mise install
   activate_mise_tools
-  echo "Installed missing Mise-managed tools. ✅"
+  echo "Installed missing Mise-managed tools."
 }
 
 #######################################
@@ -193,7 +193,7 @@ install_mise_tools() {
 #######################################
 install_brew_packages() {
   brew bundle check --global || brew bundle install --global
-  echo "Installed Homebrew packages. ✅"
+  echo "Installed Homebrew packages."
 }
 
 #######################################
@@ -203,7 +203,7 @@ install_brew_packages() {
 #######################################
 install_brew() {
   if is_brew_installed; then
-    echo "Homebrew is already installed. ✅"
+    echo "Homebrew is already installed."
 
     if ! command -v brew >/dev/null 2>&1; then
       add_brew_to_path
@@ -212,7 +212,7 @@ install_brew() {
     install_brew_deps
     run_brew_install_script
     add_brew_to_path
-    echo "Finished installing Homebrew. ✅"
+    echo "Finished installing Homebrew."
   fi
 }
 

@@ -15,11 +15,11 @@ readonly SUDOERS_DIRECTIVE="Defaults timestamp_type=global"
 print_separator "Configuring sudo timestamp type"
 
 if [[ -f "${SUDOERS_FILE}" ]] && grep -qx "${SUDOERS_DIRECTIVE}" "${SUDOERS_FILE}"; then
-  echo "Sudo timestamp type is already global. ✅"
+  echo "Sudo timestamp type is already global."
   exit 0
 fi
 
 echo "Writing ${SUDOERS_FILE} to set timestamp_type=global."
 echo "${SUDOERS_DIRECTIVE}" | sudo tee "${SUDOERS_FILE}" >/dev/null
 sudo chmod 444 "${SUDOERS_FILE}"
-echo "Set sudo timestamp type to global. ✅"
+echo "Set sudo timestamp type to global."

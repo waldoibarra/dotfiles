@@ -9,12 +9,12 @@ sync: && print-separator brew mise-up update-ca hooks sudo-invalidate
   @echo "Caching password to avoid asking for it later while this runs. " && sudo -v
   git pull
   ./scripts/install-dotfiles.sh
-  @echo "🌧️ Finished synchronizing the dotfiles. 🕉️"
+  @echo "Finished synchronizing the dotfiles."
 
 # Brew bundle: dump, cleanup, upgrade.
 [group("Management")]
 brew: brew-dump brew-clean brew-up && print-separator
-  @echo "🌧️ Finished the Homebrew bundle cycle — dump, clean, ugrade. 🕉️"
+  @echo "Finished the Homebrew bundle cycle — dump, clean, ugrade."
 
 # Dump all installed packages into the global Brewfile.
 [group("Management")]
@@ -38,13 +38,13 @@ brew-up:
 [group("Management")]
 mise-up: && print-separator
   mise upgrade
-  @echo "🌧️ Finished upgrading Mise tools. 🕉️"
+  @echo "Finished upgrading Mise tools."
 
 # Update coding agents configuration.
 [group("Management")]
 update-ca: && print-separator
   ./scripts/update-coding-agents.sh
-  @echo "🌧️ Finished updating AI coding agents configuration. 🕉️"
+  @echo "Finished updating AI coding agents configuration."
 
 # Install this repo's Git hooks.
 [group("Management")]

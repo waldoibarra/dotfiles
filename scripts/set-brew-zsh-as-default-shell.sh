@@ -77,18 +77,18 @@ main() {
   print_separator "Setting Zsh as default shell"
 
   if [[ "${SHELL}" == "${brew_zsh}" ]]; then
-    echo "Default shell is already ${brew_zsh}. ✅"
+    echo "Default shell is already ${brew_zsh}."
     return
   fi
 
   add_to_allowed_shells
   set_default_shell
-  echo "Changed default shell to ${brew_zsh}. ✅"
+  echo "Changed default shell to ${brew_zsh}."
 
   if [[ "${os}" == "Darwin" ]]; then
-    echo "Open a new terminal session. ❤️"
+    echo "Open a new terminal session."
   elif [[ "${os}" == "Linux" ]]; then
-    echo "Log out and log back in. ❤️"
+    echo "Log out and log back in."
   fi
 }
 
