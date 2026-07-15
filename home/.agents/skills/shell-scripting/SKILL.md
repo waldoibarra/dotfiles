@@ -165,10 +165,13 @@ Work in this order:
 - **Run ShellCheck first** — it's the mechanical floor and catches the
   well-trodden bugs (unquoted expansions/SC2086, backticks/SC2006, etc.). Don't
   hand-re-derive what it reports; let it do that layer.
-- **Then apply the judgment layer** from `references/checklist.md` — the things
-  ShellCheck can't see: the `local` masking bug, shebang/strict-mode policy,
-  sourced-lib exceptions, STDOUT/STDERR discipline, structure, portability vs.
-  the Step 1 target.
+- **Then apply the judgment layer** from `references/checklist.md` — walk it
+  section by section (§1–§10) against the target file; don't stop once you've
+  matched a few familiar patterns. This spans the `local` masking bug,
+  shebang/strict-mode policy, sourced-lib exceptions, STDOUT/STDERR
+  discipline, structure — **including the script's own file name (§8) and
+  function-comment coverage (§4), both easy to skip when you're scanning for
+  correctness bugs first** — and portability vs. the Step 1 target.
 - **Finally, report each finding** as: `file:line — the issue — why it bites —
   the fix.` Lead with correctness bugs, then portability, then style.
 
@@ -184,6 +187,15 @@ match the method to the script's blast radius:**
   verification run would mutate the user's machine. Use `shellcheck` + `bash -n` +
   careful reasoning; if a runtime check is genuinely needed, isolate it (container,
   VM, or a dry-run flag). Never mutate the user's environment to test a fix.
+- **Before reporting FIX complete, go back through the AUDIT's own findings
+  list, one item at a time, and confirm each is actually resolved in the
+  diff.** Don't re-derive completeness from a holistic read of the diff or
+  from memory — verify against what you yourself already enumerated.
+  ShellCheck can't check this; it's a judgment-layer gap, and a holistic read
+  is how a finding quietly goes unfixed or gets a half-measure. This is a
+  general discipline, not specific to any one category — whatever the AUDIT
+  surfaced (correctness, naming, structure, portability, comments, ...) is
+  exactly what this final pass checks against.
 
 When a fix is really a **repo-wide convention migration** (dropping `_` prefixes,
 removing emoji, adding strict mode, adding function headers), don't silently

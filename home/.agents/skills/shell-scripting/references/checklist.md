@@ -73,13 +73,17 @@ Google defines four kinds. Use all four.
   # Perform hot backups of Oracle databases.
   ```
 
-- **Function comments** — any function that isn't _both_ obvious and short needs a
-  header; **every library function needs one regardless.** Describe the API so a
-  caller needn't read the body: Description, Globals (used/modified), Arguments,
-  Outputs (STDOUT/STDERR), Returns (any status beyond the last command's).
-  _Why:_ the comment is the function's contract. **When auditing, flag non-obvious
-  functions that lack a header even if no sibling script has them** — their absence
-  is a gap, not a convention (see §10).
+- **Function comments** — **DEVIATION:** every function gets a header comment, no
+  exceptions — the one carve-out is `main()`, which doesn't need one since it's
+  self-evident as the entry point. This drops Google's "obvious and short"
+  exception for every other function, since that judgment call produces
+  inconsistent results across a session. Describe the API so a caller needn't
+  read the body: Description, Globals (used/modified), Arguments, Outputs
+  (STDOUT/STDERR), Returns (any status beyond the last command's) — include only
+  the sections that apply. _Why:_ the comment is the function's contract.
+  **When auditing, flag any function (other than `main`) missing a header even
+  if no sibling script has them** — their absence is a gap, not a convention
+  (see §10).
 
   ```bash
   #######################################
@@ -215,6 +219,25 @@ placeholder. Check meaning first, then apply the case rules below.
   build_cost_section       # depth 1 — main's 3rd call
   build_bar_section        # depth 1 — main's 2nd call; calls get_color_for_bar
   build_model_section      # depth 1 — main's 1st call
+  main                     # depth 0
+  ```
+
+  **Shared helpers (diamond dependencies) break the call-order tie-break.** The
+  example above is a clean tree — one caller per callee. If a function is
+  called by more than one other function (e.g. a leaf helper invoked both
+  directly by `main` _and_ indirectly through one of `main`'s own callees),
+  "which caller's call order?" has no single answer. Fall back to the
+  invariant the heuristic exists to approximate: **a callee must sit above
+  every one of its callers, full stop.** Place the shared helper at the top of
+  its depth group so it clears all callers at once; use call-order only to
+  break ties among true siblings that share no callee.
+
+  ```text
+  get_os_name              # leaf — called by main AND by set_default_shell
+  get_brew_zsh_path        # leaf — called by main AND by set_default_shell
+                            #        AND by add_to_allowed_shells
+  set_default_shell        # depth 1 — main's last call
+  add_to_allowed_shells    # depth 1 — main's first call
   main                     # depth 0
   ```
 
