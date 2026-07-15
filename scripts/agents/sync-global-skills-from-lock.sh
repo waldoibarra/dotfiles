@@ -54,19 +54,21 @@ _update_all_skills() {
 }
 
 _git_commit_and_push_skills_lockfile() {
+  local _repo_root
+  _repo_root="$(git rev-parse --show-toplevel)"
   local -r _lockfile="home/.agents/.skill-lock.json"
 
   # The lockfile only changes when a skill actually published a new version.
-  git diff --quiet -- "$_lockfile" && return 0
+  git -C "$_repo_root" diff --quiet -- "$_lockfile" && return 0
 
-  git commit -m "$(
+  git -C "$_repo_root" commit -m "$(
     cat <<'EOF'
 chore(agents): update skill lock file
 
 Skills were updated via `npx skills update -g`.
 EOF
   )" -- "$_lockfile"
-  git push
+  git -C "$_repo_root" push
 }
 
 sync_global_skills_from_lock() {
