@@ -69,5 +69,4 @@ cask "visual-studio-code"
 cask "wezterm@nightly"
 # Gecko based web browser
 cask "zen"
-npm "@anthropic-ai/claude-code"
 npm "corepack"

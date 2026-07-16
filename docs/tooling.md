@@ -60,6 +60,11 @@ Homebrew as a bootstrapping step — that is intentional. A tool may also stay i
 when Mise's only backend for it is unmaintained, or a different implementation than the
 maintained Homebrew formula.
 
+`brew bundle dump` inspects the active `npm`'s globals (`npm ls -g`). mise's isolated
+`npm:` tools don't appear there, but packages bundled with node (e.g. `corepack`) always
+do, so `npm "corepack"` re-enters the Brewfile on every dump. It's inert (`check` stays
+satisfied, `upgrade` ignores npm) — leave it rather than fight the dump cycle.
+
 ## mise
 
 `mise` manages developer tools and CLIs (Node, Python, shell tools, etc.). Global tool
@@ -67,6 +72,11 @@ versions are defined in [`home/.config/mise/config.toml`](/home/.config/mise/con
 Project-level overrides live in [`mise.toml`](/mise.toml) at the repo root.
 
 Always prefer `mise` over Homebrew for developer tools and CLIs.
+
+npm-backed tools whose package ships postinstall/build scripts (e.g.
+`@anthropic-ai/claude-code`, whose postinstall copies the native binary) need
+`allow_builds = true`. mise's `npm:` backend defaults to `--ignore-scripts=true`;
+without it the postinstall is skipped and the tool installs non-functional.
 
 ## RTK
 
