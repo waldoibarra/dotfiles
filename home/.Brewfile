@@ -1,4 +1,3 @@
-tap "steipete/tap"
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
 brew "antigen"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -43,8 +42,6 @@ brew "tree"
 brew "unbound"
 # UNIX shell (command interpreter)
 brew "zsh"
-# Menu bar usage monitor for Codex and Claude
-cask "steipete/tap/codexbar", trusted: true
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # App to build and share containerised applications and microservices
