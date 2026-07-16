@@ -96,7 +96,7 @@ install_skills_from_lockfile() {
   local -r lockfile="$HOME/.agents/.skill-lock.json"
 
   if [[ ! -f "$lockfile" ]]; then
-    echo "Lockfile not found: $lockfile"
+    echo "Lockfile not found: $lockfile" >&2
     return 1
   fi
 

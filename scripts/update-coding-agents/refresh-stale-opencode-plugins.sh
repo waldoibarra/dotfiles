@@ -2,11 +2,13 @@
 # version available upstream. OpenCode only reinstalls a plugin when its
 # cache entry is missing, so this is what triggers an update.
 
-OPENCODE_CACHE_DIR="$HOME/.cache/opencode"
+readonly OPENCODE_CACHE_DIR="$HOME/.cache/opencode"
 readonly NETWORK_CHECK_TIMEOUT_SECONDS=5
 
 #######################################
 # Check whether a git-sourced plugin dependency has new commits upstream.
+# Globals:
+#   NETWORK_CHECK_TIMEOUT_SECONDS
 # Arguments:
 #   Plugin name (used in the warning message only).
 #   The lockfile's "resolved" field, e.g.
@@ -16,7 +18,7 @@ readonly NETWORK_CHECK_TIMEOUT_SECONDS=5
 #   (including when the remote can't be reached, so a network hiccup
 #   doesn't force an unnecessary reinstall).
 # Outputs:
-#   Writes a warning to STDOUT if the remote can't be reached.
+#   Writes a warning to STDERR if the remote can't be reached.
 #######################################
 git_dependency_is_stale() {
   local -r name="$1"
@@ -28,7 +30,7 @@ git_dependency_is_stale() {
   # `git ls-remote` needs network access; the plugin author's SSH key isn't
   # ours, so talk to GitHub over HTTPS instead of the cached ssh:// remote.
   case "$repo_url" in
-  ssh://git@github.com/*) repo_url="https://github.com/${repo_url#ssh://git@github.com/}" ;;
+    ssh://git@github.com/*) repo_url="https://github.com/${repo_url#ssh://git@github.com/}" ;;
   esac
 
   local latest_commit
@@ -36,7 +38,7 @@ git_dependency_is_stale() {
     timeout "$NETWORK_CHECK_TIMEOUT_SECONDS" git ls-remote "$repo_url" HEAD 2>/dev/null | cut -f1
   )"
   if [[ -z "$latest_commit" ]]; then
-    echo "Warning: couldn't reach $repo_url, keeping cached $name."
+    echo "Warning: couldn't reach $repo_url, keeping cached $name." >&2
     return 1
   fi
 
@@ -46,6 +48,8 @@ git_dependency_is_stale() {
 #######################################
 # Check whether an npm-sourced plugin dependency has a newer version
 # published to the registry.
+# Globals:
+#   NETWORK_CHECK_TIMEOUT_SECONDS
 # Arguments:
 #   Plugin (npm package) name.
 #   Version pinned in the cached lockfile.
@@ -53,7 +57,7 @@ git_dependency_is_stale() {
 #   0 if the registry's latest version differs from the cached one, 1
 #   otherwise (including when the registry can't be reached).
 # Outputs:
-#   Writes a warning to STDOUT if the registry can't be reached.
+#   Writes a warning to STDERR if the registry can't be reached.
 #######################################
 npm_dependency_is_stale() {
   local -r name="$1"
@@ -62,11 +66,27 @@ npm_dependency_is_stale() {
   local latest_version
   latest_version="$(timeout "$NETWORK_CHECK_TIMEOUT_SECONDS" npm view "$name" version 2>/dev/null)"
   if [[ -z "$latest_version" ]]; then
-    echo "Warning: couldn't reach the npm registry, keeping cached $name."
+    echo "Warning: couldn't reach the npm registry, keeping cached $name." >&2
     return 1
   fi
 
   [[ "$latest_version" != "$current_version" ]]
+}
+
+#######################################
+# Find the package-lock.json OpenCode wrote for one cached plugin install,
+# wherever it landed under the plugin's cache directory (git dependencies
+# nest it under a cloned-repo path; npm dependencies keep it at the top).
+# Arguments:
+#   Plugin's top-level cache directory, e.g. one entry under
+#   $OPENCODE_CACHE_DIR/packages.
+# Outputs:
+#   Writes the lockfile path to STDOUT, or nothing if none was found.
+#######################################
+find_plugin_lockfile() {
+  local -r plugin_dir="$1"
+
+  find "$plugin_dir" -name package-lock.json -print -quit
 }
 
 #######################################
@@ -97,22 +117,6 @@ opencode_plugin_is_stale() {
   else
     npm_dependency_is_stale "$name" "$version"
   fi
-}
-
-#######################################
-# Find the package-lock.json OpenCode wrote for one cached plugin install,
-# wherever it landed under the plugin's cache directory (git dependencies
-# nest it under a cloned-repo path; npm dependencies keep it at the top).
-# Arguments:
-#   Plugin's top-level cache directory, e.g. one entry under
-#   $OPENCODE_CACHE_DIR/packages.
-# Outputs:
-#   Writes the lockfile path to STDOUT, or nothing if none was found.
-#######################################
-find_plugin_lockfile() {
-  local -r plugin_dir="$1"
-
-  find "$plugin_dir" -name package-lock.json -print -quit
 }
 
 #######################################
