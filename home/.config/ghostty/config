@@ -49,3 +49,11 @@ window-padding-balance = true
 
 # Font configuration.
 font-size = 14
+
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                          Input & Keys                                         ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+# Left Option sends Alt/Meta (ESC-prefixed) sequences, matching WezTerm's default.
+# Enables Meta-bound bindings like `less`'s ESC-v (page back). Right Option keeps
+# its native macOS behavior for special characters (e.g. Option+E for accents).
+macos-option-as-alt = left
