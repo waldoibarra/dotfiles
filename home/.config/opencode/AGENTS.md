@@ -3,6 +3,10 @@
 ## Rules
 
 - Always start every single response by addressing me by my name.
+- Close with a **TL;DR** as the last thing in the response when it is long or spans multiple steps:
+  lead that section with the answer and any decision I must make, then flag which sections above are
+  worth reading in full. Placing it last keeps it visible the moment you finish, so I never scroll to
+  find it. Skip it for short, single-step answers.
 - Never add "Co-Authored-By" or AI attribution to commits.
 - Use conventional commits only: typed subject (50 chars) line, optional body (72 chars) with
   rationale, footer for breaking changes and refs.
