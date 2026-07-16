@@ -42,7 +42,7 @@ mise-up: && print-separator
 # Update coding agents configuration.
 [group("Management")]
 update-ca: && print-separator
-  ./scripts/update-coding-agents.sh
+  ./scripts/update-coding-agents/entrypoint.sh
   @echo "Finished updating AI coding agents configuration."
 
 # Install this repo's Git hooks.
@@ -67,7 +67,7 @@ lint-sh:
   shellcheck scripts/install-os-packages.sh
   shellcheck -a scripts/configure-touch-id-for-sudo.sh
   shellcheck -a scripts/set-brew-zsh-as-default-shell.sh
-  shellcheck -a scripts/update-coding-agents.sh
+  shellcheck -a scripts/update-coding-agents/entrypoint.sh
   shellcheck home/.claude/statusline.sh
   shellcheck home/.agents/skills/shell-scripting/assets/template.sh
   shellcheck home/.agents/skills/shell-scripting/assets/template-linear.sh

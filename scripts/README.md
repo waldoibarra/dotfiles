@@ -5,7 +5,7 @@ This directory contains scripts to:
 - Idempotently install the dotfiles configuration ([install-dotfiles.sh](install-dotfiles.sh))
 - Install Homebrew (and its packages) and Mise (and its tools) ([install-os-packages.sh](install-os-packages.sh))
 - Set the Homebrew Zsh as the default shell ([set-brew-zsh-as-default-shell.sh](set-brew-zsh-as-default-shell.sh))
-- Update coding agents ([update-coding-agents.sh](update-coding-agents.sh))
+- Update coding agents ([update-coding-agents/entrypoint.sh](update-coding-agents/entrypoint.sh))
 
 ## Install Dotfiles
 
@@ -53,6 +53,8 @@ ran with the `just sync` command.
 
 It will update the following:
 
+- OpenCode's plugin cache, clearing only the entries for plugins with a newer version available
+  upstream so OpenCode reinstalls just those on next launch
 - [Globally installed skills](https://skills.sh/)
 - RTK OpenCode plugin (`~/.config/opencode/plugins/rtk.ts`) via `rtk init -g --opencode`
 

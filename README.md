@@ -70,8 +70,8 @@ What it does:
 - Use [mise](https://github.com/jdx/mise), the language agnostic dev tools manager to update global
   default tool versions that are defined in [~/.config/mise/config.toml](home/.config/mise/config.toml),
   they define which version is active when no project-level file overrides it.
-- Update coding agents configuration by running the [scripts/update-coding-agents.sh](scripts/update-coding-agents.sh)
-  script.
+- Update coding agents configuration by running the
+  [scripts/update-coding-agents/entrypoint.sh](scripts/update-coding-agents/entrypoint.sh) script.
 
 ## Utility Scripts
 

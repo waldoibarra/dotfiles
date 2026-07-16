@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 #
-# Update coding agent tooling: clear OpenCode's cache, refresh the RTK
-# OpenCode plugin, and sync globally installed skills from the lockfile.
+# Update coding agent tooling: refresh stale entries in OpenCode's plugin
+# cache, refresh the RTK OpenCode plugin, and sync globally installed skills
+# from the lockfile.
 
 set -euo pipefail
 
-SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly SCRIPTS_DIR
-source "${SCRIPTS_DIR}/lib/constants.sh"
-source "${SCRIPTS_DIR}/lib/shell-helpers.sh"
-source "${SCRIPTS_DIR}/agents/sync-global-skills-from-lock.sh"
+ENTRYPOINT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly ENTRYPOINT_DIR
+source "${ENTRYPOINT_DIR}/../lib/shell-helpers.sh"
+source "${ENTRYPOINT_DIR}/sync-global-skills-from-lock.sh"
+source "${ENTRYPOINT_DIR}/refresh-stale-opencode-plugins.sh"
 
 #######################################
 # Install or refresh the RTK OpenCode plugin, if RTK is installed.
@@ -30,23 +31,8 @@ install_rtk_opencode_plugin() {
   echo "RTK OpenCode plugin installed."
 }
 
-#######################################
-# Remove OpenCode's cache directory, if present, so it rebuilds from
-# scratch on next launch.
-# Globals:
-#   OPENCODE_CACHE_DIR
-# Outputs:
-#   Writes progress to STDOUT.
-#######################################
-clear_opencode_cache() {
-  if [[ -d "$OPENCODE_CACHE_DIR" ]]; then
-    rm -rf "$OPENCODE_CACHE_DIR"
-    echo "OpenCode cache cleared."
-  fi
-}
-
 main() {
-  clear_opencode_cache
+  refresh_stale_opencode_plugins
   install_rtk_opencode_plugin
   sync_global_skills_from_lock
 
