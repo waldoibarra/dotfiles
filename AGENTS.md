@@ -26,8 +26,8 @@ symlinked there by Dotbot.
 - Don't over-engineer. If something adds complexity without clear benefit, the user will reject it.
 - Don't jump into implementation before discussing tradeoffs on non-trivial decisions.
 - Don't run `just sync` yourself, even when a change needs it (Dotbot re-link, new/renamed file,
-  Brewfile/mise config change) — it requires an interactive terminal (`sudo -v`). Ask the user to
-  run it with `! just sync` (see [`docs/tooling.md`](/docs/tooling.md)).
+  Brewfile/mise config change) — it may require an interactive terminal (sudo prompts when scripts
+  need changes). Ask the user to run it with `! just sync` (see [`docs/tooling.md`](/docs/tooling.md)).
 
 ## Reference docs
 

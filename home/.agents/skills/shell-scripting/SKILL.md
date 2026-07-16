@@ -120,7 +120,7 @@ deviation and its reason are noted so you can explain it.
   vague placeholders (`content`, `data`, `tmp`, `result`) to the role they play
   (`sudoers_directive`, `backup_path`), and ensure the name matches the actual
   behavior. **File names** describe the script's job and use **kebab-case**
-  (`configure-sudo-credential-cache.sh`, not `run.sh`) — a deliberate deviation from
+  (`configure-touch-id-for-sudo.sh`, not `run.sh`) — a deliberate deviation from
   Google's `snake_case`. Case for identifiers: `UPPER_SNAKE` for constants and
   exported/global variables; `lower_snake` for functions and variables. Do **not**
   prefix "private" helpers or locals with a leading underscore — Bash has no real

@@ -15,7 +15,7 @@ Key recipes:
 
 | Recipe | What it does |
 | --- | --- |
-| `just sync` | Full sync: Dotbot + Brew + Mise + coding agents. Safe to re-run anytime. Requires an interactive terminal — it calls `sudo -v` to cache credentials, so an AI agent must ask the user to run it rather than running it itself. |
+| `just sync` | Full sync: Dotbot + Brew + Mise + coding agents. Safe to re-run anytime. May require an interactive terminal (sudo prompts when scripts need changes), so an AI agent must ask the user to run it rather than running it itself. |
 | `just brew` | Brew bundle: dump, clean up, upgrade. |
 | `just lint-sh` | Lint shell scripts with ShellCheck. |
 | `just lint-md` | Lint Markdown files with markdownlint-cli2. |

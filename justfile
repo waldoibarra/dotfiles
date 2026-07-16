@@ -5,8 +5,7 @@ default:
 
 # Idempotently sync OS configuration, sync Brew packages, upgrade Mise tools, update coding agents.
 [group("Management")]
-sync: && print-separator brew mise-up update-ca hooks sudo-invalidate
-  @echo "Caching password to avoid asking for it later while this runs. " && sudo -v
+sync: && print-separator brew mise-up update-ca hooks
   git pull
   ./scripts/install-dotfiles.sh
   @echo "Finished synchronizing the dotfiles."
@@ -51,12 +50,6 @@ update-ca: && print-separator
 hooks:
   @hk install --quiet
 
-# Invalidate sudo credentials after sync.
-[private]
-[group("Management")]
-sudo-invalidate:
-  @sudo -k
-
 # Print 80 chars long separator.
 [private]
 [group("Management")]
@@ -72,7 +65,6 @@ lint: lint-ec lint-md lint-yaml lint-sh
 lint-sh:
   shellcheck scripts/install-dotfiles.sh
   shellcheck scripts/install-os-packages.sh
-  shellcheck -a scripts/configure-sudo-credential-cache.sh
   shellcheck -a scripts/configure-touch-id-for-sudo.sh
   shellcheck -a scripts/set-brew-zsh-as-default-shell.sh
   shellcheck -a scripts/update-coding-agents.sh

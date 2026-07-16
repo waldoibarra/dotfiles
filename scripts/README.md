@@ -29,17 +29,6 @@ What this script does:
 This `install-os-packages.sh` script is used by `install-dotfiles.sh` script, which is ran with the
 `just sync` command.
 
-## Configure Sudo Credential Cache
-
-What this script does:
-
-- Ensure `/etc/sudoers.d/timestamp_type` sets `timestamp_type=global` so sudo credentials are cached
-per-user rather than per-TTY.
-
-This `configure-sudo-credential-cache.sh` script is used by `install-dotfiles.sh` script, which is
-ran with the `just sync` command. It runs before `install-os-packages.sh` so the sudoers file is
-written while the sudo credential (from `sudo -v` in `just sync`) is still warm.
-
 ## Configure Touch ID for Sudo
 
 What this script does:
@@ -49,8 +38,7 @@ authenticates via Touch ID instead of a password prompt. macOS only — the scri
 no-ops on Linux.
 
 This `configure-touch-id-for-sudo.sh` script is used by `install-dotfiles.sh` script, which is ran
-with the `just sync` command. It runs alongside `configure-sudo-credential-cache.sh` so both `/etc`
-files are written while the sudo credential (from `sudo -v` in `just sync`) is still warm.
+with the `just sync` command.
 
 ## Set Brew Zsh as Default Shell
 

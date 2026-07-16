@@ -167,7 +167,7 @@ placeholder. Check meaning first, then apply the case rules below.
   a one-letter script-level variable is not. The wider the scope, the more the
   name must carry.
 - **File names describe the script's job**, in **kebab-case**.
-  `configure-sudo-credential-cache.sh` tells you exactly what it does; `script.sh`,
+  `configure-touch-id-for-sudo.sh` tells you exactly what it does; `script.sh`,
   `run.sh`, `utils.sh`, `helper.sh` hide it. **DEVIATION:** Google uses
   `snake_case` and forbids hyphens (`make_template`, not `make-template`); this
   skill enforces **kebab-case** for shell file names instead. If a project's
