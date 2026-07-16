@@ -146,7 +146,9 @@ deviation and its reason are noted so you can explain it.
 
   **Order the helpers themselves bottom-up by call depth** — `main`'s direct
   calls sit directly above it in call order, their callees sit above those, and
-  so on outward. See `references/checklist.md` §8 for the worked example.
+  so on outward. See `references/checklist.md` §8 for the worked example. This
+  order is easy to get wrong while composing new functions — re-trace it as a
+  final pass rather than trusting it was right the first time.
   `source` at the **top level, never inside a function** (see the trap below).
 - **Output** — normal status to **STDOUT**; errors and warnings to **STDERR**,
   via an `err()` helper. No decorative emoji — they bury the signal you actually
@@ -164,7 +166,9 @@ Work in this order:
 
 - **Run ShellCheck first** — it's the mechanical floor and catches the
   well-trodden bugs (unquoted expansions/SC2086, backticks/SC2006, etc.). Don't
-  hand-re-derive what it reports; let it do that layer.
+  hand-re-derive what it reports; let it do that layer. **A clean run proves
+  almost nothing** — most real findings live one layer up, in the judgment
+  checklist below; a script can pass ShellCheck outright and still crash.
 - **Then apply the judgment layer** from `references/checklist.md` — walk it
   section by section (§1–§10) against the target file; don't stop once you've
   matched a few familiar patterns. This spans the `local` masking bug,
@@ -248,6 +252,11 @@ These cause silent, wrong behavior and are easy to miss. Never ship them.
   `(( i++ ))` returning non-zero under `set -e`).
 - **Pipelines/`while read`** — pipes run in a subshell, so variables set inside
   `cmd | while read` don't survive. Use `while read ... done < <(cmd)`.
+- **Unmatched globs stay literal.** `for x in "$dir"/*; do` — if nothing
+  matches and `nullglob` isn't set, the loop runs once with the pattern
+  itself as the value, then fails downstream on a path that was never real.
+  ShellCheck doesn't catch this. Guard each iteration (`[[ -e "$x" ]] ||
+  continue`) or enable `nullglob` locally.
 
 When the checklist and the verbatim guide disagree with each other, the checklist
 wins (it records this repo's deviations); when the checklist is silent, defer to

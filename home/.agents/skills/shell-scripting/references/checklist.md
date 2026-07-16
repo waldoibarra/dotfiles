@@ -134,6 +134,11 @@ Google defines four kinds. Use all four.
 - Test strings with `-z`/`-n` and `==`; use `(( ))` (or `-lt`/`-gt`) for numeric
   comparison. _Why:_ `<`/`>` in `[[ ]]` are lexicographic — a silent bug.
 - Wildcards: use `./*` not `*`. _Why:_ a file named `-rf` becomes a flag.
+- **Guard glob-based iteration.** An unmatched glob (no `nullglob`) leaves a
+  `for`/`case` pattern as the literal string, so the loop runs once against a
+  path that was never real. Guard with `[[ -e "$item" ]] || continue`, or
+  scope `shopt -s nullglob`. _Why:_ ShellCheck doesn't catch this — it only
+  surfaces once the loop body fails downstream on the literal pattern.
 - **Never `eval`.** _Why:_ unpredictable, unauditable.
 - Arrays for lists/flag sets: `flags=(--foo --bar); cmd "${flags[@]}"`. _Why:_
   safe quoting; strings-as-lists force `eval`/nested quotes.
@@ -181,7 +186,10 @@ placeholder. Check meaning first, then apply the case rules below.
   existing `_`-prefix convention and recommend removing it repo-wide** — its
   consistency doesn't make it correct (see §10).
 - Constants & exported vars: `UPPER_SNAKE`, declared at the top, `readonly`/
-  `export`. Set-then-`readonly` is fine for runtime-computed constants.
+  `export`. Set-then-`readonly` is fine for runtime-computed constants. Mark
+  it `readonly` even when the value is a plain literal or simple expansion
+  with no command substitution — there's no masking risk there, but it's
+  just as easy to forget precisely because it doesn't look dangerous.
 - `local` for every function variable. _Why:_ avoids leaking into the global
   namespace and clobbering something meaningful.
 - **CRITICAL — split declaration from command-substitution assignment.** Applies
