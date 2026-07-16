@@ -40,6 +40,16 @@ export ZSH_THEME_RANDOM_QUIET=true
 antigen apply
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                          Environment                                          ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+# Let less handle mouse wheel scrolling natively (oh-my-zsh sets LESS=-R above).
+# Otherwise the terminal falls back to translating wheel scroll into arrow key
+# presses while less/delta hold the alternate screen, which can get stuck and
+# leak into the shell as bogus history navigation after the pager exits.
+export LESS="${LESS} --mouse --wheel-lines=3"
+
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                            Tools                                              ║
 # ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 
