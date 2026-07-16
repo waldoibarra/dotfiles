@@ -57,12 +57,18 @@ are symlink targets, **never edit them under `~/.agents/skills/`,
 `~/.claude/skills/`, or `~/.config/opencode/skills/`** — always edit the repo
 source under `home/`.
 
-## Keeping prompts in sync
+## Global instructions
 
-[`CLAUDE.md`](/home/.claude/CLAUDE.md) and [`AGENTS.md`](/home/.config/opencode/AGENTS.md) are
-effectively the same prompt — any change to one must be mirrored to the other. The only intentional
-difference is the contextual skills loading section: each tool references available skills differently
-based on its own system prompt format.
+[`AGENTS.md`](/home/.config/opencode/AGENTS.md) is the single source of truth for global
+instructions. [`CLAUDE.md`](/home/.claude/CLAUDE.md) is a one-line `@`-import of it:
+
+```md
+@~/.config/opencode/AGENTS.md
+```
+
+This is the [pattern Claude Code recommends](https://code.claude.com/docs/en/memory.md#import-additional-files)
+for repos that keep instructions in `AGENTS.md`. Edit `AGENTS.md` only — `CLAUDE.md` auto-imports
+it, so there is nothing to mirror.
 
 ## Local project instructions
 

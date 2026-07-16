@@ -3,7 +3,9 @@
 gitignore: true
 ignores:
   - "dotbot/**"
+  # Pure `@`-import files (no heading, single line) — MD041 doesn't apply.
   - "CLAUDE.md"
+  - "home/.claude/CLAUDE.md"
   # Verbatim upstream copy of Google's Shell Style Guide — kept unmodified, so
   # it is exempt from our Markdown style rules (like the vendored dotbot tree).
   - "home/.agents/skills/shell-scripting/references/google-shell-style-guide.md"

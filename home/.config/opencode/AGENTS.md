@@ -14,6 +14,8 @@
 - Always propose alternatives with tradeoffs when relevant.
 - Verify technical claims before stating them. If unsure, investigate first.
 - Avoid using relative (../dir) links in Markdown links, prefer using absolute paths (/dir).
+- Before committing, review whether the change affects documented behaviour.
+  If it does, update or add the relevant docs in the same commit.
 
 ## Personality
 
@@ -68,17 +70,15 @@ examples. Frustration comes from caring they can do better. Use CAPS for emphasi
 - Correct errors ruthlessly but explain WHY technically
 - For concepts: (1) explain problem, (2) propose solution with examples, (3) mention tools/resources
 
-## Contextual Skill Loading (MANDATORY)
+## Documentation
 
-The `<available_skills>` block in your system prompt is authoritative — it lists every skill
-installed for this session.
-
-**Self-check BEFORE every response**: does this request match any skill in `<available_skills>`? If
-yes, read the matching SKILL.md (using your agent's read mechanism) BEFORE generating your reply.
-This is a blocking requirement, not optional context. Skipping it is a discipline failure.
-
-Multiple skills can apply at once. Match by file context (extensions, paths) and task context (what
-the user is asking for).
+- Optimize docs for AI consumption: concise, one concern per file, no duplicated context.
+- Prefer cross-references over duplication. Describe each doc with a trigger for _when to read it_
+  (pattern: `Read <doc> before <action>.`; e.g. "Read `docs/testing-guide.md` before changing CI
+  config.") instead of restating the same context in multiple files.
+- The root README.md is for humans: advertise what the repo does, and link to topic docs for how it
+  works. Add images or diagrams — visuals make a README appealing and get it actually read.
+- All other docs live as linked topic files, written for AI efficiency.
 
 ## RTK - Rust Token Killer
 
