@@ -3,23 +3,23 @@
 default:
   @just --list --unsorted
 
-# Idempotently sync OS configuration, sync Brew packages, upgrade Mise tools, update coding agents.
+# Idempotently sync OS configuration, apply Brew packages, sync Mise tools, update coding agents.
 [group("Management")]
-sync: && print-separator brew mise-up update-ca hooks
+sync: && print-separator brew mise-sync update-ca hooks
   git pull
   ./scripts/install-dotfiles.sh
   @echo "Finished synchronizing the dotfiles."
 
-# Brew bundle: dump, cleanup, upgrade.
+# Apply the global Brewfile declaratively: install/upgrade listed, remove unlisted.
 [group("Management")]
-brew: brew-dump brew-clean brew-up && print-separator
-  @echo "Finished the Homebrew bundle cycle — dump, clean, ugrade."
+brew: brew-apply brew-clean && print-separator
+  @echo "Finished the Homebrew bundle cycle — apply, clean."
 
-# Dump all installed packages into the global Brewfile.
+# Install missing and upgrade existing packages from the global Brewfile.
 [group("Management")]
 [private]
-brew-dump:
-  brew bundle dump --global --force --no-vscode
+brew-apply:
+  brew bundle upgrade --global --quiet
 
 # Clean up anything that's not in the global Brewfile.
 [group("Management")]
@@ -27,17 +27,18 @@ brew-dump:
 brew-clean:
   brew bundle cleanup --global --force
 
-# Upgrade all items in the global Brewfile.
+# Dump this machine's installed packages into the global Brewfile (opt-in; commit after).
 [group("Management")]
-[private]
-brew-up:
-  brew bundle upgrade --global --quiet
+brew-dump:
+  brew bundle dump --global --force --no-vscode
 
-# Upgrade outdated (Mise managed) tools to their latests versions.
+# Sync Mise tools: install missing, upgrade, and prune tools no longer in config.
 [group("Management")]
-mise-up: && print-separator
-  mise upgrade
-  @echo "Finished upgrading Mise tools."
+mise-sync: && print-separator
+  mise install --yes
+  mise upgrade --yes
+  mise prune --yes
+  @echo "Finished syncing Mise tools."
 
 # Update coding agents configuration.
 [group("Management")]

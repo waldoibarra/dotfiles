@@ -180,8 +180,8 @@ install_wezterm_terminfo() {
 #   None
 #######################################
 install_mise_tools() {
-  mise trust --quiet
-  mise install
+  mise trust --yes --quiet
+  mise install --yes
   activate_mise_tools
   echo "Installed missing Mise-managed tools."
 }
