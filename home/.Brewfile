@@ -42,6 +42,8 @@ brew "tree"
 brew "unbound"
 # UNIX shell (command interpreter)
 brew "zsh"
+# Menu bar usage monitor for Codex and Claude
+cask "codexbar"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # App to build and share containerised applications and microservices
@@ -66,4 +68,3 @@ cask "visual-studio-code"
 cask "wezterm@nightly"
 # Gecko based web browser
 cask "zen"
-npm "corepack"

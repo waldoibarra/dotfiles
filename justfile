@@ -30,7 +30,7 @@ brew-clean:
 # Dump this machine's installed packages into the global Brewfile (opt-in; commit after).
 [group("Management")]
 brew-dump:
-  brew bundle dump --global --force --no-vscode
+  brew bundle dump --global --force --no-vscode --no-npm
 
 # Sync Mise tools: install missing, upgrade, and prune tools no longer in config.
 [group("Management")]
