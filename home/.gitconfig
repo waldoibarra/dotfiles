@@ -4,8 +4,16 @@
 	program = gpg
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+	# Diff stat.
 	ds = "!git fetch --quiet && git diff --shortstat origin/main"
 	dsc = "!git fetch --quiet && git diff --shortstat origin/main...HEAD"
+
+	# Clean local merged branches.
+	cm = !git checkout main && git fetch -p && git branch --merged | grep -Ev \"(^\\*|main|master|trunk)\" | xargs git branch -d
+
+	# Clean local branches whose remotes were squashed or deleted.
+	cg = !git checkout main && git fetch -p && git branch -vv | awk '/: gone]/ {print $1}' | xargs git branch -d
 [core]
 	pager = delta
 [interactive]
