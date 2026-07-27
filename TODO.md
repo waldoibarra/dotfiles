@@ -10,3 +10,4 @@
 - Add Hermes installation?
   `curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash -s -- --non-interactive --skip-setup`,
   then `npx playwright install` on the hermes dir.
+- Improve my dotfiles, get inspiration from this other [dotfiles repo](https://github.com/davidarny/dotfiles/tree/main).
