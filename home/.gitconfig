@@ -13,7 +13,7 @@
 	cm = !git checkout main && git fetch -p && git branch --merged | grep -Ev \"(^\\*|main|master|trunk)\" | xargs git branch -d
 
 	# Clean local branches whose remotes were squashed or deleted.
-	cg = !git checkout main && git fetch -p && git branch -vv | awk '/: gone]/ {print $1}' | xargs git branch -d
+	cg = !git checkout main && git fetch -p && git branch -vv | awk '/: gone]/ {print $1}' | xargs git branch -D
 [core]
 	pager = delta
 [interactive]
