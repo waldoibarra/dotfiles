@@ -15,14 +15,36 @@ Key recipes:
 
 | Recipe | What it does |
 | --- | --- |
-| `just sync` | Full sync: Dotbot + Brew + Mise + coding agents. Safe to re-run anytime. May require an interactive terminal (sudo prompts when scripts need changes), so an AI agent must ask the user to run it rather than running it itself. |
-| `just brew` | Apply the global Brewfile declaratively: install/upgrade what's listed, uninstall what isn't. |
+| `just sync` | Full sync: Dotbot + Brew + Mise + coding agents. Safe to re-run anytime. Requires an interactive terminal — see [Which recipes may an AI agent run?](#which-recipes-may-an-ai-agent-run) |
+| `just brew` | Apply the global Brewfile declaratively: install/upgrade what's listed, uninstall what isn't. Cask operations can invoke sudo. |
+| `just mise-sync` | Sync Mise tools against the tracked configs: install missing, upgrade, prune. |
+| `just update-ca` | Update coding agents: OpenCode plugin cache, RTK/Herdr integrations, global skills. |
+| `just hooks` | Install this repo's Git hooks via `hk`. |
 | `just brew-dump` | Capture this machine's installed packages into the global Brewfile (opt-in; commit after). |
 | `just lint-sh` | Lint shell scripts with ShellCheck. |
 | `just lint-md` | Lint Markdown files with markdownlint-cli2. |
 | `just lint-ec` | Lint all files against `.editorconfig` rules with editorconfig-checker. |
 | `just lint-yaml` | Lint YAML files with yamlfmt. |
 | `just check-hooks` | Run the pre-commit hook against all files to verify hook configuration. |
+
+### Which recipes may an AI agent run?
+
+`just sync` and `just brew` must be run by the user (`! just sync`): their sudo paths (Dotbot's
+Touch ID/shell scripts, Homebrew bootstrap, cask installers) trigger a Touch ID dialog that blocks
+a non-TTY agent indefinitely — no error, no timeout — and `git pull` may prompt for SSH
+credentials. Verified empirically: the sudo credential cache never carries across agent shell
+calls, so every sudo re-blocks.
+
+The sub-recipes below never touch sudo, so agents may run them directly when only their domain
+changed, instead of asking for a full sync:
+
+- Changed `home/.config/mise/config.toml` or `mise.toml`? Run `just mise-sync`.
+- Changed `home/.agents/.skill-lock.json`, or need to refresh the RTK/Herdr integrations or
+  OpenCode's plugin cache? Run `just update-ca`.
+- Changed `hk.pkl`? Run `just hooks`, then `just check-hooks`.
+
+Anything involving Dotbot (new/renamed tracked files, symlinks) or the Brewfile still needs the
+full `just sync` run by the user.
 
 ## hk
 

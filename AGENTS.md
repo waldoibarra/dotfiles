@@ -25,9 +25,11 @@ symlinked there by Dotbot.
 - **Never edit files directly in `$HOME`.** Always edit the source under `home/`.
 - Don't over-engineer. If something adds complexity without clear benefit, the user will reject it.
 - Don't jump into implementation before discussing tradeoffs on non-trivial decisions.
-- Don't run `just sync` yourself, even when a change needs it (Dotbot re-link, new/renamed file,
-  Brewfile/mise config change) — it may require an interactive terminal (sudo prompts when scripts
-  need changes). Ask the user to run it with `! just sync` (see [`docs/tooling.md`](/docs/tooling.md)).
+- Don't run `just sync` or `just brew` yourself, even when a change needs them (Dotbot re-link,
+  new/renamed file, Brewfile change) — their sudo paths trigger a Touch ID dialog that blocks a
+  non-TTY agent indefinitely, with no error to react to. Ask the user to run it with `! just sync`.
+  The sudo-free sub-recipes `just mise-sync`, `just update-ca`, and `just hooks` are safe to run
+  directly (see [`docs/tooling.md`](/docs/tooling.md)).
 - **Don't hardcode absolute home paths** (`/Users/<name>`) in tracked files — they break on other
   machines and users. Use `~`, `$HOME`, or the tool's native mechanism (e.g. `wezterm.home_dir`;
   Ghostty's `command` needs its `shell:` prefix for `~` to expand). A GitHub username inside a URL
