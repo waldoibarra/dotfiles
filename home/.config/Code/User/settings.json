@@ -21,7 +21,8 @@
   },
   "files.associations": {
     ".Brewfile": "ruby",
-    "justfile": "makefile"
+    "justfile": "makefile",
+    ".worktreeinclude": "ignore"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
