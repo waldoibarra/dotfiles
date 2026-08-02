@@ -3,6 +3,7 @@
 This directory contains scripts to:
 
 - Idempotently install the dotfiles configuration ([install-dotfiles.sh](install-dotfiles.sh))
+- Enable Touch ID for sudo ([configure-touch-id-for-sudo.sh](configure-touch-id-for-sudo.sh))
 - Install Homebrew (and its packages) and Mise (and its tools) ([install-os-packages.sh](install-os-packages.sh))
 - Set the Homebrew Zsh as the default shell ([set-brew-zsh-as-default-shell.sh](set-brew-zsh-as-default-shell.sh))
 - Update coding agents ([update-coding-agents/entrypoint.sh](update-coding-agents/entrypoint.sh))
@@ -13,7 +14,8 @@ It is a slightly modified copy of the DotBot install script, it calls the DotBot
 [install.conf.yaml](/install.conf.yaml) configuration file; it then will:
 
 - Manage the dotfiles symlinks.
-- Run the `install-os-packages.sh`, `set-brew-zsh-as-default-shell.sh`, and `setup-repo.sh` scripts.
+- Run the `configure-touch-id-for-sudo.sh`, `install-os-packages.sh`, and
+  `set-brew-zsh-as-default-shell.sh` scripts.
 
 This `install-dotfiles.sh` script is ran with the `just sync` command.
 
