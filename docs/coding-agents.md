@@ -32,6 +32,30 @@ table above. RTK embeds the plugin at compile time and is the authoritative sour
 version. It is installed and kept current by `rtk init -g --opencode`, which runs automatically
 via `update-coding-agents/entrypoint.sh` on every `just sync`.
 
+## Herdr integration
+
+Herdr (terminal workspace manager) shows per-agent state through integrations installed by
+`herdr integration install <name>`. Two are in use:
+
+- **OpenCode** — a plugin at `~/.config/opencode/plugins/herdr-agent-state.js`. Intentionally
+  untracked, like the RTK plugin: the herdr binary embeds it and is the authoritative source for
+  the correct version. `update-coding-agents/entrypoint.sh` installs or refreshes it on every
+  `just sync`, skipping when `herdr integration status` reports it current.
+- **Claude Code** — a `SessionStart` hook entry in the tracked
+  [`home/.claude/settings.json`](/home/.claude/settings.json) plus an untracked script at
+  `~/.claude/hooks/herdr-agent-state.sh`. The hook command is kept in portable `$HOME` form;
+  `herdr integration status` versions only the script file, so it reports `current` with the
+  portable entry in place. `update-coding-agents/entrypoint.sh` installs or refreshes the script
+  on every `just sync`. Because `herdr integration install claude` detects its hook by exact
+  absolute-path command string, the install re-adds a machine-specific duplicate hook — the
+  script therefore only runs it when `home/.claude/settings.json` has no uncommitted changes,
+  and `git restore`s the file afterwards to keep the committed `$HOME` entry. When the settings
+  file is dirty at sync time, the update is skipped with a warning; run
+  `herdr integration install claude` manually and delete the absolute-path duplicate it adds.
+  Caveat: if a Herdr release ever changes the hook **command** (not just the script), the
+  restored entry goes stale silently — reinstall manually and port the new command to `$HOME`
+  form in the same way.
+
 ## Global skills lockfile
 
 `scripts/update-coding-agents/sync-global-skills-from-lock.sh` keeps globally installed Claude Code

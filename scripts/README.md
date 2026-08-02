@@ -57,5 +57,11 @@ It will update the following:
   upstream so OpenCode reinstalls just those on next launch
 - [Globally installed skills](https://skills.sh/)
 - RTK OpenCode plugin (`~/.config/opencode/plugins/rtk.ts`) via `rtk init -g --opencode`
+- Herdr OpenCode plugin (`~/.config/opencode/plugins/herdr-agent-state.js`) via
+  `herdr integration install opencode`, skipped when `herdr integration status` reports it current
+- Herdr Claude Code hook (`~/.claude/hooks/herdr-agent-state.sh`) via
+  `herdr integration install claude`, restoring `home/.claude/settings.json` to its committed
+  form afterwards; skipped when current, or (with a warning) when the settings file has
+  uncommitted changes — see [`docs/coding-agents.md`](/docs/coding-agents.md)
 
 This script is used automatically by the `just sync` command.
