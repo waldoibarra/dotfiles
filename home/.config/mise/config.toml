@@ -3,6 +3,7 @@ aws-cli = { version = "latest", symlink_bins = "true" }
 "cargo:eza" = "latest"
 delta = "latest"
 gh = "latest"
+herdr = "latest"
 just = "latest"
 llmfit = "latest"
 node = "lts"
