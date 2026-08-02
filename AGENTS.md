@@ -28,6 +28,12 @@ symlinked there by Dotbot.
 - Don't run `just sync` yourself, even when a change needs it (Dotbot re-link, new/renamed file,
   Brewfile/mise config change) — it may require an interactive terminal (sudo prompts when scripts
   need changes). Ask the user to run it with `! just sync` (see [`docs/tooling.md`](/docs/tooling.md)).
+- **Don't hardcode absolute home paths** (`/Users/<name>`) in tracked files — they break on other
+  machines and users. Use `~`, `$HOME`, or the tool's native mechanism (e.g. `wezterm.home_dir`;
+  Ghostty's `command` needs its `shell:` prefix for `~` to expand). A GitHub username inside a URL
+  is fine — that's a handle, not a filesystem path. Sweep with `git grep "/Users/"` before
+  committing; some tools write absolute paths into tracked files themselves (e.g.
+  `herdr integration install claude` — see [`docs/coding-agents.md`](/docs/coding-agents.md)).
 
 ## Reference docs
 
