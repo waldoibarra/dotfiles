@@ -10,6 +10,14 @@
 # Select split:           M-s-<up/right/down/left>
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║                                            Startup                                            ║
+# ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+# Every surface attaches to the persistent Herdr session; detach (prefix+q or Cmd+W) closes
+# the window. Shim path because GUI-launched Ghostty has the bare system PATH, without mise's
+# shims; shell: prefix because ~ only expands when the command is shell-wrapped.
+command = shell:~/.local/share/mise/shims/herdr
+
+# ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                      Window & Performance                                     ║
 # ╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
 # Starts the window maximized on launch.

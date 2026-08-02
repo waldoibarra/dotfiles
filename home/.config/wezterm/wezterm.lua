@@ -13,6 +13,15 @@ local config = {}
 -- Maximize a pane: C-S-z
 
 -- ┌──────────────────────────────────────────────────────────────────────────────┐
+-- │                                  STARTUP                                     │
+-- └──────────────────────────────────────────────────────────────────────────────┘
+
+-- Every window attaches to the persistent Herdr session; detach (prefix+q or Cmd+W) closes
+-- the window. Shim path because GUI-launched WezTerm has the bare system PATH, without
+-- mise's shims.
+config.default_prog = { wezterm.home_dir .. '/.local/share/mise/shims/herdr' }
+
+-- ┌──────────────────────────────────────────────────────────────────────────────┐
 -- │                                   FONT                                       │
 -- └──────────────────────────────────────────────────────────────────────────────┘
 
