@@ -94,7 +94,11 @@ install_rtk_opencode_plugin() {
     echo "rtk not found, skipping OpenCode plugin install."
     return
   fi
-  if rtk init -g --opencode --dry-run 2>&1 | grep -q "Nothing written"; then
+  # Capture first: piping rtk into grep -q makes grep's early exit SIGPIPE
+  # rtk, which pipefail then reports as a pipeline failure.
+  local dry_run_output
+  dry_run_output="$(rtk init -g --opencode --dry-run 2>&1 || true)"
+  if grep -q "Nothing written" <<<"${dry_run_output}"; then
     echo "RTK OpenCode plugin already up to date."
     return
   fi
