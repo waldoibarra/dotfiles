@@ -192,6 +192,13 @@ runs automatically on every prompt, via the `UserPromptSubmit` hook in
 `gentle-ai sync` would otherwise add itself, so keeping it tracked makes sync's `settings.json`
 write a no-op.
 
+That hook runs in **every** repo, and `--no-gitignore` (required for the settings no-op) means it
+writes `.atl/skill-registry.md` and `.atl/.skill-registry.cache.json` without ignoring them itself.
+`.atl/` is therefore ignored in two places: this repo's own
+[`.gitignore`](/.gitignore), and the tracked global ignore file
+[`home/.config/git/ignore`](/home/.config/git/ignore) which covers every other repo — see
+[`docs/git-configuration.md`](/docs/git-configuration.md).
+
 ### Rollback
 
 1. Delete the four `gentleman-programming/tap` lines from [`home/.Brewfile`](/home/.Brewfile).

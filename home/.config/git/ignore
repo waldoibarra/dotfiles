@@ -1,0 +1,8 @@
+# Global Git ignore, loaded via `core.excludesFile` in ~/.gitconfig.
+#
+# Only for artifacts that tooling drops into *every* repo it runs in — anything
+# specific to one project belongs in that project's own .gitignore.
+
+# gentle-ai's per-repo skill registry, written by the Claude Code
+# UserPromptSubmit hook — see docs/coding-agents.md.
+.atl/

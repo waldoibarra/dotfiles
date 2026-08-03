@@ -19,6 +19,25 @@ The shared config loads it via:
 This include is placed before any `[includeIf]` blocks so that directory-specific overrides
 (e.g. per-project identities) still take precedence over the local defaults.
 
+## Global ignore file
+
+[`home/.config/git/ignore`](/home/.config/git/ignore) is tracked and symlinked to
+`~/.config/git/ignore`, and `home/.gitconfig` points at it explicitly:
+
+```gitconfig
+[core]
+    excludesFile = ~/.config/git/ignore
+```
+
+That path is also Git's own default when `core.excludesFile` is unset, so the setting is
+belt-and-braces — but it makes the mechanism greppable and immune to a machine where
+`XDG_CONFIG_HOME` points somewhere else.
+
+Only put entries there that some tool drops into **every** repo it runs in. Anything specific
+to one project belongs in that project's own `.gitignore`. Today it holds one entry: `.atl/`,
+written in every repo by the gentle-ai skill-registry hook — see
+[`docs/coding-agents.md`](/docs/coding-agents.md).
+
 ## Setting up `.gitconfig.local`
 
 Create `~/.gitconfig.local` on each machine with at minimum a `[user]` block:
