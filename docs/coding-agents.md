@@ -115,13 +115,24 @@ global memory files. The sync script asserts this exact inventory, then strips m
 | --- | --- | --- | --- |
 | `~/.claude/CLAUDE.md` | `persona` | stripped | Conflicts with the tracked persona in `AGENTS.md` |
 | `~/.claude/CLAUDE.md` | `engram-protocol` | stripped | Already reaches Claude Code through the `@`-import of `AGENTS.md` |
-| `~/.claude/CLAUDE.md` | `sdd-orchestrator` | stripped | Moved into the `gentle-orchestrator` agent, where it is only paid for when used |
+| `~/.claude/CLAUDE.md` | `sdd-orchestrator` | stripped | Moved into the `gentle-orchestrator` agent, so it arrives as that agent's prompt instead of as global memory |
 | `~/.claude/CLAUDE.md` | `agent-routing` | stripped | Same |
 | `~/.config/opencode/AGENTS.md` | `persona` | stripped | Conflicts with the tracked persona directly above it |
 | `~/.config/opencode/AGENTS.md` | `engram-protocol` | **kept** | The one section that has to be ambient: it governs when to write memory |
 
 `CLAUDE.md` therefore ends up as just its one-line `@`-import again, and `AGENTS.md` keeps only the
-engram protocol. Ambient cost drops from roughly 10,950 tokens to roughly 1,700.
+engram protocol. What that costs depends on which agent the session starts as:
+
+| Session | Ambient cost | Made of |
+| --- | --- | --- |
+| Stock gentle-ai, no stripping | ~10,950 tokens | persona + engram + orchestrator + routing, with engram and persona duplicated across both files |
+| Default session here (`gentle-orchestrator`) | ~7,500 tokens | the orchestrator prompt (~5,800) + engram (~1,700), each exactly once |
+| Session on any other agent | ~1,700 tokens | engram only |
+
+So the orchestrator prompt is **not** free in a default session — `gentle-orchestrator` is the
+global default (see below), so every default session carries it. The win is that nothing is
+duplicated and nothing is loaded twice: ~30% below stock even in the most expensive case, and
+~85% below it whenever a session runs on another agent or a sub-agent.
 
 ### The gentle-orchestrator agent
 
@@ -162,10 +173,23 @@ silent:
 
 When either fires:
 
-1. Sync a scratch `$HOME` manually (`HOME=/tmp/ga-check gentle-ai sync --agent claude-code,opencode
-    --sdd-mode multi --sdd-profile-strategy generated-multi`) so the real one is not touched.
-2. `grep -o 'gentle-ai:[a-z-]*' ~/.claude/CLAUDE.md ~/.config/opencode/AGENTS.md | sort -u` on that
-    scratch `$HOME` — each section appears twice, once per marker.
+1. Sync a scratch `$HOME` so the real one is not touched, and keep using that same `$HOME` for
+    step 2 — the real `~/.claude/CLAUDE.md` is the already-stripped 30-byte file and would show
+    nothing:
+
+    ```sh
+    export GA_CHECK=/tmp/ga-check && mkdir -p "$GA_CHECK"
+    HOME="$GA_CHECK" gentle-ai sync --agent claude-code,opencode \
+      --sdd-mode multi --sdd-profile-strategy generated-multi
+    ```
+
+2. List the section names it wrote — one line per section, per file:
+
+    ```sh
+    grep -oh 'gentle-ai:[a-z-]*' "$GA_CHECK"/.claude/CLAUDE.md \
+      "$GA_CHECK"/.config/opencode/AGENTS.md | sort -u
+    ```
+
 3. Compare against `CLAUDE_MEMORY_MARKERS` and `OPENCODE_MEMORY_MARKERS` in
     [`sync-gentle-ai-assets.sh`](/scripts/update-coding-agents/sync-gentle-ai-assets.sh).
 4. Update those lists, then the `*_STRIPPED_MARKERS` lists and the two
