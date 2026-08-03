@@ -204,6 +204,21 @@ When either fires:
     `extract_marker_section` calls in `build_orchestrator_agent` that feed the agent prompt.
 5. Re-run `just update-ca` and confirm the assertion passes.
 
+### Troubleshooting with `gentle-ai doctor`
+
+`gentle-ai doctor` is a manual health check, deliberately **not** part of the sync: on a healthy
+machine it still reports two false positives, and a check that always warns trains you to ignore
+it. Expect these:
+
+- **`claude`/`opencode` duplicated in PATH** — by design: `.zprofile` activates mise shims for
+  non-interactive contexts and `.zshrc` runs the full activation for interactive shells (see
+  [`docs/zsh-configuration.md`](/docs/zsh-configuration.md)), so every mise tool resolves twice.
+- **`engram:reachable` failing** — it probes the `engram serve` HTTP daemon, which never runs here;
+  agents use engram over MCP stdio, spawned per session. Verify the real thing with
+  `claude mcp list` (`engram … ✔ Connected`).
+
+Anything else it reports is worth reading.
+
 ### RDD is machine-local
 
 Receipt-driven development installs **no Git hooks**. The gates are `gentle-ai review …` CLI

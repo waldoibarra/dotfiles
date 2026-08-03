@@ -256,17 +256,6 @@ register_engram_claude_mcp() {
   echo "Registered the engram MCP server with Claude Code."
 }
 
-#######################################
-# Report gentle-ai's own health check. Never fatal: engram and gga are separate
-# formulae that may still be installing, or intentionally not running.
-# Outputs:
-#   Writes the doctor report to STDOUT and a warning to STDERR when unhealthy.
-#######################################
-run_gentle_ai_doctor() {
-  if ! gentle-ai doctor; then
-    echo "Warning: 'gentle-ai doctor' reports problems (see its output above)." >&2
-  fi
-}
 
 #######################################
 # Announce a gentle-ai version change so the generated layer gets reviewed
@@ -493,7 +482,6 @@ sync_gentle_ai_generated_layer() {
   remove_claude_output_style
   register_engram_claude_mcp
   notify_on_gentle_ai_version_change
-  run_gentle_ai_doctor
 }
 
 #######################################
