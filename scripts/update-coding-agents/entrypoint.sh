@@ -36,15 +36,13 @@ herdr_integration_is_current() {
 #######################################
 # Install or refresh the Herdr Claude Code hook, if Herdr is installed.
 # `herdr integration install claude` writes the hook script AND re-adds a
-# machine-specific absolute-path hook entry to the tracked settings.json
-# (it detects its hook by exact command string, so the tracked $HOME form
-# looks missing to it). The settings file is restored to its committed form
-# afterwards — only safe when it has no uncommitted changes, so the update
-# is skipped with a warning otherwise.
-# Globals:
-#   ENTRYPOINT_DIR
+# machine-specific absolute-path hook entry to ~/.claude/settings.json (it
+# detects its hook by exact command string, so the tracked $HOME form looks
+# missing to it). That entry used to land in the repo, back when the settings
+# file was a symlink to it; it is a copy now, so the duplicate stays local and
+# sync_gentle_ai_assets clobbers it from the repo on the next run.
 # Outputs:
-#   Writes progress to STDOUT and warnings to STDERR.
+#   Writes progress to STDOUT.
 #######################################
 install_herdr_claude_hook() {
   if ! command -v herdr >/dev/null 2>&1; then
@@ -56,16 +54,8 @@ install_herdr_claude_hook() {
     return
   fi
 
-  local settings_file
-  settings_file="$(git -C "${ENTRYPOINT_DIR}" rev-parse --show-toplevel)/home/.claude/settings.json"
-  if [[ -n "$(git -C "${ENTRYPOINT_DIR}" status --porcelain -- "${settings_file}")" ]]; then
-    echo "Herdr Claude hook is outdated, but home/.claude/settings.json has uncommitted changes;" \
-      "skipping. Run 'herdr integration install claude' manually (see docs/coding-agents.md)." >&2
-    return
-  fi
   herdr integration install claude
-  git -C "${ENTRYPOINT_DIR}" restore -- "${settings_file}"
-  echo "Herdr Claude hook installed; settings.json restored to its tracked form."
+  echo "Herdr Claude hook installed."
 }
 
 #######################################

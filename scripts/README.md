@@ -67,8 +67,9 @@ It will update the following:
 - Herdr OpenCode plugin (`~/.config/opencode/plugins/herdr-agent-state.js`) via
   `herdr integration install opencode`, skipped when `herdr integration status` reports it current
 - Herdr Claude Code hook (`~/.claude/hooks/herdr-agent-state.sh`) via
-  `herdr integration install claude`, restoring `home/.claude/settings.json` to its committed
-  form afterwards; skipped when current, or (with a warning) when the settings file has
-  uncommitted changes — see [`docs/coding-agents.md`](/docs/coding-agents.md)
+  `herdr integration install claude`, skipped when `herdr integration status` reports it current.
+  The install also re-adds a machine-specific duplicate hook entry, but only to the `$HOME` copy of
+  `settings.json`, which the gentle-ai step above rewrites from the repo on the next run — see
+  [`docs/coding-agents.md`](/docs/coding-agents.md)
 
 This script is used automatically by the `just sync` command.

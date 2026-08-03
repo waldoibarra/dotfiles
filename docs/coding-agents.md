@@ -48,16 +48,15 @@ Herdr (terminal workspace manager) shows per-agent state through integrations in
   [`home/.claude/settings.json`](/home/.claude/settings.json) plus an untracked script at
   `~/.claude/hooks/herdr-agent-state.sh`. The hook command is kept in portable `$HOME` form;
   `herdr integration status` versions only the script file, so it reports `current` with the
-  portable entry in place. `update-coding-agents/entrypoint.sh` installs or refreshes the script
-  on every `just sync`. Because `herdr integration install claude` detects its hook by exact
-  absolute-path command string, the install re-adds a machine-specific duplicate hook — the
-  script therefore only runs it when `home/.claude/settings.json` has no uncommitted changes,
-  and `git restore`s the file afterwards to keep the committed `$HOME` entry. When the settings
-  file is dirty at sync time, the update is skipped with a warning; run
-  `herdr integration install claude` manually and delete the absolute-path duplicate it adds.
-  Caveat: if a Herdr release ever changes the hook **command** (not just the script), the
-  restored entry goes stale silently — reinstall manually and port the new command to `$HOME`
-  form in the same way.
+  portable entry in place, and `update-coding-agents/entrypoint.sh` only reinstalls when it does
+  not. Because `herdr integration install claude` detects its hook by exact absolute-path command
+  string, an install re-adds a machine-specific duplicate hook entry. That used to land in this
+  repo, since `~/.claude/settings.json` was a symlink to the tracked file — hence the old
+  dirty-check-and-`git restore` dance, now removed. `~/.claude/settings.json` is a copy since
+  gentle-ai landed (see [gentle-ai](#gentle-ai)), so the duplicate only ever reaches that copy and
+  the next `dots` run clobbers it back to the tracked form. Caveat: if a Herdr release ever changes
+  the hook **command** (not just the script), the tracked entry goes stale silently — reinstall
+  manually and port the new command into `$HOME` form here.
 
 ## gentle-ai
 
@@ -89,10 +88,9 @@ Consequences:
 - `~/.config/opencode/skills` is a real directory now, with one symlink per repo skill. gentle-ai
   writes ~20 generated skill directories in there; as a directory symlink it would have written
   them straight into this repo. The sync script refuses to run while it is still a symlink.
-- The Herdr Claude hook step below no longer dirties the repo's `settings.json`, because `$HOME`'s
-  copy is a different file. Its `git status` guard and `git restore` are therefore inert, and any
-  absolute-path duplicate hook Herdr adds lives in the `$HOME` copy until the next `dots` run
-  clobbers it.
+- The Herdr Claude hook step can no longer dirty the repo's `settings.json`, because `$HOME`'s copy
+  is a different file now. Any absolute-path duplicate hook Herdr adds lives in that copy until the
+  next `dots` run clobbers it — see [Herdr integration](#herdr-integration).
 
 ### The machine-local generated layer
 
