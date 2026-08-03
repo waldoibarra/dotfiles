@@ -21,6 +21,10 @@ max_line_length = off
 [{home/.Brewfile,install.conf.yaml}]
 max_line_length = off
 
+# Claude Code hook commands are single JSON strings, so they can't be wrapped.
+[home/.claude/settings.json]
+max_line_length = off
+
 # `npx skills update` command modifies this JSON file, leaving no new line at the end of the file.
 [home/.agents/.skill-lock.json]
 insert_final_newline = false

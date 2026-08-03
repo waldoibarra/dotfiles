@@ -2,17 +2,18 @@
 
 This is a dotfiles repo — its primary purpose is managing configuration files for the current
 machine. The global configuration files for Claude Code and OpenCode are tracked here and symlinked
-into `$HOME` via DotBot, the same way every other dotfile is.
+into `$HOME` via DotBot, the same way every other dotfile is — except for the four **copied** files
+noted below, which gentle-ai rewrites in place (see [gentle-ai](#gentle-ai)).
 
 ## Tracked files
 
 | Tool | Repo path | `$HOME` path |
 | --- | --- | --- |
-| Claude Code | `home/.claude/CLAUDE.md` | `~/.claude/CLAUDE.md` |
-| Claude Code | `home/.claude/settings.json` | `~/.claude/settings.json` |
+| Claude Code | `home/.claude/CLAUDE.md` | `~/.claude/CLAUDE.md` (copied, not symlinked) |
+| Claude Code | `home/.claude/settings.json` | `~/.claude/settings.json` (copied, not symlinked) |
 | Claude Code | `home/.claude/statusline.sh` | `~/.claude/statusline.sh` |
-| OpenCode | `home/.config/opencode/AGENTS.md` | `~/.config/opencode/AGENTS.md` |
-| OpenCode | `home/.config/opencode/opencode.json` | `~/.config/opencode/opencode.json` |
+| OpenCode | `home/.config/opencode/AGENTS.md` | `~/.config/opencode/AGENTS.md` (copied, not symlinked) |
+| OpenCode | `home/.config/opencode/opencode.json` | `~/.config/opencode/opencode.json` (copied, not symlinked) |
 | OpenCode | `home/.config/opencode/tui.json` | `~/.config/opencode/tui.json` |
 | RTK | `home/.claude/RTK.md` | `~/.claude/RTK.md` |
 | RTK | `home/.config/rtk/config.toml` | `~/Library/Application Support/rtk/config.toml` (macOS), `~/.config/rtk/config.toml` (Linux) |
@@ -55,6 +56,153 @@ Herdr (terminal workspace manager) shows per-agent state through integrations in
   Caveat: if a Herdr release ever changes the hook **command** (not just the script), the
   restored entry goes stale silently — reinstall manually and port the new command to `$HOME`
   form in the same way.
+
+## gentle-ai
+
+[gentle-ai](https://github.com/Gentleman-Programming/gentle-ai) is an SDD/RDD ecosystem for coding
+agents, installed from Homebrew together with `engram` and `gga` — see
+[`docs/tooling.md`](/docs/tooling.md). `gentle-ai sync` generates agents, commands, skills and
+prompts for both Claude Code and OpenCode. `scripts/update-coding-agents/sync-gentle-ai-assets.sh`
+runs it on every `just sync` and then reduces what it produced to what this machine actually wants.
+
+### Copy-managed files
+
+`gentle-ai sync` **aborts** when a target file is a symlink, and it rewrites all four of these:
+
+- `home/.claude/CLAUDE.md`
+- `home/.claude/settings.json`
+- `home/.config/opencode/AGENTS.md`
+- `home/.config/opencode/opencode.json`
+
+So Dotbot no longer links them (they are `exclude`d from its globs in
+[`install.conf.yaml`](/install.conf.yaml)); the sync script copies the repo source over the `$HOME`
+target instead, dropping any leftover symlink first. That copy is also the **garbage collector**:
+`gentle-ai sync` only ever adds marker sections, it never prunes them, so every run has to start
+from the tracked bytes.
+
+Consequences:
+
+- Editing a repo source still propagates — on the next `dots` run, not instantly.
+- **Never edit those four files under `$HOME`.** The next sync clobbers them without asking.
+- `~/.config/opencode/skills` is a real directory now, with one symlink per repo skill. gentle-ai
+  writes ~20 generated skill directories in there; as a directory symlink it would have written
+  them straight into this repo. The sync script refuses to run while it is still a symlink.
+- The Herdr Claude hook step below no longer dirties the repo's `settings.json`, because `$HOME`'s
+  copy is a different file. Its `git status` guard and `git restore` are therefore inert, and any
+  absolute-path duplicate hook Herdr adds lives in the `$HOME` copy until the next `dots` run
+  clobbers it.
+
+### The machine-local generated layer
+
+Everything below is written by `gentle-ai sync` and **not tracked** — it is regenerated from the
+installed `gentle-ai` version on every sync, so there is nothing to commit and nothing to review:
+
+| Path | Contents |
+| --- | --- |
+| `~/.claude/{agents,commands,skills,output-styles,mcp}/` | `sdd-*`, `review-*`, `jd-*` agents, slash commands, skills, the engram MCP entry |
+| `~/.claude/agents/gentle-orchestrator.md` | Built by the sync script, see below |
+| `~/.claude.json` | Merged, not replaced |
+| `~/.config/opencode/{prompts,commands,plugins,skills}/` | The OpenCode half of the same layer |
+| `~/.config/gga/` | `gga` review configuration |
+| `~/.gentle-ai/` | `state.json`, backups, and the version stamp the sync script keeps |
+
+### Marker map
+
+`gentle-ai sync` injects `<!-- gentle-ai:NAME --> … <!-- /gentle-ai:NAME -->` blocks into the two
+global memory files. The sync script asserts this exact inventory, then strips most of it back out:
+
+| File | Section | Kept? | Why |
+| --- | --- | --- | --- |
+| `~/.claude/CLAUDE.md` | `persona` | stripped | Conflicts with the tracked persona in `AGENTS.md` |
+| `~/.claude/CLAUDE.md` | `engram-protocol` | stripped | Already reaches Claude Code through the `@`-import of `AGENTS.md` |
+| `~/.claude/CLAUDE.md` | `sdd-orchestrator` | stripped | Moved into the `gentle-orchestrator` agent, where it is only paid for when used |
+| `~/.claude/CLAUDE.md` | `agent-routing` | stripped | Same |
+| `~/.config/opencode/AGENTS.md` | `persona` | stripped | Conflicts with the tracked persona directly above it |
+| `~/.config/opencode/AGENTS.md` | `engram-protocol` | **kept** | The one section that has to be ambient: it governs when to write memory |
+
+`CLAUDE.md` therefore ends up as just its one-line `@`-import again, and `AGENTS.md` keeps only the
+engram protocol. Ambient cost drops from roughly 10,950 tokens to roughly 1,700.
+
+### The gentle-orchestrator agent
+
+`~/.claude/agents/gentle-orchestrator.md` is **regenerated on every sync** from the
+`sdd-orchestrator` and `agent-routing` sections, before they are stripped. It is a plain sub-agent
+definition: `model: fable`, and deliberately **no `tools` key**, so it inherits every tool including
+`Agent` — without which it could not delegate at all.
+
+It is the global default agent, via `"agent": "gentle-orchestrator"` in
+[`home/.claude/settings.json`](/home/.claude/settings.json), so every default session starts on
+Fable in orchestration mode. To opt out of a session, start with `claude --agent <other>`; to switch
+models inside a session, use `/model`.
+
+### Model assignments
+
+`gentle-ai` reads `claude_phase_assignments` from `~/.gentle-ai/state.json` to set the `model:`
+frontmatter of the generated `~/.claude/agents/sdd-*.md`. The sync script seeds it **only when the
+key is absent**, so anything changed later through gentle-ai's TUI survives every sync:
+
+| Phase | Model | Why |
+| --- | --- | --- |
+| `sdd-propose`, `sdd-design` | `opus` | Architect phases — the decisions are expensive to get wrong |
+| `sdd-apply`, `sdd-tasks` | `sonnet` | Implementation phases — volume work against a settled design |
+
+Valid models are `fable`, `opus`, `sonnet` and `haiku`, with an optional `"effort"` of `low`,
+`medium`, `high`, `xhigh` or `max`. OpenCode's generated agents carry no model of their own: they
+inherit whatever model is selected in OpenCode (GLM at the moment). Per-phase OpenCode splits are
+possible later through `gentle-ai sync --profile` / `--profile-phase`.
+
+### Update procedure when gentle-ai changes structure
+
+Everything above is pinned to one upstream shape. Two things make a change visible instead of
+silent:
+
+- The **marker assertion** fails the sync, naming the unexpected or missing section.
+- The **version stamp** (`~/.gentle-ai/.dotfiles-last-synced-version`) prints a prominent notice the
+  first time a new `gentle-ai` version is synced, even when the markers still match.
+
+When either fires:
+
+1. Sync a scratch `$HOME` manually (`HOME=/tmp/ga-check gentle-ai sync --agent claude-code,opencode
+    --sdd-mode multi --sdd-profile-strategy generated-multi`) so the real one is not touched.
+2. `grep -o 'gentle-ai:[a-z-]*' ~/.claude/CLAUDE.md ~/.config/opencode/AGENTS.md | sort -u` on that
+    scratch `$HOME` — each section appears twice, once per marker.
+3. Compare against `CLAUDE_MEMORY_MARKERS` and `OPENCODE_MEMORY_MARKERS` in
+    [`sync-gentle-ai-assets.sh`](/scripts/update-coding-agents/sync-gentle-ai-assets.sh).
+4. Update those lists, then the `*_STRIPPED_MARKERS` lists and the two
+    `extract_marker_section` calls in `build_orchestrator_agent` that feed the agent prompt.
+5. Re-run `just update-ca` and confirm the assertion passes.
+
+### RDD is machine-local
+
+Receipt-driven development installs **no Git hooks**. The gates are `gentle-ai review …` CLI
+commands, and their receipts and state live in the repo's `.git` common directory — untracked,
+per-clone, and invisible to anyone who does not run them.
+
+Per-repo one-time setup, in the repo you want it in:
+
+```sh
+gentle-ai review mode enable --cwd .   # opt this clone into RDD
+gentle-ai skill-registry refresh       # write .atl/skill-registry.md
+gga init                               # provider-agnostic review config
+```
+
+Then `/sdd-init` inside Claude Code to scaffold the SDD artifacts. `skill-registry refresh` also
+runs automatically on every prompt, via the `UserPromptSubmit` hook in
+[`home/.claude/settings.json`](/home/.claude/settings.json) — that hook is exactly what
+`gentle-ai sync` would otherwise add itself, so keeping it tracked makes sync's `settings.json`
+write a no-op.
+
+### Rollback
+
+1. Delete the four `gentleman-programming/tap` lines from [`home/.Brewfile`](/home/.Brewfile).
+2. Delete `scripts/update-coding-agents/sync-gentle-ai-assets.sh` and its `source` line and
+    `main()` call in `entrypoint.sh`.
+3. Drop the `exclude:` lists and the `~/.config/opencode/skills/` link entry from
+    [`install.conf.yaml`](/install.conf.yaml), and the shell step that removes the old symlink.
+4. Remove `"agent": "gentle-orchestrator"` and the `UserPromptSubmit` hook from
+    [`home/.claude/settings.json`](/home/.claude/settings.json).
+5. Delete the four `$HOME` copies and run `just sync`; Dotbot re-links them, `brew bundle cleanup`
+    uninstalls the three formulae, and `rm -rf ~/.gentle-ai ~/.config/gga` clears the rest.
 
 ## Global skills lockfile
 
@@ -154,10 +302,21 @@ Dotbot uses glob patterns in `install.conf.yaml` to symlink every file inside ea
 ~/.claude/:
   glob: true
   path: home/.claude/*
+  exclude:
+    - home/.claude/CLAUDE.md
+    - home/.claude/settings.json
 ~/.config/opencode/:
   glob: true
   path: home/.config/opencode/*
+  exclude:
+    - home/.config/opencode/AGENTS.md
+    - home/.config/opencode/opencode.json
+    - home/.config/opencode/skills
+~/.config/opencode/skills/:
+  glob: true
+  path: home/.config/opencode/skills/*
 ```
 
 Any new file added to `home/.claude/` or `home/.config/opencode/` will be automatically symlinked
-on the next `just sync`.
+on the next `just sync`. The excluded entries are the gentle-ai-managed ones — they are copied by
+the sync script instead, see [gentle-ai](#gentle-ai).

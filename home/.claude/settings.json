@@ -1,4 +1,5 @@
 {
+  "agent": "gentle-orchestrator",
   "hooks": {
     "PreToolUse": [
       {
@@ -21,6 +22,17 @@
           }
         ],
         "matcher": "*"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "gentle-ai skill-registry refresh --quiet --no-gitignore --cwd \"${CLAUDE_PROJECT_DIR:-$PWD}\" || true",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
       }
     ]
   },

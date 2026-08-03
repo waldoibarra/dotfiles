@@ -44,7 +44,7 @@ relevant one **before** you touch the area it covers.
 
 | Doc | Read it before… |
 | --- | --- |
-| [`docs/coding-agents.md`](/docs/coding-agents.md) | editing either global prompt (`home/.claude/CLAUDE.md` or `home/.config/opencode/AGENTS.md`) or any tracked Claude Code / OpenCode / RTK config. |
+| [`docs/coding-agents.md`](/docs/coding-agents.md) | editing either global prompt (`home/.claude/CLAUDE.md` or `home/.config/opencode/AGENTS.md`) or any tracked Claude Code / OpenCode / RTK / Herdr / gentle-ai config. Four of those files are copied into `$HOME`, not symlinked — read this before assuming an edit propagates. |
 | [`docs/git-configuration.md`](/docs/git-configuration.md) | changing `home/.gitconfig`, or anything touching Git identity, GPG signing, or per-directory overrides. |
 | [`docs/tooling.md`](/docs/tooling.md) | adding or changing a tool (Homebrew or mise), editing `hk.pkl` or `committed.toml`, or adding/running `just` recipes. |
 | [`docs/zsh-configuration.md`](/docs/zsh-configuration.md) | editing any zsh startup file (`.zshenv`, `.zprofile`, `.zshrc`, `.zlogin`). |
