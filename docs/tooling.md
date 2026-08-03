@@ -99,6 +99,30 @@ maintained Homebrew formula.
 do, so `npm "corepack"` re-enters the Brewfile on every dump. It's inert (`check` stays
 satisfied, `upgrade` ignores npm) — leave it rather than fight the dump cycle.
 
+### The gentle-ai ecosystem
+
+Three formulae come from the third-party tap `gentleman-programming/tap`:
+
+| Formula | What it is |
+| --- | --- |
+| `engram` | Persistent memory for AI coding agents |
+| `gentle-ai` | SDD/RDD ecosystem for AI coding agents |
+| `gga` | Provider-agnostic AI code review |
+
+They stay in Homebrew despite being developer CLIs, which normally belong in Mise. `gga` ships no
+release binaries, so Mise has no backend that can manage it at all; splitting one ecosystem across
+two managers would then let its three versions drift apart. Keeping all three in the Brewfile means
+one `just brew` upgrades them together, and the coding-agents sync script notices when `gentle-ai`'s
+version changed so its generated layer gets reviewed against the new release — see
+[`docs/coding-agents.md`](/docs/coding-agents.md).
+
+Homebrew 6 requires tap trust (`HOMEBREW_REQUIRE_TAP_TRUST` defaults to true), so each of the three
+`brew` lines carries `trusted: true`. Trust is declared per formula rather than on the `tap` line:
+Homebrew's own guidance is to trust only the items you need, and a per-formula grant is enough
+because Homebrew trusts the entry before it loads the formula. `brew bundle cleanup --force` resets
+the trust store to exactly what the Brewfile declares, so the Brewfile stays the single source of
+truth for trust as well as for packages.
+
 ## mise
 
 `mise` manages developer tools and CLIs (Node, Python, shell tools, etc.). Global tool

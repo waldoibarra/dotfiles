@@ -1,3 +1,5 @@
+# Tap for the gentle-ai ecosystem (engram, gentle-ai, gga)
+tap "gentleman-programming/tap"
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
 brew "antigen"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -14,6 +16,12 @@ brew "ffmpeg"
 brew "fortune"
 # GNU compiler collection
 brew "gcc"
+# Persistent memory for AI coding agents
+brew "gentleman-programming/tap/engram", trusted: true
+# SDD/RDD ecosystem for AI coding agents
+brew "gentleman-programming/tap/gentle-ai", trusted: true
+# Provider-agnostic AI code review
+brew "gentleman-programming/tap/gga", trusted: true
 # Distributed revision control system
 brew "git"
 # GNU Transport Layer Security (TLS) Library
