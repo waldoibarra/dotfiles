@@ -34,7 +34,7 @@
     # `~/.config/opencode/skills` used to be a single symlink to the repo directory. The link
     # section below now links its children individually, which would write straight into the repo
     # through that old symlink, so drop it first.
-    - command: '[ -L "$HOME/.config/opencode/skills" ] && rm "$HOME/.config/opencode/skills" || true'
+    - command: '[ ! -L "$HOME/.config/opencode/skills" ] || rm "$HOME/.config/opencode/skills"'
       description: Drop the legacy ~/.config/opencode/skills directory symlink —
 
 - link:
