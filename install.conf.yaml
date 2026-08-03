@@ -13,6 +13,7 @@
     ~/.agents:
     ~/.claude/skills:
     ~/.claude:
+    ~/.config/opencode/skills:
     ~/.config:
     ~/.ssh:
     "~/Library/Application Support/Code/User":
