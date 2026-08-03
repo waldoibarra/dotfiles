@@ -316,6 +316,10 @@ strip_ambient_marker_sections() {
 # sections gentle-ai writes into CLAUDE.md. Must run before those sections are
 # stripped. Deliberately declares no `tools` key, so the agent inherits every
 # tool — including Agent, without which it could not delegate at all.
+# This writes into ~/.claude/agents/ assuming it is a real, machine-local
+# directory. Never track a home/.claude/agents/ directory in this repo: the
+# Dotbot home/.claude/* glob would symlink it, and this write (plus gentle-ai's
+# ~20 generated agents) would land in the working tree.
 # Globals:
 #   CLAUDE_MEMORY_FILE
 #   MIN_ORCHESTRATOR_PROMPT_BYTES
@@ -399,8 +403,15 @@ run_gentle_ai_sync() {
 #######################################
 seed_claude_phase_assignments() {
   mkdir -p "$(dirname "$GENTLE_AI_STATE_FILE")"
-  if [[ ! -f "$GENTLE_AI_STATE_FILE" ]]; then
+  if [[ ! -f "$GENTLE_AI_STATE_FILE" || ! -s "$GENTLE_AI_STATE_FILE" ]]; then
     echo '{}' >"$GENTLE_AI_STATE_FILE"
+  fi
+  # A whitespace-only or otherwise non-object file (crash artifact) would make
+  # the seeding jq below emit nothing and "succeed", truncating the state file.
+  if ! jq -e 'type == "object"' "$GENTLE_AI_STATE_FILE" >/dev/null; then
+    echo "${GENTLE_AI_STATE_FILE} is not a JSON object; refusing to seed the" \
+      "model assignments. Inspect or delete it, then re-run the sync." >&2
+    return 1
   fi
   if jq -e 'has("claude_phase_assignments")' "$GENTLE_AI_STATE_FILE" >/dev/null; then
     return 0
