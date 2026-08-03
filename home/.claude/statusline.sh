@@ -5,56 +5,7 @@
 
 set -euo pipefail
 
-readonly COLOR_MAGENTA="\033[35m"
-readonly COLOR_RED="\033[31m"
-readonly COLOR_YELLOW="\033[33m"
-readonly COLOR_CYAN="\033[36m"
-readonly COLOR_GREEN="\033[32m"
-readonly COLOR_NC="\033[0m" # No color.
-
-readonly COLOR_CRITICAL="$COLOR_RED"
-readonly COLOR_WARNING="$COLOR_YELLOW"
-readonly COLOR_HEALTHY="$COLOR_CYAN"
-
-#######################################
-# Map a percentage to the color for its severity band.
-# Globals:
-#   COLOR_CRITICAL, COLOR_WARNING, COLOR_HEALTHY
-# Arguments:
-#   Percentage (0-100).
-# Outputs:
-#   Writes the matching ANSI color code to STDOUT.
-#######################################
-get_color_for_bar() {
-  local pct="$1"
-
-  if ((pct >= 90)); then
-    echo "$COLOR_CRITICAL"
-  elif ((pct >= 70)); then
-    echo "$COLOR_WARNING"
-  else
-    echo "$COLOR_HEALTHY"
-  fi
-}
-
-#######################################
-# Join non-empty section strings with " | " and print the result.
-# Arguments:
-#   One or more section strings; empty strings are skipped.
-# Outputs:
-#   Writes the assembled status line to STDOUT, interpreting \-escapes
-#   (e.g. the color codes embedded in each section).
-#######################################
-print_status_line() {
-  local status_line="" separator="" section
-  for section in "$@"; do
-    [[ -n "$section" ]] || continue
-    status_line+="${separator}${section}"
-    separator=" | "
-  done
-
-  printf '%b\n' "$status_line"
-}
+source "${BASH_SOURCE[0]%/*}/statusline-lib.sh"
 
 #######################################
 # Build the git branch/status section (staged and modified file counts).
@@ -126,16 +77,10 @@ build_duration_section() {
   local input="$1"
   local duration_ms
   duration_ms=$(echo "$input" | jq -r '.cost.total_duration_ms // 0')
+  duration_ms="${duration_ms%%.*}" # Integer math below chokes on a float.
   local secs=$((duration_ms / 1000))
-  local icon="⏱️"
 
-  if ((secs >= 3600)); then
-    echo "$icon $((secs / 3600))h $((secs % 3600 / 60))m"
-  elif ((secs >= 60)); then
-    echo "$icon $((secs / 60))m $((secs % 60))s"
-  else
-    echo "$icon ${secs}s"
-  fi
+  echo "⏱️ $(format_duration "$secs")"
 }
 
 #######################################
@@ -154,9 +99,7 @@ build_cost_section() {
 }
 
 #######################################
-# Build the context-window usage bar.
-# Globals:
-#   COLOR_NC
+# Build the context-window usage bar with percentage.
 # Arguments:
 #   Claude Code's JSON status payload.
 # Outputs:
@@ -166,19 +109,11 @@ build_bar_section() {
   local input="$1"
   local pct
   pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
-  local width=10
-  local filled=$((pct * width / 100))
-  local empty=$((width - filled))
-  local fill="" pad=""
 
-  ((filled > 0)) && printf -v fill '%*s' "$filled" ""
-  ((empty > 0)) && printf -v pad '%*s' "$empty" ""
+  local bar
+  bar=$(render_usage_bar "$pct")
 
-  local bar_color
-  bar_color=$(get_color_for_bar "$pct")
-  local bar="${fill// /▓}${pad// /░}"
-
-  echo "${bar_color}${bar}${COLOR_NC} ${pct}%"
+  echo "${bar} ${pct}%"
 }
 
 #######################################
@@ -195,7 +130,7 @@ build_model_section() {
   local model
   model=$(echo "$input" | jq -r '.model.display_name')
 
-  echo "${COLOR_MAGENTA}[$model]${COLOR_NC}"
+  echo "${COLOR_MAGENTA}[${model}]${COLOR_NC}"
 }
 
 main() {
