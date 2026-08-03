@@ -92,7 +92,9 @@ The following casks are macOS-only and have no Linux equivalent managed here yet
 Never add a tool to Homebrew that Mise can manage. Note: `mise` itself is installed via
 Homebrew as a bootstrapping step — that is intentional. A tool may also stay in Homebrew
 when Mise's only backend for it is unmaintained, or a different implementation than the
-maintained Homebrew formula.
+maintained Homebrew formula, or when it belongs to a multi-binary ecosystem that Mise
+cannot manage in full — keeping such an ecosystem in one manager beats letting its
+versions drift apart (see [The gentle-ai ecosystem](#the-gentle-ai-ecosystem)).
 
 `brew bundle dump` inspects the active `npm`'s globals (`npm ls -g`). mise's isolated
 `npm:` tools don't appear there, but packages bundled with node (e.g. `corepack`) always
