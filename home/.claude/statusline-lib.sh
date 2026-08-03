@@ -65,6 +65,23 @@ render_usage_bar() {
 }
 
 #######################################
+# Format a token count compactly (e.g. 68231 -> "68.2k").
+# Arguments:
+#   Token count (integer).
+# Outputs:
+#   Writes the formatted count to STDOUT.
+#######################################
+format_token_count() {
+  local tokens="$1"
+
+  if ((tokens >= 1000)); then
+    printf '%d.%dk' $((tokens / 1000)) $((tokens % 1000 / 100))
+  else
+    printf '%d' "$tokens"
+  fi
+}
+
+#######################################
 # Format a duration in seconds as a compact human string (e.g. "1h 5m").
 # Arguments:
 #   Duration in seconds (integer).

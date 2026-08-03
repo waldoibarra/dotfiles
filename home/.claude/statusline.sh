@@ -99,25 +99,29 @@ build_cost_section() {
 }
 
 #######################################
-# Build the context-window usage bar with percentage.
+# Build the context-window usage bar with percentage and token count.
 # Arguments:
 #   Claude Code's JSON status payload.
 # Outputs:
-#   Writes the colored usage bar and percentage to STDOUT.
+#   Writes the colored usage bar, percentage, and token count to STDOUT.
 #######################################
 build_bar_section() {
   local input="$1"
   local pct
   pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+  # Input-only tokens currently in the window — same basis as used_percentage.
+  local tokens
+  tokens=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0' | cut -d. -f1)
 
   local bar
   bar=$(render_usage_bar "$pct")
 
-  echo "${bar} ${pct}%"
+  echo "${bar} ${pct}% · $(format_token_count "$tokens")"
 }
 
 #######################################
-# Build the active model name section.
+# Build the active model name section, including reasoning effort when the
+# model supports it.
 # Globals:
 #   COLOR_MAGENTA, COLOR_NC
 # Arguments:
@@ -129,6 +133,10 @@ build_model_section() {
   local input="$1"
   local model
   model=$(echo "$input" | jq -r '.model.display_name')
+
+  local effort
+  effort=$(echo "$input" | jq -r '.effort.level // empty')
+  [[ -n "$effort" ]] && model+=" · ${effort}"
 
   echo "${COLOR_MAGENTA}[${model}]${COLOR_NC}"
 }
