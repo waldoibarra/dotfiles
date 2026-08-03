@@ -45,6 +45,10 @@
     "refreshInterval": 10,
     "type": "command"
   },
+  "subagentStatusLine": {
+    "command": "~/.claude/subagent-statusline.sh",
+    "type": "command"
+  },
   "theme": "auto",
   "tui": "fullscreen"
 }

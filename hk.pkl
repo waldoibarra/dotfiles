@@ -10,7 +10,8 @@ hooks {
           "scripts/**/*.sh",
           "scripts/.shellcheckrc",
           "home/.claude/statusline-lib.sh",
-          "home/.claude/statusline.sh"
+          "home/.claude/statusline.sh",
+          "home/.claude/subagent-statusline.sh"
         )
         check = "just lint-sh"
       }

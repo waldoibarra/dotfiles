@@ -71,6 +71,7 @@ lint-sh:
   shellcheck -a scripts/update-coding-agents/entrypoint.sh
   shellcheck home/.claude/statusline-lib.sh
   shellcheck -x -P SCRIPTDIR home/.claude/statusline.sh
+  shellcheck -x -P SCRIPTDIR home/.claude/subagent-statusline.sh
   shellcheck home/.agents/skills/shell-scripting/assets/template.sh
   shellcheck home/.agents/skills/shell-scripting/assets/template-linear.sh
   shellcheck home/.config/opencode/skills/non-vision-image-reader/scripts/recover-pasted-images.sh

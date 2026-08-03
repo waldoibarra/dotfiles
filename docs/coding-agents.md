@@ -13,6 +13,7 @@ noted below, which gentle-ai rewrites in place (see [gentle-ai](#gentle-ai)).
 | Claude Code | `home/.claude/settings.json` | `~/.claude/settings.json` (copied, not symlinked) |
 | Claude Code | `home/.claude/statusline-lib.sh` | `~/.claude/statusline-lib.sh` |
 | Claude Code | `home/.claude/statusline.sh` | `~/.claude/statusline.sh` |
+| Claude Code | `home/.claude/subagent-statusline.sh` | `~/.claude/subagent-statusline.sh` |
 | OpenCode | `home/.config/opencode/AGENTS.md` | `~/.config/opencode/AGENTS.md` (copied, not symlinked) |
 | OpenCode | `home/.config/opencode/opencode.json` | `~/.config/opencode/opencode.json` (copied, not symlinked) |
 | OpenCode | `home/.config/opencode/tui.json` | `~/.config/opencode/tui.json` |
