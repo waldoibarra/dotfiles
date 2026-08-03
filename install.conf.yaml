@@ -78,6 +78,8 @@
       exclude:
         - home/.claude/CLAUDE.md
         - home/.claude/settings.json
+    # Globs skip dotfiles, so hidden files inside globbed directories need explicit links.
+    ~/.claude/.shellcheckrc: home/.claude/.shellcheckrc
     ~/.claude/skills/:
       glob: true
       path: home/.agents/skills/*
