@@ -30,6 +30,11 @@
 - shell:
     - command: git submodule update --init --recursive --remote
       description: Initialize, clone, and update all submodules (including nested ones) —
+    # `~/.config/opencode/skills` used to be a single symlink to the repo directory. The link
+    # section below now links its children individually, which would write straight into the repo
+    # through that old symlink, so drop it first.
+    - command: '[ -L "$HOME/.config/opencode/skills" ] && rm "$HOME/.config/opencode/skills" || true'
+      description: Drop the legacy ~/.config/opencode/skills directory symlink —
 
 - link:
     # Files in $HOME root.
@@ -63,9 +68,14 @@
     ~/.agents/skills/:
       glob: true
       path: home/.agents/skills/*
+    # The excluded entries are managed by scripts/update-coding-agents/sync-gentle-ai-assets.sh
+    # instead of Dotbot — see docs/coding-agents.md.
     ~/.claude/:
       glob: true
       path: home/.claude/*
+      exclude:
+        - home/.claude/CLAUDE.md
+        - home/.claude/settings.json
     ~/.claude/skills/:
       glob: true
       path: home/.agents/skills/*
@@ -74,6 +84,13 @@
     ~/.config/opencode/:
       glob: true
       path: home/.config/opencode/*
+      exclude:
+        - home/.config/opencode/AGENTS.md
+        - home/.config/opencode/opencode.json
+        - home/.config/opencode/skills
+    ~/.config/opencode/skills/:
+      glob: true
+      path: home/.config/opencode/skills/*
     ~/.config/wezterm: home/.config/wezterm/
 
 - shell:
