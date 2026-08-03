@@ -100,6 +100,7 @@ installed `gentle-ai` version on every sync, so there is nothing to commit and n
 | Path | Contents |
 | --- | --- |
 | `~/.claude/{agents,commands,skills,output-styles,mcp}/` | `sdd-*`, `review-*`, `jd-*` agents, slash commands, skills, the engram MCP entry |
+| `~/.claude.json` `mcpServers.engram` | Registered by the sync script: gentle-ai only writes `~/.claude/mcp/engram.json`, a location Claude Code never reads, so engram would otherwise exist for OpenCode only |
 | `~/.claude/agents/gentle-orchestrator.md` | Built by the sync script, see below |
 | `~/.claude.json` | Merged, not replaced |
 | `~/.config/opencode/{prompts,commands,plugins,skills}/` | The OpenCode half of the same layer |
@@ -143,8 +144,10 @@ definition: `model: fable`, and deliberately **no `tools` key**, so it inherits 
 
 It is the global default agent, via `"agent": "gentle-orchestrator"` in
 [`home/.claude/settings.json`](/home/.claude/settings.json), so every default session starts on
-Fable in orchestration mode. To opt out of a session, start with `claude --agent <other>`; to switch
-models inside a session, use `/model`.
+Fable in orchestration mode. To opt out of a session, start with `claude --agent <other>`, or
+`claude --agent ''` for a stock session (undocumented but verified: the empty name bypasses the
+setting). The main-loop agent is fixed at startup — only the model can change mid-session, via
+`/model`.
 
 ### Model assignments
 

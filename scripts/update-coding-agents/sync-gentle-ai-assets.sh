@@ -231,6 +231,32 @@ assert_marker_inventory() {
 }
 
 #######################################
+# Register the engram MCP server with Claude Code. gentle-ai only writes
+# ~/.claude/mcp/engram.json — its own convention, which Claude Code never
+# reads — so without this step engram is reachable from OpenCode (gentle-ai
+# registers it in opencode.json) but absent from every Claude Code session.
+# Writes to the machine-local ~/.claude.json, mirroring gentle-ai's OpenCode
+# entry (`engram mcp --tools=agent`, binary resolved via PATH).
+# Globals:
+#   HOME
+# Outputs:
+#   Writes progress to STDOUT.
+#######################################
+register_engram_claude_mcp() {
+  if ! command -v engram >/dev/null 2>&1 || ! command -v claude >/dev/null 2>&1; then
+    echo "engram or claude not found, skipping the engram MCP registration."
+    return
+  fi
+  if [[ -f "$HOME/.claude.json" ]] \
+    && jq -e '.mcpServers.engram' "$HOME/.claude.json" >/dev/null 2>&1; then
+    echo "engram MCP already registered with Claude Code."
+    return
+  fi
+  claude mcp add --scope user engram -- engram mcp --tools=agent
+  echo "Registered the engram MCP server with Claude Code."
+}
+
+#######################################
 # Report gentle-ai's own health check. Never fatal: engram and gga are separate
 # formulae that may still be installing, or intentionally not running.
 # Outputs:
@@ -465,6 +491,7 @@ sync_gentle_ai_generated_layer() {
   build_orchestrator_agent
   strip_ambient_marker_sections
   remove_claude_output_style
+  register_engram_claude_mcp
   notify_on_gentle_ai_version_change
   run_gentle_ai_doctor
 }
