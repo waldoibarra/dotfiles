@@ -165,6 +165,11 @@ Valid models are `fable`, `opus`, `sonnet` and `haiku`, with an optional `"effor
 inherit whatever model is selected in OpenCode (GLM at the moment). Per-phase OpenCode splits are
 possible later through `gentle-ai sync --profile` / `--profile-phase`.
 
+The gentle-ai TUI applies model changes by running a **raw** sync, which re-adds the stripped
+marker sections to the `$HOME` copies and restores `outputStyle`. That is harmless (the repo is
+untouched) but temporary noise — run `just update-ca` after any manual TUI or `gentle-ai sync` use
+to restore the stripped layout. Model assignments survive, since they live in `state.json`.
+
 ### Update procedure when gentle-ai changes structure
 
 Everything above is pinned to one upstream shape. Two things make a change visible instead of
