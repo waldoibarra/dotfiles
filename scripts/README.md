@@ -55,6 +55,11 @@ ran with the `just sync` command.
 
 It will update the following:
 
+- The gentle-ai generated layer (`~/.claude/agents/`, `~/.config/opencode/prompts/`, and the rest)
+  via `gentle-ai sync`, plus the `gentle-orchestrator` agent it builds from the sections gentle-ai
+  writes into `~/.claude/CLAUDE.md`. This step also copies the four gentle-ai-managed configs out of
+  the repo, because Dotbot no longer symlinks them — see
+  [`docs/coding-agents.md`](/docs/coding-agents.md)
 - OpenCode's plugin cache, clearing only the entries for plugins with a newer version available
   upstream so OpenCode reinstalls just those on next launch
 - [Globally installed skills](https://skills.sh/)

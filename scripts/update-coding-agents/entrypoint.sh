@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 #
-# Update coding agent tooling: refresh stale entries in OpenCode's plugin
-# cache, refresh the RTK OpenCode plugin and the Herdr agent integrations,
-# and sync globally installed skills from the lockfile.
+# Update coding agent tooling: sync the gentle-ai generated layer, refresh
+# stale entries in OpenCode's plugin cache, refresh the RTK OpenCode plugin
+# and the Herdr agent integrations, and sync globally installed skills from
+# the lockfile.
 
 set -euo pipefail
 
@@ -10,6 +11,8 @@ ENTRYPOINT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly ENTRYPOINT_DIR
 # shellcheck source=scripts/lib/shell-helpers.sh
 source "${ENTRYPOINT_DIR}/../lib/shell-helpers.sh"
+# shellcheck source=scripts/update-coding-agents/sync-gentle-ai-assets.sh
+source "${ENTRYPOINT_DIR}/sync-gentle-ai-assets.sh"
 # shellcheck source=scripts/update-coding-agents/sync-global-skills-from-lock.sh
 source "${ENTRYPOINT_DIR}/sync-global-skills-from-lock.sh"
 # shellcheck source=scripts/update-coding-agents/refresh-stale-opencode-plugins.sh
@@ -110,6 +113,9 @@ install_rtk_opencode_plugin() {
 }
 
 main() {
+  # First: it resets ~/.claude/settings.json to the tracked bytes, which would
+  # otherwise discard whatever the Herdr steps below write into that file.
+  sync_gentle_ai_assets
   refresh_stale_opencode_plugins
   install_rtk_opencode_plugin
   install_herdr_opencode_plugin
