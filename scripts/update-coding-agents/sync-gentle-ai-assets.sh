@@ -1,10 +1,12 @@
-# Syncs the gentle-ai generated layer into $HOME, then trims it down to the
-# parts this machine actually wants loaded ambiently.
+# Delivers the four gentle-ai-managed configs into $HOME, then syncs and trims
+# the layer `gentle-ai sync` generates from them.
 #
-# `gentle-ai sync` refuses to write through a symlinked target file, so the four
-# configs it edits are copied out of the repo instead of being symlinked by
-# Dotbot. Everything else it writes is machine-local and untracked. See
-# docs/coding-agents.md for the marker map and the update procedure.
+# `gentle-ai sync` refuses to write through a symlinked target file, so those
+# four configs are copied out of the repo instead of being symlinked by Dotbot —
+# which makes the copy step here their only delivery mechanism, and the reason it
+# runs whether or not gentle-ai is installed. Everything sync generates is
+# machine-local and untracked. See docs/coding-agents.md for the marker map and
+# the update procedure.
 
 readonly GENTLE_AI_STATE_FILE="$HOME/.gentle-ai/state.json"
 readonly GENTLE_AI_VERSION_STAMP_FILE="$HOME/.gentle-ai/.dotfiles-last-synced-version"
@@ -57,12 +59,17 @@ implementation."
 # ~23 KB; anything much smaller means the extraction silently matched nothing.
 readonly MIN_ORCHESTRATOR_PROMPT_BYTES=15000
 
+# Mode the managed configs are left with. mktemp creates 0600, so every rewrite
+# has to put this back or the files silently drift to owner-only.
+readonly MANAGED_CONFIG_MODE=644
+
 #######################################
-# Replace a file with the output of a command, atomically. The command's output
-# is buffered in a temp file and moved into place only once it succeeded, so a
-# failing command leaves the original file untouched. Deliberately avoids a
-# RETURN trap for the temp file: a RETURN trap set inside a function stays
-# installed after that function returns and then fires on every later return.
+# Replace a file with the output of a command. The output is buffered in a temp
+# file and only put in place once the command succeeded, so a failing command
+# leaves the original untouched. The move is atomic only while $TMPDIR shares a
+# filesystem with the target, which is the normal case on both macOS and Linux.
+# Globals:
+#   MANAGED_CONFIG_MODE
 # Arguments:
 #   Path to the file to replace.
 #   Remaining args: the command to run, which usually reads that same path.
@@ -81,12 +88,18 @@ rewrite_file_with_output() {
   fi
 
   mv "$temp_file" "$file"
+  chmod "$MANAGED_CONFIG_MODE" "$file"
 }
 
 #######################################
-# Print a file with the named gentle-ai marker sections removed, collapsing the
-# blank-line runs the removal leaves behind so the result is stable when the
-# strip runs again on an already-stripped file.
+# Print a file with the named gentle-ai marker sections removed.
+#
+# Removing a section leaves a run of blank lines behind, so runs of blank lines
+# are collapsed to a single one — everywhere in the file, not only at the removal
+# sites, which is what makes a second run on an already-stripped file
+# byte-identical. Leading and trailing blank lines are dropped for the same
+# reason. The tracked repo sources must therefore never rely on consecutive blank
+# lines surviving; they are Markdown and JSON, where that never matters.
 # Arguments:
 #   Path to the file to read.
 #   Remaining args: marker names to remove, e.g. persona agent-routing.
@@ -114,8 +127,6 @@ strip_marker_sections() {
       expected_close_marker = close_marker_of[$0]
       next
     }
-    # Hold blank lines back and emit at most one, and only between kept lines,
-    # so removing a section leaves no double blank line and no trailing one.
     /^[[:space:]]*$/ { blank_pending = 1; next }
     {
       if (kept_any && blank_pending) { print "" }
@@ -155,7 +166,8 @@ extract_marker_section() {
 #   Path to the file to check.
 #   Remaining args: expected marker names.
 # Outputs:
-#   Writes the offending marker names to STDERR on mismatch.
+#   Writes the offending marker names, and a pointer to the update procedure,
+#   to STDERR on mismatch.
 # Returns:
 #   0 when the inventory matches, 1 otherwise.
 #######################################
@@ -165,26 +177,42 @@ assert_marker_inventory() {
 
   if [[ ! -f "$file" ]]; then
     echo "gentle-ai sync produced no $file." >&2
+    echo "Follow the update procedure in docs/coding-agents.md, then re-run the sync." >&2
     return 1
   fi
 
-  local expected_names present_names
-  expected_names="$(printf '%s\n' "$@" | sort)"
-  present_names="$(grep -o 'gentle-ai:[a-z-]*' "$file" | sed 's/^gentle-ai://' | sort -u)"
+  # A file with no markers at all is itself one of the mismatches to report, but
+  # it also makes grep exit 1 — capture first so pipefail cannot abort the script
+  # before the diagnostic below gets printed.
+  local marker_matches
+  marker_matches="$(grep -o 'gentle-ai:[a-z-]*' "$file" || true)"
+  local present_names
+  present_names="$(sort -u <<<"${marker_matches//gentle-ai:/}")"
 
-  local unexpected_names missing_names
-  unexpected_names="$(comm -13 <(echo "$expected_names") <(echo "$present_names"))"
-  missing_names="$(comm -23 <(echo "$expected_names") <(echo "$present_names"))"
+  local mismatches="" name
 
-  local mismatches=""
+  local unexpected_names=""
+  while IFS= read -r name; do
+    [[ -n "$name" ]] || continue
+    if ! printf '%s\n' "$@" | grep -qxF "$name"; then
+      unexpected_names+="$name "
+    fi
+  done <<<"$present_names"
   if [[ -n "$unexpected_names" ]]; then
-    mismatches+=" unexpected: $(echo "$unexpected_names" | tr '\n' ' ')"
-  fi
-  if [[ -n "$missing_names" ]]; then
-    mismatches+=" missing: $(echo "$missing_names" | tr '\n' ' ')"
+    mismatches+=" unexpected: $unexpected_names"
   fi
 
-  local name open_count close_count
+  local missing_names=""
+  for name in "$@"; do
+    if ! grep -qxF "$name" <<<"$present_names"; then
+      missing_names+="$name "
+    fi
+  done
+  if [[ -n "$missing_names" ]]; then
+    mismatches+=" missing: $missing_names"
+  fi
+
+  local open_count close_count
   for name in "$@"; do
     open_count="$(grep -c "^<!-- gentle-ai:$name -->\$" "$file" || true)"
     close_count="$(grep -c "^<!-- /gentle-ai:$name -->\$" "$file" || true)"
@@ -223,8 +251,9 @@ run_gentle_ai_doctor() {
 #   Writes a review notice to STDOUT on the first run and after every upgrade.
 #######################################
 notify_on_gentle_ai_version_change() {
+  # `gentle-ai version` prints "gentle-ai <semver>"; keep only the number.
   local current_version
-  current_version="$(gentle-ai version)"
+  current_version="$(gentle-ai version | awk '{ print $NF }')"
 
   local recorded_version=""
   if [[ -f "$GENTLE_AI_VERSION_STAMP_FILE" ]]; then
@@ -273,9 +302,11 @@ remove_claude_output_style() {
 #######################################
 strip_ambient_marker_sections() {
   rewrite_file_with_output "$CLAUDE_MEMORY_FILE" \
-    strip_marker_sections "$CLAUDE_MEMORY_FILE" "${CLAUDE_STRIPPED_MARKERS[@]}"
+    strip_marker_sections "$CLAUDE_MEMORY_FILE" \
+    ${CLAUDE_STRIPPED_MARKERS[@]+"${CLAUDE_STRIPPED_MARKERS[@]}"}
   rewrite_file_with_output "$OPENCODE_MEMORY_FILE" \
-    strip_marker_sections "$OPENCODE_MEMORY_FILE" "${OPENCODE_STRIPPED_MARKERS[@]}"
+    strip_marker_sections "$OPENCODE_MEMORY_FILE" \
+    ${OPENCODE_STRIPPED_MARKERS[@]+"${OPENCODE_STRIPPED_MARKERS[@]}"}
 
   echo "Stripped the non-ambient gentle-ai sections from CLAUDE.md and AGENTS.md."
 }
@@ -335,8 +366,10 @@ EOF
 #   0 when both inventories match, 1 otherwise.
 #######################################
 assert_marker_inventories() {
-  assert_marker_inventory "$CLAUDE_MEMORY_FILE" "${CLAUDE_MEMORY_MARKERS[@]}"
-  assert_marker_inventory "$OPENCODE_MEMORY_FILE" "${OPENCODE_MEMORY_MARKERS[@]}"
+  assert_marker_inventory "$CLAUDE_MEMORY_FILE" \
+    ${CLAUDE_MEMORY_MARKERS[@]+"${CLAUDE_MEMORY_MARKERS[@]}"}
+  assert_marker_inventory "$OPENCODE_MEMORY_FILE" \
+    ${OPENCODE_MEMORY_MARKERS[@]+"${OPENCODE_MEMORY_MARKERS[@]}"}
 }
 
 #######################################
@@ -382,37 +415,6 @@ seed_claude_phase_assignments() {
 }
 
 #######################################
-# Replace the $HOME copy of every gentle-ai-managed config with the repo source,
-# dropping any leftover Dotbot symlink first. This doubles as the migration off
-# those symlinks and as the garbage collector for the generated layer: sync only
-# ever adds marker sections, never prunes them, so every run has to start from
-# the tracked bytes.
-# Globals:
-#   ENTRYPOINT_DIR
-#   GENTLE_AI_MANAGED_CONFIGS
-#   HOME
-# Outputs:
-#   Writes progress to STDOUT.
-#######################################
-copy_managed_configs_from_repo() {
-  local repo_root
-  repo_root="$(git -C "$ENTRYPOINT_DIR" rev-parse --show-toplevel)"
-
-  local relative_path target_file
-  for relative_path in "${GENTLE_AI_MANAGED_CONFIGS[@]}"; do
-    target_file="$HOME/$relative_path"
-
-    if [[ -L "$target_file" ]]; then
-      rm "$target_file"
-    fi
-    mkdir -p "$(dirname "$target_file")"
-    cp "$repo_root/home/$relative_path" "$target_file"
-  done
-
-  echo "Copied ${#GENTLE_AI_MANAGED_CONFIGS[@]} gentle-ai-managed configs from the repo."
-}
-
-#######################################
 # Refuse to sync while the OpenCode skills directory is still the old Dotbot
 # directory symlink. `gentle-ai sync` writes ~20 skill directories in there and
 # happily follows a symlinked parent, so it would commit them into this repo.
@@ -436,24 +438,16 @@ assert_opencode_skills_dir_is_real() {
 }
 
 #######################################
-# Sync the gentle-ai generated layer into $HOME: reset the managed configs to
-# their tracked bytes, run `gentle-ai sync`, rebuild the gentle-orchestrator
-# agent from the sections it writes, then strip those sections back out.
+# Run `gentle-ai sync` and reduce what it generated to what should stay ambient:
+# harvest the two orchestration sections into a sub-agent, strip every injected
+# section back out, and undo the one settings key sync adds.
 # Outputs:
-#   Writes progress to STDOUT via print_separator.
+#   Writes progress to STDOUT.
 # Returns:
-#   0 on success, non-zero when sync fails or the generated layer changed shape.
+#   0 on success, non-zero when sync failed or the layer changed shape.
 #######################################
-sync_gentle_ai_assets() {
-  if ! command -v gentle-ai >/dev/null 2>&1; then
-    echo "gentle-ai not found, skipping the gentle-ai asset sync."
-    return 0
-  fi
-
-  print_separator "Synchronizing gentle-ai assets"
-
+sync_gentle_ai_generated_layer() {
   assert_opencode_skills_dir_is_real
-  copy_managed_configs_from_repo
   seed_claude_phase_assignments
   run_gentle_ai_sync
   assert_marker_inventories
@@ -462,6 +456,72 @@ sync_gentle_ai_assets() {
   remove_claude_output_style
   notify_on_gentle_ai_version_change
   run_gentle_ai_doctor
+}
+
+#######################################
+# Replace the $HOME copy of every gentle-ai-managed config with the repo source,
+# dropping any leftover Dotbot symlink first. Dotbot does not link these, so this
+# is their only delivery mechanism — and it doubles as the garbage collector for
+# the generated layer: sync only ever adds marker sections, never prunes them, so
+# every run has to start from the tracked bytes.
+# Globals:
+#   ENTRYPOINT_DIR
+#   GENTLE_AI_MANAGED_CONFIGS
+#   HOME
+#   MANAGED_CONFIG_MODE
+# Outputs:
+#   Writes progress to STDOUT, and an error to STDERR when a source is missing.
+# Returns:
+#   0 on success, 1 when the repo or one of its sources cannot be found.
+#######################################
+copy_managed_configs_from_repo() {
+  local repo_root
+  if ! repo_root="$(git -C "$ENTRYPOINT_DIR" rev-parse --show-toplevel 2>/dev/null)"; then
+    echo "Cannot resolve the dotfiles repo root from $ENTRYPOINT_DIR;" \
+      "the gentle-ai-managed configs cannot be refreshed." >&2
+    return 1
+  fi
+
+  local relative_path source_file target_file
+  for relative_path in ${GENTLE_AI_MANAGED_CONFIGS[@]+"${GENTLE_AI_MANAGED_CONFIGS[@]}"}; do
+    source_file="$repo_root/home/$relative_path"
+    target_file="$HOME/$relative_path"
+
+    if [[ ! -f "$source_file" ]]; then
+      echo "Missing repo source $source_file; cannot refresh $target_file." >&2
+      return 1
+    fi
+
+    if [[ -L "$target_file" ]]; then
+      rm "$target_file"
+    fi
+    mkdir -p "$(dirname "$target_file")"
+    cp "$source_file" "$target_file"
+    chmod "$MANAGED_CONFIG_MODE" "$target_file"
+  done
+
+  echo "Copied ${#GENTLE_AI_MANAGED_CONFIGS[@]} gentle-ai-managed configs from the repo."
+}
+
+#######################################
+# Deliver the gentle-ai-managed configs, then sync gentle-ai's generated layer on
+# top of them. The copy runs unconditionally because Dotbot no longer links those
+# files; only the generated layer needs the gentle-ai binary.
+# Outputs:
+#   Writes progress to STDOUT via print_separator.
+# Returns:
+#   0 on success, non-zero when a step failed.
+#######################################
+sync_gentle_ai_assets() {
+  print_separator "Synchronizing gentle-ai assets"
+
+  copy_managed_configs_from_repo
+  if command -v gentle-ai >/dev/null 2>&1; then
+    sync_gentle_ai_generated_layer
+  else
+    echo "gentle-ai not found, skipping its generated layer;" \
+      "the configs copied above are still up to date."
+  fi
 
   print_separator "Done synchronizing gentle-ai assets"
 }
