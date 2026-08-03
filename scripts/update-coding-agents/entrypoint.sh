@@ -8,8 +8,11 @@ set -euo pipefail
 
 ENTRYPOINT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly ENTRYPOINT_DIR
+# shellcheck source=scripts/lib/shell-helpers.sh
 source "${ENTRYPOINT_DIR}/../lib/shell-helpers.sh"
+# shellcheck source=scripts/update-coding-agents/sync-global-skills-from-lock.sh
 source "${ENTRYPOINT_DIR}/sync-global-skills-from-lock.sh"
+# shellcheck source=scripts/update-coding-agents/refresh-stale-opencode-plugins.sh
 source "${ENTRYPOINT_DIR}/refresh-stale-opencode-plugins.sh"
 
 #######################################
