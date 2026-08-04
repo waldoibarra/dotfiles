@@ -114,7 +114,7 @@ build_task_duration_section() {
   local elapsed_secs=$((now_secs - start_secs))
   ((elapsed_secs < 0)) && elapsed_secs=0
 
-  echo "⏱️ $(format_duration "$elapsed_secs")"
+  format_elapsed "$elapsed_secs"
 }
 
 #######################################
@@ -135,15 +135,12 @@ build_task_context_section() {
   tokens="${tokens%%.*}"
   window_size="${window_size%%.*}"
 
-  local formatted_tokens
-  formatted_tokens=$(format_token_count "$tokens")
-
   if ((window_size > 0)); then
     local pct=$((tokens * 100 / window_size))
     ((pct > 100)) && pct=100
-    echo "${pct}% · ${formatted_tokens}"
+    format_usage_text "$pct" "$tokens"
   elif ((tokens > 0)); then
-    echo "$formatted_tokens"
+    format_token_count "$tokens"
   fi
 }
 
@@ -152,8 +149,6 @@ build_task_context_section() {
 # reported) followed by the agent name when the task has one. Agent-tool
 # spawns report name=null — the name only exists for explicitly named agents
 # (verified empirically on v2.1.220).
-# Globals:
-#   COLOR_MAGENTA, COLOR_NC
 # Arguments:
 #   A single task's JSON object.
 # Outputs:
@@ -169,8 +164,7 @@ build_task_identity_section() {
     model=$(format_model_name "$model")
     local effort
     effort=$(jq -r '.effort // empty' <<<"$task")
-    [[ -n "$effort" ]] && model+=" · ${effort}"
-    model_tag="${COLOR_MAGENTA}[${model}]${COLOR_NC}"
+    model_tag=$(format_model_tag "$model" "$effort")
   fi
 
   local agent_name

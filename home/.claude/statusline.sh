@@ -80,7 +80,7 @@ build_duration_section() {
   duration_ms="${duration_ms%%.*}" # Integer math below chokes on a float.
   local secs=$((duration_ms / 1000))
 
-  echo "⏱️ $(format_duration "$secs")"
+  format_elapsed "$secs"
 }
 
 #######################################
@@ -116,14 +116,12 @@ build_bar_section() {
   local bar
   bar=$(render_usage_bar "$pct")
 
-  echo "${bar} ${pct}% · $(format_token_count "$tokens")"
+  echo "${bar} $(format_usage_text "$pct" "$tokens")"
 }
 
 #######################################
 # Build the active model name section, including reasoning effort when the
 # model supports it.
-# Globals:
-#   COLOR_MAGENTA, COLOR_NC
 # Arguments:
 #   Claude Code's JSON status payload.
 # Outputs:
@@ -136,9 +134,8 @@ build_model_section() {
 
   local effort
   effort=$(echo "$input" | jq -r '.effort.level // empty')
-  [[ -n "$effort" ]] && model+=" · ${effort}"
 
-  echo "${COLOR_MAGENTA}[${model}]${COLOR_NC}"
+  format_model_tag "$model" "$effort"
 }
 
 main() {

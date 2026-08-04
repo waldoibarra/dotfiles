@@ -16,6 +16,26 @@ readonly COLOR_WARNING="$COLOR_YELLOW"
 readonly COLOR_HEALTHY="$COLOR_CYAN"
 
 #######################################
+# Format a model name (optionally with reasoning effort) into the bracketed,
+# colored tag both status lines display.
+# Globals:
+#   COLOR_MAGENTA, COLOR_NC
+# Arguments:
+#   Model display name.
+#   Reasoning effort level (may be empty).
+# Outputs:
+#   Writes the bracketed, colored model tag to STDOUT.
+#######################################
+format_model_tag() {
+  local model="$1"
+  local effort="$2"
+
+  [[ -n "$effort" ]] && model+=" · ${effort}"
+
+  echo "${COLOR_MAGENTA}[${model}]${COLOR_NC}"
+}
+
+#######################################
 # Map a percentage to the color for its severity band.
 # Globals:
 #   COLOR_CRITICAL, COLOR_WARNING, COLOR_HEALTHY
@@ -82,6 +102,23 @@ format_token_count() {
 }
 
 #######################################
+# Format a context-window usage percentage and token count (no bar). Shared
+# by the main and subagent status lines, which differ only in whether a bar
+# precedes this text.
+# Arguments:
+#   Percentage (0-100).
+#   Token count (integer).
+# Outputs:
+#   Writes "PCT% · TOKENS" to STDOUT.
+#######################################
+format_usage_text() {
+  local pct="$1"
+  local tokens="$2"
+
+  echo "${pct}% · $(format_token_count "$tokens")"
+}
+
+#######################################
 # Format a duration in seconds as a compact human string (e.g. "1h 5m").
 # Arguments:
 #   Duration in seconds (integer).
@@ -98,6 +135,18 @@ format_duration() {
   else
     echo "${secs}s"
   fi
+}
+
+#######################################
+# Format an elapsed-time section (stopwatch emoji + compact duration). Shared
+# by the main and subagent status lines.
+# Arguments:
+#   Duration in seconds (integer).
+# Outputs:
+#   Writes the formatted elapsed-time section to STDOUT.
+#######################################
+format_elapsed() {
+  echo "⏱️ $(format_duration "$1")"
 }
 
 #######################################
