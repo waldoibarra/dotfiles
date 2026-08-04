@@ -20,8 +20,12 @@ source "${BASH_SOURCE[0]%/*}/statusline-lib.sh"
 format_model_name() {
   local model_id="$1"
 
-  # Strip the "claude-" prefix and the trailing release date.
+  # Strip the "claude-" prefix, a trailing context-window/variant suffix
+  # like "[1m]" (e.g. "opus-5[1m]"), and the trailing release date.
   local trimmed="${model_id#claude-}"
+  if [[ "$trimmed" =~ ^(.*)\[[^]]*\]$ ]]; then
+    trimmed="${BASH_REMATCH[1]}"
+  fi
   if [[ "$trimmed" =~ ^(.*)-[0-9]{8}$ ]]; then
     trimmed="${BASH_REMATCH[1]}"
   fi
@@ -114,7 +118,8 @@ build_task_duration_section() {
 }
 
 #######################################
-# Build a task's context usage section: colored bar, percentage, token count.
+# Build a task's context usage section: percentage and token count (no bar —
+# subagent rows omit the usage bar to keep each row compact).
 # Arguments:
 #   A single task's JSON object.
 # Outputs:
@@ -136,7 +141,7 @@ build_task_context_section() {
   if ((window_size > 0)); then
     local pct=$((tokens * 100 / window_size))
     ((pct > 100)) && pct=100
-    echo "$(render_usage_bar "$pct") ${pct}% · ${formatted_tokens}"
+    echo "${pct}% · ${formatted_tokens}"
   elif ((tokens > 0)); then
     echo "$formatted_tokens"
   fi
