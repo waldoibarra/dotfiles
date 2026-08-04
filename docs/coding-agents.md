@@ -149,6 +149,33 @@ Fable in orchestration mode. To opt out of a session, start with `claude --agent
 setting). The main-loop agent is fixed at startup — only the model can change mid-session, via
 `/model`.
 
+### Engram tool names in the generated agents
+
+`gentle-ai` writes the engram tools into the `tools:` frontmatter of every generated `sdd-*` and
+`jd-*` agent under the **plugin-hosted** prefix `mcp__plugin_engram_engram__`. Nothing here resolves
+that name. Claude Code namespaces MCP tools after the **server key**, and engram is registered as a
+plain user-scope server (`mcpServers.engram`), so its tools are `mcp__engram__*`. The plugin form
+would require a Claude Code plugin named `engram` hosting a server named `engram`; no plugin is
+installed, and engram is a plain Homebrew binary.
+
+A tool name that matches no live server is **dropped from the sub-agent silently** — no error, no
+warning, no retry. Left alone, all 13 agents start with no memory access and still report success,
+which turns every "persist the report via `mem_save`" instruction in the SDD and judgment-day
+phases into a no-op. Because it costs nothing at runtime — no failed calls, no retry loop, and the
+absent tool schemas are never even loaded — it produces no symptom to notice. The real cost is
+across sessions: agents that cannot read prior context re-derive it by reading files, and cannot
+persist what they learn.
+
+`repoint_generated_agent_engram_tools` rewrites the prefix after every sync, and
+`warn_on_unresolvable_agent_mcp_tools` reports any `mcp__plugin_*` name that survives, so a renamed
+or newly added one cannot fail as quietly. Both are no-ops once upstream fixes this. The strings are
+baked into the `gentle-ai` binary with no format string behind them, so no upstream flag changes
+what it emits — verify with `strings $(command -v gentle-ai) | grep -o 'mcp__[A-Za-z0-9_]*'`.
+
+To check the result, ask any generated agent what tools it has — but **restart the session first**.
+Claude Code snapshots agent definitions at startup, so an edit under `~/.claude/agents/` is invisible
+to the session that made it, and a test without a restart reports a false failure.
+
 ### Model assignments
 
 `gentle-ai` reads `claude_phase_assignments` from `~/.gentle-ai/state.json` to set the `model:`
@@ -172,12 +199,14 @@ to restore the stripped layout. Model assignments survive, since they live in `s
 
 ### Update procedure when gentle-ai changes structure
 
-Everything above is pinned to one upstream shape. Two things make a change visible instead of
+Everything above is pinned to one upstream shape. Three things make a change visible instead of
 silent:
 
 - The **marker assertion** fails the sync, naming the unexpected or missing section.
 - The **version stamp** (`~/.gentle-ai/.dotfiles-last-synced-version`) prints a prominent notice the
   first time a new `gentle-ai` version is synced, even when the markers still match.
+- The **unresolvable MCP tool warning** names any `mcp__plugin_*` tool still declared by a generated
+  agent, which is otherwise the one failure mode Claude Code gives no signal for at all.
 
 When either fires:
 

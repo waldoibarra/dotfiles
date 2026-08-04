@@ -12,8 +12,9 @@ readonly GENTLE_AI_STATE_FILE="$HOME/.gentle-ai/state.json"
 readonly GENTLE_AI_VERSION_STAMP_FILE="$HOME/.gentle-ai/.dotfiles-last-synced-version"
 readonly CLAUDE_SETTINGS_FILE="$HOME/.claude/settings.json"
 readonly CLAUDE_MEMORY_FILE="$HOME/.claude/CLAUDE.md"
+readonly CLAUDE_AGENTS_DIR="$HOME/.claude/agents"
 readonly OPENCODE_MEMORY_FILE="$HOME/.config/opencode/AGENTS.md"
-readonly ORCHESTRATOR_AGENT_FILE="$HOME/.claude/agents/gentle-orchestrator.md"
+readonly ORCHESTRATOR_AGENT_FILE="$CLAUDE_AGENTS_DIR/gentle-orchestrator.md"
 readonly OPENCODE_SKILLS_DIR="$HOME/.config/opencode/skills"
 
 # Configs `gentle-ai sync` rewrites in place, as paths relative to both the
@@ -62,6 +63,15 @@ readonly MIN_ORCHESTRATOR_PROMPT_BYTES=15000
 # Mode the managed configs are left with. mktemp creates 0600, so every rewrite
 # has to put this back or the files silently drift to owner-only.
 readonly MANAGED_CONFIG_MODE=644
+
+# The engram MCP tool prefix gentle-ai generates, and the one it has to become.
+# Claude Code namespaces MCP tools after the server key, so the plain user-scope
+# registration below yields mcp__engram__*. gentle-ai instead hardcodes the
+# mcp__plugin_<plugin>_<server>__ form of a plugin-hosted server, which resolves
+# to nothing here. The strings are baked into the gentle-ai binary with no format
+# string behind them, so no upstream flag can change what it emits.
+readonly UPSTREAM_ENGRAM_TOOL_PREFIX="mcp__plugin_engram_engram__"
+readonly REGISTERED_ENGRAM_TOOL_PREFIX="mcp__engram__"
 
 #######################################
 # Replace a file with the output of a command. The output is buffered in a temp
@@ -256,6 +266,76 @@ register_engram_claude_mcp() {
   echo "Registered the engram MCP server with Claude Code."
 }
 
+#######################################
+# Repoint the engram tool names in gentle-ai's generated agents at the MCP server
+# registered above. Every sdd-* and jd-* agent declares the engram tools in its
+# `tools:` frontmatter under the wrong prefix, and Claude Code drops a tool name
+# that matches no live server silently — no error, no warning, no retry. Without
+# this step those agents run with no memory access at all while still reporting
+# success, so their "persist the report" instructions become no-ops.
+# Globals:
+#   CLAUDE_AGENTS_DIR
+#   REGISTERED_ENGRAM_TOOL_PREFIX
+#   UPSTREAM_ENGRAM_TOOL_PREFIX
+# Outputs:
+#   Writes progress to STDOUT.
+#######################################
+repoint_generated_agent_engram_tools() {
+  if [[ ! -d "$CLAUDE_AGENTS_DIR" ]]; then
+    echo "No $CLAUDE_AGENTS_DIR, skipping the engram tool prefix repoint."
+    return 0
+  fi
+
+  local agent_file
+  local repointed_count=0
+  for agent_file in "$CLAUDE_AGENTS_DIR"/*.md; do
+    # An unmatched glob stays literal, and an agent that never names the upstream
+    # prefix — the review-* ones, or all of them once upstream fixes this — needs
+    # no rewrite.
+    [[ -f "$agent_file" ]] || continue
+    grep -q "$UPSTREAM_ENGRAM_TOOL_PREFIX" "$agent_file" || continue
+
+    rewrite_file_with_output "$agent_file" \
+      sed "s/$UPSTREAM_ENGRAM_TOOL_PREFIX/$REGISTERED_ENGRAM_TOOL_PREFIX/g" "$agent_file"
+    repointed_count=$((repointed_count + 1))
+  done
+
+  echo "Repointed the engram tool names in $repointed_count generated agents."
+}
+
+#######################################
+# Warn when plugin-style MCP tool names survive in the generated agents. The
+# repoint above only knows the one prefix gentle-ai ships today; a renamed or
+# newly added plugin-style name would be dropped from those agents just as
+# silently as the engram one was, and this is the only thing that would say so.
+# Warns instead of failing: the names are inert, so the agent still runs, and a
+# cosmetic upstream rename should not block the whole sync.
+# Globals:
+#   CLAUDE_AGENTS_DIR
+# Outputs:
+#   Writes the surviving prefixes, and a pointer to the update procedure, to
+#   STDERR.
+#######################################
+warn_on_unresolvable_agent_mcp_tools() {
+  [[ -d "$CLAUDE_AGENTS_DIR" ]] || return 0
+
+  # Exactly the file set the repoint above walks. Scanning the directory instead
+  # would report names in files that step never rewrites, leaving a warning that
+  # no sync can ever clear. An unmatched glob stays literal, so -f is the test for
+  # "no generated agents yet".
+  local agent_files=("$CLAUDE_AGENTS_DIR"/*.md)
+  [[ -f "${agent_files[0]}" ]] || return 0
+
+  # No plugin is installed, so any mcp__plugin_* name resolves to nothing. grep
+  # exits 1 when there are none, which is the healthy case.
+  local surviving_names
+  surviving_names="$(grep -ho 'mcp__plugin_[a-z0-9_]*' "${agent_files[@]}" | sort -u || true)"
+  [[ -n "$surviving_names" ]] || return 0
+
+  echo "Plugin-style MCP tool names are still declared in $CLAUDE_AGENTS_DIR, and" \
+    "Claude Code drops them silently: $(tr '\n' ' ' <<<"$surviving_names")." \
+    "Follow the update procedure in docs/coding-agents.md." >&2
+}
 
 #######################################
 # Announce a gentle-ai version change so the generated layer gets reviewed
@@ -466,7 +546,8 @@ assert_opencode_skills_dir_is_real() {
 #######################################
 # Run `gentle-ai sync` and reduce what it generated to what should stay ambient:
 # harvest the two orchestration sections into a sub-agent, strip every injected
-# section back out, and undo the one settings key sync adds.
+# section back out, undo the one settings key sync adds, and repair the engram
+# tool names sync bakes into the generated agents.
 # Outputs:
 #   Writes progress to STDOUT.
 # Returns:
@@ -481,6 +562,8 @@ sync_gentle_ai_generated_layer() {
   strip_ambient_marker_sections
   remove_claude_output_style
   register_engram_claude_mcp
+  repoint_generated_agent_engram_tools
+  warn_on_unresolvable_agent_mcp_tools
   notify_on_gentle_ai_version_change
 }
 
