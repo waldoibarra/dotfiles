@@ -28,6 +28,96 @@
       "pluginName": "example-skills",
       "installedAt": "2026-07-12T20:35:13.971Z",
       "updatedAt": "2026-07-16T03:21:37.458Z"
+    },
+    "animate": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/animate/SKILL.md",
+      "skillFolderHash": "c56eac3ec48a97c254dc3a2a42915f22f96a5401",
+      "installedAt": "2026-08-14T17:04:31.088Z",
+      "updatedAt": "2026-08-14T17:04:31.088Z"
+    },
+    "animation-vocabulary": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/animation-vocabulary/SKILL.md",
+      "skillFolderHash": "e6dc24ca1ff1e70c9677df9a1d2d1c80415cbb3c",
+      "installedAt": "2026-08-14T17:04:31.089Z",
+      "updatedAt": "2026-08-14T17:04:31.089Z"
+    },
+    "apple-design": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/apple-design/SKILL.md",
+      "skillFolderHash": "e9f5b472dfb28d8cf29f64001b6c01ef94b8168b",
+      "installedAt": "2026-08-14T17:04:31.090Z",
+      "updatedAt": "2026-08-14T17:04:31.090Z"
+    },
+    "ask-sonner": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/ask-sonner/SKILL.md",
+      "skillFolderHash": "591cfb58ec1eb38a7ca04f3b6453a75a4fcf9fc8",
+      "installedAt": "2026-08-14T17:04:31.090Z",
+      "updatedAt": "2026-08-14T17:04:31.090Z"
+    },
+    "emil-design-eng": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/emil-design-eng/SKILL.md",
+      "skillFolderHash": "175725745e70946d891b93a1694d7c9ebb71b69d",
+      "installedAt": "2026-08-14T17:04:31.090Z",
+      "updatedAt": "2026-08-14T17:04:31.090Z"
+    },
+    "find-animation-opportunities": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/find-animation-opportunities/SKILL.md",
+      "skillFolderHash": "502f891c05c9cade7e7bd815e3f228fdd20b61b6",
+      "installedAt": "2026-08-14T17:04:31.090Z",
+      "updatedAt": "2026-08-14T17:04:31.090Z"
+    },
+    "improve-animations": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/improve-animations/SKILL.md",
+      "skillFolderHash": "2ff93ddb9833df45f5e83080de838bb668530820",
+      "installedAt": "2026-08-14T17:04:31.091Z",
+      "updatedAt": "2026-08-14T17:04:31.091Z"
+    },
+    "pick-ui-library": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/pick-ui-library/SKILL.md",
+      "skillFolderHash": "cfc9a519a1b554eef39bba7bd74bd6845524ccd1",
+      "installedAt": "2026-08-14T17:04:31.091Z",
+      "updatedAt": "2026-08-14T17:04:31.091Z"
+    },
+    "prototype": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/prototype/SKILL.md",
+      "skillFolderHash": "564cf82ef5b17f5e018b439dc7fd1e392dcf6188",
+      "installedAt": "2026-08-14T17:04:31.092Z",
+      "updatedAt": "2026-08-14T17:04:31.092Z"
+    },
+    "review-animations": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/review-animations/SKILL.md",
+      "skillFolderHash": "82571acae75a97764fa7899f10bd21d93a4f1414",
+      "installedAt": "2026-08-14T17:04:31.092Z",
+      "updatedAt": "2026-08-14T17:04:31.092Z"
     }
   },
   "lastSelectedAgents": [
