@@ -1,5 +1,6 @@
 [tools]
 aws-cli = { version = "latest", symlink_bins = "true" }
+bun = "latest"
 "cargo:eza" = "latest"
 delta = "latest"
 gh = "latest"
