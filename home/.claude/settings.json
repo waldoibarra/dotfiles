@@ -1,6 +1,6 @@
 {
   "agent": "gentle-orchestrator",
-  "outputStyle": "Attention-kind",
+  "outputStyle": "Spartan",
   "hooks": {
     "PermissionRequest": [
       {

@@ -41,8 +41,8 @@ verbatim** from upstream:
 | `Spartan` | ~790 tok | Blunt, arrow points, zero warmth. Heads-down work. |
 | `Rundown` | ~550 tok | TL;DR + ✅/🟡/⬜ checklists. Status updates and standups. |
 
-Only **one** is active at a time. `Attention-kind` is the global default, via
-`"outputStyle": "Attention-kind"` in [`home/.claude/settings.json`](/home/.claude/settings.json).
+Only **one** is active at a time. `Spartan` is the global default, via
+`"outputStyle": "Spartan"` in [`home/.claude/settings.json`](/home/.claude/settings.json).
 
 `/output-style` switches the active style. Picking one **globally** rewrites `~/.claude/settings.json`
 — which is a **copy**, not a symlink (see [gentle-ai](#gentle-ai)), so the next `dots` run clobbers
