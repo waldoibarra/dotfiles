@@ -1,4 +1,5 @@
 tap "gentleman-programming/tap"
+tap "rjyo/moshi", trusted: true
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
 brew "antigen"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -27,6 +28,8 @@ brew "gnupg"
 brew "lolcat"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
+# Remote terminal application
+brew "mosh"
 # Create, run, and share large language models (LLMs)
 brew "ollama", restart_service: :changed
 # Package compiler and linker metadata toolkit
@@ -49,6 +52,8 @@ brew "gentleman-programming/tap/engram", trusted: true
 brew "gentleman-programming/tap/gentle-ai", trusted: true
 # Gentleman Guardian Angel - Provider-agnostic code review using AI (Claude, Gemini, Codex, OpenCode, Ollama)
 brew "gentleman-programming/tap/gga", trusted: true
+# Portable daemon + CLI that bridges AI coding agents to the Moshi mobile app
+brew "rjyo/moshi/moshi-hook"
 # Menu bar usage monitor for Codex and Claude
 cask "codexbar"
 # Write, edit, and chat about your code with AI
@@ -69,6 +74,8 @@ cask "openusage"
 cask "postman"
 # Team communication and collaboration software
 cask "slack"
+# Mesh VPN based on WireGuard
+cask "tailscale-app"
 # Open-source code editor
 cask "visual-studio-code"
 # GPU-accelerated cross-platform terminal emulator and multiplexer

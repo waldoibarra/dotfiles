@@ -58,6 +58,26 @@ Herdr (terminal workspace manager) shows per-agent state through integrations in
   the hook **command** (not just the script), the tracked entry goes stale silently — reinstall
   manually and port the new command into `$HOME` form here.
 
+## Moshi integration
+
+[Moshi](https://getmoshi.app/) is an iOS terminal for driving coding agents remotely; `moshi-hook`
+(Brewfile, tap `rjyo/moshi`) is its host-side daemon. Access rides Tailscale + sshd/mosh — nothing
+is exposed publicly. Three pieces:
+
+- **Claude Code hooks** — tracked in [`home/.claude/settings.json`](/home/.claude/settings.json)
+  with the exact command string `moshi-hook install --target claude` writes
+  (`'/opt/homebrew/bin/moshi-hook' claude-hook`), so `moshi-hook status` reports `current` after a
+  `dots` clobber and a reinstall adds no duplicates. Same caveat as the Herdr hook: if a release
+  changes the command, the tracked entries go stale — rerun the install and re-port.
+- **OpenCode plugin** — `~/.config/opencode/plugins/moshi-hooks.ts`, intentionally untracked like
+  the RTK and Herdr plugins: `moshi-hook install --target opencode` owns it.
+- **Daemon** — runs from a machine-local LaunchAgent
+  (`~/Library/LaunchAgents/local.moshi-hook.plist`), **not** `brew services`: Homebrew's plist sets
+  no PATH, so under launchd's bare default the daemon cannot find mise-managed multiplexers and
+  reports `herdr: not found`. The custom plist adds `/opt/homebrew/bin` and the mise shims dir.
+  Keep `brew services stop moshi-hook`; the same launchd-PATH gap is why Collie's bridge needs the
+  `~/.local/bin/bun` symlink to the mise shim (also machine-local, untracked).
+
 ## gentle-ai
 
 [gentle-ai](https://github.com/Gentleman-Programming/gentle-ai) is an SDD/RDD ecosystem for coding
