@@ -85,6 +85,11 @@ Brunner. That guide publishes the skill as copy-paste text only — **no repo, n
 [skills.sh](https://skills.sh) entry**, so there is no upstream to track. The vendored copy is
 edited to this repo's conventions and is now the only source.
 
+The same guide's third piece, `humanizer`, is vendored as a per-job skill at
+[`home/.agents/skills/humanizer/SKILL.md`](/home/.agents/skills/humanizer/SKILL.md) (see
+[Repo-managed skills](#repo-managed-skills)). It is never ambient: it rewrites reader-facing copy
+on request.
+
 It deliberately overlaps layer 1, and earns its place twice:
 
 - **Portability.** Output styles are a Claude Code feature. OpenCode reads this same `AGENTS.md`
@@ -401,13 +406,18 @@ content. It runs automatically via `update-coding-agents/entrypoint.sh` on every
 ## Repo-managed skills
 
 Most global skills are installed and pinned by the lockfile (see [Global skills
-lockfile](#global-skills-lockfile)). Two skills are instead **authored as source**
+lockfile](#global-skills-lockfile)). Three skills are instead **authored as source**
 in the repo and edited here directly — never installed, never in the lockfile:
 
 | Skill | Repo source | Symlinked to |
 | --- | --- | --- |
 | [`shell-scripting`](/home/.agents/skills/shell-scripting/SKILL.md) | `home/.agents/skills/shell-scripting` | `~/.agents/skills/` **and** `~/.claude/skills/` (shared source via two Dotbot globs) |
+| [`humanizer`](/home/.agents/skills/humanizer/SKILL.md) | `home/.agents/skills/humanizer` | `~/.agents/skills/` **and** `~/.claude/skills/` (shared source via two Dotbot globs) |
 | [`non-vision-image-reader`](/home/.config/opencode/skills/non-vision-image-reader/SKILL.md) | `home/.config/opencode/skills/non-vision-image-reader` | `~/.config/opencode/skills/` (opencode global skills) |
+
+OpenCode discovers `~/.claude/skills/` and `~/.agents/skills/` natively
+([docs](https://opencode.ai/docs/skills)), so skills under `home/.agents/skills/` reach both Claude
+Code and OpenCode without a `~/.config/opencode/skills/` link.
 
 Dotbot relinks these on every `just sync`, so edits in the repo are picked up
 once the tool reloads its config (restart opencode / Claude Code). Because they
