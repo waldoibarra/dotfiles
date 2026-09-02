@@ -10,7 +10,9 @@ noted below, which gentle-ai rewrites in place (see [gentle-ai](#gentle-ai)).
 | Tool | Repo path | `$HOME` path |
 | --- | --- | --- |
 | Claude Code | `home/.claude/CLAUDE.md` | `~/.claude/CLAUDE.md` (copied, not symlinked) |
-| Claude Code | `home/.claude/output-styles/bluf.md` | `~/.claude/output-styles/bluf.md` |
+| Claude Code | `home/.claude/output-styles/attention-kind.md` | `~/.claude/output-styles/attention-kind.md` |
+| Claude Code | `home/.claude/output-styles/rundown.md` | `~/.claude/output-styles/rundown.md` |
+| Claude Code | `home/.claude/output-styles/spartan.md` | `~/.claude/output-styles/spartan.md` |
 | Claude Code | `home/.claude/settings.json` | `~/.claude/settings.json` (copied, not symlinked) |
 | Claude Code | `home/.claude/statusline-lib.sh` | `~/.claude/statusline-lib.sh` |
 | Claude Code | `home/.claude/statusline.sh` | `~/.claude/statusline.sh` |
@@ -21,6 +23,53 @@ noted below, which gentle-ai rewrites in place (see [gentle-ai](#gentle-ai)).
 | RTK | `home/.claude/RTK.md` | `~/.claude/RTK.md` |
 | RTK | `home/.config/rtk/config.toml` | `~/Library/Application Support/rtk/config.toml` (macOS), `~/.config/rtk/config.toml` (Linux) |
 | RTK | `home/.config/rtk/filters.toml` | same pattern as `config.toml` |
+
+## Response style
+
+### Layer 1 — Attention Span output styles (Claude Code only)
+
+[Attention Span](https://github.com/alexgreensh/attention-span) is a set of Claude Code
+[output styles](https://code.claude.com/docs/en/output-styles) that change how Claude _talks_, not
+how it codes (each sets `keep-coding-instructions: true`). Three are tracked here, **vendored
+verbatim** from upstream:
+
+| Style | Ambient cost | Best for |
+| --- | --- | --- |
+| `Attention-kind` | ~1,650 tok | Plain English, front-loaded, warm. The flagship. |
+| `Spartan` | ~790 tok | Blunt, arrow points, zero warmth. Heads-down work. |
+| `Rundown` | ~550 tok | TL;DR + ✅/🟡/⬜ checklists. Status updates and standups. |
+
+Only **one** is active at a time. `Attention-kind` is the global default, via
+`"outputStyle": "Attention-kind"` in [`home/.claude/settings.json`](/home/.claude/settings.json).
+
+`/output-style` switches the active style. Picking one **globally** rewrites `~/.claude/settings.json`
+— which is a **copy**, not a symlink (see [gentle-ai](#gentle-ai)), so the next `dots` run clobbers
+it back to the tracked default: the sync script copies the tracked file over it, then re-applies the
+tracked `outputStyle` after `gentle-ai sync` has forced its own. To change the default for real,
+edit the tracked file. Picking one for a **project** writes `.claude/settings.local.json`, which is
+gitignored and takes precedence over the global default; use that for per-repo experiments.
+
+Dotbot links these file by file, not as a directory, because `~/.claude/output-styles/` is shared
+with `gentle-ai` — see [the generated layer](#the-machine-local-generated-layer).
+
+**Upstream drift.** Each file carries its version in an HTML comment. Compare against the
+[releases page](https://github.com/alexgreensh/attention-span/releases):
+
+```bash
+grep -h "attention-span v" home/.claude/output-styles/*.md
+```
+
+Behind? Re-fetch verbatim, e.g.:
+
+```bash
+curl -sfL -o home/.claude/output-styles/spartan.md \
+  https://raw.githubusercontent.com/alexgreensh/attention-span/main/output-styles/spartan.md
+```
+
+**Licensing.** Attention Span is [AGPL-3.0](https://github.com/alexgreensh/attention-span/blob/main/LICENSE).
+These three files are unmodified upstream copies redistributed in a public repo; each retains its
+upstream attribution comment. This repo has no `LICENSE` of its own, so nothing here relicenses
+them.
 
 ## RTK integration
 
@@ -214,9 +263,10 @@ inherit whatever model is selected in OpenCode (GLM at the moment). Per-phase Op
 possible later through `gentle-ai sync --profile` / `--profile-phase`.
 
 The gentle-ai TUI applies model changes by running a **raw** sync, which re-adds the stripped
-marker sections to the `$HOME` copies and restores `outputStyle`. That is harmless (the repo is
-untouched) but temporary noise — run `just update-ca` after any manual TUI or `gentle-ai sync` use
-to restore the stripped layout. Model assignments survive, since they live in `state.json`.
+marker sections to the `$HOME` copies and overwrites `outputStyle` with gentle-ai's own. That is
+harmless (the repo is untouched) but temporary noise — run `just update-ca` after any manual TUI or
+`gentle-ai sync` use to restore the stripped layout and the tracked `outputStyle`. Model assignments
+survive, since they live in `state.json`.
 
 ### Update procedure when gentle-ai changes structure
 

@@ -9,6 +9,12 @@ ignores:
   # Verbatim upstream copy of Google's Shell Style Guide — kept unmodified, so
   # it is exempt from our Markdown style rules (like the vendored dotbot tree).
   - "home/.agents/skills/shell-scripting/references/google-shell-style-guide.md"
+  # Verbatim upstream copies of the Attention Span output styles — kept
+  # unmodified so `diff` against upstream stays a valid drift check and a
+  # re-fetch is a one-line `curl`. They are prompts, not documents: long
+  # single-line paragraphs and `*emphasis*` are deliberate, and reflowing them
+  # would edit the prompt. See /docs/coding-agents.md.
+  - "home/.claude/output-styles/*.md"
 config:
   default: true
   # Italics uses underscores.

@@ -372,15 +372,41 @@ notify_on_gentle_ai_version_change() {
 }
 
 #######################################
-# Drop the output style `gentle-ai sync` forces into Claude Code's settings. It
-# is the one settings key sync writes that the tracked source does not already
-# carry, so removing it keeps the copy equivalent to the repo source.
+# Print the dotfiles repo root, resolved from the entrypoint's location.
+# Globals:
+#   ENTRYPOINT_DIR
+# Outputs:
+#   Writes the repo root to STDOUT, or an error to STDERR when it cannot be found.
+# Returns:
+#   0 on success, 1 when the entrypoint is not inside a git checkout.
+#######################################
+resolve_repo_root() {
+  if ! git -C "$ENTRYPOINT_DIR" rev-parse --show-toplevel 2>/dev/null; then
+    echo "Cannot resolve the dotfiles repo root from $ENTRYPOINT_DIR." >&2
+    return 1
+  fi
+}
+
+#######################################
+# Re-apply the tracked output style to Claude Code's settings. `gentle-ai sync`
+# forces its own `outputStyle` into the $HOME copy; this sets the key back to the
+# value the tracked source carries, or deletes it when the source has none, so
+# the copy stays equivalent to the repo source either way.
 # Globals:
 #   CLAUDE_SETTINGS_FILE
+# Returns:
+#   0 on success, 1 when the repo root cannot be found or jq failed.
 #######################################
-remove_claude_output_style() {
+restore_claude_output_style() {
+  local repo_root
+  repo_root="$(resolve_repo_root)" || return 1
+  local -r tracked_settings_file="$repo_root/home/.claude/settings.json"
+
+  # shellcheck disable=SC2016  # $tracked is a jq variable, not a shell one.
   rewrite_file_with_output "$CLAUDE_SETTINGS_FILE" \
-    jq 'del(.outputStyle)' "$CLAUDE_SETTINGS_FILE"
+    jq --slurpfile tracked "$tracked_settings_file" \
+      'if ($tracked[0] | has("outputStyle")) then .outputStyle = $tracked[0].outputStyle
+        else del(.outputStyle) end' "$CLAUDE_SETTINGS_FILE"
 }
 
 #######################################
@@ -546,8 +572,8 @@ assert_opencode_skills_dir_is_real() {
 #######################################
 # Run `gentle-ai sync` and reduce what it generated to what should stay ambient:
 # harvest the two orchestration sections into a sub-agent, strip every injected
-# section back out, undo the one settings key sync adds, and repair the engram
-# tool names sync bakes into the generated agents.
+# section back out, re-apply the tracked output style sync overrides, and repair
+# the engram tool names sync bakes into the generated agents.
 # Outputs:
 #   Writes progress to STDOUT.
 # Returns:
@@ -560,7 +586,7 @@ sync_gentle_ai_generated_layer() {
   assert_marker_inventories
   build_orchestrator_agent
   strip_ambient_marker_sections
-  remove_claude_output_style
+  restore_claude_output_style
   register_engram_claude_mcp
   repoint_generated_agent_engram_tools
   warn_on_unresolvable_agent_mcp_tools
@@ -574,7 +600,6 @@ sync_gentle_ai_generated_layer() {
 # the generated layer: sync only ever adds marker sections, never prunes them, so
 # every run has to start from the tracked bytes.
 # Globals:
-#   ENTRYPOINT_DIR
 #   GENTLE_AI_MANAGED_CONFIGS
 #   HOME
 #   MANAGED_CONFIG_MODE
@@ -585,11 +610,7 @@ sync_gentle_ai_generated_layer() {
 #######################################
 copy_managed_configs_from_repo() {
   local repo_root
-  if ! repo_root="$(git -C "$ENTRYPOINT_DIR" rev-parse --show-toplevel 2>/dev/null)"; then
-    echo "Cannot resolve the dotfiles repo root from $ENTRYPOINT_DIR;" \
-      "the gentle-ai-managed configs cannot be refreshed." >&2
-    return 1
-  fi
+  repo_root="$(resolve_repo_root)" || return 1
 
   local relative_path source_file target_file
   for relative_path in ${GENTLE_AI_MANAGED_CONFIGS[@]+"${GENTLE_AI_MANAGED_CONFIGS[@]}"}; do
