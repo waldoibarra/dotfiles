@@ -22,7 +22,14 @@ Read for every Zsh process — interactive shells, login shells, and background 
 Because of this, it must stay minimal and side-effect free. Commands that produce output,
 assume a TTY, or modify the prompt do not belong here.
 
-**Currently:** `EDITOR` and `VISUAL`.
+It is also the **only** file read by non-login, non-interactive shells — SSH command execution
+(Moshi/mosh pane attach, scp, remote scripts) — so the PATH setup (Homebrew shellenv, mise shims,
+`~/.local/bin`) lives here too. `.zprofile` deliberately re-asserts the same setup: macOS
+`path_helper` (`/etc/zprofile`) runs between the two for login shells and reorders PATH, demoting
+Homebrew below the system paths. The resulting duplicate PATH entries are by design — see the
+`gentle-ai doctor` note in [`docs/coding-agents.md`](/docs/coding-agents.md).
+
+**Currently:** `EDITOR`/`VISUAL`, Homebrew shellenv, mise shims, `~/.local/bin`.
 
 ### [`.zprofile`](/home/.zprofile)
 
