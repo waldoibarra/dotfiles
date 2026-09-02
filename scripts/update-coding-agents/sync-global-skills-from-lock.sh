@@ -1,7 +1,7 @@
 # Syncs global skills from ~/.agents/.skill-lock.json.
 #
 # Install a global skill like this:
-# npx skills add https://github.com/vercel-labs/skills \
+# npx -y skills add https://github.com/vercel-labs/skills \
 #   -s find-skills -a opencode -a claude-code -g -y
 
 #######################################
