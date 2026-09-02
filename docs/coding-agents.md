@@ -26,6 +26,8 @@ noted below, which gentle-ai rewrites in place (see [gentle-ai](#gentle-ai)).
 
 ## Response style
 
+Two layers do the same answer-first job at different levels, on purpose.
+
 ### Layer 1 — Attention Span output styles (Claude Code only)
 
 [Attention Span](https://github.com/alexgreensh/attention-span) is a set of Claude Code
@@ -70,6 +72,36 @@ curl -sfL -o home/.claude/output-styles/spartan.md \
 These three files are unmodified upstream copies redistributed in a public repo; each retains its
 upstream attribution comment. This repo has no `LICENSE` of its own, so nothing here relicenses
 them.
+
+### Layer 2 — `get-to-the-point` (every agent, every sub-agent)
+
+The `## Response Style` section of
+[`home/.config/opencode/AGENTS.md`](/home/.config/opencode/AGENTS.md), fenced by
+`<!-- get-to-the-point:start -->` / `<!-- get-to-the-point:end -->`.
+
+Adapted from the `get-to-the-point` skill in
+[Make AI Get To The Point](https://learnaiwithmariah.com/guides/make-ai-get-to-the-point/) by Mariah
+Brunner. That guide publishes the skill as copy-paste text only — **no repo, no release, no
+[skills.sh](https://skills.sh) entry**, so there is no upstream to track. The vendored copy is
+edited to this repo's conventions and is now the only source.
+
+It deliberately overlaps layer 1, and earns its place twice:
+
+- **Portability.** Output styles are a Claude Code feature. OpenCode reads this same `AGENTS.md`
+  file directly, so one edit covers both hosts. The markers exist so the block can be projected
+  verbatim to any other agent (Pi, Codex) with
+  `sed -n '/get-to-the-point:start/,/get-to-the-point:end/p'`.
+- **Sub-agent reach.** Output styles apply to the **main conversation only** — sub-agents run their
+  own prompt. `AGENTS.md` is ambient everywhere, so the answer-first rule survives delegation.
+
+It also absorbs the
+[Simplified Technical English](https://www.asd-ste100.org/about_STE.html) discipline the guide
+builds on (one meaning per word, no synonym swapping, prefer the shorter common word), so that is
+not a separate thing to configure.
+
+Two persona lines were removed from `AGENTS.md` when this landed, because this section supersedes
+them: _"Prefer plain, direct statements… no fluff, no filler"_ (duplicated) and _"Use CAPS for
+emphasis"_ (conflicted with the styles' `**bold**` and `→` markers).
 
 ## RTK integration
 
