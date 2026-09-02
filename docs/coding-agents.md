@@ -10,6 +10,7 @@ noted below, which gentle-ai rewrites in place (see [gentle-ai](#gentle-ai)).
 | Tool | Repo path | `$HOME` path |
 | --- | --- | --- |
 | Claude Code | `home/.claude/CLAUDE.md` | `~/.claude/CLAUDE.md` (copied, not symlinked) |
+| Claude Code | `home/.claude/output-styles/bluf.md` | `~/.claude/output-styles/bluf.md` |
 | Claude Code | `home/.claude/settings.json` | `~/.claude/settings.json` (copied, not symlinked) |
 | Claude Code | `home/.claude/statusline-lib.sh` | `~/.claude/statusline-lib.sh` |
 | Claude Code | `home/.claude/statusline.sh` | `~/.claude/statusline.sh` |
@@ -119,7 +120,7 @@ installed `gentle-ai` version on every sync, so there is nothing to commit and n
 
 | Path | Contents |
 | --- | --- |
-| `~/.claude/{agents,commands,skills,output-styles,mcp}/` | `sdd-*`, `review-*`, `jd-*` agents, slash commands, skills, the engram MCP entry |
+| `~/.claude/{agents,commands,skills,output-styles,mcp}/` | `sdd-*`, `review-*`, `jd-*` agents, slash commands, skills, the engram MCP entry. `output-styles/` is shared, not exclusive — Dotbot links tracked styles into it file by file |
 | `~/.claude.json` `mcpServers.engram` | Registered by the sync script: gentle-ai only writes `~/.claude/mcp/engram.json`, a location Claude Code never reads, so engram would otherwise exist for OpenCode only |
 | `~/.claude/agents/gentle-orchestrator.md` | Built by the sync script, see below |
 | `~/.claude.json` | Merged, not replaced |
@@ -407,7 +408,11 @@ Dotbot uses glob patterns in `install.conf.yaml` to symlink every file inside ea
   path: home/.claude/*
   exclude:
     - home/.claude/CLAUDE.md
+    - home/.claude/output-styles
     - home/.claude/settings.json
+~/.claude/output-styles/:
+  glob: true
+  path: home/.claude/output-styles/*
 ~/.config/opencode/:
   glob: true
   path: home/.config/opencode/*
@@ -423,3 +428,10 @@ Dotbot uses glob patterns in `install.conf.yaml` to symlink every file inside ea
 Any new file added to `home/.claude/` or `home/.config/opencode/` will be automatically symlinked
 on the next `just sync`. The excluded entries are the gentle-ai-managed ones — they are copied by
 the sync script instead, see [gentle-ai](#gentle-ai).
+
+`home/.claude/output-styles` is the exception to that pattern: it is excluded from the parent glob
+and re-linked one level deeper, so `$HOME` keeps a **real directory** that Dotbot and
+`gentle-ai sync` can both write into. A directory symlink there would make gentle-ai write its
+generated styles straight into this repo — the same trap `~/.config/opencode/skills` fell into.
+`~/.claude/skills` and `~/.agents/skills` use the same child-level shape, sourced from the shared
+`home/.agents/skills/` tree.

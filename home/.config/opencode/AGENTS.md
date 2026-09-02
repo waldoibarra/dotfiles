@@ -2,15 +2,6 @@
 
 ## Rules
 
-### Response format
-
-- Always start every single response by addressing me by my name.
-- Close with a **TL;DR** as the last thing in the response when it is long or spans multiple steps:
-  lead that section with the answer and any decision I must make, then flag which sections above are
-  worth reading in full. Placing it last keeps it visible the moment you finish, so I never scroll to
-  find it. Skip it for short, single-step answers.
-- Be concise: less is more.
-
 ### Rigor and truthfulness
 
 - Verify technical claims before stating them, and cite sources or experts when relevant. If
