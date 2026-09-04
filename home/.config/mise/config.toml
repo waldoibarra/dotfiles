@@ -2,6 +2,7 @@
 aws-cli = { version = "latest", symlink_bins = "true" }
 bun = "latest"
 "cargo:eza" = "latest"
+codex = "latest"
 delta = "latest"
 gh = "latest"
 herdr = "latest"
