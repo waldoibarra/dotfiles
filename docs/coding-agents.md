@@ -1,9 +1,9 @@
 # Coding Agents
 
 This is a dotfiles repo — its primary purpose is managing configuration files for the current
-machine. The global configuration files for Claude Code and OpenCode are tracked here and symlinked
-into `$HOME` via DotBot, the same way every other dotfile is — except for the four **copied** files
-noted below, which gentle-ai rewrites in place (see [gentle-ai](#gentle-ai)).
+machine. The global configuration files for Claude Code, Codex, and OpenCode are tracked here
+and symlinked into `$HOME` via DotBot, the same way every other dotfile is — except for the four
+**copied** files noted below, which gentle-ai rewrites in place (see [gentle-ai](#gentle-ai)).
 
 ## Tracked files
 
@@ -17,6 +17,7 @@ noted below, which gentle-ai rewrites in place (see [gentle-ai](#gentle-ai)).
 | Claude Code | `home/.claude/statusline-lib.sh` | `~/.claude/statusline-lib.sh` |
 | Claude Code | `home/.claude/statusline.sh` | `~/.claude/statusline.sh` |
 | Claude Code | `home/.claude/subagent-statusline.sh` | `~/.claude/subagent-statusline.sh` |
+| Codex | `home/.config/opencode/AGENTS.md` | `~/.codex/AGENTS.md` |
 | OpenCode | `home/.config/opencode/AGENTS.md` | `~/.config/opencode/AGENTS.md` (copied, not symlinked) |
 | OpenCode | `home/.config/opencode/opencode.json` | `~/.config/opencode/opencode.json` (copied, not symlinked) |
 | OpenCode | `home/.config/opencode/tui.json` | `~/.config/opencode/tui.json` |
@@ -438,6 +439,15 @@ This is the [pattern Claude Code recommends](https://code.claude.com/docs/en/mem
 for repos that keep instructions in `AGENTS.md`. Edit `AGENTS.md` only — `CLAUDE.md` auto-imports
 it, so there is nothing to mirror.
 
+Codex reads its global instructions from `~/.codex/AGENTS.md`, which Dotbot symlinks to that same
+source. It needs no import shim — `AGENTS.md` is Codex's own filename. Codex resolves
+`~/.codex/AGENTS.override.md` ahead of it, so leave that path empty.
+
+gentle-ai does not manage Codex on this machine — `gentle-ai doctor` reports `claude-code,
+opencode` — so unlike the four copied files this one stays a plain symlink. If Codex is ever added
+to `gentle-ai sync --agents`, check whether it rewrites `~/.codex/AGENTS.md` first: sync aborts on
+symlinks, which is why the other four are copied.
+
 ## Local project instructions
 
 Like any other repo, this dotfiles repo has its own local agent instruction files:
@@ -473,6 +483,13 @@ Claude Code solves this with `claudeMdExcludes` in the project-level
 
 This prevents the global `CLAUDE.md` source file from being injected as a
 project-level instruction when working in this repo.
+
+### Codex
+
+Codex concatenates `AGENTS.md` from the project root down to the working directory, so it reads the
+tracked global source only when the working directory is inside `home/.config/opencode/`. At the
+repo root it sees [`AGENTS.md`](/AGENTS.md) and nothing else. Codex has no `claudeMdExcludes`
+equivalent either, so that one case stays double-injected.
 
 ### OpenCode
 
