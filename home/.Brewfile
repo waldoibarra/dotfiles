@@ -54,8 +54,6 @@ brew "gentleman-programming/tap/gentle-ai", trusted: true
 brew "gentleman-programming/tap/gga", trusted: true
 # Portable daemon + CLI that bridges AI coding agents to the Moshi mobile app
 brew "rjyo/moshi/moshi-hook"
-# Menu bar usage monitor for Codex and Claude
-cask "codexbar"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # App to build and share containerised applications and microservices
