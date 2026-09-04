@@ -83,7 +83,7 @@ lint-md:
 # Use editorconfig-checker to lint all files against .editorconfig rules.
 [group("Linting")]
 lint-ec:
-  ec
+  editorconfig-checker
 
 # Use yamlfmt to lint YAML files.
 [group("Linting")]

@@ -145,6 +145,13 @@ npm-backed tools whose package ships postinstall/build scripts (e.g.
 `allow_builds = true`. mise's `npm:` backend defaults to `--ignore-scripts=true`;
 without it the postinstall is skipped and the tool installs non-functional.
 
+`editorconfig-checker` is declared with an explicit `github:` backend. mise's default `aqua:`
+backend resolves it through the aqua registry, whose asset template still expects the pre-4.0
+`ec-<os>-<arch>.tar.gz` names; v4.0.0 renamed its release assets to
+`editorconfig-checker-<os>-<arch>.tar.gz`, so `mise up` fails with `no asset found`. The `github:`
+backend reads the release assets directly and needs no registry entry. v4 also renamed the binary
+from `ec` to `editorconfig-checker`, which is what `just lint-ec` invokes.
+
 ## RTK
 
 RTK (Rust Token Killer) is a transparent CLI proxy that filters and compresses tool output before it
