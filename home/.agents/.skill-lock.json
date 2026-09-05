@@ -126,7 +126,7 @@
       "skillPath": "skills/agent-skills-creator/SKILL.md",
       "skillFolderHash": "a78bbb916aafd4ffd0df8e98f9d8501edb2b538f",
       "installedAt": "2026-09-04T04:50:00.662Z",
-      "updatedAt": "2026-09-05T01:10:36.781Z"
+      "updatedAt": "2026-09-05T04:41:06.363Z"
     },
     "agents-md": {
       "source": "mblode/agent-skills",
@@ -135,7 +135,7 @@
       "skillPath": "skills/agents-md/SKILL.md",
       "skillFolderHash": "900eca59f3dac40a52b24e0f188c4de98bd565ef",
       "installedAt": "2026-09-04T04:50:00.665Z",
-      "updatedAt": "2026-09-05T01:10:39.378Z"
+      "updatedAt": "2026-09-05T04:41:09.506Z"
     },
     "autoship": {
       "source": "mblode/agent-skills",
@@ -144,7 +144,7 @@
       "skillPath": "skills/autoship/SKILL.md",
       "skillFolderHash": "4c7bfbae3f3bdc0b25cf4179cc287cbadf5f4ed9",
       "installedAt": "2026-09-04T04:50:00.665Z",
-      "updatedAt": "2026-09-05T01:10:41.318Z"
+      "updatedAt": "2026-09-05T04:41:12.239Z"
     },
     "ax-audit": {
       "source": "mblode/agent-skills",
@@ -153,7 +153,7 @@
       "skillPath": "skills/ax-audit/SKILL.md",
       "skillFolderHash": "5b00298547c1aed8dd1967b642c156828cb136de",
       "installedAt": "2026-09-04T04:50:00.666Z",
-      "updatedAt": "2026-09-05T01:10:43.489Z"
+      "updatedAt": "2026-09-05T04:41:14.976Z"
     },
     "codebase-architecture": {
       "source": "mblode/agent-skills",
@@ -162,7 +162,7 @@
       "skillPath": "skills/codebase-architecture/SKILL.md",
       "skillFolderHash": "6a57794197f87fc88631cb143c8bd20389bff9c3",
       "installedAt": "2026-09-04T04:50:00.668Z",
-      "updatedAt": "2026-09-05T01:10:45.690Z"
+      "updatedAt": "2026-09-05T04:41:17.326Z"
     },
     "copywriting": {
       "source": "mblode/agent-skills",
@@ -171,7 +171,7 @@
       "skillPath": "skills/copywriting/SKILL.md",
       "skillFolderHash": "86c325bd2ebc4753343c3e23f7227f34aba4291f",
       "installedAt": "2026-09-04T04:50:00.669Z",
-      "updatedAt": "2026-09-05T01:10:48.612Z"
+      "updatedAt": "2026-09-05T04:41:19.607Z"
     },
     "docs-writing": {
       "source": "mblode/agent-skills",
@@ -180,7 +180,7 @@
       "skillPath": "skills/docs-writing/SKILL.md",
       "skillFolderHash": "063cc8598359fa86dc6beea7be32efe2c0384529",
       "installedAt": "2026-09-04T04:50:00.669Z",
-      "updatedAt": "2026-09-05T01:10:51.131Z"
+      "updatedAt": "2026-09-05T04:41:21.902Z"
     },
     "dx-audit": {
       "source": "mblode/agent-skills",
@@ -189,7 +189,7 @@
       "skillPath": "skills/dx-audit/SKILL.md",
       "skillFolderHash": "c0f44cc292560a1ac1e2237eabbb905c386a3afd",
       "installedAt": "2026-09-04T04:50:00.670Z",
-      "updatedAt": "2026-09-05T01:10:53.490Z"
+      "updatedAt": "2026-09-05T04:41:24.201Z"
     },
     "eli5": {
       "source": "mblode/agent-skills",
@@ -198,7 +198,7 @@
       "skillPath": "skills/eli5/SKILL.md",
       "skillFolderHash": "df050deea24be1686b258085b84923cb46659b85",
       "installedAt": "2026-09-04T04:50:00.671Z",
-      "updatedAt": "2026-09-05T01:10:55.521Z"
+      "updatedAt": "2026-09-05T04:41:26.555Z"
     },
     "multi-tenant-architecture": {
       "source": "mblode/agent-skills",
@@ -207,7 +207,7 @@
       "skillPath": "skills/multi-tenant-architecture/SKILL.md",
       "skillFolderHash": "7a3324b9e9d0e61675d1469e811f1e4931324957",
       "installedAt": "2026-09-04T04:50:00.671Z",
-      "updatedAt": "2026-09-05T01:10:57.632Z"
+      "updatedAt": "2026-09-05T04:41:29.009Z"
     },
     "optimise-seo": {
       "source": "mblode/agent-skills",
@@ -216,7 +216,7 @@
       "skillPath": "skills/optimise-seo/SKILL.md",
       "skillFolderHash": "ae722422c65c06cd0f9a5ca4065b01645f234545",
       "installedAt": "2026-09-04T04:50:00.672Z",
-      "updatedAt": "2026-09-05T01:10:59.759Z"
+      "updatedAt": "2026-09-05T04:41:31.584Z"
     },
     "planning": {
       "source": "mblode/agent-skills",
@@ -225,7 +225,7 @@
       "skillPath": "skills/planning/SKILL.md",
       "skillFolderHash": "363b0bab771d6a1dddd5f439a4f0eb9be0dcfbba",
       "installedAt": "2026-09-04T04:50:00.672Z",
-      "updatedAt": "2026-09-05T01:11:02.132Z"
+      "updatedAt": "2026-09-05T04:41:33.927Z"
     },
     "pr-babysitter": {
       "source": "mblode/agent-skills",
@@ -234,7 +234,7 @@
       "skillPath": "skills/pr-babysitter/SKILL.md",
       "skillFolderHash": "189bf5cfb42501997c5d01e424c65597507c8dbb",
       "installedAt": "2026-09-04T04:50:00.673Z",
-      "updatedAt": "2026-09-05T01:11:04.978Z"
+      "updatedAt": "2026-09-05T04:41:36.498Z"
     },
     "pr-creator": {
       "source": "mblode/agent-skills",
@@ -243,7 +243,7 @@
       "skillPath": "skills/pr-creator/SKILL.md",
       "skillFolderHash": "1c4ba074899ed3541f13cf1b06a019177657ed12",
       "installedAt": "2026-09-04T04:50:00.674Z",
-      "updatedAt": "2026-09-05T01:11:07.311Z"
+      "updatedAt": "2026-09-05T04:41:39.158Z"
     },
     "pr-reviewer": {
       "source": "mblode/agent-skills",
@@ -252,7 +252,7 @@
       "skillPath": "skills/pr-reviewer/SKILL.md",
       "skillFolderHash": "33c362b032aeec9ec6bd3955768ccc7a4e7ecc32",
       "installedAt": "2026-09-04T04:50:00.674Z",
-      "updatedAt": "2026-09-05T01:11:09.823Z"
+      "updatedAt": "2026-09-05T04:41:41.524Z"
     },
     "presentation-creator": {
       "source": "mblode/agent-skills",
@@ -261,7 +261,7 @@
       "skillPath": "skills/presentation-creator/SKILL.md",
       "skillFolderHash": "680fd5c31a42db87359b3f933b4cc6b2e40471ff",
       "installedAt": "2026-09-04T04:50:00.675Z",
-      "updatedAt": "2026-09-05T01:11:11.865Z"
+      "updatedAt": "2026-09-05T04:41:43.963Z"
     },
     "product-design": {
       "source": "mblode/agent-skills",
@@ -270,7 +270,7 @@
       "skillPath": "skills/product-design/SKILL.md",
       "skillFolderHash": "76271d996c971379df2b476581497545878949a0",
       "installedAt": "2026-09-04T04:50:00.675Z",
-      "updatedAt": "2026-09-05T01:11:13.772Z"
+      "updatedAt": "2026-09-05T04:41:46.231Z"
     },
     "readme-creator": {
       "source": "mblode/agent-skills",
@@ -279,7 +279,7 @@
       "skillPath": "skills/readme-creator/SKILL.md",
       "skillFolderHash": "9160c48491b33a86f04d8bc4c5d42563a73d1584",
       "installedAt": "2026-09-04T04:50:00.676Z",
-      "updatedAt": "2026-09-05T01:11:16.721Z"
+      "updatedAt": "2026-09-05T04:41:50.731Z"
     },
     "save-md": {
       "source": "mblode/agent-skills",
@@ -288,7 +288,7 @@
       "skillPath": "skills/save-md/SKILL.md",
       "skillFolderHash": "1492f43de2a15b51304adca6f44e0f79bd109775",
       "installedAt": "2026-09-04T04:50:00.676Z",
-      "updatedAt": "2026-09-05T01:11:21.459Z"
+      "updatedAt": "2026-09-05T04:41:53.572Z"
     },
     "scaffold-cli": {
       "source": "mblode/agent-skills",
@@ -297,7 +297,7 @@
       "skillPath": "skills/scaffold-cli/SKILL.md",
       "skillFolderHash": "dbec21932dfa3ddc3b22943ee4fef17317338b79",
       "installedAt": "2026-09-04T04:50:00.677Z",
-      "updatedAt": "2026-09-05T01:11:23.563Z"
+      "updatedAt": "2026-09-05T04:41:56.008Z"
     },
     "scaffold-nextjs": {
       "source": "mblode/agent-skills",
@@ -306,7 +306,7 @@
       "skillPath": "skills/scaffold-nextjs/SKILL.md",
       "skillFolderHash": "e1f26e1620e03483d1a9a78bf9bd3efe64e3d0c1",
       "installedAt": "2026-09-04T04:50:00.677Z",
-      "updatedAt": "2026-09-05T01:11:25.628Z"
+      "updatedAt": "2026-09-05T04:41:58.404Z"
     },
     "seo-program": {
       "source": "mblode/agent-skills",
@@ -315,7 +315,7 @@
       "skillPath": "skills/seo-program/SKILL.md",
       "skillFolderHash": "7525191444aa943a3bb2ff188e4d6fc0c2107d7f",
       "installedAt": "2026-09-04T04:50:00.678Z",
-      "updatedAt": "2026-09-05T01:11:27.847Z"
+      "updatedAt": "2026-09-05T04:42:00.789Z"
     },
     "tidy": {
       "source": "mblode/agent-skills",
@@ -324,7 +324,7 @@
       "skillPath": "skills/tidy/SKILL.md",
       "skillFolderHash": "3864141828e85369eacdc44f922124174f90e299",
       "installedAt": "2026-09-04T04:50:00.679Z",
-      "updatedAt": "2026-09-05T01:11:30.178Z"
+      "updatedAt": "2026-09-05T04:42:03.201Z"
     },
     "typography-audit": {
       "source": "mblode/agent-skills",
@@ -333,7 +333,7 @@
       "skillPath": "skills/typography-audit/SKILL.md",
       "skillFolderHash": "b98c390fb812502383cbd37e7b7f40649ffbf27f",
       "installedAt": "2026-09-04T04:50:00.679Z",
-      "updatedAt": "2026-09-05T01:11:32.737Z"
+      "updatedAt": "2026-09-05T04:42:05.699Z"
     },
     "ui-animation": {
       "source": "mblode/agent-skills",
@@ -342,7 +342,7 @@
       "skillPath": "skills/ui-animation/SKILL.md",
       "skillFolderHash": "a6de00b713d5149f96c16c1ec6eb2bcd0b605bc8",
       "installedAt": "2026-09-04T04:50:00.680Z",
-      "updatedAt": "2026-09-05T01:11:35.272Z"
+      "updatedAt": "2026-09-05T04:42:08.130Z"
     },
     "ui-design": {
       "source": "mblode/agent-skills",
@@ -351,7 +351,7 @@
       "skillPath": "skills/ui-design/SKILL.md",
       "skillFolderHash": "06f4490490ea6c1b97e55358244dd5a9f9f5ce3d",
       "installedAt": "2026-09-04T04:50:00.680Z",
-      "updatedAt": "2026-09-05T01:11:38.144Z"
+      "updatedAt": "2026-09-05T04:42:10.575Z"
     },
     "grill-with-docs": {
       "source": "mattpocock/skills",
@@ -361,7 +361,7 @@
       "skillFolderHash": "eedaf2562c83155115e9c649fa3ecaac2e10e81d",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-09-05T04:14:31.791Z",
-      "updatedAt": "2026-09-05T04:14:31.791Z"
+      "updatedAt": "2026-09-05T04:42:12.605Z"
     }
   },
   "lastSelectedAgents": [
