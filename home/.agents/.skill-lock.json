@@ -268,9 +268,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/product-design/SKILL.md",
-      "skillFolderHash": "76271d996c971379df2b476581497545878949a0",
+      "skillFolderHash": "abd94f3c42e92a108fe56c43291d9f8a01cd3172",
       "installedAt": "2026-09-04T04:50:00.675Z",
-      "updatedAt": "2026-09-05T04:41:46.231Z"
+      "updatedAt": "2026-09-05T14:25:15.514Z"
     },
     "readme-creator": {
       "source": "mblode/agent-skills",
@@ -349,9 +349,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/ui-design/SKILL.md",
-      "skillFolderHash": "06f4490490ea6c1b97e55358244dd5a9f9f5ce3d",
+      "skillFolderHash": "7d2e178aee6c3140a98dd27053c15a941b6f0ba0",
       "installedAt": "2026-09-04T04:50:00.680Z",
-      "updatedAt": "2026-09-05T04:42:10.575Z"
+      "updatedAt": "2026-09-05T14:25:17.749Z"
     },
     "grill-with-docs": {
       "source": "mattpocock/skills",
