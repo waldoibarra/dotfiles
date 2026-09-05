@@ -371,7 +371,7 @@
       "skillFolderHash": "388c9822641805ca2dcd5038e68a1d5282437ee5",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-09-05T05:06:06.463Z",
-      "updatedAt": "2026-09-05T05:06:06.463Z"
+      "updatedAt": "2026-09-05T05:21:02.665Z"
     },
     "grilling": {
       "source": "mattpocock/skills",
@@ -381,7 +381,7 @@
       "skillFolderHash": "f0732035b8b1b60ae39454e4191caef32fa91903",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-09-05T05:06:06.465Z",
-      "updatedAt": "2026-09-05T05:06:06.465Z"
+      "updatedAt": "2026-09-05T05:21:04.428Z"
     },
     "grill-me": {
       "source": "mattpocock/skills",
@@ -391,7 +391,7 @@
       "skillFolderHash": "3df14e2d3a89459bf300614be9247e3ce74798f8",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-09-05T05:19:11.199Z",
-      "updatedAt": "2026-09-05T05:19:11.199Z"
+      "updatedAt": "2026-09-05T05:21:06.178Z"
     }
   },
   "lastSelectedAgents": [
