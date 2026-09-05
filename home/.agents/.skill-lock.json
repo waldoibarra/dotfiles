@@ -164,15 +164,6 @@
       "installedAt": "2026-09-04T04:50:00.668Z",
       "updatedAt": "2026-09-05T04:41:17.326Z"
     },
-    "copywriting": {
-      "source": "mblode/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mblode/agent-skills.git",
-      "skillPath": "skills/copywriting/SKILL.md",
-      "skillFolderHash": "86c325bd2ebc4753343c3e23f7227f34aba4291f",
-      "installedAt": "2026-09-04T04:50:00.669Z",
-      "updatedAt": "2026-09-05T04:41:19.607Z"
-    },
     "docs-writing": {
       "source": "mblode/agent-skills",
       "sourceType": "github",
