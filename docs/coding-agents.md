@@ -225,7 +225,8 @@ global memory files. The sync script asserts this exact inventory, then strips m
 | `~/.claude/CLAUDE.md` | `persona` | stripped | Conflicts with the tracked persona in `AGENTS.md` |
 | `~/.claude/CLAUDE.md` | `engram-protocol` | stripped | Already reaches Claude Code through the `@`-import of `AGENTS.md` |
 | `~/.claude/CLAUDE.md` | `sdd-orchestrator` | stripped | Moved into the `gentle-orchestrator` agent, so it arrives as that agent's prompt instead of as global memory |
-| `~/.claude/CLAUDE.md` | `agent-routing` | stripped | Same |
+| `~/.claude/CLAUDE.md` | `sdd-model-assignments` | stripped | Nested inside `sdd-orchestrator` (gentle-ai 2.6+), so it rides along with it into the agent prompt and out of the file |
+| `~/.claude/CLAUDE.md` | `agent-routing` | stripped | Same as `sdd-orchestrator` |
 | `~/.config/opencode/AGENTS.md` | `persona` | stripped | Conflicts with the tracked persona directly above it |
 | `~/.config/opencode/AGENTS.md` | `engram-protocol` | **kept** | The one section that has to be ambient: it governs when to write memory |
 

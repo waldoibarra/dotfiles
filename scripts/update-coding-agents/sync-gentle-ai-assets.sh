@@ -30,7 +30,12 @@ readonly GENTLE_AI_MANAGED_CONFIGS=(
 # Marker sections `gentle-ai sync` is expected to write into each memory file.
 # The assertion below fails the sync when this stops matching reality, because
 # every step after it (extract, strip) is written against exactly this set.
-readonly CLAUDE_MEMORY_MARKERS=(persona engram-protocol sdd-orchestrator agent-routing)
+# `sdd-model-assignments` is nested inside `sdd-orchestrator` (gentle-ai 2.6+),
+# so it reaches the orchestrator agent through that extraction and is removed
+# along with it when the outer section is stripped.
+readonly CLAUDE_MEMORY_MARKERS=(
+  persona engram-protocol sdd-orchestrator sdd-model-assignments agent-routing
+)
 readonly OPENCODE_MEMORY_MARKERS=(persona engram-protocol)
 
 # Marker sections stripped back out after the orchestrator agent is built.
