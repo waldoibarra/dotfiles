@@ -124,9 +124,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/agent-skills-creator/SKILL.md",
-      "skillFolderHash": "a78bbb916aafd4ffd0df8e98f9d8501edb2b538f",
+      "skillFolderHash": "b0f3605b56535f2bfc30dd557a9c50ae52f6b80b",
       "installedAt": "2026-09-04T04:50:00.662Z",
-      "updatedAt": "2026-09-05T04:41:06.363Z"
+      "updatedAt": "2026-09-09T00:18:40.476Z"
     },
     "agents-md": {
       "source": "mblode/agent-skills",
@@ -169,9 +169,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/docs-writing/SKILL.md",
-      "skillFolderHash": "063cc8598359fa86dc6beea7be32efe2c0384529",
+      "skillFolderHash": "4410e012ded12b83cc9bf44b0862debd3f85fb03",
       "installedAt": "2026-09-04T04:50:00.669Z",
-      "updatedAt": "2026-09-05T04:41:21.902Z"
+      "updatedAt": "2026-09-09T00:18:42.959Z"
     },
     "dx-audit": {
       "source": "mblode/agent-skills",
@@ -196,18 +196,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/multi-tenant-architecture/SKILL.md",
-      "skillFolderHash": "7a3324b9e9d0e61675d1469e811f1e4931324957",
+      "skillFolderHash": "cd006817e0326d06a75d9e3b9b96786c76ca3173",
       "installedAt": "2026-09-04T04:50:00.671Z",
-      "updatedAt": "2026-09-05T04:41:29.009Z"
-    },
-    "optimise-seo": {
-      "source": "mblode/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mblode/agent-skills.git",
-      "skillPath": "skills/optimise-seo/SKILL.md",
-      "skillFolderHash": "ae722422c65c06cd0f9a5ca4065b01645f234545",
-      "installedAt": "2026-09-04T04:50:00.672Z",
-      "updatedAt": "2026-09-05T04:41:31.584Z"
+      "updatedAt": "2026-09-09T00:18:44.913Z"
     },
     "planning": {
       "source": "mblode/agent-skills",
@@ -241,9 +232,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/pr-reviewer/SKILL.md",
-      "skillFolderHash": "33c362b032aeec9ec6bd3955768ccc7a4e7ecc32",
+      "skillFolderHash": "081005f83a86367edd2bcc4e7635f0f76b7123cd",
       "installedAt": "2026-09-04T04:50:00.674Z",
-      "updatedAt": "2026-09-05T04:41:41.524Z"
+      "updatedAt": "2026-09-09T00:18:47.879Z"
     },
     "presentation-creator": {
       "source": "mblode/agent-skills",
@@ -295,18 +286,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/scaffold-nextjs/SKILL.md",
-      "skillFolderHash": "e1f26e1620e03483d1a9a78bf9bd3efe64e3d0c1",
+      "skillFolderHash": "e371af9aa4fd0f1d14228f68a843e6b62e4cf304",
       "installedAt": "2026-09-04T04:50:00.677Z",
-      "updatedAt": "2026-09-05T04:41:58.404Z"
-    },
-    "seo-program": {
-      "source": "mblode/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mblode/agent-skills.git",
-      "skillPath": "skills/seo-program/SKILL.md",
-      "skillFolderHash": "7525191444aa943a3bb2ff188e4d6fc0c2107d7f",
-      "installedAt": "2026-09-04T04:50:00.678Z",
-      "updatedAt": "2026-09-05T04:42:00.789Z"
+      "updatedAt": "2026-09-09T00:18:50.069Z"
     },
     "tidy": {
       "source": "mblode/agent-skills",
@@ -340,9 +322,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/ui-design/SKILL.md",
-      "skillFolderHash": "7d2e178aee6c3140a98dd27053c15a941b6f0ba0",
+      "skillFolderHash": "e2a3b3301f45431b20e29bcb837a2f3e78fdc480",
       "installedAt": "2026-09-04T04:50:00.680Z",
-      "updatedAt": "2026-09-05T14:25:17.749Z"
+      "updatedAt": "2026-09-09T00:18:52.488Z"
     },
     "grill-with-docs": {
       "source": "mattpocock/skills",
