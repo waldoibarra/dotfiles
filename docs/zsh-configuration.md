@@ -39,6 +39,17 @@ setup that is expensive or only needs to happen once: `PATH` modifications, tool
 
 **Currently:** Homebrew, mise shims, AWS profile, Ollama config.
 
+#### Known issue: Docker Desktop PATH reinsertion
+
+Docker Desktop 4.89/4.90 can reinsert a `~/.docker/bin` PATH block in `.zprofile`
+even when CLI installation uses **System** (`/usr/local/bin`). The block is unnecessary
+for this verified System setup. Removing it is cleanup, not prevention.
+
+Track [#662](https://github.com/docker/desktop-feedback/issues/662) for the exact
+`.zprofile` reinsertion case and [#647](https://github.com/docker/desktop-feedback/issues/647)
+for the System-mode report. As of 2026-09-11, no supported opt-out or fix was found.
+Recheck these upstream issues before choosing a future workaround.
+
 ### [`.zshrc`](/home/.zshrc)
 
 Read for every interactive shell. This is where the user-facing shell experience lives:
