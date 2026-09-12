@@ -124,9 +124,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/agent-skills-creator/SKILL.md",
-      "skillFolderHash": "b0f3605b56535f2bfc30dd557a9c50ae52f6b80b",
+      "skillFolderHash": "0cfa3ca3b78e4afb1c99b9f138cd13c4e4a0b874",
       "installedAt": "2026-09-04T04:50:00.662Z",
-      "updatedAt": "2026-09-09T00:18:40.476Z"
+      "updatedAt": "2026-09-12T22:10:50.015Z"
     },
     "agents-md": {
       "source": "mblode/agent-skills",
@@ -313,9 +313,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/ui-animation/SKILL.md",
-      "skillFolderHash": "a6de00b713d5149f96c16c1ec6eb2bcd0b605bc8",
+      "skillFolderHash": "a6299181de0119813f8c808ee538ba43da05e737",
       "installedAt": "2026-09-04T04:50:00.680Z",
-      "updatedAt": "2026-09-05T04:42:08.130Z"
+      "updatedAt": "2026-09-12T22:10:51.945Z"
     },
     "ui-design": {
       "source": "mblode/agent-skills",
