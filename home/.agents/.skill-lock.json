@@ -370,5 +370,8 @@
   "lastSelectedAgents": [
     "opencode",
     "claude-code"
-  ]
+  ],
+  "dismissed": {
+    "findSkillsPrompt": true
+  }
 }
