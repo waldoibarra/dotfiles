@@ -365,6 +365,15 @@
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-09-05T05:19:11.199Z",
       "updatedAt": "2026-09-05T05:21:06.178Z"
+    },
+    "prd": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/github/awesome-copilot.git",
+      "skillPath": "skills/prd/SKILL.md",
+      "skillFolderHash": "b4af69e637f8f2bf620c55273680669ccca3e73c",
+      "installedAt": "2026-09-09T20:43:06.611Z",
+      "updatedAt": "2026-09-09T20:43:06.611Z"
     }
   },
   "lastSelectedAgents": [
