@@ -53,6 +53,8 @@
     ~/.aws/config: home/.aws/config
     ~/.codex/AGENTS.md: home/.config/opencode/AGENTS.md
     ~/.config/git/ignore: home/.config/git/ignore
+    ~/.omp/agent/AGENTS.md: ~/.config/opencode/AGENTS.md
+    ~/.omp/agent/APPEND_SYSTEM.md: ~/AGENTS.md
     ~/.ssh/config: home/.ssh/config
     "~/Library/Application Support/Code/User/settings.json":
       path: "home/.config/Code/User/settings.json"

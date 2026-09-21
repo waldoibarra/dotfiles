@@ -406,6 +406,28 @@ installs any skill listed there that isn't already present, runs `npx skills upd
 all of them, then **commits and pushes the lockfile to the repo's remote** if the update changed its
 content. It runs automatically via `update-coding-agents/entrypoint.sh` on every `just sync`.
 
+### Oh My Pi shares the installed skills
+
+**Oh My Pi (`omp`) and Pi (`pi`) are different agents.** The Skills CLI's `pi` target installs
+links under `~/.pi/agent/skills`; it does not target OMP. Do not add `pi` to the lockfile's
+`lastSelectedAgents` to enable OMP.
+
+Keep `lastSelectedAgents` set to `opencode` and `claude-code`. The sync script passes these names
+to `npx skills add` as `-a` flags when installing missing skills. OMP discovers the resulting
+shared `~/.agents/skills` directory directly, so it needs neither an `omp` installer target nor
+another copy or symlink. OMP's skill filters and `skills.enableAgentsUser` setting can still
+exclude skills from discovery.
+
+Installed, discoverable, and automatically advertised are different states. A skill with
+`disable-model-invocation: true` is hidden from OMP's automatic skill list but remains available
+through `skill://<name>` and `/skill:<name>` when skill commands are enabled. To verify availability
+in a running session, resolve each locked name through `skill://<name>`; checking only for a local
+`SKILL.md` does not prove the session discovered it. Resolving the file verifies access, not that
+the skill's workflow or external dependencies have been exercised.
+
+See OMP's [skill discovery and visibility documentation](https://github.com/can1357/oh-my-pi/blob/main/docs/skills.md)
+and the Skills CLI's [agent targets](https://github.com/vercel-labs/skills/blob/main/src/agents.ts).
+
 ## Repo-managed skills
 
 Most global skills are installed and pinned by the lockfile (see [Global skills
@@ -449,6 +471,25 @@ gentle-ai does not manage Codex on this machine — `gentle-ai doctor` reports `
 opencode` — so unlike the four copied files this one stays a plain symlink. If Codex is ever added
 to `gentle-ai sync --agents`, check whether it rewrites `~/.codex/AGENTS.md` first: sync aborts on
 symlinks, which is why the other four are copied.
+
+### Oh My Pi
+
+Dotbot manages two links for the default OMP profile in
+[`install.conf.yaml`](/install.conf.yaml):
+
+| OMP file | Link target |
+| --- | --- |
+| `~/.omp/agent/AGENTS.md` | `~/.config/opencode/AGENTS.md` |
+| `~/.omp/agent/APPEND_SYSTEM.md` | `~/AGENTS.md` |
+
+The global link follows OpenCode's machine-local copy, including the generated sections retained
+by gentle-ai. The append link loads your personal home-directory instructions without copying
+them or changing the shared global file. `~/AGENTS.md` must already exist on each machine.
+
+With OMP's default prompt, append content appears after global instructions and project context.
+A custom `SYSTEM.md` changes that ordering: append content follows the custom text but precedes
+discovered context files. A `--append-system-prompt` flag or project-level `APPEND_SYSTEM.md`
+overrides the user-level append file. Restart OMP after changing these files to load the new content.
 
 ## Local project instructions
 
