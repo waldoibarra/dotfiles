@@ -164,15 +164,6 @@
       "installedAt": "2026-09-04T04:50:00.668Z",
       "updatedAt": "2026-09-21T22:28:58.499Z"
     },
-    "docs-writing": {
-      "source": "mblode/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mblode/agent-skills.git",
-      "skillPath": "skills/docs-writing/SKILL.md",
-      "skillFolderHash": "4410e012ded12b83cc9bf44b0862debd3f85fb03",
-      "installedAt": "2026-09-04T04:50:00.669Z",
-      "updatedAt": "2026-09-09T00:18:42.959Z"
-    },
     "dx-audit": {
       "source": "mblode/agent-skills",
       "sourceType": "github",
@@ -227,15 +218,6 @@
       "installedAt": "2026-09-04T04:50:00.674Z",
       "updatedAt": "2026-09-21T22:29:10.328Z"
     },
-    "pr-reviewer": {
-      "source": "mblode/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mblode/agent-skills.git",
-      "skillPath": "skills/pr-reviewer/SKILL.md",
-      "skillFolderHash": "081005f83a86367edd2bcc4e7635f0f76b7123cd",
-      "installedAt": "2026-09-04T04:50:00.674Z",
-      "updatedAt": "2026-09-09T00:18:47.879Z"
-    },
     "presentation-creator": {
       "source": "mblode/agent-skills",
       "sourceType": "github",
@@ -253,15 +235,6 @@
       "skillFolderHash": "527f4d2980bb0fd19977190421b3120eb985b005",
       "installedAt": "2026-09-04T04:50:00.675Z",
       "updatedAt": "2026-09-21T22:29:15.140Z"
-    },
-    "readme-creator": {
-      "source": "mblode/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mblode/agent-skills.git",
-      "skillPath": "skills/readme-creator/SKILL.md",
-      "skillFolderHash": "9160c48491b33a86f04d8bc4c5d42563a73d1584",
-      "installedAt": "2026-09-04T04:50:00.676Z",
-      "updatedAt": "2026-09-05T04:41:50.731Z"
     },
     "save-md": {
       "source": "mblode/agent-skills",
