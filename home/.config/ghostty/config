@@ -56,7 +56,7 @@ window-padding-y = 2
 window-padding-balance = true
 
 # Font configuration.
-font-size = 14
+font-size = 16
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
 # ║                                          Input & Keys                                         ║

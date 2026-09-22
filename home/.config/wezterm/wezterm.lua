@@ -25,7 +25,7 @@ config.default_prog = { wezterm.home_dir .. '/.local/share/mise/shims/herdr' }
 -- │                                   FONT                                       │
 -- └──────────────────────────────────────────────────────────────────────────────┘
 
-config.font_size = 14
+config.font_size = 16
 
 -- ┌──────────────────────────────────────────────────────────────────────────────┐
 -- │                                  WINDOW                                      │
