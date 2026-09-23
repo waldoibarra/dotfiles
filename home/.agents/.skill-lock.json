@@ -347,6 +347,15 @@
       "skillFolderHash": "b4af69e637f8f2bf620c55273680669ccca3e73c",
       "installedAt": "2026-09-09T20:43:06.611Z",
       "updatedAt": "2026-09-21T22:26:53.220Z"
+    },
+    "ghostwriter": {
+      "source": "mblode/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mblode/agent-skills.git",
+      "skillPath": "skills/ghostwriter/SKILL.md",
+      "skillFolderHash": "115542db50903691644d5f10e8229ddfd064b8e3",
+      "installedAt": "2026-09-22T17:40:34.713Z",
+      "updatedAt": "2026-09-22T17:40:34.713Z"
     }
   },
   "lastSelectedAgents": [
