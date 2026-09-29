@@ -124,9 +124,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/agent-skills-creator/SKILL.md",
-      "skillFolderHash": "14c411997da91430b1e65a55f0cacdd5ea9c5fac",
+      "skillFolderHash": "a2f93127c5b31842a04271f12a5a6c258c1de4b9",
       "installedAt": "2026-09-04T04:50:00.662Z",
-      "updatedAt": "2026-09-28T18:44:47.976Z"
+      "updatedAt": "2026-09-29T16:37:38.548Z"
     },
     "agents-md": {
       "source": "mblode/agent-skills",
@@ -314,10 +314,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/domain-modeling/SKILL.md",
-      "skillFolderHash": "388c9822641805ca2dcd5038e68a1d5282437ee5",
-      "pluginName": "mattpocock-skills",
+      "skillFolderHash": "ea30ee454ba264543dbe40737973b1a5afb9f0e6",
       "installedAt": "2026-09-05T05:06:06.463Z",
-      "updatedAt": "2026-09-05T05:21:02.665Z"
+      "updatedAt": "2026-09-29T16:37:41.965Z"
     },
     "grilling": {
       "source": "mattpocock/skills",
@@ -353,9 +352,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/ghostwriter/SKILL.md",
-      "skillFolderHash": "7da9f91a0e146674d3d36d6b7d30726f6eef4dd5",
+      "skillFolderHash": "c900565c89fec57f58de1ebba23f634e40b55bf5",
       "installedAt": "2026-09-22T17:40:34.713Z",
-      "updatedAt": "2026-09-26T22:45:02.719Z"
+      "updatedAt": "2026-09-29T16:37:40.620Z"
     }
   },
   "lastSelectedAgents": [
