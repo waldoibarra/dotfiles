@@ -24,6 +24,8 @@ brew "gnutls"
 brew "libksba"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Postgres C API library
+brew "libpq"
 # Rainbows and unicorns in your console!
 brew "lolcat"
 # Polyglot runtime manager (asdf rust clone)
@@ -66,6 +68,8 @@ cask "gimp"
 cask "obs"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Open-source design editor compatible with Figma
+cask "openpencil"
 # AI usage tracker for Cursor, Claude Code, Codex, Copilot and more
 cask "openusage"
 # Collaboration platform for API development
@@ -80,3 +84,5 @@ cask "visual-studio-code"
 cask "wezterm@nightly"
 # Gecko based web browser
 cask "zen"
+uv "mlx-audio", with: ["en-core-web-sm https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl", "fastapi", "librosa", "misaki", "mlx", "mlx-lm", "python-multipart", "setuptools<81", "sounddevice", "soundfile", "uvicorn", "webrtcvad"]
+uv "voice-mode"

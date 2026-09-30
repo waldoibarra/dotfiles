@@ -11,6 +11,8 @@ just = "latest"
 llmfit = "latest"
 node = "lts"
 "npm:@anthropic-ai/claude-code" = { version = "latest", allow_builds = true }
+"npm:@open-pencil/cli" = "latest"
+"npm:@open-pencil/mcp" = "latest"
 opencode = "latest"
 python = ["latest", "3.12"]
 rust = "latest"
