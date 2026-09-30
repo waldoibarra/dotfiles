@@ -19,6 +19,25 @@ The shared config loads it via:
 This include is placed before any `[includeIf]` blocks so that directory-specific overrides
 (e.g. per-project identities) still take precedence over the local defaults.
 
+## Branch diff aliases
+
+Read this before comparing a feature branch with `origin/main`.
+
+Each alias runs `git fetch --quiet` first and stops if the fetch fails. Diffs start
+at the merge base of `origin/main` and `HEAD`, so they exclude changes made only on
+main since the branch diverged.
+
+| Command | Output | Includes uncommitted changes |
+| --- | --- | --- |
+| `git ds` | Short diff summary | Yes |
+| `git dsc` | Short diff summary | No |
+| `git db` | Full diff | Yes |
+| `git dbc` | Full diff | No |
+
+`ds` and `db` compare the merge base with the working tree, including the net effect
+of staged and unstaged changes to tracked files. Untracked files are excluded.
+`dsc` and `dbc` compare the merge base with `HEAD`, showing only committed changes.
+
 ## Global ignore file
 
 [`home/.config/git/ignore`](/home/.config/git/ignore) is tracked and symlinked to

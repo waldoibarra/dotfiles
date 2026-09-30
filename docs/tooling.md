@@ -78,6 +78,10 @@ package, either edit the Brewfile directly, or run `brew install <pkg>` followed
 to capture this machine's state; then commit. Dumping is deliberate and opt-in precisely so it can
 never clobber a pulled removal.
 
+The Brewfile also declares `mlx-audio` and `voice-mode` as `uv` tools. Mise manages
+`uv` itself; the Brewfile manages these packages and `mlx-audio`'s extra dependencies,
+including the `en_core_web_sm` 3.8.0 model and `setuptools<81`.
+
 The following casks are macOS-only and have no Linux equivalent managed here yet:
 
 - `docker-desktop`
@@ -151,6 +155,32 @@ backend resolves it through the aqua registry, whose asset template still expect
 `editorconfig-checker-<os>-<arch>.tar.gz`, so `mise up` fails with `no asset found`. The `github:`
 backend reads the release assets directly and needs no registry entry. v4 also renamed the binary
 from `ec` to `editorconfig-checker`, which is what `just lint-ec` invokes.
+
+### OpenPencil
+
+Read this before installing or upgrading the design editor and its automation tools.
+
+- Homebrew owns the desktop app: `cask "openpencil"` in `home/.Brewfile`.
+- Global Mise owns `npm:@open-pencil/cli` and `npm:@open-pencil/mcp`, both set to
+  `latest`. They upgrade independently of the Homebrew desktop app; no shared version pin
+  keeps the three packages aligned.
+- Node and Bun are already globally Mise-managed. The published CLI and MCP entry points
+  run on Node; no source checkout, Rust build, or ad-hoc global npm install is needed.
+- The MCP package exposes `openpencil-mcp` and `openpencil-mcp-http`. The desktop app
+  searches Mise's shim directory for the HTTP executable. Restart the app after the first
+  MCP install so it can start its local automation server.
+
+Use `just mise-sync` for Mise changes. The portfolio's `just open-design` launches its landing
+design. Use `openpencil` directly for file inspection, rendering, and editing; no CLI wrapper.
+Passing a design file works headlessly; omitting it requires the running desktop MCP bridge.
+Keep the bridge's default authentication enabled.
+
+Read [Agent UI design tools](/docs/agent-ui-design-tools.md) for the tool comparison
+and portfolio workflow.
+
+Sources: [installation](https://github.com/open-pencil/open-pencil#installation),
+[CLI](https://openpencil.dev/reference/cli),
+[MCP](https://openpencil.dev/programmable/mcp-server).
 
 ## RTK
 
