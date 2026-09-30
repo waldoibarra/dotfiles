@@ -6,8 +6,12 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 	# Diff stat.
-	ds = "!git fetch --quiet && git diff --shortstat origin/main"
+	ds = "!git fetch --quiet && git diff --shortstat --merge-base origin/main"
 	dsc = "!git fetch --quiet && git diff --shortstat origin/main...HEAD"
+
+	# Branch diff since it split from main (db includes uncommitted changes).
+	db = "!git fetch --quiet && git diff --merge-base origin/main"
+	dbc = "!git fetch --quiet && git diff origin/main...HEAD"
 
 	# Clean local merged branches.
 	cm = !git checkout main && git fetch -p && git branch --merged | grep -Ev \"(^\\*|main|master|trunk)\" | xargs git branch -d
