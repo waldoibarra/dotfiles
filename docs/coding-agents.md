@@ -25,6 +25,42 @@ and symlinked into `$HOME` via DotBot, the same way every other dotfile is — e
 | RTK | `home/.config/rtk/config.toml` | `~/Library/Application Support/rtk/config.toml` (macOS), `~/.config/rtk/config.toml` (Linux) |
 | RTK | `home/.config/rtk/filters.toml` | same pattern as `config.toml` |
 
+## Frameworkless web development
+
+Read [web-standards](/home/.agents/skills/web-standards/SKILL.md) before building or reviewing
+frameworkless apps, ultra-light design systems, native Web Components, or vanilla HTML/CSS/JavaScript
+features. The skill explicitly lists all five Pure Web manifesto priorities: semantic HTML and CSS,
+progressive enhancement, custom elements, Light DOM first, and understanding Shadow DOM.
+Design systems use CSS custom properties and semantic HTML patterns with optional behavior,
+not a required JavaScript runtime. Verify native controls without JavaScript and measure asset size.
+
+The bundle includes task-specific references and maintenance-only evaluation scenarios.
+Dotbot's existing child-level globs install it into `~/.agents/skills/web-standards` and
+`~/.claude/skills/web-standards` on the next normal sync. Creating the repository source does
+not install it into a running agent session. Do not run the full machine sync just to test a skill.
+
+Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before applying new tracked
+skills. The Dotbot globs cover both destinations, but a configured mapping does not mean the links
+already exist. After syncing, check the actual targets:
+
+```sh
+readlink ~/.agents/skills/web-standards
+readlink ~/.claude/skills/web-standards
+```
+
+Both should resolve to this checkout's `home/.agents/skills/web-standards` directory.
+
+Validate the tracked bundle with:
+
+```sh
+markdownlint-cli2 "home/.agents/skills/web-standards/**/*.md"
+bash ~/.agents/skills/agent-skills-creator/scripts/validate.sh home/.agents/skills/web-standards
+```
+
+The second command requires the installed `agent-skills-creator` helper. Behavioral evaluation
+uses the scenarios in `evals/evals.json`, isolated with/without-skill runs, and actual browser
+interaction with the generated apps. Format validation alone does not prove behavior.
+
 ## Response style
 
 Two layers do the same answer-first job at different levels, on purpose.

@@ -1,78 +1,50 @@
 # Dotfiles
 
-My personal OS **configuration files**, currently using **MacOS** and **Linux (Debian)**.
+Keep your shell, Git, development tools, and AI coding agents in version control.
 
-## Project Structure
+Waldo's personal workstation configuration for macOS and Debian. Browse the pieces you need,
+or adapt the setup to manage your own machine.
 
-The idea is simple, the [home/](home/) directory in this repository mirrors the actual
-directory structure of `$HOME` in the OS.
+[Start with the setup guide](/docs/setup.md)
 
-It can also be easily seen by looking at the [install.conf.yaml](install.conf.yaml)
-file, in the `link` directive.
+## What you get
 
-## Initial Setup
+- **A shared shell setup:** Zsh configuration, aliases, completion, and terminal settings that
+  travel with the repository.
+- **Explicit tool choices:** Homebrew manages apps and system packages; Mise manages development
+  tools and global versions, with project-level overrides.
+- **Configured coding agents:** Settings, instructions, skills, and integrations for Claude Code,
+  Codex, OpenCode, and OMP, with documentation of what each sync owns.
+- **Room for local differences:** Keep Git identity, signing preferences, and machine-specific shell
+  settings outside the tracked configuration.
 
-A fresh OS installation might not have `git` available, so you must install it manually to clone
-this repository. You can do that by running:
+## Why keep it together
 
-- MacOS: `xcode-select --install`
-- Linux (Debian): `sudo apt-get install -y git`
+Review configuration changes in Git. See which packages belong on the machine. Keep agent
+instructions alongside the tools they govern. A shared sync workflow applies those choices
+without rebuilding the setup by hand.
 
-To install this dotfiles configuration on a new machine, run these 3 commands:
-
-```bash
-git clone --recurse-submodules https://github.com/waldoibarra/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-./scripts/install-dotfiles.sh
+```mermaid
+flowchart LR
+    Repo[Versioned configuration] --> Dotbot[Dotbot]
+    Dotbot --> Home[Files linked into HOME]
+    Repo --> Brew[Homebrew packages]
+    Repo --> Mise[Mise tools]
+    Repo --> Agents[Coding-agent sync]
 ```
 
-> On machines where you have **SSH configured** with GitHub (for write access ease), you can clone
-> via SSH instead:
->
-> ```bash
-> git clone --recurse-submodules git@github.com:waldoibarra/dotfiles.git ~/.dotfiles
-> ```
+This is an opinionated personal setup. Installation changes files in your home directory and the
+login shell. Full sync can remove Homebrew packages absent from the Brewfile. Review the
+[setup guide](/docs/setup.md) before adopting it; some desktop apps are macOS-only.
 
-Run these commands only 1 time; after the initial setup, use the commands below.
+## Explore the setup
 
-## Local configuration
-
-Some settings are intentionally not tracked in this repo and must be created manually on each
-machine after the initial setup. See [docs/git-configuration.md](docs/git-configuration.md)
-for the full reference.
-
-**Required:** create `$HOME/.gitconfig.local` with at minimum your Git identity:
-
-```gitconfig
-[user]
-    name = Your Name
-    email = you@example.com
-```
-
-## Sync
-
-This command is idempotent, it can be ran many times.
-
-```bash
-just sync
-```
-
-> The `dots` shell alias runs `just sync` from anywhere without changing directories.
-
-What it does:
-
-- Fetch changes on the dotfiles configuration (`git pull`).
-- Use [DotBot](https://github.com/anishathalye/dotbot), a dotfiles bootstrapper, to update the
-  symlinks and ensure all OS packages are installed. It uses the [install.conf.yaml](install.conf.yaml)
-  file.
-- Use [Homebrew](https://brew.sh/) to upgrade apps, libraries, or dev tools (but prefer Mise for dev
-  tools). Installed Brew packages are defined in the global [~/.Brewfile](home/.Brewfile).
-- Use [mise](https://github.com/jdx/mise), the language agnostic dev tools manager to update global
-  default tool versions that are defined in [~/.config/mise/config.toml](home/.config/mise/config.toml),
-  they define which version is active when no project-level file overrides it.
-- Update coding agents configuration by running the
-  [scripts/update-coding-agents/entrypoint.sh](scripts/update-coding-agents/entrypoint.sh) script.
-
-## Utility Scripts
-
-There is a `scripts/` directory, read its [documentation](scripts/README.md).
+| Choose what you need | Read |
+| --- | --- |
+| Set up a machine | [Installation and local configuration](/docs/setup.md) |
+| Maintain tools and packages | [Sync workflow and tooling](/docs/tooling.md) |
+| Understand shell behavior | [Zsh configuration](/docs/zsh-configuration.md) |
+| Configure Git identity and signing | [Git configuration](/docs/git-configuration.md) |
+| Work with AI coding agents | [Agent configuration and skills](/docs/coding-agents.md) |
+| Build frameworkless web apps and design systems | [Web standards skill](/home/.agents/skills/web-standards/SKILL.md) |
+| Inspect the automation | [Utility scripts](/scripts/README.md) |

@@ -1,0 +1,77 @@
+{
+  "skill_name": "web-standards",
+  "evals": [
+    {
+      "id": 1,
+      "files": [],
+      "prompt": "Build a frameworkless newsletter form with email validation and visible submission feedback. Use a real form submission contract and no runtime dependencies.",
+      "expected_output": "Runnable semantic form; valid and invalid submissions exercised.",
+      "assertions": [
+        "Invalid email prevents a signup request.",
+        "Valid submission reaches the declared endpoint.",
+        "Submission feedback is visible and accessible.",
+        "No runtime framework dependency is introduced."
+      ]
+    },
+    {
+      "id": 2,
+      "files": [],
+      "prompt": "Build a native counter custom element that preserves its authored label and works with two instances and after removal and reinsertion.",
+      "expected_output": "Runnable independent counters with reconnect-safe lifecycle.",
+      "assertions": [
+        "Authored label content remains present.",
+        "Incrementing one instance does not change the other.",
+        "After reconnection one click increments exactly once.",
+        "Light DOM is used unless a concrete encapsulation requirement is demonstrated."
+      ]
+    },
+    {
+      "id": 3,
+      "files": [],
+      "prompt": "Build a frameworkless two-page catalog with URL-based navigation, direct links, Back/Forward, and safe rendering of HTML-shaped product names.",
+      "expected_output": "Runnable routing flow with safe rendering and preserved browser conventions.",
+      "assertions": [
+        "A directly loaded detail URL renders the matching content.",
+        "Back and Forward restore content matching the URL.",
+        "HTML-shaped product names render as inert text.",
+        "Native document navigation is retained unless same-document routing has a stated product need."
+      ]
+    },
+    {
+      "id": 4,
+      "files": [],
+      "prompt": "Build an ultra-light, web-standards-based design system specimen with reusable color/spacing tokens, a labeled email field, a disabled button, and an expandable disclosure. No brand direction is supplied. Return a single self-contained runnable HTML document and explain your platform choices.",
+      "expected_output": "A CSS-token and semantic-HTML specimen whose native controls work without JavaScript.",
+      "assertions": [
+        "Shared design values are expressed with CSS custom properties.",
+        "The email field has an associated visible label.",
+        "The disabled button cannot be activated.",
+        "The disclosure can be expanded with the keyboard when JavaScript is disabled.",
+        "No runtime framework or unnecessary custom element is introduced."
+      ]
+    }
+  ],
+  "routing": {
+    "should_trigger": [
+      "Build a vanilla JavaScript dashboard",
+      "Review this frameworkless form",
+      "Implement a native custom element",
+      "Use Pure Web for this app",
+      "Fix lifecycle cleanup in our Light DOM widget",
+      "Replace this feature with web standards",
+      "Build an HTML CSS JS app without frameworks",
+      "Audit native browser navigation",
+      "Create an ultra-light standards-based design system"
+    ],
+    "near_miss": [
+      "Fix this React hook",
+      "Scaffold a Next.js application",
+      "Write a backend SQL migration",
+      "Design a logo",
+      "Explain HTTP caching",
+      "Install Sonner for React",
+      "Review Python code",
+      "Write a marketing launch email"
+    ]
+  }
+}

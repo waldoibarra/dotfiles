@@ -1,5 +1,34 @@
 # Tooling
 
+Read [setup](/docs/setup.md) before the first installation. Read this page before syncing the
+workstation or changing package and tool management.
+
+## Sync the workstation
+
+Run a full sync in your own interactive terminal:
+
+```sh
+cd ~/.dotfiles
+just sync
+```
+
+The `dots` shell alias runs the same workflow from anywhere without changing your shell's directory.
+The workflow is designed to be rerun, but it changes the machine: it upgrades tools and can remove
+packages. Check local changes and the tracked package lists before running it.
+
+The recipe runs these actions in order:
+
+1. Pull repository changes with `git pull`.
+2. Run Dotbot to update links and execute the installation scripts.
+3. Apply the global Brewfile: install or upgrade listed packages, then remove unlisted packages.
+4. Install, upgrade, and prune Mise tools.
+5. Update coding-agent configuration, integrations, and global skills.
+6. Install this repository's Git hooks.
+
+Read [Homebrew](#homebrew) before changing the package list and
+[coding agents](/docs/coding-agents.md) before editing generated agent configuration.
+For narrower updates, use the recipes below instead of running the full workflow.
+
 ## just
 
 `just` is the task runner for this repo. Always use `just` recipes instead of running
@@ -15,7 +44,7 @@ Key recipes:
 
 | Recipe | What it does |
 | --- | --- |
-| `just sync` | Full sync: Dotbot + Brew + Mise + coding agents. Safe to re-run anytime. Requires an interactive terminal — see [Which recipes may an AI agent run?](#which-recipes-may-an-ai-agent-run) |
+| `just sync` | Full workstation sync, including package removal. Requires an interactive terminal; see [Sync the workstation](#sync-the-workstation). |
 | `just brew` | Apply the global Brewfile declaratively: install/upgrade what's listed, uninstall what isn't. Cask operations can invoke sudo. |
 | `just mise-sync` | Sync Mise tools against the tracked configs: install missing, upgrade, prune. |
 | `just update-ca` | Update coding agents: OpenCode plugin cache, RTK/Herdr integrations, global skills. |
