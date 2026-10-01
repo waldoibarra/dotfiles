@@ -355,6 +355,15 @@
       "skillFolderHash": "c900565c89fec57f58de1ebba23f634e40b55bf5",
       "installedAt": "2026-09-22T17:40:34.713Z",
       "updatedAt": "2026-09-29T16:37:40.620Z"
+    },
+    "workout-program-designer": {
+      "source": "onewave-ai/claude-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/onewave-ai/claude-skills.git",
+      "skillPath": "workout-program-designer/SKILL.md",
+      "skillFolderHash": "436e3b46e94b9f0e9fb3ef6d2d8feb67558e2548",
+      "installedAt": "2026-09-30T01:24:09.978Z",
+      "updatedAt": "2026-09-30T01:24:09.978Z"
     }
   },
   "lastSelectedAgents": [
