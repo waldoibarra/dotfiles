@@ -506,7 +506,8 @@ assert_marker_inventories() {
 
 #######################################
 # Run `gentle-ai sync` non-interactively for both agents, in multi-agent SDD
-# mode with generated per-phase OpenCode profiles.
+# mode with generated per-phase OpenCode profiles. Explicit `auto` keeps an
+# unsupported or unknown OpenCode runtime in foreground mode instead of failing.
 # Outputs:
 #   Writes gentle-ai's own output to STDOUT/STDERR.
 # Returns:
@@ -516,7 +517,8 @@ run_gentle_ai_sync() {
   GENTLE_AI_YES=1 GENTLE_AI_NO_SELF_UPDATE=1 gentle-ai sync \
     --agent claude-code,opencode \
     --sdd-mode multi \
-    --sdd-profile-strategy generated-multi
+    --sdd-profile-strategy generated-multi \
+    --opencode-background-subagents=auto
 }
 
 #######################################
