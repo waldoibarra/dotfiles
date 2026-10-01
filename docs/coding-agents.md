@@ -27,6 +27,22 @@ and symlinked into `$HOME` via DotBot, the same way every other dotfile is — e
 
 ## Standards-first web development
 
+Read [web-app-craft](/home/.agents/skills/web-app-craft/SKILL.md) before building, debugging, or
+reviewing interfaces that combine platform behavior and layout. It loads `web-standards` and
+`css-layout`, assigns each its own decisions, and combines their browser checks. Existing
+frameworks and tooling stay in place. Use the specialist directly for isolated layout or platform
+work; neither specialist loads the orchestrator.
+
+The source is `home/.agents/skills/web-app-craft`. The existing Dotbot globs cover its shared
+and Claude Code installation on the next normal sync. Authoring the source does not install it
+into the current session. Its `evals/evals.json` records maintenance scenarios and routing prompts.
+
+Validation passed with 30 checks and no failures. A disposable symlink installation resolved all
+three skills and both specialist verification references. A model smoke check preserved React,
+kept review mode read-only, and reported unavailable dependencies and browser evidence.
+The two full application scenarios remain unexecuted; these checks do not establish browser
+behavior or cross-model quality.
+
 Read [web-standards](/home/.agents/skills/web-standards/SKILL.md) before building or reviewing
 standards-first apps, ultra-light design systems, Web Components, or vanilla HTML/CSS/JavaScript
 features. The skill preserves all five ordered Pure Web manifesto priorities: semantic HTML and CSS,
@@ -479,12 +495,15 @@ and the Skills CLI's [agent targets](https://github.com/vercel-labs/skills/blob/
 ## Repo-managed skills
 
 Most global skills are installed and pinned by the lockfile (see [Global skills
-lockfile](#global-skills-lockfile)). Two skills are instead **authored as source**
-in the repo and edited here directly — never installed, never in the lockfile:
+lockfile](#global-skills-lockfile)). The following skills are authored as source
+in this repo and edited here directly. Dotbot links them; the lockfile does not manage them.
 
 | Skill | Repo source | Symlinked to |
 | --- | --- | --- |
 | [`shell-scripting`](/home/.agents/skills/shell-scripting/SKILL.md) | `home/.agents/skills/shell-scripting` | `~/.agents/skills/` **and** `~/.claude/skills/` (shared source via two Dotbot globs) |
+| [`web-app-craft`](/home/.agents/skills/web-app-craft/SKILL.md) | `home/.agents/skills/web-app-craft` | `~/.agents/skills/` and `~/.claude/skills/` |
+| [`web-standards`](/home/.agents/skills/web-standards/SKILL.md) | `home/.agents/skills/web-standards` | `~/.agents/skills/` and `~/.claude/skills/` |
+| [`css-layout`](/home/.agents/skills/css-layout/SKILL.md) | `home/.agents/skills/css-layout` | `~/.agents/skills/` and `~/.claude/skills/` |
 | [`non-vision-image-reader`](/home/.config/opencode/skills/non-vision-image-reader/SKILL.md) | `home/.config/opencode/skills/non-vision-image-reader` | `~/.config/opencode/skills/` (opencode global skills) |
 
 OpenCode discovers `~/.claude/skills/` and `~/.agents/skills/` natively

@@ -46,6 +46,7 @@ login shell. Full sync can remove Homebrew packages absent from the Brewfile. Re
 | Understand shell behavior | [Zsh configuration](/docs/zsh-configuration.md) |
 | Configure Git identity and signing | [Git configuration](/docs/git-configuration.md) |
 | Work with AI coding agents | [Agent configuration and skills](/docs/coding-agents.md) |
+| Build or review web interfaces with platform behavior and responsive layout | [Web app craft skill](/home/.agents/skills/web-app-craft/SKILL.md) |
 | Build frameworkless web apps and design systems | [Web standards skill](/home/.agents/skills/web-standards/SKILL.md) |
 | Compose responsive CSS layouts and diagnose spacing or overflow | [CSS layout skill](/home/.agents/skills/css-layout/SKILL.md) |
 | Inspect the automation | [Utility scripts](/scripts/README.md) |

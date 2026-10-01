@@ -18,6 +18,10 @@ Prefer relationships that adapt to their available space over device-specific ex
 CSS is a default, not a prohibition on media or container queries. Preserve the project's tokens,
 semantics, browser targets, and existing component conventions.
 
+Load `web-standards` when a layout change also changes semantics, native interaction, or component
+lifecycle; geometry-only fixes do not need it. `web-app-craft` coordinates combined app-interface
+work, but is not a dependency of this skill.
+
 ## Workflow
 
 - Identify the relationship: space between siblings, readable measure, wrapping group, asymmetric

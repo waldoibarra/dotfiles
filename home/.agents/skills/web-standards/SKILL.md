@@ -23,6 +23,8 @@ CSS/token requirements, use `css-layout` (`~/.agents/skills/css-layout/SKILL.md`
 installation). It owns layout geometry across frameworks; this skill retains semantic HTML,
 enhancement, custom-element lifecycle, Light/Shadow DOM, and platform tooling. Use both when
 a layout task also changes those platform contracts; do not load platform guidance for geometry alone.
+For combined app-interface work, `web-app-craft` coordinates both skills. When invoked directly,
+load `css-layout` only for layout decisions; do not load the orchestrator as a dependency.
 
 ## Hard Rules
 
