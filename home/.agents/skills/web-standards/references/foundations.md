@@ -9,6 +9,13 @@ structure content. A custom tag name does not supply accessibility semantics. Us
 fieldset/legend, and native controls instead of reconstructing their interaction contracts.
 Use dialog, details, and popover where their actual behavior fits; do not treat them as interchangeable.
 
+For a binary preference, start with a labeled native checkbox; use switch semantics when on/off
+matches the setting. A numeric range input remains a slider even with only two possible values.
+Distinguish fragment navigation from a tabs widget: links to sections need not become tabs.
+A genuine tabs widget needs tablist/tab/tabpanel roles, selection state, panel relationships,
+and the keyboard/focus behavior for its orientation and activation model. Follow the APG tabs
+pattern; do not treat its optional keys as universal conformance requirements.
+
 Use CSS layout, custom properties, media/container queries, and native interaction states before
 JavaScript measurements. Preserve visible focus, responsive reflow, and reduced-motion preferences.
 Avoid imposing a CSS framework or a new design system on an existing application.
@@ -34,7 +41,9 @@ framework. Follow the product's visual direction; reuse existing tokens before i
 Demonstrate actual patterns and their focus, disabled, invalid, and responsive states where relevant,
 not just a token swatch sheet. Verify the CSS-only baseline with JavaScript disabled. Report CSS/JS
 transfer size and runtime dependencies for the representative page; distinguish measured size from
-estimates. Do not invent a universal kilobyte budget or claim that small assets prove accessibility.
+estimates. When performance is in scope or a comparative claim is made, derive a small budget from
+the audience and requested journeys; use `verification.md` for measurement conditions and evidence.
+Do not invent universal byte/score targets or claim that small assets prove accessibility.
 
 ## Enhancement and compatibility
 
@@ -43,17 +52,22 @@ works if a module fails, a request fails, or a feature is unavailable. An inhere
 app may require JavaScript; say which behavior does instead of inventing a backend fallback.
 
 Take browser targets from repository configuration or product requirements. Check current MDN
-compatibility data and, for consequential edge cases, the specification. Feature-detect optional
-APIs and retain the underlying browser action when enhancement is unavailable. Do not freeze
-browser version claims into application architecture.
+compatibility data and, for consequential edge cases, the specification. Verify JavaScript syntax,
+module loading, and runtime APIs across delivered code and imports, including dependencies.
+Runtime feature detection cannot rescue a script or module that the browser cannot parse.
+Feature-detect optional APIs and retain the underlying browser action when enhancement is unavailable.
+If a justified build already produces production output, check that output, not just source code.
+Do not mandate legacy transforms or freeze browser version claims into application architecture.
 
 ## Dependencies and builds
 
-Use native module imports and ordinary HTTP serving as the starting point. No runtime framework,
-including a Web Component framework, is implied by standards-first development. Do not install
-Lit, a UI kit, a CSS framework, or a state package because an adjacent skill recommends one.
+Use native module imports and ordinary HTTP serving as the starting point. Lit may serve a
+demonstrated component or rendering need; it is an optional runtime library, not a required stack
+or a reason to skip native HTML, enhancement, or the Light DOM decision. Do not install libraries
+or substitute React, Vue, or another application framework because an adjacent skill recommends it.
 
-Existing test runners, linting, development servers, and optional production optimization can stay.
-No-build is a default, not a ban on tools. Do not add TypeScript compilation, bundling, a service
-worker, or an import map without a demonstrated project need. Keep backend choices outside this
-skill's scope. Server-rendered HTML is compatible with this approach.
+Existing test runners, linting, development servers, and production optimization can stay.
+No-build is a default, not a ban: TypeScript and Vite are optional tooling when project needs justify
+them. Respect explicit zero-dependency and no-build constraints; do not add compilation, bundling,
+a service worker, or an import map speculatively. Keep backend choices outside this skill's scope.
+Server-rendered HTML is compatible with this approach.

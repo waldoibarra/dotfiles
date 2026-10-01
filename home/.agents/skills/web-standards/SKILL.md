@@ -1,6 +1,6 @@
 ---
 name: web-standards
-description: "Use when building or reviewing frameworkless apps, standards-based design systems, vanilla JavaScript, native Web Components, or Pure Web. Apply HTML, CSS, and browser APIs without frameworks."
+description: "Use when building or reviewing standards-first or frameworkless apps, ultra-light design systems, vanilla JavaScript, Web Components, or Pure Web. Start with native HTML/CSS; Lit and TypeScript/Vite are optional, justified choices."
 license: MIT
 metadata:
   author: waldoibarra
@@ -12,9 +12,11 @@ metadata:
 ## Activation Contract
 
 Build, extend, debug, or review standards-first web apps and ultra-light design systems.
-Own platform implementation, not brand direction or backend architecture. Do not migrate
-a framework app unless requested.
-Explicit frameworkless requirements take precedence over framework-oriented scaffolding skills.
+Pure Web is an architecture, not a mandatory stack. Own platform implementation, not brand
+direction or backend architecture. Do not migrate an existing framework app unless requested,
+or substitute React, Vue, or another application framework for a standards-first request.
+Explicit zero-dependency, no-build, or frameworkless requirements take precedence over defaults
+and framework-oriented scaffolding skills.
 
 ## Hard Rules
 
@@ -32,9 +34,11 @@ Apply these priorities in order; components are an escalation, not the starting 
 
 ### Implementation constraints
 
-- Use browser-native ES modules. Do not introduce frameworks, JSX runtimes, Lit, or mandatory
-  transpilation. Default to no runtime dependencies; explain a concrete unmet need before
-  proposing any exception. Development and testing tools are allowed.
+- Default to browser-native ES modules and no runtime dependencies. Lit is an optional runtime
+  library when a concrete need justifies it; TypeScript and Vite are optional tooling, not requirements.
+  None bypass the five priorities or explicit user constraints. Prefer the smallest suitable tool.
+  Lit's default Shadow DOM must not silently override the Light DOM decision; choose the render
+  root deliberately. Development and testing tools are allowed within the project's constraints.
 - Build design systems from CSS custom properties, semantic HTML patterns, and minimal optional
   behavior. Require a concrete encapsulation need for Shadow DOM, not a component convention.
 - Do not replace a framework with a homemade renderer, router toolkit, or reactive engine.
@@ -79,7 +83,8 @@ Read these files relative to this skill's directory:
 
 - `references/foundations.md` before design-system, markup, CSS, or compatibility decisions.
 - `references/components.md` before creating or modifying custom elements.
-- `references/application-patterns.md` before forms, rendering, state, or routing changes.
+- `references/application-patterns.md` before forms, rendering, state, routing, or requested
+  installation/PWA or cross-origin functionality.
 - `references/verification.md` before browser verification.
 - `references/sources.md` when checking provenance or updating this skill.
 

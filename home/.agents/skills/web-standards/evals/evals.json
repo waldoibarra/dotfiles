@@ -10,16 +10,16 @@
         "Invalid email prevents a signup request.",
         "Valid submission reaches the declared endpoint.",
         "Submission feedback is visible and accessible.",
-        "No runtime framework dependency is introduced."
+        "The form works with no runtime dependencies, as requested."
       ]
     },
     {
       "id": 2,
       "files": [],
-      "prompt": "Build a native counter custom element that preserves its authored label and works with two instances and after removal and reinsertion.",
+      "prompt": "Build a native counter custom element that preserves its authored label and works with two instances and after removal and reinsertion. Delay registration so the authored label can be checked before upgrade.",
       "expected_output": "Runnable independent counters with reconnect-safe lifecycle.",
       "assertions": [
-        "Authored label content remains present.",
+        "The authored label is visible before registration and remains present after upgrade.",
         "Incrementing one instance does not change the other.",
         "After reconnection one click increments exactly once.",
         "Light DOM is used unless a concrete encapsulation requirement is demonstrated."
@@ -40,14 +40,51 @@
     {
       "id": 4,
       "files": [],
-      "prompt": "Build an ultra-light, web-standards-based design system specimen with reusable color/spacing tokens, a labeled email field, a disabled button, and an expandable disclosure. No brand direction is supplied. Return a single self-contained runnable HTML document and explain your platform choices.",
+      "prompt": "Build an ultra-light, web-standards-based design system specimen with reusable color/spacing tokens, a labeled email field, a disabled button, and an expandable disclosure. No brand direction is supplied. Return a single self-contained runnable HTML document and explain your platform choices, including whether Lit, TypeScript, or Vite would solve an unmet requirement here.",
       "expected_output": "A CSS-token and semantic-HTML specimen whose native controls work without JavaScript.",
       "assertions": [
         "Shared design values are expressed with CSS custom properties.",
         "The email field has an associated visible label.",
         "The disabled button cannot be activated.",
         "The disclosure can be expanded with the keyboard when JavaScript is disabled.",
-        "No runtime framework or unnecessary custom element is introduced."
+        "The native controls remain usable without library initialization or custom-element registration.",
+        "The platform explanation keeps this native-only specimen dependency-free and does not make Lit, TypeScript, or Vite mandatory."
+      ]
+    },
+    {
+      "id": 5,
+      "files": [],
+      "prompt": "Maintain a Pure Web settings panel in an existing Lit component library consumed by plain HTML applications. Existing consumers require its Lit reactive-property update contract; the repository already uses TypeScript for a shared typed public API and Vite for its supported production build. Build a runnable representative panel with a labeled native checkbox. Setting the public enabled property must update the checkbox; toggling it must publish the new value through the documented enabled-change event. Show two independent instances and explain the decisions about retaining Lit, TypeScript, and Vite versus using dependency-free HTML for a standalone disclosure. Do not migrate consumers to another framework or make this toolchain a Pure Web prerequisite.",
+      "expected_output": "A working standards-first panel preserving the justified existing Lit contract and optional tooling, with a native-only recommendation for the standalone disclosure.",
+      "assertions": [
+        "A plain HTML consumer can set enabled to true and false and observe the matching native checkbox state.",
+        "A keyboard toggle publishes exactly one enabled-change event with the new enabled value.",
+        "Changing either instance leaves the other instance unchanged.",
+        "The decision explains Lit's existing runtime contract separately from TypeScript and Vite development/build requirements, without rejecting Lit categorically or requiring those tools for Pure Web.",
+        "The standalone disclosure recommendation uses native HTML without adding a runtime dependency or migrating consumers to React, Vue, or another framework."
+      ]
+    },
+    {
+      "id": 6,
+      "files": [],
+      "prompt": "Build a dependency-free preferences form with labeled checkboxes sharing name=topics and values html, css, and js. The declared endpoint accepts all selected topics as repeated form fields or an array. On successful submission, store the saved preferences in one explicit owner and notify a summary panel. Let the panel be created after a save, then disconnected while another save occurs and reconnected. Demonstrate html+css saved before the panel exists, then js saved while it is disconnected. Do not add a global event bus or reactive framework.",
+      "expected_output": "A runnable form preserving repeated values and a summary that initializes from current saved state after late connection and reconnection.",
+      "assertions": [
+        "Submitting html and css sends both values to the declared endpoint, not only the last value.",
+        "A summary first connected after that successful save displays html and css without requiring another submit or a replayed event.",
+        "After saving only js while the summary is disconnected, reconnecting it displays js and no stale html or css selection."
+      ]
+    },
+    {
+      "id": 7,
+      "files": [],
+      "prompt": "Build a custom element for an embedded note editor whose internals require isolation from host-page CSS. Serve parser-delivered Declarative Shadow DOM with a visibly labeled native textarea and delay custom-element registration until an explicit upgrade action. Include open-root and closed-root instances. Before upgrade, enter draft text and set a selection in each textarea; upgrade must enhance the existing content rather than recreate it. Target a browser supporting Declarative Shadow DOM and ElementInternals.shadowRoot, and demonstrate removal and reinsertion. Do not add a hydration framework.",
+      "expected_output": "A runnable isolated editor whose parser-delivered baseline and user state survive enhancement for both root modes.",
+      "assertions": [
+        "With registration withheld, each parser-delivered editor displays its label and accepts text input.",
+        "Upgrading each instance preserves its entered draft and selection range without an attachment exception.",
+        "After removal and reinsertion, each instance still displays its own draft with one editor rather than duplicate controls.",
+        "The closed-root editor upgrades successfully even though its public host.shadowRoot is null."
       ]
     }
   ],

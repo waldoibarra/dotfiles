@@ -25,14 +25,17 @@ and symlinked into `$HOME` via DotBot, the same way every other dotfile is — e
 | RTK | `home/.config/rtk/config.toml` | `~/Library/Application Support/rtk/config.toml` (macOS), `~/.config/rtk/config.toml` (Linux) |
 | RTK | `home/.config/rtk/filters.toml` | same pattern as `config.toml` |
 
-## Frameworkless web development
+## Standards-first web development
 
 Read [web-standards](/home/.agents/skills/web-standards/SKILL.md) before building or reviewing
-frameworkless apps, ultra-light design systems, native Web Components, or vanilla HTML/CSS/JavaScript
-features. The skill explicitly lists all five Pure Web manifesto priorities: semantic HTML and CSS,
-progressive enhancement, custom elements, Light DOM first, and understanding Shadow DOM.
-Design systems use CSS custom properties and semantic HTML patterns with optional behavior,
-not a required JavaScript runtime. Verify native controls without JavaScript and measure asset size.
+standards-first apps, ultra-light design systems, Web Components, or vanilla HTML/CSS/JavaScript
+features. The skill preserves all five ordered Pure Web manifesto priorities: semantic HTML and CSS,
+progressive enhancement, custom elements when needed, Light DOM first, and deliberate Shadow DOM.
+Design systems start with CSS custom properties and semantic HTML patterns with optional behavior.
+Lit is an optional, justified runtime library; TypeScript and Vite are optional tooling, not a required
+stack. None bypass the priorities or explicit zero-dependency/no-build constraints, and the skill
+does not substitute React, Vue, or another framework for a standards-first request. Verify the useful
+no-JavaScript baseline and measure asset size.
 
 The bundle includes task-specific references and maintenance-only evaluation scenarios.
 Dotbot's existing child-level globs install it into `~/.agents/skills/web-standards` and

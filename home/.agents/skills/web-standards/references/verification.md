@@ -6,9 +6,9 @@ for every task. Use the project's existing tools; no specific agent host or brow
 | Changed surface | Exercise | Expected evidence |
 | --- | --- | --- |
 | Native UI | Keyboard, labels, focus, narrow viewport | Intended action is reachable and understandable |
-| Enhancement | Block the enhancement or fail its request | Useful baseline remains, or JS dependency is explicit |
-| Form | Invalid, valid, Enter, server error, repeat submission | Correct payload and recoverable feedback |
-| Component | Two instances, disconnect, reconnect | Independent state and one action per event |
+| Enhancement | Block enhancement loading or fail its request | Useful baseline content and labels remain, or JS dependency is explicit |
+| Form | Invalid, valid, Enter, repeated names, server error, repeat submission | Endpoint-compatible payload preserves required repeated values; feedback is recoverable |
+| Component | Two instances, disconnect, reconnect after state changes | Independent behavior, current owned state, and one action per event |
 | Async rendering | Slow earlier request finishes last | Current user intent is not overwritten |
 | Untrusted data | Render HTML-shaped user text | Text remains inert; no injected element or execution |
 | Routing | Direct URL, refresh, Back/Forward, external/modified link | URL and content agree; browser conventions survive |
@@ -19,5 +19,11 @@ failures. Automated tests supplement this smoke run, not substitute for it. Run 
 tests after edits; add regression tests for real behavioral risks, not source-string checks.
 
 Record tested browser, commands/scenarios, outcomes, and untested browser targets. A single
-Chromium run is not proof of Safari or Firefox compatibility. Do not infer performance improvement
-from fewer dependencies; measure before making comparative performance claims.
+Chromium run is not proof of Safari or Firefox compatibility.
+
+When performance is in scope or a comparative claim is made, measure rather than infer improvement
+from fewer dependencies. Use audience-representative devices/CPU and network conditions; record
+cache state. Distinguish initial loading, interactions, and later navigation for the relevant
+journeys. Measure transferred bytes and main-thread work alongside user-visible outcomes.
+Identify lab measurements versus field evidence and report comparable conditions and limitations.
+Derive any budgets from the audience and journey; impose no universal byte limits or scores.
