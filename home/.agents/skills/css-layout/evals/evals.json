@@ -1,0 +1,84 @@
+{
+  "skill_name": "css-layout",
+  "evals": [
+    {
+      "id": 1,
+      "files": [],
+      "prompt": "Build a runnable HTML/CSS product-listing section with a filter sidebar, a wrapping action row, and a card collection. Reuse the same section in a 22rem panel and a 70rem page without changing its markup or using viewport breakpoints as a proxy for available space. Include long translated labels and cards with unequal text lengths. Explain which layout primitives you composed and why; exercise narrow and wide containers in the browser, preserving reading order and keyboard access.",
+      "expected_output": "A complete composable layout with content-driven reflow, an explanation of primitive selection and alternatives, and observed narrow/wide behavior rather than assumed responsiveness.",
+      "assertions": [
+        "At a fixed viewport width, the section fits both its 22rem and 70rem containers without horizontal overflow.",
+        "The filter sidebar stacks with the main content in the 22rem container and sits alongside it in the 70rem container.",
+        "The action row wraps its controls onto additional lines when their combined widths exceed the available inline space.",
+        "Long translated labels remain fully readable without clipping or overlap in the 22rem container.",
+        "Unequal card text lengths remain fully visible without overlapping adjacent cards.",
+        "The narrow and wide instances use the same section markup apart from unique identifiers needed for accessible controls.",
+        "Changing container width leaves the section's DOM reading order unchanged.",
+        "Keyboard traversal reaches every interactive control in DOM order at both container widths.",
+        "The explanation identifies the layout relationship each chosen primitive controls."
+      ]
+    },
+    {
+      "id": 2,
+      "files": [],
+      "prompt": "Make a runnable reproduction of this nested card-list problem and fix it: the outer column uses gap: 1.5rem, every child also has margin-block: 1.5rem, a nested flex row contains a 12rem thumbnail and text, and one card contains a very long unbroken URL. At a 20rem container width the spacing compounds to 4.5rem (two child margins plus the gap) and content pushes the page sideways. Give spacing a clear owner, retain intentional internal card spacing, and handle the URL and intrinsic sizing without hiding overflow or clipping content. Show the before/after behavior at narrow and wide widths and with enlarged text.",
+      "expected_output": "An evidenced diagnosis and corrected HTML/CSS with predictable nested spacing and readable content at constrained widths; the fix addresses margin ownership and intrinsic sizing rather than suppressing overflow.",
+      "assertions": [
+        "The before view reproduces horizontal overflow at a 20rem container width.",
+        "The before view has 4.5rem of edge-to-edge space between adjacent cards, accounting for two 1.5rem margins and the 1.5rem gap.",
+        "The fixed view has 1.5rem of edge-to-edge space between adjacent cards at both 20rem and 32rem container widths, with text at both 100% and 150%.",
+        "The fixed view has no horizontal overflow at either 20rem or 32rem container widths, with text at both 100% and 150%.",
+        "The fixed view preserves the reproduction's intentional internal card spacing, measured between the same internal elements before and after the fix.",
+        "The entire unbroken URL remains visible through wrapping in the fixed 20rem view.",
+        "The thumbnail and text remain non-overlapping at a 20rem container width with text enlarged to 150%.",
+        "The fix does not rely on overflow hiding, clipping, or text truncation to make the content fit.",
+        "The explanation attributes the excess inter-card spacing to the additive child margins and parent gap."
+      ]
+    },
+    {
+      "id": 3,
+      "files": [],
+      "prompt": "Use the Every Layout Center custom element in a runnable page with two independently configured instances. Inspect the website-linked Center download rather than inventing its API. Include its companion CSS and the tokens those styles need, set a measure and visible gutters, and explain why importing JavaScript alone is insufficient. Explain how the downloaded element reads attributes, registers, and generates CSS; compare the documented gutters type with the downloaded getter. Exercise initial rendering and a later attribute change, reporting what actually updates without silently rewriting the upstream lifecycle. Keep the DOM light and explain the CSS-only alternative. Do not republish the complete paid component sources.",
+      "expected_output": "A runnable, correctly styled light-DOM component example with explicit stylesheet/token dependencies, source-grounded API and lifecycle explanation, the documented/downloaded gutters distinction, and honest observed configuration behavior.",
+      "assertions": [
+        "The rendered Center instances retain their authored children in the light DOM.",
+        "At a width with spare inline space, each Center instance has balanced outer inline margins.",
+        "Each instance's rendered content width respects its independently configured maximum measure.",
+        "Each instance's rendered inline padding matches its configured CSS gutters value.",
+        "Changing the first instance's max attribute to 40ch after connection updates its rendered content-width cap without a page reload.",
+        "Changing the first instance's gutters attribute to 1rem after connection updates its rendered inline padding without a page reload.",
+        "Changing the first instance's attributes leaves the second instance's rendered width and gutters unchanged.",
+        "The explanation distinguishes the documented boolean gutters type from the downloaded getter's CSS string value.",
+        "The explanation identifies the block display, content-box sizing, and auto margins supplied by companion CSS rather than JavaScript.",
+        "The explanation identifies the token definitions required by the included companion styles.",
+        "The lifecycle explanation describes attribute-backed getters, center-l registration, and configuration-scoped generated CSS consistently with the inspected download.",
+        "The CSS-only alternative preserves bounded measure, balanced outer margins, and narrow-width gutters without custom-element JavaScript.",
+        "The delivered example does not reproduce the complete paid component sources."
+      ]
+    }
+  ],
+  "routing": {
+    "should_trigger": [
+      "Make this card collection adapt to its parent width, not the viewport",
+      "Choose between a Sidebar and Switcher for this content",
+      "Compose an Every Layout Stack, Center, and Cluster",
+      "Why do the gaps double when I nest these sections?",
+      "Fix intrinsic flex sizing so long content stops pushing the page sideways",
+      "Give this horizontal reel intentional scrolling without page overflow",
+      "Center the main cover content while keeping the footer at the bottom",
+      "Use the downloaded Every Layout component with its required CSS tokens",
+      "Review this responsive grid in narrow and wide containers"
+    ],
+    "near_miss": [
+      "Fix event listener cleanup when my native custom element reconnects; leave its layout unchanged",
+      "Choose Light DOM or Shadow DOM for our form-associated widget",
+      "Build native form validation and submission feedback without a framework",
+      "Decide whether our standards-first application needs Lit, TypeScript, and Vite",
+      "Design the brand identity and color palette for a new product",
+      "Animate a dialog entrance with a spring",
+      "Audit font loading and OpenType features without changing layout",
+      "Scaffold a Next.js application with routing and authentication",
+      "Extract and summarize a PDF ebook about page layout"
+    ]
+  }
+}

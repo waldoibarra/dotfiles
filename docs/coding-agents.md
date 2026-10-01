@@ -37,7 +37,20 @@ stack. None bypass the priorities or explicit zero-dependency/no-build constrain
 does not substitute React, Vue, or another framework for a standards-first request. Verify the useful
 no-JavaScript baseline and measure asset size.
 
-The bundle includes task-specific references and maintenance-only evaluation scenarios.
+Read [css-layout](/home/.agents/skills/css-layout/SKILL.md) for framework-independent layout
+selection, composition, intrinsic reflow, spacing, overflow, and optional Every Layout components.
+It owns layout geometry and component CSS/token requirements; `web-standards` retains semantic
+HTML, progressive enhancement, custom-element lifecycle, Light/Shadow DOM, and platform tooling.
+The layout references summarize the Every Layout website, not its ebook or PDF.
+Its source is `home/.agents/skills/css-layout`; the existing child-level mappings cover
+`~/.agents/skills/css-layout` and `~/.claude/skills/css-layout` on the next normal sync.
+Those configured destinations are not evidence of installation. No extra sync is needed to author
+the skill; do not run a full machine sync to verify it.
+Its `evals/evals.json` contains three maintenance scenarios, behavioral assertions, and routing
+prompts. The [source record](/home/.agents/skills/css-layout/references/sources.md#verification-record)
+documents the checks performed and their limits.
+
+The `web-standards` bundle includes task-specific references and maintenance-only evaluation scenarios.
 Dotbot's existing child-level globs install it into `~/.agents/skills/web-standards` and
 `~/.claude/skills/web-standards` on the next normal sync. Creating the repository source does
 not install it into a running agent session. Do not run the full machine sync just to test a skill.
@@ -53,14 +66,15 @@ readlink ~/.claude/skills/web-standards
 
 Both should resolve to this checkout's `home/.agents/skills/web-standards` directory.
 
-Validate the tracked bundle with:
+Validate both tracked bundles with:
 
 ```sh
-markdownlint-cli2 "home/.agents/skills/web-standards/**/*.md"
+markdownlint-cli2 "home/.agents/skills/{web-standards,css-layout}/**/*.md"
 bash ~/.agents/skills/agent-skills-creator/scripts/validate.sh home/.agents/skills/web-standards
+bash ~/.agents/skills/agent-skills-creator/scripts/validate.sh home/.agents/skills/css-layout
 ```
 
-The second command requires the installed `agent-skills-creator` helper. Behavioral evaluation
+The validation script requires the installed `agent-skills-creator` helper. Behavioral evaluation
 uses the scenarios in `evals/evals.json`, isolated with/without-skill runs, and actual browser
 interaction with the generated apps. Format validation alone does not prove behavior.
 

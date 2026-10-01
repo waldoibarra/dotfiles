@@ -18,6 +18,12 @@ or substitute React, Vue, or another application framework for a standards-first
 Explicit zero-dependency, no-build, or frameworkless requirements take precedence over defaults
 and framework-oriented scaffolding skills.
 
+For layout selection, composition, intrinsic reflow, spacing, overflow, or Every Layout component
+CSS/token requirements, use `css-layout` (`~/.agents/skills/css-layout/SKILL.md` in the shared
+installation). It owns layout geometry across frameworks; this skill retains semantic HTML,
+enhancement, custom-element lifecycle, Light/Shadow DOM, and platform tooling. Use both when
+a layout task also changes those platform contracts; do not load platform guidance for geometry alone.
+
 ## Hard Rules
 
 ### Pure Web Manifesto: five ground rules
