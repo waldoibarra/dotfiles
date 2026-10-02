@@ -55,11 +55,12 @@ ran with the `just sync` command.
 
 It will update the following:
 
-- The gentle-ai generated layer (`~/.claude/agents/`, `~/.config/opencode/prompts/`, and the rest)
-  via `gentle-ai sync`, plus the `gentle-orchestrator` agent it builds from the sections gentle-ai
-  writes into `~/.claude/CLAUDE.md`. This step also copies the four gentle-ai-managed configs out of
-  the repo, because Dotbot no longer symlinks them — see
-  [`docs/coding-agents.md`](/docs/coding-agents.md)
+- The gentle-ai v4 ODD/review layer (`~/.claude/agents/`, `~/.config/opencode/prompts/`, and the
+  rest) via `gentle-ai sync`, plus the `gentle-orchestrator` agent built from its managed Claude
+  memory sections. This step copies the four managed configs from the repo, removes generated
+  ambient Claude instructions, keeps OpenCode's engram protocol, restores the tracked
+  `outputStyle`, and repairs generated engram MCP tool prefixes. It no longer passes retired SDD
+  options or seeds SDD phase models. See [`docs/coding-agents.md`](/docs/coding-agents.md).
 - OpenCode's plugin cache, clearing only the entries for plugins with a newer version available
   upstream so OpenCode reinstalls just those on next launch
 - [Globally installed skills](https://skills.sh/)

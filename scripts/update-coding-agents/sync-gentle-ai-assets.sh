@@ -8,7 +8,6 @@
 # machine-local and untracked. See docs/coding-agents.md for the marker map and
 # the update procedure.
 
-readonly GENTLE_AI_STATE_FILE="$HOME/.gentle-ai/state.json"
 readonly GENTLE_AI_VERSION_STAMP_FILE="$HOME/.gentle-ai/.dotfiles-last-synced-version"
 readonly CLAUDE_SETTINGS_FILE="$HOME/.claude/settings.json"
 readonly CLAUDE_MEMORY_FILE="$HOME/.claude/CLAUDE.md"
@@ -30,13 +29,11 @@ readonly GENTLE_AI_MANAGED_CONFIGS=(
 # Marker sections `gentle-ai sync` is expected to write into each memory file.
 # The assertion below fails the sync when this stops matching reality, because
 # every step after it (extract, strip) is written against exactly this set.
-# `sdd-model-assignments` is nested inside `sdd-orchestrator` (gentle-ai 2.6+);
-# `remote-authorization` is nested inside `agent-routing` (observed in 3.4.0).
-# Both reach the orchestrator agent through extraction and are removed along
-# with their outer sections when the ambient memory is stripped.
+# `remote-authorization` is nested inside `agent-routing` in gentle-ai 4.0.
+# It reaches the orchestrator agent through extraction and is removed along
+# with its outer section when the ambient memory is stripped.
 readonly CLAUDE_MEMORY_MARKERS=(
-  persona engram-protocol sdd-orchestrator sdd-model-assignments agent-routing
-  remote-authorization
+  persona engram-protocol orchestrator agent-routing remote-authorization
 )
 readonly OPENCODE_MEMORY_MARKERS=(persona engram-protocol)
 
@@ -47,25 +44,12 @@ readonly OPENCODE_MEMORY_MARKERS=(persona engram-protocol)
 readonly CLAUDE_STRIPPED_MARKERS=("${CLAUDE_MEMORY_MARKERS[@]}")
 readonly OPENCODE_STRIPPED_MARKERS=(persona)
 
-# Per-phase Claude models seeded into gentle-ai's state file on first run only.
-# Architect phases get opus, implementation phases sonnet.
-readonly SEEDED_CLAUDE_PHASE_ASSIGNMENTS='{
-  "sdd-propose": { "model": "opus" },
-  "sdd-design": { "model": "opus" },
-  "sdd-apply": { "model": "sonnet" },
-  "sdd-tasks": { "model": "sonnet" }
-}'
-
 # Frontmatter description of the generated orchestrator agent. Wrapped with line
 # continuations only to stay inside the 100-column limit; it is written as a
 # single line, which is what Claude Code's agent frontmatter requires.
-readonly ORCHESTRATOR_DESCRIPTION="SDD/RDD orchestration - coordinates sdd-* and review \
-sub-agents; never does work inline. Use for SDD workflows, RDD reviews, and multi-agent \
-implementation."
-
-# Floor for the extracted orchestrator prompt. The two sections together are
-# ~23 KB; anything much smaller means the extraction silently matched nothing.
-readonly MIN_ORCHESTRATOR_PROMPT_BYTES=15000
+readonly ORCHESTRATOR_DESCRIPTION="ODD/RDD orchestration - coordinates substantial \
+implementation and reviews through delegated workers; handles small bounded work inline. \
+Use for ODD workflows, RDD reviews, and multi-agent implementation."
 
 # Mode the managed configs are left with. mktemp creates 0600, so every rewrite
 # has to put this back or the files silently drift to owner-only.
@@ -73,7 +57,7 @@ readonly MANAGED_CONFIG_MODE=644
 
 # The engram MCP tool prefix gentle-ai generates, and the one it has to become.
 # Claude Code namespaces MCP tools after the server key, so the plain user-scope
-# registration below yields mcp__engram__*. gentle-ai instead hardcodes the
+# registration yields mcp__engram__*. gentle-ai agents instead hardcode the
 # mcp__plugin_<plugin>_<server>__ form of a plugin-hosted server, which resolves
 # to nothing here. The strings are baked into the gentle-ai binary with no format
 # string behind them, so no upstream flag can change what it emits.
@@ -98,13 +82,16 @@ rewrite_file_with_output() {
   shift
 
   local temp_file
-  temp_file="$(mktemp)"
+  temp_file="$(mktemp)" || return 1
   if ! "$@" >"$temp_file"; then
     rm -f "$temp_file"
     return 1
   fi
 
-  mv "$temp_file" "$file"
+  if ! mv "$temp_file" "$file"; then
+    rm -f "$temp_file"
+    return 1
+  fi
   chmod "$MANAGED_CONFIG_MODE" "$file"
 }
 
@@ -151,6 +138,12 @@ strip_marker_sections() {
       kept_any = 1
       print
     }
+    END {
+      if (inside) {
+        print "Unclosed gentle-ai section in " FILENAME > "/dev/stderr"
+        exit 1
+      }
+    }
   ' "$file"
 }
 
@@ -158,9 +151,11 @@ strip_marker_sections() {
 # Print the body of one gentle-ai marker section, markers excluded.
 # Arguments:
 #   Path to the file to read.
-#   Marker name, e.g. sdd-orchestrator.
+#   Marker name, e.g. orchestrator.
 # Outputs:
-#   Writes the section body to STDOUT, or nothing when the marker is absent.
+#   Writes the section body to STDOUT, or an error to STDERR for invalid extraction.
+# Returns:
+#   0 for one ordered, nonempty section, 1 otherwise.
 #######################################
 extract_marker_section() {
   local -r file="$1"
@@ -168,17 +163,34 @@ extract_marker_section() {
 
   awk -v open_marker="<!-- gentle-ai:$name -->" \
     -v close_marker="<!-- /gentle-ai:$name -->" '
-    $0 == close_marker { inside = 0; next }
-    inside { print }
-    $0 == open_marker { inside = 1 }
+    $0 == open_marker {
+      if (opened++ || closed) { invalid = 1 }
+      inside = 1
+      next
+    }
+    $0 == close_marker {
+      if (!inside || closed++) { invalid = 1 }
+      inside = 0
+      next
+    }
+    inside {
+      print
+      if ($0 ~ /[^[:space:]]/ && $0 !~ /^<!-- \/?gentle-ai:/) { nonempty = 1 }
+    }
+    END {
+      if (invalid || inside || opened != 1 || closed != 1 || !nonempty) {
+        print "Invalid or empty gentle-ai section " open_marker " in " FILENAME > "/dev/stderr"
+        exit 1
+      }
+    }
   ' "$file"
 }
 
 #######################################
-# Verify a file carries exactly the expected gentle-ai marker sections, each
-# exactly once. Guards every later step: the extract and strip lists are written
-# against this inventory, so a renamed, added, or dropped upstream section has
-# to fail loudly instead of silently leaving content behind.
+# Verify the exact marker inventory, syntax, ordering, nesting and nonempty bodies.
+# Only remote-authorization may be nested, directly inside agent-routing.
+# Guards every later step: a changed upstream contract must fail loudly before
+# building a partial prompt or stripping the wrong ambient context.
 # Arguments:
 #   Path to the file to check.
 #   Remaining args: expected marker names.
@@ -198,88 +210,69 @@ assert_marker_inventory() {
     return 1
   fi
 
-  # A file with no markers at all is itself one of the mismatches to report, but
-  # it also makes grep exit 1 — capture first so pipefail cannot abort the script
-  # before the diagnostic below gets printed.
-  local marker_matches
-  marker_matches="$(grep -o 'gentle-ai:[a-z-]*' "$file" || true)"
-  local present_names
-  present_names="$(sort -u <<<"${marker_matches//gentle-ai:/}")"
-
-  local mismatches="" name
-
-  local unexpected_names=""
-  while IFS= read -r name; do
-    [[ -n "$name" ]] || continue
-    if ! printf '%s\n' "$@" | grep -qxF "$name"; then
-      unexpected_names+="$name "
-    fi
-  done <<<"$present_names"
-  if [[ -n "$unexpected_names" ]]; then
-    mismatches+=" unexpected: $unexpected_names"
-  fi
-
-  local missing_names=""
-  for name in "$@"; do
-    if ! grep -qxF "$name" <<<"$present_names"; then
-      missing_names+="$name "
-    fi
-  done
-  if [[ -n "$missing_names" ]]; then
-    mismatches+=" missing: $missing_names"
-  fi
-
-  local open_count close_count
-  for name in "$@"; do
-    open_count="$(grep -c "^<!-- gentle-ai:$name -->\$" "$file" || true)"
-    close_count="$(grep -c "^<!-- /gentle-ai:$name -->\$" "$file" || true)"
-    if [[ "$open_count" != 1 || "$close_count" != 1 ]]; then
-      mismatches+=" not exactly once: $name (open x$open_count, close x$close_count)"
-    fi
-  done
-
-  if [[ -z "$mismatches" ]]; then
+  if awk -v names="$*" '
+    BEGIN {
+      count = split(names, expected, " ")
+      for (i = 1; i <= count; i++) { allowed[expected[i]] = 1 }
+      parent["remote-authorization"] = "agent-routing"
+    }
+    /gentle-ai:/ {
+      if ($0 !~ /^<!-- \/?gentle-ai:[a-z][a-z-]* -->$/) {
+        print "Malformed gentle-ai marker at line " NR > "/dev/stderr"
+        invalid = 1
+        next
+      }
+      name = $0
+      sub(/^<!-- \/?gentle-ai:/, "", name)
+      sub(/ -->$/, "", name)
+      if (!(name in allowed)) {
+        print "Unexpected gentle-ai marker: " name > "/dev/stderr"
+        invalid = 1
+      }
+      if ($0 ~ /^<!-- gentle-ai:/) {
+        if (++opened[name] != 1 || stack[depth] != parent[name]) {
+          print "Duplicate or wrongly nested gentle-ai marker: " name > "/dev/stderr"
+          invalid = 1
+        }
+        stack[++depth] = name
+      } else {
+        if (++closed[name] != 1 || depth == 0 || stack[depth] != name) {
+          print "Unbalanced gentle-ai marker: " name > "/dev/stderr"
+          invalid = 1
+          next
+        }
+        delete stack[depth--]
+      }
+      next
+    }
+    /[^[:space:]]/ {
+      for (i = 1; i <= depth; i++) { nonempty[stack[i]] = 1 }
+    }
+    END {
+      for (name in allowed) {
+        if (opened[name] != 1 || closed[name] != 1 || !nonempty[name]) {
+          print "Missing, duplicate or empty gentle-ai section: " name > "/dev/stderr"
+          invalid = 1
+        }
+      }
+      if (depth != 0) { invalid = 1 }
+      exit invalid ? 1 : 0
+    }
+  ' "$file"; then
     return 0
   fi
 
-  echo "gentle-ai marker inventory changed in $file —$mismatches." >&2
+  echo "gentle-ai marker contract changed in $file." >&2
   echo "Follow the update procedure in docs/coding-agents.md, then re-run the sync." >&2
   return 1
 }
 
 #######################################
-# Register the engram MCP server with Claude Code. gentle-ai only writes
-# ~/.claude/mcp/engram.json — its own convention, which Claude Code never
-# reads — so without this step engram is reachable from OpenCode (gentle-ai
-# registers it in opencode.json) but absent from every Claude Code session.
-# Writes to the machine-local ~/.claude.json, mirroring gentle-ai's OpenCode
-# entry (`engram mcp --tools=agent`, binary resolved via PATH).
-# Globals:
-#   HOME
-# Outputs:
-#   Writes progress to STDOUT.
-#######################################
-register_engram_claude_mcp() {
-  if ! command -v engram >/dev/null 2>&1 || ! command -v claude >/dev/null 2>&1; then
-    echo "engram or claude not found, skipping the engram MCP registration."
-    return
-  fi
-  if [[ -f "$HOME/.claude.json" ]] \
-    && jq -e '.mcpServers.engram' "$HOME/.claude.json" >/dev/null 2>&1; then
-    echo "engram MCP already registered with Claude Code."
-    return
-  fi
-  claude mcp add --scope user engram -- engram mcp --tools=agent
-  echo "Registered the engram MCP server with Claude Code."
-}
-
-#######################################
-# Repoint the engram tool names in gentle-ai's generated agents at the MCP server
-# registered above. Every sdd-* and jd-* agent declares the engram tools in its
-# `tools:` frontmatter under the wrong prefix, and Claude Code drops a tool name
-# that matches no live server silently — no error, no warning, no retry. Without
-# this step those agents run with no memory access at all while still reporting
-# success, so their "persist the report" instructions become no-ops.
+# Repair native-owned agents tool prefixes without adopting user edits. v4 tracks
+# ownership by SHA256 of installed bytes, so record the repaired hash too; otherwise
+# the next sync mistakes our repair for a user edit and stops updating the agent.
+# A previous repair is recoverable only when reversing that exact substitution
+# reproduces the recorded hash. Unknown, modified and symlinked files stay untouched.
 # Globals:
 #   CLAUDE_AGENTS_DIR
 #   REGISTERED_ENGRAM_TOOL_PREFIX
@@ -288,23 +281,50 @@ register_engram_claude_mcp() {
 #   Writes progress to STDOUT.
 #######################################
 repoint_generated_agent_engram_tools() {
-  if [[ ! -d "$CLAUDE_AGENTS_DIR" ]]; then
-    echo "No $CLAUDE_AGENTS_DIR, skipping the engram tool prefix repoint."
+  local -r ownership_file="$CLAUDE_AGENTS_DIR/.gentle-ai-native-agent-ownership.json"
+  if [[ ! -f "$ownership_file" || -L "$ownership_file" ]]; then
+    echo "No regular native agent ownership ledger; leaving agent files untouched."
     return 0
   fi
+  if ! jq -e '.version == 1 and (.files | type == "object") and
+    (.files | all(.[]; type == "string" and test("^[0-9a-f]{64}$")))' \
+    "$ownership_file" >/dev/null; then
+    echo "Unsupported native agent ownership ledger: $ownership_file." >&2
+    return 1
+  fi
 
-  local agent_file
+  local agent_file agent_name recorded_hash installed_hash original_hash
   local repointed_count=0
   for agent_file in "$CLAUDE_AGENTS_DIR"/*.md; do
-    # An unmatched glob stays literal, and an agent that never names the upstream
-    # prefix — the review-* ones, or all of them once upstream fixes this — needs
-    # no rewrite.
-    [[ -f "$agent_file" ]] || continue
-    grep -q "$UPSTREAM_ENGRAM_TOOL_PREFIX" "$agent_file" || continue
+    [[ -f "$agent_file" && ! -L "$agent_file" ]] || continue
+    agent_name="${agent_file##*/}"
+    # shellcheck disable=SC2016  # $name is a jq variable.
+    recorded_hash="$(jq -r --arg name "$agent_name" '.files[$name] // empty' \
+      "$ownership_file")" || return 1
+    [[ -n "$recorded_hash" ]] || continue
+    installed_hash="$(shasum -a 256 "$agent_file")" || return 1
+    installed_hash="${installed_hash%% *}"
+    if [[ "$installed_hash" != "$recorded_hash" ]]; then
+      original_hash="$(sed \
+        "s/$REGISTERED_ENGRAM_TOOL_PREFIX/$UPSTREAM_ENGRAM_TOOL_PREFIX/g" "$agent_file" \
+        | shasum -a 256)" || return 1
+      original_hash="${original_hash%% *}"
+      [[ "$original_hash" == "$recorded_hash" ]] || continue
+    fi
 
-    rewrite_file_with_output "$agent_file" \
-      sed "s/$UPSTREAM_ENGRAM_TOOL_PREFIX/$REGISTERED_ENGRAM_TOOL_PREFIX/g" "$agent_file"
-    repointed_count=$((repointed_count + 1))
+    if grep -q "$UPSTREAM_ENGRAM_TOOL_PREFIX" "$agent_file"; then
+      rewrite_file_with_output "$agent_file" \
+        sed "s/$UPSTREAM_ENGRAM_TOOL_PREFIX/$REGISTERED_ENGRAM_TOOL_PREFIX/g" "$agent_file" \
+        || return 1
+      installed_hash="$(shasum -a 256 "$agent_file")" || return 1
+      installed_hash="${installed_hash%% *}"
+      repointed_count=$((repointed_count + 1))
+    fi
+    [[ "$installed_hash" != "$recorded_hash" ]] || continue
+    # shellcheck disable=SC2016  # $name and $hash are jq variables.
+    rewrite_file_with_output "$ownership_file" \
+      jq --arg name "$agent_name" --arg hash "$installed_hash" \
+        '.files[$name] = $hash' "$ownership_file" || return 1
   done
 
   echo "Repointed the engram tool names in $repointed_count generated agents."
@@ -326,10 +346,8 @@ repoint_generated_agent_engram_tools() {
 warn_on_unresolvable_agent_mcp_tools() {
   [[ -d "$CLAUDE_AGENTS_DIR" ]] || return 0
 
-  # Exactly the file set the repoint above walks. Scanning the directory instead
-  # would report names in files that step never rewrites, leaving a warning that
-  # no sync can ever clear. An unmatched glob stays literal, so -f is the test for
-  # "no generated agents yet".
+  # Include user-owned files left untouched by the repair: unresolved names in
+  # those need manual attention too. An unmatched glob stays literal.
   local agent_files=("$CLAUDE_AGENTS_DIR"/*.md)
   [[ -f "${agent_files[0]}" ]] || return 0
 
@@ -355,11 +373,11 @@ warn_on_unresolvable_agent_mcp_tools() {
 notify_on_gentle_ai_version_change() {
   # `gentle-ai version` prints "gentle-ai <semver>"; keep only the number.
   local current_version
-  current_version="$(gentle-ai version | awk '{ print $NF }')"
+  current_version="$(gentle-ai version | awk '{ print $NF }')" || return 1
 
   local recorded_version=""
   if [[ -f "$GENTLE_AI_VERSION_STAMP_FILE" ]]; then
-    recorded_version="$(cat "$GENTLE_AI_VERSION_STAMP_FILE")"
+    recorded_version="$(cat "$GENTLE_AI_VERSION_STAMP_FILE")" || return 1
   fi
   if [[ "$current_version" == "$recorded_version" ]]; then
     return 0
@@ -374,7 +392,7 @@ notify_on_gentle_ai_version_change() {
   echo "**************************************************************************"
   echo
 
-  mkdir -p "$(dirname "$GENTLE_AI_VERSION_STAMP_FILE")"
+  mkdir -p "$(dirname "$GENTLE_AI_VERSION_STAMP_FILE")" || return 1
   echo "$current_version" >"$GENTLE_AI_VERSION_STAMP_FILE"
 }
 
@@ -431,10 +449,10 @@ restore_claude_output_style() {
 strip_ambient_marker_sections() {
   rewrite_file_with_output "$CLAUDE_MEMORY_FILE" \
     strip_marker_sections "$CLAUDE_MEMORY_FILE" \
-    ${CLAUDE_STRIPPED_MARKERS[@]+"${CLAUDE_STRIPPED_MARKERS[@]}"}
+    ${CLAUDE_STRIPPED_MARKERS[@]+"${CLAUDE_STRIPPED_MARKERS[@]}"} || return 1
   rewrite_file_with_output "$OPENCODE_MEMORY_FILE" \
     strip_marker_sections "$OPENCODE_MEMORY_FILE" \
-    ${OPENCODE_STRIPPED_MARKERS[@]+"${OPENCODE_STRIPPED_MARKERS[@]}"}
+    ${OPENCODE_STRIPPED_MARKERS[@]+"${OPENCODE_STRIPPED_MARKERS[@]}"} || return 1
 
   echo "Stripped the non-ambient gentle-ai sections from CLAUDE.md and AGENTS.md."
 }
@@ -447,34 +465,43 @@ strip_ambient_marker_sections() {
 # This writes into ~/.claude/agents/ assuming it is a real, machine-local
 # directory. Never track a home/.claude/agents/ directory in this repo: the
 # Dotbot home/.claude/* glob would symlink it, and this write (plus gentle-ai's
-# ~20 generated agents) would land in the working tree.
+# generated native agents) would land in the working tree.
 # Globals:
 #   CLAUDE_MEMORY_FILE
-#   MIN_ORCHESTRATOR_PROMPT_BYTES
 #   ORCHESTRATOR_AGENT_FILE
 #   ORCHESTRATOR_DESCRIPTION
 # Outputs:
-#   Writes progress to STDOUT and an error to STDERR when the prompt is short.
+#   Writes progress to STDOUT and an error to STDERR for an invalid prompt.
 # Returns:
-#   0 on success, 1 when the extracted prompt is implausibly small.
+#   0 on success, 1 when either section lacks its required v4 structure.
 #######################################
 build_orchestrator_agent() {
   local orchestrator_section routing_section
-  orchestrator_section="$(extract_marker_section "$CLAUDE_MEMORY_FILE" sdd-orchestrator)"
-  routing_section="$(extract_marker_section "$CLAUDE_MEMORY_FILE" agent-routing)"
+  orchestrator_section="$(extract_marker_section "$CLAUDE_MEMORY_FILE" orchestrator)" || return 1
+  routing_section="$(extract_marker_section "$CLAUDE_MEMORY_FILE" agent-routing)" || return 1
+
+  # Validate the roles of both extracted sections instead of using a byte floor:
+  # prompt length changes across releases without implying lost instructions.
+  local heading
+  for heading in "## Agent Teams Orchestrator" "### Core Role" "### Delegation Rules"; do
+    if ! grep -qxF "$heading" <<<"$orchestrator_section"; then
+      echo "Extracted orchestrator is missing '$heading' in $CLAUDE_MEMORY_FILE." >&2
+      return 1
+    fi
+  done
+  if ! grep -qxF "## Implementation Routing" <<<"$routing_section" \
+    || ! grep -qxF "### ODD protocol (MANDATORY, in this order, on every request)" \
+      <<<"$routing_section"; then
+    echo "Extracted agent-routing lacks the ODD protocol in $CLAUDE_MEMORY_FILE." >&2
+    return 1
+  fi
 
   local prompt_body prompt_bytes
   prompt_body="$(printf '%s\n\n%s\n' "$orchestrator_section" "$routing_section")"
   prompt_bytes="$(printf '%s' "$prompt_body" | wc -c | tr -d '[:space:]')"
-  if ((prompt_bytes < MIN_ORCHESTRATOR_PROMPT_BYTES)); then
-    echo "Extracted only $prompt_bytes bytes of orchestrator prompt from" \
-      "$CLAUDE_MEMORY_FILE, expected at least $MIN_ORCHESTRATOR_PROMPT_BYTES." \
-      "Follow the update procedure in docs/coding-agents.md." >&2
-    return 1
-  fi
 
-  mkdir -p "$(dirname "$ORCHESTRATOR_AGENT_FILE")"
-  cat >"$ORCHESTRATOR_AGENT_FILE" <<EOF
+  mkdir -p "$(dirname "$ORCHESTRATOR_AGENT_FILE")" || return 1
+  cat >"$ORCHESTRATOR_AGENT_FILE" <<EOF || return 1
 ---
 name: gentle-orchestrator
 description: $ORCHESTRATOR_DESCRIPTION
@@ -499,14 +526,14 @@ EOF
 #######################################
 assert_marker_inventories() {
   assert_marker_inventory "$CLAUDE_MEMORY_FILE" \
-    ${CLAUDE_MEMORY_MARKERS[@]+"${CLAUDE_MEMORY_MARKERS[@]}"}
+    ${CLAUDE_MEMORY_MARKERS[@]+"${CLAUDE_MEMORY_MARKERS[@]}"} || return 1
   assert_marker_inventory "$OPENCODE_MEMORY_FILE" \
     ${OPENCODE_MEMORY_MARKERS[@]+"${OPENCODE_MEMORY_MARKERS[@]}"}
 }
 
 #######################################
-# Run `gentle-ai sync` non-interactively for both agents, in multi-agent SDD
-# mode with generated per-phase OpenCode profiles. Explicit `auto` keeps an
+# Run `gentle-ai sync` non-interactively for both agents. v4 installs ODD
+# orchestration without SDD modes or per-phase profiles. Explicit `auto` keeps an
 # unsupported or unknown OpenCode runtime in foreground mode instead of failing.
 # Outputs:
 #   Writes gentle-ai's own output to STDOUT/STDERR.
@@ -516,43 +543,7 @@ assert_marker_inventories() {
 run_gentle_ai_sync() {
   GENTLE_AI_YES=1 GENTLE_AI_NO_SELF_UPDATE=1 gentle-ai sync \
     --agent claude-code,opencode \
-    --sdd-mode multi \
-    --sdd-profile-strategy generated-multi \
     --opencode-background-subagents=auto
-}
-
-#######################################
-# Seed the per-phase Claude model assignments gentle-ai reads when it writes the
-# `model:` frontmatter of the generated sdd-* agents. Written only when the key
-# is absent, so a later change made through gentle-ai's TUI survives every sync.
-# Globals:
-#   GENTLE_AI_STATE_FILE
-#   SEEDED_CLAUDE_PHASE_ASSIGNMENTS
-# Outputs:
-#   Writes progress to STDOUT.
-#######################################
-seed_claude_phase_assignments() {
-  mkdir -p "$(dirname "$GENTLE_AI_STATE_FILE")"
-  if [[ ! -f "$GENTLE_AI_STATE_FILE" || ! -s "$GENTLE_AI_STATE_FILE" ]]; then
-    echo '{}' >"$GENTLE_AI_STATE_FILE"
-  fi
-  # A whitespace-only or otherwise non-object file (crash artifact) would make
-  # the seeding jq below emit nothing and "succeed", truncating the state file.
-  if ! jq -e 'type == "object"' "$GENTLE_AI_STATE_FILE" >/dev/null; then
-    echo "${GENTLE_AI_STATE_FILE} is not a JSON object; refusing to seed the" \
-      "model assignments. Inspect or delete it, then re-run the sync." >&2
-    return 1
-  fi
-  if jq -e 'has("claude_phase_assignments")' "$GENTLE_AI_STATE_FILE" >/dev/null; then
-    return 0
-  fi
-
-  # shellcheck disable=SC2016  # $assignments is a jq variable, not a shell one.
-  rewrite_file_with_output "$GENTLE_AI_STATE_FILE" \
-    jq --argjson assignments "$SEEDED_CLAUDE_PHASE_ASSIGNMENTS" \
-    '.claude_phase_assignments = $assignments' "$GENTLE_AI_STATE_FILE"
-
-  echo "Seeded the gentle-ai per-phase Claude model assignments."
 }
 
 #######################################
@@ -589,16 +580,14 @@ assert_opencode_skills_dir_is_real() {
 #   0 on success, non-zero when sync failed or the layer changed shape.
 #######################################
 sync_gentle_ai_generated_layer() {
-  assert_opencode_skills_dir_is_real
-  seed_claude_phase_assignments
-  run_gentle_ai_sync
-  assert_marker_inventories
-  build_orchestrator_agent
-  strip_ambient_marker_sections
-  restore_claude_output_style
-  register_engram_claude_mcp
-  repoint_generated_agent_engram_tools
-  warn_on_unresolvable_agent_mcp_tools
+  assert_opencode_skills_dir_is_real || return 1
+  run_gentle_ai_sync || return 1
+  assert_marker_inventories || return 1
+  build_orchestrator_agent || return 1
+  strip_ambient_marker_sections || return 1
+  restore_claude_output_style || return 1
+  repoint_generated_agent_engram_tools || return 1
+  warn_on_unresolvable_agent_mcp_tools || return 1
   notify_on_gentle_ai_version_change
 }
 
@@ -632,11 +621,11 @@ copy_managed_configs_from_repo() {
     fi
 
     if [[ -L "$target_file" ]]; then
-      rm "$target_file"
+      rm "$target_file" || return 1
     fi
-    mkdir -p "$(dirname "$target_file")"
-    cp "$source_file" "$target_file"
-    chmod "$MANAGED_CONFIG_MODE" "$target_file"
+    mkdir -p "$(dirname "$target_file")" || return 1
+    cp "$source_file" "$target_file" || return 1
+    chmod "$MANAGED_CONFIG_MODE" "$target_file" || return 1
   done
 
   echo "Copied ${#GENTLE_AI_MANAGED_CONFIGS[@]} gentle-ai-managed configs from the repo."
@@ -654,9 +643,9 @@ copy_managed_configs_from_repo() {
 sync_gentle_ai_assets() {
   print_separator "Synchronizing gentle-ai assets"
 
-  copy_managed_configs_from_repo
+  copy_managed_configs_from_repo || return 1
   if command -v gentle-ai >/dev/null 2>&1; then
-    sync_gentle_ai_generated_layer
+    sync_gentle_ai_generated_layer || return 1
   else
     echo "gentle-ai not found, skipping its generated layer;" \
       "the configs copied above are still up to date."

@@ -232,11 +232,17 @@ is exposed publicly. Three pieces:
 
 ## gentle-ai
 
-[gentle-ai](https://github.com/Gentleman-Programming/gentle-ai) is an SDD/RDD ecosystem for coding
-agents, installed from Homebrew together with `engram` and `gga` — see
+[gentle-ai](https://github.com/Gentleman-Programming/gentle-ai) configures coding agents with
+Organic Driven Development (ODD), persistent memory, and optional receipt-driven review (RDD).
+It is installed from Homebrew together with `engram` and `gga`; see
 [`docs/tooling.md`](/docs/tooling.md). `gentle-ai sync` generates agents, commands, skills and
 prompts for both Claude Code and OpenCode. `scripts/update-coding-agents/sync-gentle-ai-assets.sh`
-runs it on every `just sync` and then reduces what it produced to what this machine actually wants.
+runs it on every `just sync` and then applies this repository's generated-context policy.
+
+[Version 4.0.0](https://github.com/Gentleman-Programming/gentle-ai/releases/tag/v4.0.0) retires SDD
+and OpenSpec in favor of ODD. The sync no longer passes `--sdd-mode` or
+`--sdd-profile-strategy`. Legacy state keys and user-owned SDD files may remain; they do not
+enable the retired workflow. Separately installed SDD skills are outside this generated layer.
 
 ### Copy-managed files
 
@@ -250,15 +256,14 @@ runs it on every `just sync` and then reduces what it produced to what this mach
 So Dotbot no longer links them (they are `exclude`d from its globs in
 [`install.conf.yaml`](/install.conf.yaml)); the sync script copies the repo source over the `$HOME`
 target instead, dropping any leftover symlink first. That copy is also the **garbage collector**:
-`gentle-ai sync` only ever adds marker sections, it never prunes them, so every run has to start
-from the tracked bytes.
+each run starts from the tracked bytes before gentle-ai adds its current managed sections.
 
 Consequences:
 
 - Editing a repo source still propagates — on the next `dots` run, not instantly.
 - **Never edit those four files under `$HOME`.** The next sync clobbers them without asking.
 - `~/.config/opencode/skills` is a real directory now, with one symlink per repo skill. gentle-ai
-  writes ~20 generated skill directories in there; as a directory symlink it would have written
+  writes generated skill directories in there; as a directory symlink it would have written
   them straight into this repo. The sync script refuses to run while it is still a symlink.
 - The Herdr Claude hook step can no longer dirty the repo's `settings.json`, because `$HOME`'s copy
   is a different file now. Any absolute-path duplicate hook Herdr adds lives in that copy until the
@@ -271,9 +276,10 @@ installed `gentle-ai` version on every sync, so there is nothing to commit and n
 
 | Path | Contents |
 | --- | --- |
-| `~/.claude/{agents,commands,skills,output-styles,mcp}/` | `sdd-*`, `review-*`, `jd-*` agents, slash commands, skills, the engram MCP entry. `output-styles/` is shared, not exclusive — Dotbot links tracked styles into it file by file |
-| `~/.claude.json` `mcpServers.engram` | Registered by the sync script: gentle-ai only writes `~/.claude/mcp/engram.json`, a location Claude Code never reads, so engram would otherwise exist for OpenCode only |
+| `~/.claude/{agents,commands,skills,output-styles}/` | ODD guidance, `review-*` and `jd-*` agents, commands, and skills. `output-styles/` is shared; Dotbot links tracked styles into it file by file |
+| `~/.claude.json` `mcpServers.engram` | Registered directly by gentle-ai v4 in Claude Code's user configuration; no separate Claude CLI registration step is needed |
 | `~/.claude/agents/gentle-orchestrator.md` | Built by the sync script, see below |
+| `~/.claude/agents/.gentle-ai-native-agent-ownership.json` | Native-agent SHA256 ownership ledger; the sync script updates owned entries after MCP prefix repair |
 | `~/.claude.json` | Merged, not replaced |
 | `~/.config/opencode/{prompts,commands,plugins,skills}/` | The OpenCode half of the same layer |
 | `~/.config/gga/` | `gga` review configuration |
@@ -288,33 +294,24 @@ global memory files. The sync script asserts this exact inventory, then strips m
 | --- | --- | --- | --- |
 | `~/.claude/CLAUDE.md` | `persona` | stripped | Conflicts with the tracked persona in `AGENTS.md` |
 | `~/.claude/CLAUDE.md` | `engram-protocol` | stripped | Already reaches Claude Code through the `@`-import of `AGENTS.md` |
-| `~/.claude/CLAUDE.md` | `sdd-orchestrator` | stripped | Moved into the `gentle-orchestrator` agent, so it arrives as that agent's prompt instead of as global memory |
-| `~/.claude/CLAUDE.md` | `sdd-model-assignments` | stripped | Nested inside `sdd-orchestrator` (gentle-ai 2.6+), so it rides along with it into the agent prompt and out of the file |
-| `~/.claude/CLAUDE.md` | `agent-routing` | stripped | Same as `sdd-orchestrator` |
-| `~/.claude/CLAUDE.md` | `remote-authorization` | stripped | Nested inside `agent-routing` (observed in gentle-ai 3.4.0); preserved in the `gentle-orchestrator` prompt before its outer section is stripped |
+| `~/.claude/CLAUDE.md` | `orchestrator` | stripped | Moved into the `gentle-orchestrator` agent, so ODD guidance is part of that agent's prompt |
+| `~/.claude/CLAUDE.md` | `agent-routing` | stripped | Moved into the same agent prompt |
+| `~/.claude/CLAUDE.md` | `remote-authorization` | stripped | Nested inside `agent-routing`; preserved in the agent prompt before its outer section is stripped |
 | `~/.config/opencode/AGENTS.md` | `persona` | stripped | Conflicts with the tracked persona directly above it |
 | `~/.config/opencode/AGENTS.md` | `engram-protocol` | **kept** | The one section that has to be ambient: it governs when to write memory |
 
 `CLAUDE.md` therefore ends up as just its one-line `@`-import again, and `AGENTS.md` keeps only the
-engram protocol. What that costs depends on which agent the session starts as:
-
-| Session | Ambient cost | Made of |
-| --- | --- | --- |
-| Stock gentle-ai, no stripping | ~10,950 tokens | persona + engram + orchestrator + routing, with engram and persona duplicated across both files |
-| Default session here (`gentle-orchestrator`) | ~7,500 tokens | the orchestrator prompt (~5,800) + engram (~1,700), each exactly once |
-| Session on any other agent | ~1,700 tokens | engram only |
-
-So the orchestrator prompt is **not** free in a default session — `gentle-orchestrator` is the
-global default (see below), so every default session carries it. The win is that nothing is
-duplicated and nothing is loaded twice: ~30% below stock even in the most expensive case, and
-~85% below it whenever a session runs on another agent or a sub-agent.
+engram protocol. Default sessions load the orchestrator through `gentle-orchestrator`; sessions
+on other agents do not carry that prompt. Token estimates from the former SDD layer do not
+describe the v4 ODD prompt.
 
 ### The gentle-orchestrator agent
 
 `~/.claude/agents/gentle-orchestrator.md` is **regenerated on every sync** from the
-`sdd-orchestrator` and `agent-routing` sections, before they are stripped. It is a plain sub-agent
-definition: `model: fable`, and deliberately **no `tools` key**, so it inherits every tool including
-`Agent` — without which it could not delegate at all.
+`orchestrator` and `agent-routing` sections, before they are stripped. Its ODD/RDD prompt allows
+bounded work inline and delegates work that exceeds the upstream evidence budget. It is a plain
+sub-agent definition: `model: fable`, with no `tools` key, so it inherits every tool including
+`Agent`, which it needs to delegate.
 
 It is the global default agent, via `"agent": "gentle-orchestrator"` in
 [`home/.claude/settings.json`](/home/.claude/settings.json), so every default session starts on
@@ -325,26 +322,27 @@ setting). The main-loop agent is fixed at startup — only the model can change 
 
 ### Engram tool names in the generated agents
 
-`gentle-ai` writes the engram tools into the `tools:` frontmatter of every generated `sdd-*` and
-`jd-*` agent under the **plugin-hosted** prefix `mcp__plugin_engram_engram__`. Nothing here resolves
-that name. Claude Code namespaces MCP tools after the **server key**, and engram is registered as a
+`gentle-ai` v4 generates `jd-fix-agent`, `jd-judge-a`, `jd-judge-b`, and five `review-*` agents.
+Its generated engram tool declarations still use the **plugin-hosted** prefix
+`mcp__plugin_engram_engram__`. Nothing here resolves that name. Claude Code namespaces MCP tools
+after the **server key**, and engram is registered as a
 plain user-scope server (`mcpServers.engram`), so its tools are `mcp__engram__*`. The plugin form
 would require a Claude Code plugin named `engram` hosting a server named `engram`; no plugin is
 installed, and engram is a plain Homebrew binary.
 
-A tool name that matches no live server is **dropped from the sub-agent silently** — no error, no
-warning, no retry. Left alone, all 13 agents start with no memory access and still report success,
-which turns every "persist the report via `mem_save`" instruction in the SDD and judgment-day
-phases into a no-op. Because it costs nothing at runtime — no failed calls, no retry loop, and the
-absent tool schemas are never even loaded — it produces no symptom to notice. The real cost is
-across sessions: agents that cannot read prior context re-derive it by reading files, and cannot
-persist what they learn.
+A tool name that matches no live server is **dropped from the sub-agent silently**. An affected
+agent then has no memory access even though its instructions call for `mem_save`. Agents without
+memory access cannot retrieve prior context or persist what they learn.
 
-`repoint_generated_agent_engram_tools` rewrites the prefix after every sync, and
-`warn_on_unresolvable_agent_mcp_tools` reports any `mcp__plugin_*` name that survives, so a renamed
-or newly added one cannot fail as quietly. Both are no-ops once upstream fixes this. The strings are
-baked into the `gentle-ai` binary with no format string behind them, so no upstream flag changes
-what it emits — verify with `strings $(command -v gentle-ai) | grep -o 'mcp__[A-Za-z0-9_]*'`.
+`repoint_generated_agent_engram_tools` repairs only agents proven owned by gentle-ai's
+`~/.claude/agents/.gentle-ai-native-agent-ownership.json` ledger. Their installed bytes must
+match the recorded SHA256, either directly or after reversing an earlier prefix repair.
+The script records each repaired file's new SHA256 so the next upstream sync still recognizes
+and updates it. Without that update, gentle-ai would mistake the repair for a user edit.
+
+Unknown, user-edited, and symlinked agents stay untouched; the local `gentle-orchestrator`
+is not adopted into upstream ownership. `warn_on_unresolvable_agent_mcp_tools` reports any
+remaining `mcp__plugin_*` declarations, including those in files the repair leaves alone.
 
 To check the result, ask any generated agent what tools it has — but **restart the session first**.
 Claude Code snapshots agent definitions at startup, so an edit under `~/.claude/agents/` is invisible
@@ -352,48 +350,45 @@ to the session that made it, and a test without a restart reports a false failur
 
 ### Model assignments
 
-`gentle-ai` reads `claude_phase_assignments` from `~/.gentle-ai/state.json` to set the `model:`
-frontmatter of the generated `~/.claude/agents/sdd-*.md`. The sync script seeds it **only when the
-key is absent**, so anything changed later through gentle-ai's TUI survives every sync:
+The sync script no longer seeds `claude_phase_assignments`: v4 does not generate SDD phase
+agents or offer SDD profile/phase selection. Existing legacy assignments in
+`~/.gentle-ai/state.json` are preserved, but they no longer select models for an active workflow.
 
-| Phase | Model | Why |
-| --- | --- | --- |
-| `sdd-propose`, `sdd-design` | `opus` | Architect phases — the decisions are expensive to get wrong |
-| `sdd-apply`, `sdd-tasks` | `sonnet` | Implementation phases — volume work against a settled design |
-
-Valid models are `fable`, `opus`, `sonnet` and `haiku`, with an optional `"effort"` of `low`,
-`medium`, `high`, `xhigh` or `max`. OpenCode's generated agents carry no model of their own: they
-inherit whatever model is selected in OpenCode (GLM at the moment). Per-phase OpenCode splits are
-possible later through `gentle-ai sync --profile` / `--profile-phase`.
+The locally built `gentle-orchestrator` keeps `model: fable`; the v4-generated `jd-fix-agent`
+uses `sonnet`. Inspect the generated definitions for each active agent's model. The former
+`--profile` / `--profile-phase` SDD guidance no longer applies.
 
 The gentle-ai TUI applies model changes by running a **raw** sync, which re-adds the stripped
 marker sections to the `$HOME` copies and overwrites `outputStyle` with gentle-ai's own. That is
 harmless (the repo is untouched) but temporary noise — run `just update-ca` after any manual TUI or
-`gentle-ai sync` use to restore the stripped layout and the tracked `outputStyle`. Model assignments
-survive, since they live in `state.json`.
+`gentle-ai sync` use to restore the stripped layout and the tracked `outputStyle`.
 
 ### Update procedure when gentle-ai changes structure
 
-Everything above is pinned to one upstream shape. Three things make a change visible instead of
-silent:
+The integration expects the v4.0.0 upstream shape. These checks expose changes:
 
-- The **marker assertion** fails the sync, naming the unexpected or missing section.
+- The **marker assertion** fails the sync for missing, unexpected, unbalanced, or misnested sections.
 - The **version stamp** (`~/.gentle-ai/.dotfiles-last-synced-version`) prints a prominent notice the
   first time a new `gentle-ai` version is synced, even when the markers still match.
 - The **unresolvable MCP tool warning** names any `mcp__plugin_*` tool still declared by a generated
   agent, which is otherwise the one failure mode Claude Code gives no signal for at all.
+- The **prompt assertion** rejects missing ODD guidance or core role instructions before the
+  orchestrator agent is written.
 
-When either fires:
+When a check fails or a version notice appears:
 
 1. Sync a scratch `$HOME` so the real one is not touched, and keep using that same `$HOME` for
     step 2 — the real `~/.claude/CLAUDE.md` is the already-stripped 30-byte file and would show
     nothing:
 
     ```sh
-    export GA_CHECK=/tmp/ga-check && mkdir -p "$GA_CHECK"
-    HOME="$GA_CHECK" gentle-ai sync --agent claude-code,opencode \
-      --sdd-mode multi --sdd-profile-strategy generated-multi
+    export GA_CHECK="$(mktemp -d)"
+    HOME="$GA_CHECK" gentle-ai sync --agent claude-code,opencode
     ```
+
+    OpenCode must be installed and its version detectable. v4 reports a skipped OpenCode target
+    and exits non-zero if detection fails. OpenCode V2 also requires its pinned plugin SDK; follow
+    gentle-ai's consent or manual setup instructions instead of bypassing the failure.
 
 2. List the section names it wrote — one line per section, per file:
 
@@ -406,7 +401,8 @@ When either fires:
     [`sync-gentle-ai-assets.sh`](/scripts/update-coding-agents/sync-gentle-ai-assets.sh).
 4. Update those lists, then the `*_STRIPPED_MARKERS` lists and the two
     `extract_marker_section` calls in `build_orchestrator_agent` that feed the agent prompt.
-5. Re-run `just update-ca` and confirm the assertion passes.
+    Check the prompt assertions against the new ODD and role headings.
+5. Re-run `just update-ca` and confirm the assertions pass.
 
 ### Troubleshooting with `gentle-ai doctor`
 
@@ -437,11 +433,10 @@ gentle-ai skill-registry refresh       # write .atl/skill-registry.md
 gga init                               # provider-agnostic review config
 ```
 
-Then `/sdd-init` inside Claude Code to scaffold the SDD artifacts. `skill-registry refresh` also
-runs automatically on every prompt, via the `UserPromptSubmit` hook in
-[`home/.claude/settings.json`](/home/.claude/settings.json) — that hook is exactly what
-`gentle-ai sync` would otherwise add itself, so keeping it tracked makes sync's `settings.json`
-write a no-op.
+ODD needs no `/sdd-init` scaffold; v4 no longer offers `/sdd-*` commands.
+`skill-registry refresh` also runs automatically on every prompt, via the `UserPromptSubmit`
+hook in [`home/.claude/settings.json`](/home/.claude/settings.json). The tracked hook matches
+the entry gentle-ai would otherwise add.
 
 That hook runs in **every** repo, and `--no-gitignore` (required for the settings no-op) means it
 writes `.atl/skill-registry.md` and `.atl/.skill-registry.cache.json` without ignoring them itself.
@@ -533,9 +528,9 @@ Codex reads its global instructions from `~/.codex/AGENTS.md`, which Dotbot syml
 source. It needs no import shim — `AGENTS.md` is Codex's own filename. Codex resolves
 `~/.codex/AGENTS.override.md` ahead of it, so leave that path empty.
 
-gentle-ai does not manage Codex on this machine — `gentle-ai doctor` reports `claude-code,
-opencode` — so unlike the four copied files this one stays a plain symlink. If Codex is ever added
-to `gentle-ai sync --agents`, check whether it rewrites `~/.codex/AGENTS.md` first: sync aborts on
+This repository's sync targets Claude Code and OpenCode, not Codex, so unlike the four copied
+files this one stays a plain symlink. If Codex is ever added to `gentle-ai sync --agents`,
+check whether it rewrites `~/.codex/AGENTS.md` first: sync aborts on
 symlinks, which is why the other four are copied.
 
 ### Oh My Pi
