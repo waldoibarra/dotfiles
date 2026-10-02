@@ -5,7 +5,8 @@ workstation or changing package and tool management.
 
 ## Sync the workstation
 
-Run a full sync in your own interactive terminal:
+Run a full sync in an interactive terminal, or let an agent run it with a pseudo-terminal (PTY)
+while you're available to authenticate:
 
 ```sh
 cd ~/.dotfiles
@@ -58,14 +59,18 @@ Key recipes:
 
 ### Which recipes may an AI agent run?
 
-`just sync` and `just brew` must be run by the user (`! just sync`): their sudo paths (Dotbot's
-Touch ID/shell scripts, Homebrew bootstrap, cask installers) trigger a Touch ID dialog that blocks
-a non-TTY agent indefinitely — no error, no timeout — and `git pull` may prompt for SSH
-credentials. Verified empirically: the sudo credential cache never carries across agent shell
-calls, so every sudo re-blocks.
+Agents may run `dots`, `just sync`, and `just brew` with a PTY while the user is present.
+On macOS with Touch ID configured for sudo, the user can approve prompts from agent-launched
+commands. Otherwise, use the workstation's configured authentication method.
+Wait for authentication; a pending prompt is not a command failure.
+`git pull` may also prompt for SSH credentials. Don't assume sudo credentials carry across
+separate shell calls.
 
-The sub-recipes below never touch sudo, so agents may run them directly when only their domain
-changed, instead of asking for a full sync:
+These commands still upgrade tools and can remove packages. Keep the checks in
+[Sync the workstation](#sync-the-workstation); user-present authentication does not make the run
+read-only. If the user is unavailable, defer commands that need authentication.
+
+Use the narrower recipes when only their domain changed:
 
 - Changed `home/.config/mise/config.toml` or `mise.toml`? Run `just mise-sync`.
 - Changed `home/.agents/.skill-lock.json`, or need to refresh the RTK/Herdr integrations or
@@ -73,7 +78,7 @@ changed, instead of asking for a full sync:
 - Changed `hk.pkl`? Run `just hooks`, then `just check-hooks`.
 
 Anything involving Dotbot (new/renamed tracked files, symlinks) or the Brewfile still needs the
-full `just sync` run by the user.
+full `just sync`, with the user available to authenticate.
 
 ## hk
 
