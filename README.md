@@ -2,8 +2,8 @@
 
 Keep your shell, Git, development tools, and AI coding agents in version control.
 
-Waldo's personal workstation configuration for macOS and Debian. Browse the pieces you need,
-or adapt the setup to manage your own machine.
+Shared workstation configuration for macOS, with partial Debian support. Keep common defaults
+in the repository and personal settings on each machine.
 
 [Start with the setup guide](/docs/setup.md)
 
@@ -31,11 +31,13 @@ flowchart LR
     Repo --> Brew[Homebrew packages]
     Repo --> Mise[Mise tools]
     Repo --> Agents[Coding-agent sync]
+    Agents --> Local[Copied configs and generated assets in HOME]
 ```
 
-This is an opinionated personal setup. Installation changes files in your home directory and the
-login shell. Full sync can remove Homebrew packages absent from the Brewfile. Review the
-[setup guide](/docs/setup.md) before adopting it; some desktop apps are macOS-only.
+Installation changes files in your home directory and the login shell. Full sync can remove
+Homebrew packages absent from the Brewfile and commit and push skill-lockfile updates.
+Review the [setup guide](/docs/setup.md) before installing and the
+[sync workflow](/docs/tooling.md#sync-the-workstation) before updating; some desktop apps are macOS-only.
 
 ## Explore the setup
 
