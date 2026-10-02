@@ -70,6 +70,10 @@ These commands still upgrade tools and can remove packages. Keep the checks in
 [Sync the workstation](#sync-the-workstation); user-present authentication does not make the run
 read-only. If the user is unavailable, defer commands that need authentication.
 
+`just update-ca` commits and pushes when the global skill lockfile changes. `just sync`
+and `dots` include that step. Obtain publication authorization before running these workflows;
+the push can also publish other unpushed commits on the current branch.
+
 Use the narrower recipes when only their domain changed:
 
 - Changed `home/.config/mise/config.toml` or `mise.toml`? Run `just mise-sync`.
