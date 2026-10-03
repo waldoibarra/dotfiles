@@ -124,9 +124,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/agent-skills-creator/SKILL.md",
-      "skillFolderHash": "a2f93127c5b31842a04271f12a5a6c258c1de4b9",
+      "skillFolderHash": "267cf869214da3e1f0a30d3635808599dd4e8544",
       "installedAt": "2026-09-04T04:50:00.662Z",
-      "updatedAt": "2026-09-29T16:37:38.548Z"
+      "updatedAt": "2026-10-03T06:31:37.013Z"
     },
     "agents-md": {
       "source": "mblode/agent-skills",
@@ -178,9 +178,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/eli5/SKILL.md",
-      "skillFolderHash": "f4bdc1c30b2fdd023f1d575aff3c256b114b6592",
+      "skillFolderHash": "df3a4442a2079a05f66c6f4fa6e949d60a2b31b3",
       "installedAt": "2026-09-04T04:50:00.671Z",
-      "updatedAt": "2026-09-21T22:29:03.968Z"
+      "updatedAt": "2026-10-03T06:31:38.841Z"
     },
     "multi-tenant-architecture": {
       "source": "mblode/agent-skills",
@@ -352,9 +352,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/ghostwriter/SKILL.md",
-      "skillFolderHash": "c900565c89fec57f58de1ebba23f634e40b55bf5",
+      "skillFolderHash": "002f7f779df2af9451fa57f538d084189cd9b3e0",
       "installedAt": "2026-09-22T17:40:34.713Z",
-      "updatedAt": "2026-09-29T16:37:40.620Z"
+      "updatedAt": "2026-10-03T06:31:40.677Z"
     },
     "workout-program-designer": {
       "source": "onewave-ai/claude-skills",
