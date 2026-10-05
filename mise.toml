@@ -1,5 +1,5 @@
 [tools]
-committed = "latest"
+"github:crate-ci/committed" = "latest"
 "github:editorconfig-checker/editorconfig-checker" = "latest"
 hk = "latest"
 markdownlint-cli2 = "latest"

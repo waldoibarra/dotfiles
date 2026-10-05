@@ -100,6 +100,11 @@ After any change to `hk.pkl`, run `just check-hooks` to verify the hook still pa
 Commit message format: imperative mood, present tense, no trailing period, subject ≤ 50 chars.
 Use the body to explain why; use the footer for metadata (e.g. issue references).
 
+Use `github:crate-ci/committed` in [`mise.toml`](/mise.toml) to select the native release.
+Aqua's `rosetta2: true` rule selects Intel binaries on Apple Silicon and can cause
+`Bad CPU type in executable`. Install it with `mise install github:crate-ci/committed`.
+If your shell still uses the old path, run `mise exec -- git commit`; hooks stay enabled.
+
 ## Homebrew
 
 Homebrew manages GUI apps and system-level packages. The global Brewfile lives at
