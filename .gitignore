@@ -5,3 +5,6 @@ id_rsa
 # gentle-ai's per-repo skill registry, written by the Claude Code
 # UserPromptSubmit hook — see docs/coding-agents.md.
 .atl/
+
+# Local agent workspace: plans, spikes, and research evidence.
+.agents/
