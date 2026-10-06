@@ -31,6 +31,7 @@ installed paths replace `home/` with `~/` unless noted.
 | `home/.config/opencode/opencode.json` | Copied; OpenCode providers, plugins, MCP, permissions |
 | `home/.claude/output-styles/*.md` | Linked individually; the directory stays real |
 | `home/.claude/*statusline*.sh` | Linked; main and subagent status lines |
+| `home/.claude/.shellcheckrc` | Repository-only; ShellCheck configuration for the status-line scripts |
 | `home/.config/opencode/tui.json` | Linked; OpenCode terminal UI settings |
 | `home/.claude/RTK.md` | Linked; manually maintained RTK reference |
 | `home/.config/rtk/*` | Linked to `~/Library/Application Support/rtk/` on macOS or `~/.config/rtk/` on Linux |
@@ -47,5 +48,5 @@ reach these copies on the next updater run; local edits to installed copies are 
 Herdr's machine-specific hook stays in the installed Claude settings copy. Read
 [Herdr integration](/docs/agent-integrations.md#herdr) before changing that hook.
 
-Keep shared installation directories real, with links to individual children. Dotbot removes
-the legacy `~/.config/opencode/skills` directory symlink before installing children.
+Keep shared installation directories real, with links to individual children. Existing OpenCode
+installations must already use this layout for `~/.config/opencode/skills` before syncing.

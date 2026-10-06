@@ -5,8 +5,8 @@ support. Review the configuration before applying it to another account.
 
 ## Before you start
 
-- Back up existing dotfiles. [Dotbot configuration](/install.conf.yaml) enables backup, force and
-  relink; installation replaces configuration, installs packages and changes the login shell.
+- Back up existing dotfiles. [Dotbot configuration](/install.conf.yaml) enables backups and forced
+  replacement; installation replaces configuration, installs packages and changes the login shell.
 - Review the [Brewfile](/home/.Brewfile), [Mise tools](/home/.config/mise/config.toml),
   [SSH hosts](/home/.ssh/config) and [AWS profiles](/home/.aws/config). The login shell selects the
   `waldo` AWS profile. Credentials are not supplied.

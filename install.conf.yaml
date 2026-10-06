@@ -3,10 +3,8 @@
       mode: 0755
     link:
       backup: true
-      relink: true
       force: true
       create: true
-
 - clean:
     "~":
     ~/.agents/skills:
@@ -20,7 +18,6 @@
     ~/.ssh:
     "~/Library/Application Support/Code/User":
     ~/Library/LaunchAgents:
-
 - create:
     ~/.agents:
     ~/.agents/skills:
@@ -29,16 +26,9 @@
     ~/.ssh:
       mode: 0700
     ~/projects:
-
 - shell:
     - command: git submodule update --init --recursive --remote
       description: Initialize, clone, and update all submodules (including nested ones) —
-    # `~/.config/opencode/skills` used to be a single symlink to the repo directory. The link
-    # section below now links its children individually, which would write straight into the repo
-    # through that old symlink, so drop it first.
-    - command: '[ ! -L "$HOME/.config/opencode/skills" ] || rm "$HOME/.config/opencode/skills"'
-      description: Drop the legacy ~/.config/opencode/skills directory symlink —
-
 - link:
     # Files in $HOME root.
     ~/.Brewfile: home/.Brewfile
@@ -47,7 +37,6 @@
     ~/.zprofile: home/.zprofile
     ~/.zshenv: home/.zshenv
     ~/.zshrc: home/.zshrc
-
     # Files.
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.agents/AGENTS.md: home/.agents/AGENTS.md
@@ -73,7 +62,6 @@
       glob: true
       path: "home/.config/rtk/*"
       if: '[[ "$(uname)" == "Linux" ]]'
-
     # Directories.
     ~/.agents/skills/:
       glob: true
@@ -88,8 +76,6 @@
         - home/.claude/CLAUDE.md
         - home/.claude/output-styles
         - home/.claude/settings.json
-    # Globs skip dotfiles, so hidden files inside globbed directories need explicit links.
-    ~/.claude/.shellcheckrc: home/.claude/.shellcheckrc
     # Link output styles per file so `~/.claude/output-styles` stays a real directory and styles
     # other tools write there stay out of this repo.
     ~/.claude/output-styles/:
@@ -110,7 +96,6 @@
       glob: true
       path: home/.config/opencode/skills/*
     ~/.config/wezterm: home/.config/wezterm/
-
 - shell:
     - command: ./scripts/configure-touch-id-for-sudo.sh
       description: Enable Touch ID for sudo (/etc/pam.d/sudo_local) —
