@@ -1,3 +1,6 @@
+# Skip all welcome setup in non-interactive shells.
+[[ -o interactive ]] || return 0
+
 [[ -f "$HOME/.zlogin.local" ]] && source "$HOME/.zlogin.local"
 
 # ╔═══════════════════════════════════════════════════════════════════════════════════════════════╗

@@ -11,7 +11,7 @@ Zsh reads these files in order when their conditions apply:
 | [.zshenv](/home/.zshenv) | Every Zsh process | Set Vim as editor; add Homebrew, Mise shims and `~/.local/bin` to PATH. |
 | [.zprofile](/home/.zprofile) | Login shells | Reapply PATH, set AWS profile and Ollama keep-alive, then load local overrides. |
 | [.zshrc](/home/.zshrc) | Interactive shells | Load Antigen/oh-my-zsh, random theme, Mise activation, pager settings and aliases. |
-| [.zlogin](/home/.zlogin) | Login shells, after `.zshrc` | Load the local welcome name, print a quote and greeting, then remove helper functions. |
+| [.zlogin](/home/.zlogin) | Login shells, after `.zshrc` | In interactive shells, load the local welcome name, print a quote and greeting, then remove helper functions. |
 
 A login interactive terminal loads all four. A non-login, non-interactive command loads only
 `.zshenv`; keep it quiet and free of prompt or terminal-dependent work.
@@ -28,8 +28,8 @@ and can reorder it. Homebrew paths are fixed to `/opt/homebrew` on macOS and
 - `lso` runs `eza -aal --octal-permissions`; `dots` runs the
   [full sync](/docs/tooling.md#sync-the-workstation) without changing the current directory.
 - On macOS, `claude` and `opencode` aliases run under `caffeinate -i`.
-- `.zlogin` prints its welcome in login shells without checking whether the shell is interactive.
-  Do not source it as a side-effect-free environment file.
+- `.zlogin` returns immediately in non-interactive shells, before loading `~/.zlogin.local` or
+  defining welcome helpers. Automated login-shell commands do not run the greeting setup.
 
 ## Machine-local configuration
 
