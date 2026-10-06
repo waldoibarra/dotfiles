@@ -65,6 +65,11 @@ The Claude adapter is user-level, not a repository wrapper. Keep its one-line im
 shared rules only in the source `AGENTS.md`. Leave `~/.codex/AGENTS.override.md` absent unless
 you intend to replace Codex's global rules.
 
+Codex is installed only to sign in to the OpenAI subscription so OpenUsage can read its auth
+token. It is not used for coding; its `AGENTS.md` link exists for consistency, and its RTK hook
+(see [RTK integration](#rtk-integration)) is pre-installed only in case that changes. Skills
+are not configured for it.
+
 For the default OMP profile, `~/.omp/agent/APPEND_SYSTEM.md` also links to `~/AGENTS.md`.
 That personal file is machine-local and must already exist. A project append file or
 `--append-system-prompt` can override it. Restart agents after changing loaded instructions;
@@ -162,6 +167,14 @@ and, when the `omp` binary exists, OMP's `~/.omp/agent/extensions/rtk.ts` with
 `rtk init -g --agent omp`. Pi (`pi`) is not configured. Dry runs
 always print `Nothing written`, so that line does not mean the integration is current. A failed
 RTK step warns and lets the remaining updater steps run.
+
+Codex's hook is tracked instead:
+[`home/.codex/hooks.json`](/home/.codex/hooks.json) runs `rtk hook codex` and Dotbot links it
+to `~/.codex/hooks.json`. Do not run `rtk init -g --codex`: it also appends an `@RTK.md`
+reference to `~/.codex/AGENTS.md`, which is a link to the shared global instructions. Codex runs
+a non-managed hook only after its definition is trusted through `/hooks`, once per machine and
+again after any edit changes the hook's hash. Whether Codex follows the symlink is unverified;
+check `/hooks` after the first sync.
 
 The tracked RTK config enables usage tracking and telemetry, and keeps tee output for failures.
 `filters.toml` contains a commented example, not an active custom filter. Neither a configured

@@ -52,6 +52,7 @@
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.aws/config: home/.aws/config
     ~/.codex/AGENTS.md: home/.config/opencode/AGENTS.md
+    ~/.codex/hooks.json: home/.codex/hooks.json
     ~/.config/git/ignore: home/.config/git/ignore
     ~/.omp/agent/AGENTS.md: ~/.config/opencode/AGENTS.md
     ~/.omp/agent/APPEND_SYSTEM.md: ~/AGENTS.md
