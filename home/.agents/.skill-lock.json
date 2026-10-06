@@ -295,9 +295,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/ui-design/SKILL.md",
-      "skillFolderHash": "74ef7dc397e7e6ce20d09f12f4e960a9639b5b73",
+      "skillFolderHash": "a775f530aa36fcc2398eb6b67a3ac40edaf0c830",
       "installedAt": "2026-09-04T04:50:00.680Z",
-      "updatedAt": "2026-10-04T16:19:25.053Z"
+      "updatedAt": "2026-10-06T04:25:52.348Z"
     },
     "grill-with-docs": {
       "source": "mattpocock/skills",
