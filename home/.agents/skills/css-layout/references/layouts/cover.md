@@ -190,8 +190,8 @@ acquired implementation before depending on these dynamic props.
 - `noPad="false"` is still present and therefore true. Remove the attribute to disable it.
 - Without JavaScript, the downloaded CSS gives a column/minimum-height shell but does not vertically
   center the chosen child. Use the primary CSS for a complete no-JS baseline.
-- Shared integration checks and runtime provenance live in `references/verification.md`; no
-  universal writing-mode or browser compatibility is implied.
+- Shared integration checks live in `references/verification.md`; the historical runtime record
+  is in `references/sources.md`. Neither establishes universal writing-mode or browser compatibility.
 
 ## Sources
 

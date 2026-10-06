@@ -1,23 +1,9 @@
 <!--
-=============================================================================
-VERBATIM COPY — Google Shell Style Guide
-=============================================================================
-This is an unmodified reproduction of Google's Shell Style Guide, bundled here
-so the skill works for models with weak priors on it (and offline). It is the
-authoritative source for deep rationale and edge cases; the day-to-day rules
-live in ./checklist.md, which points back here by section.
-
-Source:    https://google.github.io/styleguide/shellguide.html
-Markdown:  https://raw.githubusercontent.com/google/styleguide/gh-pages/shellguide.md
+Google Shell Style Guide. The upstream body, including its README.md pointer, is unmodified.
+Source: https://google.github.io/styleguide/shellguide.html; Markdown: https://raw.githubusercontent.com/google/styleguide/gh-pages/shellguide.md
 Retrieved: 2026-07-12
-License:   CC-BY-3.0 (text) — https://github.com/google/styleguide
-
-NOTE ON DEVIATIONS: This repo/skill intentionally departs from Google in a few
-places (e.g. `#!/usr/bin/env bash` instead of `#!/bin/bash`; a wider 100-char
-line default; leading-underscore names for private helpers). Where the skill
-and this document disagree, ./checklist.md wins — it records the deviation and
-why. Do not "correct" a script to match this file over the checklist.
-=============================================================================
+License: CC-BY-3.0 (text), https://github.com/google/styleguide
+Local policy and deliberate deviations: ./checklist.md takes precedence.
 -->
 
 <!--

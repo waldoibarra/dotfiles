@@ -159,10 +159,10 @@ elem.classList.toggle("overflowing", this.scrollWidth > this.clientWidth);
 
 The observed-attribute list is `['itemWidth', 'height', 'space', 'noBar']`;
 `attributeChangedCallback` renders. HTML lowercases attribute names, so the camelCase entries are an
-upstream reactivity hazard. **Observed in the parent browser smoke:** changing `itemWidth` through
-`setAttribute` left `data-i` unchanged. Do not promise reactive width changes from this download
-without adapting its observed names. `noBar` has the same source-inspected naming risk; initial
-connection reads attribute values.
+upstream reactivity hazard. **Observed in the historical Chromium checks recorded in
+`references/sources.md`:** changing `itemWidth` through `setAttribute` left `data-i` unchanged.
+Do not promise reactive width changes from this download without adapting its observed names.
+`noBar` has the same source-inspected naming risk; initial connection reads attribute values.
 
 The implementation does not retain/disconnect observer handles or provide `disconnectedCallback`;
 reconnection can add observers. Mutation observation excludes descendant text/attribute changes.

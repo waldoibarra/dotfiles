@@ -1,18 +1,27 @@
 # Shell Scripting Checklist
 
-The operational ruleset. Every item is a do/don't with a one-line _why_ and, in
-brackets, the section of `google-shell-style-guide.md` to read for full
-rationale. **DEVIATION** marks the few places where this skill deliberately
-**contradicts an explicit Google rule** (and says why); where Google is merely
-silent, a rule carries no such marker — it's just a rule. The checklist wins on
-any conflict.
+The operational rubric for this skill. Bracketed section names refer to the bundled
+[Google Shell Style Guide](google-shell-style-guide.md). **DEVIATION** marks a deliberate
+departure from an explicit Google rule; the checklist wins on conflicts.
 
-How to use this file:
+- **Audit or fix:** walk all ten sections against the requested scripts, reporting correctness
+  before portability and style. Do not expand the edit scope to an unrequested migration.
+- **Create:** choose the [structured](../assets/template.sh) or
+  [linear](../assets/template-linear.sh) Bash template using §8.
+- **POSIX `sh`:** apply the target gate in §1 before using any Bash-specific rule or example.
 
-- **Auditing/fixing?** Walk the sections top to bottom against the target script.
-- **Writing new?** Start from `../assets/template.sh`; this file is the rubric.
-- Correctness (§Features/Bugs, §Local variables) matters more than style
-  (§Formatting). Report and fix in that order.
+## Contents
+
+1. [Which shell and when](#1-which-shell--when-background)
+2. [Files and shebang](#2-files--shebang-shell-files-and-interpreter-invocation)
+3. [Strict mode and environment](#3-strict-mode--environment-environment-arithmetic)
+4. [Comments](#4-comments-comments)
+5. [Formatting](#5-formatting-formatting)
+6. [Variable expansion and quoting](#6-variable-expansion--quoting-variable-expansion-quoting)
+7. [Features and bugs](#7-features--bugs-features-and-bugs)
+8. [Naming and structure](#8-naming--structure-naming-conventions)
+9. [Calling commands](#9-calling-commands-calling-commands)
+10. [When in doubt](#10-when-in-doubt-when-in-doubt-be-consistent)
 
 ---
 
@@ -21,6 +30,11 @@ How to use this file:
 - Bash for anything non-trivial; POSIX `sh` only when the target forces it
   (minimal Alpine/BusyBox, constrained boot environments). _Why:_ bashisms
   (`[[ ]]`, arrays, `local`) are worth having when Bash is available.
+  For POSIX `sh`, use `[ ]`/`test`, `=` for string equality, `$(( ))` for arithmetic
+  expansion, and positional parameters where suitable. Bash arrays, `local`, `[[ ]]`,
+  process substitution, `BASH_SOURCE`, and Bash traps are not portable substitutes.
+  Check shell/version support for options such as `pipefail`; do not add an unsupported
+  option merely to satisfy the Bash default.
 - Shell is for **small utilities and wrappers**. Past ~100 lines or with
   non-trivial data structures/control flow, recommend a real language. _Why:_
   shell's error handling and data handling don't scale; it gets unmaintainable.
@@ -43,13 +57,25 @@ How to use this file:
 
 ## 3. Strict mode & environment [§Environment; §Arithmetic]
 
-- Standalone executables start with `set -euo pipefail`. _Why:_ small utilities
-  should fail loudly, not limp on with an unset var or a masked pipe failure.
-  Google says "use `set`" but doesn't prescribe which options; this skill opts
-  into all three. (Watch the one `set -e` pitfall — bare `(( i++ ))`; see §7.)
+- Standalone **Bash** executables start with `set -euo pipefail`. _Why:_ expose unset
+  variables and pipeline failures. These options do not replace explicit error handling.
+  For POSIX `sh`, select supported options and check failures without relying on Bash features.
 - **Sourced libraries: no `set`** (and no shebang). _Why:_ they inherit the
   caller's options; overriding them surprises the caller.
-- Strict mode is only safe with the **3-step guarding technique** — see §8.
+- Before enabling strict mode, review the failure paths:
+  1. Split declaration from command-substitution assignment (§8).
+  2. Use `${VAR:-}` for legitimately optional values; validate required ones instead of
+      hiding a missing prerequisite behind an empty default.
+  3. Handle expected nonzero statuses explicitly, then enable the supported flags.
+      Bare `(( i++ ))` returns nonzero when its value is zero (§7); a no-match `grep`
+      also returns nonzero without necessarily indicating an error.
+  These steps are a starting review, not a guarantee that a script is “fully guarded.”
+  `-e` is suppressed in conditionals and certain `&&`/`||` contexts, including inside
+  functions called from those contexts. Command substitutions and process substitutions
+  need their own failure analysis; the consuming command's success does not prove a
+  process-substitution producer succeeded. See Bash's
+  [set builtin](https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html)
+  for the exact `errexit` exceptions.
 - Errors/warnings → **STDERR**; normal status → **STDOUT**. Use an `err()`
   helper. _Why:_ lets a caller separate real problems from chatter
   (`2>/dev/null`, `2>&1 | grep`). Keep output plain — no decorative emoji; they
@@ -61,7 +87,7 @@ How to use this file:
 
 ## 4. Comments [§Comments]
 
-Google defines four kinds. Use all four.
+Use file and function headers; add implementation and TODO comments only when applicable.
 
 - **File header** — every file opens with a one-line description of what it does
   (copyright/author optional). _Why:_ the reader knows the script's job before
@@ -73,17 +99,13 @@ Google defines four kinds. Use all four.
   # Perform hot backups of Oracle databases.
   ```
 
-- **Function comments** — **DEVIATION:** every function gets a header comment, no
-  exceptions — the one carve-out is `main()`, which doesn't need one since it's
-  self-evident as the entry point. This drops Google's "obvious and short"
-  exception for every other function, since that judgment call produces
-  inconsistent results across a session. Describe the API so a caller needn't
-  read the body: Description, Globals (used/modified), Arguments, Outputs
-  (STDOUT/STDERR), Returns (any status beyond the last command's) — include only
-  the sections that apply. _Why:_ the comment is the function's contract.
-  **When auditing, flag any function (other than `main`) missing a header even
-  if no sibling script has them** — their absence is a gap, not a convention
-  (see §10).
+- **Function comments — DEVIATION:** every function except `main()` gets a header,
+  including obvious or short helpers. Describe the contract using only the relevant sections:
+  Description, Globals (used/modified), Arguments, Outputs (STDOUT/STDERR), and Returns
+  (statuses beyond the last command's). _Why:_ a caller should not need to read the body.
+  This is the skill's house policy, not a claim that an uncommented function is technically
+  broken. Flag missing headers during audits even when siblings also lack them; keep any
+  migration within the authorized scope (§10).
 
   ```bash
   #######################################
@@ -134,24 +156,27 @@ Google defines four kinds. Use all four.
 - Test strings with `-z`/`-n` and `==`; use `(( ))` (or `-lt`/`-gt`) for numeric
   comparison. _Why:_ `<`/`>` in `[[ ]]` are lexicographic — a silent bug.
 - Wildcards: use `./*` not `*`. _Why:_ a file named `-rf` becomes a flag.
-- **Guard glob-based iteration.** An unmatched glob (no `nullglob`) leaves a
-  `for`/`case` pattern as the literal string, so the loop runs once against a
-  path that was never real. Guard with `[[ -e "$item" ]] || continue`, or
-  scope `shopt -s nullglob`. _Why:_ ShellCheck doesn't catch this — it only
-  surfaces once the loop body fails downstream on the literal pattern.
+- **Guard glob-based iteration.** An unmatched filename glob remains literal unless
+  `nullglob` is enabled, so a `for` loop can run once with a nonexistent path. Use
+  `[[ -e "$item" ]] || continue`, include `-L` if dangling symlinks belong in the input,
+  or scope `shopt -s nullglob`. A `case` pattern is pattern matching, not filename
+  expansion. ShellCheck does not establish whether a runtime glob has matches.
 - **Never `eval`.** _Why:_ unpredictable, unauditable.
 - Arrays for lists/flag sets: `flags=(--foo --bar); cmd "${flags[@]}"`. _Why:_
   safe quoting; strings-as-lists force `eval`/nested quotes.
-- **Pipes to `while` run in a subshell** — variables set inside don't escape.
-  Use `while read -r ... done < <(cmd)` or `readarray`. _Why:_ the classic
-  "my variable is empty after the loop" bug.
+- **A piped `while` normally runs in a subshell** in Bash, so its variable changes do
+  not survive. Process substitution (`while read -r ...; do ...; done < <(cmd)`) keeps
+  the loop in the current shell, but does not propagate the producer's failure through
+  the loop's status. Check the producer separately when its success matters. `readarray`
+  is another option only on Bash versions that support it.
 - Arithmetic: `(( ))` / `$(( ))`, never `let`/`expr`/`$[ ]`. Beware a standalone
   `(( i++ ))` evaluating to 0 → non-zero exit → death under `set -e`.
 - No aliases in scripts — use functions.
-- **Environment awareness** (portability): avoid GNU-only flags when the target
-  includes macOS/BSD (`sed -i` vs `sed -i ''`, `readlink -f`, GNU `date`). Avoid
-  Bash-4+ features (`declare -A`, `${var^^}`, `mapfile`) when the target may be
-  macOS's Bash 3.2. Detect or ask (SKILL.md Step 1) rather than assume.
+- **Environment awareness:** check the target's utilities and versions before using
+  divergent `sed -i`, `date`, or `readlink` flags. Linux does not imply GNU utilities;
+  macOS/BSD does not establish one fixed flag set across releases. Avoid Bash-4+ features
+  (`declare -A`, `${var^^}`, `mapfile`) on Bash 3.2. Use the
+  [target-environment gate](../SKILL.md#establish-the-target) rather than assuming.
 
 ## 8. Naming & structure [§Naming Conventions]
 
@@ -180,32 +205,32 @@ placeholder. Check meaning first, then apply the case rules below.
 
 - Functions: `lower_snake`; `::` for library packages; `()` required; `function`
   keyword optional but consistent within a project.
-- Do **not** use a leading underscore to mark "private" helpers or locals. Bash
-  has no enforced privacy, so the prefix is decoration that implies a guarantee
-  the language doesn't provide — name by role instead. **When auditing, flag an
-  existing `_`-prefix convention and recommend removing it repo-wide** — its
-  consistency doesn't make it correct (see §10).
-- Constants & exported vars: `UPPER_SNAKE`, declared at the top, `readonly`/
-  `export`. Set-then-`readonly` is fine for runtime-computed constants. Mark
-  it `readonly` even when the value is a plain literal or simple expansion
-  with no command substitution — there's no masking risk there, but it's
-  just as easy to forget precisely because it doesn't look dangerous.
+- Do **not** use a leading underscore to mark private helpers or locals. This skill names
+  by role instead; the prefix supplies no enforced Bash privacy. Flag the convention as a
+  house-policy finding even if it is consistent, and recommend a separately scoped migration
+  rather than silently renaming unrelated code (§10).
+- Constants & exported/global vars: `UPPER_SNAKE`, declared at the top as appropriate.
+  Use `readonly` for constants and `export` for environment variables.
+  Mark constants `readonly` even for literal values or simple expansions; the absence of
+  command substitution removes the masking risk, not the constant's immutability contract.
 - `local` for every function variable. _Why:_ avoids leaking into the global
   namespace and clobbering something meaningful.
-- **CRITICAL — split declaration from command-substitution assignment.** Applies
-  to `local`, `local -r`, `readonly`, `declare`, and `export` alike — each is a
-  command that returns 0 and overwrites the substitution's exit code.
+- **Split declaration from command-substitution assignment.** `local`, `local -r`,
+  `readonly`, `declare`, and `export` return the declaration's status, usually zero,
+  masking the substitution's status.
 
   ```bash
   local my_var
-  my_var="$(cmd)"     # DO: set -e / $? see cmd's exit code
-  # local my_var="$(cmd)"   # DON'T: $? is local's exit (always 0) — failure masked
+  my_var="$(cmd)"     # The assignment now exposes cmd's status.
+  # local my_var="$(cmd)"   # DON'T: the declaration masks cmd's failure.
   ```
 
-  _Why:_ the single most common silently-wrong pattern in "guarded" scripts. **Do
-  not lean on ShellCheck here:** SC2155 fires on `local x=$(cmd)` but is **silent
-  on the `local -r`/`readonly` form** — catch (and, in FIX mode, split) those by
-  hand.
+  Assign runtime-computed constants before marking them `readonly`. This exposes a
+  substitution's status but does not remove the `set -e` exceptions in §3.
+  [SC2155](https://www.shellcheck.net/wiki/SC2155) documents this failure, but default
+  checking does not cover every declaration form. For example, `local -r` needs
+  `check-extra-masked-returns` for a warning. Inspect all forms rather than treating a
+  clean lint result as proof.
 - Functions grouped below constants; **no executable code between functions.**
   Only includes, `set`, and constants precede function definitions.
 - **Order helper functions bottom-up by call depth.** Read the file from
@@ -263,9 +288,10 @@ placeholder. Check meaning first, then apply the case rules below.
   linear script doesn't need one (Google: "for short scripts where it's just a
   linear flow, `main` is overkill and so is not required"). _Why main, when used:_
   obvious entry point; lets everything else be `local`.
-- **Guard the `main` call** so the script runs when executed but not when sourced
-  (e.g. for testing individual functions). _Why:_ sourcing a script to test one
-  function shouldn't trigger its top-level work.
+- **Guard the Bash `main` call** so sourcing skips the application entry point.
+  Top-level `set`, includes, and constants still execute and can change the caller's
+  environment. Source such executables in an isolated test shell; reusable sourced libraries
+  follow §2–§3 and do not run an entry point. The Bash guard below is not portable POSIX `sh`.
 
   ```bash
   if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
@@ -278,11 +304,13 @@ placeholder. Check meaning first, then apply the case rules below.
 - Always check return values — `if ! cmd; then err ...; exit 1; fi`, or
   `PIPESTATUS` for a specific stage of a pipe (copy it immediately; `[` clobbers
   it). _Why:_ a command that failed and wasn't checked corrupts later state.
-- **Clean up with `trap`.** Register cleanup for temp files/resources so it runs
-  on every exit path — including `set -e` aborts and early `return`/`exit`, which
-  skip a trailing `rm`: `tmp=$(mktemp); trap 'rm -f "${tmp}"' EXIT`. Use `RETURN`
-  for function-scoped resources, `EXIT` for script-scoped. Optionally
-  `trap 'err "failed near line ${LINENO}"' ERR` for a diagnostic on abort.
+- **Clean up with `trap`.** Register script-owned cleanup with `EXIT` so ordinary exits
+  and `set -e` aborts do not skip it: `tmp=$(mktemp); trap 'rm -f "${tmp}"' EXIT`.
+  An early function `return` does not exit the shell. For function-owned resources,
+  use explicit cleanup or a deliberately scoped Bash `RETURN` trap; preserve existing
+  traps and ensure cleanup variables remain available when the trap runs. Traps cannot
+  guarantee cleanup after uncatchable termination such as `SIGKILL`. An optional `ERR`
+  diagnostic follows the same conditional-execution exceptions as `errexit` (§3).
 - Prefer Bash builtins / parameter expansion over spawning `sed`/`awk`/`expr` for
   simple string/number work. _Why:_ faster, more robust, fewer portability traps.
 
@@ -291,8 +319,9 @@ placeholder. Check meaning first, then apply the case rules below.
 - Match the surrounding code on **neutral** choices (indent, case, `function`
   keyword) over any personal preference. Consistency is the tie-breaker when
   there's no technical argument.
-- **But consistency never excuses a quality defect** the skill takes a position on
-  — the `local`-masking pattern, missing strict mode, missing function comments on
-  non-obvious functions, leading-underscore "private" markers. Flag these even when
-  the whole codebase shares them, and recommend a repo-wide fix. A defect repeated
-  consistently is still a defect, not a convention.
+- Still report correctness defects such as masked command-substitution status, even if the
+  surrounding code repeats them.
+- Report the skill's house policies separately: strict mode for standalone Bash executables,
+  headers for every function except `main`, and no leading-underscore private markers.
+  Consistency does not waive this rubric, but a targeted task does not authorize repo-wide
+  cleanup. Recommend wider migrations separately and apply them only when authorized.

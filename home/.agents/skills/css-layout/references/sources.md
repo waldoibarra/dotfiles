@@ -98,6 +98,10 @@ Hashes below were recorded by the source retrieval, not computed from reformatte
 
 ## Verification record
 
+The following results were recorded in the 2026-09-30 retrieval session, not rerun by later
+documentation edits. File and check counts describe that historical run's scope, not the current
+CSS skill inventory.
+
 - Markdown lint reported no errors across 26 files; the skill validator reported 29 passes and
   four skips. A disposable symlink installation resolved all 22 reference paths; no global
   workstation sync was performed.
