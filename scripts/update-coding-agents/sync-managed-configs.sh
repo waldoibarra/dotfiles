@@ -11,7 +11,6 @@
 readonly MANAGED_CONFIGS=(
   ".claude/CLAUDE.md"
   ".claude/settings.json"
-  ".config/opencode/AGENTS.md"
   ".config/opencode/opencode.json"
 )
 

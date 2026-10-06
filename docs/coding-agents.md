@@ -1,7 +1,7 @@
 # Coding agents
 
 Edit tracked sources under `home/`. Dotbot links most files; the coding-agent updater copies
-four configs. A configured link is not proof that a running agent loaded the file.
+three configs. A configured link is not proof that a running agent loaded the file.
 
 | Task | Read before acting |
 | --- | --- |
@@ -26,7 +26,6 @@ repository; their installed equivalents replace `home/` with `~/` unless noted.
 | --- | --- |
 | `home/.claude/CLAUDE.md` | Copied; Claude's global import adapter |
 | `home/.claude/settings.json` | Copied; hooks, output style, permissions, status lines |
-| `home/.config/opencode/AGENTS.md` | Copied for OpenCode; shared global policy |
 | `home/.config/opencode/opencode.json` | Copied; OpenCode providers, plugins, MCP, permissions |
 | `home/.claude/output-styles/*.md` | Linked individually; the directory stays real |
 | `home/.claude/*statusline*.sh` | Linked; main and subagent status lines |
@@ -34,12 +33,13 @@ repository; their installed equivalents replace `home/` with `~/` unless noted.
 | `home/.claude/RTK.md` | Linked; manually maintained RTK reference |
 | `home/.config/rtk/*` | Linked to `~/Library/Application Support/rtk/` on macOS or `~/.config/rtk/` on Linux |
 | `home/.agents/.skill-lock.json` | Linked; external skill sources and installer targets |
+| `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`; shared global policy |
 | Repo-authored skill directories | Linked individually; [ownership and destinations](#repo-managed-skills) |
 
 ### Copy-managed files
 
 [`sync-managed-configs.sh`](/scripts/update-coding-agents/sync-managed-configs.sh) overwrites
-all four copied files from their tracked sources, removing a leftover target symlink first.
+all three copied files from their tracked sources, removing a leftover target symlink first.
 They are copies, not links, so the machine-specific hook Herdr adds to the installed Claude
 settings stays local; see [Herdr integration](#herdr-integration).
 
@@ -50,25 +50,30 @@ settings stays local; see [Herdr integration](#herdr-integration).
 
 ## Global instructions
 
-[`home/.config/opencode/AGENTS.md`](/home/.config/opencode/AGENTS.md) owns global preferences.
-Keep it usable in unrelated projects. Repository-specific operating rules belong in the root
-[`AGENTS.md`](/AGENTS.md).
+[`home/.agents/AGENTS.md`](/home/.agents/AGENTS.md) owns global preferences. Dotbot links it to
+`~/.agents/AGENTS.md` and each agent's global path. Keep it usable in unrelated projects.
+Repository-specific operating rules belong in the root [`AGENTS.md`](/AGENTS.md).
 
 | Agent | Global loader |
 | --- | --- |
-| Claude Code | Copied `~/.claude/CLAUDE.md` imports `@~/.config/opencode/AGENTS.md` |
-| OpenCode | Copied `~/.config/opencode/AGENTS.md` |
-| Codex | `~/.codex/AGENTS.md` links directly to the tracked source |
-| Oh My Pi (`omp`) | `~/.omp/agent/AGENTS.md` links to the installed OpenCode copy |
+| Claude Code | Copied `~/.claude/CLAUDE.md` imports `@~/.agents/AGENTS.md` |
+| OpenCode | `~/.config/opencode/AGENTS.md` links to the tracked source |
+| Codex | `~/.codex/AGENTS.md` links to the tracked source |
+| Oh My Pi (`omp`) | `~/.omp/agent/AGENTS.md` links to the tracked source |
 
-The Claude adapter is user-level, not a repository wrapper. Keep its one-line import; edit
-shared rules only in the source `AGENTS.md`. Leave `~/.codex/AGENTS.override.md` absent unless
-you intend to replace Codex's global rules.
+Claude Code has no user-level `AGENTS.md`, so it needs the adapter. The adapter is user-level,
+not a repository wrapper. Keep its one-line import; edit shared rules only in the source
+`AGENTS.md`. Leave `~/.codex/AGENTS.override.md` absent unless you intend to replace Codex's
+global rules.
 
 Codex is installed only to sign in to the OpenAI subscription so OpenUsage can read its auth
 token. It is not used for coding; its `AGENTS.md` link exists for consistency, and its RTK hook
 (see [RTK integration](#rtk-integration)) is pre-installed only in case that changes. Skills
 are not configured for it.
+
+OMP keeps one user-level context file, from its highest-priority source: `~/.omp/agent/`, then
+`~/.claude/`, then `~/.agents/`. The OMP link makes that choice explicit, so the global source
+loads once.
 
 For the default OMP profile, `~/.omp/agent/APPEND_SYSTEM.md` also links to `~/AGENTS.md`.
 That personal file is machine-local and must already exist. A project append file or
@@ -82,10 +87,11 @@ import above remains separate. [`.claude/settings.json`](/.claude/settings.json)
 `**/home/.claude/CLAUDE.md` from project discovery so the tracked global adapter is not loaded
 again as local guidance.
 
-Codex reads project instructions along the path to its working directory, so working inside
-`home/.config/opencode/` can load the tracked global source again. OpenCode's `instructions`
-setting is additive; no exclusion is configured here for that source. Check loaded context
-when working in these directories instead of assuming all hosts deduplicate instructions.
+Codex and OpenCode read `AGENTS.md` along the path to their working directory, and OMP also
+reads `.agents/AGENTS.md` there, so working inside `home/` or `home/.agents/` can load the
+tracked global source again. OpenCode's `instructions` setting is additive; no exclusion is
+configured here for that source. Check loaded context when working in these directories
+instead of assuming all hosts deduplicate instructions.
 
 ## Response style
 

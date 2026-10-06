@@ -50,11 +50,13 @@
 
     # Files.
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
+    ~/.agents/AGENTS.md: home/.agents/AGENTS.md
     ~/.aws/config: home/.aws/config
-    ~/.codex/AGENTS.md: home/.config/opencode/AGENTS.md
+    ~/.codex/AGENTS.md: home/.agents/AGENTS.md
     ~/.codex/hooks.json: home/.codex/hooks.json
     ~/.config/git/ignore: home/.config/git/ignore
-    ~/.omp/agent/AGENTS.md: ~/.config/opencode/AGENTS.md
+    ~/.config/opencode/AGENTS.md: home/.agents/AGENTS.md
+    ~/.omp/agent/AGENTS.md: home/.agents/AGENTS.md
     ~/.omp/agent/APPEND_SYSTEM.md: ~/AGENTS.md
     ~/.ssh/config: home/.ssh/config
     "~/Library/Application Support/Code/User/settings.json":
@@ -102,7 +104,6 @@
       glob: true
       path: home/.config/opencode/*
       exclude:
-        - home/.config/opencode/AGENTS.md
         - home/.config/opencode/opencode.json
         - home/.config/opencode/skills
     ~/.config/opencode/skills/:

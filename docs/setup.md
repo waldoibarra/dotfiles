@@ -40,7 +40,7 @@ Homebrew packages and Mise tools, then selects Homebrew Zsh. See the
 [script reference](/scripts/README.md) for exact responsibilities.
 
 This command does **not** run the coding-agent updater or install this repository's Git hooks.
-The four [copy-managed agent files](/docs/coding-agents.md) are populated by the updater, not Dotbot.
+The three [copy-managed agent files](/docs/coding-agents.md) are populated by the updater, not Dotbot.
 
 ## Add local settings
 

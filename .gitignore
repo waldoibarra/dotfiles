@@ -3,4 +3,4 @@
 id_rsa
 
 # Local agent workspace: plans, spikes, and research evidence.
-.agents/
+/.agents/
