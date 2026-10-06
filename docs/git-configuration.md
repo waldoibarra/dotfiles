@@ -1,65 +1,15 @@
-# Git Configuration
+# Git configuration
 
-## Shared vs local config
+Read this before changing Git identity, signing, aliases or shared defaults.
+Dotbot links [home/.gitconfig](/home/.gitconfig) to `~/.gitconfig`; it includes the untracked
+`~/.gitconfig.local` first.
 
-`home/.gitconfig` is tracked in this repo and symlinked to `~/.gitconfig` by Dotbot.
-It contains machine-agnostic settings: aliases, delta pager, merge strategy, and default
-branch name.
-
-Identity, signing, and user-specific directory includes live in `~/.gitconfig.local` —
-a file that is **not tracked** and must be created manually on each machine.
-
-The shared config loads it via:
-
-```gitconfig
-[include]
-    path = ~/.gitconfig.local
-```
-
-This include is placed before any `[includeIf]` blocks so that directory-specific overrides
-(e.g. per-project identities) still take precedence over the local defaults.
-
-## Branch diff aliases
-
-Read this before comparing a feature branch with `origin/main`.
-
-Each alias runs `git fetch --quiet` first and stops if the fetch fails. Diffs start
-at the merge base of `origin/main` and `HEAD`, so they exclude changes made only on
-main since the branch diverged.
-
-| Command | Output | Includes uncommitted changes |
-| --- | --- | --- |
-| `git ds` | Short diff summary | Yes |
-| `git dsc` | Short diff summary | No |
-| `git db` | Full diff | Yes |
-| `git dbc` | Full diff | No |
-
-`ds` and `db` compare the merge base with the working tree, including the net effect
-of staged and unstaged changes to tracked files. Untracked files are excluded.
-`dsc` and `dbc` compare the merge base with `HEAD`, showing only committed changes.
-
-## Global ignore file
-
-[`home/.config/git/ignore`](/home/.config/git/ignore) is tracked and symlinked to
-`~/.config/git/ignore`, and `home/.gitconfig` points at it explicitly:
-
-```gitconfig
-[core]
-    excludesFile = ~/.config/git/ignore
-```
-
-That path is also Git's own default when `core.excludesFile` is unset, so the setting is
-belt-and-braces — but it makes the mechanism greppable and immune to a machine where
-`XDG_CONFIG_HOME` points somewhere else.
-
-Only put entries there that some tool drops into **every** repo it runs in. Anything specific
-to one project belongs in that project's own `.gitignore`. Today it holds one entry: `.atl/`,
-written in every repo by the gentle-ai skill-registry hook — see
-[`docs/coding-agents.md`](/docs/coding-agents.md).
+Shared defaults use `main`, delta paging, `zdiff3` merge conflicts and fetch pruning.
+Identity and signing keys belong in local files, not this repository.
 
 ## Setting up `.gitconfig.local`
 
-Create `~/.gitconfig.local` on each machine with at minimum a `[user]` block:
+Create `~/.gitconfig.local` on each machine:
 
 ```gitconfig
 [user]
@@ -67,47 +17,54 @@ Create `~/.gitconfig.local` on each machine with at minimum a `[user]` block:
     email = you@example.com
 ```
 
-### With GPG commit signing (recommended for primary machines)
+For GPG signing, add your key and enable signing in that same file:
 
 ```gitconfig
 [user]
-    name = Your Name
-    email = you@example.com
     signingkey = YOUR_GPG_KEY_ID
-
 [commit]
     gpgsign = true
 ```
 
-To find your key ID after importing or generating a key:
+Find `YOUR_GPG_KEY_ID` with `gpg --list-secret-keys --keyid-format=long`; use the long hexadecimal
+ID after `/` on the `sec` line. The Brewfile supplies `gnupg`; the shared config selects `gpg` but
+does not enable signing.
 
-```sh
-gpg --list-secret-keys --keyid-format=long
-```
-
-The key ID is the long hex string after the `/` on the `sec` line.
-
-### With per-directory identity overrides
-
-If you need a different identity for a specific project directory, add an `[includeIf]`
-block pointing to a separate config file:
+For directory-specific identities, put a conditional include **after** the local defaults:
 
 ```gitconfig
-[includeIf "gitdir:~/projects/royalytics-ai/"]
-    path = ~/.gitconfig-royalytics-ai
+[includeIf "gitdir:~/projects/work/"]
+    path = ~/.gitconfig-work
 ```
 
-The referenced file (e.g. `~/.gitconfig-royalytics-ai`) should contain only the
-overrides for that context:
+Create `~/.gitconfig-work` with only the overrides, such as `[user]` email and signing key.
+Later values win for these settings. The tracked shared file has no conditional includes.
 
-```gitconfig
-[user]
-    email = work@example.com
-    signingkey = YOUR_WORK_KEY_ID
-```
+## Branch diff aliases
 
-## Note on `gpg`
+Each alias fetches first and stops on fetch failure. It compares from the merge base with
+`origin/main`, excluding changes made only on main after the branch diverged.
 
-`gnupg` is installed via `~/.Brewfile` and available on all machines running these
-dotfiles. The `[gpg] program = gpg` setting in the shared config is therefore safe to
-keep there. Only `gpgsign = true` is local, because not every machine has a key set up.
+| Command | Output | Compared with |
+| --- | --- | --- |
+| `git ds` | Short summary | Working tree, including staged and unstaged tracked changes |
+| `git dsc` | Short summary | `HEAD` |
+| `git db` | Full diff | Working tree, including staged and unstaged tracked changes |
+| `git dbc` | Full diff | `HEAD` |
+
+Untracked files are excluded. These aliases require an `origin/main` ref and remote access.
+
+## Branch cleanup aliases
+
+Both commands switch to `main` and fetch with pruning before deleting branches:
+
+- `git cm` deletes merged local branches, excluding names matched by `main`, `master` or `trunk`.
+- **`git cg` force-deletes local branches whose upstream is marked gone.** It does not check that
+  their commits were merged; inspect and preserve needed work before running it.
+
+## Global ignores
+
+[home/.config/git/ignore](/home/.config/git/ignore) is linked to `~/.config/git/ignore` and selected
+by `core.excludesFile`. It ignores the generated `.atl/` skill registry and Claude's local project
+settings (`**/.claude/settings.local.json`). Keep project-specific patterns in that project's
+`.gitignore`.

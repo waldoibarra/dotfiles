@@ -1,76 +1,44 @@
 # Scripts
 
-This directory contains scripts to:
+Read this before changing installer or sync behavior. These scripts modify the workstation;
+use [tooling](/docs/tooling.md) to choose the narrowest operation.
 
-- Idempotently install the dotfiles configuration ([install-dotfiles.sh](install-dotfiles.sh))
-- Enable Touch ID for sudo ([configure-touch-id-for-sudo.sh](configure-touch-id-for-sudo.sh))
-- Install Homebrew (and its packages) and Mise (and its tools) ([install-os-packages.sh](install-os-packages.sh))
-- Set the Homebrew Zsh as the default shell ([set-brew-zsh-as-default-shell.sh](set-brew-zsh-as-default-shell.sh))
-- Update coding agents ([update-coding-agents/entrypoint.sh](update-coding-agents/entrypoint.sh))
+## Installation
 
-## Install Dotfiles
+[`install-dotfiles.sh`](/scripts/install-dotfiles.sh) initializes the Dotbot submodule and runs
+[install.conf.yaml](/install.conf.yaml) from the repository root. It forwards arguments to Dotbot.
+The configuration updates submodules from their remotes, manages links and runs these scripts:
 
-It is a slightly modified copy of the DotBot install script, it calls the DotBot installer with the
-[install.conf.yaml](/install.conf.yaml) configuration file; it then will:
+| Script | Behavior |
+| --- | --- |
+| [configure-touch-id-for-sudo.sh](/scripts/configure-touch-id-for-sudo.sh) | On macOS, build `/etc/pam.d/sudo_local` from Apple's template if Touch ID is not enabled; set mode `444`. Skip other systems; fail if the template is missing. |
+| [install-os-packages.sh](/scripts/install-os-packages.sh) | Install Homebrew if needed, check/install its global bundle, trust/install Mise tools, and install missing WezTerm terminfo on macOS when WezTerm is available. |
+| [set-brew-zsh-as-default-shell.sh](/scripts/set-brew-zsh-as-default-shell.sh) | Register Homebrew Zsh in `/etc/shells` and select it with `chsh`, unless `$SHELL` already matches. |
 
-- Manage the dotfiles symlinks.
-- Run the `configure-touch-id-for-sudo.sh`, `install-os-packages.sh`, and
-  `set-brew-zsh-as-default-shell.sh` scripts.
+Installation does not run the coding-agent updater, prune tools or install this checkout's hooks.
+`just sync` runs the installer, then those additional management steps.
 
-This `install-dotfiles.sh` script is ran with the `just sync` command.
+## Coding-agent updates
 
-## Install OS Packages
+[`update-coding-agents/entrypoint.sh`](/scripts/update-coding-agents/entrypoint.sh) runs these steps
+in order through `just update-ca` and `just sync`:
 
-What this script does:
+1. Copy the four managed agent configs, run gentle-ai and apply the repository's generated-context
+    policy. This runs first because it replaces Claude settings.
+2. Clear stale OpenCode plugin-cache entries when a newer upstream version is detected.
+3. Refresh the RTK OpenCode plugin unless its dry run reports no changes.
+4. Refresh Herdr's OpenCode plugin and Claude hook unless integration status reports them current.
+5. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
 
-- Ensure Homebrew and its dependencies are installed.
-- Ensure Homebrew packages are installed.
-- Ensure Mise tools are installed.
-- Ensure WezTerm terminfo entry is installed (macOS only).
+RTK and Herdr steps skip their integrations when the respective binary is missing.
+See [coding agents](/docs/coding-agents.md) for copied/generated file ownership, failure handling
+and publication risks. Moshi installation is not part of this updater.
 
-This `install-os-packages.sh` script is used by `install-dotfiles.sh` script, which is ran with the
-`just sync` command.
+## Shared helpers and checks
 
-## Configure Touch ID for Sudo
+[`lib/shell-helpers.sh`](/scripts/lib/shell-helpers.sh) supplies `print_separator`.
+Updater helpers live beside their entrypoint under `scripts/update-coding-agents/`.
 
-What this script does:
-
-- Ensure `/etc/pam.d/sudo_local` enables Touch ID (`pam_tid.so`) so the terminal
-authenticates via Touch ID instead of a password prompt. macOS only — the script
-no-ops on Linux.
-
-This `configure-touch-id-for-sudo.sh` script is used by `install-dotfiles.sh` script, which is ran
-with the `just sync` command.
-
-## Set Brew Zsh as Default Shell
-
-What this script does:
-
-- Ensure `zsh` (from Brew) is the default shell.
-
-This `set-brew-zsh-as-default-shell.sh` script is used by `install-dotfiles.sh` script, which is
-ran with the `just sync` command.
-
-## Update Coding Agents
-
-It will update the following:
-
-- The gentle-ai v4 ODD/review layer (`~/.claude/agents/`, `~/.config/opencode/prompts/`, and the
-  rest) via `gentle-ai sync`, plus the `gentle-orchestrator` agent built from its managed Claude
-  memory sections. This step copies the four managed configs from the repo, removes generated
-  ambient Claude instructions, keeps OpenCode's engram protocol, restores the tracked
-  `outputStyle`, and repairs generated engram MCP tool prefixes. It no longer passes retired SDD
-  options or seeds SDD phase models. See [`docs/coding-agents.md`](/docs/coding-agents.md).
-- OpenCode's plugin cache, clearing only the entries for plugins with a newer version available
-  upstream so OpenCode reinstalls just those on next launch
-- [Globally installed skills](https://skills.sh/)
-- RTK OpenCode plugin (`~/.config/opencode/plugins/rtk.ts`) via `rtk init -g --opencode`
-- Herdr OpenCode plugin (`~/.config/opencode/plugins/herdr-agent-state.js`) via
-  `herdr integration install opencode`, skipped when `herdr integration status` reports it current
-- Herdr Claude Code hook (`~/.claude/hooks/herdr-agent-state.sh`) via
-  `herdr integration install claude`, skipped when `herdr integration status` reports it current.
-  The install also re-adds a machine-specific duplicate hook entry, but only to the `$HOME` copy of
-  `settings.json`, which the gentle-ai step above rewrites from the repo on the next run — see
-  [`docs/coding-agents.md`](/docs/coding-agents.md)
-
-This script is used automatically by the `just sync` command.
+Run `just lint-sh` after shell changes. It checks selected entrypoints and follows sourced helpers
+where configured; it does not execute installation behavior. Exercise changed behavior in an
+isolated environment, never by running a real machine sync as a test.

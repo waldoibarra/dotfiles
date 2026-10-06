@@ -1,101 +1,50 @@
-# Agent UI Design Tools
+# Agent UI design tools
 
-Read this before choosing a tool that lets coding agents design a UI and then implement it in code.
+Read this before choosing a design-to-code workflow. Use
+[OpenPencil](https://github.com/open-pencil/open-pencil) when you need an editable design file:
+its CLI supports file-based inspection, editing and export without an agent-specific integration.
 
-Status: OpenPencil adopted for the portfolio on 2026-09-30. File inspection, strict-font PNG
-rendering, and saved edits verified with 0.15.1. Read [tooling.md](/docs/tooling.md#openpencil)
-before installing or upgrading it.
+The requirements are an open-source preference, support across coding agents, and a design the
+agent can use as an implementation reference. OMP and Pi are different tools; CLI access avoids
+making MCP support a prerequisite.
 
-## Requirements
+## Managed installation
 
-- Open source preferred.
-- Harness-agnostic, with Pi/OMP as the primary harness. Claude Code and OpenCode are secondary.
-- The agent generates a design, then implements that same design in code.
+[Tooling](/docs/tooling.md#openpencil) assigns the desktop app to Homebrew and the CLI/MCP packages
+to Mise. Installing the packages does not register an MCP server with every coding agent.
 
-## Harness constraints
+Use the CLI directly. This repository has no `open-design` recipe or tracked design document;
+project-specific launch commands and `.fig` files belong to their respective projects.
 
-| Harness | MCP | Agent Skills (`SKILL.md`) | CLI via bash |
-| --- | --- | --- | --- |
-| Pi (`badlogic/pi-mono`) | No native support; community `pi-mcp-adapter` only | Yes | Yes |
-| OMP (`can1357/oh-my-pi`) | Yes, native | Yes | Yes |
-| Claude Code | Yes | Yes | Yes |
-| OpenCode | Yes | Yes, also reads `.claude/skills` | Yes |
+## Inspect and render
 
-A CLI or skill works in every harness. An MCP-only tool leaves vanilla Pi out unless you
-install the adapter.
+Set `DESIGN_FILE` to the path of your existing design, then run:
 
-Sources:
+```sh
+openpencil info "$DESIGN_FILE" --json
+openpencil tree "$DESIGN_FILE" --json
+openpencil export "$DESIGN_FILE" --format png --font-policy strict --output /tmp/design-preview.png
+```
 
-- <https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/skills.md>
-- <https://mariozechner.at/posts/2025-11-30-pi-coding-agent/>
-- <https://github.com/can1357/oh-my-pi>
-- <https://opencode.ai/docs/skills/>
+The export writes or replaces `/tmp/design-preview.png`. Strict font policy rejects unavailable
+fonts instead of silently accepting substitutions. Use node data, renders and extracted assets as
+implementation references; build responsive components rather than copying fixed-position output.
 
-## Recommendation: OpenPencil
+[CLI import/export](https://openpencil.dev/reference/cli) supports HTML/CSS/Tailwind import and
+JSX/HTML export. It does not keep the design and application code synchronized.
 
-- Repo: <https://github.com/open-pencil/open-pencil> (MIT, about 8.6k stars).
-- Interfaces: a headless CLI (inspect, query, export, lint, analyze, script) and an MCP server
-  that advertises 100+ tools.
-- Design to code: exports JSX + Tailwind, HTML + Tailwind, and design tokens (`analyze`, `variables`).
-- Code to design: `@open-pencil/dom-css` imports HTML, CSS and Tailwind as editable layers.
-- Formats: reads and writes `.fig` and `.pen` files.
-- Why it fits: the CLI works across harnesses, while MCP adds live desktop control.
-  Import/export supports handoffs in both directions, not automatic design/code synchronization.
-- Risks: the project is young. Several forks have similar names, so install only from
-  `open-pencil/open-pencil`. Release cadence and the "100+ tools" claim are unverified.
+## Live desktop control
 
-## Alternatives, ranked
+Omitting the file argument connects to the running desktop app. With the app and its bridge
+running, `openpencil documents --json` lists available documents. Keep default authentication
+enabled; follow the [MCP setup guide](https://openpencil.dev/programmable/mcp-server) for agent
+registration and connection troubleshooting.
 
-### 2. Anthropic `frontend-design` skill + shadcn/ui MCP
+## When to choose another workflow
 
-- Repo: <https://github.com/anthropics/skills/tree/main/skills/frontend-design>.
-- Model: the code is the design, so there is no handoff step.
-- Pros: cheapest and most portable option, and Pi loads the skill natively. The shadcn MCP
-  adds a real component registry in OMP, Claude Code and OpenCode.
-- Cons: there is no separate design file to review or iterate on apart from the code.
-
-### 3. Penpot MCP
-
-- Repo: <https://github.com/penpot/penpot/tree/develop/mcp> (MPL-2.0).
-  The standalone `penpot/penpot-mcp` repo is archived.
-- Model: a self-hostable, collaborative Figma alternative. Agents read and write files,
-  styles and tokens through the Plugin API.
-- Pros: a mature, durable design system with company backing.
-- Cons: MCP only, so vanilla Pi needs the adapter. There is no clean React exporter,
-  so the agent turns the JSON and tokens into code itself.
-
-## Rejected
-
-| Tool | Reason |
-| --- | --- |
-| Onlook (Apache-2.0) | Right model (the design is the live React app), but I found no documented CLI or MCP for outside agents. Watch it. |
-| tldraw agent-template | The starter is MIT, but the core SDK needs a paid license for production. |
-| Excalidraw MCP | Diagrams only, no code export. |
-| OpenUI, screenshot-to-code | Standalone apps that agents can't drive. One-way only. |
-| Magic MCP (21st.dev) | MCP only, and some catalog content is paid. |
-| v0, Google Stitch, Figma MCP | Closed source. |
-
-## Decision tree
-
-- You want an editable design file with code import/export, in every harness: OpenPencil.
-- You want speed and don't need a design file: the `frontend-design` skill.
-- A team needs a collaborative design system you host yourself: Penpot, run from OMP
-  instead of vanilla Pi.
-
-## Open questions
-
-- Is `pi-mcp-adapter` maintained, and is it good enough to use?
-- How recently was OpenPencil updated, and does it really expose 100+ tools?
-- Does Onlook have a CLI spec?
-- Has `superdesign-skill` been tested inside Pi?
-
-## Verified workflow
-
-The portfolio's `just open-design` launches `docs/designs/landing.fig`. Use the globally
-Mise-managed `openpencil` directly. File-based edits do not require MCP or an agent-specific
-skill. Live desktop control additionally requires the managed MCP package and a working
-`openpencil documents --json` connection. Native window capture depends on macOS permissions.
-
-For the Lit portfolio, use strict-font PNG renders, node data, and extracted assets as
-implementation references. Build semantic, responsive Lit components rather than copying
-the fixed-position HTML export. Import/export does not keep source code and the design in sync.
+- No separate design file: use the
+  [frontend-design skill](https://github.com/anthropics/skills/tree/main/skills/frontend-design)
+  and review the running application.
+- A shared, self-hosted design workspace: evaluate
+  [Penpot's MCP integration](https://github.com/penpot/penpot/tree/develop/mcp) with a compatible
+  agent. It is an alternative, not installed by this repository.

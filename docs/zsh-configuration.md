@@ -1,90 +1,60 @@
-# Zsh Configuration
+# Zsh configuration
 
-## Startup file load order
+Read this before editing shell startup files or adding local environment overrides.
 
-Zsh reads startup files in this order. Not all files are read in every context.
+## Startup order
 
-| File | Login shell | Interactive shell | Scripts |
-| --- | --- | --- | --- |
-| `.zshenv` | yes | yes | yes |
-| `.zprofile` | yes | — | — |
-| `.zshrc` | — | yes | — |
-| `.zlogin` | yes | — | — |
+Zsh reads these files in order when their conditions apply:
 
-> A terminal emulator (Ghostty, WezTerm, etc.) typically starts a login interactive shell,
-> so all four files are read in that case.
+| File | Loaded for | Repository behavior |
+| --- | --- | --- |
+| [.zshenv](/home/.zshenv) | Every Zsh process | Set Vim as editor; add Homebrew, Mise shims and `~/.local/bin` to PATH. |
+| [.zprofile](/home/.zprofile) | Login shells | Reapply PATH, set AWS profile and Ollama keep-alive, then load local overrides. |
+| [.zshrc](/home/.zshrc) | Interactive shells | Load Antigen/oh-my-zsh, random theme, Mise activation, pager settings and aliases. |
+| [.zlogin](/home/.zlogin) | Login shells, after `.zshrc` | Load the local welcome name, print a quote and greeting, then remove helper functions. |
 
-## Files
+A login interactive terminal loads all four. A non-login, non-interactive command loads only
+`.zshenv`; keep it quiet and free of prompt or terminal-dependent work.
 
-### [`.zshenv`](/home/.zshenv)
+`.zprofile` repeats PATH setup because macOS `/etc/zprofile` runs `path_helper` after `.zshenv`
+and can reorder it. Homebrew paths are fixed to `/opt/homebrew` on macOS and
+`/home/linuxbrew/.linuxbrew` on Linux; Intel macOS is not handled.
 
-Read for every Zsh process — interactive shells, login shells, and background scripts alike.
-Because of this, it must stay minimal and side-effect free. Commands that produce output,
-assume a TTY, or modify the prompt do not belong here.
+## Shared defaults
 
-It is also the **only** file read by non-login, non-interactive shells — SSH command execution
-(Moshi/mosh pane attach, scp, remote scripts) — so the PATH setup (Homebrew shellenv, mise shims,
-`~/.local/bin`) lives here too. `.zprofile` deliberately re-asserts the same setup: macOS
-`path_helper` (`/etc/zprofile`) runs between the two for login shells and reorders PATH, demoting
-Homebrew below the system paths. The resulting duplicate PATH entries are by design — see the
-`gentle-ai doctor` note in [`docs/coding-agents.md`](/docs/coding-agents.md).
-
-**Currently:** `EDITOR`/`VISUAL`, Homebrew shellenv, mise shims, `~/.local/bin`.
-
-### [`.zprofile`](/home/.zprofile)
-
-Read once at the start of a login session, before `.zshrc`. The right place for environment
-setup that is expensive or only needs to happen once: `PATH` modifications, tool initializations
-(Homebrew, mise shims), and session-wide environment variables.
-
-**Currently:** Homebrew, mise shims, AWS profile, Ollama config.
-
-#### Known issue: Docker Desktop PATH reinsertion
-
-Docker Desktop 4.89/4.90 can reinsert a `~/.docker/bin` PATH block in `.zprofile`
-even when CLI installation uses **System** (`/usr/local/bin`). The block is unnecessary
-for this verified System setup. Removing it is cleanup, not prevention.
-
-Track [#662](https://github.com/docker/desktop-feedback/issues/662) for the exact
-`.zprofile` reinsertion case and [#647](https://github.com/docker/desktop-feedback/issues/647)
-for the System-mode report. As of 2026-09-11, no supported opt-out or fix was found.
-Recheck these upstream issues before choosing a future workaround.
-
-### [`.zshrc`](/home/.zshrc)
-
-Read for every interactive shell. This is where the user-facing shell experience lives:
-plugins, themes, aliases, key bindings, completion, and anything that only makes sense
-when a human is at the keyboard. Environment variables that are only needed interactively
-(e.g. a prompt theme setting) can live here, but variables needed by scripts belong in
-`.zshenv` or `.zprofile`.
-
-**Currently:** Antigen bootstrap, oh-my-zsh plugins, random theme, mise activation, aliases.
-
-### [`.zlogin`](/home/.zlogin)
-
-Read at the end of a login shell's startup, after `.zshrc`. Runs after the full environment
-is set up, making it the right place for one-time login tasks like printing a welcome message.
-
-**Currently:** Welcome message with a random quote and greeting.
+- `.zprofile` selects `AWS_PROFILE=waldo`. Override it locally for another account.
+- Ollama keep-alive is `15m`: macOS sets it through `launchctl setenv`; Linux exports it.
+- `.zshrc` assumes Homebrew Antigen is installed and activates oh-my-zsh bundles.
+- `lso` runs `eza -aal --octal-permissions`; `dots` runs the
+  [full sync](/docs/tooling.md#sync-the-workstation) without changing the current directory.
+- On macOS, `claude` and `opencode` aliases run under `caffeinate -i`.
+- `.zlogin` prints its welcome in login shells without checking whether the shell is interactive.
+  Do not source it as a side-effect-free environment file.
 
 ## Machine-local configuration
 
-`.zprofile` and `.zlogin` each source a `.local` counterpart if it exists.
-`.zshrc` and `.zshenv` have no equivalent.
+Create these directly in `$HOME`; do not track or symlink them through Dotbot:
 
-These files are intentionally **not** tracked by this repo. They must be created directly
-in `$HOME` on each machine. Do not add them to `install.conf.yaml` and do not create them under
-`home/` or symlink them.
+| File | Use |
+| --- | --- |
+| `~/.zprofile.local` | Override login-session environment values, including account-specific settings. |
+| `~/.zlogin.local` | Set `NICKNAME` for the greeting; otherwise it uses `$USER`. |
 
-### Machine-local session environment variables
-
-Use `~/.zprofile.local` for machine-specific environment variables such as API keys.
-
-### Customizing the welcome message name
-
-By default the welcome message uses `$USER` (your OS username). To display a different name,
-create `~/.zlogin.local` directly in `$HOME` with:
+For a custom greeting name:
 
 ```sh
+# ~/.zlogin.local
 export NICKNAME="Waldo"
 ```
+
+`.zshenv` and `.zshrc` have no local counterpart. Variables in `.zprofile.local` are not loaded by a
+fresh non-login shell; scripts receive them only if inherited from a login session or set elsewhere.
+Keep secrets outside this repository.
+
+## Docker Desktop PATH changes
+
+Docker Desktop can reinsert a `~/.docker/bin` block into `.zprofile`, even when CLI installation
+uses System mode. Check the actual CLI location before removing a redundant block; removal does
+not prevent reinsertion. Track the upstream reports
+[#662](https://github.com/docker/desktop-feedback/issues/662) and
+[#647](https://github.com/docker/desktop-feedback/issues/647) before adopting a workaround.

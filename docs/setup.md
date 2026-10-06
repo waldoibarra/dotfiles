@@ -1,25 +1,21 @@
 # Set up a workstation
 
-Read this before installing these dotfiles on a new machine. The repository contains personal
-configuration for macOS and Debian; review and adapt it before applying it to your own account.
+Read this before installing. This is a personal **Apple Silicon macOS** setup, with partial Debian
+support. Review the configuration before applying it to another account.
 
 ## Before you start
 
-- Review [install.conf.yaml](/install.conf.yaml) for managed paths and installation actions.
-  The [home directory](/home/) mirrors `$HOME`; Dotbot links its tracked files into your account.
-  Some coding-agent files are copied instead. Read [coding agents](/docs/coding-agents.md)
-  before changing those files.
-- Back up existing configuration. Dotbot enables backup, force, and relink behavior; installation
-  can replace files or links, install packages, configure Touch ID for sudo on macOS, and change
-  your login shell to Homebrew Zsh.
-- Review the [Brewfile](/home/.Brewfile) and [Mise configuration](/home/.config/mise/config.toml).
-  Some desktop apps are macOS-only; see [platform limits](/docs/tooling.md#homebrew).
-- Use your own interactive terminal. Installation may request sudo or Touch ID authentication.
+- Back up existing dotfiles. [Dotbot configuration](/install.conf.yaml) enables backup, force and
+  relink; installation replaces configuration, installs packages and changes the login shell.
+- Review the [Brewfile](/home/.Brewfile), [Mise tools](/home/.config/mise/config.toml),
+  [SSH hosts](/home/.ssh/config) and [AWS profiles](/home/.aws/config). The login shell selects the
+  `waldo` AWS profile. Credentials are not supplied.
+- macOS uses Homebrew at `/opt/homebrew`; Intel Macs are not handled. Debian uses
+  `/home/linuxbrew/.linuxbrew` and `apt-get`. The Brewfile includes macOS casks without Linux guards;
+  this is not an unattended cross-platform installer.
+- Use an interactive terminal for sudo, Touch ID and login-shell prompts.
 
-## Install Git
-
-If Git is unavailable on a fresh macOS installation, install the command-line tools and finish
-any installer prompts before continuing:
+If Git is missing, install it first. On macOS, finish the command-line tools installer:
 
 ```sh
 xcode-select --install
@@ -31,9 +27,7 @@ On Debian:
 sudo apt-get install -y git
 ```
 
-## Clone and install
-
-Run these 3 commands once for the initial setup:
+## Install the dotfiles
 
 ```sh
 git clone --recurse-submodules https://github.com/waldoibarra/dotfiles.git ~/.dotfiles
@@ -41,39 +35,45 @@ cd ~/.dotfiles
 ./scripts/install-dotfiles.sh
 ```
 
-If GitHub SSH access is already configured, replace the clone command with:
+Dotbot updates submodules, links configuration, enables Touch ID for sudo on macOS, installs
+Homebrew packages and Mise tools, then selects Homebrew Zsh. See the
+[script reference](/scripts/README.md) for exact responsibilities.
+
+This command does **not** run the coding-agent updater or install this repository's Git hooks.
+The four [copy-managed agent files](/docs/coding-agents.md) are populated by the updater, not Dotbot.
+
+## Add local settings
+
+Create `~/.gitconfig.local` with your identity before committing; follow
+[Git configuration](/docs/git-configuration.md#setting-up-gitconfiglocal) for signing and
+per-directory overrides.
+
+Use `~/.zprofile.local` for session environment overrides and `~/.zlogin.local` for the welcome
+name. Read [local shell configuration](/docs/zsh-configuration.md#machine-local-configuration)
+first. Keep credentials and these local files outside the repository.
+
+## Finish agent setup
+
+Open a new terminal, then read [coding agents](/docs/coding-agents.md) before running:
 
 ```sh
-git clone --recurse-submodules git@github.com:waldoibarra/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+just update-ca
+just hooks
 ```
 
-The installer runs [Dotbot](https://github.com/anishathalye/dotbot) with the repository's
-configuration. It creates links and runs the package, Touch ID, and shell setup scripts.
-See the [script reference](/scripts/README.md) for their responsibilities.
+**`just update-ca` can commit and push skill-lockfile changes**, including other unpushed commits
+on the branch. Run it only when publication is intended and your Git identity and remote access
+are ready. Supply your personal `~/AGENTS.md` if you use OMP's configured append link.
 
-## Add machine-local settings
-
-Create `~/.gitconfig.local` with your Git identity before committing. Read
-[Git configuration](/docs/git-configuration.md#setting-up-gitconfiglocal) for the required
-`[user]` block, optional signing, and per-directory identities.
-
-Read [machine-local shell configuration](/docs/zsh-configuration.md#machine-local-configuration)
-before adding session secrets or a custom welcome name. Keep these values outside the repository.
-
-## Verify the setup
-
-Open a new terminal so it loads the installed shell configuration. Check a representative link
-and the task runner:
+## Verify
 
 ```sh
 readlink ~/.gitconfig
-cd ~/.dotfiles
 just --list
 ```
 
-The link should resolve to this checkout's `home/.gitconfig`. The recipe list should include
-`sync`, `update-ca`, and the lint commands. This checks the link and task runner; it does not
-prove every package or external integration is configured.
+The link should resolve to this checkout's `home/.gitconfig`; the recipe list includes `sync`,
+`update-ca` and lint commands. This checks the link and task runner, not every integration.
 
-For subsequent updates, follow [Sync the workstation](/docs/tooling.md#sync-the-workstation).
-Do not reclone the repository. Review the package-removal behavior before running a full sync.
+For later updates, use [Sync the workstation](/docs/tooling.md#sync-the-workstation).
