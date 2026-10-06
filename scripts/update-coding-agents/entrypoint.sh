@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Update coding agent tooling: sync the gentle-ai generated layer, refresh
+# Update coding agent tooling: copy the managed agent configs, refresh
 # stale entries in OpenCode's plugin cache, refresh the RTK OpenCode plugin
 # and the Herdr agent integrations, and sync globally installed skills from
 # the lockfile.
@@ -11,8 +11,8 @@ ENTRYPOINT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly ENTRYPOINT_DIR
 # shellcheck source=../lib/shell-helpers.sh
 source "${ENTRYPOINT_DIR}/../lib/shell-helpers.sh"
-# shellcheck source=sync-gentle-ai-assets.sh
-source "${ENTRYPOINT_DIR}/sync-gentle-ai-assets.sh"
+# shellcheck source=sync-managed-configs.sh
+source "${ENTRYPOINT_DIR}/sync-managed-configs.sh"
 # shellcheck source=sync-global-skills-from-lock.sh
 source "${ENTRYPOINT_DIR}/sync-global-skills-from-lock.sh"
 # shellcheck source=refresh-stale-opencode-plugins.sh
@@ -40,7 +40,7 @@ herdr_integration_is_current() {
 # detects its hook by exact command string, so the tracked $HOME form looks
 # missing to it). That entry used to land in the repo, back when the settings
 # file was a symlink to it; it is a copy now, so the duplicate stays local and
-# sync_gentle_ai_assets clobbers it from the repo on the next run.
+# sync_managed_configs clobbers it from the repo on the next run.
 # Outputs:
 #   Writes progress to STDOUT.
 #######################################
@@ -105,7 +105,7 @@ install_rtk_opencode_plugin() {
 main() {
   # First: it resets ~/.claude/settings.json to the tracked bytes, which would
   # otherwise discard whatever the Herdr steps below write into that file.
-  sync_gentle_ai_assets
+  sync_managed_configs
   refresh_stale_opencode_plugins
   install_rtk_opencode_plugin
   install_herdr_opencode_plugin

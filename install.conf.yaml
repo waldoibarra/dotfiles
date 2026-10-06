@@ -75,8 +75,9 @@
     ~/.agents/skills/:
       glob: true
       path: home/.agents/skills/*
-    # The excluded entries are managed by scripts/update-coding-agents/sync-gentle-ai-assets.sh
-    # instead of Dotbot — see docs/coding-agents.md.
+    # The excluded config files are copied by scripts/update-coding-agents/sync-managed-configs.sh
+    # instead of linked by Dotbot; excluded directories are linked per child below. See
+    # docs/coding-agents.md.
     ~/.claude/:
       glob: true
       path: home/.claude/*
@@ -86,9 +87,8 @@
         - home/.claude/settings.json
     # Globs skip dotfiles, so hidden files inside globbed directories need explicit links.
     ~/.claude/.shellcheckrc: home/.claude/.shellcheckrc
-    # `~/.claude/output-styles` is also written by gentle-ai, so link its children individually
-    # rather than symlinking the directory — a directory symlink would make gentle-ai write its
-    # own styles straight into this repo.
+    # Link output styles per file so `~/.claude/output-styles` stays a real directory and styles
+    # other tools write there stay out of this repo.
     ~/.claude/output-styles/:
       glob: true
       path: home/.claude/output-styles/*

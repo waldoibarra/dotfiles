@@ -23,15 +23,14 @@ Installation does not run the coding-agent updater, prune tools or install this 
 [`update-coding-agents/entrypoint.sh`](/scripts/update-coding-agents/entrypoint.sh) runs these steps
 in order through `just update-ca` and `just sync`:
 
-1. Copy the four managed agent configs, run gentle-ai and apply the repository's generated-context
-    policy. This runs first because it replaces Claude settings.
+1. Copy the four managed agent configs. This runs first because it replaces Claude settings.
 2. Clear stale OpenCode plugin-cache entries when a newer upstream version is detected.
 3. Refresh the RTK OpenCode plugin unless its dry run reports no changes.
 4. Refresh Herdr's OpenCode plugin and Claude hook unless integration status reports them current.
 5. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
 
 RTK and Herdr steps skip their integrations when the respective binary is missing.
-See [coding agents](/docs/coding-agents.md) for copied/generated file ownership, failure handling
+See [coding agents](/docs/coding-agents.md) for copied file ownership, failure handling
 and publication risks. Moshi installation is not part of this updater.
 
 ## Shared helpers and checks
