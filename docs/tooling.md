@@ -123,9 +123,10 @@ Use atomic conventional commits, a subject of at most 50 characters and a body e
 
 ## RTK
 
-Homebrew installs RTK, a CLI output filter. Claude settings reference its Bash rewrite hook;
-the coding-agent updater maintains its OpenCode plugin. Actual rewriting requires those generated
-files to exist, and savings depend on the commands used.
+Homebrew installs RTK, a CLI output filter. Claude settings reference its Bash rewrite hook,
+the coding-agent updater maintains its OpenCode plugin and OMP extension, and Dotbot links
+Codex's hook. Actual rewriting requires those files to exist, and savings depend on the
+commands used.
 
 Read the [RTK command reference](/home/.claude/RTK.md) for inspection commands and
 [coding agents](/docs/coding-agents.md) for integration ownership. Dotbot links RTK configuration to
