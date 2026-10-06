@@ -22,9 +22,12 @@ The `dots` alias runs this from any directory. The recipe executes:
 
 **Sync changes the machine and can publish commits.** Review local changes and package lists first.
 The agent updater commits and pushes a changed skill lockfile; that push can include other unpushed
-commits. Obtain publication authorization before an agent runs `dots`, `just sync` or `just update-ca`.
-Agents may run authorized workflows with a PTY while the user authenticates. Wait for sudo,
-Touch ID or SSH prompts; do not use mutating recipes as validation.
+commits, which is accepted.
+
+Agents run `dots` when a change must reach `$HOME` or the change targets the sync path itself,
+and skip it otherwise. Prefer `just mise-sync`, `just update-ca` or `just hooks` when only
+their domain changed. Before running `dots`, tell the user it will run as part of the work so
+they can accept sudo, Touch ID or SSH prompts; run it in the background and wait for them.
 
 ## Recipes
 

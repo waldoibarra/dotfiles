@@ -19,10 +19,9 @@ Run from the repository root:
   copied agent files are overwritten on sync. Read the agent guide before changing either.
 - Keep credentials, identities, signing keys and machine-local overrides outside the repository.
   Use `$HOME`, supported `~` expansion or native path handling, never absolute personal home paths.
-- **Do not use `just sync`, `just brew` or `just update-ca` as validation.** Sync and Brew can remove
-  packages; sync and the agent updater can commit and push, including other unpushed commits.
-  Obtain publication authorization before invoking either publishing workflow.
-- Use a PTY and wait for user authentication when running an authorized workflow that needs it.
+- **Run `dots` only when a change must reach `$HOME` or targets the sync path, and announce it
+  first.** Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before running it.
+  Never run `just brew` alone as validation; it can remove packages.
 
 ## Read before changing
 

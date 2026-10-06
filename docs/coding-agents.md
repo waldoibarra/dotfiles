@@ -13,9 +13,9 @@ four configs. A configured link is not proof that a running agent loaded the fil
 | Configure design tools | [UI design tools](/docs/agent-ui-design-tools.md) |
 | Analyze images with a text-only model | [Image recovery skill](/home/.config/opencode/skills/non-vision-image-reader/SKILL.md) |
 
-**Publication warning:** `just update-ca`, and therefore `just sync`, can commit and push a
-changed skill lockfile. That push can publish other unpushed commits on the branch. Obtain
-publication authorization before running either; neither is a read-only validation command.
+**Publication note:** `just update-ca`, and therefore `just sync`, can commit and push a
+changed skill lockfile, publishing other unpushed commits on the branch too. Read
+[Sync the workstation](/docs/tooling.md#sync-the-workstation) before running either.
 
 ## File ownership
 
@@ -150,7 +150,7 @@ The four `home/.agents/skills/` bundles link to both `~/.agents/skills/` and `~/
 links under `~/.config/opencode/skills/` and includes its OpenCode-specific recovery script.
 Edit the tracked source: editing an installed symlink edits this checkout.
 
-New bundles acquire links on the next authorized Dotbot sync; source creation alone does not
+New bundles acquire links on the next Dotbot sync; source creation alone does not
 install them. Check link targets and restart the host before testing discovery. Do not run a
 full machine sync just to validate a skill. Maintenance scenarios live in each bundle's
 `evals/evals.json` where present; format checks do not establish model or browser behavior.
