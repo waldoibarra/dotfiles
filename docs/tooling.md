@@ -125,6 +125,7 @@ the coding-agent updater maintains its OpenCode plugin and OMP extension, and Do
 Codex's hook. Actual rewriting requires those files to exist, and savings depend on the
 commands used.
 
-Read the [RTK command reference](/home/.claude/RTK.md) for inspection commands and
-[coding agents](/docs/coding-agents.md) for integration ownership. Dotbot links RTK configuration to
-`~/Library/Application Support/rtk/` on macOS and `~/.config/rtk/` on Linux.
+Read the [RTK command reference](/home/.claude/RTK.md) before inspecting RTK, and
+[Agent integrations](/docs/agent-integrations.md#rtk) before changing its hooks or plugins.
+Dotbot links RTK configuration to `~/Library/Application Support/rtk/` on macOS and
+`~/.config/rtk/` on Linux.
