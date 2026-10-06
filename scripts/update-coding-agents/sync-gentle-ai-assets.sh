@@ -436,8 +436,8 @@ restore_claude_output_style() {
 
 #######################################
 # Strip the gentle-ai sections that should not be ambient context out of both
-# memory files. CLAUDE.md keeps nothing at all; AGENTS.md keeps the engram
-# protocol and loses only the persona, which conflicts with the tracked one.
+# memory files. CLAUDE.md keeps no generated sections; AGENTS.md keeps the engram
+# protocol and loses the generated persona, leaving the tracked global policy.
 # Globals:
 #   CLAUDE_MEMORY_FILE
 #   CLAUDE_STRIPPED_MARKERS

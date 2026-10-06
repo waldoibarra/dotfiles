@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Recover images pasted into the current opencode prompt (for non-vision models).
-# opencode stores each pasted image in its session SQLite DB as a base64 data URL.
-# All images of one user message share a message_id; pull the most recent user
-# message's images, ordered by part id, into image-1.png, image-2.png, ...
+# Recover images from OpenCode's latest image-bearing user message.
+# Selection spans the database; it is not scoped to the current session or prompt.
+# Images share a message_id and are ordered by part id. Output uses .png names
+# regardless of the stored MIME type.
 # Prints one image file path per line on success; exits non-zero if none found.
 set -euo pipefail
 
