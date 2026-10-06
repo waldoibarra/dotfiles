@@ -2,7 +2,7 @@
 "github:crate-ci/committed" = "latest"
 "github:editorconfig-checker/editorconfig-checker" = "latest"
 hk = "latest"
-markdownlint-cli2 = "latest"
+"npm:markdownlint-cli2" = "latest"
 pkl = "latest"
 shellcheck = "latest"
 yamlfmt = "latest"
