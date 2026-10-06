@@ -80,26 +80,41 @@ install_herdr_opencode_plugin() {
 }
 
 #######################################
-# Install or refresh the RTK OpenCode plugin, if RTK is installed.
-# https://github.com/rtk-ai/rtk/tree/develop/hooks/opencode
+# Install or refresh an RTK agent integration, if RTK is installed.
+# `rtk init --dry-run` always prints "Nothing written"; pending changes show
+# up as "[dry-run] would ..." lines instead. Failures only warn, so the
+# remaining updater steps still run.
+# https://github.com/rtk-ai/rtk/tree/develop/hooks
+# Arguments:
+#   Integration label for progress messages (e.g. OpenCode).
+#   `rtk init` arguments selecting the integration (e.g. -g --opencode).
 # Outputs:
-#   Writes progress to STDOUT.
+#   Writes progress to STDOUT and warnings to STDERR.
 #######################################
-install_rtk_opencode_plugin() {
+install_rtk_integration() {
+  local label="$1"
+  shift
   if ! command -v rtk >/dev/null 2>&1; then
-    echo "rtk not found, skipping OpenCode plugin install."
+    echo "rtk not found, skipping RTK ${label} install."
     return
   fi
   # Capture first: piping rtk into grep -q makes grep's early exit SIGPIPE
   # rtk, which pipefail then reports as a pipeline failure.
-  local dry_run_output
-  dry_run_output="$(rtk init -g --opencode --dry-run 2>&1 || true)"
-  if grep -q "Nothing written" <<<"${dry_run_output}"; then
-    echo "RTK OpenCode plugin already up to date."
+  local dry_run_output rc=0
+  dry_run_output="$(rtk init "$@" --dry-run </dev/null 2>&1)" || rc=$?
+  if ((rc != 0)); then
+    echo "Warning: RTK ${label} dry run failed, skipping." >&2
     return
   fi
-  rtk init -g --opencode
-  echo "RTK OpenCode plugin installed."
+  if ! grep -q '^\[dry-run\] would ' <<<"${dry_run_output}"; then
+    echo "RTK ${label} integration already up to date."
+    return
+  fi
+  if ! rtk init "$@" </dev/null; then
+    echo "Warning: RTK ${label} install failed." >&2
+    return
+  fi
+  echo "RTK ${label} integration installed."
 }
 
 main() {
@@ -107,7 +122,7 @@ main() {
   # otherwise discard whatever the Herdr steps below write into that file.
   sync_managed_configs
   refresh_stale_opencode_plugins
-  install_rtk_opencode_plugin
+  install_rtk_integration OpenCode -g --opencode
   install_herdr_opencode_plugin
   install_herdr_claude_hook
   sync_global_skills_from_lock

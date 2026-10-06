@@ -157,7 +157,9 @@ full machine sync just to validate a skill. Maintenance scenarios live in each b
 Read [`home/.claude/RTK.md`](/home/.claude/RTK.md) before using or diagnosing RTK. The shared
 global instructions point to that file on demand. Claude's tracked Bash hook runs
 `rtk hook claude`; the updater refreshes OpenCode's untracked plugin with
-`rtk init -g --opencode`, unless its dry run reports `Nothing written`.
+`rtk init -g --opencode` when its dry run lists pending `[dry-run] would …` changes. Dry runs
+always print `Nothing written`, so that line does not mean the integration is current. A failed
+RTK step warns and lets the remaining updater steps run.
 
 The tracked RTK config enables usage tracking and telemetry, and keeps tee output for failures.
 `filters.toml` contains a commented example, not an active custom filter. Neither a configured
