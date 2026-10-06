@@ -1,4 +1,3 @@
-tap "gentleman-programming/tap"
 tap "rjyo/moshi", trusted: true
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
 brew "antigen"
@@ -48,12 +47,6 @@ brew "tree"
 brew "unbound"
 # UNIX shell (command interpreter)
 brew "zsh"
-# Persistent memory for AI coding agents. Agent-agnostic, single binary, zero dependencies.
-brew "gentleman-programming/tap/engram", trusted: true
-# Gentle-AI — Ecosystem, Frameworks, Workflows for AI coding agents.
-brew "gentleman-programming/tap/gentle-ai", trusted: true
-# Gentleman Guardian Angel - Provider-agnostic code review using AI (Claude, Gemini, Codex, OpenCode, Ollama)
-brew "gentleman-programming/tap/gga", trusted: true
 # Portable daemon + CLI that bridges AI coding agents to the Moshi mobile app
 brew "rjyo/moshi/moshi-hook"
 # Write, edit, and chat about your code with AI

@@ -66,9 +66,8 @@ Edit it to add or remove a package. `just brew` runs `brew bundle upgrade --glob
 `just sync` never dumps installed packages back into the file. `just brew-dump` is an explicit
 snapshot of this machine, not a merge of shared intent.
 
-Prefer Mise for development CLIs. Homebrew bootstraps Mise and owns system-level tools, plus the
-`gentle-ai`, `engram` and `gga` ecosystem. The three `gentleman-programming/tap` formulae declare
-`trusted: true`; the Moshi tap declares trust on its tap entry.
+Prefer Mise for development CLIs. Homebrew bootstraps Mise and owns system-level tools. The
+Moshi tap declares `trusted: true` on its tap entry.
 
 The Brewfile also owns the `uv` tools `mlx-audio` and `voice-mode`; Mise owns `uv` itself.
 The `mlx-audio` extras include the `en_core_web_sm` 3.8.0 model and `setuptools<81`.
