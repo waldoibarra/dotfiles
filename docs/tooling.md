@@ -72,9 +72,6 @@ snapshot of this machine, not a merge of shared intent.
 Prefer Mise for development CLIs. Homebrew bootstraps Mise and owns system-level tools. The
 Moshi tap declares `trusted: true` on its tap entry.
 
-The Brewfile also owns the `uv` tools `mlx-audio` and `voice-mode`; Mise owns `uv` itself.
-The `mlx-audio` extras include the `en_core_web_sm` 3.8.0 model and `setuptools<81`.
-
 The cask declarations are macOS-specific and have no Linux guards. Review the Brewfile itself for
 its current app list instead of treating Debian support as feature parity.
 
