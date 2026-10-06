@@ -173,8 +173,8 @@ Codex's hook is tracked instead:
 to `~/.codex/hooks.json`. Do not run `rtk init -g --codex`: it also appends an `@RTK.md`
 reference to `~/.codex/AGENTS.md`, which is a link to the shared global instructions. Codex runs
 a non-managed hook only after its definition is trusted through `/hooks`, once per machine and
-again after any edit changes the hook's hash. Whether Codex follows the symlink is unverified;
-check `/hooks` after the first sync.
+again after any edit changes the hook's hash. Codex 0.160.1 loads the symlinked file; until it
+is trusted, commands run without RTK.
 
 The tracked RTK config enables usage tracking and telemetry, and keeps tee output for failures.
 `filters.toml` contains a commented example, not an active custom filter. Neither a configured
