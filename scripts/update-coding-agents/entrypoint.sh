@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #
 # Update coding agent tooling: copy the managed agent configs, refresh
-# stale entries in OpenCode's plugin cache, refresh the RTK OpenCode plugin
-# and the Herdr agent integrations, and sync globally installed skills from
-# the lockfile.
+# stale entries in OpenCode's plugin cache, refresh the RTK OpenCode plugin,
+# the RTK Oh My Pi extension and the Herdr agent integrations, and sync
+# globally installed skills from the lockfile.
 
 set -euo pipefail
 
@@ -117,12 +117,27 @@ install_rtk_integration() {
   echo "RTK ${label} integration installed."
 }
 
+#######################################
+# Install or refresh the RTK Oh My Pi extension, if OMP is installed. Dotbot
+# creates ~/.omp/agent on every machine, so only the binary signals OMP.
+# Outputs:
+#   Writes progress to STDOUT and warnings to STDERR.
+#######################################
+install_rtk_omp_extension() {
+  if ! command -v omp >/dev/null 2>&1; then
+    echo "omp not found, skipping RTK OMP install."
+    return
+  fi
+  install_rtk_integration OMP -g --agent omp
+}
+
 main() {
   # First: it resets ~/.claude/settings.json to the tracked bytes, which would
   # otherwise discard whatever the Herdr steps below write into that file.
   sync_managed_configs
   refresh_stale_opencode_plugins
   install_rtk_integration OpenCode -g --opencode
+  install_rtk_omp_extension
   install_herdr_opencode_plugin
   install_herdr_claude_hook
   sync_global_skills_from_lock

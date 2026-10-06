@@ -156,8 +156,10 @@ full machine sync just to validate a skill. Maintenance scenarios live in each b
 
 Read [`home/.claude/RTK.md`](/home/.claude/RTK.md) before using or diagnosing RTK. The shared
 global instructions point to that file on demand. Claude's tracked Bash hook runs
-`rtk hook claude`; the updater refreshes OpenCode's untracked plugin with
-`rtk init -g --opencode` when its dry run lists pending `[dry-run] would …` changes. Dry runs
+`rtk hook claude`. The updater refreshes two untracked, RTK-generated files when their dry
+run lists pending `[dry-run] would …` changes: OpenCode's plugin with `rtk init -g --opencode`,
+and, when the `omp` binary exists, OMP's `~/.omp/agent/extensions/rtk.ts` with
+`rtk init -g --agent omp`. Pi (`pi`) is not configured. Dry runs
 always print `Nothing written`, so that line does not mean the integration is current. A failed
 RTK step warns and lets the remaining updater steps run.
 

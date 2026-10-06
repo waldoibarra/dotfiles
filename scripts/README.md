@@ -25,7 +25,7 @@ in order through `just update-ca` and `just sync`:
 
 1. Copy the four managed agent configs. This runs first because it replaces Claude settings.
 2. Clear stale OpenCode plugin-cache entries when a newer upstream version is detected.
-3. Refresh the RTK OpenCode plugin when its dry run lists pending changes.
+3. Refresh RTK's OpenCode plugin and, if `omp` exists, OMP extension when dry runs list changes.
 4. Refresh Herdr's OpenCode plugin and Claude hook unless integration status reports them current.
 5. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
 
