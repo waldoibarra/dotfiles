@@ -78,6 +78,28 @@ reruns its native installer; repeated installs produce the same extension conten
 modify Pi's linked JSON preferences, Herdr/RTK extensions, pairing, or daemon service configuration.
 Restart the agents to load the extensions.
 
+### First-run settings during sync
+
+Moshi's native installer can open a **First-run settings** menu in an interactive terminal. This
+is Moshi setup, not Herdr, even when it appears just after Herdr's status output. Cancelling saves
+nothing, but hook installation continues. Because OMP and Pi are separate installer calls, cancelling
+the first menu can produce the same prompt again for the second target.
+
+The updater redirects each Moshi installer's stdin from `/dev/null`. An attached-terminal smoke
+test confirmed both hooks install without showing the menu or writing preference files. Sync does
+not accept the preselected choices for you. Skipping the menu does not disable Moshi's defaults.
+Choose those machine-local preferences separately in an interactive terminal:
+
+```sh
+moshi-hook set --first-run
+```
+
+The menu controls background discovery, usage collection, nested-agent notifications, and push
+suppression while the Mac is unlocked. `moshi-hook set` lists the settings for later review.
+These choices stay outside dotfiles.
+
+### Events and delivery
+
 The generated hooks send events directly to the local Moshi socket. Pi reports session starts,
 user prompts, settled completions, and shutdown. OMP also handles session switching and native
 approval-request/resolution events. Pi's current extension does not register approval handlers;
@@ -91,7 +113,8 @@ hooks so an absent daemon does not interrupt an agent turn.
 
 Pairing and daemon/LaunchAgent setup remain machine-local and are not provisioned by `dots`.
 `moshi-hook probe --json` checks the local daemon and gateway without changing them; it does not
-prove phone delivery. On another computer, use [Moshi's setup guide](https://getmoshi.app/docs/install-moshi-hook)
+prove phone delivery. Waldo reports missing Pi/OMP phone notifications despite installed hooks;
+that diagnosis is deferred. On another computer, use [Moshi's setup guide](https://getmoshi.app/docs/install-moshi-hook)
 for pairing and service setup, then restart agents and verify a harmless completion in the app.
 For daemon failures, inspect the service environment: launchd does not inherit the interactive
 shell's Mise PATH. [Moshi's hook reference](https://getmoshi.app/docs/hooks) describes upstream support.

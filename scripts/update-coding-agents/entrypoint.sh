@@ -133,7 +133,8 @@ install_moshi_agent_extension() {
     echo "Moshi or ${agent} not found, skipping Moshi integration."
     return
   fi
-  moshi-hook install --target "${agent}"
+  # Hook sync must not prompt for or save machine-local first-run preferences.
+  moshi-hook install --target "${agent}" </dev/null
 }
 
 #######################################
