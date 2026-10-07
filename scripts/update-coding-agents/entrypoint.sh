@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Update coding agent tooling: copy the managed agent configs, refresh
-# stale entries in OpenCode's plugin cache, refresh RTK and Herdr integrations,
+# stale entries in OpenCode's plugin cache, refresh RTK, Herdr and Moshi integrations,
 # provision Pi, and sync globally installed skills from the lockfile.
 
 set -euo pipefail
@@ -121,6 +121,22 @@ install_rtk_agent_extension() {
 }
 
 #######################################
+# Install the native Moshi extension when Moshi and the agent binary exist.
+# Arguments:
+#   Agent target: pi or omp.
+# Outputs:
+#   Writes installer progress to STDOUT and failures to STDERR.
+#######################################
+install_moshi_agent_extension() {
+  local agent="$1"
+  if ! command -v moshi-hook >/dev/null 2>&1 || ! command -v "${agent}" >/dev/null 2>&1; then
+    echo "Moshi or ${agent} not found, skipping Moshi integration."
+    return
+  fi
+  moshi-hook install --target "${agent}"
+}
+
+#######################################
 # Reconcile the normal Pi profile's voice package declared in its linked settings.
 # Globals:
 #   HOME
@@ -151,6 +167,8 @@ main() {
   install_herdr_integration claude
   install_herdr_integration omp
   install_herdr_integration pi
+  install_moshi_agent_extension omp
+  install_moshi_agent_extension pi
   sync_global_skills_from_lock
 
   echo "Done updating. Restart OpenCode if it's open."

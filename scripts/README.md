@@ -28,14 +28,16 @@ in order through `just update-ca` and `just sync`:
 3. Clear stale OpenCode plugin-cache entries when a newer upstream version is detected.
 4. Refresh RTK's OpenCode plugin and OMP/Pi extensions when dry runs list changes.
 5. Refresh Herdr's OpenCode, Claude, OMP and Pi integrations unless status reports them current.
-6. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
+6. Install Moshi's OMP/Pi extensions with its native target-specific installer.
+7. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
 
-RTK and Herdr steps skip their integrations when the respective binary is missing. Their OMP/Pi
+RTK, Herdr and Moshi steps skip their integrations when the respective binary is missing. Their OMP/Pi
 steps also require the agent binary. Herdr's native installer requires an extension directory;
 the updater creates it when needed. Generated extensions stay outside Git.
 Read [Coding agents](../docs/coding-agents/README.md) before editing copied configs or running updates;
 it lists ownership and publication risks. Read [Agent integrations](/docs/agent-integrations.md)
-before diagnosing hooks or plugins. Moshi installation is not part of this updater.
+before diagnosing hooks or plugins. Moshi's OMP/Pi hook files are refreshed on each run; its
+OpenCode plugin, pairing, and daemon/service setup remain outside this updater.
 
 Pi binary installation belongs to Mise. After copying configuration, the updater runs
 `pi update npm:pi-live-codex --no-approve` in the normal profile from `$HOME`. It ignores inherited

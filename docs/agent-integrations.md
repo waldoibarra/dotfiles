@@ -62,9 +62,36 @@ See [Herdr's integrations reference](https://herdr.dev/docs/integrations/) for u
 
 ## Moshi
 
-Tracked Claude settings call `'/opt/homebrew/bin/moshi-hook' claude-hook`, which assumes
-Homebrew's Apple Silicon prefix. Moshi's OpenCode plugin and daemon/LaunchAgent are machine-local;
-the coding-agent updater does not install them. `moshi-hook install --target opencode` owns the plugin.
+Homebrew owns `moshi-hook`. The coding-agent updater uses its native `install --target` command
+for OMP and Pi when both Moshi and the agent binary exist. The installer creates the directories
+and writes the generated extensions; no tracked extension copy or custom hook is needed.
 
+| Agent | Integration and owner |
+| --- | --- |
+| Claude Code | Tracked settings call `'/opt/homebrew/bin/moshi-hook' claude-hook`, assuming Homebrew's Apple Silicon prefix. |
+| OpenCode | Machine-local plugin owned by `moshi-hook install --target opencode`; not installed by this updater. |
+| OMP | Updater runs `moshi-hook install --target omp`; writes `~/.omp/agent/extensions/moshi-hooks.ts` for the default profile. |
+| Pi | Updater runs `moshi-hook install --target pi`; writes `~/.pi/agent/extensions/moshi-hooks.ts`. |
+
+The installed Moshi 0.4.18 CLI has no per-target dry run or version-status command. The updater
+reruns its native installer; repeated installs produce the same extension contents. It does not
+modify Pi's linked JSON preferences, Herdr/RTK extensions, pairing, or daemon service configuration.
+Restart the agents to load the extensions.
+
+The generated hooks send events directly to the local Moshi socket. Pi reports session starts,
+user prompts, settled completions, and shutdown. OMP also handles session switching and native
+approval-request/resolution events. Pi's current extension does not register approval handlers;
+installing it is not proof of phone-based approval support. Herdr pane identity comes from the
+pane environment, so these hooks can coexist with Herdr's own state-reporting extensions.
+
+Events include session/transcript references, working directory, model and context metadata, and
+clipped prompt/completion text. The paired daemon can relay events to the phone; installation is
+not a claim that conversation content stays on the host. Socket failures are ignored by the native
+hooks so an absent daemon does not interrupt an agent turn.
+
+Pairing and daemon/LaunchAgent setup remain machine-local and are not provisioned by `dots`.
+`moshi-hook probe --json` checks the local daemon and gateway without changing them; it does not
+prove phone delivery. On another computer, use [Moshi's setup guide](https://getmoshi.app/docs/install-moshi-hook)
+for pairing and service setup, then restart agents and verify a harmless completion in the app.
 For daemon failures, inspect the service environment: launchd does not inherit the interactive
-shell's mise PATH.
+shell's Mise PATH. [Moshi's hook reference](https://getmoshi.app/docs/hooks) describes upstream support.

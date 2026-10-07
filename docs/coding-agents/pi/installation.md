@@ -28,16 +28,22 @@ can commit and push changes, including earlier unpushed commits. It is not a har
 command. See [sync boundaries](../../tooling.md#sync-the-workstation) before applying workstation
 changes, and [workstation setup](../../setup.md) for the complete fresh-machine sequence.
 
-## RTK and Herdr extensions
+## RTK, Herdr and Moshi extensions
 
-The same agent updater installs RTK with `rtk init -g --agent pi` and Herdr with
-`herdr integration install pi`. RTK rewrites supported Bash commands; Herdr reports session and
-lifecycle state when Pi runs inside a Herdr pane. Both generated extensions live in
-`~/.pi/agent/extensions`, outside Git, and neither installer changes Pi's linked preferences.
+The same agent updater installs these native extensions in `~/.pi/agent/extensions`, outside Git.
+None of their installers changes Pi's linked preferences.
+
+| Integration | Installer | Purpose |
+| --- | --- | --- |
+| RTK | `rtk init -g --agent pi` | Rewrites supported Bash commands. |
+| Herdr | `herdr integration install pi` | Reports session and lifecycle state inside Herdr. |
+| Moshi | `moshi-hook install --target pi` | Sends session and completion events to Moshi's local daemon. |
 
 The updater uses RTK's dry run and Herdr's integration status to avoid rewriting current files.
+Moshi's installer is rerun because it exposes no equivalent per-target status check. Moshi pairing
+and daemon/service setup remain machine-local; hooks alone do not establish phone delivery.
 Restart Pi after changes. [Agent integrations](../../agent-integrations.md) documents the native
-installers, paths, environment requirements, and verification limits.
+installers, data sent by Moshi, environment requirements, and verification limits.
 
 ## Authentication and billing
 
