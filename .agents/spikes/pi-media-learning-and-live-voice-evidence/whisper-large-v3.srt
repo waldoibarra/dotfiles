@@ -1,0 +1,136 @@
+1
+00:00:00,000 --> 00:00:05,660
+ There was this and this happens to all of us, no blame there, but it's not great if
+
+2
+00:00:05,660 --> 00:00:09,660
+ by default a server spins up, course headers are set in such a way that any website you
+
+3
+00:00:09,660 --> 00:00:14,680
+ open in your browser can now access your open code server.
+
+4
+00:00:14,680 --> 00:00:18,780
+ And entirely unrelated to all of this, I started looking into benchmarks for coding agent harnesses
+
+5
+00:00:18,780 --> 00:00:24,500
+ and found TerminalBench, which is a pretty good benchmark, all things considered.
+
+6
+00:00:24,500 --> 00:00:28,960
+ And the funny part about it is that it's the most minimal kind of thing you can think of.
+
+7
+00:00:28,960 --> 00:00:35,020
+ All it gives the model is a tool to send keystrokes to a TMUX session and read the output of that
+
+8
+00:00:35,020 --> 00:00:36,340
+ TMUX session.
+
+9
+00:00:36,340 --> 00:00:40,780
+ There's no file tools, no subagents, none of that stuff.
+
+10
+00:00:40,780 --> 00:00:43,200
+ And it's one of the best performing harnesses in the leaderboard.
+
+11
+00:00:43,200 --> 00:00:47,000
+ Here's the leaderboard from December 2025.
+
+12
+00:00:47,000 --> 00:00:52,400
+ Irrespective of model family, Terminal scores higher, mostly even higher than the native
+
+13
+00:00:52,400 --> 00:00:54,340
+ harness of that model.
+
+14
+00:00:54,340 --> 00:00:55,880
+ So what does that tell us?
+
+15
+00:00:55,880 --> 00:00:58,920
+ A form two thesis is, we are in the fuck around and find out.
+
+16
+00:00:58,920 --> 00:01:03,760
+ And the current form is not the final form, right?
+
+17
+00:01:03,760 --> 00:01:07,680
+ So second thesis is, we need better ways to fuck around.
+
+18
+00:01:07,680 --> 00:01:13,920
+ And for me, that means self-modifying mailable agents, things that the agent itself can modify
+
+19
+00:01:13,920 --> 00:01:17,100
+ and I can modify, depending on my workflow.
+
+20
+00:01:17,100 --> 00:01:22,100
+ So I stripped away all the things, built a minimal core, but made it super extensible,
+
+21
+00:01:22,100 --> 00:01:25,420
+ and made it so that the agent can modify itself.
+
+22
+00:01:25,420 --> 00:01:26,420
+ With some creature comforts.
+
+23
+00:01:26,420 --> 00:01:27,880
+ It's not entirely bare bones.
+
+24
+00:01:27,880 --> 00:01:28,880
+ So that's Python.
+
+25
+00:01:28,880 --> 00:01:29,880
+ It's Py.
+
+26
+00:01:29,880 --> 00:01:32,840
+ It's an agent that adapts to your workflow, instead of the other way around.
+
+27
+00:01:32,840 --> 00:01:36,880
+ It comes with four packages, an AI package, it's basically just an abstraction across
+
+28
+00:01:36,880 --> 00:01:42,640
+ providers and context handoff between providers, an agent core, which is just a while loop
+
+29
+00:01:42,640 --> 00:01:47,360
+ and the tool calling, bespoke to a framework, I come out of game development, so I built
+
+30
+00:01:47,360 --> 00:01:51,280
+ a thing that actually doesn't flicker too much, and the coding agent itself.
+
+31
+00:01:51,280 --> 00:01:54,060
+ Here's Py's system prompt.
+
+32
+00:01:54,060 --> 00:01:55,060
+ That's it.
+
+33
+00:01:55,060 --> 00:01:58,840
+ Eventually, the industry created a new standard called skills, which is basically just an
+
+34
+00:01:58,840 --> 00:02:00,020
+ Markdown files.
+

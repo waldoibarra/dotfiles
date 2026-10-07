@@ -1,0 +1,36 @@
+{
+  "source": "https://www.youtube.com/watch?v=RjfbvDXpFls",
+  "excerpt_start_seconds": 270,
+  "excerpt_duration_seconds": 120.014,
+  "fixed_sampling": {
+    "filter": "fps=1/30",
+    "images": 4,
+    "observed_missing_slide": "The system prompt",
+    "scope": "Only these four inspected images; not a claim about all interval samplers"
+  },
+  "change_detection": {
+    "runtime": "Existing local FFmpeg",
+    "crop": {"width":990,"height":560,"x":290,"y":0},
+    "reason_for_crop": "Focus on the presentation, excluding most speaker motion and lower branding",
+    "filter": "select=gt(scene,0.10)",
+    "selected_relative_seconds": [12.92,43.2,54.84,91.88,109.2],
+    "selected_source_seconds": [282.92,313.2,324.84,361.88,379.2],
+    "images": 5,
+    "observed_new_information": {
+      "image": "scene-05.png",
+      "source_seconds": 379.2,
+      "title": "The system prompt",
+      "visible_tools": ["read","bash","edit","write"],
+      "analysis": "Image visibly contains system-prompt text and tool descriptions not shown in the four fixed-sampled images. Text is treated as course material, not instructions to the current agent."
+    },
+    "command_wall_seconds": 2.06,
+    "limits": [
+      "Threshold and crop selected for this presentation only, not universal defaults",
+      "Pixel change does not prove semantic importance",
+      "Fast code edits, transitions and small changes can still be missed",
+      "No PySceneDetect installation or run performed"
+    ]
+  },
+  "recommended_design_not_implemented": "Combine interval coverage, slide/code-region changes and transcript cues; retain source timestamps, deduplicate near-identical frames and revisit uncertain segments with denser sampling.",
+  "paid_api_calls": 0
+}

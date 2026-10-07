@@ -60,6 +60,9 @@ markdownlint-cli2 - < home/.agents/skills/shell-scripting/SKILL.md
 ```
 
 Verbatim upstream guides and output styles are intentionally exempt from house Markdown rules.
+The saved media-spike evidence collection is exempt from EditorConfig checks to preserve output
+formatting and manifest checksums. Research Markdown under `.agents/` still receives Markdown and
+EditorConfig checks, with variable indentation for numbered-list continuations.
 
 ## Homebrew
 

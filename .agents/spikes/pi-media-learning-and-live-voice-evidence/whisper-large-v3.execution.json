@@ -1,0 +1,77 @@
+{
+  "model": "ggml-large-v3.bin",
+  "precision": "non-quantized ggml large-v3 (f16 weights)",
+  "model_revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+  "download_url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-large-v3.bin",
+  "model_bytes": 3095033483,
+  "model_sha256": "64d182b440b98d5203c4f9bd541544d84c605196c4f7b845dfa11fb23594d1e2",
+  "download_seconds": 602.0211775410007,
+  "binary": "~/.voicemode/services/whisper/build/bin/whisper-cli",
+  "audio": "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/pi-audio.wav",
+  "source_range_seconds": [
+    270,
+    390
+  ],
+  "language": "en",
+  "threads": 4,
+  "prompt": null,
+  "started_utc": "2026-10-05T21:23:26.295515+00:00",
+  "returncode": 0,
+  "inference_wall_seconds": 32.66336087499985,
+  "command": [
+    "~/.voicemode/services/whisper/build/bin/whisper-cli",
+    "-m",
+    "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/ggml-large-v3.bin",
+    "-f",
+    "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/pi-audio.wav",
+    "-l",
+    "en",
+    "-t",
+    "4",
+    "-otxt",
+    "-osrt",
+    "-oj",
+    "-of",
+    "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/whisper-large-v3"
+  ],
+  "backend": "whisper.cpp Metal MTL0 Apple M2; CPU BLAS/Accelerate available",
+  "coreml": "Encoder absent: runtime logged failed CoreML load and successfully used Metal; no CoreML download",
+  "model_ftype": 1,
+  "model_quantization_version": 0,
+  "maximum_resident_set_size_bytes": 4196253696,
+  "peak_memory_footprint_bytes": 4191375152,
+  "time_real_seconds": 32.65,
+  "runtime_total_seconds": 32.45203,
+  "audio_seconds": 120.014,
+  "real_time_factor": 0.27216292161747674,
+  "timestamp_origin": "clip-relative; add 270 seconds for original-video time",
+  "decoding": "runtime defaults: 5 beams + best of 5",
+  "limits": [
+    "No human audio reference; no formal WER or accuracy improvement claim.",
+    "English forced; Spanish capability not evaluated on this English sample.",
+    "Model is full non-quantized distribution with f16 weights, not fp32.",
+    "No vocabulary prompt, captions, earlier transcript, or summaries used."
+  ],
+  "outputs": {
+    "whisper-large-v3.txt": {
+      "bytes": 2015,
+      "sha256": "94d835ecbb16da802ded89df9781ad5b97c8dfc03de33b6177475360bfdc8cda"
+    },
+    "whisper-large-v3.srt": {
+      "bytes": 3196,
+      "sha256": "3f40ccc35e82ae25655e26e2c1a095b05ed9eb9967fbfb36727cbf4999cd6704"
+    },
+    "whisper-large-v3.json": {
+      "bytes": 8088,
+      "sha256": "7adde21685e02e9ffbbbcbc597bc7c3009074dd18c04208bbb405bea910034d3"
+    },
+    "whisper-large-v3.stdout.log": {
+      "bytes": 3172,
+      "sha256": "f164b2a912f622aeea9e8bdc678afb88e482dbb3e8a248af3fe262d584f55930"
+    },
+    "whisper-large-v3.stderr.log": {
+      "bytes": 7279,
+      "sha256": "ecb85014d1452edcc78d767d82f2d82609c2c4ad29165c2a7979172af518da6f"
+    }
+  }
+}

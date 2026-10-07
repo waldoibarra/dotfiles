@@ -1,0 +1,248 @@
+{
+  "scope": "Same 120.014-second English Pi talk excerpt; no captions or prior transcripts passed into model",
+  "model": "mlx-community/Qwen3-ASR-1.7B-bf16",
+  "primary_result": "Qwen rendered more of the inspected technical spellings without context hints in this excerpt; not a measured overall accuracy percentage",
+  "term_presence_observations_not_wer": {
+    "CORS": {
+      "qwen3_asr_bf16_no_context": true,
+      "whisper_large_v3_no_context": false,
+      "parakeet_v3_no_context": false
+    },
+    "tmux": {
+      "qwen3_asr_bf16_no_context": true,
+      "whisper_large_v3_no_context": true,
+      "parakeet_v3_no_context": false
+    },
+    "Pi": {
+      "qwen3_asr_bf16_no_context": true,
+      "whisper_large_v3_no_context": false,
+      "parakeet_v3_no_context": true
+    },
+    "malleable": {
+      "qwen3_asr_bf16_no_context": true,
+      "whisper_large_v3_no_context": false,
+      "parakeet_v3_no_context": true
+    },
+    "TUI": {
+      "qwen3_asr_bf16_no_context": true,
+      "whisper_large_v3_no_context": false,
+      "parakeet_v3_no_context": false
+    },
+    "Terminus": {
+      "qwen3_asr_bf16_no_context": false,
+      "whisper_large_v3_no_context": false,
+      "parakeet_v3_no_context": true
+    }
+  },
+  "qwen_vs_whisper_raw_disagreements": [
+    {
+      "operation": "replace",
+      "left": "claim",
+      "right": "blame",
+      "left_context": "to all of us no claim there but it's not great",
+      "right_context": "to all of us no blame there but it's not great"
+    },
+    {
+      "operation": "replace",
+      "left": "cors",
+      "right": "course",
+      "left_context": "default a server spins up cors headers are set in such",
+      "right_context": "default a server spins up course headers are set in such"
+    },
+    {
+      "operation": "delete",
+      "left": "that's yeah",
+      "right": "",
+      "left_context": "access your open code server that's yeah and entirely unrelated to all",
+      "right_context": "access your open code server and entirely unrelated to all"
+    },
+    {
+      "operation": "replace",
+      "left": "terminal bench",
+      "right": "terminalbench",
+      "left_context": "coding agent harnesses and found terminal bench which is a pretty good",
+      "right_context": "coding agent harnesses and found terminalbench which is a pretty good"
+    },
+    {
+      "operation": "replace",
+      "left": "sub agents",
+      "right": "subagents",
+      "left_context": "there's no file tools no sub agents none of that stuff and",
+      "right_context": "there's no file tools no subagents none of that stuff and"
+    },
+    {
+      "operation": "delete",
+      "left": "phase of coding agents",
+      "right": "",
+      "left_context": "fuck around and find out phase of coding agents and the current form is",
+      "right_context": "fuck around and find out and the current form is"
+    },
+    {
+      "operation": "replace",
+      "left": "that",
+      "right": "the",
+      "left_context": "the current form is not that final form right so second",
+      "right_context": "the current form is not the final form right so second"
+    },
+    {
+      "operation": "replace",
+      "left": "malleable",
+      "right": "mailable",
+      "left_context": "for me that means self-modifying malleable agents things that the agent",
+      "right_context": "for me that means self-modifying mailable agents things that the agent"
+    },
+    {
+      "operation": "replace",
+      "left": "pi",
+      "right": "python it's py",
+      "left_context": "entirely bare bones so that's pi it's an agent that adapts",
+      "right_context": "entirely bare bones so that's python it's py it's an agent that adapts"
+    },
+    {
+      "operation": "replace",
+      "left": "that's",
+      "right": "it's",
+      "left_context": "four packages an ai package that's basically just an abstraction across",
+      "right_context": "four packages an ai package it's basically just an abstraction across"
+    },
+    {
+      "operation": "replace",
+      "left": "tui",
+      "right": "to a",
+      "left_context": "and the tool calling bespoke tui framework i come out of",
+      "right_context": "and the tool calling bespoke to a framework i come out of"
+    },
+    {
+      "operation": "replace",
+      "left": "pi's",
+      "right": "py's",
+      "left_context": "the coding agent itself here's pi's system prompt that's it eventually",
+      "right_context": "the coding agent itself here's py's system prompt that's it eventually"
+    },
+    {
+      "operation": "insert",
+      "left": "",
+      "right": "an",
+      "left_context": "skills which is basically just markdown files",
+      "right_context": "skills which is basically just an markdown files"
+    }
+  ],
+  "qwen_vs_parakeet_raw_disagreements": [
+    {
+      "operation": "replace",
+      "left": "cors",
+      "right": "course",
+      "left_context": "default a server spins up cors headers are set in such",
+      "right_context": "default a server spins up course headers are set in such"
+    },
+    {
+      "operation": "insert",
+      "left": "",
+      "right": "a",
+      "left_context": "coding agent harnesses and found terminal bench which is a",
+      "right_context": "coding agent harnesses and found a terminal bench which is a"
+    },
+    {
+      "operation": "replace",
+      "left": "tmux",
+      "right": "tmax",
+      "left_context": "to send keystrokes to a tmux session and read the output",
+      "right_context": "to send keystrokes to a tmax session and read the output"
+    },
+    {
+      "operation": "replace",
+      "left": "tmux",
+      "right": "tmax",
+      "left_context": "read the output of that tmux session there's no file tools",
+      "right_context": "read the output of that tmax session there's no file tools"
+    },
+    {
+      "operation": "replace",
+      "left": "terminal",
+      "right": "terminus",
+      "left_context": "2025 irrespective of model family terminal scores higher mostly even higher",
+      "right_context": "2025 irrespective of model family terminus scores higher mostly higher even"
+    },
+    {
+      "operation": "insert",
+      "left": "",
+      "right": "higher",
+      "left_context": "family terminal scores higher mostly even higher than the native",
+      "right_context": "family terminus scores higher mostly higher even higher than the native"
+    },
+    {
+      "operation": "replace",
+      "left": "two",
+      "right": "2",
+      "left_context": "that tell us a form two thesis is we are in",
+      "right_context": "that tell us a form 2 thesis is we are in"
+    },
+    {
+      "operation": "replace",
+      "left": "the",
+      "right": "their",
+      "left_context": "phase of coding agents and the current form is not that",
+      "right_context": "phase of coding agents and their current form is not their"
+    },
+    {
+      "operation": "replace",
+      "left": "that",
+      "right": "their",
+      "left_context": "the current form is not that final form right so second",
+      "right_context": "their current form is not their final form right so second"
+    },
+    {
+      "operation": "replace",
+      "left": "that's",
+      "right": "it's",
+      "left_context": "four packages an ai package that's basically just an abstraction across",
+      "right_context": "four packages an ai package it's basically just an abstraction across"
+    },
+    {
+      "operation": "replace",
+      "left": "the",
+      "right": "a",
+      "left_context": "just a while loop and the tool calling bespoke tui framework",
+      "right_context": "just a while loop and a tool calling bespoke twi framework"
+    },
+    {
+      "operation": "replace",
+      "left": "tui",
+      "right": "twi",
+      "left_context": "and the tool calling bespoke tui framework i come out of",
+      "right_context": "and a tool calling bespoke twi framework i come out of"
+    }
+  ],
+  "remaining_review_candidates": [
+    {
+      "phrase": "Terminal scores higher",
+      "reason": "Visible presentation and Parakeet identify Terminus; raw output remains uncorrected"
+    },
+    {
+      "phrase": "A form two thesis is",
+      "reason": "Awkward phrase shared across ASR predictions; no human audio verification"
+    },
+    {
+      "phrase": "No claim there",
+      "reason": "Qwen and Parakeet agree, while Whisper returns no blame; agreement is not proof"
+    }
+  ],
+  "timing": {
+    "process_wall_seconds": 39.5881558330002,
+    "model_load_seconds": 2.2933314579986472,
+    "inference_seconds": 35.158912332999535
+  },
+  "memory": {
+    "mlx_peak_memory_bytes": 5741317108,
+    "process_rss_peak_bytes": 1805139968,
+    "note": "Separate accounting; do not sum or compare directly to another runtime's GPU allocations"
+  },
+  "timestamp_limit": "One segment spanning the whole clip; no forced-aligner model loaded. Not word-level alignment.",
+  "limits": [
+    "No formal WER or human-corrected audio reference",
+    "Single English sample; no Spanish inference",
+    "Different models use different decoding and segmentation; no universal ranking"
+  ],
+  "recommendation": "Use Qwen3-ASR BF16 as the next primary candidate for these English courses, retaining raw output and explicit uncertain spans; keep visual spelling review and investigate alignment if precise video timestamps are required.",
+  "reminder_after_delivery": "También queremos buscar en los paquetes."
+}

@@ -1,0 +1,159 @@
+{
+  "sourceDirectory": "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72",
+  "storageDirectory": ".agents/spikes/pi-media-learning-and-live-voice-evidence",
+  "note": "Stage-specific snapshots; temporary paths are historical. Weights, audio/video, captions and credentials excluded.",
+  "publicationRedactions": {
+    "description": "Personal home prefixes replaced with ~; storageDirectory is repository-relative. Snapshot hashes below reflect redacted files.",
+    "originalSha256": {
+      "parakeet-v3-metrics.json": "f4889d0c3fb8ae76a83f3a4261f54f307d71ac18b05559e9ca7c5de07787f92b",
+      "whisper-large-v3.execution.json": "d3655299fb17ef224afd431e6693cf27c8b6c8e942901129893e1cb6c741216a"
+    }
+  },
+  "files": [
+    {
+      "file": "results.json",
+      "bytes": 4343,
+      "sha256": "bf7e41b543682e998a39848233750f7cd725edce92570a8c161e11434c0a2e13"
+    },
+    {
+      "file": "frame-selection.json",
+      "bytes": 1738,
+      "sha256": "67d050d91593f74fd07b1384260b0d0d939e8b47a6cd2db12f283adc5925b155"
+    },
+    {
+      "file": "precision-comparison.json",
+      "bytes": 7296,
+      "sha256": "0592395de816e46c725ffa98fa3cded1d06830e2aea9eded454e3b252239689e"
+    },
+    {
+      "file": "qwen3-asr-comparison.json",
+      "bytes": 9358,
+      "sha256": "e72032531f659fbb0909b589a692b6b1bd49491e44425e14331c1fa2ac8490db"
+    },
+    {
+      "file": "whisper-base.txt",
+      "bytes": 2022,
+      "sha256": "614e260e82b70c8f445ca8bf25ce25f1b1e94ff25dd3addab272c83dd46587f3"
+    },
+    {
+      "file": "whisper-base.srt",
+      "bytes": 3238,
+      "sha256": "55cfe167b29af0774fc35ee2d3c32638ca9f4e0fa2b45006e70504ce9bc7b829"
+    },
+    {
+      "file": "whisper-base-vocabulary.txt",
+      "bytes": 2030,
+      "sha256": "2f826a4d026321b7a7fda2da76e2ee75d31acb7574a3b720f87796b069958198"
+    },
+    {
+      "file": "whisper-base-vocabulary.srt",
+      "bytes": 2826,
+      "sha256": "26b84c30e625fa4d436fa8aff231e6dbd534e9521cd1e3e07aa48e94e1266a37"
+    },
+    {
+      "file": "whisper-large-v3.txt",
+      "bytes": 2015,
+      "sha256": "94d835ecbb16da802ded89df9781ad5b97c8dfc03de33b6177475360bfdc8cda"
+    },
+    {
+      "file": "whisper-large-v3.srt",
+      "bytes": 3196,
+      "sha256": "3f40ccc35e82ae25655e26e2c1a095b05ed9eb9967fbfb36727cbf4999cd6704"
+    },
+    {
+      "file": "whisper-large-v3.execution.json",
+      "bytes": 2994,
+      "sha256": "4eb49110ea0fddc2b93415b210d2440b5671829aaaed48a7ca3dd9b2bf38b9c7"
+    },
+    {
+      "file": "whisper-large-v3-context.txt",
+      "bytes": 2032,
+      "sha256": "1cb6318006e37e70e929aee90a2c9be44573856fa933d1f2abab4c5e66d139ce"
+    },
+    {
+      "file": "whisper-large-v3-context.srt",
+      "bytes": 2653,
+      "sha256": "1e8f0e7bfa99f665bce8229cfe57a918e08d54a0bfa65ef126602f7e2a6471ee"
+    },
+    {
+      "file": "whisper-large-v3-context.json",
+      "bytes": 5583,
+      "sha256": "9e57be6de83261d850de7ce24cf63a13c9f8adeaeaf35f490681c2e0a84503a9"
+    },
+    {
+      "file": "parakeet-v3.txt",
+      "bytes": 2043,
+      "sha256": "5ebf5be580c44e376bc81fc5ab9a2a0ebfc14761849d4e5973e3523afdbbbdac"
+    },
+    {
+      "file": "parakeet-v3.srt",
+      "bytes": 3015,
+      "sha256": "8fd7ea9296149338d854777513437aedb4b8ed2839a63fedac17ef37afdc2c61"
+    },
+    {
+      "file": "parakeet-v3-metrics.json",
+      "bytes": 2693,
+      "sha256": "7cfb8c4819c60a9ccf852a169d834e8291d351111a6be58d4c11d66df8cfddf3"
+    },
+    {
+      "file": "parakeet-v3-model-manifest.json",
+      "bytes": 912,
+      "sha256": "50551718188459b84518e1dabdc893ec7a77dc26a5bc35a001f564e655452b2c"
+    },
+    {
+      "file": "qwen3-asr-bf16.txt",
+      "bytes": 2032,
+      "sha256": "6409c94295b8c1692fef001aff06e331256867e95366a3f63c2b0ea3a09ee7b8"
+    },
+    {
+      "file": "qwen3-asr-bf16.json",
+      "bytes": 4199,
+      "sha256": "d27db58a2e404194b06ac045344e2753f5e539411913913e8c81e6d932f64148"
+    },
+    {
+      "file": "qwen3-asr-bf16.metrics.json",
+      "bytes": 3774,
+      "sha256": "df909e773f9ab521718cf733accbbf136633fd10b22e45bfa53731663fbe886f"
+    },
+    {
+      "file": "reviewed-transcript.txt",
+      "bytes": 2052,
+      "sha256": "c39cff3a2f936ca11239ddfc2ae5af1d57a8fa2e433c5da28a8f654f5038f6bf"
+    },
+    {
+      "file": "reviewed-transcript-source.srt",
+      "bytes": 2673,
+      "sha256": "f578f6272534580a2004db4361b2f2a9d67b162ac4ffc76eaaecd82c4942b01d"
+    },
+    {
+      "file": "frame-01.png",
+      "bytes": 268273,
+      "sha256": "ed51a8ef1dd4a76c256e62eeb29354a0c0b84f4b875e1ea98a14fbf1447f0bc4"
+    },
+    {
+      "file": "frame-02.png",
+      "bytes": 376345,
+      "sha256": "be10eb90198978fba188f8138808b389ce6f361910967d59f8c9482ad96445db"
+    },
+    {
+      "file": "frame-03.png",
+      "bytes": 341913,
+      "sha256": "7cf3c4fbe3cd08cac3f7e9974d90430489cd7d49160c43bfb8d3e6a672de45ff"
+    },
+    {
+      "file": "frame-04.png",
+      "bytes": 398198,
+      "sha256": "cf6116b703ac6dee31be19db94a38f2479415a71627071da73e8ec3d21621fd7"
+    },
+    {
+      "file": "scene-05.png",
+      "bytes": 161368,
+      "sha256": "1caa60de8b4ca2b31f34610b9c3657c851c5f1d052b980d46fbad7d228ba2521"
+    },
+    {
+      "file": "initial-context.png",
+      "bytes": 313398,
+      "sha256": "ce35f2a26b76886f3aa21dd97c6732908cf1e84c6b127023770acf6cbf52fca7"
+    }
+  ]
+}

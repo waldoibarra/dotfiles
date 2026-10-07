@@ -1,0 +1,76 @@
+{
+  "scope": "Authorized small-sample local transcription and current-session visual inspection; not a general accuracy benchmark",
+  "source": {
+    "url": "https://www.youtube.com/watch?v=RjfbvDXpFls",
+    "title": "Building pi in a World of Slop — Mario Zechner",
+    "channel": "AI Engineer",
+    "language": "en-US",
+    "full_duration_seconds": 1105,
+    "requested_excerpt_seconds": [270, 390],
+    "downloaded_duration_seconds": 120.014,
+    "video_dimensions": [1280, 720]
+  },
+  "hardware": {
+    "device": "MacBook Pro Mac14,7",
+    "chip": "Apple M2",
+    "unified_memory": "24 GB",
+    "cpu_cores": 8,
+    "gpu_cores": 10
+  },
+  "transcription": {
+    "runtime": "Existing whisper.cpp whisper-cli",
+    "model": "Existing multilingual ggml-base.bin",
+    "backends_observed": ["Metal", "Core ML encoder", "Accelerate/BLAS"],
+    "input": "16 kHz mono PCM WAV",
+    "language_hint": "en",
+    "threads": 4,
+    "new_model_downloads": false,
+    "baseline": {
+      "wall_seconds": 24.41,
+      "reported_whisper_total_milliseconds": 6059.87,
+      "initial_metal_library_compile_seconds": 18.265,
+      "maximum_resident_set_bytes": 469237760,
+      "outputs": ["whisper-base.txt", "whisper-base.srt", "whisper-base.json"]
+    },
+    "vocabulary_hinted_warm_run": {
+      "wall_seconds": 3.89,
+      "reported_whisper_total_milliseconds": 3824.88,
+      "maximum_resident_set_bytes": 457900032,
+      "prompt": "Pi. Terminal-Bench. Terminus. tmux. TUI framework. context handoff. Markdown. pi-ai. pi-agent-core. pi-tui. pi-coding-agent.",
+      "outputs": ["whisper-base-vocabulary.txt", "whisper-base-vocabulary.srt", "whisper-base-vocabulary.json"]
+    },
+    "observed_technical_errors": [
+      {"reference": "tmux session", "baseline": "team accession", "hinted": "team accession", "reference_basis": "YouTube captions, not hand-corrected gold"},
+      {"reference": "context handoff", "baseline": "context handle", "hinted": "context handle", "reference_basis": "YouTube captions and visible PI-AI slide"},
+      {"reference": "TUI framework", "baseline": "to eFramework", "hinted": "to a framework", "reference_basis": "YouTube captions and visible PI-TUI slide"},
+      {"reference": "Markdown files", "baseline": "marked on files", "hinted": "markdown files", "reference_basis": "YouTube captions"},
+      {"reference": "Pi", "baseline": "pie", "hinted": "pie", "reference_basis": "Visible title and package names"}
+    ],
+    "limits": [
+      "No hand-corrected reference transcript; no formal WER reported",
+      "Warm run also adds vocabulary hints, so it is not an isolated speed comparison",
+      "Process RSS is not whole-system unified-memory consumption",
+      "English tested; Spanish not tested",
+      "No local small, large-v3, turbo or Parakeet inference performed"
+    ]
+  },
+  "visual_inspection": {
+    "extraction": "FFmpeg, four sampled PNG images at fps=1/30",
+    "analysis": "Current model session with image input; not an installed local vision model",
+    "observations": [
+      {"image": "frame-01.png", "visible_text": ["Terminus", "TERMINAL-BENCH 2.0"]},
+      {"image": "frame-02.png", "visible_text": ["Terminal-Bench 2.0", "Codex CLI", "Terminus 2"], "interpretation": "Leaderboard displayed as a screenshot; observations refer to the historical slide, not current rankings"},
+      {"image": "frame-03.png", "visible_text": ["self-modifying, malleable agents", "THESIS 2"]},
+      {"image": "frame-04.png", "visible_text": ["Four packages, from scratch", "PI-AI", "PI-AGENT-CORE", "PI-TUI", "PI-CODING-AGENT"], "roles": {"PI-AI": "Unified LLM API, providers, streaming, tool calling and cross-provider context handoff", "PI-AGENT-CORE": "Agent loop, tool execution, validation, event streaming and message queueing", "PI-TUI": "Terminal UI framework", "PI-CODING-AGENT": "CLI, sessions, themes, extensions, skills and project context"}}
+    ],
+    "limits": ["Sampled images, not continuous native-video analysis", "Installed Qwen3 is text-only; no local VLM inference or new VLM weight download"]
+  },
+  "billing_and_changes": {
+    "paid_api_calls": 0,
+    "cloud_paid_models": "Pricing and benchmark research only",
+    "installed_packages": 0,
+    "new_model_weights": 0,
+    "configuration_changes": 0,
+    "current_session_usage": "Normal conversation/image context usage"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "repo_id": "mlx-community/parakeet-tdt-0.6b-v3",
+  "revision": "ed2b7e8c15f9aaa0b5772e2efb986255eaef7e15",
+  "local_path": "/private/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/parakeet-v3-model",
+  "download_and_hash_wall_seconds": 323.66177291700114,
+  "files": [
+    {
+      "name": "config.json",
+      "bytes": 244093,
+      "sha256": "f320f1292511f34ec47f513755fe20fd01dbfc09a925d42730e66059a6e1ef4c"
+    },
+    {
+      "name": "model.safetensors",
+      "bytes": 2508288736,
+      "sha256": "05e01c7f396c298cf7d23f61da7b504adeab698f0aaeafd9c82d198625464592"
+    },
+    {
+      "name": "tokenizer.model",
+      "bytes": 360916,
+      "sha256": "eacec2b0a77f336d4a2ca4a25a7047575d3c2b74de47e997f4c205126ed3135e"
+    },
+    {
+      "name": "tokenizer.vocab",
+      "bytes": 101024,
+      "sha256": "41130ff456706304a1adec782ccc9e003c4d417e8e324353d281be958cac4e17"
+    }
+  ]
+}

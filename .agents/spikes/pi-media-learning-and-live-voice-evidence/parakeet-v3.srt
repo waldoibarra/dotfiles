@@ -1,0 +1,112 @@
+1
+00:00:00,800 --> 00:00:04,320
+ There was this, and this happens to all of us, no claim there.
+
+2
+00:00:04,320 --> 00:00:12,320
+ But it's not great if by default a server spins up course headers are set in such a way that any website you open in your browser can now access your open code server.
+
+3
+00:00:12,320 --> 00:00:14,240
+ That's yeah.
+
+4
+00:00:14,240 --> 00:00:24,080
+ And entirely unrelated to all of this, I started looking into benchmarks for coding agent harnesses and found a terminal bench, which is a pretty good benchmark, all things considered.
+
+5
+00:00:24,080 --> 00:00:28,720
+ And the funny part about it is that it's the most minimal kind of thing you can think of.
+
+6
+00:00:28,720 --> 00:00:36,000
+ All it gives the model is a tool to send keystrokes to a TMAX session and read the output of that TMAX session.
+
+7
+00:00:36,000 --> 00:00:40,320
+ There's no file tools, no sub agents, none of that stuff.
+
+8
+00:00:40,320 --> 00:00:43,360
+ And it's one of the best performing harnesses in the leaderboard.
+
+9
+00:00:43,360 --> 00:00:46,640
+ Here's the leaderboard from December, 2025.
+
+10
+00:00:46,640 --> 00:00:54,000
+ Irrespective of model family, terminus scores higher, mostly higher, even higher than the native harness of that model.
+
+11
+00:00:54,000 --> 00:00:55,600
+ So what does that tell us?
+
+12
+00:00:55,600 --> 00:00:57,360
+ A Form 2 thesis is.
+
+13
+00:00:57,440 --> 00:01:03,280
+ We are in the fuck around and find out phase of coding agents, and their current form is not their final form, right?
+
+14
+00:01:03,600 --> 00:01:07,520
+ So, second thesis is we need better ways to fuck around.
+
+15
+00:01:07,520 --> 00:01:11,440
+ And for me, that means self-modifying malleable agents.
+
+16
+00:01:11,440 --> 00:01:16,800
+ Things that the agent itself can modify and I can modify depending on my workflow.
+
+17
+00:01:16,800 --> 00:01:26,480
+ So I stripped away all the things, built a minimal core, but made it super extensible, and made it so that the agent can modify itself with some creature comforts.
+
+18
+00:01:26,560 --> 00:01:28,320
+ It's not entirely bare bones.
+
+19
+00:01:28,320 --> 00:01:29,200
+ So that's Pi.
+
+20
+00:01:29,200 --> 00:01:32,560
+ It's an agent that adapts to your workflow instead of the other way around.
+
+21
+00:01:32,560 --> 00:01:40,080
+ It comes with four packages: an AI package, it's basically just an abstraction across providers and context handoff between providers.
+
+22
+00:01:40,080 --> 00:01:43,760
+ An agent core, which is just a while loop and a tool calling.
+
+23
+00:01:44,000 --> 00:01:45,520
+ Bespoke Twi framework.
+
+24
+00:01:45,520 --> 00:01:49,360
+ I come out of game development, so I built a thing that actually doesn't flicker too much.
+
+25
+00:01:49,360 --> 00:01:50,960
+ And the coding agent itself.
+
+26
+00:01:50,960 --> 00:01:53,120
+ Here's Pi's system prompt.
+
+27
+00:01:53,600 --> 00:01:55,120
+ That's it.
+
+28
+00:01:55,120 --> 00:02:00,000
+ Eventually the industry created a new standard called skills, which is basically just markdown files.
+

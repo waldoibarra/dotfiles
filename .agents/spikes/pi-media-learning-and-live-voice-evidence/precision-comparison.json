@@ -1,0 +1,208 @@
+{
+  "source_video": "https://www.youtube.com/watch?v=RjfbvDXpFls",
+  "source_excerpt_seconds": [
+    270,
+    390
+  ],
+  "audio_sha256": "8f443962f8df3d24603ee060e958723155f234c7f41597d1e5c3c991f4fdeb85",
+  "method": "Independent local ASR predictions, comparison and visible-slide verification. No captions consulted as reference or prompts.",
+  "raw_disagreements": [
+    {
+      "operation": "replace",
+      "left": "blame",
+      "right": "claim",
+      "left_context": "to all of us no blame there but it's not great",
+      "right_context": "to all of us no claim there but it's not great"
+    },
+    {
+      "operation": "insert",
+      "left": "",
+      "right": "that's yeah",
+      "left_context": "access your open code server and entirely unrelated to all",
+      "right_context": "access your open code server that's yeah and entirely unrelated to all"
+    },
+    {
+      "operation": "replace",
+      "left": "terminalbench",
+      "right": "a terminal bench",
+      "left_context": "coding agent harnesses and found terminalbench which is a pretty good",
+      "right_context": "coding agent harnesses and found a terminal bench which is a pretty good"
+    },
+    {
+      "operation": "replace",
+      "left": "tmux",
+      "right": "tmax",
+      "left_context": "to send keystrokes to a tmux session and read the output",
+      "right_context": "to send keystrokes to a tmax session and read the output"
+    },
+    {
+      "operation": "replace",
+      "left": "tmux",
+      "right": "tmax",
+      "left_context": "read the output of that tmux session there's no file tools",
+      "right_context": "read the output of that tmax session there's no file tools"
+    },
+    {
+      "operation": "replace",
+      "left": "subagents",
+      "right": "sub agents",
+      "left_context": "there's no file tools no subagents none of that stuff and",
+      "right_context": "there's no file tools no sub agents none of that stuff and"
+    },
+    {
+      "operation": "replace",
+      "left": "terminal",
+      "right": "terminus",
+      "left_context": "2025 irrespective of model family terminal scores higher mostly even higher",
+      "right_context": "2025 irrespective of model family terminus scores higher mostly higher even"
+    },
+    {
+      "operation": "insert",
+      "left": "",
+      "right": "higher",
+      "left_context": "family terminal scores higher mostly even higher than the native",
+      "right_context": "family terminus scores higher mostly higher even higher than the native"
+    },
+    {
+      "operation": "replace",
+      "left": "two",
+      "right": "2",
+      "left_context": "that tell us a form two thesis is we are in",
+      "right_context": "that tell us a form 2 thesis is we are in"
+    },
+    {
+      "operation": "insert",
+      "left": "",
+      "right": "phase of coding agents",
+      "left_context": "fuck around and find out and the current form is",
+      "right_context": "fuck around and find out phase of coding agents and their current form is"
+    },
+    {
+      "operation": "replace",
+      "left": "the",
+      "right": "their",
+      "left_context": "around and find out and the current form is not the",
+      "right_context": "phase of coding agents and their current form is not their"
+    },
+    {
+      "operation": "replace",
+      "left": "the",
+      "right": "their",
+      "left_context": "the current form is not the final form right so second",
+      "right_context": "their current form is not their final form right so second"
+    },
+    {
+      "operation": "replace",
+      "left": "mailable",
+      "right": "malleable",
+      "left_context": "for me that means self-modifying mailable agents things that the agent",
+      "right_context": "for me that means self-modifying malleable agents things that the agent"
+    },
+    {
+      "operation": "replace",
+      "left": "python it's py",
+      "right": "pi",
+      "left_context": "entirely bare bones so that's python it's py it's an agent that adapts",
+      "right_context": "entirely bare bones so that's pi it's an agent that adapts"
+    },
+    {
+      "operation": "replace",
+      "left": "the",
+      "right": "a",
+      "left_context": "just a while loop and the tool calling bespoke to a",
+      "right_context": "just a while loop and a tool calling bespoke twi framework"
+    },
+    {
+      "operation": "replace",
+      "left": "to a",
+      "right": "twi",
+      "left_context": "and the tool calling bespoke to a framework i come out of",
+      "right_context": "and a tool calling bespoke twi framework i come out of"
+    },
+    {
+      "operation": "replace",
+      "left": "py's",
+      "right": "pi's",
+      "left_context": "the coding agent itself here's py's system prompt that's it eventually",
+      "right_context": "the coding agent itself here's pi's system prompt that's it eventually"
+    },
+    {
+      "operation": "delete",
+      "left": "an",
+      "right": "",
+      "left_context": "skills which is basically just an markdown files",
+      "right_context": "skills which is basically just markdown files"
+    }
+  ],
+  "visible_slide_terms": {
+    "initial-context.png": [
+      "OpenCode",
+      "CORS"
+    ],
+    "frame-01.png": [
+      "Terminus",
+      "TERMINAL-BENCH 2.0"
+    ],
+    "frame-03.png": [
+      "self-modifying",
+      "malleable agents"
+    ],
+    "scene-04.png": [
+      "PI-AI",
+      "PI-AGENT-CORE",
+      "PI-TUI",
+      "PI-CODING-AGENT",
+      "cross-provider context handoff",
+      "Terminal UI framework"
+    ],
+    "scene-05.png": [
+      "The system prompt",
+      "read",
+      "bash",
+      "edit",
+      "write"
+    ]
+  },
+  "limits": [
+    "Model agreement is not proof of correctness",
+    "No human-corrected audio reference or formal WER",
+    "A single 120-second English fragment; not Spanish or a full-course quality benchmark"
+  ],
+  "preferred_audio_output": "whisper-large-v3-context.txt",
+  "context_prompt": "OpenCode. CORS headers. Terminal-Bench. Terminus. tmux. Pi. TUI framework. context handoff. self-modifying, malleable agents. Markdown. pi-ai. pi-agent-core. pi-tui. pi-coding-agent.",
+  "context_result_metrics": {
+    "wall_seconds": 30.18,
+    "max_rss_bytes": 4157227008,
+    "asr_runtime_total_seconds": 30.07373
+  },
+  "reviewed_output": "reviewed-transcript.txt",
+  "reviewed_source_srt": "reviewed-transcript-source.srt",
+  "explicit_post_asr_changes": [
+    {
+      "from": "open code server",
+      "to": "OpenCode server",
+      "basis": "initial-context.png: OpenCode title"
+    },
+    {
+      "from": "Terminal scores higher",
+      "to": "Terminus scores higher",
+      "basis": "frame-01.png/02.png: Terminus; independent Parakeet output"
+    },
+    {
+      "from": "2E framework",
+      "to": "TUI framework",
+      "basis": "scene-04.png: PI-TUI / Terminal UI framework"
+    }
+  ],
+  "unresolved_audio_review": [
+    {
+      "source_seconds": [
+        324,
+        333
+      ],
+      "raw_phrase": "A form two thesis is:",
+      "action": "Marked uncertain; not silently reconstructed from grammar or captions"
+    }
+  ],
+  "recommendation": "Whisper large-v3 with domain vocabulary for primary transcript; use Parakeet as independent discrepancy detector and sampled video frames to verify spellings. One tested excerpt, not a universal model ranking."
+}

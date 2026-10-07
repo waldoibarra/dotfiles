@@ -1,0 +1,51 @@
+{
+  "model": "mlx-community/Qwen3-ASR-1.7B-bf16",
+  "revision": "e1f6c266914abc5a46e8756e02580f834a6cf8a7",
+  "model_weights_sha256": "2f080a3b769ae469aeaaa2dcb9e13a94141e54c9e6d5a7aa63392e0dc5a51789",
+  "model_weights_bytes": 4076186653,
+  "model_path": "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/qwen3-asr-1.7b-bf16-model",
+  "backend": "Device(gpu, 0)",
+  "parameter_dtypes": [
+    "mlx.core.bfloat16"
+  ],
+  "runtime": {
+    "mlx-audio": "0.5.7",
+    "mlx": "0.32.3"
+  },
+  "model_load_seconds": 2.2933314579986472,
+  "inference_seconds": 35.158912332999535,
+  "process_wall_seconds": 39.5881558330002,
+  "process_peak_rss_bytes": 1805139968,
+  "mlx_peak_memory_bytes": 5741317108,
+  "audio_seconds": 120.014,
+  "audio_sha256": "8f443962f8df3d24603ee060e958723155f234c7f41597d1e5c3c991f4fdeb85",
+  "generation": {
+    "language": "English",
+    "chunk_duration": 1200,
+    "batch_size": 1,
+    "max_tokens": 8192,
+    "temperature": 0,
+    "hotwords": null,
+    "system_prompt": null
+  },
+  "outputs": [
+    "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/qwen3-asr-bf16.txt",
+    "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/qwen3-asr-bf16.json"
+  ],
+  "segments": [
+    {
+      "text": "There was this, and this happens to all of us. No claim there, but it's not great if by default a server spins up. CORS headers are set in such a way that any website you open in your browser can now access your open code server. That's, yeah. And entirely unrelated to all of this, I started looking into benchmarks for coding agent harnesses and found Terminal Bench, which is a pretty good benchmark, all things considered. And the funny part about it is that it's the most minimal kind of thing you can think of. All it gives the model is a tool to send keystrokes to a Tmux session and read the output of that Tmux session. There's no file tools, no sub agents, none of that stuff. And it's one of the best performing harnesses in the leaderboard. Here's the leaderboard from December, 2025. Irrespective of model family, Terminal scores higher, mostly even higher than the native harness of that model. So what does that tell us? A form two thesis is we are in the fuck around and find out phase of coding agents, and the current form is not that final form, right? So second thesis is we need better ways to fuck around, and for me that means self-modifying malleable agents, things that the agent itself can modify and I can modify depending on my workflow. So I stripped away all the things, built a minimal core, but made it super extensible, and made it so that the agent can modify itself. With some creature comforts, it's not entirely bare bones. So that's Pi. It's an agent that adapts to your workflow instead of the other way around. It comes with four packages: an AI package that's basically just an abstraction across providers and context handoff between providers, an agent core which is just a while loop and the tool calling, bespoke TUI framework. I come out of game development, so I built a thing that actually doesn't flicker too much, and the coding agent itself. Here's Pi's system prompt. That's it. Eventually the industry created a new standard called Skills, which is basically just Markdown files.",
+      "language": "English",
+      "start": 0.0,
+      "end": 120.014
+    }
+  ],
+  "limits": [
+    "No captions or previous transcript supplied to model",
+    "No human audio reference; no formal WER measured",
+    "Single English excerpt; Spanish not exercised",
+    "No forced-aligner model; any segment times are not word alignment",
+    "Process RSS and MLX allocation peak are separate measurements; do not sum",
+    "Timing excludes model download"
+  ]
+}

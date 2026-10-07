@@ -1,0 +1,63 @@
+{
+  "model": "mlx-community/parakeet-tdt-0.6b-v3",
+  "revision": "ed2b7e8c15f9aaa0b5772e2efb986255eaef7e15",
+  "model_local_path": "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/parakeet-v3-model",
+  "runtime": {
+    "mlx-audio": "0.5.7",
+    "mlx": "0.32.3",
+    "huggingface-hub": "1.33.0"
+  },
+  "python_executable": "~/.local/share/uv/tools/mlx-audio/bin/python",
+  "python_version": "3.14.8",
+  "backend": "MLX Metal",
+  "mlx_default_device": "Device(gpu, 0)",
+  "loader": "mlx_audio.stt.utils.load_model(model_type=parakeet, strict=True)",
+  "model_class": "ParakeetTDT",
+  "parameter_dtypes": [
+    "mlx.core.float32"
+  ],
+  "generation": {
+    "chunk_duration_seconds": 30.0,
+    "overlap_duration_seconds": 2.0,
+    "stream": false,
+    "audio_preprocessing_dtype": "bfloat16 (installed generate default)",
+    "context_or_hotword_prompt": null,
+    "language": "automatic multilingual recognition; Parakeet generate has no language parameter"
+  },
+  "audio": {
+    "path": "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/pi-audio.wav",
+    "sample_rate": 16000,
+    "channels": 1,
+    "frames": 1920224,
+    "duration_seconds": 120.014,
+    "sha256": "8f443962f8df3d24603ee060e958723155f234c7f41597d1e5c3c991f4fdeb85",
+    "source_video": "https://www.youtube.com/watch?v=RjfbvDXpFls",
+    "source_range_seconds": [
+      270,
+      390
+    ]
+  },
+  "model_load_wall_seconds": 0.5944317920002504,
+  "inference_wall_seconds": 6.427351124999404,
+  "child_wall_seconds_to_outputs": 8.307894249999663,
+  "real_time_factor": 0.0535550112903445,
+  "peak_rss_bytes": 2400157696,
+  "peak_rss_units": "bytes on macOS",
+  "mlx_peak_memory_bytes": 3390501170,
+  "sentence_count": 28,
+  "token_count": 715,
+  "output_paths": [
+    "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/parakeet-v3.json",
+    "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/parakeet-v3.txt",
+    "/var/folders/gh/c8byvrsd1b51x7h0gvk_gn2w0000gn/T/pi-media-spike-ltqnuz72/parakeet-v3.srt"
+  ],
+  "limits": [
+    "Single 120-second English sample; Spanish capability advertised by model card but not exercised.",
+    "No captions, previous transcripts, generated summaries, or textual context used.",
+    "No human audio reference and no formal WER measured.",
+    "Timestamps in outputs are relative to extracted audio; add 270 seconds for original video time.",
+    "Time excludes model download and GPU-lock wait; no warm-up or repeat inference.",
+    "MLX peak allocation and process peak RSS are separate measurements and should not be summed."
+  ],
+  "subprocess_wall_seconds_after_gpu_lock": 8.48643470800016
+}

@@ -1,0 +1,34 @@
+There was this and this happens to all of us, no blame there, but it's not great if
+by default a server spins up, course headers are set in such a way that any website you
+open in your browser can now access your open code server.
+And entirely unrelated to all of this, I started looking into benchmarks for coding agent harnesses
+and found TerminalBench, which is a pretty good benchmark, all things considered.
+And the funny part about it is that it's the most minimal kind of thing you can think of.
+All it gives the model is a tool to send keystrokes to a TMUX session and read the output of that
+TMUX session.
+There's no file tools, no subagents, none of that stuff.
+And it's one of the best performing harnesses in the leaderboard.
+Here's the leaderboard from December 2025.
+Irrespective of model family, Terminal scores higher, mostly even higher than the native
+harness of that model.
+So what does that tell us?
+A form two thesis is, we are in the fuck around and find out.
+And the current form is not the final form, right?
+So second thesis is, we need better ways to fuck around.
+And for me, that means self-modifying mailable agents, things that the agent itself can modify
+and I can modify, depending on my workflow.
+So I stripped away all the things, built a minimal core, but made it super extensible,
+and made it so that the agent can modify itself.
+With some creature comforts.
+It's not entirely bare bones.
+So that's Python.
+It's Py.
+It's an agent that adapts to your workflow, instead of the other way around.
+It comes with four packages, an AI package, it's basically just an abstraction across
+providers and context handoff between providers, an agent core, which is just a while loop
+and the tool calling, bespoke to a framework, I come out of game development, so I built
+a thing that actually doesn't flicker too much, and the coding agent itself.
+Here's Py's system prompt.
+That's it.
+Eventually, the industry created a new standard called skills, which is basically just an
+Markdown files.

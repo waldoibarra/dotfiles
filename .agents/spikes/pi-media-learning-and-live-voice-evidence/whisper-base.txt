@@ -1,0 +1,35 @@
+There was this and this happens to all of us, no claim there, but it's not great if by default
+a server spins up, course headers are set in such a way that any web set you open in
+your browser can now access your open code server, that's yeah.
+And entirely unrelated to all of this, I started looking into benchmarks for coding agent
+harnesses and found terminal bench, which is a pretty good benchmark, all things considered.
+And the funny part about it is that it's the most minimal kind of thing you can think
+of.
+The model is a tool to send keystrokes to a team accession and read the output of that
+team accession.
+There's no file tools, no sub agents, none of that stuff.
+And it's one of the best performing harnesses in the leaderboard.
+Here's the leaderboard from December 2025.
+Irrespective of model family, terminal scores higher, mostly even higher than the native
+harness of that model.
+So what does that tell us?
+A form two thesis is we are in the fuck around and find out face of coding agents and
+the current form is not that final form, right?
+So second thesis is we need better ways to fuck around.
+And for me, that means self-modifying, maleable agents, things that the agent itself can modify
+and I can modify depending on my workflow.
+So I stripped away all the things, built a minimal core, but made it super extensible
+and made it so that the agent can modify itself.
+Here's some creature comfort, it's not entirely bare bones.
+So that's pie.
+It's an agent that adapts to your workflow instead of the other way around.
+It comes with four packages, an AI package that's basically just an abstraction across
+providers and context handle between providers.
+An agent core, which is just a while loop on the tool calling, bespoke to eFramework.
+I come out of game development so I built a thing that actually doesn't flicker too
+much.
+And the coding agent itself.
+Here's pie's system prompt.
+That's it.
+Eventually the industry created a new standard called skills which is basically just marked
+on files.

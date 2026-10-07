@@ -23,6 +23,12 @@ Run from the repository root:
   first.** Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before running it.
   Never run `just brew` alone as validation; it can remove packages.
 
+## Agent workspace
+
+Read the [workspace index](/.agents/README.md) before working with plans, trial notes, spikes or
+research evidence in `.agents/`. Update the index in the same change when adding, moving or
+removing records or evidence collections.
+
 ## Read before changing
 
 | Area | Guide |

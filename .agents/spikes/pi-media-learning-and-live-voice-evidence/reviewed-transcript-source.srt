@@ -1,0 +1,72 @@
+1
+00:04:30,000 --> 00:04:44,000
+ There was this and this happens to all of us. No blame there. But it's not great if, by default, a server spins up. CORS headers are set in such a way that any website you open in your browser can now access your OpenCode server.
+
+2
+00:04:44,000 --> 00:04:54,000
+ Entirely unrelated to all of this, I started looking into benchmarks for coding agent harnesses and found Terminal-Bench, which is a pretty good benchmark, all things considered.
+
+3
+00:04:54,000 --> 00:05:06,000
+ And the funny part about it is that it's the most minimal kind of thing you can think of. All it gives the model is a tool to send keystrokes to a tmux session and read the output of that tmux session.
+
+4
+00:05:06,000 --> 00:05:13,000
+ There's no file tools, no sub-agents, none of that stuff. And it's one of the best performing harnesses in the leaderboard.
+
+5
+00:05:13,000 --> 00:05:24,000
+ Here's the leaderboard from December 2025. Irrespective of model family, Terminus scores higher. Mostly even higher than the native harness of that model.
+
+6
+00:05:24,000 --> 00:05:33,000
+ So what does that tell us? [Unclear phrase: "A form two thesis is"]: We are in the "fuck around and find out" phase of coding agents, and their current form is not their final form, right?
+
+7
+00:05:33,000 --> 00:05:41,000
+ So, second thesis is: We need better ways to fuck around. And for me that means self-modifying malleable agents.
+
+8
+00:05:41,000 --> 00:05:47,000
+ Things that the agent itself can modify, and I can modify, depending on my workflow.
+
+9
+00:05:47,000 --> 00:05:54,000
+ So I stripped away all the things, built a minimal core, but made it super extensible, and made it so that the agent can modify itself.
+
+10
+00:05:54,000 --> 00:05:58,000
+ With some creature comforts. It's not entirely barebones.
+
+11
+00:05:58,000 --> 00:06:02,000
+ So that's Pi. It's an agent that adapts to your workflow instead of the other way around.
+
+12
+00:06:02,000 --> 00:06:10,000
+ It comes with four packages. An AI package, which is basically just an abstraction across providers, and context handoff between providers.
+
+13
+00:06:10,000 --> 00:06:14,000
+ An agent core, which is just a while loop and a tool calling.
+
+14
+00:06:14,000 --> 00:06:19,000
+ A bespoke TUI framework. I come out of game development, so I built a thing that actually doesn't flicker too much.
+
+15
+00:06:19,000 --> 00:06:21,000
+ And the coding agent itself.
+
+16
+00:06:21,000 --> 00:06:24,000
+ Here's Pi's system prompt.
+
+17
+00:06:24,000 --> 00:06:25,000
+ And that's it.
+
+18
+00:06:25,000 --> 00:06:30,020
+ Eventually the industry created a new standard called skills, which is basically just markdown files.
+

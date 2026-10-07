@@ -1,0 +1,92 @@
+1
+00:00:00,000 --> 00:00:06,200
+ There was this and this happens to all of us, no claim there, but it's not great if by default
+
+2
+00:00:06,200 --> 00:00:10,400
+ a server spins up, course headers are set in such a way that any website you open in your browser
+
+3
+00:00:10,400 --> 00:00:16,560
+ can now access your open code server. Yeah. And entirely unrelated to all of this, I started
+
+4
+00:00:16,560 --> 00:00:21,560
+ looking into benchmarks for coding agent harnesses and found Terminal-Bench, which is a pretty
+
+5
+00:00:21,560 --> 00:00:26,920
+ good benchmark, all things considered. And the funny part about it is that it's the most
+
+6
+00:00:26,920 --> 00:00:31,380
+ minimal kind of thing you can think of. All it gives to the model is a tool to send key
+
+7
+00:00:31,380 --> 00:00:37,320
+ strokes to a team accession and read the output of that team accession. There's no file tools,
+
+8
+00:00:37,320 --> 00:00:42,460
+ no sub agents, none of that stuff. And it's one of the best performing harnesses in the
+
+9
+00:00:42,460 --> 00:00:48,640
+ leaderboard. Here's the leaderboard from December 2025. Irrespective of model family, Terminal
+
+10
+00:00:48,640 --> 00:00:54,800
+ scores higher, mostly even higher than the native harness of that model. So what does that
+
+11
+00:00:54,800 --> 00:01:00,320
+ tell us? I formed two seasons. We are in the fuck around and find out face of coding agents
+
+12
+00:01:00,320 --> 00:01:06,320
+ and the current form is not their final form, right? So second thesis is we need better
+
+13
+00:01:06,320 --> 00:01:12,040
+ ways to fuck around. And for me, that means self-modifying, maleable agents. Things that
+
+14
+00:01:12,040 --> 00:01:17,760
+ the agent itself can modify and I can modify depending on my workflow. So I stripped away
+
+15
+00:01:17,760 --> 00:01:22,600
+ all the things, built a minimal core, but made it super extensible and made it so that
+
+16
+00:01:22,600 --> 00:01:28,520
+ the agent can modify itself. With some creature comforts, it's not entirely bare bones. So
+
+17
+00:01:28,520 --> 00:01:32,840
+ that's pie. It's an agent that adapts to your workflow instead of the other way around.
+
+18
+00:01:32,840 --> 00:01:37,680
+ It comes with four packages. An AI package is basically just an abstraction across providers
+
+19
+00:01:37,680 --> 00:01:42,840
+ and context handle between providers. An agent core, which is just a while loop and the
+
+20
+00:01:42,840 --> 00:01:47,560
+ tool calling, bespoke to a framework. I come out of game development so I built a thing
+
+21
+00:01:47,560 --> 00:01:52,560
+ that actually doesn't flicker too much and the coding agent itself. Here's pie's system
+
+22
+00:01:52,560 --> 00:01:58,040
+ prompt. That's it. Eventually the industry created a new standard called skills, which
+
+23
+00:01:58,040 --> 00:01:59,760
+ is basically just markdown files.
+
