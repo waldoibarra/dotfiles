@@ -1,6 +1,6 @@
 # Agent integrations
 
-Read [Coding agents](/docs/coding-agents.md) before editing tracked settings, and
+Read [Coding agents](coding-agents/README.md) before editing tracked settings, and
 [Sync the workstation](/docs/tooling.md#sync-the-workstation) before running the updater.
 Keep machine-local hooks, plugins and service configuration outside the repository.
 

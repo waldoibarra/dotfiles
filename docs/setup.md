@@ -13,6 +13,8 @@ support. Review the configuration before applying it to another account.
 - macOS uses Homebrew at `/opt/homebrew`; Intel Macs are not handled. Debian uses
   `/home/linuxbrew/.linuxbrew` and `apt-get`. The Brewfile includes macOS casks without Linux guards;
   this is not an unattended cross-platform installer.
+- Create your personal `~/AGENTS.md` before installation. The existing OMP append link requires
+  that file; Pi also reads it for projects under `$HOME`. Keep its personal contents outside Git.
 - Use an interactive terminal for sudo, Touch ID and login-shell prompts.
 
 If Git is missing, install it first. On macOS, finish the command-line tools installer:
@@ -40,7 +42,8 @@ Homebrew packages and Mise tools, then selects Homebrew Zsh. See the
 [script reference](/scripts/README.md) for exact responsibilities.
 
 This command does **not** run the coding-agent updater or install this repository's Git hooks.
-The three [copy-managed agent files](/docs/coding-agents.md) are populated by the updater, not Dotbot.
+The three [copy-managed agent files](coding-agents/README.md#copy-managed-files) are populated by
+the updater, not Dotbot.
 
 ## Add local settings
 
@@ -54,7 +57,7 @@ first. Keep credentials and these local files outside the repository.
 
 ## Finish agent setup
 
-Open a new terminal, then read [coding agents](/docs/coding-agents.md) before running:
+Open a new terminal, then read [coding agents](coding-agents/README.md) before running:
 
 ```sh
 cd ~/.dotfiles
@@ -64,7 +67,19 @@ just hooks
 
 **`just update-ca` can commit and push skill-lockfile changes**, including other unpushed commits
 on the branch. Run it only when publication is intended and your Git identity and remote access
-are ready. Supply your personal `~/AGENTS.md` if you use OMP's configured append link.
+are ready.
+
+Mise installs Pi, Dotbot links its preferences and shared instructions, and `just update-ca`
+installs `pi-live-codex`. Pi discovers `~/.agents/skills` without another copy. A fresh
+workstation still needs its own subscription login and microphone permission. Credentials are
+never supplied by the repository.
+
+Start `pi`, use `/login openai-codex` to authorize your subscription, and check `/model` before
+starting voice. Select device-code or browser login in Pi's prompt. Then use `/live spruce` (or `/live`)
+and grant your terminal's macOS microphone permission if requested. No API-key fallback is configured
+by this setup. Read [Pi and live voice](coding-agents/pi/README.md) for the model defaults,
+controls, and limitations.
+Restart an already-running Pi session after provisioning so it loads the new configuration.
 
 ## Verify
 

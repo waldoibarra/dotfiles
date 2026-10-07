@@ -17,7 +17,7 @@ The `dots` alias runs this from any directory. The recipe executes:
 1. `git pull`, then the [Dotbot installer](/scripts/README.md).
 2. Homebrew bundle upgrade, then removal of packages absent from the global Brewfile.
 3. Mise install, upgrade and prune.
-4. The [coding-agent updater](/docs/coding-agents.md).
+4. The [coding-agent updater](coding-agents/README.md).
 5. Repository Git-hook installation.
 
 **Sync changes the machine and can publish commits.** Review local changes and package lists first.
@@ -39,7 +39,7 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 | `just brew` | Install/upgrade Brewfile packages, then uninstall unlisted packages. |
 | `just brew-dump` | Overwrite the global Brewfile from installed packages; exclude VS Code extensions and npm packages. Review before committing. |
 | `just mise-sync` | Install, upgrade and prune Mise tools. |
-| `just update-ca` | Replace managed agent copies, refresh integrations and skills; may commit and push. |
+| `just update-ca` | Replace managed agent copies, reconcile Pi's voice package, refresh integrations and skills; may commit and push. |
 | `just hooks` | Install this checkout's hooks with hk. |
 | `just lint` | Run EditorConfig, Markdown, YAML and shell checks. |
 | `just lint-ec`, `just lint-md`, `just lint-yaml`, `just lint-sh` | Run one check. |
@@ -49,7 +49,8 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 Use the narrow recipe for the changed domain. Link changes require the Dotbot installer; they do
 not inherently require package upgrades or publication. Review its
 [side effects](/scripts/README.md) before running it directly.
-There is no application build or repository test recipe.
+There is no application build or repository test recipe. Smoke-test changed provisioning in an
+isolated environment.
 
 Markdown discovery respects Git ignores, so `just lint-md` skips tracked shared skills under
 `home/.agents/`. Check each edited skill document through stdin to bypass file discovery:
@@ -95,6 +96,16 @@ Keep these backend choices unless the underlying constraint changes:
   not the old `ec` name.
 - `committed` uses the GitHub backend for native release selection. If a shell retains an old
   incompatible executable path, use `mise exec -- git commit` to run with the managed tools.
+
+### Pi
+
+Mise owns `npm:@earendil-works/pi-coding-agent = "latest"`, so `just mise-sync` and `dots` include
+Pi binary installation and upgrades. The `pi-live-codex` extension is a separate Pi-managed package.
+Dotbot links the three tracked JSON settings files into `~/.pi/agent`; Pi UI changes can therefore
+modify the repository. `just update-ca` uses a targeted Pi package update to install or upgrade
+`pi-live-codex`. Shared instructions are linked by Dotbot; Pi discovers shared skills natively.
+[Pi and live voice](coding-agents/pi/README.md) documents ownership, shortcuts, and accepted
+limitations.
 
 ### OpenPencil
 

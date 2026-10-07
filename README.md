@@ -7,8 +7,10 @@ Built for Apple Silicon macOS, with partial Debian support.
 
 - A Zsh environment with completion, aliases, terminal settings and a welcome prompt.
 - Explicit package lists: Homebrew for apps and system tools, Mise for development tools.
-- Shared instructions and skills for Claude Code, OpenCode, Codex and Oh My Pi, with separate
-  ownership for tracked configuration and generated agent assets.
+- Configuration for Claude Code, OpenCode, Codex, Oh My Pi and Pi, with shared instructions and
+  separate ownership for tracked configuration and generated assets. Pi includes subscription
+  live voice through `pi-live-codex`; [setup and limitations](docs/coding-agents/pi/README.md)
+  are documented.
 - Local overrides for Git identity, signing and shell settings, so personal values can stay off Git.
 
 ## Why keep it together
@@ -37,7 +39,8 @@ push skill-lockfile commits; the setup guide explains those boundaries before yo
 | Task | Guide |
 | --- | --- |
 | Maintain packages and run checks | [Tooling](/docs/tooling.md) |
-| Configure agents, instructions and skills | [Coding agents](/docs/coding-agents.md) |
+| Configure agents, instructions and skills | [Coding agents](docs/coding-agents/README.md) |
+| Review Pi configuration, live voice, and integration status | [Pi and live voice](docs/coding-agents/pi/README.md) |
 | Change shell behavior | [Zsh configuration](/docs/zsh-configuration.md) |
 | Set Git identity and signing | [Git configuration](/docs/git-configuration.md) |
 | Use editable UI designs | [Agent UI design tools](/docs/agent-ui-design-tools.md) |

@@ -2,8 +2,8 @@
 #
 # Update coding agent tooling: copy the managed agent configs, refresh
 # stale entries in OpenCode's plugin cache, refresh the RTK OpenCode plugin,
-# the RTK Oh My Pi extension and the Herdr agent integrations, and sync
-# globally installed skills from the lockfile.
+# the RTK Oh My Pi extension and the Herdr agent integrations, provision Pi,
+# and sync globally installed skills from the lockfile.
 
 set -euo pipefail
 
@@ -131,10 +131,29 @@ install_rtk_omp_extension() {
   install_rtk_integration OMP -g --agent omp
 }
 
+#######################################
+# Reconcile the normal Pi profile's voice package declared in its linked settings.
+# Globals:
+#   HOME
+# Outputs:
+#   Writes package progress to STDOUT and failures to STDERR.
+#######################################
+install_pi_voice_package() (
+  if ! command -v pi >/dev/null 2>&1; then
+    echo "Pi is required; run the Mise installation before updating agents." >&2
+    return 1
+  fi
+  cd "${HOME}" || return 1
+  export PI_CODING_AGENT_DIR="${HOME}/.pi/agent"
+  unset OPENAI_API_KEY
+  pi update npm:pi-live-codex --no-approve
+)
+
 main() {
   # First: it resets ~/.claude/settings.json to the tracked bytes, which would
   # otherwise discard whatever the Herdr steps below write into that file.
   sync_managed_configs
+  install_pi_voice_package
   refresh_stale_opencode_plugins
   install_rtk_integration OpenCode -g --opencode
   install_rtk_omp_extension

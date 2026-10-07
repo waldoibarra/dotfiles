@@ -23,6 +23,10 @@
     ~/.agents/skills:
     ~/.claude:
     ~/.claude/skills:
+    ~/.pi:
+      mode: 0700
+    ~/.pi/agent:
+      mode: 0700
     ~/.ssh:
       mode: 0700
     ~/projects:
@@ -47,6 +51,10 @@
     ~/.config/opencode/AGENTS.md: home/.agents/AGENTS.md
     ~/.omp/agent/AGENTS.md: home/.agents/AGENTS.md
     ~/.omp/agent/APPEND_SYSTEM.md: ~/AGENTS.md
+    ~/.pi/agent/AGENTS.md: home/.agents/AGENTS.md
+    ~/.pi/agent/settings.json: home/.pi/agent/settings.json
+    ~/.pi/agent/models.json: home/.pi/agent/models.json
+    ~/.pi/agent/keybindings.json: home/.pi/agent/keybindings.json
     ~/.ssh/config: home/.ssh/config
     "~/Library/Application Support/Code/User/settings.json":
       path: "home/.config/Code/User/settings.json"
@@ -68,7 +76,7 @@
       path: home/.agents/skills/*
     # The excluded config files are copied by scripts/update-coding-agents/sync-managed-configs.sh
     # instead of linked by Dotbot; excluded directories are linked per child below. See
-    # docs/coding-agents.md.
+    # docs/coding-agents/README.md.
     ~/.claude/:
       glob: true
       path: home/.claude/*

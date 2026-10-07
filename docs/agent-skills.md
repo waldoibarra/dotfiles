@@ -1,6 +1,6 @@
 # Agent skills
 
-Read [Coding agents](/docs/coding-agents.md) before changing agent files. External skills belong
+Read [Coding agents](coding-agents/README.md) before changing agent files. External skills belong
 to their source repositories; repo-authored skills belong in the tracked directories below.
 
 ## External skills
@@ -36,6 +36,14 @@ New bundles acquire links on the next Dotbot sync. Source creation alone does no
 Check link targets and restart the host before checking discovery; do not run a full machine sync
 just to validate a skill. Maintenance scenarios live in each bundle's `evals/evals.json` where
 present. Format checks do not establish model or browser behavior.
+
+## Pi discovery
+
+Pi natively scans `~/.agents/skills`; no `~/.pi/agent/skills` copy or extra Skills CLI target is
+needed. Keep the existing lockfile targets unchanged. A fresh Pi session or `/reload` refreshes
+discovery; startup diagnostics and `/skill:<name>` check visibility, not skill execution.
+See [Pi and live voice](coding-agents/pi/README.md) for provisioning and the separate voice-model
+limitations.
 
 ## OMP discovery
 

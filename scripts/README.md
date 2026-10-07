@@ -23,16 +23,26 @@ Installation does not run the coding-agent updater, prune tools or install this 
 [`update-coding-agents/entrypoint.sh`](/scripts/update-coding-agents/entrypoint.sh) runs these steps
 in order through `just update-ca` and `just sync`:
 
-1. Copy the three managed agent configs. This runs first because it replaces Claude settings.
-2. Clear stale OpenCode plugin-cache entries when a newer upstream version is detected.
-3. Refresh RTK's OpenCode plugin and, if `omp` exists, OMP extension when dry runs list changes.
-4. Refresh Herdr's OpenCode plugin and Claude hook unless integration status reports them current.
-5. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
+1. Copy the three managed agent configs before refreshing Claude hooks.
+2. Reconcile `pi-live-codex` in the normal Pi profile.
+3. Clear stale OpenCode plugin-cache entries when a newer upstream version is detected.
+4. Refresh RTK's OpenCode plugin and, if `omp` exists, OMP extension when dry runs list changes.
+5. Refresh Herdr's OpenCode plugin and Claude hook unless integration status reports them current.
+6. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
 
 RTK and Herdr steps skip their integrations when the respective binary is missing.
-Read [Coding agents](/docs/coding-agents.md) before editing copied configs or running updates;
+Read [Coding agents](../docs/coding-agents/README.md) before editing copied configs or running updates;
 it lists ownership and publication risks. Read [Agent integrations](/docs/agent-integrations.md)
 before diagnosing hooks or plugins. Moshi installation is not part of this updater.
+
+Pi binary installation belongs to Mise. After copying configuration, the updater runs
+`pi update npm:pi-live-codex --no-approve` in the normal profile from `$HOME`. It ignores inherited
+trial profile paths, excludes project packages, and removes `OPENAI_API_KEY` from that subprocess.
+Failures stop the updater. No model, microphone, or authentication call is requested.
+
+Pi's three JSON files are Dotbot links, not managed copies. Credentials, sessions, and locks are
+separate and untouched. [Pi configuration](../docs/coding-agents/pi/configuration.md) lists the
+files and ownership boundaries.
 
 ## Shared helpers and checks
 

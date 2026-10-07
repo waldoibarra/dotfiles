@@ -1,6 +1,6 @@
 # Agent instructions
 
-Read [Coding agents](/docs/coding-agents.md) before choosing which tracked file to edit.
+Read [Coding agents](coding-agents/README.md) before choosing which tracked file to edit.
 Restart agents after changing loaded instructions, then check the active session's context.
 A file or symlink on disk does not prove that an agent loaded it.
 
@@ -16,6 +16,7 @@ repository-specific rules belong in the root [`AGENTS.md`](/AGENTS.md).
 | OpenCode | `~/.config/opencode/AGENTS.md` links to the tracked source |
 | Codex | `~/.codex/AGENTS.md` links to the tracked source |
 | Oh My Pi (`omp`) | `~/.omp/agent/AGENTS.md` links to the tracked source |
+| Pi (`pi`) | `~/.pi/agent/AGENTS.md` links to the tracked source |
 
 Claude Code has no user-level `AGENTS.md`. Keep its adapter's one-line import and edit shared
 rules in the source `AGENTS.md`. The adapter is user-level, not a repository wrapper.
@@ -38,6 +39,17 @@ can override it.
 
 These rules apply to the coding session. Read [OMP live voice](/docs/omp-live-voice.md) before
 diagnosing missing personal instructions in `/live`.
+
+## Pi personal instructions
+
+Pi loads the linked global rules and walks ancestor directories for context files. Personal
+`~/AGENTS.md` therefore applies to projects under `$HOME` without a second append link. Projects
+elsewhere need their own personal-context arrangement. Profile `AGENTS.override.md` takes priority
+over the linked global file; project overrides affect only their directory's context.
+
+Pi discovers `~/.agents/skills` natively. No shared instruction or skill copy is installed into a
+second directory. These rules configure the coding agent, not the extension's separate voice
+prompt; see [Pi and live voice](coding-agents/pi/README.md).
 
 ## Project rules
 

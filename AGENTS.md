@@ -2,7 +2,7 @@
 
 Personal workstation configuration for Apple Silicon macOS and partial Debian support.
 `home/` mirrors `$HOME`. [Dotbot](/install.conf.yaml) links most files; the agent updater copies
-four configs and generates machine-local assets.
+three configs and generates machine-local assets.
 
 ## Commands
 
@@ -29,7 +29,7 @@ Run from the repository root:
 | --- | --- |
 | Installation or local overrides | [Setup](/docs/setup.md) |
 | Packages, recipes, lint or hooks | [Tooling](/docs/tooling.md) |
-| Agent prompts, settings, integrations or skills | [Coding agents](/docs/coding-agents.md) |
+| Agent prompts, settings, integrations or skills | [Coding agents](/docs/coding-agents/README.md) |
 | Zsh startup files | [Zsh configuration](/docs/zsh-configuration.md) |
 | Git defaults, identity or signing | [Git configuration](/docs/git-configuration.md) |
 | Installer or updater scripts | [Scripts](/scripts/README.md) |
