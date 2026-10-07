@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 #
 # Update coding agent tooling: copy the managed agent configs, refresh
-# stale entries in OpenCode's plugin cache, refresh the RTK OpenCode plugin,
-# the RTK Oh My Pi extension and the Herdr agent integrations, provision Pi,
-# and sync globally installed skills from the lockfile.
+# stale entries in OpenCode's plugin cache, refresh RTK and Herdr integrations,
+# provision Pi, and sync globally installed skills from the lockfile.
 
 set -euo pipefail
 
@@ -34,49 +33,37 @@ herdr_integration_is_current() {
 }
 
 #######################################
-# Install or refresh the Herdr Claude Code hook, if Herdr is installed.
-# `herdr integration install claude` writes the hook script AND re-adds a
-# machine-specific absolute-path hook entry to ~/.claude/settings.json (it
-# detects its hook by exact command string, so the tracked $HOME form looks
-# missing to it). That entry used to land in the repo, back when the settings
-# file was a symlink to it; it is a copy now, so the duplicate stays local and
-# sync_managed_configs clobbers it from the repo on the next run.
+# Install a missing or outdated native Herdr integration.
+# Claude's installer may add a machine-local hook to its copied settings;
+# Pi and OMP installers write only extensions and require the directory to exist.
+# Arguments:
+#   Integration target: claude, opencode, pi, or omp.
 # Outputs:
-#   Writes progress to STDOUT.
+#   Writes progress to STDOUT and installation failures to STDERR.
 #######################################
-install_herdr_claude_hook() {
+install_herdr_integration() {
+  local agent="$1"
   if ! command -v herdr >/dev/null 2>&1; then
-    echo "Herdr not found, skipping Claude hook install."
+    echo "Herdr not found, skipping ${agent} integration."
     return
   fi
-  if herdr_integration_is_current claude; then
-    echo "Herdr Claude hook already up to date."
+  case "${agent}" in
+    pi | omp)
+      if ! command -v "${agent}" >/dev/null 2>&1; then
+        echo "${agent} not found, skipping Herdr integration."
+        return
+      fi
+      ;;
+  esac
+  if herdr_integration_is_current "${agent}"; then
+    echo "Herdr ${agent} integration already up to date."
     return
   fi
-
-  herdr integration install claude
-  echo "Herdr Claude hook installed."
-}
-
-#######################################
-# Install or refresh the Herdr OpenCode plugin, if Herdr is installed.
-# `herdr integration status` validates the installed plugin's version against
-# the herdr binary, so it doubles as the up-to-date check.
-# https://herdr.dev/docs/agents
-# Outputs:
-#   Writes progress to STDOUT.
-#######################################
-install_herdr_opencode_plugin() {
-  if ! command -v herdr >/dev/null 2>&1; then
-    echo "Herdr not found, skipping OpenCode plugin install."
-    return
-  fi
-  if herdr_integration_is_current opencode; then
-    echo "Herdr OpenCode plugin already up to date."
-    return
-  fi
-  herdr integration install opencode
-  echo "Herdr OpenCode plugin installed."
+  case "${agent}" in
+    pi | omp) mkdir -p "${HOME}/.${agent}/agent/extensions" || return 1 ;;
+  esac
+  herdr integration install "${agent}" || return 1
+  echo "Herdr ${agent} integration installed."
 }
 
 #######################################
@@ -118,17 +105,19 @@ install_rtk_integration() {
 }
 
 #######################################
-# Install or refresh the RTK Oh My Pi extension, if OMP is installed. Dotbot
-# creates ~/.omp/agent on every machine, so only the binary signals OMP.
+# Install the native RTK extension when the selected agent binary exists.
+# Arguments:
+#   Agent target: pi or omp.
 # Outputs:
 #   Writes progress to STDOUT and warnings to STDERR.
 #######################################
-install_rtk_omp_extension() {
-  if ! command -v omp >/dev/null 2>&1; then
-    echo "omp not found, skipping RTK OMP install."
+install_rtk_agent_extension() {
+  local agent="$1"
+  if ! command -v "${agent}" >/dev/null 2>&1; then
+    echo "${agent} not found, skipping RTK install."
     return
   fi
-  install_rtk_integration OMP -g --agent omp
+  install_rtk_integration "${agent}" -g --agent "${agent}"
 }
 
 #######################################
@@ -156,9 +145,12 @@ main() {
   install_pi_voice_package
   refresh_stale_opencode_plugins
   install_rtk_integration OpenCode -g --opencode
-  install_rtk_omp_extension
-  install_herdr_opencode_plugin
-  install_herdr_claude_hook
+  install_rtk_agent_extension omp
+  install_rtk_agent_extension pi
+  install_herdr_integration opencode
+  install_herdr_integration claude
+  install_herdr_integration omp
+  install_herdr_integration pi
   sync_global_skills_from_lock
 
   echo "Done updating. Restart OpenCode if it's open."

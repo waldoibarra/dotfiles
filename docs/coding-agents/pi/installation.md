@@ -28,6 +28,17 @@ can commit and push changes, including earlier unpushed commits. It is not a har
 command. See [sync boundaries](../../tooling.md#sync-the-workstation) before applying workstation
 changes, and [workstation setup](../../setup.md) for the complete fresh-machine sequence.
 
+## RTK and Herdr extensions
+
+The same agent updater installs RTK with `rtk init -g --agent pi` and Herdr with
+`herdr integration install pi`. RTK rewrites supported Bash commands; Herdr reports session and
+lifecycle state when Pi runs inside a Herdr pane. Both generated extensions live in
+`~/.pi/agent/extensions`, outside Git, and neither installer changes Pi's linked preferences.
+
+The updater uses RTK's dry run and Herdr's integration status to avoid rewriting current files.
+Restart Pi after changes. [Agent integrations](../../agent-integrations.md) documents the native
+installers, paths, environment requirements, and verification limits.
+
 ## Authentication and billing
 
 Pi's `/login openai-codex` handles subscription authentication. Device-code login is available in
