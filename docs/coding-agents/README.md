@@ -11,7 +11,7 @@ updater copies three configs. A configured link does not prove that a running ag
 | Diagnosing differences between OMP text and live voice | [OMP live voice](/docs/omp-live-voice.md) |
 | Understanding Pi provisioning, voice choices, or accepted limitations | [Pi and live voice](pi/README.md) |
 | Adding, updating or checking skill discovery | [Agent skills](/docs/agent-skills.md) |
-| Diagnosing RTK, Herdr or Moshi hooks and plugins | [Agent integrations](/docs/agent-integrations.md) |
+| Diagnosing RTK, Herdr or Moshi hooks and plugins, or the Lens plugin | [Agent integrations](/docs/agent-integrations.md) |
 | Applying tracked config changes | [Copy-managed files](#copy-managed-files), then [Sync the workstation](/docs/tooling.md#sync-the-workstation) |
 | Configuring design tools | [UI design tools](/docs/agent-ui-design-tools.md) |
 | Analyzing images with a text-only model | [Image recovery skill](/home/.config/opencode/skills/non-vision-image-reader/SKILL.md) |
@@ -35,7 +35,7 @@ installed paths replace `home/` with `~/` unless noted.
 | Tracked source | Delivery and purpose |
 | --- | --- |
 | `home/.claude/CLAUDE.md` | Copied; Claude's global import adapter |
-| `home/.claude/settings.json` | Copied; hooks, output style, permissions, status lines |
+| `home/.claude/settings.json` | Copied; hooks, output style, permissions, plugins, status lines |
 | `home/.config/opencode/opencode.json` | Copied; OpenCode providers, plugins, MCP, permissions |
 | `home/.claude/output-styles/*.md` | Linked individually; the directory stays real |
 | `home/.claude/*statusline*.sh` | Linked; main and subagent status lines |

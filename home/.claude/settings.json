@@ -120,6 +120,18 @@
       }
     ]
   },
+  "enabledPlugins": {
+    "lens@claude-code-lens": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-lens": {
+      "autoUpdate": true,
+      "source": {
+        "repo": "waldoibarra/claude-code-lens",
+        "source": "github"
+      }
+    }
+  },
   "permissions": {
     "defaultMode": "bypassPermissions"
   },

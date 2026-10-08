@@ -118,3 +118,36 @@ that diagnosis is deferred. On another computer, use [Moshi's setup guide](https
 for pairing and service setup, then restart agents and verify a harmless completion in the app.
 For daemon failures, inspect the service environment: launchd does not inherit the interactive
 shell's Mise PATH. [Moshi's hook reference](https://getmoshi.app/docs/hooks) describes upstream support.
+
+## Lens
+
+[Lens](https://github.com/waldoibarra/claude-code-lens) is a Claude Code plugin that redraws the
+transcript in normal, clean and raw views. Its repository documents what it does and how to
+develop it; this section covers only how the workstation installs it.
+
+The tracked Claude settings declare it in two keys:
+
+- `extraKnownMarketplaces.claude-code-lens` points at the `waldoibarra/claude-code-lens` GitHub
+  repository with `autoUpdate` on, so new releases install on startup.
+- `enabledPlugins` turns on `lens@claude-code-lens`.
+
+The updater copies the settings, and Claude Code clones the marketplace and installs the plugin
+in the background at the next session start. No install command or trust prompt is needed for a
+GitHub source declared in user settings.
+
+To use it before the next sync, install it into the current settings copy:
+
+```sh
+claude plugin marketplace add waldoibarra/claude-code-lens
+claude plugin install lens@claude-code-lens
+```
+
+Both commands write the same two keys into the installed copy, and the next updater run replaces
+that copy with the tracked source. Edit the tracked keys, never the installed copy, to change the
+source or disable the plugin. `claude plugin list` shows the installed version and whether it is
+enabled.
+
+Lens's clicks need the fullscreen interface that the tracked `"tui": "fullscreen"` setting turns
+on. When developing Lens from its working tree, disable the installed copy for that session with
+`claude plugin disable lens@claude-code-lens` so two copies do not draw at once, then enable it
+again.
