@@ -196,9 +196,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/planning/SKILL.md",
-      "skillFolderHash": "70d2f9f667cbe343c687c7197a0d0b0a0ec6b64c",
+      "skillFolderHash": "c930cb975fbe8b6595a01679b387e35c0b0a6324",
       "installedAt": "2026-09-04T04:50:00.672Z",
-      "updatedAt": "2026-09-26T22:44:49.102Z"
+      "updatedAt": "2026-10-08T19:05:38.748Z"
     },
     "pr-babysitter": {
       "source": "mblode/agent-skills",
