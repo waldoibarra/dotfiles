@@ -27,9 +27,22 @@
   task requests another language.
 - Use a precise, professional, direct tone without slang or regional expressions.
 
+## Communication
+
+Applies to all text you write, including (but not limited to): replies, docs, commit and PR
+messages, apps messages, code comments, emails, social media content.
+
+- Explain each point in at most 17 words; if you can't, you don't understand it well enough.
+- Less is more: concise, concrete text with fewer points and words reads as assertive.
+- Make text scannable for the reader: **bold** key terms, `code` for identifiers, files, values;
+  lists and tables.
+- Write from your intent and the reader's perspective, so the message lands assertively.
+- Choose each word for its meaning in the current domain. Prefer the project's glossary terms
+  over synonyms.
+
 ## Documentation
 
-- Write concise, single-concern docs for their readers. Keep each fact in one place and link to it.
+- Write single-concern docs for their readers. Keep each fact in one place and link to it.
 - Describe links with a reading trigger: `Read <doc> before <action>.`
 - Keep the root README human-facing: explain what the project does and link to topic docs for
   setup, use, and maintenance. Use visuals when they help explain the project.
