@@ -2,7 +2,12 @@
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6-astra",
   "packages": [
-    "npm:pi-live-codex"
+    "npm:pi-live-codex",
+    {
+      "source": "npm:pi-subagents@0.77.0",
+      "skills": [],
+      "prompts": []
+    }
   ],
   "compaction": {
     "enabled": true,
@@ -33,5 +38,49 @@
       }
     }
   },
-  "lastChangelogVersion": "1.0.4"
+  "subagents": {
+    "agentScanDirs": ["~/.agents/roles"],
+    "disableBuiltins": true,
+    "defaultExtensions": [],
+    "agentOverrides": {
+      "plan-reviewer": {
+        "systemPromptMode": "append",
+        "inheritProjectContext": true,
+        "inheritGlobalContext": true,
+        "inheritSkills": true,
+        "advertise": true,
+        "tools": ["read", "grep", "find", "ls", "bash"]
+      },
+      "code-auditor": {
+        "systemPromptMode": "append",
+        "inheritProjectContext": true,
+        "inheritGlobalContext": true,
+        "inheritSkills": true,
+        "advertise": true,
+        "tools": ["read", "grep", "find", "ls", "bash"]
+      },
+      "browser-tester": {
+        "systemPromptMode": "append",
+        "inheritProjectContext": true,
+        "inheritGlobalContext": true,
+        "inheritSkills": true,
+        "advertise": true
+      },
+      "docs-writer": {
+        "systemPromptMode": "append",
+        "inheritProjectContext": true,
+        "inheritGlobalContext": true,
+        "inheritSkills": true,
+        "advertise": true
+      },
+      "implementer": {
+        "systemPromptMode": "append",
+        "inheritProjectContext": true,
+        "inheritGlobalContext": true,
+        "inheritSkills": true,
+        "advertise": true
+      }
+    }
+  },
+  "lastChangelogVersion": "1.1.0"
 }

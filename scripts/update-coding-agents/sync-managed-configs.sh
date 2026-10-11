@@ -11,7 +11,6 @@
 readonly MANAGED_CONFIGS=(
   ".claude/CLAUDE.md"
   ".claude/settings.json"
-  ".config/opencode/opencode.json"
 )
 
 # Mode the copied configs are left with, regardless of the source's mode.

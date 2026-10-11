@@ -26,6 +26,8 @@ old files are later removed. Size alone does not replace the publication review 
 
 | Read before… | Record |
 | --- | --- |
+| Continuing the shared-role migration and Pi delegation verification | [Shared roles plan](/.agents/plans/pi-shared-roles.md) |
+| Changing agent rules, role agents, skill scope, or the improvement loop | [AI harness roadmap](/.agents/plans/ai-harness-roadmap.md) |
 | Continuing Pi setup or reviewing the integration outcome | [Integration summary](/.agents/plans/pi-dotfiles-integration-summary.md) |
 | Recording Pi trial feedback or exploring the transcript-handoff idea | [Trial notes](/.agents/plans/pi-live-codex-trial.notes.md) |
 | Reusing the original Pi voice test scenarios; later notes supersede trial decisions | [Trial plan](/.agents/plans/pi-live-codex-trial.md) |

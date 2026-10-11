@@ -2,7 +2,7 @@
 
 Personal workstation configuration for Apple Silicon macOS and partial Debian support.
 `home/` mirrors `$HOME`. [Dotbot](/install.conf.yaml) links most files; the agent updater copies
-three configs and generates machine-local assets.
+two configs and generates machine-local assets.
 
 ## Commands
 

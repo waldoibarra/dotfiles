@@ -23,33 +23,33 @@ Installation does not run the coding-agent updater, prune tools or install this 
 [`update-coding-agents/entrypoint.sh`](/scripts/update-coding-agents/entrypoint.sh) runs these steps
 in order through `just update-ca` and `just sync`:
 
-1. Copy the three managed agent configs before refreshing Claude hooks.
-2. Reconcile `pi-live-codex` in the normal Pi profile.
-3. Clear stale OpenCode plugin-cache entries when a newer upstream version is detected.
-4. Refresh RTK's OpenCode plugin and OMP/Pi extensions when dry runs list changes.
-5. Refresh Herdr's OpenCode, Claude, OMP and Pi integrations unless status reports them current.
-6. Install Moshi's OMP/Pi extensions non-interactively with its native target-specific installer.
-7. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
+1. Copy the two managed agent configs before refreshing Claude hooks.
+2. Install the configured pinned subagent runner, then update declared Pi packages in the normal profile.
+3. Refresh RTK's Pi extension when its dry run lists changes.
+4. Refresh Herdr's Claude and Pi integrations unless status reports them current.
+5. Install Moshi's Pi extension non-interactively with its native target-specific installer.
+6. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
 
-RTK, Herdr and Moshi steps skip their integrations when the respective binary is missing. Their OMP/Pi
-steps also require the agent binary. Herdr's native installer requires an extension directory;
+RTK, Herdr and Moshi steps skip their integrations when the respective binary is missing. Their Pi
+steps also require the `pi` binary. Herdr's native installer requires an extension directory;
 the updater creates it when needed. Generated extensions stay outside Git.
 Read [Coding agents](../docs/coding-agents/README.md) before editing copied configs or running updates;
 it lists ownership and publication risks. Read [Agent integrations](/docs/agent-integrations.md)
-before diagnosing hooks or plugins. Moshi's OMP/Pi hook files are refreshed on each run; its
-OpenCode plugin, pairing, and daemon/service setup remain outside this updater. Redirecting installer
+before diagnosing hooks or plugins. Moshi's Pi hook file is refreshed on each run; pairing and
+daemon/service setup remain outside this updater. Redirecting installer
 stdin from `/dev/null` prevents interactive first-run settings prompts during sync without saving
 choices. Use [Moshi's separate setup](../docs/agent-integrations.md#first-run-settings-during-sync)
 for those machine-local preferences.
 
-Pi binary installation belongs to Mise. After copying configuration, the updater runs
-`pi update npm:pi-live-codex --no-approve` in the normal profile from `$HOME`. It ignores inherited
-trial profile paths, excludes project packages, and removes `OPENAI_API_KEY` from that subprocess.
+Pi binary installation belongs to Mise. Package reconciliation reads the runner pin from linked
+settings, explicitly installs it, then runs `pi update --extensions --no-approve` from `$HOME`.
+Pi's update command skips pinned npm packages even when missing, so installation cannot be omitted.
+Both calls use the normal profile, exclude project packages, and omit `OPENAI_API_KEY`.
 Failures stop the updater. No model, microphone, or authentication call is requested.
 
-Pi's three JSON files are Dotbot links, not managed copies. Credentials, sessions, and locks are
-separate and untouched. [Pi configuration](../docs/coding-agents/pi/configuration.md) lists the
-files and ownership boundaries.
+Pi's preferences and subagent configuration are Dotbot links, not managed copies.
+Credentials, sessions, and locks are separate and untouched.
+[Pi configuration](../docs/coding-agents/pi/configuration.md) lists the ownership boundaries.
 
 ## Shared helpers and checks
 
@@ -59,3 +59,6 @@ Updater helpers live beside their entrypoint under `scripts/update-coding-agents
 Run `just lint-sh` after shell changes. It checks selected entrypoints and follows sourced helpers
 where configured; it does not execute installation behavior. Exercise changed behavior in an
 isolated environment, never by running a real machine sync as a test.
+
+Run `python3 scripts/tests/test-agent-harness.py` to check shared-role links, Pi settings, and
+package reconciliation. It uses temporary homes and a fake Pi executable; no inference or sync runs.

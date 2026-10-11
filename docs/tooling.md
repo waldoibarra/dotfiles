@@ -39,7 +39,7 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 | `just brew` | Install/upgrade Brewfile packages, then uninstall unlisted packages. |
 | `just brew-dump` | Overwrite the global Brewfile from installed packages; exclude VS Code extensions and npm packages. Review before committing. |
 | `just mise-sync` | Install, upgrade and prune Mise tools. |
-| `just update-ca` | Replace managed agent copies, reconcile Pi's voice package, refresh integrations and skills; may commit and push. |
+| `just update-ca` | Replace managed agent copies, reconcile Pi packages, refresh integrations and skills; may commit and push. |
 | `just hooks` | Install this checkout's hooks with hk. |
 | `just lint` | Run EditorConfig, Markdown, YAML and shell checks. |
 | `just lint-ec`, `just lint-md`, `just lint-yaml`, `just lint-sh` | Run one check. |
@@ -104,9 +104,11 @@ Keep these backend choices unless the underlying constraint changes:
 
 Mise owns `npm:@earendil-works/pi-coding-agent = "latest"`, so `just mise-sync` and `dots` include
 Pi binary installation and upgrades. The `pi-live-codex` extension is a separate Pi-managed package.
-Dotbot links the three tracked JSON settings files into `~/.pi/agent`; Pi UI changes can therefore
-modify the repository. `just update-ca` uses a targeted Pi package update to install or upgrade
-`pi-live-codex`. Shared instructions are linked by Dotbot; Pi discovers shared skills natively.
+Dotbot links Pi's tracked JSON preferences and subagent configuration into `~/.pi/agent`;
+Pi UI changes can therefore modify the repository. `just update-ca` installs the configured
+subagent pin and updates declared packages. Shared instructions and roles are linked by Dotbot;
+Pi discovers shared skills natively. Read [Pi delegation](coding-agents/pi/delegation.md)
+before changing the runner or role/model selection.
 [Pi and live voice](coding-agents/pi/README.md) documents ownership, shortcuts, and accepted
 limitations.
 
@@ -135,11 +137,10 @@ Use atomic conventional commits, a subject of at most 50 characters and a body e
 ## RTK
 
 Homebrew installs RTK, a CLI output filter. Claude settings reference its Bash rewrite hook,
-the coding-agent updater maintains its OpenCode plugin and OMP/Pi extensions, and Dotbot links
-Codex's hook. Actual rewriting requires those files to exist, and savings depend on the
-commands used.
+and the coding-agent updater maintains its Pi extension. Actual rewriting requires those files to
+exist, and savings depend on the commands used.
 
-Read the [RTK command reference](/home/.claude/RTK.md) before inspecting RTK, and
+Read the [RTK command reference](/home/.agents/RTK.md) before inspecting RTK, and
 [Agent integrations](/docs/agent-integrations.md#rtk) before changing its hooks or plugins.
 Dotbot links RTK configuration to `~/Library/Application Support/rtk/` on macOS and
 `~/.config/rtk/` on Linux.

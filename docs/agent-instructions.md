@@ -13,39 +13,20 @@ repository-specific rules belong in the root [`AGENTS.md`](/AGENTS.md).
 | Agent | Global loader |
 | --- | --- |
 | Claude Code | Copied `~/.claude/CLAUDE.md` imports `@~/.agents/AGENTS.md` |
-| OpenCode | `~/.config/opencode/AGENTS.md` links to the tracked source |
-| Codex | `~/.codex/AGENTS.md` links to the tracked source |
-| Oh My Pi (`omp`) | `~/.omp/agent/AGENTS.md` links to the tracked source |
 | Pi (`pi`) | `~/.pi/agent/AGENTS.md` links to the tracked source |
 
 Claude Code has no user-level `AGENTS.md`. Keep its adapter's one-line import and edit shared
 rules in the source `AGENTS.md`. The adapter is user-level, not a repository wrapper.
-Leave `~/.codex/AGENTS.override.md` absent unless you intend to replace Codex's global rules.
 
-Codex is installed only to sign in to the OpenAI subscription so OpenUsage can read its auth
-token. It is not used for coding. Its instruction link exists for consistency, and its
-[RTK hook](/docs/agent-integrations.md#rtk) is pre-installed in case that changes.
-No skills are configured for it.
-
-## OMP personal instructions
-
-OMP loads one user-level context file from the highest-priority source: `~/.omp/agent/`, then
-`~/.claude/`, then `~/.agents/`. The explicit OMP link makes the shared source load once.
-
-For the default profile, `~/.omp/agent/APPEND_SYSTEM.md` links to the machine-local `~/AGENTS.md`,
-which must already exist. Append text has no file-path wrapper; keep `~/AGENTS.md` in its heading
-to identify the source in session context. A project append file or `--append-system-prompt`
-can override it.
-
-These rules apply to the coding session. Read [OMP live voice](/docs/omp-live-voice.md) before
-diagnosing missing personal instructions in `/live`.
+**Cursor** support is planned, not configured. Cursor reads project `AGENTS.md` and
+`.cursor/rules/*.mdc`; its user rules live in its settings UI.
 
 ## Pi personal instructions
 
 Pi loads the linked global rules and walks ancestor directories for context files. Personal
-`~/AGENTS.md` therefore applies to projects under `$HOME` without a second append link. Projects
-elsewhere need their own personal-context arrangement. Profile `AGENTS.override.md` takes priority
-over the linked global file; project overrides affect only their directory's context.
+`~/AGENTS.md` therefore applies to projects under `$HOME`. Projects elsewhere need their own
+personal-context arrangement. Profile `AGENTS.override.md` takes priority over the linked global
+file; project overrides affect only their directory's context.
 
 Pi discovers `~/.agents/skills` natively. No shared instruction or skill copy is installed into a
 second directory. These rules configure the coding agent, not the extension's separate voice
@@ -58,14 +39,29 @@ import remains separate. [`.claude/settings.json`](/.claude/settings.json) exclu
 `**/home/.claude/CLAUDE.md` from project discovery so the tracked adapter does not load again
 as local guidance.
 
-OMP skips standalone context files whose parent directory starts with `.`. Because this checkout
-is named `.dotfiles`, [`.omp/AGENTS.md`](/.omp/AGENTS.md) links to `../AGENTS.md` for native discovery.
-The root file remains the single source; the relative link also works in other checkout locations.
+Pi reads `AGENTS.md` along the path to its working directory. Working inside `home/.agents/` can
+therefore load the tracked global source twice. Check loaded context; do not assume deduplication.
 
-Codex and OpenCode read `AGENTS.md` along the path to their working directory. OMP also reads
-`.agents/AGENTS.md` there. Working inside `home/` or `home/.agents/` can therefore load the
-tracked global source again. OpenCode's `instructions` setting is additive, with no exclusion
-configured here for that source. Check loaded context instead of assuming deduplication.
+## Shared role agents
+
+[`home/.agents/roles/`](/home/.agents/roles) owns the five role prompts: `plan-reviewer`,
+`code-auditor`, `implementer`, `browser-tester`, and `docs-writer`. Each file contains only
+name/description frontmatter and shared instructions. Roles do not pin a provider or model.
+
+Dotbot links each file into `~/.agents/roles/` and `~/.claude/agents/`; no prompts are copied
+or generated. Claude Code inherits its session's model and tools unless dispatch overrides them.
+Its reviewer restrictions are instructions, not enforced tool allowlists.
+
+Pi uses `pi-subagents` with the shared directory configured as an additional scan root.
+Pi-specific context inheritance and tool selection stay in Pi settings.
+Read [Pi delegation](coding-agents/pi/delegation.md) before selecting roles/models or changing the runner.
+The main session owns orchestration and Git writes; unsupported harnesses use the documented
+sequential fallback, not a claimed independent review.
+
+## Shared references
+
+[`home/.agents/RTK.md`](/home/.agents/RTK.md) owns the RTK reference. Dotbot links it into
+`~/.agents/RTK.md` and the compatibility path `~/.claude/RTK.md`.
 
 ## Claude response styles
 
@@ -73,6 +69,10 @@ Claude Code defaults to `Spartan` through
 [`home/.claude/settings.json`](/home/.claude/settings.json). `/output-style` selects a style;
 change the tracked `outputStyle` to preserve a global default across updater runs.
 Project-local settings can override it.
+
+A style shapes only the main Claude Code session's replies. The shared rules' **Communication**
+section carries the writing rules to every harness, sub-agents and written artifacts included.
+Keep writing rules there, not in a style.
 
 The three tracked styles are verbatim [Attention Span](https://github.com/alexgreensh/attention-span)
 copies, separate from the shared global rules:

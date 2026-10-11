@@ -10,6 +10,9 @@
   they affect the decision, not as a required format for every answer.
 - Ask when a necessary decision cannot be resolved from available context. Wait for the answer
   before doing work that depends on it; don't assume the answer. Continue independent work.
+- A question about how something works is not approval to do it.
+- Treat sub-agent output as a draft: verify its facts, numbers, and sources before you report
+  or publish them. Never invent a source, location, or value; say it is unknown.
 
 ## Commits
 
@@ -30,15 +33,62 @@
 ## Communication
 
 Applies to all text you write, including (but not limited to): replies, docs, commit and PR
-messages, apps messages, code comments, emails, social media content.
+messages, apps messages, tickets, code comments, emails, social media content.
 
+- Answer first: the first line carries the answer, decision, or request.
 - Explain each point in at most 17 words; if you can't, you don't understand it well enough.
 - Less is more: concise, concrete text with fewer points and words reads as assertive.
+  Cut filler, never a risk or condition.
 - Make text scannable for the reader: **bold** key terms, `code` for identifiers, files, values;
   lists and tables.
-- Write from your intent and the reader's perspective, so the message lands assertively.
-- Choose each word for its meaning in the current domain. Prefer the project's glossary terms
-  over synonyms.
+- Before writing, identify your intent and consider the reader's need and perspective; write the
+  shortest text that delivers the message assertively.
+- Choose each word for its meaning in the current domain. Use the project's glossary terms,
+  one term per concept, never loose synonyms.
+- Mark facts, assumptions, and unknowns when the reader will act on them.
+- For related artifacts (tickets, PRs, messages), state shared context once; each keeps only
+  what is specific to it. Leave out what the reader already has: attachments, linked text,
+  obvious steps due to context.
+
+## Messages and shared systems
+
+- Draft messages, comments, and posts; send them only when the user says so for that message.
+  Approval for one message never covers the next.
+- Write to shared systems (chat, issue trackers, code hosts, email, shared databases) only as
+  far as the user asked.
+
+## Orchestration
+
+- Delegate broad reading and parallel work when sub-agents are available. Keep decisions, git writes,
+  shared processes (dev servers, database resets) and user communication in the main session.
+- Without delegation, work sequentially and flag that self-review is not independent review.
+- Choose the role and model separately; shared role definitions live in `~/.agents/roles/`.
+- For non-trivial changes, loop: plan, independent plan review, implement (TDD style), audit against
+  the plan, verify (tests, browser), then update the docs.
+- Brief each sub-agent with its goal, files, constraints, done criteria, and what it must not run.
+- Use the strongest model to plan, review, and audit; a mid-tier model to implement; the smallest
+  for lookups.
+- Keep a decisions table in the plan: stable ids, decision, reason. Mark superseded rows; never
+  delete them.
+- Docs, code comments, test names, PRs, and tickets state the decided rule, never plan-only ids
+  or session codes.
+- When review rounds converge, propose a fix freeze; route later findings to the next-iteration
+  list.
+- Write an ADR or RFC only when the user asks or the project's process requires it.
+
+## Shell commands
+
+- Run commands directly; never wrap them in `bash -c` or `sh -c`. Wrapped scripts can't be
+  inspected and trigger permission prompts.
+- Never `rm` a variable, glob, or computed path. Write to a new empty directory instead, or
+  remove one literal path.
+- Never run interactive commands; pass non-interactive flags.
+- Never name a shell variable `path` or `status`; zsh ties them to `PATH` and the exit code.
+
+## Learning
+
+- When the user corrects the same behavior twice, propose a rule, skill, or memory change.
+  Apply it after approval.
 
 ## Documentation
 
@@ -48,7 +98,8 @@ messages, apps messages, code comments, emails, social media content.
   setup, use, and maintenance. Use visuals when they help explain the project.
 - Prefer repository-root Markdown links (`/docs/topic.md`) for repository docs. Use portable
   relative links inside installable bundles such as skills; follow the destination's link rules.
+- Commit screenshots only when a doc needs them to explain; reviewer aids belong in the PR.
 
 ## RTK
 
-Read `~/.claude/RTK.md` before answering questions about RTK or token savings.
+Read `~/.agents/RTK.md` before answering questions about RTK or token savings.

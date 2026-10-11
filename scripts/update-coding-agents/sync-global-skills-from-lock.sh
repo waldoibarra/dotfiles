@@ -2,7 +2,7 @@
 #
 # Install a global skill like this:
 # npx -y skills add https://github.com/vercel-labs/skills \
-#   -s find-skills -a opencode -a claude-code -g -y
+#   -s find-skills -a pi -a claude-code -g -y
 
 #######################################
 # Print the currently installed global skills, as reported by the skills CLI.
@@ -18,7 +18,7 @@ get_global_skills_json() {
 # Arguments:
 #   Skill name.
 #   Skill source repository URL.
-#   Remaining args: agent flags to pass through, e.g. -a opencode -a claude-code.
+#   Remaining args: agent flags to pass through, e.g. -a pi -a claude-code.
 # Outputs:
 #   Writes progress to STDOUT.
 #######################################

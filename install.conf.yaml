@@ -8,12 +8,12 @@
 - clean:
     "~":
     ~/.agents/skills:
+    ~/.agents/roles:
     ~/.agents:
+    ~/.claude/agents:
     ~/.claude/output-styles:
     ~/.claude/skills:
     ~/.claude:
-    ~/.codex:
-    ~/.config/opencode/skills:
     ~/.config:
     ~/.ssh:
     "~/Library/Application Support/Code/User":
@@ -21,7 +21,9 @@
 - create:
     ~/.agents:
     ~/.agents/skills:
+    ~/.agents/roles:
     ~/.claude:
+    ~/.claude/agents:
     ~/.claude/skills:
     ~/.pi:
       mode: 0700
@@ -44,15 +46,13 @@
     # Files.
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.agents/AGENTS.md: home/.agents/AGENTS.md
+    ~/.agents/RTK.md: home/.agents/RTK.md
+    ~/.claude/RTK.md: home/.agents/RTK.md
     ~/.aws/config: home/.aws/config
-    ~/.codex/AGENTS.md: home/.agents/AGENTS.md
-    ~/.codex/hooks.json: home/.codex/hooks.json
     ~/.config/git/ignore: home/.config/git/ignore
-    ~/.config/opencode/AGENTS.md: home/.agents/AGENTS.md
-    ~/.omp/agent/AGENTS.md: home/.agents/AGENTS.md
-    ~/.omp/agent/APPEND_SYSTEM.md: ~/AGENTS.md
     ~/.pi/agent/AGENTS.md: home/.agents/AGENTS.md
     ~/.pi/agent/settings.json: home/.pi/agent/settings.json
+    ~/.pi/agent/extensions/subagent/config.json: home/.pi/agent/extensions/subagent/config.json
     ~/.pi/agent/models.json: home/.pi/agent/models.json
     ~/.pi/agent/keybindings.json: home/.pi/agent/keybindings.json
     ~/.ssh/config: home/.ssh/config
@@ -74,6 +74,9 @@
     ~/.agents/skills/:
       glob: true
       path: home/.agents/skills/*
+    ~/.agents/roles/:
+      glob: true
+      path: home/.agents/roles/*.md
     # The excluded config files are copied by scripts/update-coding-agents/sync-managed-configs.sh
     # instead of linked by Dotbot; excluded directories are linked per child below. See
     # docs/coding-agents/README.md.
@@ -82,8 +85,14 @@
       path: home/.claude/*
       exclude:
         - home/.claude/CLAUDE.md
+        - home/.claude/agents
+        - home/.claude/RTK.md
         - home/.claude/output-styles
         - home/.claude/settings.json
+    # Link agents per file, like output styles below.
+    ~/.claude/agents/:
+      glob: true
+      path: home/.agents/roles/*.md
     # Link output styles per file so `~/.claude/output-styles` stays a real directory and styles
     # other tools write there stay out of this repo.
     ~/.claude/output-styles/:
@@ -94,15 +103,6 @@
       path: home/.agents/skills/*
     ~/.config/ghostty: home/.config/ghostty/
     ~/.config/mise: home/.config/mise/
-    ~/.config/opencode/:
-      glob: true
-      path: home/.config/opencode/*
-      exclude:
-        - home/.config/opencode/opencode.json
-        - home/.config/opencode/skills
-    ~/.config/opencode/skills/:
-      glob: true
-      path: home/.config/opencode/skills/*
     ~/.config/wezterm: home/.config/wezterm/
 - shell:
     - command: ./scripts/configure-touch-id-for-sudo.sh

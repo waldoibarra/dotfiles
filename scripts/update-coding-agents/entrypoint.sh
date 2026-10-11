@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 #
-# Update coding agent tooling: copy the managed agent configs, refresh
-# stale entries in OpenCode's plugin cache, refresh RTK, Herdr and Moshi integrations,
-# provision Pi, and sync globally installed skills from the lockfile.
+# Update coding agent tooling: copy managed configs, reconcile Pi packages,
+# refresh RTK, Herdr and Moshi integrations, and sync globally installed skills.
 
 set -euo pipefail
 
@@ -14,8 +13,6 @@ source "${ENTRYPOINT_DIR}/../lib/shell-helpers.sh"
 source "${ENTRYPOINT_DIR}/sync-managed-configs.sh"
 # shellcheck source=sync-global-skills-from-lock.sh
 source "${ENTRYPOINT_DIR}/sync-global-skills-from-lock.sh"
-# shellcheck source=refresh-stale-opencode-plugins.sh
-source "${ENTRYPOINT_DIR}/refresh-stale-opencode-plugins.sh"
 
 #######################################
 # Check whether a Herdr agent integration is installed and current.
@@ -35,9 +32,9 @@ herdr_integration_is_current() {
 #######################################
 # Install a missing or outdated native Herdr integration.
 # Claude's installer may add a machine-local hook to its copied settings;
-# Pi and OMP installers write only extensions and require the directory to exist.
+# Pi's installer writes only an extension and requires the directory to exist.
 # Arguments:
-#   Integration target: claude, opencode, pi, or omp.
+#   Integration target: claude or pi.
 # Outputs:
 #   Writes progress to STDOUT and installation failures to STDERR.
 #######################################
@@ -48,7 +45,7 @@ install_herdr_integration() {
     return
   fi
   case "${agent}" in
-    pi | omp)
+    pi)
       if ! command -v "${agent}" >/dev/null 2>&1; then
         echo "${agent} not found, skipping Herdr integration."
         return
@@ -60,7 +57,7 @@ install_herdr_integration() {
     return
   fi
   case "${agent}" in
-    pi | omp) mkdir -p "${HOME}/.${agent}/agent/extensions" || return 1 ;;
+    pi) mkdir -p "${HOME}/.${agent}/agent/extensions" || return 1 ;;
   esac
   herdr integration install "${agent}" || return 1
   echo "Herdr ${agent} integration installed."
@@ -73,8 +70,8 @@ install_herdr_integration() {
 # remaining updater steps still run.
 # https://github.com/rtk-ai/rtk/tree/develop/hooks
 # Arguments:
-#   Integration label for progress messages (e.g. OpenCode).
-#   `rtk init` arguments selecting the integration (e.g. -g --opencode).
+#   Integration label for progress messages (e.g. pi).
+#   `rtk init` arguments selecting the integration (e.g. -g --agent pi).
 # Outputs:
 #   Writes progress to STDOUT and warnings to STDERR.
 #######################################
@@ -107,7 +104,7 @@ install_rtk_integration() {
 #######################################
 # Install the native RTK extension when the selected agent binary exists.
 # Arguments:
-#   Agent target: pi or omp.
+#   Agent target, e.g. pi.
 # Outputs:
 #   Writes progress to STDOUT and warnings to STDERR.
 #######################################
@@ -123,7 +120,7 @@ install_rtk_agent_extension() {
 #######################################
 # Install the native Moshi extension when Moshi and the agent binary exist.
 # Arguments:
-#   Agent target: pi or omp.
+#   Agent target, e.g. pi.
 # Outputs:
 #   Writes installer progress to STDOUT and failures to STDERR.
 #######################################
@@ -138,13 +135,13 @@ install_moshi_agent_extension() {
 }
 
 #######################################
-# Reconcile the normal Pi profile's voice package declared in its linked settings.
+# Reconcile packages declared in Pi's linked settings using the normal profile.
 # Globals:
 #   HOME
 # Outputs:
 #   Writes package progress to STDOUT and failures to STDERR.
 #######################################
-install_pi_voice_package() (
+install_pi_packages() (
   if ! command -v pi >/dev/null 2>&1; then
     echo "Pi is required; run the Mise installation before updating agents." >&2
     return 1
@@ -152,27 +149,31 @@ install_pi_voice_package() (
   cd "${HOME}" || return 1
   export PI_CODING_AGENT_DIR="${HOME}/.pi/agent"
   unset OPENAI_API_KEY
-  pi update npm:pi-live-codex --no-approve
+  # Pi update skips pinned npm packages, including missing installations.
+  local subagent_source
+  subagent_source="$(node -e '
+    const settings = require(process.argv[1]);
+    const source = settings.packages.map(p => typeof p === "string" ? p : p.source)
+      .find(p => p.startsWith("npm:pi-subagents@"));
+    if (!source) throw new Error("Missing pinned pi-subagents package declaration");
+    console.log(source);
+  ' "${PI_CODING_AGENT_DIR}/settings.json")" || return 1
+  pi install "${subagent_source}" --no-approve || return 1
+  pi update --extensions --no-approve
 )
 
 main() {
   # First: it resets ~/.claude/settings.json to the tracked bytes, which would
   # otherwise discard whatever the Herdr steps below write into that file.
   sync_managed_configs
-  install_pi_voice_package
-  refresh_stale_opencode_plugins
-  install_rtk_integration OpenCode -g --opencode
-  install_rtk_agent_extension omp
+  install_pi_packages
   install_rtk_agent_extension pi
-  install_herdr_integration opencode
   install_herdr_integration claude
-  install_herdr_integration omp
   install_herdr_integration pi
-  install_moshi_agent_extension omp
   install_moshi_agent_extension pi
   sync_global_skills_from_lock
 
-  echo "Done updating. Restart OpenCode if it's open."
+  echo "Done updating. Restart Claude Code and Pi if they are open."
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
