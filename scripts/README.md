@@ -13,7 +13,13 @@ The configuration updates submodules from their remotes, manages links and runs 
 | --- | --- |
 | [configure-touch-id-for-sudo.sh](/scripts/configure-touch-id-for-sudo.sh) | On macOS, build `/etc/pam.d/sudo_local` from Apple's template if Touch ID is not enabled; set mode `444`. Skip other systems; fail if the template is missing. |
 | [install-os-packages.sh](/scripts/install-os-packages.sh) | Install Homebrew if needed, check/install its global bundle, trust/install Mise tools, and install missing WezTerm terminfo on macOS when WezTerm is available. |
+| [configure-markdown-app.sh](/scripts/configure-markdown-app.sh) | After package installation, apply the user-wide Markdown handler with duti. Skip non-macOS or an unavailable app. |
 | [set-brew-zsh-as-default-shell.sh](/scripts/set-brew-zsh-as-default-shell.sh) | Register Homebrew Zsh in `/etc/shells` and select it with `chsh`, unless `$SHELL` already matches. |
+
+Read [default applications](/docs/tooling.md#default-applications-on-macos) before changing file
+associations or responding to OS approval prompts. Already-correct handlers are not changed again.
+The Markdown step receives Homebrew's Apple Silicon PATH explicitly;
+package subprocesses cannot update its parent.
 
 Installation does not run the coding-agent updater, prune tools or install this checkout's hooks.
 `just sync` runs the installer, then those additional management steps.
@@ -68,3 +74,5 @@ isolated environment, never by running a real machine sync as a test.
 Run `python3 scripts/tests/test-agent-harness.py` to check shared-role links, Pi settings, and
 package reconciliation. It uses temporary homes and a fake Pi executable; no inference or sync runs.
 Run `python3 scripts/tests/test-personal-mcp.py` for isolated MCP registration and linking checks.
+Run `python3 scripts/tests/test-markdown-app.py` for application guards and error propagation
+without changing real file associations.

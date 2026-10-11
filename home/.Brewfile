@@ -5,6 +5,8 @@ brew "antigen"
 brew "bash"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Set default applications for file types on macOS
+brew "duti" if OS.mac?
 # Apjanke's fork of the classic cowsay project
 brew "cowsay"
 # SDL2 compatibility layer that uses SDL3 behind the scenes

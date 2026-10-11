@@ -106,6 +106,9 @@
     ~/.config/ghostty: home/.config/ghostty/
     ~/.config/mise: home/.config/mise/
     ~/.config/wezterm: home/.config/wezterm/
+    ~/.config/duti/markdown.duti:
+      path: home/.config/duti/markdown.duti
+      if: '[[ "$(uname)" == "Darwin" ]]'
 - shell:
     - command: ./scripts/configure-touch-id-for-sudo.sh
       description: Enable Touch ID for sudo (/etc/pam.d/sudo_local) —
@@ -113,6 +116,10 @@
       stderr: true
     - command: ./scripts/install-os-packages.sh
       description: Install OS packages (Homebrew, Mise) —
+      stdout: true
+      stderr: true
+    - command: PATH="/opt/homebrew/bin:$PATH" ./scripts/configure-markdown-app.sh
+      description: Configure Markdown documents to open with Cursor —
       stdout: true
       stderr: true
     - command: ./scripts/set-brew-zsh-as-default-shell.sh

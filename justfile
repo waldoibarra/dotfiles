@@ -66,6 +66,7 @@ lint: lint-ec lint-md lint-yaml lint-sh
 lint-sh:
   shellcheck scripts/install-dotfiles.sh
   shellcheck scripts/install-os-packages.sh
+  shellcheck scripts/configure-markdown-app.sh
   shellcheck -a scripts/configure-touch-id-for-sudo.sh
   shellcheck -a scripts/set-brew-zsh-as-default-shell.sh
   shellcheck -a scripts/update-coding-agents/entrypoint.sh
