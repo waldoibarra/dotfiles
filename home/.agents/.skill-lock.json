@@ -124,9 +124,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/agent-skills-creator/SKILL.md",
-      "skillFolderHash": "a645c120ab33cf8dbb5e48d657f586929454b433",
+      "skillFolderHash": "c90ac407e6a8b1c372dd5ac99920dedc984126f4",
       "installedAt": "2026-09-04T04:50:00.662Z",
-      "updatedAt": "2026-10-04T16:18:41.688Z"
+      "updatedAt": "2026-10-11T20:21:26.615Z"
     },
     "agents-md": {
       "source": "mblode/agent-skills",
