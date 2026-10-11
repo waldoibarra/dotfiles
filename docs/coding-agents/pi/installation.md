@@ -7,9 +7,12 @@ instruction, role, and preference links; the coding-agent updater reconciles dec
 ## Provisioning sequence
 
 [Dotbot](../../../install.conf.yaml) creates the real Pi directories and links `AGENTS.md`,
-`settings.json`, `models.json`, `keybindings.json`, and `extensions/subagent/config.json`.
+`settings.json`, `models.json`, `keybindings.json`, `mcp.json`, and `extensions/subagent/config.json`.
 It links shared roles individually; credentials and sessions remain separate.
 Pi files do not use the managed-copy helper.
+
+The updater reconciles shared personal MCP definitions with Claude's user registry first.
+Read [personal MCP setup](../mcp.md) before changing or verifying those registrations.
 
 The [agent updater](../../../scripts/update-coding-agents/entrypoint.sh) then runs
 `pi install <configured-runner-source> --no-approve`, then `pi update --extensions --no-approve`

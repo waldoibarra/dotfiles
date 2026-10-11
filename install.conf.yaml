@@ -47,6 +47,7 @@
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.agents/AGENTS.md: home/.agents/AGENTS.md
     ~/.agents/RTK.md: home/.agents/RTK.md
+    ~/.agents/mcp.json: home/.agents/mcp.json
     ~/.claude/RTK.md: home/.agents/RTK.md
     ~/.aws/config: home/.aws/config
     ~/.config/git/ignore: home/.config/git/ignore
@@ -54,6 +55,7 @@
     ~/.pi/agent/settings.json: home/.pi/agent/settings.json
     ~/.pi/agent/extensions/subagent/config.json: home/.pi/agent/extensions/subagent/config.json
     ~/.pi/agent/models.json: home/.pi/agent/models.json
+    ~/.pi/agent/mcp.json: home/.agents/mcp.json
     ~/.pi/agent/keybindings.json: home/.pi/agent/keybindings.json
     ~/.ssh/config: home/.ssh/config
     "~/Library/Application Support/Code/User/settings.json":

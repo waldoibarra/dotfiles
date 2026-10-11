@@ -24,11 +24,12 @@ Installation does not run the coding-agent updater, prune tools or install this 
 in order through `just update-ca` and `just sync`:
 
 1. Copy the two managed agent configs before refreshing Claude hooks.
-2. Install the configured pinned subagent runner, then update declared Pi packages in the normal profile.
-3. Refresh RTK's Pi extension when its dry run lists changes.
-4. Refresh Herdr's Claude and Pi integrations unless status reports them current.
-5. Install Moshi's Pi extension non-interactively with its native target-specific installer.
-6. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
+2. Register missing shared personal MCP servers through Claude's native user-scope command.
+3. Install the configured pinned subagent runner, then update declared Pi packages in the normal profile.
+4. Refresh RTK's Pi extension when its dry run lists changes.
+5. Refresh Herdr's Claude and Pi integrations unless status reports them current.
+6. Install Moshi's Pi extension non-interactively with its native target-specific installer.
+7. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
 
 RTK, Herdr and Moshi steps skip their integrations when the respective binary is missing. Their Pi
 steps also require the `pi` binary. Herdr's native installer requires an extension directory;
@@ -40,6 +41,10 @@ daemon/service setup remain outside this updater. Redirecting installer
 stdin from `/dev/null` prevents interactive first-run settings prompts during sync without saving
 choices. Use [Moshi's separate setup](../docs/agent-integrations.md#first-run-settings-during-sync)
 for those machine-local preferences.
+
+[`sync-personal-mcp.py`](/scripts/update-coding-agents/sync-personal-mcp.py) can run separately
+with `python3`, without package upgrades or publication. It preserves matching registrations and
+fails on conflicts; read [personal MCP setup](/docs/coding-agents/mcp.md) before applying changes.
 
 Pi binary installation belongs to Mise. Package reconciliation reads the runner pin from linked
 settings, explicitly installs it, then runs `pi update --extensions --no-approve` from `$HOME`.
@@ -62,3 +67,4 @@ isolated environment, never by running a real machine sync as a test.
 
 Run `python3 scripts/tests/test-agent-harness.py` to check shared-role links, Pi settings, and
 package reconciliation. It uses temporary homes and a fake Pi executable; no inference or sync runs.
+Run `python3 scripts/tests/test-personal-mcp.py` for isolated MCP registration and linking checks.

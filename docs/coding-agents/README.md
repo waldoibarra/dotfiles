@@ -9,6 +9,7 @@ updater copies two configs. A configured link does not prove that a running agen
 | --- | --- |
 | Changing shared rules, personal instructions or Claude response styles | [Agent instructions](/docs/agent-instructions.md) |
 | Understanding Pi provisioning, voice choices, or accepted limitations | [Pi and live voice](pi/README.md) |
+| Configuring or verifying personal MCP servers across clients | [Personal MCP servers](mcp.md) |
 | Delegating with a shared role and an explicit model | [Pi delegation](pi/delegation.md) |
 | Adding, updating or checking skill discovery | [Agent skills](/docs/agent-skills.md) |
 | Diagnosing RTK, Herdr or Moshi hooks and plugins, or the Lens plugin | [Agent integrations](/docs/agent-integrations.md) |
@@ -43,6 +44,7 @@ installed paths replace `home/` with `~/` unless noted.
 | `home/.config/rtk/*` | Linked to `~/Library/Application Support/rtk/` on macOS or `~/.config/rtk/` on Linux |
 | `home/.agents/.skill-lock.json` | Linked; external skill sources and installer targets |
 | `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`; shared global policy |
+| `home/.agents/mcp.json` | Shared personal MCP definitions; Pi link and derived Claude user registrations |
 | Repo-authored skill directories | Linked individually; [destinations](/docs/agent-skills.md#repo-managed-skills) |
 | `home/.pi/agent/settings.json` | Linked; coding defaults, packages, role overrides, compaction preferences |
 | `home/.pi/agent/extensions/subagent/config.json` | Linked; minimal Pi runner configuration |

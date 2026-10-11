@@ -5,6 +5,8 @@
 Codex are dropped.
 **State (2026-10-11):** shared-role Pi portability follow-up implemented and installed;
 verification is recorded in the [shared roles plan](/.agents/plans/pi-shared-roles.md).
+Personal MCP parity and the session learning loop are tracked in the
+[personal MCP plan](/.agents/plans/personal-mcp.md).
 The earlier work-hub and workstation-cleanup changes retain their separate review status.
 Tags: **[F]** fact, **[A]** assumption, **[U]** unknown.
 
@@ -109,8 +111,8 @@ Patterns from the sprint 19 demo session, and where each now lives:
 
 ## Next
 
-1. **`retro` skill** (global): end of session, list repeated corrections and propose rule, skill or
-   memory diffs, like the learnings table above. Apply after approval.
+1. **Learning loop** (global): shared instructions now require decision records and session handoffs.
+   Add a `retro` skill only when repeated evidence justifies more than those existing rules.
 2. **`rfc` skill** (work): company template, tracker mirror, index update, announcement draft.
 3. **Frozen review build** (work): serve a build on another port, so hot reload spares review tabs.
 4. **Cursor support:** confirm what Cursor reads (`AGENTS.md`, `.cursor/rules`, skills); link the

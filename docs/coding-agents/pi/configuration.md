@@ -12,6 +12,7 @@ not enter the repository.
 | `~/.pi/agent/models.json` | Linked to [models.json](../../../home/.pi/agent/models.json): per-model context-window overrides. |
 | `~/.pi/agent/keybindings.json` | Linked to [keybindings.json](../../../home/.pi/agent/keybindings.json): Ctrl+L for voice, Option+L for the tree filter. |
 | `~/.pi/agent/AGENTS.md` | Dotbot link to [shared agent instructions](../../../home/.agents/AGENTS.md). |
+| `~/.pi/agent/mcp.json` | Linked to [shared personal MCP definitions](/home/.agents/mcp.json); no work servers. |
 | `~/.pi/agent/npm/node_modules/pi-live-codex` | Pi-managed voice extension code and dependencies. |
 | `~/.pi/agent/npm/node_modules/pi-subagents` | Pi-managed pinned delegation runner; never edit installed code. |
 | `~/.pi/agent/extensions/subagent/config.json` | Linked [runner configuration](/home/.pi/agent/extensions/subagent/config.json); parent directories stay real. |
@@ -92,6 +93,7 @@ therefore replace the linked global instructions; a project override affects tha
 context. This integration neither creates nor requires an override file.
 
 Read [Pi delegation](delegation.md) before changing role discovery, child instructions, or models.
+Read [personal MCP setup](../mcp.md) before changing servers or testing shared client access.
 
 ## Upstream references
 
