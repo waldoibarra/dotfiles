@@ -2,10 +2,8 @@
 aws-cli = { version = "latest", symlink_bins = "true" }
 bun = "latest"
 "cargo:eza" = "latest"
-codex = "latest"
 delta = "latest"
 gh = "latest"
-"github:can1357/oh-my-pi" = "latest"
 herdr = "latest"
 just = "latest"
 llmfit = "latest"
@@ -14,7 +12,6 @@ node = "lts"
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:@open-pencil/cli" = "latest"
 "npm:@open-pencil/mcp" = "latest"
-opencode = "latest"
 python = ["latest", "3.12"]
 rust = "latest"
 shellcheck = "latest"

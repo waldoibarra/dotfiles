@@ -63,9 +63,6 @@ alias lso="eza -aal --octal-permissions"
 alias dots='just --justfile ~/.dotfiles/justfile --working-directory ~/.dotfiles sync'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias opencode="caffeinate -i opencode"
   alias claude="caffeinate -i claude"
-  alias codex="caffeinate -i codex"
-  alias omp="caffeinate -i omp"
   alias pi="caffeinate -i pi"
 fi

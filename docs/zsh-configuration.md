@@ -27,7 +27,7 @@ and can reorder it. Homebrew paths are fixed to `/opt/homebrew` on macOS and
 - `.zshrc` assumes Homebrew Antigen is installed and activates oh-my-zsh bundles.
 - `lso` runs `eza -aal --octal-permissions`; `dots` runs the
   [full sync](/docs/tooling.md#sync-the-workstation) without changing the current directory.
-- On macOS, `claude` and `opencode` aliases run under `caffeinate -i`.
+- On macOS, `claude` and `pi` aliases run under `caffeinate -i`.
 - `.zlogin` returns immediately in non-interactive shells, before loading `~/.zlogin.local` or
   defining welcome helpers. Automated login-shell commands do not run the greeting setup.
 

@@ -73,7 +73,6 @@ lint-sh:
   shellcheck -a home/.claude/subagent-statusline.sh
   shellcheck home/.agents/skills/shell-scripting/assets/template.sh
   shellcheck home/.agents/skills/shell-scripting/assets/template-linear.sh
-  shellcheck home/.config/opencode/skills/non-vision-image-reader/scripts/recover-pasted-images.sh
 
 # Use markdownlint-cli2 to lint Markdown files.
 [group("Linting")]

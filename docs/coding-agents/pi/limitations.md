@@ -8,7 +8,7 @@ The tested versions and component ownership are in the [Pi overview](README.md).
 
 | Area | Result | Current decision |
 | --- | --- | --- |
-| Basic conversation | Spoken input and audible responses worked. Waldo likes aspects of both Pi and OMP. | Use Pi more, keep both available. |
+| Basic conversation | Spoken input and audible responses worked. Waldo likes aspects of both Pi and OMP. | Pi kept; OMP support was later dropped. |
 | Interrupting playback | Playback stopped mid-sentence, with a small unmeasured delay. | Usable initial result; repeated reliability was not established. |
 | Mute/resume | Muted speech was ignored and conversation resumed after Space. | Passed in the reported test. |
 | Coding while talking | Note edits and empty-file creation completed during the voice workflow. | Accepted for this workflow; the original Node assertion exercise was not run. |
@@ -49,6 +49,5 @@ immediately reflects all activity.
 
 Context handoffs, recognition, update-triggered interruptions, and
 [autocomplete](live-voice.md#misleading-autocomplete-and-access-errors) are candidates for later
-improvement, not approved extension work. Combining the best parts of Pi and OMP voice is also a
-future idea with no selected design. No fork, voice-default patch, recovery fix, or OMP retirement
-is included in the dotfiles integration.
+improvement, not approved extension work. No fork, voice-default patch, or recovery fix is included
+in the dotfiles integration.

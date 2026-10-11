@@ -7,7 +7,8 @@ Codex are dropped.
 verification is recorded in the [shared roles plan](/.agents/plans/pi-shared-roles.md).
 Personal MCP parity and the session learning loop are tracked in the
 [personal MCP plan](/.agents/plans/personal-mcp.md).
-The earlier work-hub and workstation-cleanup changes retain their separate review status.
+Waldo approved committing the remaining retired-harness repository cleanup.
+Machine-local removal and private work-hub changes remain separate; concurrent `pi-lens` work is excluded.
 Tags: **[F]** fact, **[A]** assumption, **[U]** unknown.
 
 ## Start here
@@ -39,6 +40,7 @@ A rule naming a company tool, channel, person or repo is **work-scoped**.
 | `home/.pi/agent/settings.json`, `extensions/subagent/config.json` | Pinned Pi runner; role/model selection and inherited instructions |
 | `install.conf.yaml` | Shared role/reference links and Pi runner config; retired harness configs are no longer linked |
 | `docs/agent-instructions.md`, `docs/coding-agents/` | Claude Code and Pi only; Cursor note |
+| Retired harness configs, aliases, Mise entries, and obsolete updater helper | Removed from the repository; local app/data removal remains a manual pending step |
 
 **Work knowledge hub** **[F]**, uncommitted on **`chore/ai-harness`** (cut from `origin/main`), in the
 hub's main checkout. Switch the hub back to `main` only after committing, or the new skills vanish.
@@ -85,7 +87,8 @@ Patterns from the sprint 19 demo session, and where each now lives:
 
 ## Waldo's pending steps
 
-1. **Review** both repos' uncommitted diffs; the hub's are on **`chore/ai-harness`**.
+1. **Review work separately:** the earlier hub changes were on **`chore/ai-harness`**;
+   their current state was not rechecked. Keep concurrent `pi-lens` work separate from harness commits.
 2. **Manual cleanup** (not run). Upgrade OpenUsage first: v0.7.13+ reads Pi's login, not `~/.codex`.
 
    ```sh

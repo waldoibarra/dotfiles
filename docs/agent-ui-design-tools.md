@@ -5,8 +5,7 @@ Read this before choosing a design-to-code workflow. Use
 its CLI supports file-based inspection, editing and export without an agent-specific integration.
 
 The requirements are an open-source preference, support across coding agents, and a design the
-agent can use as an implementation reference. OMP and Pi are different tools; CLI access avoids
-making MCP support a prerequisite.
+agent can use as an implementation reference. CLI access avoids making MCP support a prerequisite.
 
 ## Managed installation
 

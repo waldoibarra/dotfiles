@@ -13,8 +13,8 @@ support. Review the configuration before applying it to another account.
 - macOS uses Homebrew at `/opt/homebrew`; Intel Macs are not handled. Debian uses
   `/home/linuxbrew/.linuxbrew` and `apt-get`. The Brewfile includes macOS casks without Linux guards;
   this is not an unattended cross-platform installer.
-- Create your personal `~/AGENTS.md` before installation. The existing OMP append link requires
-  that file; Pi also reads it for projects under `$HOME`. Keep its personal contents outside Git.
+- Optionally create a personal `~/AGENTS.md`. Pi reads it for projects under `$HOME`. Keep its
+  personal contents outside Git.
 - Use an interactive terminal for sudo, Touch ID and login-shell prompts.
 
 If Git is missing, install it first. On macOS, finish the command-line tools installer:
@@ -42,7 +42,7 @@ Homebrew packages and Mise tools, then selects Homebrew Zsh. See the
 [script reference](/scripts/README.md) for exact responsibilities.
 
 This command does **not** run the coding-agent updater or install this repository's Git hooks.
-The three [copy-managed agent files](coding-agents/README.md#copy-managed-files) are populated by
+The two [copy-managed agent files](coding-agents/README.md#copy-managed-files) are populated by
 the updater, not Dotbot.
 
 ## Add local settings

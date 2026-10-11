@@ -7,10 +7,9 @@ Built for Apple Silicon macOS, with partial Debian support.
 
 - A Zsh environment with completion, aliases, terminal settings and a welcome prompt.
 - Explicit package lists: Homebrew for apps and system tools, Mise for development tools.
-- Configuration for Claude Code, OpenCode, Codex, Oh My Pi and Pi, with shared instructions and
-  separate ownership for tracked configuration and generated assets. Pi includes subscription
-  live voice through `pi-live-codex`; [setup and limitations](docs/coding-agents/pi/README.md)
-  are documented.
+- Configuration for Claude Code and Pi, with shared instructions and separate ownership for
+  tracked configuration and generated assets. Pi includes subscription live voice through
+  `pi-live-codex`; [setup and limitations](docs/coding-agents/pi/README.md) are documented.
 - Local overrides for Git identity, signing and shell settings, so personal values can stay off Git.
 
 ## Why keep it together
