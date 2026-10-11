@@ -57,12 +57,24 @@ messages, apps messages, tickets, code comments, emails, social media content.
 - Write to shared systems (chat, issue trackers, code hosts, email, shared databases) only as
   far as the user asked.
 
+## Harness design
+
+- For Pi and Claude Code, prefer `~/.agents/` for shared global instructions, skills, roles,
+  and references.
+- Keep one canonical source (DRY); use native discovery, links, or minimal adapters instead
+  of duplicated content.
+- Keep harness-specific settings, credentials, and runtime state in their native directories.
+- Apply YAGNI: reuse existing mechanisms; add abstractions, generators, or dependencies only
+  for demonstrated requirements.
+- Keep project/company content scoped to its project or work root, not global directories.
+
 ## Orchestration
 
 - Delegate broad reading and parallel work when sub-agents are available. Keep decisions, git writes,
   shared processes (dev servers, database resets) and user communication in the main session.
 - Without delegation, work sequentially and flag that self-review is not independent review.
-- Choose the role and model separately; shared role definitions live in `~/.agents/roles/`.
+- Choose role, model, and supported thinking level independently;
+  shared role definitions live in `~/.agents/roles/`.
 - For non-trivial changes, loop: plan, independent plan review, implement (TDD style), audit against
   the plan, verify (tests, browser), then update the docs.
 - Brief each sub-agent with its goal, files, constraints, done criteria, and what it must not run.

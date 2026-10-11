@@ -10,6 +10,9 @@ A file or symlink on disk does not prove that an agent loaded it.
 `~/.agents/AGENTS.md` and each agent's global path. Keep it usable across projects;
 repository-specific rules belong in the root [`AGENTS.md`](/AGENTS.md).
 
+Read the [harness design policy](/home/.agents/AGENTS.md#harness-design) before changing shared
+configuration or adding a harness-specific adapter.
+
 | Agent | Global loader |
 | --- | --- |
 | Claude Code | Copied `~/.claude/CLAUDE.md` imports `@~/.agents/AGENTS.md` |
