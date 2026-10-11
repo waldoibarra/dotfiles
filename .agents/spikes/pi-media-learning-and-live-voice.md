@@ -127,7 +127,8 @@ before exploring incremental transcript sharing to address missing voice-to-codi
 
 #### OMP context and experimental transport
 
-Read [OMP live voice](/docs/omp-live-voice.md) before comparing the current OMP experience with Pi.
+OMP is no longer configured. Read its archived guide with `git show 6756c19:docs/omp-live-voice.md`
+before comparing these historical observations with Pi.
 The inspected OMP voice model starts with a bundled prompt, not the coding session's instruction
 files or existing conversation. It receives delivered coding progress/results during the live call.
 A new voice connection does not automatically reconstruct the surviving coding session's context.
