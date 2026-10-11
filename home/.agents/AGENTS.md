@@ -99,8 +99,10 @@ messages, apps messages, tickets, code comments, emails, social media content.
 
 ## Learning
 
-- When the user corrects the same behavior twice, propose a rule, skill, or memory change.
-  Apply it after approval.
+- Every session, record accepted decisions and their rationale in existing plans or maintained docs.
+- Keep reusable rules global; keep project decisions and private details in their owning workspace.
+- Before handoff, record verified outcomes, unresolved questions, and next steps; update relevant indexes.
+- Propose improvements from repeated corrections and failed checks each session; apply only after approval.
 
 ## Documentation
 

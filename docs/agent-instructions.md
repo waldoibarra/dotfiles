@@ -12,6 +12,8 @@ repository-specific rules belong in the root [`AGENTS.md`](/AGENTS.md).
 
 Read the [harness design policy](/home/.agents/AGENTS.md#harness-design) before changing shared
 configuration or adding a harness-specific adapter.
+Read the [learning policy](/home/.agents/AGENTS.md#learning) before handoff or promoting feedback
+into rules.
 
 | Agent | Global loader |
 | --- | --- |
