@@ -185,6 +185,25 @@ Read [the Lens display spike](/.agents/spikes/pi-lens-tool-display.md)
 before continuing transcript work.
 Observe adherence in later personal sessions before proposing additional global wording.
 
+### Pending fixture-safety proposal
+
+A delegated warning-test prototype left an unbounded context log, filling approximately 65 GiB.
+A second prototype retained approximately 911 MiB.
+The resulting `ENOSPC` stopped a later implementation worker.
+The lead found no surviving prototype process and removed only those two disposable logs.
+Available space recovered to 67 GiB; repository changes were preserved.
+
+The warning fixture now caps provider calls, logged context, terminal output, and elapsed time.
+Its cleanup terminates the owned process group. Both terminal modes passed afterward.
+
+**Proposed, awaiting approval:** require bounded runtime/output and complete process cleanup
+for agent-run test fixtures.
+Scope: shared personal/open-source instructions.
+Benefit: prevent test prototypes from exhausting workstation resources.
+Verification: inspect the canonical rule and exercise timeout/output-limit cleanup
+without leaving child processes.
+Rollback: remove the single added rule. Existing implementation work continues independently.
+
 ## Next
 
 1. Observe personal/open-source sessions; work adaptation, Cursor support, retired-harness cleanup,
