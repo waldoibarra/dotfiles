@@ -35,6 +35,29 @@ Authentication, sessions, caches, native binaries, and voice locks are separate 
 Git. They are not linked, copied, or removed by this configuration step.
 [Installation and sync](installation.md) describes package reconciliation.
 
+## Laptop image rendering
+
+`terminal.images: "kitty"` enables Pi's native image renderer for the configured Ghostty → Herdr stack.
+Ghostty starts Herdr through [its tracked configuration](/home/.config/ghostty/config).
+The inspected laptop runs Ghostty 1.3.1 and Herdr 0.9.3.
+
+Pi 1.1.0's automatic detection disables images when `TERM_PROGRAM=herdr`.
+[Herdr 0.9.3 supports Kitty graphics][herdr-kitty], including local Ghostty clients.
+The native override bypasses that conservative detection without changing terminal identity.
+
+[herdr-kitty]: https://github.com/herdrdev/herdr/blob/v0.9.3/docs/next/website/src/content/docs/configuration.mdx#kitty-graphics
+
+After the current response finishes, run `/reload`, then expand an image-bearing read result.
+The setting changes rendering only; it does not change image uploads or model input.
+Lens keeps tool results collapsed until opened.
+Readable pasted-image tokens remain separate, unfinished work.
+
+This preference applies to every terminal using the linked profile, not only this laptop.
+Moshi and other terminal stacks remain unverified.
+Use `"auto"` or remove `terminal.images` to restore detection.
+Use `false` to disable inline image protocols.
+No `dots`, package installation, or terminal restart is required.
+
 ## Extended context and compaction
 
 `models.json` sets `providers.openai-codex.modelOverrides[MODEL_ID].contextWindow` to **1,050,000**

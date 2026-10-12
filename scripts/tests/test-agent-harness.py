@@ -14,6 +14,11 @@ import yaml  # noqa: E402 - use Dotbot's existing parser, not another dependency
 
 
 class AgentHarnessTest(unittest.TestCase):
+    def test_laptop_images_use_native_kitty_protocol(self):
+        settings = json.loads((ROOT / "home/.pi/agent/settings.json").read_text())
+        self.assertEqual(settings["terminal"]["images"], "kitty")
+        self.assertTrue(settings["terminal"].get("showImages", True))
+
     def test_shared_roles_and_pi_overrides(self):
         roles = ROOT / "home/.agents/roles"
         settings = json.loads((ROOT / "home/.pi/agent/settings.json").read_text())
