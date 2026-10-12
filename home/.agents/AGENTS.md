@@ -78,8 +78,16 @@ messages, apps messages, tickets, code comments, emails, social media content.
 - For non-trivial changes, loop: plan, independent plan review, implement (TDD style), audit against
   the plan, verify (tests, browser), then update the docs.
 - Brief each sub-agent with its goal, files, constraints, done criteria, and what it must not run.
-- Use the strongest model to plan, review, and audit; a mid-tier model to implement; the smallest
-  for lookups.
+- **Company sessions:** use the strongest model to plan, review, and audit; a mid-tier model to
+  implement; the smallest for lookups, unless work adaptation is approved.
+- **Personal and open-source sessions only:** task-specific routing replaces that default. Determine
+  scope from project and user context, never client, provider, or payment; ask before harness changes
+  when scope is unknown. Pi Astra and Claude Code Fable remain leads. Select each child within the
+  current authorized provider by capability, context, tools, risk, observed reliability, latency,
+  and usage; record a brief rationale. Pi uses available OpenAI models; Claude Code uses Anthropic models.
+  Do not change parent model, billing, or privileges, or silently substitute an unavailable model.
+  Use supported effort controls; report unavailable effort and choose a supported level or actual/default.
+  Do not invent API parameters. Shared roles remain provider- and effort-neutral.
 - Keep a decisions table in the plan: stable ids, decision, reason. Mark superseded rows; never
   delete them.
 - Docs, code comments, test names, PRs, and tickets state the decided rule, never plan-only ids
@@ -102,7 +110,14 @@ messages, apps messages, tickets, code comments, emails, social media content.
 - Every session, record accepted decisions and their rationale in existing plans or maintained docs.
 - Keep reusable rules global; keep project decisions and private details in their owning workspace.
 - Before handoff, record verified outcomes, unresolved questions, and next steps; update relevant indexes.
-- Propose improvements from repeated corrections and failed checks each session; apply only after approval.
+- In company sessions, retain the existing rule: propose improvements from repeated corrections and
+  failed checks each session; apply only after approval.
+- In personal and open-source sessions, notice repeated corrections, failed checks, and manual
+  friction without prompting at natural checkpoints. Propose the smallest change once per pattern,
+  with evidence, scope, benefit, verification, and rollback; retain unanswered proposals in the existing
+  plan; silence is not approval. Require approval for harness changes or behavioral instructions
+  in memory; factual notes need no approval. Keep sensitive evidence and individual preferences separate.
+  Do not adapt work without approval. No recurring pattern means no proposal or logging obligation.
 
 ## Documentation
 

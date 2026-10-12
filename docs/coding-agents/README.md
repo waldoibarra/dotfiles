@@ -10,6 +10,7 @@ updater copies two configs. A configured link does not prove that a running agen
 | Changing shared rules, personal instructions or Claude response styles | [Agent instructions](/docs/agent-instructions.md) |
 | Understanding Pi provisioning, voice choices, or accepted limitations | [Pi and live voice](pi/README.md) |
 | Configuring or verifying personal MCP servers across clients | [Personal MCP servers](mcp.md) |
+| Applying the personal/open-source learning and delegation workflow | [Personal agent workflow](personal-workflow.md) |
 | Delegating with a shared role and an explicit model | [Pi delegation](pi/delegation.md) |
 | Adding, updating or checking skill discovery | [Agent skills](/docs/agent-skills.md) |
 | Diagnosing RTK, Herdr or Moshi hooks and plugins, or the Lens plugin | [Agent integrations](/docs/agent-integrations.md) |

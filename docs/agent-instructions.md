@@ -10,10 +10,9 @@ A file or symlink on disk does not prove that an agent loaded it.
 `~/.agents/AGENTS.md` and each agent's global path. Keep it usable across projects;
 repository-specific rules belong in the root [`AGENTS.md`](/AGENTS.md).
 
-Read the [harness design policy](/home/.agents/AGENTS.md#harness-design) before changing shared
-configuration or adding a harness-specific adapter.
-Read the [learning policy](/home/.agents/AGENTS.md#learning) before handoff or promoting feedback
-into rules.
+Read the [harness design](/home/.agents/AGENTS.md#harness-design) and [learning](/home/.agents/AGENTS.md#learning)
+policies before changing shared configuration or promoting feedback. Read the
+[personal workflow](/docs/coding-agents/personal-workflow.md) before verifying that instruction behavior.
 
 | Agent | Global loader |
 | --- | --- |

@@ -7,8 +7,10 @@ Codex are dropped.
 verification is recorded in the [shared roles plan](/.agents/plans/pi-shared-roles.md).
 Personal MCP parity and the session learning loop are tracked in the
 [personal MCP plan](/.agents/plans/personal-mcp.md).
-Waldo approved committing the remaining retired-harness repository cleanup.
-Machine-local removal and private work-hub changes remain separate; concurrent `pi-lens` work is excluded.
+The personal/open-source instruction slice is implemented; verification and audit results appear
+below. The earlier proposed work/Cursor continuation was superseded by the user's selection of
+personal/open-source focus.
+The DRY refactor is complete; final verification is recorded below. No sync or work changes.
 Tags: **[F]** fact, **[A]** assumption, **[U]** unknown.
 
 ## Start here
@@ -111,15 +113,67 @@ Patterns from the sprint 19 demo session, and where each now lives:
 | D2 | **Public roadmap:** keep work file names here, or only in the private companion? | Generic names here |
 | D4 | **`docs/quotas.md` "OpenCode Go":** a subscription, not the agent. Drop it with the plan? | Kept |
 | D3 | **PR images:** `gh` can't upload them. Drag-and-drop by hand, or a non-merged assets ref? | Drag-and-drop by hand |
+| D5 | **Unprompted harness writes:** should repeated unanswered proposals permit autonomous edits? | No; propose in-session and retain for handoff until Waldo sets an explicit boundary. |
+| D6 | **Personal identities:** should another operator share the current operator's preferences? | No; confirm their environment and consent before sharing personal preferences. |
+
+## Personal and open-source instruction slice
+
+**Intended outcome, not yet observed in ordinary sessions:** notice recurring friction and propose
+small evidence-backed improvements at natural handoffs. Canonical policy lives in
+[global instructions](/home/.agents/AGENTS.md); read the [personal workflow guide](/docs/coding-agents/personal-workflow.md)
+for activation and verification. Company adaptation remains deferred.
+
+### Approved decisions
+
+| Id | Decision | Reason |
+| --- | --- | --- |
+| H1 | Apply new guidance only to personal and open-source sessions. | Company workflow adaptation remains deferred; harness choice does not establish scope. |
+| H2 | Keep one shared instruction source and five provider-neutral roles. | Existing loading and delegation already work; no new runtime mechanism is needed. |
+| H3 | Keep Astra leading Pi and Fable leading Claude Code. | Worker selection must not replace the orchestrator. |
+| H4 | Select child model and supported effort per task, within the current authorized provider. | Task risk and measured reliability matter more than fixed tiers. |
+| H5 | Propose improvements at natural checkpoints; require approval before applying them. | Missed prompts do not establish consent, even for reversible instruction changes. |
+| H6 | Keep private evidence and individual preferences separate from public reusable rules. | Open-source reuse must not publish work details or presume individual preferences. |
+| H7 | Verify instruction behavior with synthetic, tool-disabled fresh sessions. | Text matching alone cannot demonstrate model behavior; results remain smoke evidence. |
+
+### Historical outcomes
+
+- **[F] Implementation:** Luna high completed instruction changes; Sol medium updated docs. Delegation
+  exercised Astra high for review/audit, Luna medium for lookup-review and high for implementation,
+  and Sol medium. Terra remains untested.
+- **[F] Smoke:** fresh Pi Astra and Claude Fable probes respected eight synthetic scenarios.
+  Claude's empty settings-source baseline excluded global instructions; corrected probes retained
+  `user` settings, disabled hooks, and disabled Lens.
+- **[F] Checks then reported passed:** four provisioning regressions, offline runner discovery and
+  invalid-selection checks, `just lint`, shared-file Markdown lint, and scoped whitespace check.
+- **[F] Native Claude dispatch:** Fable delegated `plan-reviewer` to Sonnet; metadata recorded
+  `claude-fable-5-1` and `claude-sonnet-5-5` on `firstParty`. Parent effort was high; child effort
+  was not independently selected or verified.
+- **[F] Activation:** shared/Pi links and Claude's global import resolved. New sessions reload
+  instructions; not every existing session was refreshed.
+- **[F] Independent acceptance audit passed.** Runtime outputs remain private; only sanitized
+  summaries are recorded. No enforcement or comparative capability benchmark is claimed.
+  Tool-disabled smoke checks show intended decisions only. Ordinary-session proposals remain
+  unverified.
+- **[F] Boundaries:** no sync, installation, settings, permissions, credentials, or work files
+  changed. Concurrent Pi Lens work remains excluded. Cross-provider delegation is untested.
+
+### Refactor verification
+
+- Consolidated repeated policy, candidate assignments, completed recipes, and continuation summaries.
+  Shared instructions own policy; the workflow guide owns repeatable checks.
+- Astra's independent source audit passed without confirmed or plausible findings.
+- Fresh Pi Astra and Claude Fable sessions passed the eight-scenario smoke check after refactoring.
+- `just lint`, explicit shared-file Markdown lint, four provisioning tests, offline runner checks,
+  and scoped `git diff --check` passed. Concurrent Lens files remained unchanged.
+- Broader model-selection scenarios remain a future proposal; no capability ranking is established.
 
 ## Next
 
-1. **Learning loop** (global): shared instructions now require decision records and session handoffs.
-   Add a `retro` skill only when repeated evidence justifies more than those existing rules.
+1. Observe personal/open-source sessions; work adaptation, Cursor support, retired-harness cleanup,
+   and autonomous edits remain deferred.
 2. **`rfc` skill** (work): company template, tracker mirror, index update, announcement draft.
 3. **Frozen review build** (work): serve a build on another port, so hot reload spares review tabs.
-4. **Cursor support:** confirm what Cursor reads (`AGENTS.md`, `.cursor/rules`, skills); link the
-   global rules and work skills only after that check. Not started.
+4. **Cursor support:** confirm its instruction loading before configuration. Not started.
 5. **`setup.sh` links `.claude/agents/`** (work): only once a work-only role agent exists.
 
 **Weekly prune [A]:** shrink absorbed memories, keep `AGENTS.md` near 100 lines, retire unused skills.
