@@ -39,6 +39,23 @@ This cleanup was self-reviewed without additional model dispatch.
 The current source cleanup does not remove old commits, caches, or existing clones.
 No dotfiles push, history rewrite, package release, or billing change is authorized by this migration.
 
+## Fresh-session handoff
+
+The user requested task-list ownership changes only, then an implementation stop for a fresh session.
+
+- Dotfiles owns this plan and `pi-lens-verification.md`; both are indexed in `.agents/README.md`.
+- Ownership migration is committed locally as `1ac7057`; dotfiles was not pushed.
+- Public Pi Lens cleanup is committed and pushed as `262add2`; application behavior was unchanged.
+- Old published commits still contain the misplaced records. History rewriting requires explicit approval.
+- Thinking indentation is not implemented. The attempted Luna dispatch failed schema validation before any worker launched.
+- No further worker launch or application implementation may occur in this session.
+
+Before resuming, check the owning repositories and use the current pending-work table below.
+The isolated send-now draft remains at `/tmp/pi-send-now-worktree.zHjd4W`; it is unmerged and unaccepted.
+Do not stage its dependency symlinks or treat characterization tests as a completed send-now feature.
+Host offline-build approval, default-loader validation, quota recovery, and local UX acceptance remain separate gates.
+Astra/Fable remain main-chat-only; the user may choose a weaker main model for the new session.
+
 ## Outcome
 
 Ship a standalone Pi package matching Claude Code Lens's normal, clean, and raw views.
