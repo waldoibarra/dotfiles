@@ -162,6 +162,9 @@ class PersonalMcpTest(unittest.TestCase):
         source = ROOT / "home/.agents/mcp.json"
         for relative in (".agents/mcp.json", ".pi/agent/mcp.json"):
             self.assertEqual((self.home / relative).resolve(), source)
+        launcher = self.home / ".local/bin/google-sheets-personal-mcp"
+        self.assertEqual(launcher.resolve(), ROOT / "home/.local/bin/google-sheets-personal-mcp")
+        self.assertTrue(os.access(launcher, os.X_OK))
         self.assertEqual(json.loads(self.registry.read_text()), self.initial)
 
 

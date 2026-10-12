@@ -16,8 +16,9 @@ through `claude mcp add-json --scope user`. It never replaces that file or impor
 | Server | Launch | Purpose |
 | --- | --- | --- |
 | `context7` | `npx -y --package=@upstash/context7-mcp@2.2.5 -- context7-mcp` | Resolve library IDs and retrieve public documentation. |
+| `google-sheets-personal` | `google-sheets-personal-mcp` | Personal Sheets access through isolated Desktop OAuth. |
 
-The pinned stdio command preserves the existing Claude configuration.
+Context7's pinned stdio command preserves the existing Claude configuration.
 Node/npm and network access are required; `npx` downloads the pinned package if absent.
 Context7 accepts unauthenticated requests but may rate-limit them; no account or API key is provisioned.
 Queries reach Context7's external service. Keep private code, company details, and secrets out of queries.
@@ -32,6 +33,13 @@ Project servers can shadow user servers.
 Verification outside work projects does not establish work parity.
 Subagents do not automatically receive every MCP tool. Read [Pi delegation](pi/delegation.md)
 before granting a role explicit MCP access.
+
+## Google Sheets
+
+The personal Sheets server runs locally through the shared launcher.
+Read [Connect personal Google Sheets](/docs/coding-agents/google-sheets.md)
+before creating OAuth credentials, signing in, or testing spreadsheet edits.
+That guide owns runtime versions, access boundaries, troubleshooting, and removal.
 
 ## Apply configuration
 
@@ -63,6 +71,7 @@ Run fixture checks from the repository root; they use disposable homes and a fak
 
 ```sh
 python3 scripts/tests/test-personal-mcp.py
+python3 scripts/tests/test-personal-google-sheets.py
 python3 scripts/tests/test-agent-harness.py
 ```
 
@@ -75,7 +84,9 @@ MCP_NATIVE_CHECK=1 python3 scripts/tests/test-personal-mcp.py
 That test registers inert fixture commands; it never launches an MCP server or changes your real registry.
 It demonstrates observed native behavior, not a guarantee against every competing writer.
 
-From a directory outside work projects, check each real client:
+These commands connect servers and may start browser consent.
+Run them yourself from a personal directory after completing setup.
+Use isolated profiles for unattended connection checks:
 
 ```sh
 claude mcp get context7

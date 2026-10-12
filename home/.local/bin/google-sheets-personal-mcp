@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+"""Launch the personal Google Sheets MCP with isolated OAuth credentials."""
+
+import json
+import os
+from pathlib import Path
+import stat
+import sys
+
+
+def fail(message):
+    print(f"google-sheets-personal-mcp: {message}", file=sys.stderr)
+    raise SystemExit(1)
+
+
+def main():
+    home = Path(os.environ.get("HOME", str(Path.home()))).expanduser().resolve()
+    try:
+        cwd = Path.cwd().resolve()
+        work = (home / "projects/work").resolve()
+        cwd.relative_to(work)
+    except ValueError:
+        pass
+    except OSError:
+        fail("cannot resolve startup directory")
+    else:
+        fail("refusing to start under ~/projects/work")
+
+    client = home / ".config/mcp-google-sheets/personal/client.json"
+    try:
+        data = json.loads(client.read_text())
+        installed = data["installed"]
+        if not isinstance(installed, dict) or not all(
+            isinstance(installed.get(key), str) and installed[key].strip()
+            for key in ("client_id", "client_secret", "auth_uri", "token_uri")
+        ):
+            raise ValueError
+    except (OSError, ValueError, KeyError, TypeError):
+        fail(f"missing or invalid Desktop OAuth client configuration: {client}")
+
+    token = home / ".local/state/mcp-google-sheets/personal/token.json"
+    try:
+        os.umask(0o077)
+        token.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+        token.parent.chmod(0o700)
+        if token.exists() and stat.S_IMODE(token.stat().st_mode) & 0o077:
+            token.chmod(0o600)
+    except OSError:
+        fail("cannot create private OAuth token directory")
+
+    env = dict(os.environ)
+    env.update({
+        "CREDENTIALS_CONFIG": "",
+        "SERVICE_ACCOUNT_PATH": "",
+        "GOOGLE_APPLICATION_CREDENTIALS": os.devnull,
+        "DRIVE_FOLDER_ID": "",
+        "CREDENTIALS_PATH": str(client),
+        "TOKEN_PATH": str(token),
+    })
+    args = [
+        "uvx", "--python", "3.12", "--with", "mcp==1.30.0", "mcp-google-sheets==0.6.3",
+        "--transport", "stdio", "--include-tools",
+        "get_sheet_data,get_sheet_formulas,list_sheets,update_cells,batch_update,"
+        "create_spreadsheet,copy_sheet",
+    ]
+    try:
+        os.execvpe(args[0], args, env)
+    except OSError:
+        fail("could not execute uvx")
+
+
+if __name__ == "__main__":
+    main()

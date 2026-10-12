@@ -8,6 +8,10 @@
         "--",
         "context7-mcp"
       ]
+    },
+    "google-sheets-personal": {
+      "command": "google-sheets-personal-mcp",
+      "args": []
     }
   }
 }
