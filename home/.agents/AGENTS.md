@@ -80,21 +80,32 @@ messages, apps messages, tickets, code comments, emails, social media content.
 - Delegate broad reading and parallel work when sub-agents are available. Keep decisions, git writes,
   shared processes (dev servers, database resets) and user communication in the main session.
 - Without delegation, work sequentially and flag that self-review is not independent review.
+- Reserve Astra/Fable for the main chat; never use them for sub-agents or auxiliary probes.
+  The user chooses the main model per session, including weaker models; never switch it automatically.
+  Select every worker model explicitly for its role; never inherit the lead implicitly.
 - Choose role, model, and supported thinking level independently;
   shared role definitions live in `~/.agents/roles/`.
 - For non-trivial changes, loop: plan, independent plan review, implement (TDD style), audit against
   the plan, verify (tests, browser), then update the docs.
 - Brief each sub-agent with its goal, files, constraints, done criteria, and what it must not run.
-- **Company sessions:** use the strongest model to plan, review, and audit; a mid-tier model to
-  implement; the smallest for lookups, unless work adaptation is approved.
+- **Company sessions:** use the strongest eligible worker to plan, review, and audit;
+  a mid-tier worker implements; the smallest handles lookups, unless work adaptation is approved.
 - **Personal and open-source sessions only:** task-specific routing replaces that default. Determine
   scope from project and user context, never client, provider, or payment; ask before harness changes
-  when scope is unknown. Pi Astra and Claude Code Fable remain leads. Select each child within the
-  current authorized provider by capability, context, tools, risk, observed reliability, latency,
+  when scope is unknown. Select the least expensive capable non-lead worker within the
+  current authorized provider, considering context, tools, risk, observed reliability, latency,
   and usage; record a brief rationale. Pi uses available OpenAI models; Claude Code uses Anthropic models.
   Do not change parent model, billing, or privileges, or silently substitute an unavailable model.
   Use supported effort controls; report unavailable effort and choose a supported level or actual/default.
   Do not invent API parameters. Shared roles remain provider- and effort-neutral.
+- **Personal/open-source usage:** scope each child to one acceptance target;
+  avoid repeatedly rereading unchanged context.
+  Reuse retained context only for focused follow-ups; keep successful test output summarized.
+  After two failed acceptance passes, checkpoint blockers;
+  request approval before further model work.
+  Quota or timeout failures stop model dispatch; ask before launching or resuming another model run.
+  Close activation blockers before opening additional implementation lanes.
+- Bound test-fixture runtime, provider calls, and output; always clean up owned child processes.
 - Keep a decisions table in the plan: stable ids, decision, reason. Mark superseded rows; never
   delete them.
 - Docs, code comments, test names, PRs, and tickets state the decided rule, never plan-only ids

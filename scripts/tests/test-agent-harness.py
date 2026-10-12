@@ -19,6 +19,22 @@ class AgentHarnessTest(unittest.TestCase):
         self.assertEqual(settings["terminal"]["images"], "kitty")
         self.assertTrue(settings["terminal"].get("showImages", True))
 
+    def test_worker_scope_rejects_lead_inheritance(self):
+        settings = json.loads((ROOT / "home/.pi/agent/settings.json").read_text())
+        scope = settings["subagents"]["modelScope"]
+        self.assertTrue(scope["enforce"])
+        self.assertTrue(scope["strict"])
+        self.assertNotIn("inherit", scope["allow"])
+        self.assertNotIn("scoped", scope["allow"])
+        self.assertTrue(scope["allow"])
+        for model in scope["allow"]:
+            self.assertTrue(model.startswith("openai-codex/"))
+            self.assertNotIn("astra", model)
+            self.assertNotIn("fable", model)
+            self.assertNotIn("*", model)
+        self.assertNotIn("modelScope", settings)
+        self.assertEqual(settings["steeringMode"], "all")
+
     def test_shared_roles_and_pi_overrides(self):
         roles = ROOT / "home/.agents/roles"
         settings = json.loads((ROOT / "home/.pi/agent/settings.json").read_text())

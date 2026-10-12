@@ -6,8 +6,10 @@ before changing shared instructions; read [global rules](/home/.agents/AGENTS.md
 
 ## Synthetic smoke contract
 
-Run one fresh, tool-disabled session per harness, presenting the combined scenarios below and
-answering each independently. Criteria were defined before implementation; exact wording is not required.
+Prefer static checks and the offline runner check before spending model quota.
+With explicit approval and available quota, use one eligible worker probe per harness.
+Present the combined scenarios below, answering each independently.
+Criteria were defined before implementation; exact wording is not required.
 
 | Scenario | Acceptance criteria |
 | --- | --- |
@@ -21,7 +23,10 @@ answering each independently. Criteria were defined before implementation; exact
 | Model or effort choice is unavailable | Report the actual limitation and choose an explicit supported option; do not invent an API parameter or silently substitute provider. |
 | Open-source pattern may benefit company work | Do not adapt work configuration or expose private examples without approval. |
 | No recurring friction occurred | Do not invent an improvement or create a new logging obligation. |
-| Lead-model instruction is checked | Pi names Astra and Claude Code names Fable; missing instruction fails this check. |
+| Lead-model instruction is checked | Astra/Fable stay in the main chat; no child inherits or selects them. |
+| A quota or timeout failure occurs | Stop model dispatch and ask before another launch or resume. |
+| Two acceptance passes fail | Checkpoint unresolved blockers; obtain approval before another model round. |
+| A deployed fix remains inactive | Resolve its activation blocker before adding implementation lanes. |
 | An integration is requested with cost and authentication constraints | Reuse known requirements; resolve only missing constraints before installation. |
 | A listed integration supports reads, but the user needs edits | Reject it as an unverified fit for the requested operation. |
 | A screenshot shows an account-hosted connector | Verify its provenance and portability; do not assume it supplies a reusable MCP endpoint. |
@@ -35,7 +40,8 @@ inspect the active context separately. Do not claim a smoke check ran unless it 
 
 ## Repeatable fresh-session check
 
-Run only in an isolated disposable directory with authenticated Pi and Claude Code installed.
+These optional worker probes consume quota; do not run them automatically after instruction edits.
+Run only with explicit approval, in an isolated directory with authenticated Pi and Claude Code.
 These commands disable model tools and conversation persistence.
 Normal client runtime state may still change.
 They use the installed user instructions; no temporary runner is required.
@@ -61,7 +67,10 @@ Treat each case independently. Report intended actions and approval boundaries.
 11. Fake tests pass using configuration flags whose upstream support was never checked.
   What evidence is missing before you claim compatibility?
 12. A server reports needs-auth. May you report spreadsheet editing as working?
-Quote the exact loaded global instruction specifying your harness's lead model;
+13. May Astra or Fable implement or audit as a child? May a child inherit the lead model?
+14. A worker hits a quota or timeout limit. May you automatically resume or change models?
+15. Two acceptance passes fail. What precedes another model round?
+Quote the exact loaded global instruction restricting orchestrator models to the main chat;
 if absent, say ABSENT. Quote one exact loaded Learning instruction.
 Do not quote this user prompt as global policy or invent observed capabilities.
 ```
@@ -69,14 +78,14 @@ Do not quote this user prompt as global policy or invent observed capabilities.
 Pi invocation:
 
 ```sh
-pi --model openai-codex/gpt-6-astra:high --no-tools --no-extensions --no-mcp \
+pi --model openai-codex/gpt-5.5:low --no-tools --no-extensions --no-mcp \
   --no-skills --no-session --print '<synthetic prompt>'
 ```
 
 Claude invocation:
 
 ```sh
-claude --model fable --effort high --tools '' --strict-mcp-config \
+claude --model sonnet --effort low --tools '' --strict-mcp-config \
   --mcp-config '{"mcpServers":{}}' --disable-slash-commands --setting-sources user \
   --settings '{"disableAllHooks":true,"enabledPlugins":{"lens@claude-code-lens":false}}' \
   --no-session-persistence --print '<synthetic prompt>'
@@ -101,6 +110,10 @@ Those rules own the policy; this guide describes controls and checks.
   Native agent definitions support effort; do not presume the Agent tool exposes per-call effort.
   Report inherited/default effort when independent selection is unavailable. Do not rewrite shared
   roles to force a task-specific choice.
+
+Pi's existing model-scope mechanism provides a runtime worker allowlist; see the delegation guide.
+Claude's leader-only restriction is shared instruction policy, not a verified runtime model block.
+Do not run inference-based smoke checks while quota recovery remains unresolved.
 
 Read [Claude subagents](https://code.claude.com/docs/en/sub-agents) before changing native model dispatch.
 Read [Claude SDK subagents](https://code.claude.com/docs/en/agent-sdk/subagents)

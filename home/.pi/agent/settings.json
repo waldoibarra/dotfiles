@@ -1,6 +1,7 @@
 {
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6-astra",
+  "steeringMode": "all",
   "terminal": {
     "images": "kitty"
   },
@@ -42,6 +43,19 @@
     }
   },
   "subagents": {
+    "modelScope": {
+      "enforce": true,
+      "strict": true,
+      "allow": [
+        "openai-codex/gpt-5.5",
+        "openai-codex/gpt-5.6-luna",
+        "openai-codex/gpt-5.6-sol",
+        "openai-codex/gpt-5.6-terra",
+        "openai-codex/gpt-6-luna",
+        "openai-codex/gpt-6-sol",
+        "openai-codex/gpt-6.1-sol"
+      ]
+    },
     "agentScanDirs": ["~/.agents/roles"],
     "disableBuiltins": true,
     "defaultExtensions": [],

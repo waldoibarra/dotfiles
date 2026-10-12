@@ -100,21 +100,29 @@ try {
     await assert.rejects(() => call("subagent", { ...params, async: false }),
       params.model ? /missing-fixture-provider\/missing-fixture-model/ : /Unknown agent/);
   }
-  console.log("PASS: installed role discovery and invalid selections");
+  for (const params of [
+    { model: "openai-codex/gpt-6-astra:low" },
+    ...(session.model?.id.includes("astra") ? [{}] : []),
+  ]) {
+    await assert.rejects(() => call("subagent", {
+      agent: "code-auditor", ...params, task, async: false,
+    }), /outside the configured subagent model scope/);
+  }
+  assert.equal(session.steeringMode, "all");
+  console.log("PASS: role discovery, leader rejection, and all-message steering configuration");
   if (live) {
     const foreground = [
       ["plan-reviewer", selectedModels[0]], ["code-auditor", selectedModels[1]],
-      ["docs-writer", undefined],
+      ["docs-writer", selectedModels[0]],
     ];
     for (const [agent, model] of foreground) {
       const result = await call("subagent", {
-        agent, ...(model ? { model } : {}), task, async: false,
+        agent, model, task, async: false,
         options: { agentScope: "user", timeoutMs: 120000 },
       });
       save(agent, result);
       assert(!result.isError, JSON.stringify(result));
-      checkChild(result.details.results[0], agent,
-        model ?? `${session.model.provider}/${session.model.id}`);
+      checkChild(result.details.results[0], agent, model);
     }
     // Separate background launches allow different models without scripted workflows.
     const receipts = await Promise.all(["implementer", "browser-tester"].map((agent, index) =>
@@ -133,7 +141,7 @@ try {
       assert.equal(status.processTerminal.state, "observed");
       checkChild(status.steps[0], ["implementer", "browser-tester"][index], selectedModels[index]);
     }
-    console.log("PASS: roles, explicit/inherited models, context, mixed-model background runs");
+    console.log("PASS: roles, explicit worker models, context, mixed-model background runs");
   }
   console.log(`Private runtime evidence: ${cwd}`);
 } finally {

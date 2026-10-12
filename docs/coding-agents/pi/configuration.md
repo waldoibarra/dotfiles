@@ -58,6 +58,18 @@ Use `"auto"` or remove `terminal.images` to restore detection.
 Use `false` to disable inline image protocols.
 No `dots`, package installation, or terminal restart is required.
 
+## Queued messages
+
+`steeringMode: "all"` delivers pending steering messages together at the next native tool-batch boundary.
+Enter uses steering while Pi works; Alt+Enter requests a follow-up after the current work.
+This does not interrupt an active model response or an unfinished tool batch.
+A Codemode call remains one outer tool call, even when it contains several operations.
+
+Pi 1.1.0 reloads this preference through `/reload`; use it only after the current response finishes.
+This is distinct from the unfinished send-now/background-handoff patch.
+Read [Claude's queue behavior](https://code.claude.com/docs/en/interactive-mode#when-claude-code-sends-what-you-queued)
+before comparing messages with queued slash or shell commands.
+
 ## Extended context and compaction
 
 `models.json` sets `providers.openai-codex.modelOverrides[MODEL_ID].contextWindow` to **1,050,000**

@@ -129,11 +129,16 @@ for activation and verification. Company adaptation remains deferred.
 | --- | --- | --- |
 | H1 | Apply new guidance only to personal and open-source sessions. | Company workflow adaptation remains deferred; harness choice does not establish scope. |
 | H2 | Keep one shared instruction source and five provider-neutral roles. | Existing loading and delegation already work; no new runtime mechanism is needed. |
-| H3 | Keep Astra leading Pi and Fable leading Claude Code. | Worker selection must not replace the orchestrator. |
-| H4 | Select child model and supported effort per task, within the current authorized provider. | Task risk and measured reliability matter more than fixed tiers. |
+| H3 | Superseded: fixed Astra/Fable leads. | The user now chooses the main model per session. |
+| H4 | Superseded: unrestricted task-specific child selection. | Astra/Fable are now excluded from every worker role. |
 | H5 | Propose improvements at natural checkpoints; require approval before applying them. | Missed prompts do not establish consent, even for reversible instruction changes. |
 | H6 | Keep private evidence and individual preferences separate from public reusable rules. | Open-source reuse must not publish work details or presume individual preferences. |
 | H7 | Verify instruction behavior with synthetic, tool-disabled fresh sessions. | Text matching alone cannot demonstrate model behavior; results remain smoke evidence. |
+| H8 | Reserve Astra/Fable for the main chat; require explicit non-lead workers. | User correction after excessive quota consumption. |
+| H9 | Keep main-model selection user-owned, including weaker research models. | Session requirements determine the main model. |
+| H10 | Enforce Pi worker selection through its existing strict model scope. | Block expensive lead inheritance without another plugin. |
+| H11 | Checkpoint after repeated failures; require approval after quota or timeout failures. | Prevent unattended retry and review loops. |
+| H12 | Use native all-message steering at the next tool-batch boundary. | Closer queued-message behavior without another package. |
 
 ### Historical outcomes
 
@@ -174,7 +179,8 @@ for activation and verification. Company adaptation remains deferred.
 **[F]** Partial deliveries left authorized work unfinished. The Pi Lens plan owns its completion list.
 **[F]** Laptop previews render. Tokens, attribution, queue controls, and distribution remain unfinished.
 
-**Decision:** retain existing global rules. Use scoped implementers, independent reviews, and verified
+**Earlier decision, superseded by H8–H12:** retain existing global rules.
+Use scoped implementers, independent reviews, and verified
 completion gates. Pi is the primary coding agent; both Lens packages target the closest supported UX.
 Commit verified changes separately, preserving other agents' work.
 Package publication awaits local validation.
@@ -185,7 +191,7 @@ Read [the Lens display spike](/.agents/spikes/pi-lens-tool-display.md)
 before continuing transcript work.
 Observe adherence in later personal sessions before proposing additional global wording.
 
-### Pending fixture-safety proposal
+### Fixture-safety outcome
 
 A delegated warning-test prototype left an unbounded context log, filling approximately 65 GiB.
 A second prototype retained approximately 911 MiB.
@@ -196,13 +202,28 @@ Available space recovered to 67 GiB; repository changes were preserved.
 The warning fixture now caps provider calls, logged context, terminal output, and elapsed time.
 Its cleanup terminates the owned process group. Both terminal modes passed afterward.
 
-**Proposed, awaiting approval:** require bounded runtime/output and complete process cleanup
-for agent-run test fixtures.
-Scope: shared personal/open-source instructions.
-Benefit: prevent test prototypes from exhausting workstation resources.
-Verification: inspect the canonical rule and exercise timeout/output-limit cleanup
-without leaving child processes.
-Rollback: remove the single added rule. Existing implementation work continues independently.
+Applied under the user's subsequent request to improve the harness using this session's evidence.
+The shared rule now requires bounded fixtures and cleanup of owned processes.
+The resource-control fixture passed before this instruction change; no inference probe was rerun.
+Rollback: revert the added rule; retain the independently verified fixture safeguards.
+
+### Usage correction and verification
+
+The Lens plan owns the measured session usage and full remaining delivery checklist.
+The audit found 33 recorded Astra child dispatches, including 13 implementation and 17 audit runs.
+Repeated review loops and large parent/worker contexts compounded the routing mistake.
+Local telemetry is not the provider's quota ledger; exact subscription-limit consumption remains unknown.
+
+Canonical policy now reserves Astra/Fable for the main chat and leaves main-model choice to the user.
+Pi's strict allowlist rejects Astra selection and inherited Astra before inference.
+Claude receives the same shared policy; no native Claude runtime model block is claimed.
+Roles remain provider-neutral. Parent model, billing, privileges, and context capacities were not changed.
+
+Six provisioning tests and the actual installed runner's offline rejection checks passed.
+The fresh offline session also loaded all-message steering.
+No new model calls or behavioral probes ran.
+Instruction edits were self-reviewed, not independently reviewed. No `dots` or publication ran.
+Rollback uses the scoped configuration/instruction diff; no credentials or unrelated work were touched.
 
 ## Next
 
