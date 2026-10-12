@@ -167,6 +167,22 @@ for activation and verification. Company adaptation remains deferred.
   and scoped `git diff --check` passed. Concurrent Lens files remained unchanged.
 - Broader model-selection scenarios remain a future proposal; no capability ranking is established.
 
+## Lens delivery follow-up
+
+**[F]** Repeated orchestration reminders exposed failures to follow existing delegation rules.
+**[F]** Reload instructions preceded further work, causing rejected reloads and queued user input.
+**[F]** Partial deliveries left authorized work unfinished. The Pi Lens plan owns its completion list.
+**[F]** Laptop previews render. Tokens, attribution, queue controls, and distribution remain unfinished.
+
+**Decision:** retain existing global rules. Use scoped implementers, independent reviews, and verified
+completion gates. Pi is the primary coding agent; both Lens packages target the closest supported UX.
+Commit verified changes separately, preserving other agents' work. Publication awaits local validation.
+This note authorizes no new global policy or company-scope changes.
+
+Read [the Lens display spike](/.agents/spikes/pi-lens-tool-display.md)
+before continuing transcript work.
+Observe adherence in later personal sessions before proposing additional global wording.
+
 ## Next
 
 1. Observe personal/open-source sessions; work adaptation, Cursor support, retired-harness cleanup,
