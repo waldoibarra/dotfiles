@@ -34,8 +34,8 @@ Host activation, exact clipboard identity, and immediate send-now remain separat
 ## Historical recommendation
 
 The user subsequently chose a standalone Pi Lens sibling. The original recommendation below is superseded.
-Read `.agents/plan.md` in the local `pi-lens` checkout before continuing implementation.
-The local Pi Lens checkout owns the cross-repository completion list and verification results.
+Read [the Lens delivery plan](/.agents/plans/pi-lens-delivery.md) before continuing implementation.
+Dotfiles owns the cross-repository backlog and [verification record](/.agents/plans/pi-lens-verification.md).
 Public GitHub source is authorized. Package publication awaits local validation.
 Dotfiles declares no Pi Lens package yet.
 

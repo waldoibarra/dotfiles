@@ -1,0 +1,726 @@
+<!-- markdownlint-disable MD013 -->
+# Lens and personal harness delivery
+
+This cross-repository plan belongs to dotfiles. Do not copy or link it from public product repositories.
+The retained record keeps its original formatting; historical statuses are superseded by the current checkpoint.
+
+## Ownership correction and implementation plan
+
+| Work | Code/configuration owner | Coordination owner |
+| --- | --- | --- |
+| Thinking indentation, folds, activity ordering, spacing, and peek behavior | `pi-lens` | This plan |
+| Equivalent Claude presentation and public sibling links | `claude-code-lens` | This plan |
+| Input-origin bindings and clipboard capture/persistence | Pi core | This plan |
+| Native queue timing and immediate send-now execution | Pi core | This plan |
+| Native loader/event diagnostic callbacks | Pi core | This plan |
+| Subagent warnings, child diagnostic adapters, and runner compatibility | `pi-subagents` | This plan |
+| Main/worker routing, quota controls, terminal preferences, and shortcuts | Dotfiles | This plan and the AI harness roadmap |
+| Local builds, activation, accepted package pins, and `dots` delivery | Dotfiles | This plan |
+| Personal usage evidence, cross-repository backlog, and package comparisons | Dotfiles `.agents/` | This plan |
+| Generic public behavior and supported host contracts | Each product's `docs/` | Product repository |
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D63 | Keep personal harness records in dotfiles, not Pi Lens | User corrected an unintended public disclosure |
+| D64 | Public product repositories contain no operator-specific plans or backlinks | Prevent recurrence without duplicating the backlog |
+
+Implementation order:
+
+1. Preserve this plan and verification evidence in dotfiles; update their index and local references.
+2. Remove the misplaced public records and personal installation details from Pi Lens.
+3. Retain generic host compatibility requirements; remove operator-specific checkout and patch references.
+4. Check documentation links, formatting, and publication boundaries; commit and push the scoped Pi Lens cleanup.
+5. Obtain explicit approval before rewriting published Git history or changing repository visibility.
+6. Resume UX work through its owning repository and an eligible worker after the quota/activation gates are resolved.
+
+Ownership migration checks passed: preserved records, updated local index/references, product-only public docs, and ignored agent records.
+The focused Pi Lens documentation test and both repositories' documentation checks passed.
+This cleanup was self-reviewed without additional model dispatch.
+The current source cleanup does not remove old commits, caches, or existing clones.
+No dotfiles push, history rewrite, package release, or billing change is authorized by this migration.
+
+## Outcome
+
+Ship a standalone Pi package matching Claude Code Lens's normal, clean, and raw views.
+Waldo's Pi 1.1.0 workstation is the first supported environment.
+
+This file is authoritative. Read it before continuing implementation.
+Read [verification results](/.agents/plans/pi-lens-verification.md) before claiming acceptance.
+The checkpoint below supersedes historical routing and status statements elsewhere in this plan.
+Earlier Astra child assignments are historical, not permission to repeat them.
+
+## Current pending work and activation checkpoint
+
+| Priority | Work                         | Verified state / remaining gate                                                                                                       |
+| -------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| 1        | Usage discipline             | Shared policy reserves Astra/Fable for main chat; Pi strict worker allowlist rejects Astra before inference.                          |
+| 1        | Main model choice            | User-owned per session; weaker main models are allowed. No automatic parent-model change.                                             |
+| 1        | Activate host fixes          | Installed Pi remains stock 1.1.0. Offline-build approval and default-loader validation remain outstanding.                            |
+| 2        | Indent expanded thinking     | Newly requested two-column left inset under the heading; preserve bullets, wrapping, raw output, and peek anchoring. Not implemented. |
+| 2        | Human versus automated input | Source is implemented and audited. New composer input becomes You; extension input folds. Host activation is missing.                 |
+| 2        | Pasted-image tokens          | Host and Lens source are implemented and audited. Built-host activation and physical clipboard acceptance remain missing.             |
+| 2        | Queued notes after tools     | Native steeringMode is now all. Fresh offline SDK confirms it; reload applies it to the running host.                                 |
+| 3        | Queue clarity                | Draft work exists in the isolated send-now worktree; not independently accepted or merged.                                            |
+| 3        | Immediate send-now           | Not implemented. Native bash handoff, recovery, shortcuts, command/chord/subagent parity remain unfinished.                           |
+| 3        | Native diagnostics           | Source and real source-SDK/TUI checks passed. Compiled default-loader activation is still unverified.                                 |
+| 4        | Claude parity                | Local commit a3e074f passed audit and 26 tests. Physical rendering remains a manual gate; no release.                                 |
+| 4        | Portable dots provisioning   | Await locally accepted immutable sources and explicit deployment; no fabricated package version or local-only path pin.               |
+| 4        | Package release              | Blocked until user validation. Only Pi Lens GitHub source push is authorized.                                                         |
+
+No model workers may resume after the quota failure without operator approval.
+The padding change belongs to one small non-lead worker; no Astra/Fable implementation or review child.
+Configuration edits were checked without inference; self-review is not independent review.
+
+### Accepted corrections
+
+| ID  | Decision                                                               | Reason                                                                        |
+| --- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| D56 | Astra/Fable are main-chat-only, never workers or auxiliary probes      | User correction after quota exhaustion; supersedes earlier worker assignments |
+| D57 | The user chooses the main model, including weaker research models      | Session needs determine the main model                                        |
+| D58 | Use explicit, least-expensive capable worker selection by role         | Prevent lead inheritance and unnecessary premium-model work                   |
+| D59 | Bound repair rounds; stop dispatch after quota or timeout failures     | Avoid unattended retry and review loops                                       |
+| D60 | Use native all-message steering before considering another package     | Pi already accepts steering after the current tool batch                      |
+| D61 | Add a two-column inset to expanded thinking history                    | User screenshot shows bullets aligned with the disclosure header              |
+| D62 | Keep You for proven composer input and fold identified extension input | No fabricated human attribution or text-based classification                  |
+
+### Queue behavior and package decision
+
+Claude sends queued messages when the running tool calls finish, within the same turn.
+Slash and shell commands generally wait until that turn ends; immediate commands are exceptions.
+Pi Enter already uses steering; Alt+Enter uses follow-up delivery after current work.
+Its previous one-at-a-time default could delay later notes behind other queued entries.
+The tracked native steeringMode is now all; no package is needed for that change.
+
+The boundary is an outer tool batch, not an arbitrary operation inside a running Codemode script.
+Neither native steering nor this setting injects a message into an already-streaming model response.
+Immediate send-now is a separate feature; do not advertise an abort/dequeue shortcut as equivalent.
+Read [Claude's queue reference](https://code.claude.com/docs/en/interactive-mode#when-claude-code-sends-what-you-queued)
+before changing those semantics.
+
+A bounded package recheck rejected four candidates against mandatory requirements:
+pi-compact-tools 0.15.0, pi-clipboard 0.1.10, Archimedes image-paste 2.10.4, and pi-wait 0.1.5.
+The dotfiles Lens display spike owns the detailed source comparison. Nothing was installed.
+
+### Usage audit snapshot
+
+Canonical assistant usage entries were deduplicated by session file and entry ID.
+Artifact transcript copies and cumulative resume metadata were not summed.
+Previous no-session CLI children are absent, so this is not a complete account-wide total.
+
+| Scope                      | Model   | Responses | Uncached input |  Output | Reasoning subset | Cache reads |
+| -------------------------- | ------- | --------: | -------------: | ------: | ---------------: | ----------: |
+| Current child sessions     | GPT-5.5 |       702 |      2,099,268 | 217,848 |           78,816 |  64,320,256 |
+| Current child sessions     | Astra   |       839 |      3,865,375 | 334,580 |          105,939 |  88,578,304 |
+| Current main session       | Astra   |       243 |      1,532,188 | 264,360 |          204,334 |  70,845,056 |
+| Previous Lens main session | Astra   |       521 |      3,910,527 | 447,715 |          303,039 | 124,512,640 |
+
+Reasoning is included in output, not additional to it. These are token records, not provider quota charges.
+Recorded dispatch metadata contains 44 runs, including resumes: 33 Astra and 11 GPT-5.5.
+Astra handled 13 implementation, 17 audit, and 3 planning dispatches.
+The main sessions also consumed substantial reasoning and repeatedly processed large contexts.
+The orchestration mistake was premium worker use plus oversized scopes and repeated review/rework—not just tool output.
+No exact subscription quota conversion, reset time, or actual monetary charge is established.
+
+## Behavior contract
+
+Use `claude-code-lens` commit `ca16172` as the reference, especially `docs/views.md` and `hooks/register.tsx`.
+
+- Normal groups consecutive mixed-tool steps, shows counts, five steps, and an expandable remainder.
+- Clean shows each run's count and latest failure; clicking reveals step names.
+- Raw delegates to native Pi rendering without decorations.
+- Assistant prose and user messages separate runs; questions render independently.
+- Steps expose commands, output, errors, and diffs on click; native expansion remains available.
+- User, assistant, and run footers show timestamps and the actual model when known.
+- A Lens-owned status describes current activity; questions and subagents use their available metadata.
+- The native spinner remains untouched because its shared setter cannot safely restore another extension's message.
+- Tool execution, arguments, results, prompts, and stored messages remain unchanged.
+- `pi-live-codex-delegation` messages collapse to one line and expand to their original contents.
+- The live-voice editor, visualizer, status, microphone, keyboard handling, and controls remain untouched.
+- Reload preserves the selected view and expanded choices; new sessions start normal.
+- Previously unobserved steps use Lens's single-row resume fallback, without invented timing.
+- Fullscreen clicks open folds and details; native expansion exposes every original tool in either TUI mode.
+- Unsupported private component shapes fall back to native rendering, never hidden failures.
+
+Pi has no universal question or subagent schema. Support Claude-style question records and
+`pi-subagents@0.77.0` result metadata through named, tested adapters; otherwise retain native details.
+Background completion and slash-command errors have no universal native event schema.
+Expose unsupported cases honestly rather than guessing text origins or fabricating metadata.
+Pi's bash tool has no description field; use Lens's existing fallback, “Ran a shell command”.
+
+## Approach and slices
+
+1. Establish package, pinned host development dependencies, strict TypeScript, and test commands.
+2. Port pure Lens formatting with parity tests first; adapt Pi names and results at one boundary.
+3. Gate feasibility using the real extension loader and credential-free terminal fixture, then test
+   a display-only transcript projection against real Pi component instances.
+4. Implement normal/clean folds, click routing, native expansion, labels, and raw recovery.
+5. Wire lifecycle, `/lens`, working status, resume, and session replacement.
+6. Audit unchanged model-facing state, teardown, errors, unknown tools, images, and narrow terminals.
+7. Run deterministic terminal smoke tests without model calls, then validate workstation package loading.
+8. Write Diátaxis documentation and dotfiles-specific trial instructions; report exact readiness limits.
+
+Keep modules limited to formatting, Pi normalization, presentation, host adapter, and extension wiring.
+Reuse pure formatting without extracting a shared package or introducing a plugin framework.
+Use an instance-scoped transcript adapter instead of process-wide patches wherever host access permits.
+The public renderer API alone cannot provide mixed-run grouping and native message footers.
+
+## Decisions
+
+| ID  | Decision                                           | Reason                                                       | Authority               |
+| --- | -------------------------------------------------- | ------------------------------------------------------------ | ----------------------- |
+| D1  | Standalone sibling repository                      | Reusable outside dotfiles                                    | User                    |
+| D2  | Behavior parity before improvements                | Avoid redesigning the requested first version                | User                    |
+| D3  | TDD for each behavior                              | Prove regressions before adding implementation               | User                    |
+| D4  | Pin Pi 1.1.0 for first support                     | Matches the primary user's installed host                    | Repository evidence     |
+| D5  | No shared cross-repo runtime dependency            | Keep installation independent; avoid premature abstraction   | Implementation decision |
+| D6  | Guard private transcript integration               | Exact grouping and message footers require host internals    | Spike evidence          |
+| D7  | No publication or default-profile installation yet | Local testing does not require shared writes                 | Scope boundary          |
+| D8  | No output/context rewriting                        | Lens is presentation-only                                    | Existing Lens contract  |
+| D9  | Fold live-voice delegation messages only           | User supplied screenshots of verbose transcript messages     | User                    |
+| D10 | Never patch the editor or intercept voice keys     | Protect the live-voice visualizer and controls               | User                    |
+| D11 | Use a Lens-owned activity status                   | Pi's global working-message setter has no ownership contract | Audit correction        |
+
+## Accepted trial refinements
+
+| ID  | Decision                                                          | Reason                                        | Authority           |
+| --- | ----------------------------------------------------------------- | --------------------------------------------- | ------------------- |
+| D12 | Mark expandable steps with closed/open chevrons                   | Make available detail visible before clicking | User trial feedback |
+| D13 | Humanize recognized model IDs without changing stored identifiers | Prefer labels such as GPT 6 Astra             | User trial feedback |
+
+These changes retain the accepted views, native fallback, and voice-UI boundaries.
+
+## Expand every collapsed step
+
+Current task: make all Lens-collapsed steps individually expandable, including reads and historical calls.
+Native expanded components replace copied, bounded detail previews. No tool executes again.
+The guarantee is no additional Lens truncation; upstream tool truncation and native renderer limits still apply.
+
+| ID  | Decision                                                        | Reason                                                                        | Authority               |
+| --- | --------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------- |
+| D14 | Every collapsed tool step opens its original expanded row       | Reads, old calls, running tools, and custom renderers must remain inspectable | User                    |
+| D15 | Remove Lens detail caps and copied payloads                     | Native rows already own the complete retained result                          | User requirement        |
+| D16 | Use the public global-expansion flag for native bypass          | Individual expansion must not unfold sibling steps                            | Independent plan review |
+| D17 | Global collapse clears individual tool and voice opens          | Collapse must not immediately reopen prior details                            | Review recommendation   |
+| D18 | Synchronize native collapse and restore choices on rebuilt rows | Preserve click behavior, raw transitions, and reload                          | Independent plan review |
+
+The original bounded-preview acceptance criteria below are superseded by these decisions.
+Keep run folds, error summaries, readable model names, and the live-voice editor unchanged.
+Questions retain their friendly summary and expose the original arguments/results when opened.
+The transcript adapter must delegate its original renderer when the projection returns the original child array.
+
+Implementation order:
+
+1. Add failing native-equivalence tests for reads, historical/custom tools, large outputs, and mouse controls.
+2. Implement a shared native disclosure wrapper and explicit global/raw transition reconciliation.
+3. Remove obsolete copied preview fields/helpers; keep summary facts only.
+4. Reconcile historical/voice disclosure keys against the active branch, separately from bounded metadata.
+5. Run independent audit, all tests, voice compatibility, both TUI modes, then update user documentation.
+
+Required regressions: output beyond 20,000 characters/2,000 lines; commands beyond 4,000 characters;
+diffs beyond 200 lines; rows older than 150 and 600 calls; custom buttons/images; streamed updates;
+header/body collapse; global toggles; raw clicks; reload; branch navigation; unchanged model-visible context.
+
+## Action summaries instead of internal labels
+
+The resumed-session screenshot shows an unhelpful `Codemode` step and several verbose reasoning headings.
+Summarize observed nested actions from Pi's `details.calls`; do not infer tasks from arbitrary script text.
+A batch reading files should name those files or give action counts, not say `Took 1 other step`.
+The user's follow-up requests the latest thinking heading with expandable history.
+Keep assistant prose and failures visible; implement the requested progress layout.
+All original script, nested-call, reasoning, and result details remain available through expansion.
+
+| ID  | Decision                                                      | Reason                                                             | Authority       |
+| --- | ------------------------------------------------------------- | ------------------------------------------------------------------ | --------------- |
+| D19 | Summarize executed nested actions, not the orchestration tool | `Codemode` is implementation detail, not useful progress           | User screenshot |
+| D20 | Superseded: generic folded reasoning label                    | User prefers useful live progress rather than hiding every heading | User correction |
+| D21 | Latest progress heading with expandable history               | Keep current activity visible without accumulating noise           | User follow-up  |
+
+Action summaries follow the independent expansion worker's owned presentation changes.
+Progress layout uses inline disclosure (`rule/inline-before-modal`),
+keeps user-opened history stable (`rule/preserve-mental-model`), and retains specific progress copy
+(`rule/loading-state-specific`) from the product-design rule registry.
+
+## Hover feedback and latest progress
+
+The existing headers handle clicks but do not render pointer-hover feedback.
+Use the theme's selected background on clickable headers without changing their geometry or error colors.
+Hover must clear when the pointer leaves, on view changes, and during scrolling/selection.
+Observe terminal mouse sequences without consuming input; do not replace the editor or capture pointer gestures.
+Hover refreshes must not reset transcript text selection.
+
+Progress uses one latest heading per user request, with all earlier thinking available on expansion.
+Reuse native thinking components where possible, preserving prose, errors, truncation warnings, and raw rendering.
+An opened history stays open while new headings arrive. No model calls generate these summaries.
+
+| ID  | Decision                                                | Reason                                                | Authority             |
+| --- | ------------------------------------------------------- | ----------------------------------------------------- | --------------------- |
+| D22 | Theme-based hover highlight for every Lens click target | Make interactive steps visibly discoverable           | User                  |
+| D23 | Non-consuming mouse observation; selection-safe repaint | Preserve native selection and live-voice input        | Safety constraint     |
+| D24 | Superseded by D30: one progress disclosure per request  | Later activity was hidden above newer assistant prose | Earlier user feedback |
+
+Verification: header enter/leave, full-width hover, errors retaining red text, no action on motion,
+selection/capture/voice unaffected, hover surviving redraw, mode/reset cleanup, chronological progress expansion,
+streaming updates, multiple assistant rows, visible prose/failures, raw equality, and both terminal modes.
+
+## Thinking-list clarity and stable expansion
+
+User feedback requests explicit thinking labels, a tight bulleted history, role-specific model colors,
+and expansion that leaves the viewport in place. Normal run totals are labels, not disclosure controls.
+
+| ID  | Decision                                                                | Reason                                                       | Authority |
+| --- | ----------------------------------------------------------------------- | ------------------------------------------------------------ | --------- |
+| D25 | Label active reasoning Thinking… and completed history Thinking updates | Make the progress row's purpose explicit                     | User      |
+| D26 | Render one bullet per thinking update without blank separators          | Make expanded history scannable while retaining its detail   | User      |
+| D27 | Warm reply-model labels; muted grey tool-run labels                     | Match the role distinction in the supplied Claude screenshot | User      |
+| D28 | Disable follow-end at the current viewport offset when details expand   | Keep the reader in place; new detail extends below           | User      |
+| D29 | Normal run totals are non-interactive and never hover-highlight         | Only actual disclosure controls advertise interaction        | User      |
+
+Thinking activity is inferred only from streaming thinking content, not merely a still-streaming reply.
+Before thinking content arrives, Pi's native working indicator remains responsible for activity feedback.
+Thinking-history formatting may use display-only per-update native Markdown components; stored messages remain unchanged.
+Preserve prose, errors, fenced code, detailed paragraphs, raw rendering, and Markdown transformer behavior.
+
+Viewport pinning uses Pi 1.1's guarded primary ScrollView and its public scrollTo(disableFollow) option.
+It runs before the next layout pass, without changing editor focus or intercepting navigation keys.
+Regular-mode terminal scrollback remains terminal-owned. Raw mode retains native behavior.
+
+Verification: active/completed labels; tight bullets and retained detailed text/code; readable small widths;
+reply-versus-tool color assertions; inert normal totals with working more/fewer controls;
+real fullscreen expansion while following bottom and while scrolled up, including tool, voice and thinking rows;
+manual scrolling afterward; and unchanged voice UI/model context.
+
+## Verification
+
+- Pure tests: labels, 15 error classes, run counts, five-step limit, clean failures, question answers, models.
+- Host tests: real tool components, mixed calls, assistant boundaries, click coordinates, raw equality.
+- Lifecycle tests: reload, fresh sessions, repeated prompts, branching, disposal, unsupported host shapes.
+- Safety tests: deep-frozen messages/results; unknown tools; cancellation; images recoverable natively.
+- Width tests: narrow/wide terminals, ANSI styling, Unicode paths, long command output.
+- Voice tests: exact delegation custom type; full expansion; raw equality; unchanged editor and sibling widgets.
+- Load installed `pi-live-codex` beside Lens in an isolated profile, without opening audio or connecting voice.
+- Package checks: typecheck, tests, formatting, Markdown, publish payload, and clean dependency installation.
+- Terminal smoke: synthetic fixture, no API credentials, fullscreen and regular modes, view switching.
+- Workstation: isolated profile and workspace with explicit compatibility extensions; never activate voice.
+- No dotfiles writes, settings/package commands, default-profile installation, or `dots` execution.
+
+### Parity acceptance matrix
+
+| Behavior                                            | Source                        | Executable evidence                                |
+| --------------------------------------------------- | ----------------------------- | -------------------------------------------------- |
+| Labels, facts, 15 errors, bounded output            | `hooks/lens.ts`               | `tests/domain.test.ts`                             |
+| Normal five steps; clean latest failure; mixed runs | `drawFold`                    | `tests/presentation.test.ts`                       |
+| Click step, more/fewer, question; native expansion  | `drawFold`, question renderer | `tests/adapter.test.ts`, `tests/terminal-smoke.py` |
+| Status, model, time, duplicate prompts              | `stampLabel`, render hooks    | `tests/presentation.test.ts`                       |
+| `/lens` status, invalid args, global redraw         | command handler               | `tests/extension.test.ts`                          |
+| Raw equals native Pi with identical extensions      | raw guards                    | component equality and terminal smoke              |
+| Reload choices; fresh/reset; unseen resume rows     | atoms and fallback render     | lifecycle tests                                    |
+| Active label; no custom working label in raw        | spinner hook                  | extension tests                                    |
+| Command box, diff, output caps                      | `drawFold`, `outputOf`        | presentation tests                                 |
+| Subagent model, question states                     | agent/question helpers        | normalization fixtures                             |
+
+Private integration must restore native rendering after partial failure and remain inert outside TUI.
+Keep UI state in an in-process session-keyed slot solely for reload, never in model-facing messages.
+Use native expansion state rather than intercepting a hardcoded Ctrl+O shortcut.
+Use Pi wording for errors and preserve non-Claude model identifiers rather than calling them Claude.
+
+### Independent review
+
+The plan reviewer identified interaction, historical-state, and loader-test gaps; this revision addresses them.
+Remaining platform gaps must be reported before claiming full parity: arbitrary slash-command output and
+unrecognized background-agent notification schemas have no universal Pi contract.
+
+Review the plan independently before implementation. Audit the result against this contract afterward.
+Do not call a source inspection or component test a human terminal acceptance test.
+
+## Documentation
+
+Use Ghostwriter's plain fallback; no private voice profile is installed.
+README explains value and a local-checkout trial without claiming a published registry package.
+Separate tutorial, how-to, reference, and explanation pages under `docs/`.
+Keep contributor commands in `AGENTS.md` and a contribution how-to.
+Document private API coupling and any remaining parity gaps explicitly.
+
+## Packaging constraint
+
+The npm registry already contains an unrelated `pi-lens@4.4.3` from `apmantza/pi-lens`.
+The repository name remains `pi-lens`; `private: true` prevents accidental publication under that package name.
+A scoped publication name and remote creation remain separate decisions after local acceptance.
+
+## Current feedback and sibling delivery plan
+
+This section governs remaining work and supersedes conflicting original trial exclusions.
+Both Lens implementations share one visual and behavioral target wherever host capabilities permit.
+Every supported refinement must be evaluated in both repositories, not treated as a Pi-only redesign.
+A Pi-first delivery unblocks the current trial; the paired Claude review remains required before parity acceptance.
+The user now requests implementation of every remaining local work item through delegated execution.
+Exact send-now behavior, local upstream patches, and laptop-first image presentation are approved.
+Installing patched host builds, publication, and new global behavioral instructions remain separate approval gates.
+
+### Feedback decisions
+
+| ID  | Decision                                                                              | Reason                                                                               | Status / authority                                               |
+| --- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| D30 | Start a new activity segment after visible assistant prose                            | New work must remain visible below the latest reply                                  | User; supersedes D24                                             |
+| D31 | Remove bold styling from compact thinking labels                                      | Compact history needs less visual emphasis                                           | User                                                             |
+| D32 | Remove spacing owned solely by hidden rows                                            | Folding must reclaim vertical space without flattening native content                | User                                                             |
+| D33 | Unknown authorship stays neutral and visible                                          | User role and text equality do not prove human authorship                            | Confirmed provenance audit                                       |
+| D34 | Verified automation gets a distinct expandable presentation                           | Separate generated input from human messages without losing content                  | User; identity binding is a feasibility gate                     |
+| D35 | Keep native batch ownership; distinguish actions from batches                         | Three nested actions can belong to one expandable Codemode call                      | Recommendation; do not fabricate independent native child rows   |
+| D36 | Fix raw warning output at its producer                                                | Global console interception and weaker child isolation are inappropriate workarounds | Source evidence; upstream delivery choice remains open           |
+| D37 | Keep queue mutation outside Lens                                                      | Lens changes presentation, not execution or composer controls                        | Existing contract                                                |
+| D38 | Use versioned Git distribution for Pi Lens                                            | The unscoped npm name belongs to another project                                     | Proposed release route; publish only with explicit authorization |
+| D39 | Document unavoidable host-specific parity limits                                      | Claude declares neither Pi-style thinking replacement nor exact viewport anchoring   | Independent API audit; report exceptions before release          |
+| D40 | Maintain a shared visual and behavioral target across both Lens implementations       | The user explicitly reaffirmed closest possible sibling parity                       | User; applies to every delivery slice                            |
+| D41 | Match Claude send-now exactly, including conditional interruption and draft inclusion | User explicitly resolved the conflict in favor of exact parity                       | User; supersedes earlier no-interruption request                 |
+
+### Recovery and resumed implementation
+
+The resumed session recovered the original conversation and late child artifacts before continuing.
+Pi is the primary coding agent; Claude Code remains the closest supported behavior reference.
+The user approved implementation of the recovered backlog in the personal AI harness.
+The user separately approved creating and pushing public GitHub source at <https://github.com/waldoibarra/pi-lens>.
+The remote now exists. Package publication and releases remain blocked until local user validation.
+
+| ID  | Decision                                                                      | Reason                                                              | Authority                                                  |
+| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------- |
+| D42 | Prioritize Pi while preserving paired Claude behavior                         | Pi is the user's primary coding agent                               | User, resumed session                                      |
+| D43 | Repair completed drafts before adding dependent features                      | Late independent audits found unresolved defects                    | Recovered audit evidence                                   |
+| D44 | Deliver host identity before clipboard tokens and send-now                    | Attribution and attachment handling require exact message ownership | Independent host review                                    |
+| D45 | Keep installation and publication separate from source verification           | Existing approval gates protect the running harness                 | Existing boundary; activation decision pending             |
+| D46 | Commit verified changes atomically with explicit paths                        | Preserve concurrent agents' unrelated work                          | User, resumed session                                      |
+| D47 | Block publication until user validates locally                                | User requires local acceptance before release                       | User, resumed session                                      |
+| D48 | Handoff only when every unresolved owner explicitly supports it               | Mixed or nested execution cannot safely assume background ownership | Lead; conservative Pi policy, not verified Claude behavior |
+| D49 | Preserve ordinary queue scheduling; send-now selects in submission order      | Avoid changing Enter or SDK timing while adding immediate delivery  | Lead; implementation boundary                              |
+| D50 | Settle owned background work before session invalidation; no restart survival | Prevent orphan results or cross-session delivery                    | Lead; conservative Pi policy                               |
+| D51 | Add configurable Ctrl+Enter before a separate chord implementation            | Existing keybinding arrays are alternatives, not chord sequences    | Source review and lead                                     |
+
+Recovered state supersedes stale pending-implementation labels below:
+
+- Image-first rendering exists; audit corrections and full image lifecycle verification remain pending.
+- The image loader fixture exists; fullscreen passed historically, regular image interaction remains unverified.
+- Composer-safe warning routing exists; async and static-metadata warning escapes remain unresolved.
+- Claude native delegation exists; standalone result visibility, questions, footer order, and status require fixes.
+- Host identity received independent review with corrections; host implementation has not started.
+- Harness lessons are recorded in the dotfiles roadmap; no additional global policy is needed.
+- No earlier implementation workers were observed running during recovery.
+- Historical Pi full-check log records 125 passing tests; this is not fresh acceptance of the remaining defects.
+
+Current execution: one writer per repository, followed by independent audits and lead verification.
+Use native delegation; the previous session's CLI-child workaround is no longer needed.
+Do not overwrite unrelated dirty dotfiles changes or claim patched builds are active before installation.
+
+Active resumed lanes:
+
+- GPT-5.5 high: Pi Lens image audit repairs, warning-routing repairs, Claude native-detail repairs, and Pi identity implementation.
+- Astra high: independent implementation briefs for send-now/queue diagnostics and clipboard/attribution integration.
+- The lead owns integration, fresh verification, atomic commits, and approval-gated activation.
+- User requires local validation before package publication. Source-only GitHub push is now explicitly authorized.
+- Pi Lens has a verified public GitHub remote; initial commit and source push follow source verification.
+- Both READMEs use actual public sibling URLs. No release tags, registry publication, or release claims.
+- Dotfiles already contains unrelated MCP and policy edits; never stage whole dirty files without ownership review.
+
+### Latest visual feedback: current activity at the transcript tail
+
+The new screenshot shows completed thinking above newer work and excessive space before the composer.
+Current source anchors grouped thinking at its first segment; normal folds can hide running steps after the fifth.
+This feedback reopens activity and spacing acceptance despite earlier passing tests.
+
+| ID  | Decision                                                     | Reason                                                        | Authority                                             |
+| --- | ------------------------------------------------------------ | ------------------------------------------------------------- | ----------------------------------------------------- |
+| D52 | Keep current observed activity after the latest visible work | Old anchors make active work appear stalled                   | User screenshot; supersedes first-anchor presentation |
+| D53 | Fold summaries expose the current observed action            | Running work must remain visible beyond the five-step preview | User                                                  |
+| D54 | Remove presentation-owned gaps between messages              | Dense transcript improves progress visibility                 | User; preserve meaningful content whitespace          |
+
+Implementation boundary: Pi Lens display projection first; evaluate equivalent Claude behavior through supported hooks.
+Both READMEs link their public GitHub sibling. Pi Lens remains source-only and unreleased.
+Use specific observed thinking/tool labels, never guessed plans, invented progress percentages, or elapsed-time promises.
+Preserve prose order and full history; current progress must not rewrite or reorder model-visible messages.
+Keep one authoritative live indicator rather than duplicate moving controls.
+User-opened details and scrolled history stay stable; do not force follow-bottom or steal editor/voice focus.
+The user explicitly requires peek expansion: keep the clicked header and content above at their screen positions.
+Expansion pushes content below downward. Collapse preserves the anchor where native scroll bounds permit.
+Apply this to tool details, thinking history, images, Details, clean folds, and more/fewer controls.
+Keep more/fewer at one fixed position after the preview; insert additional rows below its toggle.
+Keep historical thinking disclosures stable; later cycles after visible tools start chronological segments.
+This supersedes the older rule that all tool cycles must append into one earlier history disclosure.
+Use one noninteractive current-activity summary at the transcript tail, separate from historical disclosure controls.
+Assert screen coordinates and upper-content snapshots before scrolling to newly revealed details.
+Completed/failed/interrupted work must stop advertising active thinking.
+Unknown native shapes retain native rendering.
+
+Verification: reproduce reply → tools → thinking → tools, over-five-step running folds, async notices, narrow widths,
+normal/clean/raw, streaming to settled, open-history stability, actual terminal snapshots, and no accumulated message gaps.
+Separate real inter-message spacers from unused viewport height; do not remove space by changing terminal height.
+Preserve code fences, paragraphs, native result contents, images, selection, links, and model-context equivalence.
+
+Product basis: specific loading feedback, inline disclosure, and preserving the reader's context.
+Rules: `rule/loading-state-specific`, `rule/inline-before-modal`, `rule/preserve-mental-model`.
+
+Fresh lead verification before this feedback: 130 tests and direct/batch both-mode voice-co-loaded smoke passed.
+The image-specific fullscreen fixture failed waiting for `fixture-image-details-ok`; it remains an integration blocker.
+The image audit traced this to metadata correctly expanding below the pinned viewport, not a failed click.
+Assert stable header position before scrolling to inspect metadata; retain voice co-loading.
+
+Latest automation feedback: collapse verified generated updates by default, with concise summaries and complete expansion.
+Keep human messages visible as You. Do not classify authorship from the screenshot's text or filename patterns.
+Requests requiring human approval remain prominent; do not hide required decisions inside routine completion folds.
+The host identity slice is committed as e988874. Lens now consumes its exact native-row bindings.
+The consumer passed independent audit, 149 tests, and both source-host terminal modes with cold resume.
+Published Pi 1.1.0 lacks those bindings; legacy inputs remain neutral until a patched host supplies provenance.
+
+The user reconfirmed composer-warning removal as urgent. Producer routing is committed in pi-subagents as `00e2bed`.
+The lead verified 19 warning/runtime tests, 41 executor tests, typecheck, and diff checks after audit corrections.
+Real-loader warning/composer checks now pass against source and installed local builds in both modes.
+The lead installed the warning-only local build without network access, lifecycle scripts, or settings changes.
+Rollback artifacts remain under the native profile's private `local-trials` directory.
+The running process still retains the old runner until restart; no active workers were interrupted.
+
+Repeated incomplete UI and identity repairs justify routing their final corrections to Astra high.
+Claude Lens passed final independent audit and 26 tests; source commit `a3e074f` remains local.
+The applicable Claude scope is ready for a fix freeze and local visual validation.
+
+### Completion checklist
+
+This is the authoritative cross-repository execution checklist. Do not stop at an isolated polish milestone.
+Mark implemented, independently reviewed, locally verified, activated, and published states separately.
+
+| Work item                                                | Owning repository                       | Current state                                                                          | Completion gate                                                                           |
+| -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Thinking typography, activity placement, compact spacing | Pi Lens                                 | Implemented; final independent audit passes; 138 tests and terminal gates pass         | Current work stays visible; remove presentation-owned gaps                                |
+| Inert totals, singleton layout, chevrons, model labels   | Claude Lens                             | Implemented; reviewed; 25 tests passed                                                 | Preserve paired behavior                                                                  |
+| Laptop inline-image protocol                             | Dotfiles                                | Committed `0f7c160`; five fresh provisioning tests and full lint pass                  | User screenshot confirms laptop rendering; Moshi deferred                                 |
+| Image-first disclosure with technical details secondary  | Pi Lens                                 | Implemented; final independent audit and image-fullscreen terminal check pass          | Fix Details integration and pass independent audit                                        |
+| Clipboard image tokens and attachment identity           | Pi host, then Lens                      | Pending implementation                                                                 | `[Image 1]` maps losslessly to original input; no arbitrary path inference                |
+| Distinct automated-input presentation                    | Pi host, then Lens                      | Host e988874 and Lens consumer audited; 149 Lens tests and both source-host modes pass | Exact origin/message/row identity survives queues and history                             |
+| Composer-safe subagent diagnostics                       | pi-subagents; Pi diagnostics separately | Committed and installed locally; source and installed native-terminal checks pass      | UI warnings remain visible without terminal writes; native diagnostics follow             |
+| Queue visibility and exact send-now                      | Pi host                                 | Source plan exists; implementation pending                                             | Typed queue, eligible background handoff, conditional interruption, draft, recovery, keys |
+| Native details and remaining sibling parity              | Claude Lens                             | Committed a3e074f; 26 tests and final independent audit pass                           | Native details, footer ownership, and real host acceptance                                |
+| Sibling links and release/install preparation            | Both Lens repositories                  | Pending                                                                                | Consistent docs/manifests and reproducible isolated installs                              |
+| Managed workstation provisioning                         | Dotfiles                                | Pending release artifact                                                               | Pinned reachable artifact; preserve other agents' changes                                 |
+| Harness-roadmap session lessons                          | Dotfiles                                | Recorded; retain existing global policy                                                | Commit Lens-owned records without other agents' changes                                   |
+
+Lead-owned decisions for remaining implementation:
+
+- Image bodies prioritize the native image; expose original technical output through a secondary Details disclosure.
+- Only host-verified clipboard-pasted images receive tokens; ordinary image files retain their actual paths.
+- Number pasted images within their originating human message; stable attachment IDs preserve labels across reload and branches.
+- Never mint image tokens from filename prefixes, extensions, read results, or visible-row order.
+- Host attachment metadata must survive reload/resume without modifying model-facing content.
+- Genuine composer messages must display `You`; the temporary `Input` fallback is not the finished UX.
+- Automated messages need distinct source attribution. Unknown historical origin must not be invented.
+- Route diagnostics through explicit callback selection; a void callback must never fall through to console via `??`.
+- Keep headless/detached logs; nested in-process children inherit the UI diagnostic sink.
+- Prefer an explicit background receipt plus linked eventual completion; never duplicate tool results or orphan work.
+- Never claim complete send-now parity until mixed tool batches, cancellation, queue order, and draft handling pass.
+- Derive remaining technical ownership choices from source and tests; ask only for genuinely unresolved user behavior.
+- User reviews after integrated implementation; do not repeatedly require manual acceptance of unfinished slices.
+
+### Delivery order and ownership
+
+One implementation writer per worktree at a time. Read-only research may run concurrently.
+Independent host work may use isolated, frozen-base worktrees; the lead alone integrates their commits.
+This supersedes serial-per-repository scheduling for the independent diagnostics and send-now slices.
+The lead owns decisions, integration, git operations, publication, and workstation synchronization.
+
+| ID  | Decision                                                     | Reason                                                                               | Authority                         |
+| --- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------ | --------------------------------- |
+| D55 | Isolate send-now development from the ordinary host checkout | Preserve verified identity/clipboard work during independent diagnostics integration | Lead; existing worktree mechanism |
+
+1. **Visible activity and compact spacing — Pi Lens, first delivery.**
+   - Files: `src/progress.ts`, `src/presentation.ts`, `src/state.ts`, and progress/state/presentation/terminal tests.
+   - Replace timestamp-only segment keys and update reconciliation for independent segments within one assistant component.
+   - Verify independent toggles, streaming stability, same-process reload preservation, and branch pruning.
+   - Replace obsolete per-request ordering assertions in `tests/progress.test.ts`.
+   - Write failing tests for reasoning, reply prose, then new reasoning and tools.
+   - Segment thinking at visible prose boundaries; do not move older activity beneath newer replies.
+   - Handle reasoning and prose within one native assistant component in chronological order.
+   - Existing tool grouping checks prose; reproduce its reported failure before changing that boundary.
+   - Reproduce the screenshot's expanded thinking bullets with an ANSI-style assertion before changing typography.
+   - Remove bold from compact history labels, not the already-muted disclosure header; preserve body Markdown and code.
+   - Measure spacing from hidden assistant components, content containers, and transcript-level spacers.
+   - Remove only verified presentation-owned empty space; preserve paragraph/code whitespace and unknown native rows.
+   - Gate: new activity appears below the latest prose; empty hidden rows leave no accumulated gaps.
+   - Paired Claude acceptance: equivalent activity placement, compact spacing, and typography wherever its render API permits.
+   - Record unsupported thinking replacement explicitly; do not invent a hook or silently accept avoidable visual divergence.
+   - Verify normal, clean, raw, streaming, narrow widths, cached redraws, Mermaid, and viewport stability.
+
+2. **Truthful attribution — Pi Lens, independently shippable safety fix.**
+   - Files: `src/state.ts`, `src/presentation.ts`, lifecycle wiring only if proven necessary.
+   - First remove unconditional `You` and update tests; unknown input remains visible and neutral.
+   - Separately prove message-to-origin and message-to-component identity before adding automated-input folds.
+   - Public `input.source` alone cannot join transformed, handled, queued, or historical messages reliably.
+   - No content-prefix classifiers, last-source latch, pending FIFO, or timestamp-based authorship guesses.
+   - If no reliable integration contract exists, report partial delivery rather than claim solved automation attribution.
+   - Gate: identical human/extension text, handled/rejected input, queue reordering, reload, resume, branches, eviction.
+   - Preserve frozen message fixtures, native expansion, voice controls, and model-visible context.
+
+3. **Action counts and sibling parity — compare before changing counts.**
+   - Pi: `src/pi-data.ts`, `src/domain.ts`, `src/presentation.ts`, normalization and rendering tests.
+   - Claude: `hooks/lens.ts`, `hooks/register.tsx`, corresponding tests and generated host declarations.
+   - Inventory counting units: native calls, nested observed actions, visible rows, and more/fewer counts.
+   - Keep the native batch disclosure; clarify totals if action counts imply independently expandable rows.
+   - Shared comparison fixtures cover typography, spacing, chevrons, counts, model/time labels, and expanded native detail.
+   - Claude implementation: native detail at each original render site; mixed known/unknown groups retain every member.
+   - Remove copied-detail caps only after native delegation is verified against the actual host renderer.
+   - Match inert normal totals, singleton display, readable models, and control-only hover where supported.
+   - Preserve Claude's positive-origin allowlist; fix ambiguous text-based stamp fallback separately.
+   - Explicit exceptions: thinking replacement, exact viewport anchoring, unidentified voice integrations, native expansion limits.
+   - Gate: live, historical, failed, running, custom, nested, and partially observed calls retain inspectable details.
+   - Test grouped and standalone results, waiting/skipped questions, mixed-known groups, and previous size/age thresholds.
+   - Require raw/Ctrl+O recovery and actual Claude host rendering; mocked ENGINE nodes cannot prove native detail completeness.
+
+4. **Warning output — upstream producer, not Lens.**
+   - Confirmed source: installed `pi-subagents/src/runs/foreground/execution.js` emits launch warnings with `console.warn`.
+   - The screenshot's warning is generated in `src/runs/shared/child-tool-plan.js` for explicit empty extension lists.
+   - Retain intentional child isolation; do not remove `defaultExtensions: []` merely to suppress the warning.
+   - Inspect supported notification/logging paths; prepare a bounded upstream fix in a separate checkout if authorized.
+   - Release-blocking gate: no subagent log renders inside the composer, including the repeated empty-extension warning.
+   - Warning remains visible through supported UI; editor draft remains byte-for-byte unchanged, with no terminal corruption.
+   - Reproduce in an actual TUI with nonempty draft, repeated launches, completion, failures, resize, and both screen modes.
+   - This defect is independently shippable and must not wait for provenance research or full sibling parity.
+   - Cover foreground/background and headless logging; dotfiles changes only the verified deployment artifact afterward.
+   - No installed-package edits, process-wide console patches, unapproved fork publication, or guessed release versions.
+   - Verified producer approach: run-scoped diagnostic callback from execution to the UI-owning executor's `ctx.ui.notify`.
+   - Preserve transcript/headless logs and propagate diagnostics into nested in-process children.
+   - Pi resource-loader and event-bus diagnostics also write directly; full native-child coverage needs per-instance host sinks.
+   - User approved local upstream patch preparation. Installation and publication remain separately approval-gated.
+
+5. **Send queued messages now — research and decision gate.**
+   - New user feedback requires explicit visual distinction between working, input received/queued, and input delivered.
+   - Replace opaque queue terminology with clear delivery timing in the host's pending-message display.
+   - Keep activity visible near the composer; completed tool rows must not imply the agent has finished thinking.
+   - Preserve queue contents, draft, and native controls; never visually claim delivery before actual consumption.
+   - Screenshot evidence shows reload rejected during active work; end the parent turn before inviting a reload.
+   - The lead must distinguish interim progress messages from final handoff; do not continue tools after a reload handoff.
+   - Pi 1.1.0 documents Enter submission, Alt+Enter follow-up, and Alt+Up dequeue-to-editor.
+   - Tracked `home/.pi/agent/keybindings.json` does not override these actions.
+   - Claude documents `chat:sendNow`: Ctrl+Enter or Ctrl+X Ctrl+S, including queued messages and draft.
+   - Current Claude backgrounds eligible running work; otherwise it interrupts. An abort-only port is not exact parity.
+   - Verified: Pi 1.1.0 native bash lacks foreground-to-background handoff; abort kills its process tree.
+   - Subagents have a narrower accepted-receipt detachment path; this does not supply generic host handoff.
+   - Source: <https://code.claude.com/docs/en/interactive-mode> and <https://code.claude.com/docs/en/keybindings>.
+   - Verified: Pi 1.1.0 has no named send-now action; a keybinding-only change cannot implement it.
+   - In ordinary streaming only, Escape restores queued text and requests abort; Enter can resubmit reviewed text afterward.
+   - Compaction and retry install different Escape handlers; this is not a generally safe send-now workaround.
+   - This workaround merges steering before follow-ups and is unsafe for preserving queued attachments.
+   - `_queueSteer` retains image blocks, but `clearQueue()` returns only text and clears underlying agent queues.
+   - Recommended implementation owner: Pi host; dotfiles binds the eventual supported action, never Lens.
+   - Preserve typed queue records and attachments rather than building on lossy dequeue-to-editor behavior.
+   - Distinguish steering at the next boundary from immediate interruption; never advertise a dequeue remap as send-now.
+   - Existing public extension APIs do not suffice; prefer a native host action with dotfiles binding after delivery.
+   - Host prerequisites: identity-based typed queue, global submission order, command barriers, and background lifecycle ownership.
+   - Include duplicate-safe acknowledgements, transformed-input preservation, and exactly-once eventual tool results.
+   - Claude's portable Ctrl+X Ctrl+S fallback also needs chord dispatch; Pi currently uses single-key matching.
+   - Evaluate already-queued messages first; leave the current draft untouched during research and feasibility tests.
+   - Accepted: match Claude exactly, including queued messages followed by the current draft.
+   - Background eligible work; interrupt only when Claude would, including its shell-mode and queued-command exceptions.
+   - The earlier unconditional no-interruption requirement is superseded by the user's explicit clarification.
+   - Feasibility remains unverified in Pi; never ship an abort-only shortcut claiming exact parity.
+   - Test idle/streaming/tool-running/compacting/retrying states, duplicate inputs, attachments, delivery order, and failures.
+   - Verify keyboard protocol support and conflicts with voice/editor controls; no automatic retries or duplicate submission.
+   - Recovery must preserve unsent queue items and draft; cancellation cannot promise rollback of completed tool effects.
+
+### Pasted-image presentation
+
+User requests readable `[Image 1]` tokens with previews collapsed by default.
+Expanding should reveal the rendered image where supported, with the original path still accessible.
+
+- Pi 1.1.0 clipboard handling currently inserts temporary paths; native user rows retain only text.
+- The current session reports `TERM_PROGRAM=herdr`, with no image-protocol override.
+- Pi's automatic detection disables image protocols for Herdr; this is not proof Herdr lacks image support.
+- Verified laptop: Ghostty 1.3.1 auto-launches Herdr client/server 0.9.3 through tracked Ghostty configuration.
+- Exact Herdr 0.9.3 documentation confirms standard Kitty graphics support, including local Ghostty clients.
+- Dotfiles now sets native `terminal.images: "kitty"`; `/reload` reapplies it without installing a patched host.
+- A native SDK check reproduced the old fallback, verified Kitty image output, and verified rollback to automatic detection.
+- Five isolated dotfiles provisioning checks pass. Physical image appearance still requires the user's laptop trial.
+- This profile-wide preference targets the laptop stack; Moshi and other terminal paths are deferred.
+- Separate host attachment identity/editor tokens from Lens transcript folding and terminal rendering capability.
+- Reuse native paste-token and image components where their contracts support this behavior.
+- Do not reinterpret arbitrary path-looking prose as an attachment or load arbitrary files while rendering.
+- Preserve actual submitted content, model context, raw output, voice controls, and access to original paths.
+- Verify inline support before enabling a protocol; never mask Herdr as another terminal.
+- Cover multiple images, missing files, repeated paths, resume, narrow widths, expansion, and native image cleanup.
+- GPT-5.5 medium reviewed native integration points and the laptop override; the override passed independent plan review.
+- Readable image tokens and collapsed user-message previews remain unfinished; they require host-owned attachment identity.
+
+### Distribution and documentation — after behavioral acceptance
+
+- Add reciprocal sibling links and host-specific behavior matrices to both repositories.
+- Update Pi's `docs/reference/views.md`, `docs/explanation/display-only.md`, and installation guide.
+- Behavior documentation ships with each implementation slice, not deferred until final distribution.
+- Update Claude's views, architecture/development docs, and release metadata after verifying its release commands.
+- Separately authorize and deliver the Claude release before clean-profile verification of that exact published version.
+- Publish an immutable Pi Git tag only after authorization and passing release checks.
+- Then declare the reachable Git package in dotfiles; preserve filtered existing package declarations.
+- Dotfiles targets: `home/.pi/agent/settings.json`, `scripts/tests/test-agent-harness.py`, Pi installation/configuration docs.
+- Existing updater likely needs no functional change; verify missing pinned Git installation in an isolated profile.
+- Verify Claude marketplace installation on a clean profile rather than assume startup reconciliation.
+- Run `dots` only when deployment is authorized and necessary; announce it and protect unrelated dirty files.
+
+### Orchestration and verification
+
+- Queue research: `code-auditor`, `openai-codex/gpt-5.5`, medium effort; bounded source tracing suits this model.
+- Independent plan review: `plan-reviewer`, `openai-codex/gpt-6-astra`, high effort; cross-host trust and ordering need deeper review.
+- Pi UX implementation: GPT-5.5 high, sole Pi writer; native segmentation and reconciliation justify extra reasoning.
+- Claude polish implementation: GPT-5.5 medium, sole Claude writer; bounded labels and control behavior need less exploration.
+- Host controls research: Astra high, read-only; exact queue parity and in-process logging require careful capability tracing.
+- Final audit: Astra high, read-only, after writer completion; then lead runs integrated verification.
+- Native subagent tool is unavailable in this session; explicit isolated Pi CLI children provide delegation.
+- No child may publish, commit, install, run `dots`, modify credentials, or start shared services.
+
+Pi gates: focused failing tests first, then `bun run check` and credential-free terminal fixtures.
+Run terminal fixtures in both TUI modes, with the installed voice extension without opening audio.
+Compare model-visible context before/after each presentation slice; report exact test counts only after execution.
+Claude gates: `just help` and its recipes were inspected; run `just check`, then verify native rendering in its host.
+Dotfiles gates: `python3 scripts/tests/test-agent-harness.py`, scoped lint, and isolated fresh-profile provisioning.
+Native terminal acceptance must cover actual screenshots' ordering and spacing, not only mocked renderer nodes.
+
+After independent audit convergence, propose a fix freeze before release; later findings enter the next-iteration list.
+Recovery: `/lens raw` or unload Lens; revert owned source changes only, never unrelated workstation modifications.
+Unresolved: reliable Pi origin identity, warning-fix delivery artifact, exact send-now feasibility, and publication authorization.
+
+### Planning evidence and handoff
+
+Queue research completed through GPT-5.5 medium; key behavior was independently checked against installed source.
+`interactive-mode.js:2416–2419,3663–3671,3885–3901` establishes abort, follow-up, and text restoration behavior.
+`agent-session.js:1733–1756,1882–1889` establishes structured queue ingestion and lossy clear/restore behavior.
+Paths above resolve under the pinned Pi package's `dist/modes/interactive/` and `dist/core/` directories.
+Claude shortcut evidence comes from its official documentation, not a local terminal reproduction.
+The native batch screenshot shows three nested calls inside one Codemode disclosure; no actions were discarded.
+No implementation, shortcut change, installation, publication, or workstation sync occurred during planning.
+The 113-test result predates these reports and does not establish their fixes.
+Independent Astra review returned ready with fixes. Verified findings were incorporated: segment identities/reconciliation,
+Escape-state exceptions, actual native-detail acceptance, per-slice docs, and exact Claude release ordering.
+The reviewer initially preferred queued-only evaluation; the user subsequently authorized exact Claude parity, including the draft.
+No implementation tests ran during planning. Subsequent execution delivered the first Pi UX and Claude polish slices.
+Pi lead verification passed 117 tests and both voice-co-loaded terminal fixture variants with baseline equivalence.
+Independent review found structured-prefix and expanded-label retention defects; a bounded writer is correcting them.
+Claude lead verification passed `just check` with 25 tests; audit corrections were reproduced and fixed.
+Preservation fixes and the neutral-attribution slice now pass lead verification: 122 tests and both terminal fixture variants.
+Final integration also corrected unintended per-tool thinking boundaries; tool cycles retain one fold until visible prose separates them.
+Independent follow-up inspection verified preservation fixes and neutral attribution; a terminal-ordering verification gap was corrected.
+The final snapshot review confirmed the gap closed; the lead removed a redundant assertion and reran every Pi gate.
+Fix freeze is proposed for the completed Pi UX and Claude polish slices; no completed automation-origin contract is claimed.
+Next independent slices: Claude native-detail feasibility, reciprocal links, release preparation, and isolated dotfiles provisioning.
+Producer warning routing and exact send-now are upstream-owned; the user approved local patch preparation.
+Checkouts target Pi v1.1.0 and pi-subagents v0.77.0; installed packages remain unchanged.
+The initial bounded jobs finished. The latest implementation wave now has explicit repository owners:
+
+| Lane                            | Role/model/effort            | Scope                                                                        | Result artifact                                      |
+| ------------------------------- | ---------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------- |
+| Image-first Pi UI               | Implementer / GPT-5.5 / high | Original image components, secondary Details; retain non-pasted paths        | `/tmp/lens-image-first-implementation.txt`           |
+| Composer-safe warnings          | Implementer / GPT-5.5 / high | Run-scoped UI diagnostic sinks; preserve isolation and headless logs         | `/tmp/lens-warning-implementation.txt`               |
+| Host origin/attachment contract | Plan reviewer / Astra / high | Clipboard-only tokens, composer attribution, persistence, queue dependencies | `/tmp/lens-host-origin-attachment-plan.txt`          |
+| Claude native details           | Implementer / GPT-5.5 / high | Per-site native delegation, mixed history, no copied-detail caps             | `/tmp/lens-claude-native-details-implementation.txt` |
+
+High effort is justified by native rendering, nested execution, and identity preservation.
+Astra owns the cross-layer contract review; bounded implementation uses GPT-5.5.
+Dependencies were hydrated with lifecycle scripts disabled in local upstream checkouts only.
+No patched host was installed, no model routing changed, and no publication occurred.
+Read each result and inspect actual changes before changing a lane to verified.
+
+## Recovery and exclusions
+
+Stop the trial process to unload Lens; `/lens raw` restores native presentation during a session.
+The current feedback section authorizes paired Claude Lens work; publication and managed-profile deployment remain approval-gated.
+Do not add unrelated styling, configuration systems, telemetry, model calls, or context compression.

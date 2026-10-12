@@ -176,7 +176,8 @@ for activation and verification. Company adaptation remains deferred.
 
 **[F]** Repeated orchestration reminders exposed failures to follow existing delegation rules.
 **[F]** Reload instructions preceded further work, causing rejected reloads and queued user input.
-**[F]** Partial deliveries left authorized work unfinished. The Pi Lens plan owns its completion list.
+**[F]** Partial deliveries left authorized work unfinished.
+The dotfiles Lens delivery plan owns its completion list.
 **[F]** Laptop previews render. Tokens, attribution, queue controls, and distribution remain unfinished.
 
 **Earlier decision, superseded by H8–H12:** retain existing global rules.
@@ -209,7 +210,9 @@ Rollback: revert the added rule; retain the independently verified fixture safeg
 
 ### Usage correction and verification
 
-The Lens plan owns the measured session usage and full remaining delivery checklist.
+Read [the Lens delivery plan](/.agents/plans/pi-lens-delivery.md)
+before resuming the measured usage review or cross-repository delivery.
+These personal records stay in dotfiles; public product repositories must not copy or link them.
 The audit found 33 recorded Astra child dispatches, including 13 implementation and 17 audit runs.
 Repeated review loops and large parent/worker contexts compounded the routing mistake.
 Local telemetry is not the provider's quota ledger; exact subscription-limit consumption remains unknown.

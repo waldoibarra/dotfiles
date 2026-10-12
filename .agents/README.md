@@ -8,6 +8,8 @@ and experiments; maintained workstation documentation lives in `/docs/`.
 - Index evidence collections through their manifests rather than listing every artifact.
 - Keep ideas and user-reported observations distinct from verified results. Historical plans are
   not authorization to execute them; read the latest notes before resuming work.
+- Keep personal harness plans, routing, usage evidence, and cross-repository backlogs in this workspace.
+  Public product repositories must not copy or link those records.
 - Review additions for publication. Keep credentials, private recordings, model weights, and
   machine-local runtime files outside this directory. Record any evidence redactions in its manifest.
 
@@ -36,4 +38,6 @@ old files are later removed. Size alone does not replace the publication review 
 | Choosing browser access, studying authenticated media, or comparing Google sign-in options | [Browser and OAuth investigation](/.agents/spikes/browser-access-and-google-oauth.md) |
 | Continuing media-learning, transcription, browser, or voice-option research | [Research spike](/.agents/spikes/pi-media-learning-and-live-voice.md) |
 | Inspecting saved transcript, metric, or public-video frame evidence | [Evidence manifest](/.agents/spikes/pi-media-learning-and-live-voice-evidence/evidence-manifest.json) |
+| Resuming Lens UX, host patches, deployment, or quota-controlled delivery | [Lens delivery plan](/.agents/plans/pi-lens-delivery.md) |
+| Claiming Lens integration readiness or repeating acceptance checks | [Lens verification record](/.agents/plans/pi-lens-verification.md) |
 | Choosing compact Pi tool rendering or porting Lens | [Lens display spike](/.agents/spikes/pi-lens-tool-display.md) |

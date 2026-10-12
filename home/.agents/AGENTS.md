@@ -67,6 +67,8 @@ messages, apps messages, tickets, code comments, emails, social media content.
 - Apply YAGNI: reuse existing mechanisms; add abstractions, generators, or dependencies only
   for demonstrated requirements.
 - Keep project/company content scoped to its project or work root, not global directories.
+- Keep operator configuration, usage records, and cross-repository plans in their owning workspace.
+  Before publishing, inspect product docs and agent records for unrelated operator information.
 - **Personal/open-source integrations:** establish hosting, licensing, cost/quotas, authentication effort,
   required operations, and target clients before installing.
   Reuse known answers; ask only for missing decisions.
