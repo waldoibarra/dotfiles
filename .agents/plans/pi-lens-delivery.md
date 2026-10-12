@@ -4,6 +4,150 @@
 This cross-repository plan belongs to dotfiles. Do not copy or link it from public product repositories.
 The retained record keeps its original formatting; historical statuses are superseded by the current checkpoint.
 
+## Current feedback implementation
+
+This checkpoint supersedes the paused handoff below. The user authorized implementation and local commits, not installation or publication.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D78 | Resume bounded workers and commit inspected existing changes | User requested continued implementation and preservation of uncommitted work |
+| D79 | Keep image Details metadata-only | User rejects repeated message content before path, MIME, and size |
+| D80 | Clarify which image presentations should merge before changing them | Screenshot contains inline token, attachment preview, and legitimate read disclosure |
+| D81 | Track subsequent harness feedback in this existing plan | User requested coordinated implementation across Lens and dotfiles |
+
+Current feedback queue:
+
+| Feedback | Owner | State / acceptance |
+| --- | --- | --- |
+| Pasted image appears folded twice | Pi Lens | Awaiting clarification: inline token versus preview, or preview versus tool read |
+| Image Details repeats the message before metadata | Pi Lens | Bounded review/implementation; retain one message body and image-specific metadata |
+| Live subagent purpose/current-step summaries | pi-subagents | Pending; use observed task/tool metadata only |
+
+Routing: GPT-5.5 medium for bounded clipboard review and implementation; no premium lead-model workers.
+Existing Pi thinking/provenance and Claude question changes passed fresh checks and were committed locally.
+Runner diagnostics and warning fixtures also passed fresh checks and were committed locally.
+No installs, publication, normal-profile replacement, or credential copying are authorized.
+
+## Current parity delivery
+
+This checkpoint supersedes older stop instructions and completion tables below.
+The user authorized plan audit and implementation across both Lens repositories.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D65 | Do not rewrite published history | User declined history cleanup; historical exposure remains |
+| D66 | Record Pi Lens as active, separately from host patches | User confirmed this session loads Lens; patched-host activation is unverified |
+| D67 | Resume bounded eligible-worker dispatch | User authorized implementation in this fresh session |
+| D68 | Target closest supported behavior in both harnesses | Preserve native capabilities without inventing unsupported parity |
+| D69 | Deliver reviewed presentation slices before host activation | Existing Lens activation permits isolated UI improvements without replacing Pi |
+| D70 | Give every Claude question transcript row a disclosure; leave its dialog native | Generated API separates question controls from transcript rows |
+| D71 | Build patched Pi offline and verify in disposable profiles | User approved isolated activation to accelerate manual visual review |
+| D72 | Show subagent task summaries and observed current steps | User screenshot shows generic delegation labels and opaque active rows |
+| D73 | Reproduce warning placement against the actual loaded runner | User still sees extension-policy warnings inside the composer |
+| D74 | Prioritize proven composer labels and collapsed automated inputs | User still sees neutral Input labels; source success is not activation |
+| D75 | Stop worker dispatch after the second failed warning acceptance pass | Repaired fixture still asserts prompt submission as completion and checks a different warning |
+| D76 | Allow one bounded GPT-5.5 high warning repair | User explicitly approved the checkpoint request; no Astra/Fable workers |
+| D77 | Pause implementation and preserve the fresh-session handoff | User requested docs for continuing testing and implementation later |
+
+### Audited state
+
+- Pi Lens `262add2` and Claude Lens `a3e074f` have clean starting worktrees.
+- Pi host source includes origin, clipboard, and native diagnostic patches; source worktree is clean.
+- Input attribution and clipboard previews are implemented and source-verified, not pending implementation.
+- Installed host activation and physical clipboard acceptance remain unverified in this session.
+- Claude native detail delegation is implemented; physical rendering remains unaccepted.
+- Send-now retains an isolated, unmerged draft; no completed behavior is claimed.
+- History rewriting is excluded. Package releases, pushes, and managed-profile replacement remain separate approvals.
+
+### Execution and acceptance
+
+| Order | Acceptance target | Files / verification | State |
+| --- | --- | --- | --- |
+| 1 | Expanded Pi thinking has a two-column inset without breaking wrapping or peek | `pi-lens/src/progress.ts`, progress and expansion-scroll tests, behavior docs | Implemented; independent audit's mouse-test gap resolved; 177 tests pass; direct/batch terminal modes pass |
+| 2 | Claude question disclosures preserve native details and match supported Pi controls | `claude-code-lens/hooks/register.tsx`, render tests, views and README; `just check` | Implemented; independent audit passes; lead confirms 29 tests and all checks pass |
+| 3 | Both repositories pass their full checks; native fallback and model-facing content remain intact | Pi `bun run check` with source normalizer and voice; direct/batch terminal smoke; Claude `just check` | Passed; physical terminal acceptance remains separate |
+| 4 | Verify host-dependent features through the compiled default loader | Offline build and isolated activation first; no normal-profile replacement | Compiled diagnostics, input attribution, and async TASKS warning fixtures pass; user trial remains pending |
+| 5 | Finish host queue/send-now separately, then distribution | Retain draft without merging; re-audit before implementation | Pending host work |
+
+Pi inset acceptance includes ordinary bullets, whole-document native fallback, narrow widths, mouse offsets, and raw bypass.
+Claude waiting, answered, skipped, and failed transcript rows use chevrons and expose original native rows when opened.
+The separate `AskUserQuestion` dialog receives no Lens hook; question controls remain native and available.
+Do not force Claude thinking or viewport behavior through APIs that do not expose those controls.
+Read each repository's behavior docs before editing. Update public docs only for its generic behavior.
+Use explicit eligible non-lead workers under the fresh-session routing and approval boundaries below.
+Stop on quota or timeout failure; after two failed acceptance passes, checkpoint and ask before further model work.
+No physical terminal, microphone, or user visual acceptance is implied by automated fixtures.
+Recovery remains `/lens raw` or unloading Lens; revert only owned changes.
+
+### Fresh-session handoff
+
+The user requested documentation for continuing in a fresh session. No additional implementation was authorized by that request.
+Read [verification results and commands](/.agents/plans/pi-lens-verification.md#repeat-the-verified-checks) before retesting.
+
+#### Checkouts and uncommitted work
+
+Repositories are under `$HOME/projects/personal/`; coordination records remain in `$HOME/.dotfiles/.agents/`.
+
+| Repository | HEAD | Current worktree |
+| --- | --- | --- |
+| `pi` | `97400e2` | Clean source; offline build completed; compiled CLI is `packages/coding-agent/dist/bundle/cli.js` |
+| `pi-lens` | `262add2` | Thinking inset, mouse regression, compiled provenance fixture, and behavior/testing docs |
+| `claude-code-lens` | `a3e074f` | Question chevrons and native details, render tests, README and views |
+| `pi-subagents` | `b67d202` | Async launch-warning emission, compiled diagnostics, TASKS terminal/integration tests, testing docs |
+| Dotfiles | `056e8ae` | Delivery plan, verification record, and workspace index |
+
+Inspect each diff before editing. Preserve these uncommitted changes; no commits or pushes were made this session.
+The isolated send-now draft remains at `/tmp/pi-send-now-worktree.zHjd4W`; it is unmerged and unaccepted.
+Do not stage its `node_modules` symlinks. Temporary worktrees and evidence may disappear across sessions.
+
+#### Verified versus active
+
+- Pi inset and Claude question disclosures passed their recorded checks; both bounded presentation scopes are ready for a fix freeze.
+- Patched Pi built offline successfully: 77 bundle files, 8.7 MiB; source remains clean.
+- Compiled-host provenance proves composer `You`, extension folds, raw/global recovery, and cold resume in both terminal modes.
+- Compiled default-loader diagnostics and repaired async TASKS warning tests pass; exact test results live in the verification record.
+- The final warning repair received lead review against earlier independent findings, not another independent final audit.
+- Installed runner JavaScript still has the older direct-console warning path; earlier installation claims are superseded.
+- User confirmed Lens active, but the loaded extension path was not conclusively established.
+- User ran `/reload`; recent persisted input still lacked origin bindings. Reload cannot replace the Pi host binary.
+- A patched-host process and updated runner source are required for the verified host-dependent behavior.
+- No normal-profile replacement, authenticated manual trial, physical clipboard acceptance, release, or `dots` occurred.
+
+#### Next work, in order
+
+1. Obtain authorization for the next bounded worker lane; the approved warning repair is complete.
+2. Implement live subagent purpose/current-step summaries from existing task and progress metadata.
+3. Prepare a disposable visual-review launch using the compiled host, local Lens, and updated runner source.
+4. Confirm physical rendering, composer protection, new composer labels, automated-input folds, and native dialog behavior.
+5. Re-audit the isolated send-now draft before continuing host queue work; then address distribution separately.
+
+For status work, inspect `pi-subagents/src/runs/foreground/subagent-executor.ts` and `src/tui/render.ts`.
+The compact workflow renderer uses `job.description`, but its root producer does not populate it.
+Do not blindly use `derivedObjective`: it can contain generated workflow code rather than a useful task summary.
+Async chain descriptions already exist; TASKS uses a different generated-workflow path.
+Reuse normalized child task snippets and observed tool/path metadata; never invent progress or add summarization calls.
+Live summaries and the manual-review launcher are not implemented.
+
+Choose trial authentication deliberately: credential-free demonstration or explicit reuse of existing authentication.
+Do not copy credentials, replace the normal profile, or switch the user's main model without authorization.
+Older unbound messages must remain neutral; do not infer origin from their wording.
+
+#### Routing and recovery
+
+All session workers used explicit `openai-codex/gpt-5.5`, medium except the approved high-effort warning repair.
+Astra/Fable remain main-chat-only. Renew authorization after quota/timeouts or two failed acceptance passes.
+The warning repair needed two rejected attempts before explicit approval; do not repeat unlimited review loops.
+Use installed local test executables, not `npx` auto-installation. One earlier worker attempted that prohibited path.
+Keep one writer per checkout; the main session owns builds, installation, Git operations, and communication.
+Normal-profile changes and publishing remain separate approvals. History cleanup was declined.
+Recovery is `/lens raw` or leaving the disposable trial; the installed host has not been replaced.
+
+Pending routing proposal: use GPT-5.5 high for native TUI fixture repairs after one medium-effort acceptance failure.
+Evidence: two medium-effort warning attempts failed acceptance; the approved high-effort repair passed lead checks.
+Scope: personal native-TUI fixture repairs only. Benefit: fewer rejected implementation rounds.
+Verify against the next approved repair's acceptance count; rollback to task-specific medium routing if ineffective.
+This proposal needs approval; no global instructions or routing defaults were changed.
+
 ## Ownership correction and implementation plan
 
 | Work | Code/configuration owner | Coordination owner |
@@ -30,7 +174,7 @@ Implementation order:
 2. Remove the misplaced public records and personal installation details from Pi Lens.
 3. Retain generic host compatibility requirements; remove operator-specific checkout and patch references.
 4. Check documentation links, formatting, and publication boundaries; commit and push the scoped Pi Lens cleanup.
-5. Obtain explicit approval before rewriting published Git history or changing repository visibility.
+5. Leave published history and repository visibility unchanged; history cleanup was declined.
 6. Resume UX work through its owning repository and an eligible worker after the quota/activation gates are resolved.
 
 Ownership migration checks passed: preserved records, updated local index/references, product-only public docs, and ignored agent records.
@@ -39,14 +183,15 @@ This cleanup was self-reviewed without additional model dispatch.
 The current source cleanup does not remove old commits, caches, or existing clones.
 No dotfiles push, history rewrite, package release, or billing change is authorized by this migration.
 
-## Fresh-session handoff
+## Historical ownership handoff (superseded)
 
-The user requested task-list ownership changes only, then an implementation stop for a fresh session.
+This earlier handoff is historical; the current fresh-session handoff above supersedes its statuses and stop instructions.
+The user then requested task-list ownership changes only, followed by an implementation stop.
 
 - Dotfiles owns this plan and `pi-lens-verification.md`; both are indexed in `.agents/README.md`.
 - Ownership migration is committed locally as `1ac7057`; dotfiles was not pushed.
 - Public Pi Lens cleanup is committed and pushed as `262add2`; application behavior was unchanged.
-- Old published commits still contain the misplaced records. History rewriting requires explicit approval.
+- Old published commits still contain the misplaced records. The user subsequently declined history cleanup.
 - Thinking indentation is not implemented. The attempted Luna dispatch failed schema validation before any worker launched.
 - No further worker launch or application implementation may occur in this session.
 
@@ -507,7 +652,7 @@ Mark implemented, independently reviewed, locally verified, activated, and publi
 | Inert totals, singleton layout, chevrons, model labels   | Claude Lens                             | Implemented; reviewed; 25 tests passed                                                 | Preserve paired behavior                                                                  |
 | Laptop inline-image protocol                             | Dotfiles                                | Committed `0f7c160`; five fresh provisioning tests and full lint pass                  | User screenshot confirms laptop rendering; Moshi deferred                                 |
 | Image-first disclosure with technical details secondary  | Pi Lens                                 | Implemented; final independent audit and image-fullscreen terminal check pass          | Fix Details integration and pass independent audit                                        |
-| Clipboard image tokens and attachment identity           | Pi host, then Lens                      | Pending implementation                                                                 | `[Image 1]` maps losslessly to original input; no arbitrary path inference                |
+| Clipboard image tokens and attachment identity           | Pi host, then Lens                      | Source verified; activation and physical clipboard checks pending                      | `[Image 1]` maps losslessly to original input; no arbitrary path inference                |
 | Distinct automated-input presentation                    | Pi host, then Lens                      | Host e988874 and Lens consumer audited; 149 Lens tests and both source-host modes pass | Exact origin/message/row identity survives queues and history                             |
 | Composer-safe subagent diagnostics                       | pi-subagents; Pi diagnostics separately | Committed and installed locally; source and installed native-terminal checks pass      | UI warnings remain visible without terminal writes; native diagnostics follow             |
 | Queue visibility and exact send-now                      | Pi host                                 | Source plan exists; implementation pending                                             | Typed queue, eligible background handoff, conditional interruption, draft, recovery, keys |
@@ -694,7 +839,8 @@ Native terminal acceptance must cover actual screenshots' ordering and spacing, 
 
 After independent audit convergence, propose a fix freeze before release; later findings enter the next-iteration list.
 Recovery: `/lens raw` or unload Lens; revert owned source changes only, never unrelated workstation modifications.
-Unresolved: reliable Pi origin identity, warning-fix delivery artifact, exact send-now feasibility, and publication authorization.
+Unresolved: patched-host activation, default-loader diagnostics, exact send-now feasibility, and publication authorization.
+Reliable Pi origin identity is implemented and source-verified; stock Pi lacks its required bindings.
 
 ### Planning evidence and handoff
 

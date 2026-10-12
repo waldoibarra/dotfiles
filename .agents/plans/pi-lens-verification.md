@@ -4,6 +4,191 @@
 This workstation and cross-repository evidence belongs to dotfiles, not the public Pi Lens repository.
 Historical results below retain their original context; they do not establish current activation.
 
+## Resumed feedback checkpoint
+
+The user authorized local implementation and commits; installation, publication, and normal-profile replacement remain excluded.
+
+Fresh lead-run checks before clipboard feedback edits:
+
+| Check | Observed result |
+| --- | --- |
+| Pi Lens full check with source normalizer and voice | 177 passed; typecheck and lint passed |
+| Claude Lens `just check` | 29 passed; all configured checks passed |
+| Runner structured workflows and typecheck | Six tests passed; types passed |
+| Source and compiled native diagnostic fixtures | Two passed, no skips |
+| Warning-routing fixtures | Three passed, no skips; ten terminal runs |
+
+Inspected existing changes were committed locally:
+
+| Repository | Commits |
+| --- | --- |
+| Pi Lens | `0dd5289` thinking inset; `1b8d690` compiled provenance fixture |
+| Claude Lens | `6e8b6ca` question disclosures |
+| pi-subagents | `8e22400` async warnings; `576368d` compiled diagnostic fixtures |
+
+The screenshots establish visible clipboard tokens and previews in the user's trial.
+They do not establish the loaded checkout or version, nor acceptance of image Details.
+Details currently repeats the original message before image metadata; a bounded correction is underway.
+The duplicate-fold report awaits clarification before changing inline tokens or legitimate read-tool disclosures.
+The isolated send-now draft remains unreviewed; committing an unfinished checkpoint awaits confirmation.
+
+## Current parity checkpoint
+
+- User confirms Pi Lens is active in this session; patched-host activation remains unverified.
+- User declined history cleanup and authorized plan audit followed by implementation in both Lens repositories.
+- Independent plan review found stale clipboard, origin-identity, and activation claims; delivery plan corrections are recorded.
+- Pi's two-column thinking inset is implemented; its regression checks passed, including mouse routing.
+- Claude delegates native tool details already; its generated API does not promise identical Pi viewport behavior.
+- Source worktrees started clean: Pi Lens `262add2`, Claude Lens `a3e074f`, Pi host `97400e2`.
+- Fresh automated checks below passed; physical acceptance remains outstanding.
+
+### Thinking inset and question disclosure results
+
+| Check | Observed result |
+| --- | --- |
+| Pi full check with source normalizer and installed voice visualizer | 177 tests passed, zero failures or skips; typecheck and lint passed |
+| Pi direct real-loader smoke with voice co-loaded | Fullscreen and regular passed; model-visible baseline equivalence passed |
+| Pi nested-batch real-loader smoke with voice co-loaded | Fullscreen and regular passed; model-visible baseline equivalence passed |
+| Claude full `just check` | 29 tests passed; plugin validation, types, EditorConfig, Markdown, and formatting passed |
+| Pi independent audit | No production defect; requested mouse-routing regression added and verified by lead |
+| Claude independent audit | Passed without findings |
+
+Pi expanded thinking now has a two-column inset, including whole-document native fallback.
+Regression coverage checks projected content mouse coordinates, ignored gutter clicks, and narrow-width fallback.
+Claude waiting, answered, skipped, and failed question transcript rows now have chevrons and native-detail expansion.
+Claude's separate answer dialog stays native. Raw and transcript bypass retain existing behavior.
+
+Source edits are uncommitted. No releases, installs, profile replacements, or `dots` ran.
+Neither current-session reload nor physical Claude rendering is established by these results.
+The user subsequently approved the offline build and isolated checks. Results follow below.
+Read the delivery plan before changing profiles or resuming the isolated send-now draft.
+
+### Compiled-host activation checks
+
+- `npm run build:offline` passed; the host source worktree stayed clean.
+- Lead ran source and compiled default-loader diagnostic fixtures: two tests passed without external provider calls.
+- Each diagnostic fixture completed three synthetic children; interactive sinks received eight warnings and headless stderr retained four.
+- Lead ran compiled CLI provenance with voice co-loaded in fullscreen and regular modes.
+- Real composer input showed You; same-text extension input folded; raw/global recovery and cold resume passed.
+- Audit identified inherited Node preload variables; lead removed NODE_OPTIONS and NODE_PATH from fixture environments.
+- Repeated compiled provenance with invalid preload/module paths passed both modes, proving those inherited settings were ignored.
+- Installed runner JavaScript still contains direct `console.warn` launch warnings, contradicting the earlier installation record.
+
+### Earlier rejected warning attempts (resolved)
+
+The first warning implementation duplicated launch planning before workflow validation; independent audit rejected it.
+The repair removed that duplication but its terminal fixture failed lead acceptance inspection:
+
+- Product test source had a hardcoded personal compiled-host path.
+- The warning assertion targeted a different provider-extension warning.
+- The fixture counted a submitted child prompt as completion without terminal success evidence.
+
+These were two failed acceptance passes. The user then approved one bounded GPT-5.5 high repair.
+
+### Approved warning repair results
+
+The repair removes all three listed fixture defects. Lead inspected and independently executed the repaired checks.
+
+| Lead-run check | Result |
+| --- | --- |
+| All enabled warning-routing terminal tests | Three tests passed, zero skipped; ten terminal runs total |
+| Compiled-host async TASKS subset | Both modes: exact UI warning, no detected raw-console warning, draft bytes preserved after resize |
+| Async child acceptance | Complete status, observed terminal receipt, exact final assistant output |
+| Source and compiled default-loader diagnostics | Two tests passed, zero skipped |
+| Structured-workflow integration | Six tests passed, including invalid-input silence and actual async notification routing |
+| Runner TypeScript check | Passed |
+
+Terminal coverage includes four foreground-warning runs, two compiled TASKS runs, and four source-native diagnostic runs.
+No external model API calls were made by these deterministic fixtures.
+The lead verified the repaired diff against prior independent findings; no additional independent final audit was dispatched.
+Normal-profile installation and physical rendering remain separate gates.
+Live subagent purpose/current-step display remains unimplemented.
+No normal-profile update, active-session replacement, release, or `dots` occurred.
+
+## Repeat the verified checks
+
+Read each checkout's `AGENTS.md` before running commands. Dependencies and compiled host output must already exist.
+These fixtures use local deterministic providers; model-like fixture identifiers do not invoke those provider models.
+Do not substitute source injection when testing the compiled host, or count skipped checks as passing.
+Retain fixture runtime/output caps and owned-process cleanup. Full runner-suite and physical visual acceptance remain unverified.
+
+### Pi Lens
+
+```sh
+cd "$HOME/projects/personal/pi-lens"
+PI_LENS_SOURCE_HOST="$HOME/projects/personal/pi" \
+  PI_LENS_VOICE_ROOT="$HOME/.pi/agent/npm/node_modules/pi-live-codex" \
+  bun run check
+
+PI_LENS_VOICE_EXTENSION="$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts" \
+  PATH="$PWD/node_modules/.bin:$PATH" python3 tests/terminal-smoke.py
+
+PI_LENS_FIXTURE_BATCH=1 \
+  PI_LENS_VOICE_EXTENSION="$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts" \
+  PATH="$PWD/node_modules/.bin:$PATH" python3 tests/terminal-smoke.py
+
+PI_LENS_COMPILED_CLI="$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js" \
+  PI_LENS_VOICE_EXTENSION="$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts" \
+  python3 tests/input-origin-smoke.py
+```
+
+The full check passed 177 tests before the later Python fixture changes; compiled provenance was rerun afterward.
+Compiled provenance also passed with invalid inherited `NODE_OPTIONS` and `NODE_PATH`; the fixture removes both.
+Voice co-loading does not activate audio or establish microphone acceptance.
+
+### Claude Code Lens
+
+```sh
+cd "$HOME/projects/personal/claude-code-lens"
+just help
+just check
+```
+
+Expected recorded result: 29 tests and all configured checks pass.
+The plugin test engine establishes hook behavior, not physical terminal rendering.
+
+### Runner diagnostics and composer protection
+
+```sh
+cd "$HOME/projects/personal/pi-subagents"
+PI_SUBAGENTS_SOURCE_PI="$HOME/projects/personal/pi" \
+  PI_SUBAGENTS_NATIVE_PI_ROOT="$HOME/projects/personal/pi/packages/coding-agent" \
+  node --experimental-strip-types --test test/smoke/native-diagnostics.test.ts
+
+PI_SUBAGENTS_REAL_LOADER_SMOKE=1 \
+  PI_SUBAGENTS_REAL_LOADER_PI="$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js" \
+  PI_SUBAGENTS_SOURCE_PI="$HOME/projects/personal/pi" \
+  PI_SUBAGENTS_COMPILED_HOST_CLI="$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js" \
+  node --experimental-strip-types --test test/smoke/warning-routing.test.ts
+
+node --experimental-strip-types --test test/integration/structured-workflows.test.ts
+npm run typecheck
+```
+
+Expected recorded results: two diagnostics tests, three warning tests, six integration tests; none skipped with these inputs.
+Warning tests include ten terminal runs and must retain exact-warning and real child-terminal receipt assertions.
+A prompt reaching the synthetic provider is not child completion.
+
+### Host rebuild and documentation
+
+The existing offline build is ready. Rebuild only when needed and authorized under the host repository instructions:
+
+```sh
+cd "$HOME/projects/personal/pi"
+PI_OFFLINE=1 PI_SKIP_VERSION_CHECK=1 npm run build:offline
+```
+
+Do not install or replace the user's normal host as a validation shortcut.
+The build validates hydrated model data; it does not download or regenerate the model catalog.
+
+```sh
+cd "$HOME/.dotfiles"
+just lint-md
+```
+
+No durable screenshot collection was added. Temporary ANSI transcripts may expire; rerun the fixtures for fresh evidence.
+The fresh-session documentation was self-reviewed; no extra worker was dispatched for handoff edits.
+
 ## Ownership migration
 
 Both original records were copied and byte-compared before removing their public working-tree copies.
@@ -11,7 +196,7 @@ Dotfiles now owns the master delivery plan and this cross-repository verificatio
 Public Pi Lens documentation retains generic behavior and host contracts only.
 Its agent workspace is ignored; personal installation paths and private patch references were removed.
 Focused documentation/link tests and lint passed. No application behavior changed in this migration.
-Published history still contains earlier material; rewriting it requires explicit approval.
+Published history still contains earlier material. The user declined history cleanup; no rewrite is planned.
 
 **Historical result:** the initial Pi 1.1.0 trial passed; later user-reported defects remain under correction.
 No release or managed-profile installation has occurred.
