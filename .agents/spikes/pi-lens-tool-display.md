@@ -5,7 +5,8 @@
 The user subsequently chose a standalone Pi Lens sibling. The original recommendation below is superseded.
 Read `.agents/plan.md` in the local `pi-lens` checkout before continuing implementation.
 The local Pi Lens checkout owns the cross-repository completion list and verification results.
-Publication awaits the user's local validation; no Pi Lens release is declared in dotfiles yet.
+Public GitHub source is authorized. Package publication awaits local validation.
+Dotfiles declares no Pi Lens package yet.
 
 The original recommendation was to trial **`pi-compact-tools@0.14.2` in Claude style**, with silent
 mode disabled, before building anything.
@@ -146,7 +147,7 @@ execution semantics.
 | D5 | Superseded: defer exact transcript-wide parity | User later requested closest supported sibling parity |
 | D6 | Historical: leave the workstation unchanged during research | The spike did not authorize installation |
 | D7 | Build standalone Pi Lens, with Pi prioritized | User selected a reusable sibling and Pi as the main agent |
-| D8 | Commit verified work; publish after local validation | User requires local acceptance before distribution |
+| D8 | Commit verified work; publish packages after local validation | Source-only GitHub push is separately authorized |
 
 ## Unknowns at the original research checkpoint
 

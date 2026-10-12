@@ -107,11 +107,23 @@ shell's Mise PATH. [Moshi's hook reference](https://getmoshi.app/docs/hooks) des
 
 ## Lens
 
-[Lens](https://github.com/waldoibarra/claude-code-lens) is a Claude Code plugin that redraws the
-transcript in normal, clean and raw views. Its repository documents what it does and how to
-develop it; this section covers only how the workstation installs it.
+[Pi Lens](https://github.com/waldoibarra/pi-lens) and
+[Claude Code Lens](https://github.com/waldoibarra/claude-code-lens)
+target matching display-only transcript views.
+Pi is the primary coding agent. Each sibling documents its supported behavior and host limitations.
 
-The tracked Claude settings declare it in two keys:
+### Pi Lens
+
+Pi Lens is source-only and has no package release. Its unscoped npm name belongs to another project.
+The tracked Pi package list does not install Lens yet.
+Portable provisioning awaits an accepted source revision.
+Read [Pi Lens](https://github.com/waldoibarra/pi-lens)
+before trying the local checkout or changing its package declaration.
+Local validation does not require `dots`, package publication, or replacing the normal Pi runtime.
+
+### Claude Code Lens
+
+The tracked Claude settings declare Lens in two keys:
 
 - `extraKnownMarketplaces.claude-code-lens` points at the `waldoibarra/claude-code-lens` GitHub
   repository with `autoUpdate` on, so new releases install on startup.

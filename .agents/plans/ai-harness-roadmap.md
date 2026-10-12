@@ -176,7 +176,9 @@ for activation and verification. Company adaptation remains deferred.
 
 **Decision:** retain existing global rules. Use scoped implementers, independent reviews, and verified
 completion gates. Pi is the primary coding agent; both Lens packages target the closest supported UX.
-Commit verified changes separately, preserving other agents' work. Publication awaits local validation.
+Commit verified changes separately, preserving other agents' work.
+Package publication awaits local validation.
+The user separately authorized public GitHub source for Pi Lens.
 This note authorizes no new global policy or company-scope changes.
 
 Read [the Lens display spike](/.agents/spikes/pi-lens-tool-display.md)
