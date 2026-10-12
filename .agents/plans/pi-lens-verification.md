@@ -40,6 +40,7 @@ The original message stays above its attachments.
 - Lead clipboard terminal fixture: fullscreen and regular passed with source host and voice co-loaded.
 - Fixture checks include exact metadata counts, raw/global recovery, reload/resume, and unchanged context.
 - Lead compiled provenance fixture passed fullscreen and regular after the previous commit.
+- Lead direct and batch terminal smoke passed both modes after the fix, including model-visible baseline equivalence.
 - No human acceptance is claimed. The loaded extension checkout remains unconfirmed.
 
 The duplicate-fold report awaits clarification before changing inline tokens or legitimate read-tool disclosures.
@@ -47,7 +48,19 @@ The isolated send-now draft was inspected: queue groundwork exists, but no send-
 A bounded safe-state implementation is under review; full parity and unfinished-checkpoint commits remain separate gates.
 Ctrl+S stash/pop was added to the feedback list; native editor snapshots already preserve cursor and clipboard metadata.
 Official Claude documentation confirms restoring cursor, pasted content, and input mode; occupied-stash behavior remains unverified.
+Independent stash review confirms the native snapshot approach; replace-versus-swap awaits the user.
+Independent send-now review approved an idle/safe-streaming slice with global submission ordering and intact unsupported-state refusal.
+Its implementation is isolated; no Ctrl+Enter behavior is yet claimed verified or active.
 Manual acceptance checkboxes remain unchecked until the user confirms each behavior.
+
+### Workflow-summary acceptance blocker
+
+Independent audits reported no blockers, but lead inspection found incomplete fixture teardown.
+The repair now preserves rootless task/chain purpose and waits for terminal state on successful assertions.
+In `structured-workflows.test.ts`, an earlier failed assertion bypasses that wait and immediately deletes artifacts.
+The same happens after the five-second wait expires. The fixture hooks do not stop active workflows.
+This is the second failed lead acceptance pass; one bounded cleanup repair requires user approval.
+No successful manual trial, installation, or completed summary delivery is claimed.
 
 ## Current parity checkpoint
 

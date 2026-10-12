@@ -17,6 +17,8 @@ This checkpoint supersedes the paused handoff below. The user authorized impleme
 | D82 | User confirmation alone completes manual acceptance | Automated tests cannot establish the user's visual acceptance |
 | D83 | Announce test readiness, exact steps, and reload or restart requirements | User requests actionable testing notices throughout delivery |
 | D84 | Continue Ctrl+Enter send-now and add Ctrl+S draft stash/pop parity | User explicitly requests both Claude-style Pi controls |
+| D85 | Implement send-now first for idle and safely interruptible assistant streaming | Isolate ordering and recovery before adding tool background ownership |
+| D86 | Refuse unsupported send-now states without consuming queue or draft | Partial delivery must not masquerade as completed Claude parity |
 
 Current feedback queue:
 
@@ -24,11 +26,22 @@ Current feedback queue:
 | --- | --- | --- |
 | Pasted image appears folded twice | Pi Lens | Awaiting clarification: inline token versus preview, or preview versus tool read |
 | Image Details repeats the message before metadata | Pi Lens | Committed `86b0858`; independent audit and automated checks pass; user acceptance pending |
-| Live subagent purpose/current-step summaries | pi-subagents | Bounded implementation/audit underway; use observed task/tool metadata only |
+| Live subagent purpose/current-step summaries | pi-subagents | Second lead acceptance blocked on failure-path cleanup; bounded repair approval requested |
 | Ctrl+Enter sends queued messages and draft now | Pi host | Isolated safe-state slice under review; full background/interruption parity remains required |
-| Ctrl+S stashes/pops the message draft | Pi host | Native snapshot plan under review; inspect occupied-stash semantics before implementation |
+| Ctrl+S stashes/pops the message draft | Pi host | Plan reviewed; awaiting replace-versus-swap choice for an occupied stash |
 | Actionable testing and reload notices | Delivery | Announce readiness only after verification; distinguish extension reload from host restart |
 | Preserve existing uncommitted changes | All checkouts | Main checkout changes committed; unfinished send-now checkpoint needs review |
+
+### Workflow-summary repair checkpoint
+
+Two independent audits reported no blockers, but lead inspection found unresolved fixture cleanup.
+The first implementation omitted rootless task summaries and removed artifacts immediately after launch.
+The repair adds rootless task snippets and waits on the successful path.
+Its `finally` still removes artifacts when an earlier assertion fails or terminal-state waiting times out.
+`installSingleExecutionHooks` also removes temporary directories without stopping those workflows.
+No provider failure or quota failure occurred; this is the second failed acceptance pass for this target.
+Asked permission for one bounded cleanup repair. No further worker dispatch for this target until approval.
+The code is not installed; manual acceptance remains unchecked.
 
 ### Test readiness
 
@@ -43,6 +56,9 @@ Neither key can be activated by extension `/reload` alone. No normal-profile cha
 Read [Claude's interactive controls](https://code.claude.com/docs/en/interactive-mode) before changing queue or stash semantics.
 Verified reference: stash restores cursor, pasted content, and shell mode; send-now uses queued order, then draft.
 An occupied stash with another nonempty draft needs verified semantics, not an invented overwrite policy.
+Asked user to choose replace or swap; recommended swap to preserve both drafts. No default was applied.
+Stash implementation must reuse native snapshots, remain composer-scoped, preserve selector shortcuts, and refuse lossy custom editors.
+Clear stash on session replacement; retain the same session's native snapshot through extension reload.
 Send-now's first bounded slice must refuse unsupported states intact; this does not complete Claude parity.
 The earlier reviewer suggestion to deliver steering before follow-ups is rejected; global submission order remains required.
 
