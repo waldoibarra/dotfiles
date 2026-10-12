@@ -67,6 +67,13 @@ messages, apps messages, tickets, code comments, emails, social media content.
 - Apply YAGNI: reuse existing mechanisms; add abstractions, generators, or dependencies only
   for demonstrated requirements.
 - Keep project/company content scoped to its project or work root, not global directories.
+- **Personal/open-source integrations:** establish hosting, licensing, cost/quotas, authentication effort,
+  required operations, and target clients before installing.
+  Reuse known answers; ask only for missing decisions.
+  Check existing and first-party options; distinguish account-bound connectors from portable servers.
+  Recommend one verified fit; don't install substitutes that violate accepted constraints without approval.
+  Verify actual interfaces; mocked tests alone don't establish compatibility.
+  Report configured, authenticated, and successfully exercised states separately.
 
 ## Orchestration
 
