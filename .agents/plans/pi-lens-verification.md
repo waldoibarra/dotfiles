@@ -52,7 +52,14 @@ Independent stash review confirms the native snapshot approach; replace-versus-s
 Independent send-now review approved an idle/safe-streaming slice with global submission ordering and intact unsupported-state refusal.
 Its implementation is isolated; no Ctrl+Enter behavior is yet claimed verified or active.
 The implementation worker reports focused tests and full host checks passed; lead has not independently reproduced them.
-Independent audit is underway. Lead flagged queued-only submission, delayed editor clearing, and asynchronous preflight races for review.
+Independent audit confirmed four blockers despite passing focused tests and full host checks:
+
+- The live editor is cleared after the full model run, risking loss of newly typed drafts.
+- Authentication awaits can allow tool execution to start after the safe-state check.
+- Removed queue reservations cannot roll back when later preparation or prompt startup fails.
+- An empty composer prevents queued-only send-now.
+
+This is the first failed send-now acceptance pass. One bounded repair and independent final audit are underway.
 No host integration, compilation, installation, or manual-test readiness is claimed.
 Manual acceptance checkboxes remain unchecked until the user confirms each behavior.
 

@@ -27,10 +27,19 @@ Current feedback queue:
 | Pasted image appears folded twice | Pi Lens | Awaiting clarification: inline token versus preview, or preview versus tool read |
 | Image Details repeats the message before metadata | Pi Lens | Committed `86b0858`; independent audit and automated checks pass; user acceptance pending |
 | Live subagent purpose/current-step summaries | pi-subagents | Second lead acceptance blocked on failure-path cleanup; bounded repair approval requested |
-| Ctrl+Enter sends queued messages and draft now | Pi host | Isolated safe-state implementation complete; independent audit underway; no activation or parity acceptance |
+| Ctrl+Enter sends queued messages and draft now | Pi host | First audit failed four safety/behavior gates; one bounded repair and final audit underway |
 | Ctrl+S stashes/pops the message draft | Pi host | Plan reviewed; awaiting replace-versus-swap choice for an occupied stash |
 | Actionable testing and reload notices | Delivery | Announce readiness only after verification; distinguish extension reload from host restart |
 | Preserve existing uncommitted changes | All checkouts | Main checkout changes committed; unfinished send-now checkpoint needs review |
+
+### Send-now repair checkpoint
+
+The first implementation failed independent acceptance despite its passing focused tests and full host check.
+Confirmed blockers: delayed editor clearing loses new drafts; asynchronous auth permits tool-start races.
+Queue reservations also lack rollback after removal, and an empty composer prevents queued-only delivery.
+One bounded GPT-5.5 high repair and independent audit are authorized under the existing two-pass limit.
+Require failing regressions for all four defects, then actual acceptance and recovery evidence.
+A second failed acceptance pass must stop for user approval. No activation or complete Claude parity is claimed.
 
 ### Workflow-summary repair checkpoint
 
