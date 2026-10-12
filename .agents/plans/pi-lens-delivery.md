@@ -27,7 +27,7 @@ Current feedback queue:
 | Pasted image appears folded twice | Pi Lens | Awaiting clarification: inline token versus preview, or preview versus tool read |
 | Image Details repeats the message before metadata | Pi Lens | Committed `86b0858`; independent audit and automated checks pass; user acceptance pending |
 | Live subagent purpose/current-step summaries | pi-subagents | Second lead acceptance blocked on failure-path cleanup; bounded repair approval requested |
-| Ctrl+Enter sends queued messages and draft now | Pi host | First audit failed four safety/behavior gates; one bounded repair and final audit underway |
+| Ctrl+Enter sends queued messages and draft now | Pi host | Second acceptance failed clipboard retention and private-queue fallback; repair approval required |
 | Ctrl+S stashes/pops the message draft | Pi host | Plan reviewed; awaiting replace-versus-swap choice for an occupied stash |
 | Actionable testing and reload notices | Delivery | Announce readiness only after verification; distinguish extension reload from host restart |
 | Preserve existing uncommitted changes | All checkouts | Main checkout changes committed; unfinished send-now checkpoint needs review |
@@ -37,9 +37,14 @@ Current feedback queue:
 The first implementation failed independent acceptance despite its passing focused tests and full host check.
 Confirmed blockers: delayed editor clearing loses new drafts; asynchronous auth permits tool-start races.
 Queue reservations also lack rollback after removal, and an empty composer prevents queued-only delivery.
-One bounded GPT-5.5 high repair and independent audit are authorized under the existing two-pass limit.
-Require failing regressions for all four defects, then actual acceptance and recovery evidence.
-A second failed acceptance pass must stop for user approval. No activation or complete Claude parity is claimed.
+The bounded GPT-5.5 high repair fixed queued-only delivery, safe-state rechecks, rollback, and duplicate in-flight submissions.
+Its second independent acceptance pass failed two remaining gates:
+
+- Accepted-prefix clearing drops newer retained clipboard images without spans.
+- Send-now retains private-queue mutation despite the native typed reservation API.
+
+Lead verified both findings in source. Stop further repair dispatch until the user approves another bounded pass.
+The isolated draft remains unmerged and uncommitted; no activation or complete Claude parity is claimed.
 
 ### Workflow-summary repair checkpoint
 
@@ -58,6 +63,8 @@ The code is not installed; manual acceptance remains unchecked.
 After the parent turn finishes, run `/reload` if the session loads `~/projects/personal/pi-lens/src/index.ts`.
 Open a pasted image, then `Details`; expect path, MIME type, and captured size without repeated message text.
 Report the result before checking its acceptance box. `/lens raw` remains recovery.
+
+All previously launched workers have finished. Image Details can be tested after the parent turn ends.
 
 **Ctrl+Enter and Ctrl+S:** not ready for manual testing. Host source changes need compilation and a new isolated process.
 Neither key can be activated by extension `/reload` alone. No normal-profile changes are authorized.

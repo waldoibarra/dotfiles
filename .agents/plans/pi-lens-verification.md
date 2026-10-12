@@ -59,7 +59,17 @@ Independent audit confirmed four blockers despite passing focused tests and full
 - Removed queue reservations cannot roll back when later preparation or prompt startup fails.
 - An empty composer prevents queued-only send-now.
 
-This is the first failed send-now acceptance pass. One bounded repair and independent final audit are underway.
+The first send-now acceptance pass failed. Its bounded repair completed and received a second independent audit.
+
+The auditor verified queued-only delivery, safe-state rechecks, undelivered rollback, and duplicate in-flight submission protection.
+The second pass still failed:
+
+- `clearSubmittedDraft(submission)` filters remaining captures only by surviving spans, dropping newer unmapped captures.
+- `_reserveSendNowQueuedRecords` keeps an optional API cast and private queue mutation despite the native reservation method.
+
+Lead inspected both source paths and confirmed the findings. Further repair requires user approval.
+Worker and auditor report focused tests passed; passing tests do not establish acceptance of these missing cases.
+All workers have finished. The send-now draft remains isolated, unmerged, uncommitted, and unavailable for manual testing.
 No host integration, compilation, installation, or manual-test readiness is claimed.
 Manual acceptance checkboxes remain unchecked until the user confirms each behavior.
 
