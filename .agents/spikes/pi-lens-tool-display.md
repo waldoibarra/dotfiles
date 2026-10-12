@@ -1,5 +1,36 @@
 # Lens-style tool display in Pi
 
+## Current package recheck
+
+Read this comparison before installing a substitute for the current Lens work.
+Published Pi remains 1.1.0.
+Registry metadata and these package artifacts were rechecked without installation.
+
+| Candidate | Verified mismatch |
+| --- | --- |
+| `pi-compact-tools@0.15.0` | Claude style groups exploratory tools; commands and edits retain separate rows. This differs from Lens mixed-run folds. |
+| `@prjct.app/pi-clipboard@0.1.10` | Identifies clipboard images by temporary filename patterns; previews drafts and deletes previewed files at shutdown. |
+| `@pi-archimedes/image-paste@2.10.4` | Matches visible marker text, transforms submitted input into image blocks, and resets its queue on session start. |
+| `pi-wait@0.1.5` | `/wait now` still uses follow-up delivery while busy; it cannot transfer current work into the background. |
+
+No inspected candidate exactly satisfies the relevant preservation, identity, and delivery requirements.
+No package was installed or executed. This is a bounded comparison, not an exhaustive ecosystem claim.
+
+Sources: published package READMEs; image-paste `src/index.ts` marker matching/input transformation;
+pi-wait `index.ts` delivery branch.
+The clipboard preview package explicitly documents its filename heuristic.
+Read [Pi Compact Tools](https://github.com/nedleeds/pi-compact-tools)
+before considering its alternate styles.
+Read [Pi Clipboard](https://github.com/prjct-app/pi-clipboard) before evaluating draft-only previews.
+Read [Archimedes image-paste](https://github.com/danielcherubini/pi-archimedes)
+before considering its input transformation.
+Read [Pi Wait](https://github.com/brettinternet/pi-extensions/tree/main/extensions/wait)
+before scheduling delayed prompts.
+
+Native Pi all-message steering already addresses the queued-message batch boundary.
+No additional package is needed.
+Host activation, exact clipboard identity, and immediate send-now remain separate concerns.
+
 ## Historical recommendation
 
 The user subsequently chose a standalone Pi Lens sibling. The original recommendation below is superseded.
