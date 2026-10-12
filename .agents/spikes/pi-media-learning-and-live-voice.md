@@ -2,8 +2,12 @@
 
 ## TL;DR
 
-- **Current priority:** move to original Pi with live voice comparable to OMP before continuing the
-  course-learning pipeline. Keep OMP working until the Pi trial passes.
+Read [Browser access and Google sign-in](/.agents/spikes/browser-access-and-google-oauth.md)
+before continuing browser selection, authenticated course access, saved videos, or Sheets integration.
+That follow-up compares current browser MCPs; the experiments below remain historical evidence.
+
+- **Earlier voice priority:** move to original Pi with live voice comparable to OMP before continuing
+  the course-learning pipeline. The current browser investigation is recorded in the follow-up above.
 - **First choice: test and extend `pi-live-codex`.** It already ports OMP-style voice into Pi and uses
   Codex subscription authentication. Waldo prefers reusing his existing paid access. Account access,
   available voice hours alongside coding, and live Pi compatibility remain unverified.
@@ -65,7 +69,7 @@ Read this document before continuing the Pi browser, course-study, transcription
 | Visual acquisition | FFmpeg periodic sampling plus presentation-region change detection | Both paths executed locally; hybrid policy not implemented as a complete pipeline |
 | Visual interpretation | Existing image-capable coding model | Actual frames inspected in this session; no local VLM test |
 | Optional local vision | Qwen3-VL 4B on Ollama/MLX | Source research and theoretical fit only |
-| Browser interaction | Playwright CLI plus a portable skill remains the baseline direction | No Playwright/agent-browser comparison was executed |
+| Browser interaction | Earlier baseline: Playwright CLI plus a portable skill; [current MCP recommendation](/.agents/spikes/browser-access-and-google-oauth.md) awaits review | No comparative browser benchmark was executed |
 | Repeatable application tests | Playwright Test | Separate from exploratory agent browsing; not installed/configured by this spike |
 | Native Pi browser integration | Consider pi-agent-browser-native if a native tool is wanted | Source-inspected convenience/artifact benefit; requires agent-browser separately |
 | Closest realtime voice frontend | pi-live-codex is Waldo's current preferred Pi migration candidate | Reuses existing Codex subscription authentication; account access, allowance consumption, and live Pi compatibility remain unverified |
@@ -221,6 +225,9 @@ in Playwright Test, not in a model's recurring judgment that a page "looks right
   data, explicit scope, and cleanup appropriate to the application.
 
 ## Browser research and authenticated access
+
+Read [the browser follow-up](/.agents/spikes/browser-access-and-google-oauth.md#browser-shortlist)
+before adopting this earlier CLI-first baseline. No browser interface was installed by either spike.
 
 ### Alternatives considered
 
@@ -972,6 +979,10 @@ before/after skill improvement was built or measured here.
   credentials? Local logs and transcript files are still sensitive artifacts.
 
 ## Next-session starting point
+
+These steps preserve the earlier voice plan.
+Read [the current browser recommendation](/.agents/spikes/browser-access-and-google-oauth.md)
+before resuming the user's browser/media request; do not restart voice migration from this history.
 
 1. Read the [voice decision](#voice-migration-decision) and
    [billing distinctions](#voice-billing-and-cost-scenarios). Preserve the existing OMP setup.

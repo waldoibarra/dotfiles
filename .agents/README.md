@@ -27,11 +27,12 @@ old files are later removed. Size alone does not replace the publication review 
 | Read before… | Record |
 | --- | --- |
 | Continuing Markdown default-app setup or reviewing its verification | [Markdown application plan](/.agents/plans/markdown-default-app.md) |
-| Continuing personal MCP parity and the session improvement loop | [Personal MCP plan](/.agents/plans/personal-mcp.md) |
+| Continuing personal MCP parity, Sheets setup, and integration lessons | [Personal MCP plan](/.agents/plans/personal-mcp.md) |
 | Continuing the shared-role migration and Pi delegation verification | [Shared roles plan](/.agents/plans/pi-shared-roles.md) |
 | Changing agent rules, role agents, skill scope, or the improvement loop | [AI harness roadmap](/.agents/plans/ai-harness-roadmap.md) |
 | Continuing Pi setup or reviewing the integration outcome | [Integration summary](/.agents/plans/pi-dotfiles-integration-summary.md) |
 | Recording Pi trial feedback or exploring the transcript-handoff idea | [Trial notes](/.agents/plans/pi-live-codex-trial.notes.md) |
 | Reusing the original Pi voice test scenarios; later notes supersede trial decisions | [Trial plan](/.agents/plans/pi-live-codex-trial.md) |
+| Choosing browser access, studying authenticated media, or comparing Google sign-in options | [Browser and OAuth investigation](/.agents/spikes/browser-access-and-google-oauth.md) |
 | Continuing media-learning, transcription, browser, or voice-option research | [Research spike](/.agents/spikes/pi-media-learning-and-live-voice.md) |
 | Inspecting saved transcript, metric, or public-video frame evidence | [Evidence manifest](/.agents/spikes/pi-media-learning-and-live-voice-evidence/evidence-manifest.json) |
