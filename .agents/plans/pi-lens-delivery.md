@@ -27,7 +27,7 @@ Current feedback queue:
 | Pasted image appears folded twice | Pi Lens | Awaiting clarification: inline token versus preview, or preview versus tool read |
 | Image Details repeats the message before metadata | Pi Lens | Committed `86b0858`; independent audit and automated checks pass; user acceptance pending |
 | Live subagent purpose/current-step summaries | pi-subagents | Second lead acceptance blocked on failure-path cleanup; bounded repair approval requested |
-| Ctrl+Enter sends queued messages and draft now | Pi host | Isolated safe-state slice under review; full background/interruption parity remains required |
+| Ctrl+Enter sends queued messages and draft now | Pi host | Isolated safe-state implementation complete; independent audit underway; no activation or parity acceptance |
 | Ctrl+S stashes/pops the message draft | Pi host | Plan reviewed; awaiting replace-versus-swap choice for an occupied stash |
 | Actionable testing and reload notices | Delivery | Announce readiness only after verification; distinguish extension reload from host restart |
 | Preserve existing uncommitted changes | All checkouts | Main checkout changes committed; unfinished send-now checkpoint needs review |

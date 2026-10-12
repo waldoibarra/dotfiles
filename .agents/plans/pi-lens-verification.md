@@ -51,6 +51,9 @@ Official Claude documentation confirms restoring cursor, pasted content, and inp
 Independent stash review confirms the native snapshot approach; replace-versus-swap awaits the user.
 Independent send-now review approved an idle/safe-streaming slice with global submission ordering and intact unsupported-state refusal.
 Its implementation is isolated; no Ctrl+Enter behavior is yet claimed verified or active.
+The implementation worker reports focused tests and full host checks passed; lead has not independently reproduced them.
+Independent audit is underway. Lead flagged queued-only submission, delayed editor clearing, and asynchronous preflight races for review.
+No host integration, compilation, installation, or manual-test readiness is claimed.
 Manual acceptance checkboxes remain unchecked until the user confirms each behavior.
 
 ### Workflow-summary acceptance blocker
