@@ -14,16 +14,61 @@ This checkpoint supersedes the paused handoff below. The user authorized impleme
 | D79 | Keep image Details metadata-only | User rejects repeated message content before path, MIME, and size |
 | D80 | Clarify which image presentations should merge before changing them | Screenshot contains inline token, attachment preview, and legitimate read disclosure |
 | D81 | Track subsequent harness feedback in this existing plan | User requested coordinated implementation across Lens and dotfiles |
+| D82 | User confirmation alone completes manual acceptance | Automated tests cannot establish the user's visual acceptance |
+| D83 | Announce test readiness, exact steps, and reload or restart requirements | User requests actionable testing notices throughout delivery |
+| D84 | Continue Ctrl+Enter send-now and add Ctrl+S draft stash/pop parity | User explicitly requests both Claude-style Pi controls |
 
 Current feedback queue:
 
 | Feedback | Owner | State / acceptance |
 | --- | --- | --- |
 | Pasted image appears folded twice | Pi Lens | Awaiting clarification: inline token versus preview, or preview versus tool read |
-| Image Details repeats the message before metadata | Pi Lens | Bounded review/implementation; retain one message body and image-specific metadata |
-| Live subagent purpose/current-step summaries | pi-subagents | Pending; use observed task/tool metadata only |
+| Image Details repeats the message before metadata | Pi Lens | Committed `86b0858`; independent audit and automated checks pass; user acceptance pending |
+| Live subagent purpose/current-step summaries | pi-subagents | Bounded implementation/audit underway; use observed task/tool metadata only |
+| Ctrl+Enter sends queued messages and draft now | Pi host | Isolated safe-state slice under review; full background/interruption parity remains required |
+| Ctrl+S stashes/pops the message draft | Pi host | Native snapshot plan under review; inspect occupied-stash semantics before implementation |
+| Actionable testing and reload notices | Delivery | Announce readiness only after verification; distinguish extension reload from host restart |
+| Preserve existing uncommitted changes | All checkouts | Main checkout changes committed; unfinished send-now checkpoint needs review |
 
-Routing: GPT-5.5 medium for bounded clipboard review and implementation; no premium lead-model workers.
+### Test readiness
+
+**Image Details:** source-ready at `pi-lens@86b0858`; the active extension checkout remains unconfirmed.
+After the parent turn finishes, run `/reload` if the session loads `~/projects/personal/pi-lens/src/index.ts`.
+Open a pasted image, then `Details`; expect path, MIME type, and captured size without repeated message text.
+Report the result before checking its acceptance box. `/lens raw` remains recovery.
+
+**Ctrl+Enter and Ctrl+S:** not ready for manual testing. Host source changes need compilation and a new isolated process.
+Neither key can be activated by extension `/reload` alone. No normal-profile changes are authorized.
+
+Read [Claude's interactive controls](https://code.claude.com/docs/en/interactive-mode) before changing queue or stash semantics.
+Verified reference: stash restores cursor, pasted content, and shell mode; send-now uses queued order, then draft.
+An occupied stash with another nonempty draft needs verified semantics, not an invented overwrite policy.
+Send-now's first bounded slice must refuse unsupported states intact; this does not complete Claude parity.
+The earlier reviewer suggestion to deliver steering before follow-ups is rejected; global submission order remains required.
+
+### User acceptance checklist
+
+Automated results belong in the verification record. Only explicit user confirmation checks these boxes.
+
+- [ ] Duplicate pasted-image presentation behaves as requested; exact target awaits clarification.
+- [ ] Image Details shows attachment metadata without repeating the message.
+- [ ] Thinking history has the requested inset and preserves viewport anchoring.
+- [ ] Claude question disclosures preserve native answer controls and details.
+- [ ] Subagent warnings stay outside the composer and preserve the draft.
+- [ ] Composer messages show `You`; verified automated inputs fold correctly.
+- [ ] Clipboard previews, metadata, reload, and resumed history render correctly.
+- [ ] Live subagent purpose and observed current action are useful and accurate.
+- [ ] Ctrl+Enter send-now matches accepted Claude behavior, including draft and queue handling.
+- [ ] Ctrl+S draft stash/pop matches verified Claude behavior without losing text or attachments.
+
+Testing notices must identify the changed checkout, active-runtime requirements, steps, and expected result.
+Use `/reload` for changed extension source only when this session actually loads that source.
+Host keyboard/queue changes require a rebuilt host and a separate process; `/reload` cannot activate them.
+Do not install or replace the normal profile to make a test ready.
+
+Routing: GPT-5.5 medium for clipboard, workflow summaries, and stash review.
+GPT-5.5 high handles send-now review/implementation because queue ordering and recovery cross host lifecycle boundaries.
+No Astra/Fable workers. Provider/model changes, quota recovery, and extra repair rounds remain approval-gated.
 Existing Pi thinking/provenance and Claude question changes passed fresh checks and were committed locally.
 Runner diagnostics and warning fixtures also passed fresh checks and were committed locally.
 No installs, publication, normal-profile replacement, or credential copying are authorized.

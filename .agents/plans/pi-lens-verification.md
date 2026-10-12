@@ -28,9 +28,26 @@ Inspected existing changes were committed locally:
 
 The screenshots establish visible clipboard tokens and previews in the user's trial.
 They do not establish the loaded checkout or version, nor acceptance of image Details.
-Details currently repeats the original message before image metadata; a bounded correction is underway.
+
+### Clipboard Details correction
+
+Pi Lens `86b0858` removes repeated original input rows from attachment Details.
+Path, MIME type, byte count, captured previews, and raw recovery remain available.
+The original message stays above its attachments.
+
+- Independent code audit passed without blockers.
+- Lead full check: 179 tests passed; typecheck, formatting, and Markdown passed.
+- Lead clipboard terminal fixture: fullscreen and regular passed with source host and voice co-loaded.
+- Fixture checks include exact metadata counts, raw/global recovery, reload/resume, and unchanged context.
+- Lead compiled provenance fixture passed fullscreen and regular after the previous commit.
+- No human acceptance is claimed. The loaded extension checkout remains unconfirmed.
+
 The duplicate-fold report awaits clarification before changing inline tokens or legitimate read-tool disclosures.
-The isolated send-now draft remains unreviewed; committing an unfinished checkpoint awaits confirmation.
+The isolated send-now draft was inspected: queue groundwork exists, but no send-now action or bash handoff exists.
+A bounded safe-state implementation is under review; full parity and unfinished-checkpoint commits remain separate gates.
+Ctrl+S stash/pop was added to the feedback list; native editor snapshots already preserve cursor and clipboard metadata.
+Official Claude documentation confirms restoring cursor, pasted content, and input mode; occupied-stash behavior remains unverified.
+Manual acceptance checkboxes remain unchecked until the user confirms each behavior.
 
 ## Current parity checkpoint
 
