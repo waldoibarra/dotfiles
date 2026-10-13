@@ -4,6 +4,127 @@
 This workstation and cross-repository evidence belongs to dotfiles, not the public Pi Lens repository.
 Historical results below retain their original context; they do not establish current activation.
 
+## Published presentation releases
+
+User approved the current presentation and requested publication plus installed-Pi compatibility verification.
+
+| Product | Version | Commit |
+| --- | --- | --- |
+| Pi Lens | `0.2.0` | `237e3c561ba68e3e77c3f18d7613c3e45756e0ae` |
+| Claude Lens | `0.1.2` | `1420f37cf82cb1290707fdcf652a22c9435f91f2` |
+
+Both GitHub Releases were read back as published, non-draft, non-prerelease records.
+Remote `latest` tags and peeled version tags resolve to the listed commits.
+Versioned tags were not moved; alias updates used leases against their previously observed values.
+
+Fresh lead verification:
+
+- Pi full check: 192 tests passed, typecheck and lint passed.
+- Claude full check: 29 engine tests passed, validation, typecheck, and lint passed on Claude Code 2.1.296.
+- Mise and `pi --version` report 1.2.0 for the installed runtime.
+- Pi 1.2.0 direct and batch fixtures passed fullscreen and regular with voice co-loaded and baseline equivalence.
+- Pi 1.2.0 image fixture passed fullscreen; regular image mouse interaction explicitly skipped.
+- Native Git install into a disposable profile resolved Pi Lens 0.2.0 at the exact release commit.
+- Installed-package discovery, normal/clean/raw views, and reload passed both modes without provider requests.
+- Isolated native Claude marketplace/plugin installation lists 0.1.2 and stores `source.ref: v0.1.2`.
+- Pi CI `38486021637` and `38486021536` passed; Claude CI `38486024258` and `38486024251` passed.
+- Pi dry-run package contained 20 product files; no private coordination records or unfinished host/runner source.
+- Nine dotfiles harness tests and full lint passed after deployment-pin updates.
+
+Dotfiles launcher fix is local commit `cea99bb`; accepted pins are local commit `2c9a263`.
+No dotfiles push occurred because unrelated commit `28c15d6` is also unpushed.
+No normal-profile package upgrade or full `dots` ran; installed Lens remains the earlier version until reconciliation.
+Pi's linked settings declare the new pin, while Claude's copy-managed installed settings were not replaced.
+Stock Pi still lacks patched composer/clipboard metadata; release compatibility does not add those host capabilities.
+Harness assessment proposals are recorded in the delivery plan and remain unapplied.
+
+## Development launcher voice loading
+
+User reported `/live` unavailable in the development session. The launcher omitted voice under `--no-extensions`.
+After explicit approval, `justfile` includes the installed voice entrypoint in both guards and explicit extensions.
+
+- Updated launcher regression failed before implementation, proving missing voice arguments.
+- All nine harness tests passed, including voice missing-file rejection and paths containing spaces.
+- Dry-run recipe passed POSIX ShellCheck; full repository lint and diff checks passed.
+- Actual compiled Pi 1.1.0 loaded Lens, subagents, and voice in a disposable offline profile.
+- `--help` exposed voice's `--live-transcript-limit`, establishing actual extension registration, not just configured argv.
+- No provider request, microphone connection, installation, publication, or active-session replacement occurred.
+
+The launcher is configured and isolated loading is exercised; the current session still lacks voice.
+Start another terminal with `just pi-lens-dev`, preserving this `--no-session` conversation until no longer needed.
+Manual `/live spruce` connection and visual acceptance remain unverified. The launcher change received self-review only.
+
+## Grouping and color implementation checkpoint
+
+User authorized source implementation, with visual review before any new release.
+Pi and Claude source changes remain uncommitted; no release, pin bump, install, or normal-profile replacement occurred.
+
+### Claude color acceptance
+
+- Corrected independent audit inspected Claude Lens only and passed without findings.
+- Lead `just check` passed: 29 tests, manifest validation, typecheck, EditorConfig, Markdown, and Prettier.
+- Lead inspected cyan reply, tool-run, standalone-result, and background-agent model/time render sites.
+- Lead `git diff --check` passed. Native raw/transcript behavior and user-label colors remain unchanged.
+- Physical Claude rendering remains unverified; local review uses the checkout's `just dev` recipe.
+
+The first assigned Claude audit inspected Pi instead; those findings were discarded as wrong-repository evidence.
+No Pi grouping or user-color behavior was reverted based on that invalid audit.
+
+### Final Pi presentation verification
+
+User approved fixes after the earlier acceptance pause. Identity, native grouping, and default-host thinking repairs now pass independent audits.
+
+Lead-run final checks:
+
+| Check | Result |
+| --- | --- |
+| `bun run check` with source normalizer and installed voice visualizer | 192 passed, zero failed; typecheck, Prettier, Markdown passed |
+| Direct terminal fixture, Pi 1.1.0, voice co-loaded | Fullscreen and regular passed; model-visible baseline equivalent |
+| Batch terminal fixture, Pi 1.1.0, voice co-loaded | Fullscreen and regular passed; model-visible baseline equivalent |
+| Compiled local host input-origin fixture | Both modes passed: composer labels, extension folds, skills, raw/global, cold resume |
+| Compiled development CLI version | `1.1.0` |
+| Product diff checks | Passed |
+
+Default-host terminal clicks verify outer thinking opens concise nested headers, then each header opens its own body.
+Native transformer output is compared against the full original document; changed/reference-dependent text retains native fallback.
+Voice regressions use real click-generated keys, raw first/last-member expansion, all-closed state, and global collapse.
+Spacer bridging has component coverage; actual host-created top-level voice spacers were not established by the final auditor.
+The final thinking repair lacks a recorded pre-edit failing run; passing checks do not establish a complete TDD cycle.
+
+Final source is ready for visual review through `/reload` after the parent turn ends.
+The user's earlier reload predates these repairs; final loaded state and user visual acceptance remain unconfirmed.
+No fresh Pi 1.2.0 checks, real microphone session, release, installation, commit, or profile replacement occurred.
+Claude's 29-test lead verification above remains unchanged. Both candidates await explicit visual feedback.
+
+### Earlier Pi acceptance blocker (resolved)
+
+Workers report grouping, full-text thinking disclosures, colors, and voice-only groups implemented with passing automated checks.
+First audit identified stale nested-thinking keys; a bounded repair added pruning and voice-key regression tests.
+Second audit found a surviving single-row encoded-ID mismatch; lead reproduced it directly with `LensState.reconcile`.
+An active delegation ID `id%40123` loses `voice:id%40123` from the open set because reconciliation decodes it.
+This was the second failed acceptance pass; work paused until the user explicitly approved fixes.
+Lead deferred full/terminal checks while the blocker remained. The final results above supersede that pause.
+
+## Live-development workflow cleanup review
+
+The user reports launching this session with `just pi-lens-dev`.
+Runner source began clean at `a366357`; Lens and host sources remained unchanged.
+
+One bounded workflow completed plan review, test-only implementation, and independent audit.
+Changed files: runner `test/support/single-execution-fixture.ts` and `test/integration/structured-workflows.test.ts`.
+The implementer reports focused tests passed after correcting a cleanup-unregistration defect.
+The independent auditor reported no findings; lead inspection found unresolved acceptance blockers:
+
+- Failed settlement still permits environment restoration and ownership clearing in `afterEach`.
+- Suite teardown unconditionally uninstalls the mock, deleting its queue directory without a settlement guard.
+- Added tests do not exercise actual assertion failure or teardown settlement failure through the hooks.
+
+Lead verification: `npm run typecheck` and `git diff --check` passed.
+Lead did not rerun lifecycle fixtures after finding unsafe failure-path cleanup.
+No production changes, builds, installs, commits, releases, or reloads occurred during this repair.
+Source edits remain uncommitted; workflow-summary acceptance remains blocked pending approval for another bounded repair.
+Manual acceptance remains user-owned; the development launch does not establish visual correctness.
+
 ## Verified v0.1.1 installation delivery
 
 | Product | Published version commit | Installed/loaded evidence |

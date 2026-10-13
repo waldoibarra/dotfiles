@@ -4,6 +4,269 @@
 This cross-repository plan belongs to dotfiles. Do not copy or link it from public product repositories.
 The retained record keeps its original formatting; historical statuses are superseded by the current checkpoint.
 
+## Approved presentation release and harness assessment
+
+User says the current presentation looks good and authorizes publishing changed Lens products.
+This accepts the current presentation slice provisionally; unrelated historical manual checkboxes remain unchanged.
+User also requests a current harness assessment and proposals, not automatic behavioral-rule changes.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D127 | Release Pi Lens 0.2.0 and Claude Lens 0.1.2 | Pi adds folding interactions; Claude fixes tag colors under its documented version policy |
+| D128 | Gate release on installed Mise Pi 1.2.0, not just development Pi 1.1.0 | Normal sessions use the installed host |
+| D129 | Update explicit dotfiles release pins after publication | Normal-session delivery must follow the accepted release rather than a moving alias |
+| D130 | Keep host patches and unfinished runner/send-now work out of these releases | Lens remains display-only; unrelated lifecycle work is not accepted |
+| D131 | Propose harness improvements without applying instructions or policy changes | User requests evaluation and proposals only |
+
+Plan: run actual Pi 1.2.0 direct/batch/image checks, inspect product payloads, review release readiness independently,
+update version/install docs, run full product checks, commit scoped source and releases, push immutable tags,
+verify CI, publish GitHub Releases, update existing `latest` aliases with exact leases, then update deployment pins.
+Validate a disposable published Pi installation on 1.2.0; preserve the running development process and credentials.
+Normal-profile installation is not required to prove compatibility; report declared and installed versions separately.
+No `dots`, package cleanup, host rebuild, or unrelated dotfiles staging. Inspect branch contents before any dotfiles push.
+
+Observed installed Pi and Mise selection: 1.2.0. Fresh direct and batch fixtures passed both terminal modes with voice co-loaded.
+Both fixtures retained model-visible baseline equivalence. Product source remains uncommitted before release preparation.
+Harness assessment uses current config and accessible session evidence, not raw private logs or inferred token costs.
+
+### Release outcome
+
+Published Pi Lens `v0.2.0` at `237e3c561ba68e3e77c3f18d7613c3e45756e0ae`.
+Published Claude Lens `v0.1.2` at `1420f37cf82cb1290707fdcf652a22c9435f91f2`.
+Both `latest` aliases now point at their new release commits; immutable version tags were not moved.
+
+- Lead full checks: Pi 192 tests; Claude 29 tests; all type/lint checks passed.
+- Actual installed Pi 1.2.0: direct/batch fixtures passed both modes with voice and unchanged model-visible baselines.
+- Pi 1.2.0 image fixture passed fullscreen; regular image mouse interaction remains explicitly skipped.
+- Fresh native Git install resolved Pi Lens 0.2.0 at the exact released commit; discovery/views/reload passed both modes.
+- Fresh isolated Claude marketplace/plugin install reports 0.1.2 and `source.ref: v0.1.2`.
+- Tagged-commit CI passed: Pi `38486021637` and `38486021536`; Claude `38486024258` and `38486024251`.
+- Product payload review found no private operator plans; runner and host checkpoints were not included.
+
+Tracked deployment pins now select these releases. Mise Pi remains `latest`, currently 1.2.0.
+Normal-profile packages were not upgraded; fresh-install verification used disposable profiles only.
+Stock Pi 1.2.0 still lacks patched input-origin and clipboard metadata; unknown input labels remain neutral.
+No host build, `dots`, credential copy, or AI-harness instruction change occurred.
+Dotfiles launcher commit `cea99bb` and release-pin commit `2c9a263` remain local.
+Dotfiles also has unrelated unpushed commit `28c15d6`; do not include it in a push without approval.
+Nine harness tests and full repository lint passed. Product repositories are clean and published.
+
+### Harness assessment and proposed improvements
+
+Assessment covers this conversation, current tracked configuration, and recorded checks—not inaccessible sessions or account usage.
+Current strengths: canonical shared rules, five provider-neutral roles, explicit worker allowlist, depth cap, native tools, versioned releases.
+Failures were mainly execution: wrong-repository audit, unrealistic test fixtures, missing launcher capability, and repetitive repair/review dispatch.
+No exact cost or quota savings can be inferred. This session used GPT-5.5 workers, not historical Astra workers.
+
+| Priority | Proposal and owning scope | Evidence and expected benefit | Verify / rollback |
+| --- | --- | --- | --- |
+| 1 | Repository-bound dispatch in `docs/coding-agents/pi/delegation.md`; use separate workflows per cwd | A Claude audit ran in Pi despite task prose; native cwd binding is stronger than repeating instructions | Require expected Git root and target-file check before audit; a synthetic wrong-root brief must stop; revert guide changes |
+| 2 | Native acceptance matrix in this plan and `docs/coding-agents/personal-workflow.md` | Handcrafted voice keys, default-transformer bypass, and failed teardown escaped passing suites | Each target names real producer, deployed host, failure path, and red check before edits; reject one intentionally incomplete matrix; revert template |
+| 3 | Make `pi-lens-dev` resumable through existing Pi session storage and argument passthrough | `--no-session` complicated restarting to activate voice and loses conversation on exit | Test default persistence and `--continue` passthrough in disposable profiles; preserve optional explicit `--no-session`; revert recipe/docs/tests |
+| 4 | Compact current Lens plan into status/decisions/next actions; link historical evidence once | Repeated full reads traversed contradictory historical 'current' checkpoints | Preserve all decision IDs with superseded markers; verify links and pending queue against source; restore plan from Git |
+| 5 | Enforce existing one-target worker scope in dispatch, not more global policy | Same high-effort model handled trivial color work and complex native lifecycle repairs | Use medium for mechanical metadata/color work, high only for evidenced native risks; compare acceptance outcomes qualitatively; revert routing guidance |
+
+Recommend priorities 1–3 first. No new roles, hooks, background learner, summarization calls, or policy layers are needed.
+Priority 5 is primarily lead discipline under existing rules; do not duplicate global instructions to compensate.
+Plan cleanup is documentation-only but must preserve history and existing decisions rather than silently rewrite evidence.
+All proposals remain unapplied. Approval must name selected scopes; commit/push of harness changes remains separately explicit.
+
+## Development voice activation correction
+
+User could not open voice in `just pi-lens-dev`; the recipe omitted the installed voice extension.
+User explicitly approved fixing the launcher. Earlier instructions to test voice in that process were incorrect.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D125 | Explicitly load installed `pi-live-codex` alongside local Lens and subagents | `--no-extensions` otherwise excludes voice; retaining it prevents duplicate Lens loading |
+| D126 | Keep session persistence and normal-profile configuration unchanged | The approved fix concerns missing voice, not session-storage policy |
+
+`justfile` now checks the voice entrypoint and adds its explicit `-e` argument.
+The existing isolated launcher test covers exact argv, spaces, caller cwd, and all four missing-file guards.
+Red test reproduced missing voice arguments; all nine harness tests now pass.
+ShellCheck of the dry-run recipe and full repository lint passed after one documentation line-wrap correction.
+A disposable-profile run of the actual compiled host loaded all three paths and exposed voice's registered CLI flag.
+No voice command, provider prompt, microphone session, installation, or publication occurred.
+This small launcher fix was self-reviewed; no independent worker audit was requested.
+
+Existing processes retain their original CLI extension paths; `/reload` cannot add this newly selected extension.
+Keep this unsaved conversation open; start `just pi-lens-dev` in another terminal, then use `/live spruce`.
+Actual authentication, microphone access, and live rendering remain user verification gates.
+Only Lens-owned changes were made; other agents' work remains untouched.
+
+## Grouping, thinking detail, and message colors
+
+User requests implementation and authorizes supporting decisions, with visual review before any new release.
+This presentation slice supersedes conflicting historical thinking-segmentation and color decisions below.
+The unfinished runner teardown repair remains separate; no runner or host changes belong to this slice.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D114 | Group tools across intervening thinking; show one thinking disclosure after tools | Screenshot shows repeated thinking headers splitting tool groups and increasing scrolling |
+| D115 | Preserve prose, input, approval, error, and unknown-native boundaries | Consolidation must not move actions across unrelated messages or conceal important notices |
+| D116 | Make each thinking update independently expandable to all available thinking text | User requests full text per header without a long default-expanded history |
+| D117 | Color every Lens model/time tag cyan in Pi and Claude | User explicitly requests the same tag color in both products |
+| D118 | Give recognized Pi voice delegation groups purple headers and purple You/time labels | User wants voice requests visually distinct and separate from tool/input groups |
+| D119 | Color proven typed-composer You/time labels emerald | Preserve neutral unknown origins rather than invent human attribution |
+| D120 | Combine only adjacent recognized voice delegation messages, retaining each original message | Never combine voice requests with tools, typed prompts, other extensions, or approvals |
+| D121 | Require user visual acceptance before publishing any new version | Explicit current release boundary; no release, pin bump, sync, or normal-profile install |
+| D122 | Pi dark/light cyan: RGB 34,211,238 / 8,145,178 | Explicit readable model/time accents |
+| D123 | Pi dark/light purple: RGB 196,181,253 / 126,34,206; emerald: 52,211,153 / 4,120,87 | Distinguish verified voice and typed inputs |
+| D124 | Claude model/time tags use native `cyan` | Supported semantic color avoids replacing Claude's theme system |
+
+### Acceptance and implementation
+
+- Pi owner: `src/presentation.ts`, `src/progress.ts`, footer formatting/state modules, focused component and terminal tests.
+- Claude owner: `hooks/register.tsx`, native-render tests, and behavior docs; only shared model/time color changes.
+- Normal and clean show tools before one collapsed thinking group within each safe activity span.
+- Thinking does not split a tool group; visible prose and hard boundaries retain their order.
+- Opening thinking exposes concise update headers; opening each header reveals its full available native thinking text.
+- Preserve whole-document fallback for references/transformers, native controls, narrow widths, hover, and viewport anchoring.
+- Use stable expansion identities across streaming, reload, and branch reconciliation.
+- Voice detection uses only `pi-live-codex-delegation` metadata, never wording or generic extension origin.
+- Preserve full voice content and attachments on expansion; do not touch microphone, visualizer, editor, or execution.
+- Use consistent explicit cyan/purple/emerald values with legible light/dark variants where necessary.
+- Raw/native global recovery and model-visible content remain unchanged; no summarization calls or transcript mutation.
+
+Sequence: independent plan review, TDD implementation per repository, independent audits, lead checks, then visual-review handoff.
+Use explicit GPT-5.5 high for the coordinated review/implementation workflow; projection and native mouse routing justify effort.
+One writer per repository; preserve the unaccepted runner diff. Workers may not install, build hosts, commit, or publish.
+Stop on quota/timeouts; checkpoint after two failed acceptance passes rather than dispatching indefinitely.
+
+Verification: Pi full `bun run check`, direct/batch terminal fixtures in both modes, real voice compatibility, and provenance checks.
+Add grouping/order, nested disclosure, complete-body retention, ANSI colors, voice isolation, streaming/reload, and raw-equivalence regressions.
+Claude `just check` verifies every model/time render site uses cyan while native controls and raw output remain unchanged.
+Update both products' behavior docs; keep operator coordination and manual acceptance solely in this workspace.
+Recovery: `/lens raw` or reverting only this slice's source edits; no version or normal-profile changes.
+Pi source changes load through `/reload` after work ends; Claude source needs its local plugin development launch.
+
+### Presentation checkpoint
+
+Both implementations are uncommitted; no releases, installs, or normal-profile changes occurred.
+Only this session's existing Lens coordination records were edited in dotfiles; other agents' work remains excluded.
+
+Claude's initial auditor inspected Pi incorrectly; its findings are rejected, not applied.
+The corrected Claude-only audit passed. Lead `just check` passed: 29 tests, validation, typecheck, and all lint.
+Lead inspected all four cyan render sites and their test coverage; `git diff --check` passed.
+Claude source is ready for user visual review through `just dev` in its checkout; installed release remains unchanged.
+
+Pi's first audit requested exact nested-key pruning and voice identity checks.
+A bounded repair changed state reconciliation and added focused tests.
+The second audit found single voice IDs containing encoded text still lose their open state.
+Lead reproduced `delegationId: id%40123` with `voice:id%40123`: reconciliation incorrectly empties the open set.
+Source cause: single-row key creation keeps the literal ID, while reconciliation decodes it.
+Pi reached two failed acceptance passes and paused. The user now explicitly approves fixes and reports running `/reload`.
+Approved repairs now pass independent audit and lead verification; visual acceptance remains pending.
+Voice keys use one producer/consumer encoding, with actual click-generated regressions for unusual IDs and timestamps.
+Grouped native expansion retains any opened member when returning from raw; global collapse remains effective.
+Voice groups bridge verified message spacers without crossing other message types.
+The claimed top-level spacer defect was not reproduced from actual host construction; spacer bridging is compatibility coverage.
+
+Lead found the default Mermaid transformer bypassed nested thinking despite earlier passing tests.
+The correction reuses native transformed-text capture rather than assuming every transformer changes thinking.
+Actual default-host terminal clicks now prove concise headers and independently opened full-text bodies.
+Reference-dependent and content-changing documents still retain native whole-document rendering.
+The worker did not capture a red test before this last correction; no completed TDD cycle is claimed for it.
+
+Final lead results: 192 Pi tests and full checks; direct/batch terminal fixtures in both modes; compiled provenance in both modes.
+All terminal fixtures co-loaded voice without activating audio; baseline equivalence passed for direct and batch modes.
+Compiled development host reports Pi 1.1.0. This change was not freshly tested on Pi 1.2.0.
+Claude remains independently audited with 29 lead-verified tests and all checks passing.
+Both source candidates are ready for visual review, not release. Propose a fix freeze until user feedback.
+Run `/reload` after the parent turn ends to load the final Pi source; the earlier reload predates these repairs.
+No host restart or installation is required for this extension-only slice.
+
+Remaining manual checks: one tools-then-thinking span, nested complete thinking, cyan tags, purple voice-only groups,
+emerald typed labels, viewport anchoring, and voice-open persistence across reload/raw transitions.
+Older open voice choices may reset once because the candidate's key representation changed; message content remains intact.
+No changes were made to the pending runner repair, host send-now draft, or other agents' dotfiles work.
+
+### Exact final verification commands
+
+Run from Pi Lens to repeat final verification; select the verified Pi 1.1.0 executable for terminal fixtures:
+
+```sh
+PI_LENS_SOURCE_HOST="$HOME/projects/personal/pi" \
+  PI_LENS_VOICE_ROOT="$HOME/.pi/agent/npm/node_modules/pi-live-codex" bun run check
+PI_LENS_VOICE_EXTENSION="$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts" \
+  PATH="$PWD/node_modules/.bin:$PATH" python3 tests/terminal-smoke.py
+PI_LENS_FIXTURE_BATCH=1 \
+  PI_LENS_VOICE_EXTENSION="$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts" \
+  PATH="$PWD/node_modules/.bin:$PATH" python3 tests/terminal-smoke.py
+PI_LENS_COMPILED_CLI="$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js" \
+  PI_LENS_VOICE_EXTENSION="$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts" \
+  python3 tests/input-origin-smoke.py
+```
+
+Run `just check` from Claude Lens; visual review uses `just dev`, then normal and clean views.
+No live voice/audio or human visual acceptance follows from these deterministic checks.
+
+## Live-development continuation
+
+The user requests pending-item review, planning, and continued implementation using `just pi-lens-dev`.
+This checkpoint supersedes historical pending labels below; completed releases are not reopened.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D110 | Resume one bounded workflow-fixture cleanup repair | Current continuation request renews local implementation; previous acceptance stopped at unsafe teardown |
+| D111 | Keep send-now isolated and stash/image choices unresolved | Host safety blockers and unanswered behavior choices remain distinct from extension testing |
+| D112 | Use GPT-5.5 high for this repair's review, implementation, and audit | Existing medium-effort fixture attempts failed; lifecycle cleanup needs careful ordering |
+| D113 | Preserve the running development host and normal profile | Live extension reload cannot activate host changes; no installation or publication requested |
+
+Fresh source inspection confirms clean checkouts: Lens `fbb2f72`, runner `a366357`, host `97400e2`.
+The user reports launching the local development recipe; this is activation evidence, not visual acceptance.
+
+### Next slice: safe workflow fixture teardown
+
+Acceptance target: every owned test workflow stops and settles before fixtures remove artifacts or restore environment.
+Existing purpose/current-action implementation stays unchanged unless verification identifies a blocker.
+
+1. Independently review existing cancellation/completion primitives and the bounded plan before edits.
+2. Reproduce assertion-failure and terminal-wait-timeout cleanup defects with deterministic tests.
+3. Repair `test/support/single-execution-fixture.ts` and `test/integration/structured-workflows.test.ts` using existing lifecycle controls.
+4. Cover success, child failure, early assertion failure, timeout, and cancellation without external provider calls.
+5. Audit teardown ordering, artifact ownership, and unchanged summary semantics independently.
+6. Lead reruns focused tests, runner typecheck, summary rendering tests, and applicable terminal checks.
+7. Record results here and in the verification record; announce live-test steps only after acceptance.
+
+Never delete artifacts while owned work remains active; retain evidence and fail explicitly if settlement cannot be established.
+Bound each fixture and command; no broad production lifecycle refactor, dependencies, installs, builds, or Git writes by workers.
+Public testing documentation describes only generic fixture guarantees; coordination stays in this workspace.
+Recovery: revert only this slice's edits; do not disturb the current live process or unrelated runs.
+Stop and checkpoint after another failed bounded repair, quota failure, or timeout; do not silently dispatch another attempt.
+
+### Bounded repair outcome: acceptance blocked
+
+Workflow `248d1944-c403-4c29-bb0f-3c3fe8ea67b0` completed review, implementation, and audit.
+Two test files changed; no production source changed. The independent audit reported pass.
+Lead inspection rejects acceptance despite that report:
+
+- `single-execution-fixture.ts:426-433` restores environment and clears ownership even after settlement fails.
+- Its suite `after` hook still unconditionally calls `mockPi.uninstall()`; that deletes the mock queue directory.
+- The new early-exit test never throws an assertion; the timeout test exercises waiting, not failed teardown settlement.
+- Neither regression proves hooks preserve ownership and artifacts when abort fails to settle work.
+
+Lead `npm run typecheck` and `git diff --check` passed.
+Workers report focused tests passed; lead did not rerun unsafe lifecycle fixtures after finding these gaps.
+The repair remains uncommitted and unaccepted; no reload, installation, or publication is needed or claimed.
+Another repair requires explicit approval under this slice's stop rule. No further worker was dispatched.
+
+Proposed next pass: test actual hook failures in a disposable subprocess, then fix teardown's fail-closed path.
+Cover uncooperative settlement, early assertion failure, retained ownership, environment ordering, and suite cleanup.
+Keep production source unchanged; verify bounded child/process termination before deleting subprocess artifacts.
+Existing shared rules already require this invariant; no new global instruction is proposed.
+
+### Remaining queue
+
+| Item | Next gate |
+| --- | --- |
+| Live workflow purpose/current action | Bounded repair failed lead acceptance; explicit approval needed for fail-closed hook repair |
+| Ctrl+Enter send-now | Isolated repair of capture retention and typed queue usage; no activation in this process |
+| Ctrl+S stash/pop | User choice: swap or replace when stash and composer are occupied; swap recommended |
+| Duplicate image presentation | User identifies inline-token/preview duplication versus preview/read-tool duplication |
+| Image Details, thinking inset, provenance, clipboard, warning placement | User visual checks in this development session; existing automated results remain historical evidence |
+| Releases and normal-profile pins | Already delivered at v0.1.1; no new publication or sync requested |
+
 ## Pi 1.2.0 installation delivery
 
 The user authorized removing the version guard safely, testing normal installation, and publishing the verified fix.
