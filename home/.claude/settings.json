@@ -129,7 +129,7 @@
       "autoUpdate": true,
       "source": {
         "repo": "waldoibarra/claude-lens",
-        "ref": "v0.1.1",
+        "ref": "v0.1.2",
         "source": "github"
       }
     }

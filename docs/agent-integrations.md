@@ -114,11 +114,11 @@ Pi is the primary coding agent. Each sibling documents its supported behavior an
 
 ### Pi Lens
 
-The tracked Pi settings declare `git:github.com/waldoibarra/pi-lens@v0.1.1` with empty `skills`
+The tracked Pi settings declare `git:github.com/waldoibarra/pi-lens@v0.2.0` with empty `skills`
 and `prompts` filters. The existing updater runs `pi update --extensions --no-approve` against the
 normal profile, so no separate installer loop is needed for the Git package.
 
-Lens `v0.1.1` is verified with Pi `1.1.0` and `1.2.0`; unrecognized UI layouts retain native rendering.
+Lens `v0.2.0` is verified with Pi `1.1.0` and `1.2.0`; unrecognized UI layouts retain native rendering.
 Mise follows Pi `latest`; Lens no longer rejects hosts by version number.
 Future Pi versions still require compatibility verification.
 Check `pi --version` and `/lens` after sync. Credentials, sessions, and package caches remain machine-local.
@@ -150,7 +150,7 @@ No credentials, sessions, or development checkouts are copied between machines.
 
 The tracked Claude settings declare Lens in two keys:
 
-- `extraKnownMarketplaces.claude-lens` points at `waldoibarra/claude-lens`, with `source.ref: v0.1.1`.
+- `extraKnownMarketplaces.claude-lens` points at `waldoibarra/claude-lens`, with `source.ref: v0.1.2`.
 - `autoUpdate` refreshes that pinned source; new versions require a shared pin change.
 - `enabledPlugins` enables `lens@claude-lens` and disables the old `lens@claude-code-lens` identity.
 
