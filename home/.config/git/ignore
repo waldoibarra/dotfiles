@@ -3,4 +3,6 @@
 # Only for artifacts that tooling drops into *every* repo it runs in — anything
 # specific to one project belongs in that project's own .gitignore.
 
+.DS_Store
+.env
 **/.claude/settings.local.json

@@ -65,6 +65,7 @@ Both commands switch to `main` and fetch with pruning before deleting branches:
 ## Global ignores
 
 [home/.config/git/ignore](/home/.config/git/ignore) is linked to `~/.config/git/ignore` and selected
-by `core.excludesFile`. It ignores Claude's local project settings
-(`**/.claude/settings.local.json`). Keep project-specific patterns in that project's
-`.gitignore`.
+by `core.excludesFile`. It ignores `.DS_Store`, `.env`, and Claude's local project settings
+(`**/.claude/settings.local.json`) at any depth. Already tracked files are unaffected;
+repository rules and Git configuration can override these defaults.
+Keep project-specific patterns in that project's `.gitignore`.
