@@ -192,6 +192,21 @@ Read [the Lens display spike](/.agents/spikes/pi-lens-tool-display.md)
 before continuing transcript work.
 Observe adherence in later personal sessions before proposing additional global wording.
 
+### Session-improvement skill
+
+The generic session-improvement workflow now lives in
+[`home/.agents/skills/session-improvement/SKILL.md`](/home/.agents/skills/session-improvement/SKILL.md),
+with routing scenarios in its `evals/evals.json`.
+The shared `Learning` rule only routes closure and repeated-correction cases to that skill; policy
+remains in one place and approved edits still require scoped consent.
+Dotbot's existing skill-directory globs are the intended installation mechanism for Pi and Claude Code.
+No hook, daemon, settings schema, dependency, or updater path was added.
+Read [skill activation verification](#skill-activation-verification) for current installation
+and test
+status.
+Rollback: revert the skill directory, the single Learning routing clause, and the related
+docs/plan notes.
+
 ### Fixture-safety outcome
 
 A delegated warning-test prototype left an unbounded context log, filling approximately 65 GiB.
@@ -239,6 +254,8 @@ No new instruction files were added.
 | H13 | Reconcile current decisions and carry settled approvals forward | Repeated release/version/installation questions fragmented already-authorized delivery |
 | H14 | Distinguish configured, installed, loaded, authenticated, and exercised states | Published Lens source was repeatedly confused with laptop readiness; a host-version guard blocked activation |
 | H15 | Verify cleanup on every exit and concurrent input across awaits | Passing audits missed live-fixture deletion and editor-clearing data-loss paths |
+| H16 | Add a portable `session-improvement` skill, not a hook or daemon | Native Pi and Claude skill discovery already fits closure-time proposals with approval boundaries. |
+| H17 | Keep session-improvement evidence limited to accessible current context | Avoid raw history mining while still allowing exact user-reported observations and repo evidence. |
 
 These replace three existing rule passages rather than duplicating their policy.
 Question-versus-execution boundaries and necessary-decision waits remain intact.
@@ -271,10 +288,75 @@ Retain factual release and verification records.
 
 **Weekly prune [A]:** shrink absorbed memories, keep `AGENTS.md` near 100 lines, retire unused skills.
 
+## Socratic-learning skill
+
+The reusable teaching method now lives in
+[`home/.agents/skills/socratic-learning/SKILL.md`](/home/.agents/skills/socratic-learning/SKILL.md),
+with routing scenarios in its `evals/evals.json`.
+Education-project files now adapt that global skill instead of copying the teaching loop.
+Dotbot's existing skill-directory globs are the intended installation mechanism for Pi and
+Claude Code. No teacher role, hook, daemon, installer change, or curriculum was added.
+Read [skill activation verification](#skill-activation-verification) for current installation
+and test
+status.
+
+### Socratic-learning decisions
+
+| Id | Decision | Reason |
+| --- | --- | --- |
+| S1 | Use a portable `socratic-learning` skill, not a teacher role. | Skill discovery already fits on-demand teaching without always-loaded role cost. |
+| S2 | Keep project curricula and persistence rules in education repositories. | Global instructions must not carry project-specific story, learner records, or private links. |
+| S3 | Treat orientation, learning, and maintenance as separate modes. | Orientation maps territory; learning verifies understanding; maintenance updates durable knowledge. |
+| S4 | Require fresh prerequisites, open reasoning, concise synthesis, and independent application. | Short answers alone do not prove understanding; present understanding must be checked. |
+| S5 | Permit curiosity-led factual domain expansion when local scope already approves it. | Avoid repeated permission questions while preserving approval for behavior and cross-repo changes. |
+| S6 | Report missing `socratic-learning` availability as a teaching blocker in adapters. | Education teaching now depends on the canonical global method. |
+| S7 | Route approved reusable improvements through specialist workflows. | The session-improvement skill proposes and routes; it does not execute changes alone. |
+| S8 | Superseded: implement a shared teacher role. | The approved incremental plan chose a global skill instead. |
+
+### Skill activation verification
+
+The parent verified Pi 1.2.0 and Claude Code 2.1.296 on this workstation.
+Selected Dotbot links were applied twice in a disposable home, then twice in the normal home.
+Both skills resolve to the tracked sources through the existing Pi/shared and Claude skill directories.
+No full sync, package install, microphone test, or Claude model call ran.
+
+Pi's native `DefaultResourceLoader` discovered both skills and the project's required teaching
+instruction
+offline.
+The probe disabled extensions and packages through in-memory settings; it made no model request.
+A lower-level `loadSkills` probe missed shared discovery; the full resource loader check
+corrected that
+test.
+Claude filesystem installation is verified; fresh Claude discovery and behavioral execution remain unverified.
+Existing running chats may still need reload or restart.
+The education repository now has a one-line Claude import of its canonical `AGENTS.md`.
+
+Both skill validators, nine agent-harness tests, dotfiles lint, explicit shared Markdown lint,
+and education lint passed. `skills-ref` is unavailable; no validator package was installed.
+A GPT-5.5 medium synthetic smoke covered six authored scenarios and two extra approval boundaries.
+It preserved no-write/no-push limits, fresh questioning, and independent application without
+recording learner
+progress.
+It unnecessarily asked the learner to choose a topic folder; the skill now assigns ownership
+resolution to the
+teacher.
+That focused clarification is statically checked, not behaviorally retested.
+One proposal lacked an exact path because the fixture supplied no repository; actionable
+packets still require
+paths.
+No comparative benchmark, automatic routing test, Claude model probe, or live teaching
+effectiveness claim is
+made.
+Final independent review found two stale status passages; both now link to this canonical
+verification
+section.
+Rollback: revert the scoped source changes and remove only the two new links from each skill directory.
+Do not remove shared directories or unrelated skills.
+
 ## Teacher role idea
 
-**Status:** idea recorded at the user's request; no role is implemented, installed or activated.
-Refine the proposal through learning sessions before approving an executable role.
+**Status:** superseded by `socratic-learning`; no role is implemented, installed or activated.
+Historical notes remain below for context.
 
 Candidate teaching behavior:
 
@@ -294,10 +376,8 @@ A future shared role would keep reusable teaching behavior only.
 Project curricula stay in their owning projects rather than being embedded in the shared role.
 Provider, model, language and effort would be selected for the session, not embedded in the role.
 
-**Next:** collect session feedback, draft the role, and review its scope and evaluation scenarios.
-Decide target clients and invocation before implementation.
-Installation and activation need separate approval.
-Do not create role files, change global instructions, sync dotfiles or run model probes for this idea.
+**Next:** no teacher-role implementation is planned. Improve the `socratic-learning` skill only
+through scoped approval, validation, and host-specific discovery checks.
 
 ## Markdown architecture
 

@@ -133,14 +133,18 @@ messages, apps messages, tickets, code comments, emails, social media content.
 - Every session, record accepted decisions and their rationale in existing plans or maintained docs.
 - Keep reusable rules global; keep project decisions and private details in their owning workspace.
 - Before handoff, record verified outcomes, unresolved questions, and next steps; update relevant indexes.
+- At session closure or when reviewing repeated friction, use `session-improvement`
+  to assess worthwhile proposals.
+  If unavailable, follow the rules below without claiming the skill ran.
 - In company sessions, retain the existing rule: propose improvements from repeated corrections and
   failed checks each session; apply only after approval.
 - In personal and open-source sessions, notice repeated corrections, failed checks, and manual
   friction without prompting at natural checkpoints. Propose the smallest change once per pattern,
-  with evidence, scope, benefit, verification, and rollback; retain unanswered proposals in the existing
-  plan; silence is not approval. Require approval for harness changes or behavioral instructions
-  in memory; factual notes need no approval. Keep sensitive evidence and individual preferences separate.
-  Do not adapt work without approval. No recurring pattern means no proposal or logging obligation.
+  with evidence, scope, benefit, verification, and rollback; retain unanswered proposals
+  in the existing plan; silence is not approval. Require approval for harness changes or behavioral
+  instructions in memory; factual notes need no approval. Keep sensitive evidence and individual
+  preferences separate. Do not adapt work without approval. No recurring pattern means no proposal
+  or logging obligation.
 
 ## Documentation
 

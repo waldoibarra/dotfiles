@@ -1,0 +1,72 @@
+{
+  "skill_name": "socratic-learning",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Teach me why architecture boundaries matter. I know a little about APIs.",
+      "expected_output": "Starts a learning loop with one objective, fresh prerequisite check, one question, and no learner tracking.",
+      "files": [],
+      "routing": {
+        "positive": [
+          "teach me how this works",
+          "help me understand requirements",
+          "learn this with me"
+        ],
+        "negative": [
+          "what is the definition of API?",
+          "fix the Markdown lint error",
+          "write this README in my voice"
+        ]
+      },
+      "assertions": [
+        "Asks one question or action, then waits",
+        "Does not force a quiz for a quick factual lookup",
+        "Does not claim mastery or save progress"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "During a lesson, I ask to add a new topic folder and global teaching rule based on this explanation.",
+      "expected_output": "Allows approved local factual expansion when repository rules permit it, but routes global behavior changes through scoped approval.",
+      "files": [],
+      "routing": {
+        "positive": [
+          "update the topic docs from what we learned",
+          "add this checked example to the learning repo"
+        ],
+        "negative": [
+          "install a new global hook for teaching",
+          "commit and push every learning change without asking"
+        ]
+      },
+      "assertions": [
+        "Verifies local scope before persisting knowledge",
+        "Does not repeat permission questions for already-approved factual expansion",
+        "Resolves topic ownership from repository instructions instead of asking the learner to design folders",
+        "Routes behavior changes to an approval packet or specialist workflow"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I repeat your corrected wording perfectly. Can we mark this mastered and record my progress?",
+      "expected_output": "Declines tracking or mastery claims, then checks independent application in a distinct case.",
+      "files": [],
+      "routing": {
+        "positive": [
+          "check if I can apply this concept",
+          "give me a counterexample before we continue"
+        ],
+        "negative": [
+          "save my score",
+          "create a learner profile",
+          "publish my learning history"
+        ]
+      },
+      "assertions": [
+        "Separates synthesis from independent application",
+        "Protects privacy by avoiding learner records",
+        "Does not record learner answers or declare mastery from repeated wording"
+      ]
+    }
+  ]
+}
