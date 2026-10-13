@@ -4,6 +4,43 @@
 This cross-repository plan belongs to dotfiles. Do not copy or link it from public product repositories.
 The retained record keeps its original formatting; historical statuses are superseded by the current checkpoint.
 
+## Published-release planning
+
+The user requests published versions for laptop delivery, targeting `0.1.0` in both Lens repositories.
+Planning is authorized; this request does not yet authorize release execution or profile changes.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D90 | Target Pi Lens `0.1.0` as a published Pi package | User wants versioned distribution rather than a local checkout |
+| D91 | Recommend native Git-tag distribution for Pi Lens | Existing Pi manifest supports it; no new registry ownership or npm authentication required |
+| D92 | Resolve Claude release numbering before editing manifests | Remote tag and GitHub Release `v1.0.0` already exist; `0.1.0` would downgrade |
+
+Verified release facts:
+
+- Pi Lens already declares `pi.extensions: ["./src/index.ts"]`; no compilation is required.
+- Its package version is already `0.1.0`; `private: true` prevents accidental npm publication, not Git distribution.
+- The npm name `pi-lens` belongs to `apmantza/pi-lens`, currently `4.4.3`.
+- The scoped name `@waldoibarra/pi-lens` returned registry 404; publish permissions remain unverified.
+- Claude Lens's manifest is `1.0.0`; remote tag and GitHub Release `v1.0.0` were verified read-only.
+- Claude Lens distributes through its native plugin marketplace, not Pi's package manager.
+
+Proposed release sequence:
+
+1. Resolve Claude numbering: recommend `1.1.0` while preserving published `1.0.0`; explicit downgrade requires user confirmation.
+2. Freeze verified presentation commits; exclude blocked runner and send-now checkpoints.
+3. Update generic manifests, changelogs/release notes, compatibility, installation docs, and sibling links.
+4. Run Pi full checks and terminal fixtures, Claude `just check`, and inspect distribution payloads.
+5. Publish immutable Git tags and GitHub Releases after explicit execution approval; never move published tags.
+6. Declare `git:github.com/waldoibarra/pi-lens@v0.1.0` in dotfiles and pin compatible Pi `1.1.0`.
+7. Verify Git-package reconciliation and Claude marketplace installation in disposable profiles without provider calls.
+8. Push verified dotfiles delivery changes; laptop runs `dots`, then starts fresh Pi and Claude processes.
+
+Git-tag publication is the recommended first release route. npm remains optional and would require a scoped package name.
+Publishing Lens alone does not deliver host-backed clipboard previews or composer attribution.
+Those features require a separately verified patched-host distribution; the blocked send-now branch must not be used.
+Manual acceptance remains user-owned; a published artifact or passing fixture does not check those boxes.
+Recovery uses `/lens raw` or disabling the package; revert dotfiles pins rather than moving published tags.
+
 ## Laptop delivery handoff
 
 The user requested committing all remaining work, then continuing improvements in another session.
