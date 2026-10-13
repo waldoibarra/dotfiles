@@ -17,6 +17,13 @@ setup and limitation documentation lives in the [Pi guides](../../docs/coding-ag
 See the Phase 5
 verification record below; no fresh microphone test was run during provisioning.
 
+## Live chat close error
+
+User-reported observation for Waldo review: closing a live chat produced the exact error
+`Error: Context append text must not exceed 500 tokens.` Cause, affected versions, reproduction
+steps, and remediation are unknown. This note records the report only; no diagnosis, fix, or
+additional live-chat test was performed.
+
 ## Configuration ownership correction
 
 Waldo rejected the speculative merge layer (YAGNI), then questioned whether Pi needed the
