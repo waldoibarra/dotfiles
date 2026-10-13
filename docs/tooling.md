@@ -45,7 +45,7 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 | `just lint-ec`, `just lint-md`, `just lint-yaml`, `just lint-sh` | Run one check. |
 | `just lint-commit MESSAGE_FILE` | Validate the message in `MESSAGE_FILE`. |
 | `just check-hooks` | Run the pre-commit hook against all files. |
-| `just pi-lens-dev` | Open the local Pi build with local Lens and subagents; no saved session. |
+| `just pi-lens-dev` | Open local Pi, Lens and subagents with installed live voice; no saved session. |
 
 Use the narrow recipe for the changed domain. Link changes require the Dotbot installer; they do
 not inherently require package upgrades or publication. Review its
@@ -79,6 +79,7 @@ just --justfile "$HOME/.dotfiles/justfile" pi-lens-dev
 | Compiled Pi host | `$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js` |
 | Pi Lens | `$HOME/projects/personal/pi-lens/src/index.ts` |
 | Subagents | `$HOME/projects/personal/pi-subagents/index.ts` |
+| Installed live voice | `$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts` |
 
 The recipe checks those files and preserves the caller's working directory.
 It never builds, installs, or changes package declarations.
@@ -86,9 +87,15 @@ Prepare missing checkouts and the compiled host separately.
 It uses the local compiled host, not Mise's `latest` binary.
 Ordinary `pi` and `dots` remain unchanged.
 
-Only the two named extensions load; installed Lens and other auto-discovered extensions are disabled.
-This prevents double rendering. Voice and other omitted extensions are unavailable in this session.
+Only the three named extensions load; installed Lens and other auto-discovered extensions remain disabled.
+This prevents double rendering. Voice loads without opening the microphone or connecting automatically.
+Start voice with `/live spruce` or use Ctrl+L for the default voice.
+Read [live voice](coding-agents/pi/live-voice.md) before testing microphone and account access.
 `--no-session` keeps the live conversation but does not save it after exit.
+
+Sessions launched before voice was included need a new process.
+`/reload` retains their original extension paths.
+Keep the current conversation open and launch `just pi-lens-dev` in another terminal for voice testing.
 
 Edit Lens or subagent source, finish the active turn, then run `/reload` in the same Pi session.
 Reload replaces extensions without restarting the conversation.

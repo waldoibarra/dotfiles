@@ -124,7 +124,7 @@ class AgentHarnessTest(unittest.TestCase):
                 self.assertTrue((home / ".claude/agents").is_dir())
                 self.assertFalse((home / ".claude/agents").is_symlink())
 
-    def test_development_recipe_loads_checkout_sources_only(self):
+    def test_development_recipe_loads_local_sources_and_installed_voice(self):
         with tempfile.TemporaryDirectory(prefix="dotfiles-pi-dev-") as scratch:
             home = Path(scratch) / "home with spaces"
             workspace = home / "workspace"
@@ -135,6 +135,7 @@ class AgentHarnessTest(unittest.TestCase):
                 home / "projects/personal/pi/packages/coding-agent/dist/bundle/cli.js",
                 home / "projects/personal/pi-lens/src/index.ts",
                 home / "projects/personal/pi-subagents/index.ts",
+                home / ".pi/agent/npm/node_modules/pi-live-codex/index.ts",
             ]
             for source in sources:
                 source.parent.mkdir(parents=True, exist_ok=True)
@@ -158,7 +159,8 @@ class AgentHarnessTest(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             launch = json.loads(capture.read_text())
             self.assertEqual(launch["argv"], [str(sources[0]), "--no-session", "--no-extensions",
-                                              "-e", str(sources[1]), "-e", str(sources[2])])
+                                              "-e", str(sources[1]), "-e", str(sources[2]),
+                                              "-e", str(sources[3])])
             self.assertEqual(Path(launch["cwd"]).resolve(), workspace.resolve())
             for source in sources:
                 with self.subTest(missing=source.name):
