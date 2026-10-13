@@ -20,6 +20,7 @@ The target is `dots` followed by opening Pi on the other laptop, without a devel
 | D106 | Maintain `latest` only as a movable published-release alias | User requested its release process be documented; no release branch is needed |
 | D107 | Release Claude Lens `v0.1.1` with renamed marketplace metadata | An immutable pin must include the approved marketplace rename |
 | D108 | Apply three targeted shared-rule refinements | User explicitly requested harness improvements from observed session friction |
+| D109 | Add `just pi-lens-dev` in dotfiles | User requests the screenshot's local host/Lens/subagents launch with same-session `/reload` |
 
 Observed starting state:
 
@@ -54,9 +55,23 @@ Release procedures live in each product's contributor/development guide; dotfile
 Rollback restores the previous version pins; Pi Lens `v0.1.0` intentionally uses native rendering on Pi 1.2.0.
 No clipboard-origin host support, completed send-now parity, or user visual acceptance is claimed.
 
-The deployment payload is ready to push. After it reaches `origin/main`, the other laptop can run `dots` and open Pi.
-This push includes previously committed EditorConfig, global-ignore, and start-project-skill changes, inspected read-only.
+Deployment commit `4b8afea` is pushed and verified on `origin/main`.
+The other laptop can now run `dots` and open a fresh Pi process; `/lens` should report normal view.
+First-use provider authentication remains machine-local; credentials are never copied by dotfiles.
+Existing Pi 1.2.0 sessions can use `/reload` after the parent turn ends; older host processes need restart.
+The push includes previously committed EditorConfig, global-ignore, and start-project-skill changes, inspected read-only.
 Shared-rule refinements and their evidence are recorded in the harness roadmap; no fresh model-behavior probes were run.
+
+### Local development launch
+
+Run `just pi-lens-dev` from dotfiles, or use its absolute justfile path from another project.
+Read [the development recipe guide](/docs/tooling.md#develop-lens-locally) before launching it.
+It uses the existing compiled local Pi host plus local Lens and subagent source, without installed-extension duplication.
+`/reload` refreshes those extension sources within the same live conversation; no session is persisted after exit.
+Missing source/build files fail before launching Node. The caller's working directory is preserved.
+The recipe never builds, installs, changes the normal package list, or alters Mise's `latest` selection.
+Verification uses a fake Node executable: exact argv, spaces in home paths, caller cwd, and all missing-file guards.
+This small launcher was self-reviewed; no additional independent model review or interactive session was launched.
 
 ## Rename and provisioning checkpoint
 

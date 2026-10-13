@@ -46,7 +46,25 @@ No credentials were copied. Existing SSH authentication handled public Git opera
 
 Normal Pi rewrote JSON formatting and advanced `lastChangelogVersion` to `1.2.0`; source formatting was restored.
 Voice/subagent declarations are unchanged. No normal Claude install, full `dots`, host patches, or send-now activation occurred.
-The deployment payload is ready for the final shared-dotfiles push; human visual acceptance remains unchecked.
+Dotfiles deployment commit `4b8afea49fad9db9a28ac7937b3525238cfcddef` was pushed and read back from `origin/main`.
+Product and dotfiles worktrees were clean after delivery; blocked runner/send-now checkpoints remain separate.
+The other laptop can run `dots` and open Pi. Its authentication and human visual acceptance remain unverified.
+All manual acceptance boxes remain unchecked until the user confirms each behavior.
+
+## Local development recipe
+
+User requested a committed `just` recipe matching the supplied compiled-host and local-extension launch.
+
+- `just pi-lens-dev` selects the compiled local host, Lens source, and subagents source.
+- `--no-extensions` prevents installed-extension duplication; `--no-session` avoids persisted trial conversations.
+- `[no-cd]` preserves the caller's project directory.
+- A disposable fake-Node test checks exact arguments, home paths with spaces, and each missing-file failure.
+- The harness suite now contains nine passing tests; the actual interactive recipe was not run by the agent.
+- ShellCheck accepts the dry-run recipe as POSIX shell; final repository lint passed after line/indent corrections.
+- Documentation explains `/reload` for extension edits and restart/rebuild for host edits.
+
+This small recipe received lead self-review, not another independent model audit.
+No package installation, host rebuild, or profile change was needed for the recipe.
 
 ## Pi 1.2.0 baseline and activation authorization
 

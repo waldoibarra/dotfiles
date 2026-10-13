@@ -124,6 +124,55 @@ class AgentHarnessTest(unittest.TestCase):
                 self.assertTrue((home / ".claude/agents").is_dir())
                 self.assertFalse((home / ".claude/agents").is_symlink())
 
+    def test_development_recipe_loads_checkout_sources_only(self):
+        with tempfile.TemporaryDirectory(prefix="dotfiles-pi-dev-") as scratch:
+            home = Path(scratch) / "home with spaces"
+            workspace = home / "workspace"
+            binary_dir = home / "bin"
+            workspace.mkdir(parents=True)
+            binary_dir.mkdir()
+            sources = [
+                home / "projects/personal/pi/packages/coding-agent/dist/bundle/cli.js",
+                home / "projects/personal/pi-lens/src/index.ts",
+                home / "projects/personal/pi-subagents/index.ts",
+            ]
+            for source in sources:
+                source.parent.mkdir(parents=True, exist_ok=True)
+                source.touch()
+            capture = home / "launch.json"
+            fake_node = binary_dir / "node"
+            fake_node.write_text(
+                "#!/usr/bin/env python3\nimport json, os, sys\n"
+                "from pathlib import Path\n"
+                "Path(os.environ['CAPTURE']).write_text(json.dumps({"
+                "'argv': sys.argv[1:], 'cwd': os.getcwd()}))\n"
+            )
+            fake_node.chmod(0o755)
+            env = dict(
+                os.environ, HOME=str(home), CAPTURE=str(capture),
+                PATH=f"{binary_dir}:{os.environ['PATH']}",
+            )
+            command = ["just", "--justfile", str(ROOT / "justfile"), "pi-lens-dev"]
+            result = subprocess.run(command, cwd=workspace, env=env, capture_output=True,
+                                    text=True, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            launch = json.loads(capture.read_text())
+            self.assertEqual(launch["argv"], [str(sources[0]), "--no-session", "--no-extensions",
+                                              "-e", str(sources[1]), "-e", str(sources[2])])
+            self.assertEqual(Path(launch["cwd"]).resolve(), workspace.resolve())
+            for source in sources:
+                with self.subTest(missing=source.name):
+                    capture.unlink(missing_ok=True)
+                    source.unlink()
+                    try:
+                        result = subprocess.run(command, cwd=workspace, env=env,
+                                                capture_output=True, text=True, timeout=10)
+                        self.assertNotEqual(result.returncode, 0)
+                        self.assertIn(f"Missing development file: {source}", result.stderr)
+                        self.assertFalse(capture.exists())
+                    finally:
+                        source.touch()
+
     def test_package_reconciliation_uses_normal_profile_and_propagates_failure(self):
         with tempfile.TemporaryDirectory(prefix="dotfiles-packages-") as scratch:
             home = Path(scratch)

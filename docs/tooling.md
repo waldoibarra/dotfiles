@@ -45,6 +45,7 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 | `just lint-ec`, `just lint-md`, `just lint-yaml`, `just lint-sh` | Run one check. |
 | `just lint-commit MESSAGE_FILE` | Validate the message in `MESSAGE_FILE`. |
 | `just check-hooks` | Run the pre-commit hook against all files. |
+| `just pi-lens-dev` | Open the local Pi build with local Lens and subagents; no saved session. |
 
 Use the narrow recipe for the changed domain. Link changes require the Dotbot installer; they do
 not inherently require package upgrades or publication. Review its
@@ -63,6 +64,36 @@ Verbatim upstream guides and output styles are intentionally exempt from house M
 The saved media-spike evidence collection is exempt from EditorConfig checks to preserve output
 formatting and manifest checksums. Research Markdown under `.agents/` still receives Markdown and
 EditorConfig checks, with variable indentation for numbered-list continuations.
+
+## Develop Lens locally
+
+From this checkout, run `just pi-lens-dev` to use the local sources shown below.
+To keep another project's working directory, invoke it there with:
+
+```sh
+just --justfile "$HOME/.dotfiles/justfile" pi-lens-dev
+```
+
+| Component | Required file |
+| --- | --- |
+| Compiled Pi host | `$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js` |
+| Pi Lens | `$HOME/projects/personal/pi-lens/src/index.ts` |
+| Subagents | `$HOME/projects/personal/pi-subagents/index.ts` |
+
+The recipe checks those files and preserves the caller's working directory.
+It never builds, installs, or changes package declarations.
+Prepare missing checkouts and the compiled host separately.
+It uses the local compiled host, not Mise's `latest` binary.
+Ordinary `pi` and `dots` remain unchanged.
+
+Only the two named extensions load; installed Lens and other auto-discovered extensions are disabled.
+This prevents double rendering. Voice and other omitted extensions are unavailable in this session.
+`--no-session` keeps the live conversation but does not save it after exit.
+
+Edit Lens or subagent source, finish the active turn, then run `/reload` in the same Pi session.
+Reload replaces extensions without restarting the conversation.
+Host changes require rebuilding and restarting Pi.
+Use ordinary `pi` for the published package configuration.
 
 ## Editor defaults
 
