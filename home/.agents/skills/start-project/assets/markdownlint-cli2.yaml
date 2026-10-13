@@ -1,0 +1,13 @@
+gitignore: true
+config:
+  default: true
+  emphasis-style:
+    style: underscore
+  strong-style:
+    style: asterisk
+  ul-style:
+    style: dash
+  line-length:
+    line_length: 100
+    code_blocks: false
+    tables: false

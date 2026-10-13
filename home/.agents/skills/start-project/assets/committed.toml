@@ -1,0 +1,4 @@
+style = "conventional"
+subject_capitalized = false
+subject_length = 50
+line_length = 72

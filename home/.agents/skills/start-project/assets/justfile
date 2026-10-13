@@ -1,0 +1,32 @@
+set positional-arguments
+
+# List available commands.
+[private]
+help:
+    @just --list --unsorted
+
+# Install pinned tools and repository-local Git hooks.
+[group("Setup")]
+setup:
+    mise trust
+    mise install --yes
+    mise exec -- hk install --mise
+
+# Run all file checks.
+[group("Linting")]
+lint: lint-md
+
+# Check Markdown.
+[group("Linting")]
+lint-md:
+    markdownlint-cli2 "**/*.md"
+
+# Fix supported Markdown issues explicitly.
+[group("Linting")]
+lint-md-fix:
+    markdownlint-cli2 --fix "**/*.md"
+
+# Check a commit message file.
+[group("Linting")]
+lint-commit msg_file:
+    committed --commit-file "$1"

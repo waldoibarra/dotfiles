@@ -1,0 +1,51 @@
+{
+  "skill_name": "start-project",
+  "validation": {
+    "passed": [
+      "Skill format validator and dotfiles lint suite",
+      "Disposable Dotbot installation with byte-matched bundle files",
+      "Template setup and grouped recipe discovery",
+      "Installed hooks accept valid inputs and reject invalid inputs"
+    ],
+    "not_run": [
+      "Model-based routing and with-versus-without-skill comparison",
+      "Independent skills-ref validation: executable unavailable",
+      "Independent review: previously selected worker model unavailable"
+    ]
+  },
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Start this project in the empty directory. Only the bare minimum for requirements and POCs; no stack yet.",
+      "expected_output": "Minimal docs, mise lint tools, grouped just recipes, and working local Git hooks.",
+      "files": [],
+      "assertions": [
+        "No application package manifest is created.",
+        "The justfile exposes Setup and Linting groups.",
+        "Markdown and commit-message hooks are exercised.",
+        "The README contains only a title and short project status.",
+        "No commit or remote is created without a request."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Start this project with the minimal setup. The directory already has a README and a package.json.",
+      "expected_output": "Inspect existing files and ask before adapting the empty-directory baseline.",
+      "files": [],
+      "assertions": [
+        "Existing files are not overwritten.",
+        "The agent asks whether to adapt the baseline."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create a Next.js app with deployment in this empty directory.",
+      "expected_output": "Route to scaffold-nextjs rather than applying the stack-free baseline.",
+      "files": [],
+      "assertions": [
+        "The request is identified as application scaffolding.",
+        "The start-project baseline is not substituted for the requested app."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+[tools]
+markdownlint-cli2 = "0.22.1"
+hk = "1.45.0"
+pkl = "0.31.1"
+"github:crate-ci/committed" = "1.1.11"
