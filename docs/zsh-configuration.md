@@ -40,6 +40,23 @@ Create these directly in `$HOME`; do not track or symlink them through Dotbot:
 | `~/.zprofile.local` | Override login-session environment values, including account-specific settings. |
 | `~/.zlogin.local` | Set `NICKNAME` for the greeting; otherwise it uses `$USER`. |
 
+To select a different AWS profile on each machine, set `AWS_PROFILE` in `~/.zprofile.local`:
+
+```sh
+# ~/.zprofile.local
+export AWS_PROFILE="YOUR_PROFILE_NAME"
+```
+
+Replace `YOUR_PROFILE_NAME` with a profile defined in `~/.aws/config`.
+The local file loads after the shared default and overrides it.
+Open a new login terminal, then verify:
+
+```sh
+printenv AWS_PROFILE
+```
+
+The output must match your chosen profile name. This checks selection, not AWS authentication or permissions.
+
 For a custom greeting name:
 
 ```sh
