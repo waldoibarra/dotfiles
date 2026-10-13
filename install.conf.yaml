@@ -38,6 +38,7 @@
 - link:
     # Files in $HOME root.
     ~/.Brewfile: home/.Brewfile
+    ~/.editorconfig: .editorconfig.global
     ~/.gitconfig: home/.gitconfig
     ~/.zlogin: home/.zlogin
     ~/.zprofile: home/.zprofile

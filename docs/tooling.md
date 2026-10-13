@@ -64,6 +64,21 @@ The saved media-spike evidence collection is exempt from EditorConfig checks to 
 formatting and manifest checksums. Research Markdown under `.agents/` still receives Markdown and
 EditorConfig checks, with variable indentation for numbered-list continuations.
 
+## Editor defaults
+
+[.editorconfig.global](/.editorconfig.global) is linked to `~/.editorconfig` by Dotbot.
+It supplies UTF-8, LF, final newlines, trimmed trailing whitespace, two-space indentation,
+and a 100-character line-length setting.
+
+EditorConfig-aware tools inherit these defaults for files beneath `$HOME`.
+A closer `.editorconfig` can override properties; `root = true` stops ancestor lookup.
+Projects outside `$HOME` do not inherit this file. Property support depends on the editor;
+`max_line_length` is not universally enforced.
+
+Keep shared defaults here; add project configuration only for exceptions or portable team rules.
+This repository retains its own `.editorconfig` for file-specific exceptions.
+The global source has a distinct filename so it cannot override those exceptions within `home/`.
+
 ## Homebrew
 
 [`home/.Brewfile`](/home/.Brewfile), linked to `~/.Brewfile`, owns system packages and desktop apps.
