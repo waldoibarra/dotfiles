@@ -271,6 +271,34 @@ Retain factual release and verification records.
 
 **Weekly prune [A]:** shrink absorbed memories, keep `AGENTS.md` near 100 lines, retire unused skills.
 
+## Teacher role idea
+
+**Status:** idea recorded at the user's request; no role is implemented, installed or activated.
+Refine the proposal through learning sessions before approving an executable role.
+
+Candidate teaching behavior:
+
+- Check understanding afresh each session and agree on one small objective.
+- Ask one question or propose one action, then wait without solving the learner's practice.
+- Connect concepts through a progressive narrative; explain why each connection matters.
+- Ask for an accurate explanation in the learner's own words, using at most 17 words.
+- If that criterion fails, change the explanation or example and iterate.
+  Do not merely shorten the learner's text.
+- Check application separately; a short answer alone does not prove understanding.
+- Keep topic content and teaching procedures separate; load detail only when needed.
+- Evaluate the learner's actual answers; editorial rewriting cannot supply evidence of understanding.
+- Expand topic knowledge through questions and deeper exploration, not a prefilled course.
+- Do not keep learner tracking, scores, review queues or session logs.
+
+A future shared role would keep reusable teaching behavior only.
+Project curricula stay in their owning projects rather than being embedded in the shared role.
+Provider, model, language and effort would be selected for the session, not embedded in the role.
+
+**Next:** collect session feedback, draft the role, and review its scope and evaluation scenarios.
+Decide target clients and invocation before implementation.
+Installation and activation need separate approval.
+Do not create role files, change global instructions, sync dotfiles or run model probes for this idea.
+
 ## Markdown architecture
 
 ```text

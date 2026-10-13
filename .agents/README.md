@@ -31,7 +31,7 @@ old files are later removed. Size alone does not replace the publication review 
 | Continuing Markdown default-app setup or reviewing its verification | [Markdown application plan](/.agents/plans/markdown-default-app.md) |
 | Continuing personal MCP parity, Sheets setup, and integration lessons | [Personal MCP plan](/.agents/plans/personal-mcp.md) |
 | Continuing the shared-role migration and Pi delegation verification | [Shared roles plan](/.agents/plans/pi-shared-roles.md) |
-| Changing agent rules, role agents, skill scope, or the improvement loop | [AI harness roadmap](/.agents/plans/ai-harness-roadmap.md) |
+| Changing agent rules, role agents, skill scope, the improvement loop, or reviewing the teacher-role idea | [AI harness roadmap](/.agents/plans/ai-harness-roadmap.md) |
 | Continuing Pi setup or reviewing the integration outcome | [Integration summary](/.agents/plans/pi-dotfiles-integration-summary.md) |
 | Recording Pi trial feedback or exploring the transcript-handoff idea | [Trial notes](/.agents/plans/pi-live-codex-trial.notes.md) |
 | Reusing the original Pi voice test scenarios; later notes supersede trial decisions | [Trial plan](/.agents/plans/pi-live-codex-trial.md) |
