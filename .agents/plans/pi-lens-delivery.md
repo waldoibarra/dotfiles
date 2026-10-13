@@ -6,14 +6,16 @@ The retained record keeps its original formatting; historical statuses are super
 
 ## Published-release planning
 
-The user requests published versions for laptop delivery, targeting `0.1.0` in both Lens repositories.
-Planning is authorized; this request does not yet authorize release execution or profile changes.
+The user explicitly authorized replacing Claude's `v1.0.0` tag and publishing `v0.1.0` in both Lens repositories.
+Both tags and GitHub Releases are now published. Shared-dotfiles provisioning and normal-profile changes remain separate.
 
 | ID | Decision | Reason |
 | --- | --- | --- |
 | D90 | Target Pi Lens `0.1.0` as a published Pi package | User wants versioned distribution rather than a local checkout |
 | D91 | Recommend native Git-tag distribution for Pi Lens | Existing Pi manifest supports it; no new registry ownership or npm authentication required |
-| D92 | Resolve Claude release numbering before editing manifests | Remote tag and GitHub Release `v1.0.0` already exist; `0.1.0` would downgrade |
+| D92 | Superseded by D93: resolve Claude numbering before editing manifests | Existing `v1.0.0` required an explicit downgrade decision |
+| D93 | Delete Claude `v1.0.0` tag and publish `v0.1.0` in both repositories | User explicitly reaffirmed the requested version and tag reset |
+| D94 | Preserve the old GitHub release record pending deletion approval | User authorized tag deletion; separate record deletion was asked explicitly |
 
 Verified release facts:
 
@@ -21,21 +23,27 @@ Verified release facts:
 - Its package version is already `0.1.0`; `private: true` prevents accidental npm publication, not Git distribution.
 - The npm name `pi-lens` belongs to `apmantza/pi-lens`, currently `4.4.3`.
 - The scoped name `@waldoibarra/pi-lens` returned registry 404; publish permissions remain unverified.
-- Claude Lens's manifest is `1.0.0`; remote tag and GitHub Release `v1.0.0` were verified read-only.
+- Claude Lens's manifest is now `0.1.0`; `v1.0.0` tags were deleted locally and remotely.
+- GitHub automatically changed the old `v1.0.0` release record to draft after tag deletion.
+- Both new `v0.1.0` releases are published and marked Latest; their tagged commits passed CI.
 - Claude Lens distributes through its native plugin marketplace, not Pi's package manager.
 
-Proposed release sequence:
+Release sequence (steps 1–5 complete; provisioning remains pending):
 
-1. Resolve Claude numbering: recommend `1.1.0` while preserving published `1.0.0`; explicit downgrade requires user confirmation.
+1. Apply the user-approved version reset to `0.1.0` in Claude; retain Pi's existing `0.1.0`.
 2. Freeze verified presentation commits; exclude blocked runner and send-now checkpoints.
 3. Update generic manifests, changelogs/release notes, compatibility, installation docs, and sibling links.
 4. Run Pi full checks and terminal fixtures, Claude `just check`, and inspect distribution payloads.
 5. Publish immutable Git tags and GitHub Releases after explicit execution approval; never move published tags.
-6. Declare `git:github.com/waldoibarra/pi-lens@v0.1.0` in dotfiles and pin compatible Pi `1.1.0`.
+6. With provisioning approval, declare `git:github.com/waldoibarra/pi-lens@v0.1.0` in dotfiles and pin compatible Pi `1.1.0`.
 7. Verify Git-package reconciliation and Claude marketplace installation in disposable profiles without provider calls.
 8. Push verified dotfiles delivery changes; laptop runs `dots`, then starts fresh Pi and Claude processes.
 
-Git-tag publication is the recommended first release route. npm remains optional and would require a scoped package name.
+Published tags: Pi Lens `9528bc9`; Claude Lens `874be93`. Both package/plugin versions are `0.1.0`.
+Lead checks passed: Pi 179 tests, direct terminal modes, package payload; Claude 29 tests and all checks.
+Git-tag publication is the selected first release route. npm remains optional and would require a scoped package name.
+No release package was installed in either normal profile. Git-package clean-profile installation remains unexercised for these tags.
+Existing Claude `1.0.0` installations need version verification; automatic downgrade to `0.1.0` is unverified.
 Publishing Lens alone does not deliver host-backed clipboard previews or composer attribution.
 Those features require a separately verified patched-host distribution; the blocked send-now branch must not be used.
 Manual acceptance remains user-owned; a published artifact or passing fixture does not check those boxes.

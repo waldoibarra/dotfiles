@@ -4,6 +4,32 @@
 This workstation and cross-repository evidence belongs to dotfiles, not the public Pi Lens repository.
 Historical results below retain their original context; they do not establish current activation.
 
+## Published v0.1.0 releases
+
+User explicitly authorized Claude's old tag deletion and `v0.1.0` publication in both repositories.
+
+| Repository | Tagged commit | Release |
+| --- | --- | --- |
+| Pi Lens | `9528bc92d7ba507ee8778f4a7d74eb4461489da7` | [v0.1.0](https://github.com/waldoibarra/pi-lens/releases/tag/v0.1.0) |
+| Claude Lens | `874be931636851352cd64c2323ff81d9bfaf6bb8` | [v0.1.0](https://github.com/waldoibarra/claude-code-lens/releases/tag/v0.1.0) |
+
+Lead release checks:
+
+- Pi full check passed: 179 tests, no failures, typecheck and lint passed.
+- Pi direct terminal fixture passed fullscreen and regular; model-visible baseline remained equivalent.
+- Pi package dry-run contained 20 product files; no coordination records were included.
+- Claude `just check` passed: 29 tests, plugin validation, types, and all lint checks.
+- Tagged-commit CI passed: Pi Check `38329613404`; Claude Plugin checks `38329615651` and Lint `38329615674`.
+- Remote tag references were read back; Claude `v1.0.0` is absent and both `v0.1.0` tags exist.
+- Both GitHub Releases were read back as published Latest releases.
+
+The old Claude GitHub release became a draft automatically after its tag was deleted.
+Deleting that draft record still awaits the user's answer; it contains no attached assets.
+No npm publication, package installation, host replacement, or `dots` was performed.
+Shared Pi settings still lack Lens; shared Mise configuration still selects latest Pi rather than compatible `1.1.0`.
+Fresh installation of these published tags and existing-Claude downgrade behavior remain unverified.
+Manual acceptance remains unchecked, including clipboard presentation and native Claude rendering.
+
 ## Commit and laptop handoff
 
 User requested all remaining work be committed, with improvements deferred to another session.
