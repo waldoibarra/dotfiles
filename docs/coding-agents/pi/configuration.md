@@ -25,7 +25,7 @@ not enter the repository.
 
 The coding defaults are `defaultProvider: "openai-codex"`, `defaultModel: "gpt-6-astra"`,
 and `compaction.enabled: true`. Package declarations include voice, the pinned subagent runner,
-and `git:github.com/waldoibarra/pi-lens@v0.1.0` with empty skill and prompt filters. Edit the
+and `git:github.com/waldoibarra/pi-lens@v0.1.1` with empty skill and prompt filters. Edit the
 tracked sources for persistent preferences and package declarations. Pi's settings writer follows
 the symlink, so changes through Pi's UI or package commands can also change the repository. Review
 those diffs before committing. Keep secrets and machine-specific values out of linked files. There

@@ -4,6 +4,65 @@
 This workstation and cross-repository evidence belongs to dotfiles, not the public Pi Lens repository.
 Historical results below retain their original context; they do not establish current activation.
 
+## Verified v0.1.1 installation delivery
+
+| Product | Published version commit | Installed/loaded evidence |
+| --- | --- | --- |
+| Pi Lens | `fbb2f72d7bff74a65e4d59c4ed83d844d27f0fe8` | Normal profile on Pi 1.2.0; both terminal modes, views, and reload |
+| Claude Lens | `35ecd19a0f7f23f1e8a0b83189415f9c1d6b1655` | Disposable native marketplace/plugin installation reports version 0.1.1 enabled |
+
+Both GitHub Releases are published Latest releases. Each repository's `latest` Git tag resolves to its `v0.1.1` commit.
+Versioned tags were not moved; no release branch was created. Shared deployment retains explicit version pins.
+Mise's Pi selector remains `latest` as requested.
+
+Lead checks and independent audit:
+
+- Pi full check passed: 180 tests, zero failures, typecheck and lint.
+- Direct terminal fixtures passed on explicitly asserted Pi 1.1.0 and Pi 1.2.0, in both modes.
+- Pi 1.2.0 batch fixture passed both modes; image fixture passed fullscreen with voice co-loaded.
+- Regular image mouse interaction remains explicitly skipped, not claimed verified.
+- All rendering fixtures preserved model-visible baseline content.
+- Pi package dry-run contained 20 product files, without private coordination records.
+- Claude `just check` passed 29 tests; final formatting checks also passed.
+- Independent final source/configuration audit passed without blockers.
+- CI passed: Pi `38336346171`; Claude Plugin checks `38336349057` and Lint `38336349089`.
+- Eight dotfiles provisioning tests and full lint passed; shared instructions passed direct Markdown lint.
+
+Actual package installation checks:
+
+1. Native local-candidate install into a disposable Pi profile; installed auto-discovery passed both modes.
+2. Native Git `v0.1.1` install into a fresh profile; installed auto-discovery passed both modes.
+3. Native `pi update --extensions --no-approve` installed the missing Git package in another fresh profile.
+   Source filters were retained, and installed auto-discovery passed both modes.
+4. Targeted normal-profile `pi update --extension git:github.com/waldoibarra/pi-lens@v0.1.1 --no-approve` succeeded.
+   Checkout commit was read back, and installed auto-discovery passed both modes without explicit Lens `-e`.
+5. Isolated Claude native marketplace add and plugin install succeeded.
+   Generated settings contain GitHub `source.ref: v0.1.1`; plugin list reports `lens@claude-lens`, version `0.1.1`, enabled.
+
+The new installed fixture uses only view/reload commands and asserts zero deterministic-provider requests.
+Early fixture calibration exposed pre-raw-mode input and `/tmp` symlink-base relocation; both were corrected before acceptance.
+Every fixture terminates its owned process group; no live model or microphone session was used.
+No credentials were copied. Existing SSH authentication handled public Git operations during Claude installation.
+
+Normal Pi rewrote JSON formatting and advanced `lastChangelogVersion` to `1.2.0`; source formatting was restored.
+Voice/subagent declarations are unchanged. No normal Claude install, full `dots`, host patches, or send-now activation occurred.
+The deployment payload is ready for the final shared-dotfiles push; human visual acceptance remains unchecked.
+
+## Pi 1.2.0 baseline and activation authorization
+
+User approved safe guard removal, normal-install testing, and publishing/pinning `v0.1.1` for shared-dotfiles delivery.
+
+- `pi --version` returns `1.2.0` from the Mise-managed executable.
+- `pi list --no-approve` lists normal-profile Lens `v0.1.0`; its Git checkout exists at commit `9528bc9`.
+- Installed Lens has only generated untracked `package-lock.json`; tracked source is unchanged.
+- Lead ran `python3 tests/terminal-smoke.py` with installed Pi 1.2.0 before editing Lens.
+- The fixture reached its deterministic completion, then failed its expected Lens presentation assertion.
+- Actual warning: `Lens supports Pi 1.1.0; this host is 1.2.0. Native rendering remains active.`
+- The fixture used disposable profiles and made no external model calls.
+
+This establishes the guard blocker, not post-removal compatibility. Independent plan review is underway.
+The primary patched host and unfinished send-now branch remain outside this delivery.
+
 ## Rename and declared provisioning
 
 User authorized renaming Claude Lens and configuring Lens installation through `dots`, while retaining Pi `latest`.

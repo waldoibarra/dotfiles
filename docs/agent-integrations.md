@@ -114,12 +114,13 @@ Pi is the primary coding agent. Each sibling documents its supported behavior an
 
 ### Pi Lens
 
-The tracked Pi settings declare `git:github.com/waldoibarra/pi-lens@v0.1.0` with empty `skills`
+The tracked Pi settings declare `git:github.com/waldoibarra/pi-lens@v0.1.1` with empty `skills`
 and `prompts` filters. The existing updater runs `pi update --extensions --no-approve` against the
 normal profile, so no separate installer loop is needed for the Git package.
 
-Lens `v0.1.0` supports Pi `1.1.0` only; unsupported hosts retain native rendering.
-Mise follows Pi `latest`, so installation alone does not establish compatibility.
+Lens `v0.1.1` is verified with Pi `1.1.0` and `1.2.0`; unrecognized UI layouts retain native rendering.
+Mise follows Pi `latest`; Lens no longer rejects hosts by version number.
+Future Pi versions still require compatibility verification.
 Check `pi --version` and `/lens` after sync. Credentials, sessions, and package caches remain machine-local.
 Clipboard previews and composer attribution require compatible host patches.
 The Lens package does not install them.
@@ -127,13 +128,31 @@ The Lens package does not install them.
 Read [Pi Lens](https://github.com/waldoibarra/pi-lens) before changing its package declaration.
 Local validation does not require `dots`, package publication, or replacing the normal Pi runtime.
 
+### Release deployment
+
+Pi's binary remains on Mise `latest`. Lens packages use explicit, immutable version pins.
+There is no release branch. The movable `latest` tags are aliases, not deployment pins.
+
+Read [Pi publishing](https://github.com/waldoibarra/pi-lens/blob/main/docs/how-to/contribute.md)
+before publishing Pi Lens or moving its `latest` alias.
+Read [Claude publishing](https://github.com/waldoibarra/claude-lens/blob/main/docs/development.md)
+before publishing Claude Lens or moving its `latest` alias.
+
+1. Publish and verify an immutable version; update `latest` through that product's release procedure.
+2. Change Pi's package-source tag and Claude's marketplace `source.ref` in tracked settings.
+3. Run the harness tests, lint, and isolated native installation checks.
+4. Commit and push the pins. Each machine then runs `dots` and opens a fresh agent.
+
+Publishing a release alone does not update these pins. Keep the previous pins available for rollback.
+No credentials, sessions, or development checkouts are copied between machines.
+
 ### Claude Lens
 
 The tracked Claude settings declare Lens in two keys:
 
-- `extraKnownMarketplaces.claude-lens` points at the `waldoibarra/claude-lens` GitHub repository
-  with `autoUpdate` on, so new releases install on startup.
-- `enabledPlugins` turns on `lens@claude-lens`; the plugin identity remains `lens`.
+- `extraKnownMarketplaces.claude-lens` points at `waldoibarra/claude-lens`, with `source.ref: v0.1.1`.
+- `autoUpdate` refreshes that pinned source; new versions require a shared pin change.
+- `enabledPlugins` enables `lens@claude-lens` and disables the old `lens@claude-code-lens` identity.
 
 The updater copies the settings, and Claude Code clones the marketplace and installs the plugin
 in the background at the next session start. No install command or trust prompt is needed for a
@@ -142,7 +161,7 @@ GitHub source declared in user settings.
 To use it before the next sync, install it into the current settings copy:
 
 ```sh
-claude plugin marketplace add waldoibarra/claude-lens
+claude plugin marketplace add waldoibarra/claude-lens@v0.1.1
 claude plugin install lens@claude-lens
 ```
 
@@ -151,7 +170,8 @@ that copy with the tracked source. Edit the tracked keys, never the installed co
 source or disable the plugin. `claude plugin list` shows the installed version and whether it is
 enabled.
 
-Existing machines may still have `lens@claude-code-lens` installed under the old marketplace.
+Existing machines may retain the old marketplace cache.
+The explicit disabled entry prevents duplicate rendering after sync.
 Read [Claude Lens migration](https://github.com/waldoibarra/claude-lens#install)
 before switching an existing installation.
 Use native plugin and marketplace commands; do not edit Claude's package cache by hand.

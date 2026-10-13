@@ -14,6 +14,12 @@ import yaml  # noqa: E402 - use Dotbot's existing parser, not another dependency
 
 
 class AgentHarnessTest(unittest.TestCase):
+    def test_pi_binary_tracks_latest(self):
+        config = (ROOT / "home/.config/mise/config.toml").read_text()
+        self.assertRegex(
+            config, r'(?m)^"npm:@earendil-works/pi-coding-agent"\s*=\s*"latest"$'
+        )
+
     def test_laptop_images_use_native_kitty_protocol(self):
         settings = json.loads((ROOT / "home/.pi/agent/settings.json").read_text())
         self.assertEqual(settings["terminal"]["images"], "kitty")
@@ -73,7 +79,7 @@ class AgentHarnessTest(unittest.TestCase):
             p for p in settings["packages"]
             if isinstance(p, dict) and p["source"].startswith("git:github.com/waldoibarra/pi-lens@")
         )
-        self.assertEqual(lens_package["source"], "git:github.com/waldoibarra/pi-lens@v0.1.0")
+        self.assertEqual(lens_package["source"], "git:github.com/waldoibarra/pi-lens@v0.1.1")
         self.assertEqual(lens_package["skills"], [])
         self.assertEqual(lens_package["prompts"], [])
         config = json.loads((ROOT / "home/.pi/agent/extensions/subagent/config.json").read_text())
@@ -85,12 +91,12 @@ class AgentHarnessTest(unittest.TestCase):
     def test_claude_lens_uses_one_renamed_marketplace(self):
         settings = json.loads((ROOT / "home/.claude/settings.json").read_text())
         self.assertTrue(settings["enabledPlugins"]["lens@claude-lens"])
-        self.assertNotIn("lens@claude-code-lens", settings["enabledPlugins"])
+        self.assertFalse(settings["enabledPlugins"]["lens@claude-code-lens"])
         marketplaces = settings["extraKnownMarketplaces"]
         self.assertNotIn("claude-code-lens", marketplaces)
         self.assertEqual(
             marketplaces["claude-lens"]["source"],
-            {"source": "github", "repo": "waldoibarra/claude-lens"},
+            {"source": "github", "repo": "waldoibarra/claude-lens", "ref": "v0.1.1"},
         )
 
     def test_dotbot_links_shared_bytes_idempotently(self):
@@ -180,7 +186,7 @@ class AgentHarnessTest(unittest.TestCase):
                     lens_package = next(
                         p for p in calls[1]["packages"]
                         if isinstance(p, dict)
-                        and p["source"] == "git:github.com/waldoibarra/pi-lens@v0.1.0"
+                        and p["source"] == "git:github.com/waldoibarra/pi-lens@v0.1.1"
                     )
                     self.assertEqual(lens_package["skills"], [])
                     self.assertEqual(lens_package["prompts"], [])

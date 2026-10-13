@@ -4,6 +4,60 @@
 This cross-repository plan belongs to dotfiles. Do not copy or link it from public product repositories.
 The retained record keeps its original formatting; historical statuses are superseded by the current checkpoint.
 
+## Pi 1.2.0 installation delivery
+
+The user authorized removing the version guard safely, testing normal installation, and publishing the verified fix.
+The target is `dots` followed by opening Pi on the other laptop, without a development checkout.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D100 | Replace the exact-version rejection with verified structural fallback | User requests Pi 1.2.0 support without retaining the hard guard |
+| D101 | Publish Pi Lens `v0.1.1` after compatibility acceptance | User approved the immutable follow-up release and shared pin update |
+| D102 | Test isolated installation before targeted normal-profile installation | Preserve unrelated packages, credentials, and a reversible release pin |
+| D103 | Push shared dotfiles delivery after verification | User requires the other laptop to receive the configuration through `dots` |
+| D104 | Superseded: automatically follow latest published Lens versions | User subsequently preferred explicit pin bumps when updating the Lens repositories |
+| D105 | Keep Pi binary on `latest`, but both Lens deployments on version tags | User distinguished host updates from accepted Lens release upgrades |
+| D106 | Maintain `latest` only as a movable published-release alias | User requested its release process be documented; no release branch is needed |
+| D107 | Release Claude Lens `v0.1.1` with renamed marketplace metadata | An immutable pin must include the approved marketplace rename |
+| D108 | Apply three targeted shared-rule refinements | User explicitly requested harness improvements from observed session friction |
+
+Observed starting state:
+
+- Installed `pi --version` returns `1.2.0`.
+- Normal-profile Lens is already installed at `v0.1.0`, commit `9528bc9`; only generated package-lock data is untracked.
+- A real Pi 1.2.0 terminal fixture reproduces the guard rejection and fails Lens presentation assertions.
+- This intentional baseline failure is TDD evidence, not a failed acceptance pass.
+- Existing patched Pi 1.1.0 host and isolated send-now worktree remain untouched.
+
+Implemented and independently audited. Pi release `v0.1.1` is commit `fbb2f72`; Claude release is `35ecd19`.
+Both releases and their `latest` aliases are published; aliases point exactly to the corresponding versioned release commits.
+No release branch was created. Versioned tags remain immutable.
+
+Lead verification passed:
+
+- Pi: 180 tests, full type/lint checks, and direct terminal fixtures on both Pi 1.1.0 and 1.2.0.
+- Pi 1.2.0: batch fixtures in both modes; fullscreen image fixture; model-visible baseline equivalence.
+- Installed discovery: both terminal modes using a local candidate, a released Git package, and the normal profile.
+- Fresh Git reconciliation: native `pi update --extensions --no-approve` installed the missing published package.
+- Claude: 29 tests, full checks, isolated native marketplace/plugin install with `source.ref: v0.1.1`.
+- Dotfiles: eight provisioning tests and full lint. Shared instructions also passed direct Markdown lint.
+- Tagged-commit CI passed for both repositories, including the Pi 1.2.0 runtime job.
+
+Normal Pi Lens is installed at `fbb2f72` and auto-loads on Pi 1.2.0; view changes and reload passed without model requests.
+Only Lens was updated in the normal profile; voice and subagents package declarations remain unchanged.
+The native smoke updated tracked `lastChangelogVersion` to `1.2.0`; formatting was normalized afterward.
+Claude's normal profile was not migrated; shared settings disable its old plugin identity when copied by `dots`.
+
+The shared deployment uses Pi Lens `@v0.1.1` and Claude marketplace `source.ref: v0.1.1`.
+The Pi binary remains on Mise `latest`; future host compatibility is not guaranteed by these results.
+Release procedures live in each product's contributor/development guide; dotfiles owns pin-update and sync instructions.
+Rollback restores the previous version pins; Pi Lens `v0.1.0` intentionally uses native rendering on Pi 1.2.0.
+No clipboard-origin host support, completed send-now parity, or user visual acceptance is claimed.
+
+The deployment payload is ready to push. After it reaches `origin/main`, the other laptop can run `dots` and open Pi.
+This push includes previously committed EditorConfig, global-ignore, and start-project-skill changes, inspected read-only.
+Shared-rule refinements and their evidence are recorded in the harness roadmap; no fresh model-behavior probes were run.
+
 ## Rename and provisioning checkpoint
 
 The user approved the `claude-lens` rename, Lens provisioning through `dots`, and documentation updates.
