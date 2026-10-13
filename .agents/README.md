@@ -38,6 +38,6 @@ old files are later removed. Size alone does not replace the publication review 
 | Choosing browser access, studying authenticated media, or comparing Google sign-in options | [Browser and OAuth investigation](/.agents/spikes/browser-access-and-google-oauth.md) |
 | Continuing media-learning, transcription, browser, or voice-option research | [Research spike](/.agents/spikes/pi-media-learning-and-live-voice.md) |
 | Inspecting saved transcript, metric, or public-video frame evidence | [Evidence manifest](/.agents/spikes/pi-media-learning-and-live-voice-evidence/evidence-manifest.json) |
-| Implementing Lens feedback, checking approvals, or resuming pending work | [Lens feedback and delivery plan](/.agents/plans/pi-lens-delivery.md#current-feedback-implementation) |
+| Preparing Lens for another laptop, checking committed drafts, or resuming feedback | [Lens delivery and feedback plan](/.agents/plans/pi-lens-delivery.md#laptop-delivery-handoff) |
 | Repeating Lens acceptance checks or distinguishing verified from active behavior | [Lens verification commands](/.agents/plans/pi-lens-verification.md#repeat-the-verified-checks) |
 | Choosing compact Pi tool rendering or porting Lens | [Lens display spike](/.agents/spikes/pi-lens-tool-display.md) |

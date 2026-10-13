@@ -4,6 +4,24 @@
 This workstation and cross-repository evidence belongs to dotfiles, not the public Pi Lens repository.
 Historical results below retain their original context; they do not establish current activation.
 
+## Commit and laptop handoff
+
+User requested all remaining work be committed, with improvements deferred to another session.
+
+- Pi Lens `86b0858` and Claude Lens `6e8b6ca` remain clean and locally committed.
+- Runner workflow work is checkpointed as `a366357`; fixture-cleanup acceptance remains blocked.
+- Isolated Pi queue/send-now work is checkpointed as `dfdd6ad` on `wip/send-now-checkpoint`.
+- Machine-local dependency symlinks were intentionally excluded; no source changes were discarded.
+- These checkpoint commits are preservation, not acceptance, activation, or publication.
+
+Read-only laptop readiness checks found no Pi Lens declaration in tracked Pi settings.
+Mise still selects latest Pi, while Lens's runtime guard accepts only `1.1.0`.
+A fresh `git ls-remote` reports Lens remote `main` at `262add23a8ac51ff1651860266ce278c14d7380f`.
+The local verified Lens revision is `86b0858fd946472e2f49290d3675741e8c79b795`.
+The existing updater reconciles declared Git packages; pinned Git revisions remain configured checkout targets.
+No provisioning changes, installs, pushes, releases, or `dots` occurred during this handoff.
+Patched-host distribution remains necessary for clipboard metadata and composer-origin parity on another laptop.
+
 ## Resumed feedback checkpoint
 
 The user authorized local implementation and commits; installation, publication, and normal-profile replacement remain excluded.
@@ -69,7 +87,8 @@ The second pass still failed:
 
 Lead inspected both source paths and confirmed the findings. Further repair requires user approval.
 Worker and auditor report focused tests passed; passing tests do not establish acceptance of these missing cases.
-All workers have finished. The send-now draft remains isolated, unmerged, uncommitted, and unavailable for manual testing.
+All workers have finished. The send-now draft remains isolated, unmerged, and unavailable for manual testing.
+The later checkpoint commit above preserves it without changing that acceptance status.
 No host integration, compilation, installation, or manual-test readiness is claimed.
 Manual acceptance checkboxes remain unchecked until the user confirms each behavior.
 

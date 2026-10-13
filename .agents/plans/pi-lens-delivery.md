@@ -4,6 +4,47 @@
 This cross-repository plan belongs to dotfiles. Do not copy or link it from public product repositories.
 The retained record keeps its original formatting; historical statuses are superseded by the current checkpoint.
 
+## Laptop delivery handoff
+
+The user requested committing all remaining work, then continuing improvements in another session.
+All product source changes are now committed locally; incomplete work remains separate from deployment.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D87 | Commit unfinished work as explicit checkpoints, without activation | User explicitly requested every remaining change be committed |
+| D88 | Keep send-now on its own named branch | Preserve incomplete work without merging unsafe behavior into the verified host |
+| D89 | Explain laptop provisioning before changing its delivery configuration | User asked what `dots` needs; publication and normal-profile changes were previously excluded |
+
+| Repository | Latest local commit | Delivery state |
+| --- | --- | --- |
+| Pi Lens | `86b0858` | Clean; verified metadata-only Details; remote still `262add2` |
+| Claude Lens | `6e8b6ca` | Clean; question disclosure changes remain local |
+| pi-subagents | `a366357` | Clean checkpoint; workflow fixture cleanup remains blocked |
+| Pi primary checkout | `97400e2` | Clean; verified origin, clipboard, and diagnostic source patches |
+| Pi isolated send-now worktree | `dfdd6ad`, branch `wip/send-now-checkpoint` | Committed but unaccepted; not merged; dependency symlinks excluded |
+
+The send-now worktree remains `/tmp/pi-send-now-worktree.zHjd4W`; its named branch preserves commits if that directory expires.
+Untracked `node_modules` and `packages/ai/node_modules` are machine-local symlinks, not missing source commits.
+Neither blocked checkpoint is approved for installation. Manual acceptance boxes remain unchecked.
+
+### What laptop `dots` currently lacks
+
+- `home/.pi/agent/settings.json` declares voice and subagents, but no Pi Lens package.
+- Mise selects latest Pi; Lens currently guards exactly version `1.1.0`.
+- Pi Lens remote `main` remains `262add2`; the three newer local commits are not reachable there yet.
+- The updater already reconciles configured Git packages through `pi update --extensions`.
+- Clipboard previews and composer attribution require the verified patched host, not stock Pi alone.
+
+Recommended first delivery: verified Lens presentation with stock Pi `1.1.0`; omit unfinished send-now and workflow checkpoints.
+This requires approval to push verified Lens source, declare its immutable Git revision, pin the host, and push dotfiles.
+Stock-host delivery lacks host-backed clipboard tokens/previews and proven composer attribution; inputs remain neutral.
+Matching this trial's clipboard behavior instead needs a separately distributed verified patched-host artifact.
+No such portable host artifact or installer is claimed ready. Never distribute the send-now checkpoint as that host.
+Run isolated provisioning checks before publishing delivery changes; do not run `dots` locally for this handoff.
+After approved sources are reachable, the laptop runs `dots`, authenticates separately, and opens a fresh Pi process.
+
+Read the feedback queue and verification record before resuming repairs. Remaining approvals are not implied by checkpoint commits.
+
 ## Current feedback implementation
 
 This checkpoint supersedes the paused handoff below. The user authorized implementation and local commits, not installation or publication.
@@ -26,11 +67,11 @@ Current feedback queue:
 | --- | --- | --- |
 | Pasted image appears folded twice | Pi Lens | Awaiting clarification: inline token versus preview, or preview versus tool read |
 | Image Details repeats the message before metadata | Pi Lens | Committed `86b0858`; independent audit and automated checks pass; user acceptance pending |
-| Live subagent purpose/current-step summaries | pi-subagents | Second lead acceptance blocked on failure-path cleanup; bounded repair approval requested |
-| Ctrl+Enter sends queued messages and draft now | Pi host | Second acceptance failed clipboard retention and private-queue fallback; repair approval required |
+| Live subagent purpose/current-step summaries | pi-subagents | Checkpoint `a366357`; failure-path cleanup blocks acceptance; bounded repair approval requested |
+| Ctrl+Enter sends queued messages and draft now | Pi host | Checkpoint `dfdd6ad`; clipboard retention and private-queue fallback block acceptance; repair approval required |
 | Ctrl+S stashes/pops the message draft | Pi host | Plan reviewed; awaiting replace-versus-swap choice for an occupied stash |
 | Actionable testing and reload notices | Delivery | Announce readiness only after verification; distinguish extension reload from host restart |
-| Preserve existing uncommitted changes | All checkouts | Main checkout changes committed; unfinished send-now checkpoint needs review |
+| Preserve existing uncommitted changes | All checkouts | All source committed; machine-local dependency symlinks intentionally excluded |
 
 ### Send-now repair checkpoint
 
@@ -44,7 +85,7 @@ Its second independent acceptance pass failed two remaining gates:
 - Send-now retains private-queue mutation despite the native typed reservation API.
 
 Lead verified both findings in source. Stop further repair dispatch until the user approves another bounded pass.
-The isolated draft remains unmerged and uncommitted; no activation or complete Claude parity is claimed.
+The isolated draft is committed as `dfdd6ad` but remains unmerged; no activation or complete Claude parity is claimed.
 
 ### Workflow-summary repair checkpoint
 
