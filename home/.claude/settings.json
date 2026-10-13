@@ -121,13 +121,13 @@
     ]
   },
   "enabledPlugins": {
-    "lens@claude-code-lens": true
+    "lens@claude-lens": true
   },
   "extraKnownMarketplaces": {
-    "claude-code-lens": {
+    "claude-lens": {
       "autoUpdate": true,
       "source": {
-        "repo": "waldoibarra/claude-code-lens",
+        "repo": "waldoibarra/claude-lens",
         "source": "github"
       }
     }

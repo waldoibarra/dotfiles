@@ -4,6 +4,42 @@
 This cross-repository plan belongs to dotfiles. Do not copy or link it from public product repositories.
 The retained record keeps its original formatting; historical statuses are superseded by the current checkpoint.
 
+## Rename and provisioning checkpoint
+
+The user approved the `claude-lens` rename, Lens provisioning through `dots`, and documentation updates.
+Product rename commits are pushed: Claude `9aea61d`, Pi sibling references `a3a10de`.
+Dotfiles provisioning is committed locally only; its branch also contains unrelated unpushed user commits.
+Push authorization must account for that complete branch before laptop `dots` can fetch these changes.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| D95 | Rename Claude repository, local directory, and marketplace to `claude-lens` | User confirms sole ownership and accepts the rename |
+| D96 | Keep plugin identity `lens` and command `/lens` | Repository/marketplace naming does not require state-namespace migration |
+| D97 | Keep Mise's Pi selector at `latest` | User explicitly rejected pinning the binary |
+| D98 | Declare released Pi Lens Git package through existing updater | Native Git-package reconciliation already handles missing installations |
+| D99 | Request approval before expanding Lens compatibility to Pi 1.2.0 | Registry contradicts the user's 1.1.0 assumption; current guard rejects other versions |
+
+Completed source changes:
+
+- GitHub repository renamed to `waldoibarra/claude-lens`; local checkout is `~/projects/personal/claude-lens`.
+- Marketplace/package metadata and Git remote use the new name; published `v0.1.0` tags are unchanged.
+- Dotfiles selects `lens@claude-lens` without retaining a second enabled marketplace identity.
+- Pi settings declare `git:github.com/waldoibarra/pi-lens@v0.1.0` with empty skill/prompt filters.
+- Existing `install_pi_packages` implementation is unchanged; no additional installer loop was needed.
+- Docs describe native old-marketplace migration and distinguish provisioning from compatibility and active installation.
+
+Verification: independent combined audit passed; lead confirms seven isolated provisioning tests, Pi 179 tests, and Claude 29 tests.
+Full dotfiles lint passed after correcting two line-length errors introduced during lead documentation cleanup.
+The provisioning fixture verifies settings and native command invocation, not real package installation.
+Current normal-profile installation, fresh published-package install, and physical terminal acceptance remain unverified.
+No `dots` or package installation ran. Editing linked Pi settings changes the declaration, not installed package state.
+Unrelated `docs/agent-skills.md` and `home/.agents/skills/start-project/` changes remain outside this work.
+
+**Compatibility blocker:** `npm view @earendil-works/pi-coding-agent version` returned `1.2.0`.
+Lens `v0.1.0` accepts `1.1.0` only and retains native rendering elsewhere.
+The user has been asked to approve adding and verifying `1.2.0` support while retaining `latest`.
+Do not claim the laptop gets active Lens rendering after sync until that blocker is resolved.
+
 ## Published-release planning
 
 The user explicitly authorized replacing Claude's `v1.0.0` tag and publishing `v0.1.0` in both Lens repositories.

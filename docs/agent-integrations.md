@@ -108,26 +108,32 @@ shell's Mise PATH. [Moshi's hook reference](https://getmoshi.app/docs/hooks) des
 ## Lens
 
 [Pi Lens](https://github.com/waldoibarra/pi-lens) and
-[Claude Code Lens](https://github.com/waldoibarra/claude-code-lens)
+[Claude Lens](https://github.com/waldoibarra/claude-lens)
 target matching display-only transcript views.
 Pi is the primary coding agent. Each sibling documents its supported behavior and host limitations.
 
 ### Pi Lens
 
-Pi Lens is source-only and has no package release. Its unscoped npm name belongs to another project.
-The tracked Pi package list does not install Lens yet.
-Portable provisioning awaits an accepted source revision.
-Read [Pi Lens](https://github.com/waldoibarra/pi-lens)
-before trying the local checkout or changing its package declaration.
+The tracked Pi settings declare `git:github.com/waldoibarra/pi-lens@v0.1.0` with empty `skills`
+and `prompts` filters. The existing updater runs `pi update --extensions --no-approve` against the
+normal profile, so no separate installer loop is needed for the Git package.
+
+Lens `v0.1.0` supports Pi `1.1.0` only; unsupported hosts retain native rendering.
+Mise follows Pi `latest`, so installation alone does not establish compatibility.
+Check `pi --version` and `/lens` after sync. Credentials, sessions, and package caches remain machine-local.
+Clipboard previews and composer attribution require compatible host patches.
+The Lens package does not install them.
+
+Read [Pi Lens](https://github.com/waldoibarra/pi-lens) before changing its package declaration.
 Local validation does not require `dots`, package publication, or replacing the normal Pi runtime.
 
-### Claude Code Lens
+### Claude Lens
 
 The tracked Claude settings declare Lens in two keys:
 
-- `extraKnownMarketplaces.claude-code-lens` points at the `waldoibarra/claude-code-lens` GitHub
-  repository with `autoUpdate` on, so new releases install on startup.
-- `enabledPlugins` turns on `lens@claude-code-lens`.
+- `extraKnownMarketplaces.claude-lens` points at the `waldoibarra/claude-lens` GitHub repository
+  with `autoUpdate` on, so new releases install on startup.
+- `enabledPlugins` turns on `lens@claude-lens`; the plugin identity remains `lens`.
 
 The updater copies the settings, and Claude Code clones the marketplace and installs the plugin
 in the background at the next session start. No install command or trust prompt is needed for a
@@ -136,8 +142,8 @@ GitHub source declared in user settings.
 To use it before the next sync, install it into the current settings copy:
 
 ```sh
-claude plugin marketplace add waldoibarra/claude-code-lens
-claude plugin install lens@claude-code-lens
+claude plugin marketplace add waldoibarra/claude-lens
+claude plugin install lens@claude-lens
 ```
 
 Both commands write the same two keys into the installed copy, and the next updater run replaces
@@ -145,7 +151,12 @@ that copy with the tracked source. Edit the tracked keys, never the installed co
 source or disable the plugin. `claude plugin list` shows the installed version and whether it is
 enabled.
 
+Existing machines may still have `lens@claude-code-lens` installed under the old marketplace.
+Read [Claude Lens migration](https://github.com/waldoibarra/claude-lens#install)
+before switching an existing installation.
+Use native plugin and marketplace commands; do not edit Claude's package cache by hand.
+
 Lens's clicks need the fullscreen interface that the tracked `"tui": "fullscreen"` setting turns
 on. When developing Lens from its working tree, disable the installed copy for that session with
-`claude plugin disable lens@claude-code-lens` so two copies do not draw at once, then enable it
-again.
+`claude plugin disable lens@claude-lens` so the installed marketplace copy does not draw over the
+development copy, then enable it again.

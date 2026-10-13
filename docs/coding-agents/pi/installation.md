@@ -20,9 +20,13 @@ from `$HOME`. The runner source comes from linked settings, keeping its pin in o
 Explicit installation is required because Pi's update command skips pinned npm packages, even when missing.
 The package filter object remains intact when installing the same source.
 
+`pi update --extensions` reconciles the remaining declared packages, including the Pi Lens Git
+source, from the linked normal-profile settings. Its empty `skills` and `prompts` filters are part
+of the tracked package declaration and should be preserved.
+
 Both commands use `PI_CODING_AGENT_DIR="$HOME/.pi/agent"` without `OPENAI_API_KEY`.
 Inherited trial profiles and project-local packages do not change this target.
-Only packages are reconciled; Mise remains responsible for the Pi binary.
+Only packages are reconciled; Mise remains responsible for the Pi binary and remains on `latest`.
 
 The original trial used `pi install npm:pi-live-codex --no-approve`. Both operations use Pi's
 [package mechanism](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md).

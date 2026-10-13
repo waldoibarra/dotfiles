@@ -24,12 +24,15 @@ not enter the repository.
 | `~/.pi/pi-live-codex.lock` | Shared microphone-ownership lock, outside the agent directory. |
 
 The coding defaults are `defaultProvider: "openai-codex"`, `defaultModel: "gpt-6-astra"`,
-and `compaction.enabled: true`. Package declarations include voice and the pinned subagent runner.
-Edit the tracked sources for persistent preferences and package declarations. Pi's settings writer
-follows the symlink, so changes through Pi's UI or package commands can also change the repository.
-Review those diffs before committing. Keep secrets and machine-specific values out of linked files.
-There is no Pi merge layer or managed-copy step. Dotbot's normal backup behavior applies when it
-replaces existing local files with links.
+and `compaction.enabled: true`. Package declarations include voice, the pinned subagent runner,
+and `git:github.com/waldoibarra/pi-lens@v0.1.0` with empty skill and prompt filters. Edit the
+tracked sources for persistent preferences and package declarations. Pi's settings writer follows
+the symlink, so changes through Pi's UI or package commands can also change the repository. Review
+those diffs before committing. Keep secrets and machine-specific values out of linked files. There
+is no Pi merge layer or managed-copy step. Dotbot's normal backup behavior applies when it replaces
+existing local files with links.
+
+Read [Lens compatibility](/docs/agent-integrations.md#pi-lens) before relying on Lens after a Pi upgrade.
 
 Authentication, sessions, caches, native binaries, and voice locks are separate and stay outside
 Git. They are not linked, copied, or removed by this configuration step.
@@ -50,7 +53,7 @@ The native override bypasses that conservative detection without changing termin
 After the current response finishes, run `/reload`, then expand an image-bearing read result.
 The setting changes rendering only; it does not change image uploads or model input.
 Lens keeps tool results collapsed until opened.
-Readable pasted-image tokens remain separate, unfinished work.
+Pasted-image tokens require compatible host metadata; installing Lens does not add that host support.
 
 This preference applies to every terminal using the linked profile, not only this laptop.
 Moshi and other terminal stacks remain unverified.

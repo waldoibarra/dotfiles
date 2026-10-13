@@ -11,6 +11,11 @@
       "source": "npm:pi-subagents@0.77.0",
       "skills": [],
       "prompts": []
+    },
+    {
+      "source": "git:github.com/waldoibarra/pi-lens@v0.1.0",
+      "skills": [],
+      "prompts": []
     }
   ],
   "compaction": {

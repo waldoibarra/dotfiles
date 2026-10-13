@@ -69,11 +69,29 @@ class AgentHarnessTest(unittest.TestCase):
         self.assertEqual(package["source"], "npm:pi-subagents@0.77.0")
         self.assertEqual(package["skills"], [])
         self.assertEqual(package["prompts"], [])
+        lens_package = next(
+            p for p in settings["packages"]
+            if isinstance(p, dict) and p["source"].startswith("git:github.com/waldoibarra/pi-lens@")
+        )
+        self.assertEqual(lens_package["source"], "git:github.com/waldoibarra/pi-lens@v0.1.0")
+        self.assertEqual(lens_package["skills"], [])
+        self.assertEqual(lens_package["prompts"], [])
         config = json.loads((ROOT / "home/.pi/agent/extensions/subagent/config.json").read_text())
         self.assertIn("agent-management", config["disabledFeatures"])
         self.assertIn("workflow-scripts", config["disabledFeatures"])
         self.assertFalse(config["scheduledRuns"]["enabled"])
         self.assertFalse(config["missions"]["enabled"])
+
+    def test_claude_lens_uses_one_renamed_marketplace(self):
+        settings = json.loads((ROOT / "home/.claude/settings.json").read_text())
+        self.assertTrue(settings["enabledPlugins"]["lens@claude-lens"])
+        self.assertNotIn("lens@claude-code-lens", settings["enabledPlugins"])
+        marketplaces = settings["extraKnownMarketplaces"]
+        self.assertNotIn("claude-code-lens", marketplaces)
+        self.assertEqual(
+            marketplaces["claude-lens"]["source"],
+            {"source": "github", "repo": "waldoibarra/claude-lens"},
+        )
 
     def test_dotbot_links_shared_bytes_idempotently(self):
         with tempfile.TemporaryDirectory(prefix="dotfiles-harness-") as scratch:
@@ -110,10 +128,14 @@ class AgentHarnessTest(unittest.TestCase):
             fake_pi.write_text(
                 "#!/usr/bin/env python3\nimport json, os, sys\n"
                 "from pathlib import Path\n"
+                "settings_path = Path(os.environ['PI_CODING_AGENT_DIR'], 'settings.json')\n"
+                "with settings_path.open() as settings_file:\n"
+                " settings = json.load(settings_file)\n"
                 "with Path(os.environ['CAPTURE']).open('a') as capture:\n"
                 " capture.write(json.dumps({\n"
                 "'argv': sys.argv[1:], 'cwd': os.getcwd(),\n"
                 "'profile': os.environ.get('PI_CODING_AGENT_DIR'),\n"
+                "'packages': settings['packages'],\n"
                 "'api_key_present': 'OPENAI_API_KEY' in os.environ}) + '\\n')\n"
                 "key = 'INSTALL_EXIT' if sys.argv[1] == 'install' else 'UPDATE_EXIT'\n"
                 "sys.exit(int(os.environ.get(key, '0')))\n"
@@ -154,6 +176,14 @@ class AgentHarnessTest(unittest.TestCase):
                     self.assertEqual(Path(observed["cwd"]).resolve(), home.resolve())
                     self.assertEqual(observed["profile"], str(profile))
                     self.assertFalse(observed["api_key_present"])
+                if not install_exit:
+                    lens_package = next(
+                        p for p in calls[1]["packages"]
+                        if isinstance(p, dict)
+                        and p["source"] == "git:github.com/waldoibarra/pi-lens@v0.1.0"
+                    )
+                    self.assertEqual(lens_package["skills"], [])
+                    self.assertEqual(lens_package["prompts"], [])
 
 
 if __name__ == "__main__":

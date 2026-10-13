@@ -4,6 +4,33 @@
 This workstation and cross-repository evidence belongs to dotfiles, not the public Pi Lens repository.
 Historical results below retain their original context; they do not establish current activation.
 
+## Rename and declared provisioning
+
+User authorized renaming Claude Lens and configuring Lens installation through `dots`, while retaining Pi `latest`.
+
+- GitHub API confirms repository `waldoibarra/claude-lens` after the rename.
+- Local checkout moved to `~/projects/personal/claude-lens`; Git remote updated.
+- Product metadata uses marketplace `claude-lens`; plugin identity and `/lens` remain `lens`.
+- Dotfiles declares Pi Lens's published `v0.1.0` Git source and the renamed Claude marketplace.
+- Independent combined audit passed without findings.
+- Lead reran seven isolated provisioning tests, Pi's 179 tests, and Claude's 29 tests successfully.
+- Lead corrected two Markdown line-length issues; full dotfiles lint then passed.
+- Claude rename commit `9aea61d` and Pi reference commit `a3a10de` were pushed to their existing main branches.
+- GitHub API returned renamed marketplace manifest blob `c5f1bb6b2b1edcab522aa39c659f7d1e83a41886`.
+- Published `v0.1.0` tags were not changed by these metadata/documentation commits.
+
+The Pi updater is unchanged. Its existing Git reconciliation handles declared package sources.
+Provisioning tests use a fake Pi executable and assert source/filter retention and normal-profile command arguments.
+They do not establish actual native package installation or visual acceptance.
+
+Registry lookup returned Pi latest `1.2.0`; Lens `v0.1.0` still guards exactly `1.1.0`.
+Compatibility work awaits explicit user approval; Mise remains on `latest` as requested.
+No normal-profile install, `dots`, copied-Claude-settings replacement, or host-version change occurred.
+Pi settings are linked, so the new declaration is visible locally without proving the package is installed.
+Unrelated skill changes were preserved and are excluded from Lens commits.
+Another session committed those changes during execution; dotfiles now also contains unrelated unpushed commits.
+Dotfiles provisioning remains local pending approval to push the complete branch; no laptop sync readiness is claimed.
+
 ## Published v0.1.0 releases
 
 User explicitly authorized Claude's old tag deletion and `v0.1.0` publication in both repositories.
