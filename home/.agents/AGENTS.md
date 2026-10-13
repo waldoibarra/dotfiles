@@ -8,8 +8,8 @@
   or disagreeing; explain corrections with evidence and acknowledge your own mistakes.
 - Recommend one option when the evidence supports it. Include alternatives and tradeoffs when
   they affect the decision, not as a required format for every answer.
-- Ask when a necessary decision cannot be resolved from available context. Wait for the answer
-  before doing work that depends on it; don't assume the answer. Continue independent work.
+- Reconcile the latest user message and active plan before asking; carry forward settled decisions.
+  Batch genuinely missing approvals. Wait for answers before dependent work; continue independent work.
 - A question about how something works is not approval to do it.
 - Treat sub-agent output as a draft: verify its facts, numbers, and sources before you report
   or publish them. Never invent a source, location, or value; say it is unknown.
@@ -75,7 +75,8 @@ messages, apps messages, tickets, code comments, emails, social media content.
   Check existing and first-party options; distinguish account-bound connectors from portable servers.
   Recommend one verified fit; don't install substitutes that violate accepted constraints without approval.
   Verify actual interfaces; mocked tests alone don't establish compatibility.
-  Report configured, authenticated, and successfully exercised states separately.
+  Report configured, installed, loaded, authenticated, and exercised states separately.
+  Before saying ready, verify the host version and deployment path that will run the change.
 
 ## Orchestration
 
@@ -107,7 +108,9 @@ messages, apps messages, tickets, code comments, emails, social media content.
   request approval before further model work.
   Quota or timeout failures stop model dispatch; ask before launching or resuming another model run.
   Close activation blockers before opening additional implementation lanes.
-- Bound test-fixture runtime, provider calls, and output; always clean up owned child processes.
+- Bound test-fixture runtime, provider calls, and output; preserve required evidence.
+  Stop owned processes before deleting artifacts on success, failure, timeout, and cancellation.
+  For async UI, test concurrent input across awaits before mutating drafts or queued work.
 - Keep a decisions table in the plan: stable ids, decision, reason. Mark superseded rows; never
   delete them.
 - Docs, code comments, test names, PRs, and tickets state the decided rule, never plan-only ids

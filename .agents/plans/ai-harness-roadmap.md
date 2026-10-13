@@ -228,6 +228,38 @@ No new model calls or behavioral probes ran.
 Instruction edits were self-reviewed, not independently reviewed. No `dots` or publication ran.
 Rollback uses the scoped configuration/instruction diff; no credentials or unrelated work were touched.
 
+## Approved Lens-session instruction refinements
+
+The user explicitly requested harness updates based on this session's repeated friction.
+Changes stay in `home/.agents/AGENTS.md`, the shared canonical source.
+No new instruction files were added.
+
+| Id | Decision | Evidence and reason |
+| --- | --- | --- |
+| H13 | Reconcile current decisions and carry settled approvals forward | Repeated release/version/installation questions fragmented already-authorized delivery |
+| H14 | Distinguish configured, installed, loaded, authenticated, and exercised states | Published Lens source was repeatedly confused with laptop readiness; a host-version guard blocked activation |
+| H15 | Verify cleanup on every exit and concurrent input across awaits | Passing audits missed live-fixture deletion and editor-clearing data-loss paths |
+
+These replace three existing rule passages rather than duplicating their policy.
+Question-versus-execution boundaries and necessary-decision waits remain intact.
+Quota stops and two-failed-pass limits are unchanged.
+Independent wording review used the AGENTS.md quick checklist; project-command checks were inapplicable.
+Lead retained explicit waiting before dependent work, which the draft wording had omitted.
+
+Static review scenarios:
+
+- A settled release/version choice is reused; genuinely missing approvals are grouped.
+- A question about resetting data remains a question, not permission to reset it.
+- A package declaration or publication alone is not reported as an active installation.
+- A known runtime mismatch blocks readiness even when source checks pass.
+- Async teardown stops owned work before deleting artifacts after assertions, cancellation, or timeout.
+- Draft edits during an awaited operation must survive acceptance and recovery.
+
+These scenarios were reviewed against wording, not run as fresh model probes.
+Ordinary-session behavioral improvement remains unmeasured. Existing loader wiring is unchanged.
+Rollback: revert only the three shared-instruction replacements.
+Retain factual release and verification records.
+
 ## Next
 
 1. Observe personal/open-source sessions; work adaptation, Cursor support, retired-harness cleanup,
