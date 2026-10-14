@@ -285,6 +285,11 @@ Retain factual release and verification records.
 3. **Frozen review build** (work): serve a build on another port, so hot reload spares review tabs.
 4. **Cursor support:** confirm its instruction loading before configuration. Not started.
 5. **`setup.sh` links `.claude/agents/`** (work): only once a work-only role agent exists.
+6. **Communication lint (idea, 2026-10-13):** a script that checks Markdown against the shared
+   Communication rules (words per bullet and paragraph at most 17, fenced blocks skipped), run
+   warn-only through `hk` pre-commit here, then as a Claude Code `Stop` hook on the last reply and
+   as a Pi extension. Deferred: layer 1 (instructions, `Clear` style, Pi `APPEND_SYSTEM.md`) first;
+   layer 2 (role pointers to the Communication section) before any lint.
 
 **Weekly prune [A]:** shrink absorbed memories, keep `AGENTS.md` near 100 lines, retire unused skills.
 
