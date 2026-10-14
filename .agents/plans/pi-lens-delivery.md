@@ -10,8 +10,8 @@ The archive preserves all decisions D1–D138, including original superseded mar
 
 | Component | Published / configured | Installed / exercised |
 | --- | --- | --- |
-| Pi Lens | `0.2.0`, commit `237e3c561ba68e3e77c3f18d7613c3e45756e0ae` | Normal profile; Pi 1.2.0 discovery, views, and reload passed both terminal modes |
-| Claude Lens | `0.1.2`, commit `1420f37cf82cb1290707fdcf652a22c9435f91f2` | Normal profile enabled; old `lens@claude-code-lens` remains disabled |
+| Pi Lens | `latest` → `0.2.0`, commit `237e3c561ba68e3e77c3f18d7613c3e45756e0ae` | Normal profile; Pi 1.2.0 discovery, views, and reload passed both terminal modes |
+| Claude Lens | `latest` → `0.1.2`, commit `1420f37cf82cb1290707fdcf652a22c9435f91f2` | Normal profile enabled; old `lens@claude-code-lens` remains disabled |
 | Installed Pi | Mise `latest`, currently `1.2.0` | Unchanged by Lens delivery |
 | Development Pi | Local compiled `1.1.0` | Patched host remains separate from installed Pi |
 | Development launch | Local host, Lens, subagents, installed voice | Persists by default; accepts `--continue` and explicit `--no-session` |
@@ -33,6 +33,8 @@ User approved all five improvements, normal-profile upgrades, and pushing dotfil
 | D135 | Keep current status short and archive history intact | Current pages plus indexed, byte-preserved archives |
 | D136 | Right-size workers under existing shared routing policy | Task-risk guidance and bounded acceptance packets; no new global model defaults |
 | D137 | Upgrade normal Lens profiles with targeted native commands | Complete; versions and enabled state read back |
+| D139 | Deploy both Lens packages from movable GitHub `latest` tags | User explicitly replaces version pins; supersedes archived D105–D106 deployment policy |
+| D140 | Defer automated-input folding on stock Pi | Current implementation requires host attribution; replacing the runner is not a verified solution |
 | D138 | Push approved dotfiles work, including `28c15d6` | Complete; remote main read back at `2ae8b67` before this record-only follow-up |
 
 Global instructions, roles, skills, provider selection, and runner settings remain unchanged.
@@ -56,6 +58,27 @@ Approval for the five harness improvements does not authorize unfinished runner 
 Read [feedback history](/.agents/plans/history/pi-lens-delivery-2026-10-13.md#current-feedback-implementation)
 before reopening those targets.
 
+## Direct-launch diagnostic
+
+Waldo reports unfolded subagent wake messages labeled `Input` when launching ordinary `pi`.
+Read-back confirmed Mise Pi `1.2.0`, linked settings, and installed Lens `v0.2.0` at the recorded commit.
+The installed runner sends this wake through `sendUserMessage`; Lens folds only inputs attributed as `extension`.
+Stock Pi lacks that attribution, matching the screenshot and the documented host limitation.
+This is not evidence of a missing Lens installation. No runtime or configuration changes were made.
+Deferred at the user's request. Existing folding requires the local Pi patch or equivalent upstream host support.
+A producer integration may avoid custom Pi; feasibility is unverified. No runner replacement is required by current evidence.
+Next gate, only when reopened: choose an approach and exercise the real wake in ordinary Pi.
+
+## Latest-tag deployment
+
+Both tracked sources now select `latest`; GitHub tags still resolve to the release commits listed above.
+Pi's targeted install completed. Claude's copied settings and marketplace now select `latest`.
+Claude marketplace refresh and plugin update completed; plugin version remains `0.1.2`.
+No GitHub tags were moved, no custom host was installed, and no runner was replaced.
+The harness suite passed: 11 tests, one compiled-host check skipped without `PI_PACKAGE_DIR`.
+Fresh interactive loading remains unverified. Restart sessions to load refreshed packages.
+This configuration change was self-reviewed, not independently reviewed.
+
 ## Verification and recovery
 
 Run from the repository root:
@@ -75,7 +98,7 @@ before repeating installed-product or archive checks.
 For development, use `just pi-lens-dev --continue` from the same working directory.
 Native session storage is shared with ordinary Pi; continue selects that directory's latest saved session.
 Use `--session` for a particular saved session. Earlier `--no-session` conversations remain ephemeral.
-Use `/lens raw` for rendering recovery; revert release pins for rollback without moving published tags.
+Use `/lens raw` for rendering recovery; select an earlier immutable version for rollback without moving release tags.
 
 ## Pi 1.2.0 installation delivery
 

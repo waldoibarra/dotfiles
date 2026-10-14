@@ -79,7 +79,7 @@ class AgentHarnessTest(unittest.TestCase):
             p for p in settings["packages"]
             if isinstance(p, dict) and p["source"].startswith("git:github.com/waldoibarra/pi-lens@")
         )
-        self.assertEqual(lens_package["source"], "git:github.com/waldoibarra/pi-lens@v0.2.0")
+        self.assertEqual(lens_package["source"], "git:github.com/waldoibarra/pi-lens@latest")
         self.assertEqual(lens_package["skills"], [])
         self.assertEqual(lens_package["prompts"], [])
         config = json.loads((ROOT / "home/.pi/agent/extensions/subagent/config.json").read_text())
@@ -96,7 +96,7 @@ class AgentHarnessTest(unittest.TestCase):
         self.assertNotIn("claude-code-lens", marketplaces)
         self.assertEqual(
             marketplaces["claude-lens"]["source"],
-            {"source": "github", "repo": "waldoibarra/claude-lens", "ref": "v0.1.2"},
+            {"source": "github", "repo": "waldoibarra/claude-lens", "ref": "latest"},
         )
 
     def test_dotbot_links_shared_bytes_idempotently(self):
@@ -287,7 +287,7 @@ class AgentHarnessTest(unittest.TestCase):
                     lens_package = next(
                         p for p in calls[1]["packages"]
                         if isinstance(p, dict)
-                        and p["source"] == "git:github.com/waldoibarra/pi-lens@v0.2.0"
+                        and p["source"] == "git:github.com/waldoibarra/pi-lens@latest"
                     )
                     self.assertEqual(lens_package["skills"], [])
                     self.assertEqual(lens_package["prompts"], [])

@@ -114,7 +114,7 @@ Pi is the primary coding agent. Each sibling documents its supported behavior an
 
 ### Pi Lens
 
-The tracked Pi settings declare `git:github.com/waldoibarra/pi-lens@v0.2.0` with empty `skills`
+The tracked Pi settings declare `git:github.com/waldoibarra/pi-lens@latest` with empty `skills`
 and `prompts` filters. The existing updater runs `pi update --extensions --no-approve` against the
 normal profile, so no separate installer loop is needed for the Git package.
 
@@ -130,8 +130,8 @@ Local validation does not require `dots`, package publication, or replacing the 
 
 ### Release deployment
 
-Pi's binary remains on Mise `latest`. Lens packages use explicit, immutable version pins.
-There is no release branch. The movable `latest` tags are aliases, not deployment pins.
+Pi's binary remains on Mise `latest`. Both Lens deployments follow their GitHub `latest` tags.
+There is no release branch. Versioned release tags remain immutable; only `latest` moves.
 
 Read [Pi publishing](https://github.com/waldoibarra/pi-lens/blob/main/docs/how-to/contribute.md)
 before publishing Pi Lens or moving its `latest` alias.
@@ -139,19 +139,20 @@ Read [Claude publishing](https://github.com/waldoibarra/claude-lens/blob/main/do
 before publishing Claude Lens or moving its `latest` alias.
 
 1. Publish and verify an immutable version; update `latest` through that product's release procedure.
-2. Change Pi's package-source tag and Claude's marketplace `source.ref` in tracked settings.
-3. Run the harness tests, lint, and isolated native installation checks.
-4. Commit and push the pins. Each machine then runs `dots` and opens a fresh agent.
+2. Keep Pi's package-source tag and Claude's marketplace `source.ref` set to `latest`.
+3. Run the harness tests, lint, and native installation checks against the released commit.
+4. Refresh installed packages on each machine and open a fresh agent.
 
-Publishing a release alone does not update these pins. Keep the previous pins available for rollback.
+Moving `latest` does not reload running sessions. Verify installed commits after refresh.
+For rollback, select a previous immutable version in settings; never move versioned release tags.
 No credentials, sessions, or development checkouts are copied between machines.
 
 ### Claude Lens
 
 The tracked Claude settings declare Lens in two keys:
 
-- `extraKnownMarketplaces.claude-lens` points at `waldoibarra/claude-lens`, with `source.ref: v0.1.2`.
-- `autoUpdate` refreshes that pinned source; new versions require a shared pin change.
+- `extraKnownMarketplaces.claude-lens` points at `waldoibarra/claude-lens`, with `source.ref: latest`.
+- `autoUpdate` refreshes that source; releases advance the GitHub `latest` tag.
 - `enabledPlugins` enables `lens@claude-lens` and disables the old `lens@claude-code-lens` identity.
 
 The updater copies the settings, and Claude Code clones the marketplace and installs the plugin
@@ -161,7 +162,7 @@ GitHub source declared in user settings.
 To use it before the next sync, install it into the current settings copy:
 
 ```sh
-claude plugin marketplace add waldoibarra/claude-lens@v0.1.1
+claude plugin marketplace add waldoibarra/claude-lens@latest
 claude plugin install lens@claude-lens
 ```
 
