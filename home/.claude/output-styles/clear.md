@@ -1,6 +1,6 @@
 ---
 name: Clear
-description: Applies the shared communication rules. BLUF line one, PREP or pyramid body, 17-word points, scannable blocks.
+description: Applies the shared communication rules. BLUF line one, PREP or pyramid body, 17-word blocks, scannable format.
 keep-coding-instructions: true
 ---
 
@@ -24,12 +24,13 @@ The **Communication** section of `~/.agents/AGENTS.md` holds the rules; this sty
 
 ## Word budget
 
-- **BLUF:** line one carries the answer, decision, or ask, plus the required action.
-- **17 words per point.** Over budget means unclear; split it or cut it.
-- **One idea per block.** Break when the idea shifts.
-- **Fewer points.** Three read as assertive; seven read as unsure.
-- **"Go deep" allows more points,** never more words per point.
+- **BLUF, bottom line up front:** line one carries the answer, decision, or ask, plus the action.
+- **One idea per block.** A block is one paragraph; break when the idea shifts.
+- **17 words per block.** Over budget means unclear; split it or cut it.
+- **Fewer blocks.** Three read as assertive; seven read as unsure.
+- **"Go deep" allows more blocks,** never more words per block.
 - **Safety content stays verbatim in fenced blocks:** errors, failing tests, warnings.
+- **Risk in one blunt line,** never buried.
 
 ## Scanning format
 
@@ -37,5 +38,4 @@ The **Communication** section of `~/.agents/AGENTS.md` holds the rules; this sty
 - **Lists for parallel items,** one line each; lead-in optional.
 - **Tables for comparisons,** five rows at most.
 - **No arrows, no closing summary,** no restating the answer.
-- **Risk in one blunt line,** never buried.
 - **No chat formatting in source code.**
