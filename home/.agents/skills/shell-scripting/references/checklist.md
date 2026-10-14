@@ -39,7 +39,7 @@ departure from an explicit Google rule; the checklist wins on conflicts.
   non-trivial data structures/control flow, recommend a real language. _Why:_
   shell's error handling and data handling don't scale; it gets unmaintainable.
 - **Idempotency (for re-runnable scripts).** If a script is meant to run more than
-  once — installers, setup/bootstrap, provisioning, CI — make operations
+  once (installers, setup/bootstrap, provisioning, CI), make operations
   check-before-act so a re-run is a safe no-op: `command -v foo >/dev/null ||
   install foo`; `grep -qxF "${line}" "${file}" || echo "${line}" >> "${file}"`.
   _Why:_ re-running is the normal case for setup scripts. Not needed for a one-shot
@@ -48,7 +48,7 @@ departure from an explicit Google rule; the checklist wins on conflicts.
 ## 2. Files & shebang [§Shell Files and Interpreter Invocation]
 
 - **DEVIATION:** shebang is `#!/usr/bin/env bash`, not Google's `#!/bin/bash`.
-  _Why:_ portability — Bash isn't always at `/bin/bash`; on macOS `/bin/bash` is
+  _Why:_ portability: Bash isn't always at `/bin/bash`; on macOS `/bin/bash` is
   frozen 3.2. Exception: POSIX-only target → `#!/bin/sh`.
 - Executables: `.sh` extension or none. **Libraries: `.sh` extension, not
   executable, no shebang.** _Why:_ a sourced file inheriting the caller's shell
@@ -78,7 +78,7 @@ departure from an explicit Google rule; the checklist wins on conflicts.
   for the exact `errexit` exceptions.
 - Errors/warnings → **STDERR**; normal status → **STDOUT**. Use an `err()`
   helper. _Why:_ lets a caller separate real problems from chatter
-  (`2>/dev/null`, `2>&1 | grep`). Keep output plain — no decorative emoji; they
+  (`2>/dev/null`, `2>&1 | grep`). Keep output plain: no decorative emoji; they
   add noise without signal.
 
   ```bash
@@ -89,7 +89,7 @@ departure from an explicit Google rule; the checklist wins on conflicts.
 
 Use file and function headers; add implementation and TODO comments only when applicable.
 
-- **File header** — every file opens with a one-line description of what it does
+- **File header**: every file opens with a one-line description of what it does
   (copyright/author optional). _Why:_ the reader knows the script's job before
   reading a line of logic.
 
@@ -99,7 +99,7 @@ Use file and function headers; add implementation and TODO comments only when ap
   # Perform hot backups of Oracle databases.
   ```
 
-- **Function comments — DEVIATION:** every function except `main()` gets a header,
+- **Function comments: DEVIATION:** every function except `main()` gets a header,
   including obvious or short helpers. Describe the contract using only the relevant sections:
   Description, Globals (used/modified), Arguments, Outputs (STDOUT/STDERR), and Returns
   (statuses beyond the last command's). _Why:_ a caller should not need to read the body.
@@ -118,10 +118,10 @@ Use file and function headers; add implementation and TODO comments only when ap
   cleanup() { ... }
   ```
 
-- **Implementation comments** — comment only the tricky, non-obvious, or important
+- **Implementation comments**: comment only the tricky, non-obvious, or important
   parts; explain the _why_, not the _what_. _Why:_ narrating obvious lines is
   noise that ages badly.
-- **TODO comments** — `TODO` in all caps + an identifier (name/bug):
+- **TODO comments**: `TODO` in all caps + an identifier (name/bug):
   `# TODO(waldo): handle the unlikely edge case (bug 123)`. _Why:_ greppable, and
   says who has the context.
 
@@ -129,7 +129,7 @@ Use file and function headers; add implementation and TODO comments only when ap
 
 - 2-space indent, no tabs (exception: `<<-` heredoc bodies). Match `.editorconfig`
   if present.
-- **DEVIATION:** 100-char line default (Google says 80) — or whatever
+- **DEVIATION:** 100-char line default (Google says 80): or whatever
   `.editorconfig` sets. Long URLs/paths may exceed; factor into a variable or a
   heredoc where it helps.
 - Pipelines/`&&`/`||` that don't fit on one line: split one segment per line, the
@@ -146,15 +146,15 @@ Use file and function headers; add implementation and TODO comments only when ap
 - Prefer `"${var}"` over `"$var"`; don't brace single-char specials (`$1`, `$?`).
 - `"$@"` to pass args through, **never** `$*` (except joining into one string).
   _Why:_ `"$@"` preserves argument boundaries; `$*` collapses/splits them.
-- Braces are not quoting — you still need the double quotes.
+- Braces are not quoting: you still need the double quotes.
 
 ## 7. Features & bugs [§Features and Bugs]
 
-- **ShellCheck is the mechanical floor** — run it, don't re-derive it by hand.
+- **ShellCheck is the mechanical floor**: run it, don't re-derive it by hand.
 - `$(cmd)` never backticks. _Why:_ nests cleanly, readable.
 - `[[ ]]` over `[ ]`/`test`. _Why:_ no word-splitting/glob inside; supports `=~`.
 - Test strings with `-z`/`-n` and `==`; use `(( ))` (or `-lt`/`-gt`) for numeric
-  comparison. _Why:_ `<`/`>` in `[[ ]]` are lexicographic — a silent bug.
+  comparison. _Why:_ `<`/`>` in `[[ ]]` compare strings, which can silently misorder numbers.
 - Wildcards: use `./*` not `*`. _Why:_ a file named `-rf` becomes a flag.
 - **Guard glob-based iteration.** An unmatched filename glob remains literal unless
   `nullglob` is enabled, so a `for` loop can run once with a nonexistent path. Use
@@ -171,7 +171,7 @@ Use file and function headers; add implementation and TODO comments only when ap
   is another option only on Bash versions that support it.
 - Arithmetic: `(( ))` / `$(( ))`, never `let`/`expr`/`$[ ]`. Beware a standalone
   `(( i++ ))` evaluating to 0 → non-zero exit → death under `set -e`.
-- No aliases in scripts — use functions.
+- No aliases in scripts: use functions.
 - **Environment awareness:** check the target's utilities and versions before using
   divergent `sed -i`, `date`, or `readlink` flags. Linux does not imply GNU utilities;
   macOS/BSD does not establish one fixed flag set across releases. Avoid Bash-4+ features
@@ -181,7 +181,7 @@ Use file and function headers; add implementation and TODO comments only when ap
 ## 8. Naming & structure [§Naming Conventions]
 
 **Meaning comes before case.** A name's first job is to say what the thing is
-_for_ — its purpose at the right altitude — not how it's built, and not a generic
+_for_: its purpose, not its implementation or a generic
 placeholder. Check meaning first, then apply the case rules below.
 
 - **Flag and rename vague names.** `content`, `data`, `tmp`, `val`, `result`,
@@ -190,7 +190,7 @@ placeholder. Check meaning first, then apply the case rules below.
   a path to the backup is `backup_path`, not `file`. _Why:_ the reader (human
   or model) should understand the variable without tracing where it came from.
 - **The name must match the behavior.** If a function is called
-  `delete_temp_files` but also uploads them, the name lies — rename the function
+  `delete_temp_files` but also uploads them, the name lies: rename the function
   or split it. A name that under- or mis-describes its contents costs more than a
   long, accurate one.
 - **Altitude matches scope.** A single-letter loop index (`for i in ...`) is fine;
@@ -238,25 +238,25 @@ placeholder. Check meaning first, then apply the case rules below.
   it calls, in the order it calls them (depth 1); above those sit the functions
   _they_ call, in their call order (depth 2); and so on outward. Reading
   bottom-to-top walks the call graph breadth-first, from the entry point out to
-  its leaves. _Why:_ gives every function one deterministic slot — no guessing
-  between alphabetical, "logical grouping," or first-appearance — and it extends
+  its leaves. _Why:_ gives every function one deterministic slot, avoiding guesses
+  between alphabetical, "logical grouping," or first-appearance. This extends
   `main`'s own bottom-most placement instead of contradicting it with a
   top-down reading for everything else.
 
   ```text
-  get_color_for_bar        # depth 2 — build_bar_section's only callee
-  print_status_line        # depth 1 — main's last call
-  build_git_section        # depth 1 — main's 6th call
-  build_directory_section  # depth 1 — main's 5th call
-  build_duration_section   # depth 1 — main's 4th call
-  build_cost_section       # depth 1 — main's 3rd call
-  build_bar_section        # depth 1 — main's 2nd call; calls get_color_for_bar
-  build_model_section      # depth 1 — main's 1st call
+  get_color_for_bar        # depth 2: build_bar_section's only callee
+  print_status_line        # depth 1: main's last call
+  build_git_section        # depth 1: main's 6th call
+  build_directory_section  # depth 1: main's 5th call
+  build_duration_section   # depth 1: main's 4th call
+  build_cost_section       # depth 1: main's 3rd call
+  build_bar_section        # depth 1: main's 2nd call; calls get_color_for_bar
+  build_model_section      # depth 1: main's 1st call
   main                     # depth 0
   ```
 
   **Shared helpers (diamond dependencies) break the call-order tie-break.** The
-  example above is a clean tree — one caller per callee. If a function is
+  example above is a clean tree: one caller per callee. If a function is
   called by more than one other function (e.g. a leaf helper invoked both
   directly by `main` _and_ indirectly through one of `main`'s own callees),
   "which caller's call order?" has no single answer. Fall back to the
@@ -266,15 +266,15 @@ placeholder. Check meaning first, then apply the case rules below.
   break ties among true siblings that share no callee.
 
   ```text
-  get_os_name              # leaf — called by main AND by set_default_shell
-  get_brew_zsh_path        # leaf — called by main AND by set_default_shell
+  get_os_name              # leaf: called by main AND by set_default_shell
+  get_brew_zsh_path        # leaf: called by main AND by set_default_shell
                             #        AND by add_to_allowed_shells
-  set_default_shell        # depth 1 — main's last call
-  add_to_allowed_shells    # depth 1 — main's first call
+  set_default_shell        # depth 1: main's last call
+  add_to_allowed_shells    # depth 1: main's first call
   main                     # depth 0
   ```
 
-- **`source` at the top level, not inside a function** — this matches Google's
+- **`source` at the top level, not inside a function**: this matches Google's
   "includes before functions," keeps dependencies visible, and avoids wrapping the
   path-resolving `local dir="$(...)"` in the masking bug above. Don't hide `source`
   calls inside a helper function.
@@ -282,7 +282,7 @@ placeholder. Check meaning first, then apply the case rules below.
   once, isolates a genuinely distinct and nameable step, or must be sourced to be
   tested. _Why:_ a function that wraps the whole body and runs exactly once is
   indirection with no payoff. If the only reason to add one is to give `main`
-  something to call, don't — keep the script flat: no functions, no `main`, no
+  something to call, keep the script flat: no functions, no `main`, no
   guard. Decide whether you need functions _first_; `main` follows only if you do.
 - `main` is required **only when the script defines ≥1 other function**; a short,
   linear script doesn't need one (Google: "for short scripts where it's just a
@@ -301,7 +301,7 @@ placeholder. Check meaning first, then apply the case rules below.
 
 ## 9. Calling commands [§Calling Commands]
 
-- Always check return values — `if ! cmd; then err ...; exit 1; fi`, or
+- Always check return values: `if ! cmd; then err ...; exit 1; fi`, or
   `PIPESTATUS` for a specific stage of a pipe (copy it immediately; `[` clobbers
   it). _Why:_ a command that failed and wasn't checked corrupts later state.
 - **Clean up with `trap`.** Register script-owned cleanup with `EXIT` so ordinary exits
