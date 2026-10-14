@@ -2,8 +2,10 @@
 name: session-improvement
 description: >-
   Proposes minimal session-improvement changes from accessible evidence without applying them.
-  Use when handing off, closing a session, or reviewing repeated corrections, failed checks, or manual friction.
-  For instruction edits use agents-md; for skills use agent-skills-creator; for prose use ghostwriter.
+  Use when handing off, closing a session, or reviewing repeated corrections, failed checks, or
+  manual friction.
+  For instruction edits use agents-md; for skills use agent-skills-creator; for prose use
+  ghostwriter.
 ---
 
 # Session improvement
@@ -26,6 +28,22 @@ Skill invocation and session closure grant no write authority.
   automation.
 5. Before drafting a warranted proposal, read [placement](references/placement.md) for scope,
   audience, local-loop precedence, and permitted retention.
+
+## Review touched documentation
+
+- Identify Markdown documentation created or edited during this session; skip this review when none
+  was touched.
+- Exclude documents merely read, unrelated Git changes, and repository-wide audits.
+- Read [docs-maintenance](../docs-maintenance/SKILL.md) for documentation review criteria; report if
+  unavailable rather than inventing its guidance.
+- Use its read-only review mode; this skill's proposal-only boundary still applies.
+- Inspect only touched documents and references needed to verify their context, claims, or links.
+- Propose supported improvements to the big picture, concern boundaries, information preservation,
+  and factual accuracy.
+- Apply the same evidence and placement gates; return no documentation proposal when none is
+  warranted.
+- Name affected paths, necessary link updates, verification, and rollback; do not apply rewrites or
+  create directories.
 
 ## Draft the approval packet
 

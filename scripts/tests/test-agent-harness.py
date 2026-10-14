@@ -128,6 +128,13 @@ class AgentHarnessTest(unittest.TestCase):
                     self.assertTrue(delivered.is_file(), name)
                     self.assertEqual(delivered.resolve(), source)
                     self.assertEqual(delivered.read_bytes(), source.read_bytes())
+                for directory in (".agents/skills", ".claude/skills"):
+                    for relative in ("SKILL.md", "references/structure.md"):
+                        source = ROOT / "home/.agents/skills/docs-maintenance" / relative
+                        delivered = home / directory / "docs-maintenance" / relative
+                        self.assertTrue(delivered.is_file(), str(delivered))
+                        self.assertEqual(delivered.resolve(), source)
+                        self.assertEqual(delivered.read_bytes(), source.read_bytes())
                 placement = home / ".agents/skills/session-improvement/references/placement.md"
                 self.assertTrue(placement.is_file())
                 self.assertEqual(

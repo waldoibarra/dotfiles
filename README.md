@@ -37,6 +37,7 @@ push skill-lockfile commits; the setup guide explains those boundaries before yo
 
 | Task | Guide |
 | --- | --- |
+| Refactor documentation around reader needs | [Documentation workflow](/docs/documentation.md) |
 | Maintain packages and run checks | [Tooling](/docs/tooling.md) |
 | Configure agents, instructions and skills | [Coding agents](docs/coding-agents/README.md) |
 | Review Pi configuration, live voice, and integration status | [Pi and live voice](docs/coding-agents/pi/README.md) |

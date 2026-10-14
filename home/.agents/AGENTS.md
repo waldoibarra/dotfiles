@@ -123,6 +123,8 @@ formatting details.
 
 ## Documentation
 
+- Before creating, editing, or reviewing Markdown documentation, read `docs-maintenance`; it owns
+  scope and preservation checks.
 - Give each document one concern and audience. Keep facts with their owner; link instead of
   duplicating.
 - Improve touched documentation: match the code, explain what and why first, then reveal detail as

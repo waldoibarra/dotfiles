@@ -84,6 +84,44 @@
         "Names the audience that the shared-harness change would reach",
         "Requires cross-repository justification or explicit scoped approval"
       ]
+    },
+    {
+      "id": 7,
+      "prompt": "Run session-improvement before we close. This session edited docs/setup.md, which mixes purpose, configuration details, and historical decisions. Source code and current agreements are available; propose improvements only.",
+      "expected_output": "Uses docs-maintenance as read-only review criteria for the touched guide, then returns a scoped approval packet without applying changes.",
+      "files": [],
+      "assertions": [
+        "Reads docs-maintenance for touched-document review",
+        "Explains the big picture before proposing concern boundaries",
+        "Keeps implementation and current agreements distinguishable",
+        "Preserves unique information and safety conditions in the proposal",
+        "Names affected paths, verification, and rollback",
+        "Does not edit files or create directories"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Run session-improvement. We edited only application code and read several Markdown guides; another contributor already has documentation changes in the working tree.",
+      "expected_output": "Skips the documentation review because this session edited no Markdown documentation; assesses other evidenced improvements normally.",
+      "files": [],
+      "assertions": [
+        "Does not treat read-only documents as touched documentation",
+        "Does not treat another contributor's Git changes as session scope",
+        "Does not start a repository-wide documentation audit",
+        "Does not invent documentation proposals"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Run session-improvement after we edited readme.md. docs-maintenance is unavailable in this host. The repository forbids retained session notes.",
+      "expected_output": "Reports the missing documentation reviewer, continues only the available session-improvement review, and creates no forbidden records.",
+      "files": [],
+      "assertions": [
+        "Reports docs-maintenance as unavailable",
+        "Does not invent the missing skill's guidance",
+        "Does not create session records",
+        "Does not interpret closure as edit approval"
+      ]
     }
   ]
 }

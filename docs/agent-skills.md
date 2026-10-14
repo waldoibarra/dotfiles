@@ -22,6 +22,7 @@ Dotbot links these bundles individually; the external lockfile does not manage t
 
 | Read before… | Tracked source |
 | --- | --- |
+| Maintaining touched Markdown documentation without losing information | [`docs-maintenance`](/home/.agents/skills/docs-maintenance/SKILL.md) |
 | Proposing scoped session-improvement packets at handoff | [`session-improvement`](/home/.agents/skills/session-improvement/SKILL.md) |
 | Teaching with Socratic questions and checked application | [`socratic-learning`](/home/.agents/skills/socratic-learning/SKILL.md) |
 | Starting an empty project without an application stack | [`start-project`](/home/.agents/skills/start-project/SKILL.md) |
@@ -30,7 +31,7 @@ Dotbot links these bundles individually; the external lockfile does not manage t
 | Standards-first or frameworkless web work | [`web-standards`](/home/.agents/skills/web-standards/SKILL.md) |
 | Isolated layout, intrinsic reflow, spacing, or overflow work | [`css-layout`](/home/.agents/skills/css-layout/SKILL.md) |
 
-The seven `home/.agents/skills/` bundles link to both `~/.agents/skills/` and `~/.claude/skills/`.
+The eight `home/.agents/skills/` bundles link to both `~/.agents/skills/` and `~/.claude/skills/`.
 Editing an installed symlink edits this checkout; edit the tracked source.
 
 New bundles acquire links on the next Dotbot sync. Source creation alone does not install them.
@@ -43,6 +44,27 @@ behavior.
 The `start-project` skill keeps requirements and POC setup separate from application scaffolding.
 It reuses workstation defaults, minimal project docs, and mise/just lint tooling
 instead of choosing a stack.
+
+## Documentation maintenance
+
+**Purpose:** `docs-maintenance` checks information preservation, factual accuracy, and concern-based
+structure in touched Markdown documentation.
+
+**Routing:** Shared instructions require reading it before creating, editing, or reviewing Markdown
+documentation.
+
+**Limit:** This is model-followed routing, not a file watcher or guaranteed execution hook.
+
+- Authorized in-place improvements need no separate cosmetic approval.
+- Structural moves, splits, deletion, and substantial rewrites require approval unless already
+  covered by the task.
+- Unrelated documents, other contributors' changes, and frozen historical records remain outside
+  automatic editing scope.
+- `ghostwriter` owns prose; instruction and skill definitions retain their specialist workflows.
+- `session-improvement` remains the separate, proposal-only closure workflow.
+
+**Guide:** Read [documentation maintenance](/docs/documentation.md) before using the workflow or
+checking its activation limits.
 
 ## Learning and session improvement
 
@@ -60,7 +82,16 @@ Natural-language requests can also select these skills through their description
 A closure question requests review, not permission to edit or publish.
 `session-improvement` assesses evidence first, then loads its placement reference only for warranted
 proposals.
-Approved edits use the owning specialist workflow and repository delivery rules.
+
+**Touched docs:** `session-improvement` reads `docs-maintenance` for a scoped, read-only review of
+session-edited Markdown documentation.
+
+- Skip this review when no documentation was edited.
+- Exclude unrelated Git changes; documentation improvements remain proposals, not permission to
+  rewrite or create directories.
+
+**Approved edits:** Use the owning specialist workflow and repository delivery rules.
+
 `ghostwriter` owns prose; it replaces the former `docs-writing` name.
 No shutdown hook runs either skill, and neither reconstructs inaccessible conversation history.
 

@@ -26,6 +26,63 @@ outcomes.
 - Read [harness verification](/docs/coding-agents/personal-workflow.md) before defining acceptance
   or approving behavioral probes.
 
+### Documentation maintenance
+
+**Approved:** The user requested shared, automatic Markdown documentation guidance and a sub-agent
+test.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| MD1 | Supersede the local-only pilot and closure-time opt-in. | The user requested guidance during documentation work across repositories. |
+| MD2 | Add `docs-maintenance`; retain `session-improvement`. | Editing documentation and proposing session improvements have different authority boundaries. |
+| MD3 | Use shared reading instructions and native skill discovery. | No file watcher, new hook, or client-specific infrastructure is needed. |
+| MD4 | Preserve task scope and information; propose structural changes. | Automatic prose improvements must not silently reorganize repositories or erase facts. |
+| MD5 | Route touched-doc review through `session-improvement` at closure. | The user wants one manual entry point; documentation changes remain proposals. |
+
+**Owner:** Read [documentation maintenance](/docs/documentation.md) before using the workflow or
+checking its loading boundaries.
+
+- `docs/documentation.md` becomes the local usage guide; the portable skill owns the workflow.
+- Explicit user approval authorizes shared distribution; no company-specific workflow or
+  configuration is changed.
+- `session-improvement` now references `docs-maintenance` for session-edited Markdown; its
+  proposal-only boundary remains intact.
+
+**Status:** Implemented and installed; delivery is authorized with the formatting limitation
+recorded below.
+
+- The delivery regression failed before implementation, then passed for both hosts and repeated
+  installation.
+- `dots` completed; both installed skill links and reference bytes match the tracked sources.
+- Skill validation passed: 29 checks; four inapplicable checks skipped. `skills-ref` is unavailable.
+- Harness suite passed: 11 tests, one compiled-host check skipped. Full lint and explicit skill
+  Markdown passed.
+- Two test rounds used fresh `openai-codex/gpt-6-sol:medium` workers, with no skill name in task
+  prompts.
+- Transcripts confirm automatic skill loading for editing and review; structural review also loaded
+  its reference.
+- Both rounds preserved source facts, the complete safety warning, and current-versus-planned
+  distinctions.
+- File hashes confirm only the authorized README changed; proposals created no files or directories.
+- Both rounds failed communication formatting: oversized paragraphs or list items and missing bold
+  prose lead-ins.
+- The second round added explicit formatting checks; prompting alone did not resolve the failure.
+- Further model tests stopped after two failed acceptance passes; another round requires approval.
+- Claude behavioral execution, broader routing coverage, and no-skill comparisons remain untested.
+
+**Declined:** The user rejected a deterministic checker and further model testing.
+
+**Closure routing:** Three new authored scenarios pass schema checks; routing itself remains
+behaviorally untested.
+
+**Next:** Use `session-improvement` normally; review documentation proposals before approving edits.
+
+**Review:** Plan independently reviewed; implementation and worker artifacts checked by the main
+session.
+
+**Rollback:** Remove the skill, its two links, and shared reading rule; restore the local guide
+if needed.
+
 ### Pending workstation steps
 
 1. **Restart:** Restart Pi and Claude Code after the completed `dots` integration updates.

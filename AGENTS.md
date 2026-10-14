@@ -33,6 +33,7 @@ removing records or evidence collections.
 
 | Area | Guide |
 | --- | --- |
+| Documentation structure or cross-page refactors | [Documentation workflow](/docs/documentation.md) |
 | Installation or local overrides | [Setup](/docs/setup.md) |
 | Packages, recipes, lint or hooks | [Tooling](/docs/tooling.md) |
 | Agent prompts, settings, integrations or skills | [Coding agents](/docs/coding-agents/README.md) |

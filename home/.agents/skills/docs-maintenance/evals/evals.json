@@ -1,0 +1,107 @@
+{
+  "skill_name": "docs-maintenance",
+  "routing": {
+    "positive": [
+      "Update this README after the timeout change",
+      "Rewrite the Markdown deployment guide without losing information",
+      "Review this documentation page for accuracy",
+      "This touched guide mixes overview and operations; propose a better structure"
+    ],
+    "negative": [
+      "Summarize this article without changing it",
+      "Rewrite my AGENTS.md instructions",
+      "Create a new SKILL.md",
+      "Rename a function in the source code"
+    ]
+  },
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Update readme.md to reflect relay.py and decisions.md. Make it clearer and easier to scan. Only readme.md is authorized for editing; preserve its information and safety warnings.",
+      "expected_output": "An in-place README improvement that loads the skill without naming it in the request, preserves unique facts, corrects current timeout to 30 seconds, and labels the approved 60-second target unimplemented.",
+      "files": ["evals/files/parcel-relay/readme.md", "evals/files/parcel-relay/relay.py", "evals/files/parcel-relay/decisions.md", "evals/files/parcel-relay/docs/retention.md", "evals/files/parcel-relay/archive/launch.md"],
+      "assertions": [
+        "Loads docs-maintenance before editing documentation",
+        "Explains purpose before detailed settings",
+        "Reports 30 seconds as current timeout",
+        "Retains 60 seconds as agreed but unimplemented",
+        "Preserves 3 attempts, 2-second backoff, 7-day audit retention, and JSONL exports",
+        "Preserves the complete safety warning verbatim",
+        "Preserves the retention link, launch decision, and relay-west example",
+        "Changes only readme.md",
+        "Does not create directories or invent runtime verification",
+        "Applies active paragraph limits and bold prose lead-ins to the edited document"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review readme.md against relay.py and decisions.md. Propose how to separate its concerns and make the big picture clear. Do not edit files or reorganize the repository.",
+      "expected_output": "A read-only, source-grounded concern map and minimal scoped proposal, preserving facts and approval boundaries.",
+      "files": ["evals/files/parcel-relay/readme.md", "evals/files/parcel-relay/relay.py", "evals/files/parcel-relay/decisions.md"],
+      "assertions": [
+        "Explains the product before proposing its document structure",
+        "Proposes only a split of the named document and necessary link updates",
+        "Names approval as the gate before restructuring",
+        "Identifies current versus planned timeout honestly",
+        "Does not modify files",
+        "Applies active paragraph limits and bold prose lead-ins to the proposal"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Update docs/setup.md only. The working tree already includes someone else's edited docs/security.md and an unrelated archived plan. You may inspect references needed to validate setup.",
+      "expected_output": "Work stays scoped to setup; unrelated Git changes and archival snapshots remain untouched.",
+      "files": [],
+      "assertions": [
+        "Does not treat all dirty files as session scope",
+        "Does not refactor unrelated documentation",
+        "Proposes approval for any additional required edit"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Condense a touched guide. Its owner approved a new retry design, but the implementation still uses the old behavior. Preserve the deprecated configuration and its migration warning.",
+      "expected_output": "An information-preserving edit distinguishes current behavior, accepted future design, and superseded guidance without claiming deployment.",
+      "files": [],
+      "assertions": [
+        "Keeps agreed behavior separate from implemented behavior",
+        "Retains the deprecated configuration where readers can find it",
+        "Preserves the warning verbatim despite length",
+        "Does not silently remove contradictions"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Summarize an existing Markdown document. Do not change it. Its navigation looks poor, but I only want the summary.",
+      "expected_output": "A summary without unsolicited edits or a repository-wide documentation review.",
+      "files": [],
+      "assertions": [
+        "Does not treat reading Markdown as permission to edit",
+        "Does not expand the task into a refactor"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "You notice a stale claim while editing a company guide, but the source system is inaccessible. The repository forbids retained session records.",
+      "expected_output": "The uncertainty is reported without fabricating current behavior, exporting company evidence, or creating forbidden records.",
+      "files": [],
+      "assertions": [
+        "Reports the source limitation",
+        "Does not assert unverified behavior as current fact",
+        "Creates no prohibited record",
+        "Keeps company evidence in its workspace"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Refactor an AGENTS.md, a SKILL.md, and a byte-preserved historical Markdown snapshot.",
+      "expected_output": "Instruction and skill changes route to their owners; the frozen snapshot is not rewritten as ordinary documentation.",
+      "files": [],
+      "assertions": [
+        "Routes agent instructions to agents-md",
+        "Routes skill definitions to agent-skills-creator",
+        "Does not rewrite the historical snapshot without explicit authority to alter the record"
+      ]
+    }
+  ]
+}
