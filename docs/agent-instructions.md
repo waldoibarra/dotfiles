@@ -78,8 +78,14 @@ A style shapes only the main Claude Code session's replies. The shared rules' **
 section carries the writing rules to every harness, sub-agents and written artifacts included.
 Keep writing rules there, not in a style.
 
-The three tracked styles are verbatim [Attention Span](https://github.com/alexgreensh/attention-span)
-copies, separate from the shared global rules:
+[`Clear`](/home/.claude/output-styles/clear.md) is repo-authored: it applies the shared
+**Communication** rules through an intent-first shape (PREP, pyramid, request, confirm, deliver,
+report), a 17-word budget per point, and bold lead-in blocks. It links to the rules; it does not
+restate them.
+
+The three other tracked styles are verbatim
+[Attention Span](https://github.com/alexgreensh/attention-span) copies, separate from the shared
+global rules:
 
 | Style | Format |
 | --- | --- |
@@ -87,7 +93,7 @@ copies, separate from the shared global rules:
 | `Spartan` | Blunt, compact arrow points |
 | `Rundown` | TL;DR and status checklists |
 
-Each retains `keep-coding-instructions: true` and upstream attribution. Compare its version comment
+Each copy retains `keep-coding-instructions: true` and upstream attribution. Compare its version comment
 with [upstream releases](https://github.com/alexgreensh/attention-span/releases) before replacing it.
 Preserve the [AGPL-3.0 license](https://github.com/alexgreensh/attention-span/blob/main/LICENSE);
 this repository does not relicense the copies.
