@@ -9,6 +9,7 @@
     "~":
     ~/.agents/skills:
     ~/.agents/roles:
+    ~/.agents/references:
     ~/.agents:
     ~/.claude/agents:
     ~/.claude/output-styles:
@@ -22,6 +23,7 @@
     ~/.agents:
     ~/.agents/skills:
     ~/.agents/roles:
+    ~/.agents/references:
     ~/.claude:
     ~/.claude/agents:
     ~/.claude/skills:
@@ -81,6 +83,9 @@
     ~/.agents/roles/:
       glob: true
       path: home/.agents/roles/*.md
+    ~/.agents/references/:
+      glob: true
+      path: home/.agents/references/*.md
     # The excluded config files are copied by scripts/update-coding-agents/sync-managed-configs.sh
     # instead of linked by Dotbot; excluded directories are linked per child below. See
     # docs/coding-agents/README.md.

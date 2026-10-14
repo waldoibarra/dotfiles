@@ -109,7 +109,9 @@ class AgentHarnessTest(unittest.TestCase):
                 "--only", "create", "link",
             ]
             for _ in range(2):
-                subprocess.run(command, env=env, check=True, capture_output=True, text=True)
+                subprocess.run(
+                    command, env=env, check=True, capture_output=True, text=True, timeout=15
+                )
                 for source in (ROOT / "home/.agents/roles").glob("*.md"):
                     for directory in (".agents/roles", ".claude/agents"):
                         self.assertEqual((home / directory / source.name).resolve(), source)
@@ -117,6 +119,21 @@ class AgentHarnessTest(unittest.TestCase):
                     self.assertEqual((home / relative).resolve(), ROOT / "home/.agents/AGENTS.md")
                 for relative in (".agents/RTK.md", ".claude/RTK.md"):
                     self.assertEqual((home / relative).resolve(), ROOT / "home/.agents/RTK.md")
+                references = home / ".agents/references"
+                self.assertTrue(references.is_dir())
+                self.assertFalse(references.is_symlink())
+                for name in ("communication.md", "orchestration.md", "harness-design.md"):
+                    source = ROOT / "home/.agents/references" / name
+                    delivered = references / name
+                    self.assertTrue(delivered.is_file(), name)
+                    self.assertEqual(delivered.resolve(), source)
+                    self.assertEqual(delivered.read_bytes(), source.read_bytes())
+                placement = home / ".agents/skills/session-improvement/references/placement.md"
+                self.assertTrue(placement.is_file())
+                self.assertEqual(
+                    placement.resolve(),
+                    ROOT / "home/.agents/skills/session-improvement/references/placement.md",
+                )
                 config = home / ".pi/agent/extensions/subagent/config.json"
                 self.assertEqual(
                     config.resolve(), ROOT / "home/.pi/agent/extensions/subagent/config.json"

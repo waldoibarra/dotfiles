@@ -8,10 +8,12 @@ and experiments; maintained workstation documentation lives in `/docs/`.
 - Index evidence collections through their manifests rather than listing every artifact.
 - Keep ideas and user-reported observations distinct from verified results. Historical plans are
   not authorization to execute them; read the latest notes before resuming work.
-- Keep personal harness plans, routing, usage evidence, and cross-repository backlogs in this workspace.
+- Keep personal harness plans, routing, usage evidence, and cross-repository backlogs in this
+  workspace.
   Public product repositories must not copy or link those records.
 - Review additions for publication. Keep credentials, private recordings, model weights, and
-  machine-local runtime files outside this directory. Record any evidence redactions in its manifest.
+  machine-local runtime files outside this directory. Record any evidence redactions in its
+  manifest.
 
 ## Evidence storage
 
@@ -31,7 +33,7 @@ old files are later removed. Size alone does not replace the publication review 
 | Continuing Markdown default-app setup or reviewing its verification | [Markdown application plan](/.agents/plans/markdown-default-app.md) |
 | Continuing personal MCP parity, Sheets setup, and integration lessons | [Personal MCP plan](/.agents/plans/personal-mcp.md) |
 | Continuing the shared-role migration and Pi delegation verification | [Shared roles plan](/.agents/plans/pi-shared-roles.md) |
-| Changing agent rules, role agents, skill scope, session improvement, or Socratic learning | [AI harness roadmap](/.agents/plans/ai-harness-roadmap.md) |
+| Continuing harness separation, role validation, voice setup, or skill improvements | [AI harness roadmap](/.agents/plans/ai-harness-roadmap.md) |
 | Continuing Pi setup or reviewing the integration outcome | [Integration summary](/.agents/plans/pi-dotfiles-integration-summary.md) |
 | Reviewing live-chat close errors, Pi trial feedback, or transcript handoffs | [Trial notes](/.agents/plans/pi-live-codex-trial.notes.md) |
 | Reusing the original Pi voice test scenarios; later notes supersede trial decisions | [Trial plan](/.agents/plans/pi-live-codex-trial.md) |

@@ -44,7 +44,8 @@ A rule naming a company tool, channel, person or repo is **work-scoped**.
 | `docs/agent-instructions.md`, `docs/coding-agents/` | Claude Code and Pi only; Cursor note |
 | Retired harness configs, aliases, Mise entries, and obsolete updater helper | Removed from the repository; local app/data removal remains a manual pending step |
 
-**Work knowledge hub** **[F]**, uncommitted on **`chore/ai-harness`** (cut from `origin/main`), in the
+**Work knowledge hub** **[F]**, uncommitted on **`chore/ai-harness`** (cut from `origin/main` ), in
+the
 hub's main checkout. Switch the hub back to `main` only after committing, or the new skills vanish.
 
 | File | Change |
@@ -89,9 +90,22 @@ Patterns from the sprint 19 demo session, and where each now lives:
 
 ## Waldo's pending steps
 
-1. **Review work separately:** the earlier hub changes were on **`chore/ai-harness`**;
-   their current state was not rechecked. Keep concurrent `pi-lens` work separate from harness commits.
-2. **Manual cleanup** (not run). Upgrade OpenUsage first: v0.7.13+ reads Pi's login, not `~/.codex`.
+1. **ASAP: implement roles:** review practical role use in Pi and Claude Code; you are not currently
+  using/testing them.
+   Confirm invocation, model/effort selection, inherited instructions, tool boundaries, and useful
+   end-to-end outcomes in each harness.
+   Review the refactored role contracts; configuration and historical probes do not prove everyday
+   use.
+2. **ASAP: configure ghostwriter:** create a voice profile reflecting your writing preferences;
+  `docs-writing` was renamed to `ghostwriter`.
+   Start with `~/.config/ghostwriter/soul.md`; add surface-specific profiles only where your
+   writing needs them.
+   Supply representative samples before authoring preferences. No profile is created by this
+   refactor.
+3. **Review work separately:** the earlier hub changes were on **`chore/ai-harness`**;
+   their current state was not rechecked. Keep concurrent `pi-lens` work separate from harness
+   commits.
+4. **Manual cleanup** (not run). Upgrade OpenUsage first: v0.7.13+ reads Pi's login, not `~/.codex`.
 
    ```sh
    brew upgrade --cask openusage
@@ -100,9 +114,9 @@ Patterns from the sprint 19 demo session, and where each now lives:
    rm -rf ~/.codex   # only after OpenUsage shows the Codex card via Pi
    ```
 
-3. **Pi trust:** run `pi` at the work root, then `/trust` once.
-4. **Slack:** `/mcp` in Claude Code to re-authorize.
-5. **Sync:** role links and Pi runner were applied with a destination-scoped operation.
+5. **Pi trust:** run `pi` at the work root, then `/trust` once.
+6. **Slack:** `/mcp` in Claude Code to re-authorize.
+7. **Sync:** role links and Pi runner were applied with a destination-scoped operation.
    Full `dots`, cleanup, Slack authorization, and work-root trust remain separate pending actions.
 
 ## Open decisions
@@ -120,7 +134,8 @@ Patterns from the sprint 19 demo session, and where each now lives:
 
 **Intended outcome, not yet observed in ordinary sessions:** notice recurring friction and propose
 small evidence-backed improvements at natural handoffs. Canonical policy lives in
-[global instructions](/home/.agents/AGENTS.md); read the [personal workflow guide](/docs/coding-agents/personal-workflow.md)
+[global instructions](/home/.agents/AGENTS.md); read the [personal workflow
+guide](/docs/coding-agents/personal-workflow.md)
 for activation and verification. Company adaptation remains deferred.
 
 ### Approved decisions
@@ -142,7 +157,8 @@ for activation and verification. Company adaptation remains deferred.
 
 ### Historical outcomes
 
-- **[F] Implementation:** Luna high completed instruction changes; Sol medium updated docs. Delegation
+- **[F] Implementation:** Luna high completed instruction changes; Sol medium updated docs.
+  Delegation
   exercised Astra high for review/audit, Luna medium for lookup-review and high for implementation,
   and Sol medium. Terra remains untested.
 - **[F] Smoke:** fresh Pi Astra and Claude Fable probes respected eight synthetic scenarios.
@@ -164,7 +180,8 @@ for activation and verification. Company adaptation remains deferred.
 
 ### Refactor verification
 
-- Consolidated repeated policy, candidate assignments, completed recipes, and continuation summaries.
+- Consolidated repeated policy, candidate assignments, completed recipes, and continuation
+  summaries.
   Shared instructions own policy; the workflow guide owns repeatable checks.
 - Astra's independent source audit passed without confirmed or plausible findings.
 - Fresh Pi Astra and Claude Fable sessions passed the eight-scenario smoke check after refactoring.
@@ -178,11 +195,13 @@ for activation and verification. Company adaptation remains deferred.
 **[F]** Reload instructions preceded further work, causing rejected reloads and queued user input.
 **[F]** Partial deliveries left authorized work unfinished.
 The dotfiles Lens delivery plan owns its completion list.
-**[F]** Laptop previews render. Tokens, attribution, queue controls, and distribution remain unfinished.
+**[F]** Laptop previews render. Tokens, attribution, queue controls, and distribution remain
+unfinished.
 
 **Earlier decision, superseded by H8–H12:** retain existing global rules.
 Use scoped implementers, independent reviews, and verified
-completion gates. Pi is the primary coding agent; both Lens packages target the closest supported UX.
+completion gates. Pi is the primary coding agent; both Lens packages target the closest supported
+UX.
 Commit verified changes separately, preserving other agents' work.
 Package publication awaits local validation.
 The user separately authorized public GitHub source for Pi Lens.
@@ -199,7 +218,8 @@ The generic session-improvement workflow now lives in
 with routing scenarios in its `evals/evals.json`.
 The shared `Learning` rule only routes closure and repeated-correction cases to that skill; policy
 remains in one place and approved edits still require scoped consent.
-Dotbot's existing skill-directory globs are the intended installation mechanism for Pi and Claude Code.
+Dotbot's existing skill-directory globs are the intended installation mechanism for Pi and Claude
+Code.
 No hook, daemon, settings schema, dependency, or updater path was added.
 Read [skill activation verification](#skill-activation-verification) for current installation
 and test
@@ -230,18 +250,22 @@ before resuming the measured usage review or cross-repository delivery.
 These personal records stay in dotfiles; public product repositories must not copy or link them.
 The audit found 33 recorded Astra child dispatches, including 13 implementation and 17 audit runs.
 Repeated review loops and large parent/worker contexts compounded the routing mistake.
-Local telemetry is not the provider's quota ledger; exact subscription-limit consumption remains unknown.
+Local telemetry is not the provider's quota ledger; exact subscription-limit consumption remains
+unknown.
 
-Canonical policy now reserves Astra/Fable for the main chat and leaves main-model choice to the user.
+Canonical policy now reserves Astra/Fable for the main chat and leaves main-model choice to the
+user.
 Pi's strict allowlist rejects Astra selection and inherited Astra before inference.
 Claude receives the same shared policy; no native Claude runtime model block is claimed.
-Roles remain provider-neutral. Parent model, billing, privileges, and context capacities were not changed.
+Roles remain provider-neutral. Parent model, billing, privileges, and context capacities were not
+changed.
 
 Six provisioning tests and the actual installed runner's offline rejection checks passed.
 The fresh offline session also loaded all-message steering.
 No new model calls or behavioral probes ran.
 Instruction edits were self-reviewed, not independently reviewed. No `dots` or publication ran.
-Rollback uses the scoped configuration/instruction diff; no credentials or unrelated work were touched.
+Rollback uses the scoped configuration/instruction diff; no credentials or unrelated work were
+touched.
 
 ## Approved Lens-session instruction refinements
 
@@ -260,7 +284,8 @@ No new instruction files were added.
 These replace three existing rule passages rather than duplicating their policy.
 Question-versus-execution boundaries and necessary-decision waits remain intact.
 Quota stops and two-failed-pass limits are unchanged.
-Independent wording review used the AGENTS.md quick checklist; project-command checks were inapplicable.
+Independent wording review used the AGENTS.md quick checklist; project-command checks were
+inapplicable.
 Lead retained explicit waiting before dependent work, which the draft wording had omitted.
 
 Static review scenarios:
@@ -269,13 +294,172 @@ Static review scenarios:
 - A question about resetting data remains a question, not permission to reset it.
 - A package declaration or publication alone is not reported as an active installation.
 - A known runtime mismatch blocks readiness even when source checks pass.
-- Async teardown stops owned work before deleting artifacts after assertions, cancellation, or timeout.
+- Async teardown stops owned work before deleting artifacts after assertions, cancellation, or
+  timeout.
 - Draft edits during an awaited operation must survive acceptance and recovery.
 
 These scenarios were reviewed against wording, not run as fresh model probes.
 Ordinary-session behavioral improvement remains unmeasured. Existing loader wiring is unchanged.
 Rollback: revert only the three shared-instruction replacements.
 Retain factual release and verification records.
+
+## Global instruction refactor
+
+**Request:** apply Clear's writing rules and remove obsolete or redundant global instructions.
+**Initial scope:** shared policy and its owning documentation; superseded by the expanded harness
+request below.
+
+### Decisions
+
+| Id | Decision | Reason |
+| --- | --- | --- |
+| G1 | Keep universal safeguards inline. | Skills and client settings cannot replace cross-harness authority boundaries. |
+| G2 | Route improvement procedures to `session-improvement`. | The installed portable skill already owns proposals, placement, and local-loop precedence. |
+| G3 | Apply Clear's concise structure without copying its reply templates. | Global policy owns writing requirements; the Claude style specializes reply shapes. |
+| G4 | Preserve observed safety and model-routing constraints. | Existing incident records justify these rules; runtime enforcement covers only part. |
+| G5 | Use GPT-5.5 medium for independent textual review. | The bounded policy comparison needs no runtime implementation or lead-model dispatch. |
+
+### Expanded harness scope
+
+The user extended cleanup to the whole harness, prioritizing separation of concerns and
+session-level wayfinding.
+
+| Id | Decision | Reason |
+| --- | --- | --- |
+| G6 | Keep global boundaries and a task-based reading map always loaded. | Every session needs orientation, not every procedure. |
+| G7 | Install shared references for conditional policy through existing Dotbot links. | Details must remain reachable outside this checkout and across clients. |
+| G8 | Keep one communication source; make Clear a thin adapter. | Two overlapping writing policies drift. |
+| G9 | Audit all tracked skill and role entry points; change only evidenced problems. | Cosmetic rewrites and unmeasured retirement risk working contracts. |
+| G10 | Preserve client settings, external packages, credentials, and work configuration. | Ownership cleanup does not require runtime or dependency replacement. |
+| G11 | Superseded: defer role changes to a separate review. | The user initially requested an ASAP follow-up. |
+| G12 | Improve role contracts now; retain practical Pi/Claude validation as ASAP. | The user subsequently authorized role improvements; everyday use remains unverified. |
+
+**Expanded verification:** test shared-reference delivery in temporary homes before activating links
+on this machine.
+Native settings and model defaults remain unchanged; no package updates, publication, or behavioral
+probes are authorized implicitly.
+
+**Review lanes:** GPT-5.5 medium checks policy/document ownership and skill/role boundaries
+independently.
+The main session owns the final architecture, edits, Git operations, and activation.
+
+### Plan and acceptance
+
+1. Compare global rules with loaders, settings, shared roles, skills, and maintained harness guides.
+2. Obtain independent plan review before rewriting the shared policy.
+3. Condense rules; map every removed obligation to its retained owner.
+4. Audit semantic preservation independently; validate Markdown, links, word budgets, and
+  whitespace.
+5. Update ownership documentation and record verification limits here.
+
+**Independent plan review:** ready with fixes; preserve recording duties, unavailable-skill
+fallback, communication rules, and cross-harness model boundaries.
+The implementation below incorporates those constraints.
+
+### Removal and ownership map
+
+Original line ranges refer to the pre-refactor shared file.
+
+- **Lines 5–15, reworded:** evidence and approval obligations remain inline; duplicate unknown-value
+  wording is consolidated.
+- **Lines 19–23, reworded:** commit boundaries and documentation updates remain inline.
+- **Lines 27–31, reworded:** language selection and artifact language remain inline; tone joins
+  Communication.
+- **Lines 35–50, reworded:** Communication keeps scope, brevity, terminology, and shared-context
+  rules; examples and repeated concision claims disappear.
+- **Lines 55–58, reworded:** per-message consent and shared-write scope remain inline.
+- **Lines 62–78, moved:** harness-design detail lives in the installed reference; privacy and
+  readiness
+  boundaries remain global.
+- **Lines 82–109, split:** global delegation, model exclusions, retry, and quota boundaries remain;
+  routing detail uses the reference.
+- **Lines 110–120, moved:** the orchestration reference owns verification, decisions, review freeze,
+  and ADR detail; cleanup remains global.
+- **Lines 124–129, reworded:** live-shell safeguards remain; the shell skill does not cover every
+  tool command.
+- **Lines 133–138, reworded:** recording and skill routing remain; missing-skill fallback stays
+  explicit.
+- **Lines 139–151, duplicate:** proposal procedures and placement details belong to
+  `session-improvement`; global consent and privacy boundaries remain.
+- **Lines 155–164, reworded:** document ownership, progressive detail, links, README purpose, and
+  screenshot rules remain inline.
+- **Line 168, retained:** the RTK reading trigger remains needed across harnesses.
+
+**Recording conflict:** local record rules win; retain unanswered proposals only where the
+repository permits them.
+The existing skill already states this precedence; global instructions must not contradict it.
+
+**Baseline:** `home/.agents/AGENTS.md` has 168 lines.
+**Quick audit:** 5/9 applicable checks; application commands and bootstrap checks are inapplicable
+globally.
+Failures concern redundant text, on-demand ownership, overbroad wording, and conflicting recording
+rules.
+
+### Collection audit
+
+All seven tracked skill entry points were reviewed; unchanged specialist references were not
+rewritten.
+Retention is provisional: no with-skill/without-skill comparison ran.
+
+- **`session-improvement`:** retain proposal ownership; separate conditional placement detail; hand
+  approved execution to specialist workflows.
+- **`socratic-learning`:** retain teaching contracts; correct renamed prose routing and reconcile
+  communication limits.
+- **`shell-scripting`:** retain script guidance; normalize checklist punctuation for the validator.
+  The verbatim upstream guide and executable templates remain unchanged.
+- **`start-project`:** retain its distinct empty-directory setup and tested assets.
+- **`web-app-craft`:** retain behavior/layout coordination without duplicating either specialist.
+- **`web-standards`:** retain platform ownership and conditional references; no framework migration
+  is introduced.
+- **`css-layout`:** retain geometry ownership and relationship-based reference routing.
+
+Role contracts now reserve Git writes for the main session and distinguish real browser evidence
+from simulated states.
+The plan reviewer distinguishes proposed additions from existing interfaces; reviewers do not manage
+shared processes.
+External packages, skill sources, native settings, and model defaults are unchanged.
+
+### Verified outcomes
+
+- Global policy decreased from 1,597 to 945 words; wrapped lines decreased from 168 to 140.
+- Clear decreased from 312 to 46 words; the shared reference now owns its detailed writing policy.
+- `session-improvement` decreased from 1,210 to 361 entry-point words; placement loads only for
+  warranted proposals.
+- Quick static audit improved from 5/9 to 9/9 applicable checks; this is editorial coverage, not
+  behavioral measurement.
+- The new reference-delivery regression failed before implementation, then passed twice through
+  isolated Dotbot installation.
+- Harness tests passed: 10 checks, one optional host-persistence check skipped because
+  `PI_PACKAGE_DIR` was unset.
+- All seven skill validators pass; formatting and the missing description trigger were corrected.
+- `just lint`, whitespace checks, and explicit shared-file Markdown checks pass.
+- Local Markdown file-link checks resolved 83 targets; external URLs and anchor semantics were not
+  runtime-tested.
+- Independent source review reported deployment gaps, not semantic findings; main-session
+  verification resolved missing installed references.
+
+Three shared references were installed using destination-scoped Dotbot configuration and verified
+byte-for-byte against tracked-source paths.
+Pi reports `1.2.0`; Claude Code reports `2.1.299`.
+The Claude import resolves, and no Pi profile `AGENTS.override.md` exists.
+No full sync, package update, model behavior probe, commit, or publication ran.
+
+**Uncommitted files:** new reference files must accompany `install.conf.yaml` in any future commit.
+The audit's untracked-file warning is a delivery condition, not evidence of a missing working-tree
+file.
+
+**Not verified:** fresh-session instruction loading, everyday role use, behavioral routing, and
+comparative skill performance.
+Restart Pi and Claude before inspecting loaded context; practical role validation and ghostwriter
+setup remain ASAP.
+
+**Fix freeze proposed:** source review found no semantic defect; reserve new feature ideas for the
+next iteration.
+Final formatting corrections were self-reviewed; no further independent model round ran.
+
+**Rollback:** revert this refactor's source changes and remove only its three new reference links.
+Keep existing shared directories, unrelated links, settings, and runtime state; restart sessions
+afterward.
 
 ## Next
 
@@ -298,7 +482,8 @@ Retain factual release and verification records.
    select, toggle, reload) and `pi-system-prompt` (`/prompt` command). Before installing: check
    fork compatibility, license, maintenance, and that `Clear` can be the shared source file.
 
-**Weekly prune [A]:** shrink absorbed memories, keep `AGENTS.md` near 100 lines, retire unused skills.
+**Weekly prune [A]:** shrink absorbed memories, keep `AGENTS.md` near 100 lines, retire unused
+skills.
 
 ## Socratic-learning skill
 
@@ -329,7 +514,8 @@ status.
 
 The parent verified Pi 1.2.0 and Claude Code 2.1.296 on this workstation.
 Selected Dotbot links were applied twice in a disposable home, then twice in the normal home.
-Both skills resolve to the tracked sources through the existing Pi/shared and Claude skill directories.
+Both skills resolve to the tracked sources through the existing Pi/shared and Claude skill
+directories.
 No full sync, package install, microphone test, or Claude model call ran.
 
 Pi's native `DefaultResourceLoader` discovered both skills and the project's required teaching
@@ -339,7 +525,8 @@ The probe disabled extensions and packages through in-memory settings; it made n
 A lower-level `loadSkills` probe missed shared discovery; the full resource loader check
 corrected that
 test.
-Claude filesystem installation is verified; fresh Claude discovery and behavioral execution remain unverified.
+Claude filesystem installation is verified; fresh Claude discovery and behavioral execution remain
+unverified.
 Existing running chats may still need reload or restart.
 The education repository now has a one-line Claude import of its canonical `AGENTS.md`.
 
@@ -362,7 +549,8 @@ made.
 Final independent review found two stale status passages; both now link to this canonical
 verification
 section.
-Rollback: revert the scoped source changes and remove only the two new links from each skill directory.
+Rollback: revert the scoped source changes and remove only the two new links from each skill
+directory.
 Do not remove shared directories or unrelated skills.
 
 ## Teacher role idea
@@ -380,7 +568,8 @@ Candidate teaching behavior:
   Do not merely shorten the learner's text.
 - Check application separately; a short answer alone does not prove understanding.
 - Keep topic content and teaching procedures separate; load detail only when needed.
-- Evaluate the learner's actual answers; editorial rewriting cannot supply evidence of understanding.
+- Evaluate the learner's actual answers; editorial rewriting cannot supply evidence of
+  understanding.
 - Expand topic knowledge through questions and deeper exploration, not a prefilled course.
 - Do not keep learner tracking, scores, review queues or session logs.
 

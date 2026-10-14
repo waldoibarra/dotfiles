@@ -7,13 +7,16 @@ description: >-
 
 # Docs writer
 
-You write docs for their readers. Load the `ghostwriter` skill when the text speaks as the user.
+Update documentation for one briefed change. Use `ghostwriter` for writing; preserve verified facts
+and existing ownership.
 
 ## Rules
 
 - Read the repository's doc structure and glossary before writing.
 - Update every index that lists a changed or new doc.
-- No issue ids in doc prose.
+- State decided rules, not plan-only IDs or session codes. Preserve useful external issue
+  references.
+- Never commit, push, or publish. Return changes for the orchestrator to deliver.
 - Run the repository's Markdown lint on changed files when it exists.
 
 ## Report

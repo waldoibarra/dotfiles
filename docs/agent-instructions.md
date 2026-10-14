@@ -1,116 +1,109 @@
 # Agent instructions
 
-Read [Coding agents](coding-agents/README.md) before choosing which tracked file to edit.
-Restart agents after changing loaded instructions, then check the active session's context.
-A file or symlink on disk does not prove that an agent loaded it.
+Shared instructions orient every session; references, skills, and roles supply detail when needed.
+Read [Coding agents](/docs/coding-agents/README.md) before editing tracked configuration or choosing
+a maintenance guide.
 
-## Global rules
+## Policy ownership
 
-[`home/.agents/AGENTS.md`](/home/.agents/AGENTS.md) owns shared preferences. Dotbot links it to
-`~/.agents/AGENTS.md` and each agent's global path. Keep it usable across projects;
-repository-specific rules belong in the root [`AGENTS.md`](/AGENTS.md).
+[`AGENTS.md`](/home/.agents/AGENTS.md) owns universal boundaries and the task-based reading map.
+It does not import conditional references into every session.
 
-Read the [harness design](/home/.agents/AGENTS.md#harness-design) and [learning](/home/.agents/AGENTS.md#learning)
-policies before changing shared configuration or promoting feedback. Read the
-[personal workflow](/docs/coding-agents/personal-workflow.md) before verifying that instruction behavior.
-
-| Agent | Global loader |
+| Concern | Canonical source |
 | --- | --- |
-| Claude Code | Copied `~/.claude/CLAUDE.md` imports `@~/.agents/AGENTS.md` |
-| Pi (`pi`) | `~/.pi/agent/AGENTS.md` links to the tracked source |
+| Communication shapes and formatting | [Communication reference](/home/.agents/references/communication.md) |
+| Planning, worker routing, and verification | [Orchestration reference](/home/.agents/references/orchestration.md) |
+| Configuration ownership and integration acceptance | [Harness-design reference](/home/.agents/references/harness-design.md) |
+| Specialist procedures | [Skills](/docs/agent-skills.md) |
+| Worker responsibilities | [Shared roles](#shared-role-agents) |
 
-Claude Code has no user-level `AGENTS.md`. Keep its adapter's one-line import and edit shared
-rules in the source `AGENTS.md`. The adapter is user-level, not a repository wrapper.
+Runtime pointers use installed `~/.agents/` paths, not this checkout's location.
+Read [harness verification](/docs/coding-agents/personal-workflow.md) before checking instruction
+behavior.
 
-**Cursor** support is planned, not configured. Cursor reads project `AGENTS.md` and
-`.cursor/rules/*.mdc`; its user rules live in its settings UI.
+## Global loaders
 
-## Pi personal instructions
+| Agent | Loader |
+| --- | --- |
+| Claude Code | Copied `~/.claude/CLAUDE.md` imports `@~/.agents/AGENTS.md`. |
+| Pi | `~/.pi/agent/AGENTS.md` links to the shared source. |
 
-Pi loads the linked global rules and walks ancestor directories for context files. Personal
-`~/AGENTS.md` therefore applies to projects under `$HOME`. Projects elsewhere need their own
-personal-context arrangement. Profile `AGENTS.override.md` takes priority over the linked global
-file; project overrides affect only their directory's context.
+Claude's user-level import adapter remains separate from project instructions.
+Pi also loads ancestor context files, including personal `~/AGENTS.md` for projects beneath `$HOME`.
+Projects outside `$HOME` need their own personal-context arrangement.
+Coding instructions do not replace the live-voice extension's separate prompt.
 
-Pi discovers `~/.agents/skills` natively. No shared instruction or skill copy is installed into a
-second directory. These rules configure the coding agent, not the extension's separate voice
-prompt; see [Pi and live voice](coding-agents/pi/README.md).
+**Cursor:** planned, not configured. Its project rules and user settings need separate loading
+verification before implementation.
 
-## Project rules
+## Project discovery
 
-This repository uses root `AGENTS.md` without a root `CLAUDE.md` wrapper. The user-level Claude
-import remains separate. [`.claude/settings.json`](/.claude/settings.json) excludes
-`**/home/.claude/CLAUDE.md` from project discovery so the tracked adapter does not load again
-as local guidance.
+This repository uses root `AGENTS.md`, without a root `CLAUDE.md` wrapper.
+[Project settings](/.claude/settings.json) exclude the tracked Claude adapter from project
+discovery.
+This prevents the adapter from loading again as project guidance.
 
-Pi reads `AGENTS.md` along the path to its working directory. Working inside `home/.agents/` can
-therefore load the tracked global source twice. Check loaded context; do not assume deduplication.
+Pi reads context files along the working directory's ancestor path.
+Working inside `home/.agents/` can load the tracked global source twice; do not assume
+deduplication.
+`AGENTS.override.md` replaces the ordinary context file only in its own directory.
+A profile override can therefore replace the linked global policy.
 
 ## Shared role agents
 
-[`home/.agents/roles/`](/home/.agents/roles) owns the five role prompts: `plan-reviewer`,
-`code-auditor`, `implementer`, `browser-tester`, and `docs-writer`. Each file contains only
-name/description frontmatter and shared instructions. Roles do not pin a provider or model.
+[Shared roles](/home/.agents/roles/) define worker responsibilities, acceptance checks, and reports.
+They contain no provider, model, or effort defaults.
 
-Dotbot links each file into `~/.agents/roles/` and `~/.claude/agents/`; no prompts are copied
-or generated. Claude Code inherits its session's model and tools unless dispatch overrides them.
-Its reviewer restrictions are instructions, not enforced tool allowlists.
+| Role | Responsibility |
+| --- | --- |
+| `plan-reviewer` | Check feasibility, evidence, decisions, and risks without changing state. |
+| `implementer` | Implement one acceptance target; return changes without Git writes. |
+| `code-auditor` | Audit the briefed change and evidence without editing. |
+| `browser-tester` | Verify reachable behavior; distinguish real integration evidence from simulated states. |
+| `docs-writer` | Update owned documentation; leave publication to the orchestrator. |
 
-Pi uses `pi-subagents` with the shared directory configured as an additional scan root.
-Pi-specific context inheritance and tool selection stay in Pi settings.
-Read [Pi delegation](coding-agents/pi/delegation.md) before selecting roles/models or changing the runner.
-The main session owns orchestration and Git writes; unsupported harnesses use the documented
-sequential fallback, not a claimed independent review.
+The main session owns decisions, Git writes, shared processes, and user communication.
+Role restrictions are policy, not a sandbox; shell-capable reviewers can still mutate files.
 
-## Shared references
-
-[`home/.agents/RTK.md`](/home/.agents/RTK.md) owns the RTK reference. Dotbot links it into
-`~/.agents/RTK.md` and the compatibility path `~/.claude/RTK.md`.
+Read [Pi delegation](/docs/coding-agents/pi/delegation.md) before changing discovery, inheritance,
+or dispatch controls.
+Claude uses linked native agent definitions; dispatch must explicitly select an eligible worker
+model.
+Without delegation, sequential self-review is not independent review.
 
 ## Claude response styles
 
-Claude Code defaults to `Clear` through
-[`home/.claude/settings.json`](/home/.claude/settings.json). `/output-style` selects a style;
-change the tracked `outputStyle` to preserve a global default across updater runs.
-The value is case-sensitive and must match the style's `name`. Project-local settings can
-override it: `/output-style` writes to the project's `.claude/settings.local.json`.
+Claude defaults to `Clear` through [tracked settings](/home/.claude/settings.json).
+`Clear` is a thin adapter to shared communication policy and its installed reference.
+Pi and workers use the same policy without a Claude output style.
 
-A style shapes only the main Claude Code session's replies. The shared rules' **Communication**
-section carries the writing rules to every harness, sub-agents and written artifacts included.
-Keep writing rules there, not in a style.
+Read [Claude's output-style documentation](https://code.claude.com/docs/en/output-styles) before
+changing style metadata or activation.
 
-[`Clear`](/home/.claude/output-styles/clear.md) is repo-authored: it applies the shared
-**Communication** rules through BLUF (bottom line up front) in line one, an intent-first body
-shape (PREP, pyramid, request, confirm, deliver, report), a 17-word budget per point, and bold
-lead-in blocks. It links to the rules; it does not restate them.
+- Keep `keep-coding-instructions: true`; otherwise the style removes software-engineering
+  instructions.
+- Frontmatter names use lowercase hyphenation; misspelled fields can be ignored silently.
+- `/output-style` selects a style; its case-sensitive name must match frontmatter.
+- Project-local style settings can override the global default.
+- Restart after editing style files; selecting another style applies from the next message.
 
-Rules for writing a style, from the
-[Claude Code output styles docs](https://code.claude.com/docs/en/output-styles):
+`Attention-kind`, `Spartan`, and `Rundown` remain verbatim optional upstream copies, separate from
+the shared policy.
+Read [Attention Span releases](https://github.com/alexgreensh/attention-span/releases) before
+updating them.
+Preserve their attribution and [AGPL-3.0
+license](https://github.com/alexgreensh/attention-span/blob/main/LICENSE).
 
-- Frontmatter fields are lowercase-hyphenated: `name`, `description`,
-  `keep-coding-instructions`. A misspelled field is ignored silently.
-- Keep `keep-coding-instructions: true` for every style here; without it the software
-  engineering instructions are dropped from the system prompt.
-- A style is sent with every request, so keep it short; it shapes how Claude responds, not what
-  it knows (`CLAUDE.md`) or what must always happen (hooks).
-- A style applies to the main session and forks only. Sub-agents run their own system prompt,
-  which is why the writing rules live in the shared **Communication** section, not in a style.
-- Safety content (errors, failing tests, security warnings, destructive-action confirmations)
-  stays at full length whatever the style says about brevity.
-- Claude Code reads style files at startup; restart after editing one. Switching styles with
-  `/output-style` applies from the next message.
+## Activate and verify
 
-The three other tracked styles are verbatim
-[Attention Span](https://github.com/alexgreensh/attention-span) copies, separate from the shared
-global rules:
+1. Verify the shared source, reference links, role links, and Claude import resolve to the intended
+  files.
+2. Check profile and project overrides before assuming shared instructions take effect.
+3. Restart the agent; inspect its loaded context and skill/role discovery.
+4. Exercise the requested behavior before reporting it verified.
 
-| Style | Format |
-| --- | --- |
-| `Attention-kind` | Plain English, front-loaded, warm |
-| `Spartan` | Blunt, compact arrow points |
-| `Rundown` | TL;DR and status checklists |
-
-Each copy retains `keep-coding-instructions: true` and upstream attribution. Compare its version comment
-with [upstream releases](https://github.com/alexgreensh/attention-span/releases) before replacing it.
-Preserve the [AGPL-3.0 license](https://github.com/alexgreensh/attention-span/blob/main/LICENSE);
-this repository does not relicense the copies.
+Installed files prove delivery, not loaded instructions or successful behavior.
+Read [file ownership](/docs/coding-agents/README.md#file-ownership) before applying links or
+replacing copied files.
+Read [harness verification](/docs/coding-agents/personal-workflow.md) before spending quota on
+behavioral probes.

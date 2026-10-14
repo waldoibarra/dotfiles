@@ -58,8 +58,10 @@ Projects can require the teaching skill in their own instructions and keep local
 
 Natural-language requests can also select these skills through their descriptions.
 A closure question requests review, not permission to edit or publish.
-The improvement skill proposes scoped changes.
-Approved work uses the owning repository's verification and delivery rules.
+`session-improvement` assesses evidence first, then loads its placement reference only for warranted
+proposals.
+Approved edits use the owning specialist workflow and repository delivery rules.
+`ghostwriter` owns prose; it replaces the former `docs-writing` name.
 No shutdown hook runs either skill, and neither reconstructs inaccessible conversation history.
 
 Read [Claude skill loading](https://code.claude.com/docs/en/features-overview)

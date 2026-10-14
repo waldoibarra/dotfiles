@@ -1,8 +1,14 @@
-# Personal agent workflow
+# Harness verification
 
-Use this workflow only for **personal and open-source sessions**. Company sessions keep their
-work-scoped defaults until adaptation is approved. Read [Agent instructions](/docs/agent-instructions.md)
-before changing shared instructions; read [global rules](/home/.agents/AGENTS.md) for canonical policy.
+Verify personal/open-source instruction changes through static checks, isolated delivery, and
+explicitly approved behavioral probes.
+Company workflow adaptation remains outside this guide.
+
+Read [Agent instructions](/docs/agent-instructions.md) before changing policy or loading behavior.
+The [orchestration reference](/home/.agents/references/orchestration.md) owns planning and
+delegation procedure.
+The [improvement skill](/home/.agents/skills/session-improvement/SKILL.md) owns proposals and
+local-loop precedence.
 
 ## Define acceptance before implementation
 
@@ -14,11 +20,13 @@ Name one observable outcome per worker and record this matrix before source edit
 | Required user behavior | Actual component, command, or event creating the data | Exact host version and entrypoint the user runs | Lost state, cancellation, reload, or cleanup ordering | Exact regression command and observed failure | Exact command and evidence proving the outcome |
 
 A handcrafted input does not prove the real producer uses the same contract.
-A source-host test does not establish installed-host behavior; test both when their contracts differ.
+A source-host test does not establish installed-host behavior; test both when their contracts
+differ.
 For resource cleanup, exercise an assertion failure and timeout, not only successful completion.
 Keep existing safety assertions when expectations change.
 Explain why any replaced assertion became obsolete.
-If no pre-edit failure was captured, record that limitation rather than claiming a completed TDD cycle.
+If no pre-edit failure was captured, record that limitation rather than claiming a completed TDD
+cycle.
 Documentation-only changes need link and factual checks, not a fabricated failing runtime test.
 
 Read [Pi delegation](pi/delegation.md#bind-repository-work-before-dispatch)
@@ -118,21 +126,23 @@ claude --model sonnet --effort low --tools '' --strict-mcp-config \
 ```
 
 Keep outputs private and review semantic outcomes against the contract, not exact wording. The user
-instruction source must remain enabled in Claude; empty `--setting-sources` omits global instructions.
+instruction source must remain enabled in Claude; empty `--setting-sources` omits global
+instructions.
 A passing smoke check is not a substitute for linting or checking loaded context.
 Adding or reviewing scenarios is not an executed smoke check; report those activities separately.
 
 ## Harness-specific delegation controls
 
-Read the shared [Orchestration](/home/.agents/AGENTS.md#orchestration) and
-[Learning](/home/.agents/AGENTS.md#learning) rules before selecting children or proposing improvements.
-Those rules own the policy; this guide describes controls and checks.
+Read the [orchestration reference](/home/.agents/references/orchestration.md) before selecting
+children.
+This guide checks policy; it does not define another delegation or improvement workflow.
 
 - **Pi:** pass an explicit provider/model and supported thinking suffix in the child model string.
   Read [Pi delegation](/docs/coding-agents/pi/delegation.md) before dispatching
   or checking available models.
 - **Claude Code:** use native per-invocation model selection, not Pi provider/model syntax.
-  Available aliases include `fable`, `opus`, `sonnet`, and `haiku`; availability depends on the account.
+  Available aliases include `fable`, `opus`, `sonnet`, and `haiku`; availability depends on the
+  account.
   Native agent definitions support effort; do not presume the Agent tool exposes per-call effort.
   Report inherited/default effort when independent selection is unavailable. Do not rewrite shared
   roles to force a task-specific choice.
@@ -141,14 +151,16 @@ Pi's existing model-scope mechanism provides a runtime worker allowlist; see the
 Claude's leader-only restriction is shared instruction policy, not a verified runtime model block.
 Do not run inference-based smoke checks while quota recovery remains unresolved.
 
-Read [Claude subagents](https://code.claude.com/docs/en/sub-agents) before changing native model dispatch.
+Read [Claude subagents](https://code.claude.com/docs/en/sub-agents) before changing native model
+dispatch.
 Read [Claude SDK subagents](https://code.claude.com/docs/en/agent-sdk/subagents)
 before using definition-level effort.
 The CLI's `--effort` configures its session; it does not prove independently selected child effort.
 
 ## Activation and recovery
 
-Existing Pi/shared links and Claude's user import deliver changes without a workstation sync.
+Edits to existing linked files require no workstation sync.
+New shared references need their Dotbot links before runtime reading triggers can resolve.
 Start fresh sessions and inspect loaded context; installed files alone are insufficient evidence.
 Revert only the relevant tracked instruction changes to roll back, then start fresh sessions again.
 No hook, background learner, new role, or automatic self-modification is installed.

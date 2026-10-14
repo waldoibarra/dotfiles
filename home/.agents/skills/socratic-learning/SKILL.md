@@ -5,7 +5,7 @@ description: >-
   independent application without learner tracking. Use when teaching a concept, running an
   orientation or learning session, adapting domain docs for curiosity-led study, or when asked to
   "teach me", "help me understand", "orient me", or "learn this with me". For reusable session
-  improvements use session-improvement; for docs prose use docs-writing or ghostwriter.
+  improvements use session-improvement; for docs prose use ghostwriter.
 ---
 
 # Socratic Learning
@@ -43,7 +43,8 @@ Preserve the learner's option to stop, orient, or switch mode.
 
 The 17-word synthesis is a default learning checkpoint.
 Local project instructions may set a different explicit constraint.
-The teacher's explanations and application checks need not fit 17 words.
+Explanations and application checks may span multiple blocks; follow the active communication rules
+within each block.
 Count whitespace-separated words; attached punctuation adds no word.
 Do not rewrite the learner's answer and treat your rewrite as evidence of their understanding.
 

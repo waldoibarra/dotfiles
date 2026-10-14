@@ -1,7 +1,22 @@
 # Coding agents
 
-Edit tracked sources under `home/`, not installed copies. Dotbot links most files; the coding-agent
-updater copies two configs. A configured link does not prove that a running agent loaded the file.
+Pi and Claude Code share policy, skills, and worker roles; client configuration stays native.
+Edit tracked sources under `home/`, not installed copies.
+
+## Understand the layers
+
+| Layer | Responsibility |
+| --- | --- |
+| Global instructions | Universal boundaries and a task-based reading map for every session. |
+| Shared references | Conditional communication, orchestration, and integration detail. |
+| Skills | Specialist workflows and their bundled references. |
+| Roles | Worker responsibilities; the main session retains decisions and Git writes. |
+| Native configuration | Client settings, hooks, packages, credentials, and runtime state. |
+
+Read [Agent instructions](/docs/agent-instructions.md) before changing policy ownership or loading
+behavior.
+These guides own workstation maintenance; runtime instructions never depend on the checkout's
+location.
 
 ## Choose a task
 
@@ -11,7 +26,7 @@ updater copies two configs. A configured link does not prove that a running agen
 | Understanding Pi provisioning, voice choices, or accepted limitations | [Pi and live voice](pi/README.md) |
 | Configuring or verifying personal MCP servers across clients | [Personal MCP servers](mcp.md) |
 | Connecting personal Sheets or troubleshooting Google sign-in | [Google Sheets setup](google-sheets.md) |
-| Applying the personal/open-source learning and delegation workflow | [Personal agent workflow](personal-workflow.md) |
+| Verifying shared instruction behavior and acceptance | [Harness verification](personal-workflow.md) |
 | Delegating with a shared role and an explicit model | [Pi delegation](pi/delegation.md) |
 | Adding, updating or checking skill discovery | [Agent skills](/docs/agent-skills.md) |
 | Diagnosing RTK, Herdr or Moshi hooks and plugins, or the Lens plugin | [Agent integrations](/docs/agent-integrations.md) |
@@ -47,7 +62,8 @@ installed paths replace `home/` with `~/` unless noted.
 | `home/.agents/RTK.md` | Linked to `~/.agents/RTK.md` and `~/.claude/RTK.md`; shared RTK reference |
 | `home/.config/rtk/*` | Linked to `~/Library/Application Support/rtk/` on macOS or `~/.config/rtk/` on Linux |
 | `home/.agents/.skill-lock.json` | Linked; external skill sources and installer targets |
-| `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`; shared global policy |
+| `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`; global policy and reading map |
+| `home/.agents/references/*.md` | Linked individually to `~/.agents/references/`; shared on-demand detail |
 | `home/.agents/mcp.json` | Shared personal MCP definitions; Pi link and derived Claude user registrations |
 | Repo-authored skill directories | Linked individually; [destinations](/docs/agent-skills.md#repo-managed-skills) |
 | `home/.pi/agent/settings.json` | Linked; coding defaults, packages, role overrides, compaction preferences |
@@ -56,7 +72,8 @@ installed paths replace `home/` with `~/` unless noted.
 | `home/.pi/agent/keybindings.json` | Linked; voice and tree-filter shortcuts |
 
 Pi's `~/.pi/agent/AGENTS.md` links to `home/.agents/AGENTS.md`. The profile directory stays real;
-only the named configuration files are linked. See [Pi configuration](pi/configuration.md#managed-files)
+only the named configuration files are linked. See [Pi
+configuration](pi/configuration.md#managed-files)
 for the settings and their separation from private runtime files.
 
 ## Copy-managed files
