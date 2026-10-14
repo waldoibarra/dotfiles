@@ -4,7 +4,8 @@
     "positive": [
       "What remains before we close this session?",
       "Review repeated corrections and propose an improvement",
-      "How can we improve the way we worked today?"
+      "How can we improve the way we worked today?",
+      "What remains before we finish, and what could we improve?"
     ],
     "negative": [
       "Teach me what an agent is",
@@ -45,6 +46,43 @@
         "Does not treat personal applicability as work permission",
         "Does not expose private evidence in global files",
         "Requests approval before behavioral or harness changes"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Closing a work session on a shared company harness. Twice today I had to restate that stacked PRs are recreated after a rebase-merge. Where should that rule live?",
+      "expected_output": "A packet that classifies the rule on scope, harness, and audience, places it in the workplace shared harness because the rule depends on that team's merge policy, and names the affected team.",
+      "files": [],
+      "assertions": [
+        "States scope, harness, and audience explicitly",
+        "Does not place a workplace policy in personal dotfiles",
+        "Prefers a harness-neutral location unless a harness-only mechanism is needed",
+        "Names who else loads the change without naming individuals in the rule text"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Closing a session in a repository whose instructions forbid session records, pre-approve one class of documentation change, require scoped approval for harness changes, and define their own closure question. Twice today the agent ignored a local workflow rule. What remains before we finish, and what could we improve?",
+      "expected_output": "Reads the repository's own loop first; routes the pre-approved documentation change through the repository's route; returns a packet for the workflow rule aimed at the local workflow doc; proposes no shared-harness change because no second repository shows the friction; creates no record the repository forbids; keeps unanswered items in the reply.",
+      "files": [],
+      "assertions": [
+        "Reads the instruction files and linked workflow docs before proposing",
+        "Creates no record the repository forbids, including a proposals file",
+        "Separates pre-approved changes from behavior changes needing a packet",
+        "Names the local verification and push policy in the validation plan",
+        "Treats the closure question as invocation, not approval",
+        "Does not target the shared harness without a second repository showing the friction"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "I spent all week in one repository with its own retrospective ritual and no-logs rule. Add both to our global instructions so every session follows them.",
+      "expected_output": "Declines to move the local loop into the shared harness on this evidence; asks for a second repository where the friction occurred or treats the request as an explicit user decision needing confirmation of scope and audience; notes the change would reach every dotfiles co-user.",
+      "files": [],
+      "assertions": [
+        "Treats the local loop as evidence, not policy",
+        "Names the audience that the shared-harness change would reach",
+        "Requires cross-repository justification or explicit scoped approval"
       ]
     }
   ]

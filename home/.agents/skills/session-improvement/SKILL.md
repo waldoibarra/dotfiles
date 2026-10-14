@@ -25,7 +25,8 @@ A valid result can be "no improvement is warranted."
 2. Separate evidence into reusable rules, project knowledge, harness mechanics, and individual
   preferences. Never mix identity details, family details, work secrets, or project-private facts
   into reusable global rules.
-3. Check existing owners before proposing anything.
+3. Check existing owners before proposing anything, starting with the repository's own
+  self-improvement setup (see Local Setups).
   Route approved edits to `agents-md`, `agent-skills-creator`, `docs-writing`, `ghostwriter`,
   or another specialized skill.
 4. Propose only the smallest durable change that would prevent the repeated friction.
@@ -44,7 +45,8 @@ Include:
 
 - evidence observed in the accessible session;
 - the smallest proposed change;
-- target paths or repositories;
+- placement: scope, harness, and audience from Placement Axes, with the resulting target
+  paths or repositories;
 - expected benefit;
 - validation plan;
 - rollback plan;
@@ -55,13 +57,56 @@ Silence, session closure, or skill invocation is not consent. Approval covers on
 not future discoveries. Commit or push only explicitly approved paths and repositories. Work
 permissions still apply; personal applicability never overrides a work repository's rules.
 
+## Placement Axes
+
+Classify every proposal on three axes before naming a target path. State the classification in
+the packet; when the session does not settle an axis, state the assumption instead of guessing.
+
+- **Scope: personal or work.** A person's personal configuration (dotfiles) is shared with the
+  people who use those same dotfiles and travels across every workplace. Each workplace has its
+  own shared harness, and its members do not use one another's dotfiles. Strip workplace names,
+  tools, repositories, and people from the rule: if it still prevents the friction, it is personal
+  scope; if not, it belongs to that workplace's shared harness. Work evidence and work-only
+  mechanics never enter personal configuration; personal preferences enter a work harness only
+  with that team's approval.
+- **Harness: neutral or specific.** Prefer the harness-neutral location every agent reads
+  (shared instructions, portable skills). Use a harness-native location only when the
+  mechanism exists in that harness alone (hooks, settings, model routing). Keep credentials and
+  runtime state harness-native regardless of scope.
+- **Audience: private, dotfiles co-users, or workplace team.** Name who else will load the change.
+  A change that only suits the current user stays in private memory or local settings. A change
+  for dotfiles co-users or a team is a shared rule: write it for them, generic and without naming
+  individuals, and the packet says they are affected.
+
+## Local Setups
+
+A repository or environment may run its own self-improvement loop: a closure prompt, a plan
+with a decisions table, a ledger, a retrospective doc, or rules on what may be recorded and
+what is pre-approved. Read its instruction files (`AGENTS.md`, `CLAUDE.md`, and the workflow or
+maintenance docs they link) before drafting, and identify its closure trigger, its permitted
+home for proposals, its record rules, its pre-approved change classes, and its verification and
+delivery policy. Where the local setup is silent, the shared harness rules apply.
+
+Then keep the two apart:
+
+- **Inside that repository, the local loop wins.** This skill supplies the method; the local
+  setup decides what may be saved, where, and how it ships. Changes it pre-approves go through
+  its own route, not through a packet. Changes it forbids or reserves for scoped approval stay
+  in the packet. With no permitted home for proposals, unanswered items live in the reply only.
+- **Outside it, the local loop is evidence, not policy.** A local rule, prohibition, closure
+  phrase, or outcome never moves into the shared harness (global instructions, portable skills,
+  dotfiles) because it worked there. It moves only when the friction is shown to repeat across
+  repositories and the user approves that specific change. A repository that adapts a global
+  skill owns its adapter; a change to the global skill needs the cross-repository justification.
+
 ## Placement Rules
 
 - Shared reusable rules may belong in global instructions or a portable skill.
 - Project knowledge belongs in that project's docs, plans, or skills.
 - Harness mechanics belong in the owning harness documentation or plan.
 - Individual preferences stay separate from reusable policy unless the user approves sharing them.
-- Retain unanswered proposals only in an existing permitted project plan, not a new global log.
+- Retain unanswered proposals only in an existing permitted project plan, not a new global log;
+  with no permitted plan, retain nothing.
 - Separation of concerns: give each document or skill one responsibility and a clear owner.
 - DRY: edit the canonical source and link consumers; do not copy rules between repositories.
 - YAGNI: reuse existing mechanisms; add a skill, folder, or automation only for a demonstrated need.
@@ -77,7 +122,16 @@ A fresh host session or host-specific context inspection is needed before claimi
 
 - Do not diagnose an error from a user report unless the task includes investigation evidence.
 - Do not create hooks, daemons, schemas, dependencies, settings, or updater paths for observation.
-- Do not teach, coach, or track the user globally; project-specific no-learner-record rules win.
+- Do not create records this skill does not need; a repository's rules on what may be recorded
+  override this skill's defaults inside that repository.
 - Do not sweep dirty repositories or force-push while applying an approved improvement.
+- A local closure prompt invokes the method, not consent; the local rules on records and
+  approval still apply.
+- A session spent inside a repository with a strong local loop makes its rules feel global.
+  Before proposing a shared-harness change, name the second repository where the same friction
+  occurred; if there is none, the proposal targets the local setup or nothing.
+- A rule learned at work that reads as generic still carries work context: a tool, a repo layout,
+  a team norm. Rewrite it without those before calling it personal scope; if the rewrite is empty,
+  it was work scope.
 
 Maintenance only: `evals/evals.json` contains routing scenarios, not executed behavioral results.

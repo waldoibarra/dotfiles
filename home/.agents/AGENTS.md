@@ -136,6 +136,10 @@ messages, apps messages, tickets, code comments, emails, social media content.
 - At session closure or when reviewing repeated friction, use `session-improvement`
   to assess worthwhile proposals.
   If unavailable, follow the rules below without claiming the skill ran.
+- A repository or environment may run its own self-improvement loop (closure prompts, plans,
+  ledgers, record rules, pre-approved changes). Follow it inside that repository. Never carry its
+  rules or outcomes into these shared instructions, portable skills, or dotfiles without evidence
+  that the friction repeats across repositories and explicit approval for that change.
 - In company sessions, retain the existing rule: propose improvements from repeated corrections and
   failed checks each session; apply only after approval.
 - In personal and open-source sessions, notice repeated corrections, failed checks, and manual
