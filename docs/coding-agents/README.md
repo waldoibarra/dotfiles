@@ -76,6 +76,23 @@ only the named configuration files are linked. See [Pi
 configuration](pi/configuration.md#managed-files)
 for the settings and their separation from private runtime files.
 
+## Ghostwriter voice
+
+[`home/.config/ghostwriter/soul.md`](/home/.config/ghostwriter/soul.md) owns the initial personal
+voice preferences.
+Dotbot links only this file into `~/.config/ghostwriter/`; the directory stays real.
+Platform profiles, private samples, evaluations, and backups remain local unless explicitly added to
+dotfiles.
+
+Edit the repository source when refining the shared baseline. Profile edits through the installed
+link also change dotfiles.
+Review excerpts and learned preferences before committing; this profile is publishable
+configuration, not private storage.
+`GHOSTWRITER_HOME` overrides the default directory, bypassing this link unless it names the same location.
+
+Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before applying the link on an
+existing workstation.
+
 ## Copy-managed files
 
 [`sync-managed-configs.sh`](/scripts/update-coding-agents/sync-managed-configs.sh) overwrites the

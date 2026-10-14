@@ -55,6 +55,7 @@
     ~/.claude/RTK.md: home/.agents/RTK.md
     ~/.aws/config: home/.aws/config
     ~/.config/git/ignore: home/.config/git/ignore
+    ~/.config/ghostwriter/soul.md: home/.config/ghostwriter/soul.md
     ~/.pi/agent/AGENTS.md: home/.agents/AGENTS.md
     ~/.pi/agent/settings.json: home/.pi/agent/settings.json
     ~/.pi/agent/extensions/subagent/config.json: home/.pi/agent/extensions/subagent/config.json
