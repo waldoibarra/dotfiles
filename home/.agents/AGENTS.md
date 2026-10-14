@@ -153,6 +153,9 @@ messages, apps messages, tickets, code comments, emails, social media content.
 ## Documentation
 
 - Write single-concern docs for their readers. Keep each fact in one place and link to it.
+- Improve the docs you touch as you work: honest to the code, coherent in how they split.
+  Outermost first (what and why), then zoom into detail; a reader, human or agent, loads only
+  the level they need. Split by concern, never by convenience; move a fact to the doc that owns it.
 - Describe links with a reading trigger: `Read <doc> before <action>.`
 - Keep the root README human-facing: explain what the project does and link to topic docs for
   setup, use, and maintenance. Use visuals when they help explain the project.
