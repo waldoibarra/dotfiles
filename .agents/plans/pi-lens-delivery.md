@@ -33,12 +33,13 @@ User approved all five improvements, normal-profile upgrades, and pushing dotfil
 | D135 | Keep current status short and archive history intact | Current pages plus indexed, byte-preserved archives |
 | D136 | Right-size workers under existing shared routing policy | Task-risk guidance and bounded acceptance packets; no new global model defaults |
 | D137 | Upgrade normal Lens profiles with targeted native commands | Complete; versions and enabled state read back |
-| D138 | Push approved dotfiles work, including `28c15d6` | Authorized; lead final verification and push pending |
+| D138 | Push approved dotfiles work, including `28c15d6` | Complete; remote main read back at `2ae8b67` before this record-only follow-up |
 
 Global instructions, roles, skills, provider selection, and runner settings remain unchanged.
 Documentation is an operating procedure, not runtime enforcement of worker behavior.
 The persistence fixture tests the explicitly selected compiled SDK; launcher argument checks use fake Node.
 No fresh live worker-behavior probe or provider conversation was used to validate these guide changes.
+Implementation commits: launcher `b8126fb`, workflow `f01cd86`, compact records `2ae8b67`; all pushed and read back.
 
 ## Remaining work
 

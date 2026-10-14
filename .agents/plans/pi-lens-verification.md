@@ -43,6 +43,8 @@ The actual updated development recipe loaded all three extensions and exposed vo
 This proves launch/registration, not a live microphone connection or provider session.
 The initial independent audit preceded the lead's corrections; those focused corrections received lead self-review.
 No new product release is required for these harness changes.
+Dotfiles implementation was pushed; remote main read back at `2ae8b676511eb9846d4492b365701429103eece2`.
+That push includes approved earlier commit `28c15d6`, release pins, launcher fixes, and the five improvements.
 
 ## Repeat the verified checks
 
