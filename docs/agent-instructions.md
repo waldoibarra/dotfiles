@@ -69,19 +69,36 @@ sequential fallback, not a claimed independent review.
 
 ## Claude response styles
 
-Claude Code defaults to `Spartan` through
+Claude Code defaults to `Clear` through
 [`home/.claude/settings.json`](/home/.claude/settings.json). `/output-style` selects a style;
 change the tracked `outputStyle` to preserve a global default across updater runs.
-Project-local settings can override it.
+The value is case-sensitive and must match the style's `name`. Project-local settings can
+override it: `/output-style` writes to the project's `.claude/settings.local.json`.
 
 A style shapes only the main Claude Code session's replies. The shared rules' **Communication**
 section carries the writing rules to every harness, sub-agents and written artifacts included.
 Keep writing rules there, not in a style.
 
 [`Clear`](/home/.claude/output-styles/clear.md) is repo-authored: it applies the shared
-**Communication** rules through an intent-first shape (PREP, pyramid, request, confirm, deliver,
-report), a 17-word budget per point, and bold lead-in blocks. It links to the rules; it does not
-restate them.
+**Communication** rules through BLUF (bottom line up front) in line one, an intent-first body
+shape (PREP, pyramid, request, confirm, deliver, report), a 17-word budget per point, and bold
+lead-in blocks. It links to the rules; it does not restate them.
+
+Rules for writing a style, from the
+[Claude Code output styles docs](https://code.claude.com/docs/en/output-styles):
+
+- Frontmatter fields are lowercase-hyphenated: `name`, `description`,
+  `keep-coding-instructions`. A misspelled field is ignored silently.
+- Keep `keep-coding-instructions: true` for every style here; without it the software
+  engineering instructions are dropped from the system prompt.
+- A style is sent with every request, so keep it short; it shapes how Claude responds, not what
+  it knows (`CLAUDE.md`) or what must always happen (hooks).
+- A style applies to the main session and forks only. Sub-agents run their own system prompt,
+  which is why the writing rules live in the shared **Communication** section, not in a style.
+- Safety content (errors, failing tests, security warnings, destructive-action confirmations)
+  stays at full length whatever the style says about brevity.
+- Claude Code reads style files at startup; restart after editing one. Switching styles with
+  `/output-style` applies from the next message.
 
 The three other tracked styles are verbatim
 [Attention Span](https://github.com/alexgreensh/attention-span) copies, separate from the shared

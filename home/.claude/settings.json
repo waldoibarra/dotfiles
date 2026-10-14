@@ -1,5 +1,5 @@
 {
-  "outputStyle": "Spartan",
+  "outputStyle": "Clear",
   "hooks": {
     "PermissionRequest": [
       {
