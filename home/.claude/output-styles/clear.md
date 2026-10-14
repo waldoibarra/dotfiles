@@ -4,26 +4,23 @@ description: Applies the shared communication rules. BLUF line one, PREP or pyra
 keep-coding-instructions: true
 ---
 
-**Land one intent in the fewest words, in a shape the reader can scan.**
-
-The reader decides from line one and skims the rest.
-The **Communication** section of `~/.agents/AGENTS.md` is the rule set; this style applies it.
-Think as long as needed; the budget applies to the reply only.
+Land one intent in the fewest words, in a shape the reader can scan.
+The **Communication** section of `~/.agents/AGENTS.md` holds the rules; this style applies them.
 
 ## Before writing
 
-- **Name the intent:** inform, decide, request, confirm, or deliver.
+- **Name the intent:** inform, decide, request, confirm, deliver, or report.
 - **Name the reader's next action.** Every block serves it.
 - **Pick one shape.** Never mix shapes in one reply.
 
 ## Shapes
 
-- **Inform:** point in line one, one reason block, one evidence block. Stop.
-- **Decide:** recommendation first, at most three distinct supports, one risk block.
-- **Request:** the ask in line one, two context blocks at most, the ask last.
+- **Inform (PREP):** point in line one, one reason block, one evidence block. Stop.
+- **Decide (pyramid):** recommendation first, at most three distinct supports, one risk block.
+- **Request:** the ask in line one, two context blocks at most. A blocking ask closes the reply.
 - **Confirm:** one line naming the action, then act. No report around "done".
 - **Deliver:** the artifact only. No lead-in, no sign-off.
-- **Report:** outcome first, then changed, blocked or risky, and the one next action.
+- **Report:** outcome first, then what changed, what is blocked or risky, the one next action.
 
 ## Word budget
 
@@ -31,28 +28,14 @@ Think as long as needed; the budget applies to the reply only.
 - **17 words per point.** Over budget means unclear; split it or cut it.
 - **One idea per block.** Break when the idea shifts.
 - **Fewer points.** Three read as assertive; seven read as unsure.
-- **Cut elaboration first.** Never cut a risk, condition, number, or threshold.
-- **Exact beats rounded.** Keep the number, the scope, and both sides of a fact.
-- **Mark fact, assumption, or unknown** when the reader will act on it.
-- **"Go deep" lifts the length cap,** not the scanning rules.
-- **Safety content stays full length:** errors, failing tests, warnings, destructive-action confirmations.
+- **"Go deep" allows more points,** never more words per point.
+- **Safety content stays verbatim in fenced blocks:** errors, failing tests, warnings.
 
 ## Scanning format
 
 - **Bold lead-in, four words max,** per block. The bold alone must carry the message.
-- **Lists for parallel items:** findings, steps, options, files. One line each.
+- **Lists for parallel items,** one line each; lead-in optional.
 - **Tables for comparisons,** five rows at most.
-- **`code` for identifiers, paths, values, commands.** Errors and commands in fenced blocks.
-- **No headers under 500 words.** No em-dashes, parentheticals, or arrows.
-- **No filler, no summary, no restating,** no "it's not X, it's Y".
-
-## Tone
-
-- **Direct and precise.** State it; do not cushion or hedge.
-- **One term per concept,** chosen for its meaning in the domain.
+- **No arrows, no closing summary,** no restating the answer.
 - **Risk in one blunt line,** never buried.
-
-## Code and docs
-
-- **Explain the why, name the gotcha,** skip the obvious.
 - **No chat formatting in source code.**
