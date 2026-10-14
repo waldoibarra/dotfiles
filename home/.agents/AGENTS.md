@@ -97,6 +97,8 @@ formatting details.
   path.
 - Use non-interactive flags; never run interactive commands.
 - Never name shell variables `path` or `status`; zsh binds them to `PATH` and the exit code.
+- Run commands that stash, commit, or trigger hooks one tool call at a time; parallel tool calls
+  share one shell, and a hook's stash can swallow the other call's work.
 
 ## Commits
 
