@@ -158,10 +158,27 @@ class AgentHarnessTest(unittest.TestCase):
                                     text=True, timeout=10)
             self.assertEqual(result.returncode, 0, result.stderr)
             launch = json.loads(capture.read_text())
-            self.assertEqual(launch["argv"], [str(sources[0]), "--no-session", "--no-extensions",
-                                              "-e", str(sources[1]), "-e", str(sources[2]),
-                                              "-e", str(sources[3])])
+            base_argv = [
+                str(sources[0]), "--no-extensions", "-e", str(sources[1]),
+                "-e", str(sources[2]), "-e", str(sources[3]),
+            ]
+            self.assertEqual(launch["argv"], base_argv)
             self.assertEqual(Path(launch["cwd"]).resolve(), workspace.resolve())
+
+            cases = [
+                ["--continue"],
+                ["--no-session"],
+                ["--session-dir", "sessions with spaces", "literal $HOME; $(printf unsafe)"],
+            ]
+            for args in cases:
+                with self.subTest(args=args):
+                    capture.unlink()
+                    result = subprocess.run(command + args, cwd=workspace, env=env,
+                                            capture_output=True, text=True, timeout=10)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    launch = json.loads(capture.read_text())
+                    self.assertEqual(launch["argv"], base_argv + args)
+                    self.assertEqual(Path(launch["cwd"]).resolve(), workspace.resolve())
             for source in sources:
                 with self.subTest(missing=source.name):
                     capture.unlink(missing_ok=True)
@@ -174,6 +191,18 @@ class AgentHarnessTest(unittest.TestCase):
                         self.assertFalse(capture.exists())
                     finally:
                         source.touch()
+
+    @unittest.skipUnless(os.environ.get("PI_PACKAGE_DIR"), "set PI_PACKAGE_DIR for host checks")
+    def test_compiled_host_persists_and_resumes_session_offline(self):
+        result = subprocess.run(
+            ["node", str(ROOT / "scripts/tests/check-pi-session-persistence.mjs")],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=20,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("persisted and resumed the synthetic session", result.stdout)
 
     def test_package_reconciliation_uses_normal_profile_and_propagates_failure(self):
         with tempfile.TemporaryDirectory(prefix="dotfiles-packages-") as scratch:

@@ -45,7 +45,7 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 | `just lint-ec`, `just lint-md`, `just lint-yaml`, `just lint-sh` | Run one check. |
 | `just lint-commit MESSAGE_FILE` | Validate the message in `MESSAGE_FILE`. |
 | `just check-hooks` | Run the pre-commit hook against all files. |
-| `just pi-lens-dev` | Open local Pi, Lens and subagents with installed live voice; no saved session. |
+| `just pi-lens-dev [ARGS]` | Open local Pi, Lens and subagents with installed live voice; saves a session unless `--no-session` is passed. |
 
 Use the narrow recipe for the changed domain. Link changes require the Dotbot installer; they do
 not inherently require package upgrades or publication. Review its
@@ -68,10 +68,15 @@ EditorConfig checks, with variable indentation for numbered-list continuations.
 ## Develop Lens locally
 
 From this checkout, run `just pi-lens-dev` to use the local sources shown below.
+The recipe uses Pi's normal session persistence by default.
+Pass Pi CLI arguments after the recipe name, including `--continue` or explicit `--no-session`.
+`--continue` selects the latest saved session for that directory, including ordinary Pi sessions.
+Use `--session` for a specific saved session; previous ephemeral sessions cannot be resumed.
+
 To keep another project's working directory, invoke it there with:
 
 ```sh
-just --justfile "$HOME/.dotfiles/justfile" pi-lens-dev
+just --justfile "$HOME/.dotfiles/justfile" pi-lens-dev --continue
 ```
 
 | Component | Required file |
@@ -82,6 +87,7 @@ just --justfile "$HOME/.dotfiles/justfile" pi-lens-dev
 | Installed live voice | `$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts` |
 
 The recipe checks those files and preserves the caller's working directory.
+It forwards arguments without re-parsing them, so prompts containing spaces remain one argument.
 It never builds, installs, or changes package declarations.
 Prepare missing checkouts and the compiled host separately.
 It uses the local compiled host, not Mise's `latest` binary.
@@ -91,7 +97,7 @@ Only the three named extensions load; installed Lens and other auto-discovered e
 This prevents double rendering. Voice loads without opening the microphone or connecting automatically.
 Start voice with `/live spruce` or use Ctrl+L for the default voice.
 Read [live voice](coding-agents/pi/live-voice.md) before testing microphone and account access.
-`--no-session` keeps the live conversation but does not save it after exit.
+Use `--no-session` only for disposable conversations that should not persist after exit.
 
 Sessions launched before voice was included need a new process.
 `/reload` retains their original extension paths.

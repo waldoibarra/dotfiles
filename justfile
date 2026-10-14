@@ -98,7 +98,8 @@ lint-commit msg_file:
 # Open local Pi, Lens and subagents with installed live voice; /reload refreshes extensions.
 [group("Development")]
 [no-cd]
-pi-lens-dev:
+[positional-arguments]
+pi-lens-dev *PI_ARGS:
   @for source_file in \
     "$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js" \
     "$HOME/projects/personal/pi-lens/src/index.ts" \
@@ -109,10 +110,11 @@ pi-lens-dev:
     }; \
   done
   node "$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js" \
-    --no-session --no-extensions \
+    --no-extensions \
     -e "$HOME/projects/personal/pi-lens/src/index.ts" \
     -e "$HOME/projects/personal/pi-subagents/index.ts" \
-    -e "$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts"
+    -e "$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts" \
+    "$@"
 
 # Run pre-commit hook against all files to verify hook configuration.
 [group("Debug")]
