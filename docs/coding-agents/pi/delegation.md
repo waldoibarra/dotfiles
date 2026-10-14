@@ -27,6 +27,9 @@ The model-facing tool accepts independent `agent` and `model` fields:
 
 Use `/subagents-models` to inspect available models and effective role mappings.
 Pass an explicit non-lead model. The strict worker allowlist rejects Astra, including inherited selection.
+Choose model and supported effort separately under the shared routing policy.
+For GPT-5.5, start bounded mechanical work at medium; native lifecycle or safety risk can justify high.
+Use observed acceptance results, not a claim that one effort level guarantees correctness.
 The allowlist is in tracked settings; it does not rank models or prove provider availability.
 Trusted project settings can replace the user scope;
 shared instructions still prohibit leader-model children.
@@ -49,6 +52,38 @@ with explicit role/model pairs.
 All five roles append their prompt to Pi's base prompt and retain global rules, project instructions,
 and the shared skills catalog. Children start with fresh task context unless explicitly requested otherwise.
 The caller must supply the goal, files, constraints, and verification criteria.
+
+### Bind repository work before dispatch
+
+Set the tool's native `cwd` to the intended repository root for every repository-bound invocation:
+
+```json
+{
+  "agent": "code-auditor",
+  "model": "openai-codex/gpt-5.5:medium",
+  "cwd": "/absolute/repository",
+  "task": "Verify the expected Git root, then audit only this repository's diff.",
+  "async": true
+}
+```
+
+Keep each chain or parallel workflow inside one repository. Use separate invocations for different roots.
+The native cwd starts the child correctly; task prose names the expected root as a second check.
+Before source inspection, set `EXPECTED_REPO_ROOT` to that absolute, resolved Git root and run:
+
+```sh
+actual_root=$(git rev-parse --show-toplevel) || exit 1
+if [ "$actual_root" != "$EXPECTED_REPO_ROOT" ]; then
+  printf 'Repository mismatch: expected %s, got %s\n' "$EXPECTED_REPO_ROOT" "$actual_root" >&2
+  exit 1
+fi
+```
+
+Report the verified root with findings. Stop on mismatch;
+do not audit whichever repository happens to be open.
+This is a checked dispatch procedure, not a runner-enforced sandbox.
+
+### Child tool boundaries
 
 Pi reviewers receive `read`, `grep`, `find`, `ls`, and `bash`, without `edit` or `write`.
 **Bash can mutate files:** the no-mutation rule is policy, not a sandbox.

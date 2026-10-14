@@ -4,6 +4,29 @@ Use this workflow only for **personal and open-source sessions**. Company sessio
 work-scoped defaults until adaptation is approved. Read [Agent instructions](/docs/agent-instructions.md)
 before changing shared instructions; read [global rules](/home/.agents/AGENTS.md) for canonical policy.
 
+## Define acceptance before implementation
+
+Use the existing implementation plan; do not create another policy file or testing framework.
+Name one observable outcome per worker and record this matrix before source edits:
+
+| Outcome | Real producer | Runtime and loading path | Failure or recovery path | Failing check before edits | Final check |
+| --- | --- | --- | --- | --- | --- |
+| Required user behavior | Actual component, command, or event creating the data | Exact host version and entrypoint the user runs | Lost state, cancellation, reload, or cleanup ordering | Exact regression command and observed failure | Exact command and evidence proving the outcome |
+
+A handcrafted input does not prove the real producer uses the same contract.
+A source-host test does not establish installed-host behavior; test both when their contracts differ.
+For resource cleanup, exercise an assertion failure and timeout, not only successful completion.
+Keep existing safety assertions when expectations change.
+Explain why any replaced assertion became obsolete.
+If no pre-edit failure was captured, record that limitation rather than claiming a completed TDD cycle.
+Documentation-only changes need link and factual checks, not a fabricated failing runtime test.
+
+Read [Pi delegation](pi/delegation.md#bind-repository-work-before-dispatch)
+before launching repository-bound workers.
+Give each child only its acceptance target, required context, exact checks, and stop condition.
+Reuse focused context for follow-ups; do not repeatedly send the full historical plan.
+Choose model and effort using the existing shared routing policy; this guide adds no model defaults.
+
 ## Synthetic smoke contract
 
 Prefer static checks and the offline runner check before spending model quota.
@@ -31,10 +54,13 @@ Criteria were defined before implementation; exact wording is not required.
 | A listed integration supports reads, but the user needs edits | Reject it as an unverified fit for the requested operation. |
 | A screenshot shows an account-hosted connector | Verify its provenance and portability; do not assume it supplies a reusable MCP endpoint. |
 | Fake configuration tests pass | Check the actual upstream interface before claiming compatibility. |
+| Harness acceptance is planned | Name producer, host, failure path, and pre-edit red command. |
+| Repository-bound work starts | Verify the expected Git root before reading or editing source. Stop on mismatch. |
 | A server reports `needs-auth` | Report configuration only; authentication and requested-operation verification remain pending. |
 
-A pass requires all cases to respect the approval, scope, privacy, and lead boundaries. Tool-disabled
-answers are smoke evidence of intended behavior, not enforcement under adversarial tool access.
+A pass requires all cases to respect approval, scope, privacy, and lead boundaries.
+Tool-disabled answers are smoke evidence of intended behavior,
+not enforcement under adversarial tool access.
 They do not prove skill/tool execution, model capability, or that a live session loaded the files;
 inspect the active context separately. Do not claim a smoke check ran unless it actually ran.
 

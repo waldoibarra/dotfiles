@@ -192,6 +192,27 @@ class AgentHarnessTest(unittest.TestCase):
                     finally:
                         source.touch()
 
+    def test_documented_repository_guard_rejects_wrong_root(self):
+        guide = (ROOT / "docs/coding-agents/pi/delegation.md").read_text()
+        guard = guide.split("```sh\nactual_root=", 1)[1].split("```", 1)[0]
+        with tempfile.TemporaryDirectory(prefix="dotfiles-repo-guard-") as scratch:
+            expected = Path(scratch) / "expected repo"
+            wrong = Path(scratch) / "wrong repo"
+            driver = Path(scratch) / "guard.sh"
+            driver.write_text("actual_root=" + guard)
+            env = dict(os.environ, EXPECTED_REPO_ROOT=str(expected.resolve()))
+            env.pop("GIT_DIR", None)
+            env.pop("GIT_WORK_TREE", None)
+            for directory, code in ((expected, 0), (wrong, 1)):
+                directory.mkdir()
+                subprocess.run(["git", "init", "--quiet", str(directory)], env=env,
+                                check=True, capture_output=True, timeout=10)
+                result = subprocess.run(["sh", str(driver)], cwd=directory, env=env,
+                                        capture_output=True, text=True, timeout=10)
+                self.assertEqual(result.returncode, code, result.stderr)
+                if code:
+                    self.assertIn("Repository mismatch", result.stderr)
+
     @unittest.skipUnless(os.environ.get("PI_PACKAGE_DIR"), "set PI_PACKAGE_DIR for host checks")
     def test_compiled_host_persists_and_resumes_session_offline(self):
         result = subprocess.run(
