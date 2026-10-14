@@ -88,6 +88,18 @@ Patterns from the sprint 19 demo session, and where each now lives:
   Pi discovers five executable roles; runtime checks live in the shared roles plan.
 - **[A]** Output styles skip sub-agents; inferred from behavior, not docs.
 
+### Ghostwriter setup completed
+
+- **[F] 2026-10-13:** initial personal voice profile committed and pushed in `27a4388`.
+- **[F]** `dots` completed; `~/.config/ghostwriter/soul.md` links to the tracked profile.
+- **[F]** Communication-rule audit, Markdown, YAML, and EditorConfig checks passed.
+- **Basis:** stated preferences and this setup conversation; representative platform samples remain
+  unmeasured.
+- **Optional:** refine through actual drafts; add platform profiles only when needed.
+
+Read [Ghostwriter voice](/docs/coding-agents/README.md#ghostwriter-voice) before changing profile
+ownership or delivery.
+
 ## Waldo's pending steps
 
 1. **ASAP: implement roles:** review practical role use in Pi and Claude Code; you are not currently
@@ -96,16 +108,10 @@ Patterns from the sprint 19 demo session, and where each now lives:
    end-to-end outcomes in each harness.
    Review the refactored role contracts; configuration and historical probes do not prove everyday
    use.
-2. **ASAP: configure ghostwriter:** create a voice profile reflecting your writing preferences;
-  `docs-writing` was renamed to `ghostwriter`.
-   Start with `~/.config/ghostwriter/soul.md`; add surface-specific profiles only where your
-   writing needs them.
-   Supply representative samples before authoring preferences. No profile is created by this
-   refactor.
-3. **Review work separately:** the earlier hub changes were on **`chore/ai-harness`**;
+2. **Review work separately:** the earlier hub changes were on **`chore/ai-harness`**;
    their current state was not rechecked. Keep concurrent `pi-lens` work separate from harness
    commits.
-4. **Manual cleanup** (not run). Upgrade OpenUsage first: v0.7.13+ reads Pi's login, not `~/.codex`.
+3. **Manual cleanup** (not run). Upgrade OpenUsage first: v0.7.13+ reads Pi's login, not `~/.codex`.
 
    ```sh
    brew upgrade --cask openusage
@@ -114,10 +120,10 @@ Patterns from the sprint 19 demo session, and where each now lives:
    rm -rf ~/.codex   # only after OpenUsage shows the Codex card via Pi
    ```
 
-5. **Pi trust:** run `pi` at the work root, then `/trust` once.
-6. **Slack:** `/mcp` in Claude Code to re-authorize.
-7. **Sync:** role links and Pi runner were applied with a destination-scoped operation.
-   Full `dots`, cleanup, Slack authorization, and work-root trust remain separate pending actions.
+4. **Pi trust:** run `pi` at the work root, then `/trust` once.
+5. **Slack:** `/mcp` in Claude Code to re-authorize.
+6. **Restart:** `dots` completed during Ghostwriter setup; restart Pi and Claude after integration updates.
+   Cleanup, Slack authorization, and work-root trust remain pending.
 
 ## Open decisions
 
@@ -450,8 +456,8 @@ file.
 
 **Not verified:** fresh-session instruction loading, everyday role use, behavioral routing, and
 comparative skill performance.
-Restart Pi and Claude before inspecting loaded context; practical role validation and ghostwriter
-setup remain ASAP.
+Restart Pi and Claude before inspecting loaded context; practical role validation remains ASAP.
+Ghostwriter setup is complete; see [verified outcomes](#ghostwriter-setup-completed).
 
 **Fix freeze proposed:** source review found no semantic defect; reserve new feature ideas for the
 next iteration.
