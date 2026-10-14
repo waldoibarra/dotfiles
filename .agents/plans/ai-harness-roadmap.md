@@ -290,6 +290,13 @@ Retain factual release and verification records.
    warn-only through `hk` pre-commit here, then as a Claude Code `Stop` hook on the last reply and
    as a Pi extension. Deferred: layer 1 (instructions, `Clear` style, Pi `APPEND_SYSTEM.md`) first;
    layer 2 (role pointers to the Communication section) before any lint.
+7. **Pi output styles (idea, 2026-10-13):** switchable reply styles like Claude Code's, where the
+   style rides in the system prompt on every request. Pi built-ins are static:
+   `~/.pi/agent/APPEND_SYSTEM.md` appends, `SYSTEM.md` replaces, no switching. An extension can do
+   it through `before_agent_start` prompt sections. Candidates, unverified against
+   `@earendil-works/pi-coding-agent` 1.2.0: `pi-custom-system-prompt` (append or replace mode,
+   select, toggle, reload) and `pi-system-prompt` (`/prompt` command). Before installing: check
+   fork compatibility, license, maintenance, and that `Clear` can be the shared source file.
 
 **Weekly prune [A]:** shrink absorbed memories, keep `AGENTS.md` near 100 lines, retire unused skills.
 
