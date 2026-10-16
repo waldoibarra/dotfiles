@@ -50,7 +50,12 @@ formatting details.
   terms.
 - Default to English; switch conversation language only when the user writes in another language.
 - Never infer language from names, email, locale, or identity.
-- Write technical artifacts in English unless the task requests another language.
+- Keep repository content in English, including documentation, prototypes, UI text, comments, filenames,
+  and identifiers.
+- Preserve original-language source material in repository-root `raw/`; translate only when explicitly
+  requested.
+- Conversation language does not change repository language.
+- Require an explicit exception for non-English repository content outside `raw/`.
 
 ## Authority
 
