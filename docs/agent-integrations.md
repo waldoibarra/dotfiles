@@ -180,3 +180,6 @@ Use native plugin and marketplace commands; do not edit Claude's package cache b
 Lens's clicks need the fullscreen interface that the tracked `"tui": "fullscreen"` setting turns
 on. Read [Develop Lens locally](/docs/tooling.md#claude-lens) before working from the Lens
 working tree; `just claude-lens-dev` disables the installed copy for that session.
+
+Known issue: clicking an expanded step does not collapse it. The fix is deferred; read the
+[Lens backlog](/.agents/plans/pi-lens-delivery.md#remaining-work) before picking it up.
