@@ -46,6 +46,7 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 | `just lint-commit MESSAGE_FILE` | Validate the message in `MESSAGE_FILE`. |
 | `just check-hooks` | Run the pre-commit hook against all files. |
 | `just pi-lens-dev [ARGS]` | Open local Pi, Lens and subagents with installed live voice; saves a session unless `--no-session` is passed. |
+| `just claude-lens-dev [ARGS]` | Open Claude Code with the local Lens working tree; disables the installed plugin for the session and re-enables it on exit. |
 
 Use the narrow recipe for the changed domain. Link changes require the Dotbot installer; they do
 not inherently require package upgrades or publication. Review its
@@ -67,6 +68,11 @@ EditorConfig checks, with variable indentation for numbered-list continuations.
 
 ## Develop Lens locally
 
+Each host has one recipe. Both keep the caller's working directory, forward arguments without
+re-parsing them, and never build, install, or change package declarations.
+
+### Pi Lens
+
 From this checkout, run `just pi-lens-dev` to use the local sources shown below.
 The recipe uses Pi's normal session persistence by default.
 Pass Pi CLI arguments after the recipe name, including `--continue` or explicit `--no-session`.
@@ -86,10 +92,7 @@ just --justfile "$HOME/.dotfiles/justfile" pi-lens-dev --continue
 | Subagents | `$HOME/projects/personal/pi-subagents/index.ts` |
 | Installed live voice | `$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts` |
 
-The recipe checks those files and preserves the caller's working directory.
-It forwards arguments without re-parsing them, so prompts containing spaces remain one argument.
-It never builds, installs, or changes package declarations.
-Prepare missing checkouts and the compiled host separately.
+The recipe checks those files. Prepare missing checkouts and the compiled host separately.
 It uses the local compiled host, not Mise's `latest` binary.
 Ordinary `pi` and `dots` remain unchanged.
 
@@ -107,6 +110,23 @@ Edit Lens or subagent source, finish the active turn, then run `/reload` in the 
 Reload replaces extensions without restarting the conversation.
 Host changes require rebuilding and restarting Pi.
 Use ordinary `pi` for the published package configuration.
+
+### Claude Lens
+
+Run `just claude-lens-dev` to load `$HOME/projects/personal/claude-lens` through `--plugin-dir`.
+Pass Claude CLI arguments after the recipe name, such as `--continue`.
+
+The recipe disables the installed `lens@claude-lens` plugin first and re-enables it when Claude
+exits, so two copies never draw at once. Those are native plugin commands against the installed
+settings copy; the tracked source stays enabled. The recipe assumes the normal profile, so it
+re-enables the plugin even if it was disabled beforehand.
+
+Saving a Lens file reloads the plugin in place; a save during a turn applies when the turn ends.
+Expanded folds and the current view survive the reload. For a loop without a model call, run
+`just test` in the Lens checkout; it drives the hooks through Claude Code's engine.
+Lens clicks need the tracked `"tui": "fullscreen"` setting.
+Read [Claude Lens development](https://github.com/waldoibarra/claude-lens/blob/main/docs/development.md)
+before changing its hooks or releasing it.
 
 ## Editor defaults
 

@@ -178,6 +178,5 @@ before switching an existing installation.
 Use native plugin and marketplace commands; do not edit Claude's package cache by hand.
 
 Lens's clicks need the fullscreen interface that the tracked `"tui": "fullscreen"` setting turns
-on. When developing Lens from its working tree, disable the installed copy for that session with
-`claude plugin disable lens@claude-lens` so the installed marketplace copy does not draw over the
-development copy, then enable it again.
+on. Read [Develop Lens locally](/docs/tooling.md#claude-lens) before working from the Lens
+working tree; `just claude-lens-dev` disables the installed copy for that session.
