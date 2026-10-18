@@ -89,6 +89,8 @@ coordination. The vault is private and separate from this public-facing dotfiles
 
 Each machine's untracked `~/AGENTS.md` selects that person's profile under `~/life/people/`. The
 shared global instructions load the selector for Pi and Claude Code. Cursor setup remains deferred.
+Read [personal profile routing](agent-instructions.md#personal-profile-routing) before creating or
+changing a machine's selector.
 Agent edits in the vault are limited to Markdown; this is a written rule, not Sync enforcement.
 
 Both collaborators need active Obsidian Sync subscriptions. Obsidian's end-to-end encryption applies

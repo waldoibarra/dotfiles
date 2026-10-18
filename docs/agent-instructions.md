@@ -37,6 +37,33 @@ Coding instructions do not replace the live-voice extension's separate prompt.
 **Cursor:** planned, not configured. Its project rules and user settings need separate loading
 verification before implementation.
 
+## Personal profile routing
+
+The dotfiles repository is shared across people; it must not select one person's identity for every
+machine. Each person's untracked `~/AGENTS.md` selects their own profile without changing shared
+configuration.
+
+| Location | Responsibility |
+| --- | --- |
+| `~/.agents/AGENTS.md` | Shared policy; asks configured clients to read the local selector. |
+| `~/AGENTS.md` | Machine-local selector; points to the current person's vault README. |
+| `~/life/people/<person>/README.md` | Personal context and reading triggers, including the person's agent identity file. |
+| `~/life/people/<person>/agent-identity.md` | Person-specific agent name and interaction rules. |
+
+Keep the selector outside dotfiles and the shared vault. Do not sync one person's selector onto
+another person's machine. Use `~/life/` paths, never a hard-coded home-directory username.
+
+For example, Waldo's selector reads `~/life/people/waldo/README.md`; Lluvia's reads
+`~/life/people/lluvia/README.md`. Each README routes to its own `agent-identity.md`.
+Do not infer the person from the account name or load both profiles by default.
+
+This indirection supports shared dotfiles and intentionally shared profiles; it is not an agent
+requirement. A single-user setup could keep all personal context directly in `~/AGENTS.md`, without
+vault profiles or a separate selector. Client loading still needs configuration: do not assume every
+coding agent automatically loads a home-directory `AGENTS.md` from every working directory.
+
+Read [Global loaders](#global-loaders) before checking client discovery or troubleshooting profile loading.
+
 ## Project discovery
 
 This repository uses root `AGENTS.md`, without a root `CLAUDE.md` wrapper.
