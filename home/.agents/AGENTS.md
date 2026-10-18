@@ -20,6 +20,18 @@ one canonical source per concern.
 
 If required guidance is unavailable, report it before dependent work; never invent its contents.
 
+## Machine-specific context
+
+At session start, read `~/AGENTS.md` if it exists; it contains context specific to this machine's
+user and may point to that person's shared profile. Never infer another person's identity or load
+their profile unless the task needs it. This file is deliberately untracked and may differ between
+machines.
+
+For shared life-map context, follow the profile and reading instructions in `~/AGENTS.md`. Read
+`~/life/AGENTS.md` when working in that vault. Read only relevant linked notes; do not search outside
+the current repository or infer work-directory locations from the map. Keep NDA-restricted work
+content out of the shared vault.
+
 ## Evidence and decisions
 
 - Ground technical claims in code, documentation, or observed results. Cite sources when relevant.

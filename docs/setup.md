@@ -13,8 +13,9 @@ support. Review the configuration before applying it to another account.
 - macOS uses Homebrew at `/opt/homebrew`; Intel Macs are not handled. Debian uses
   `/home/linuxbrew/.linuxbrew` and `apt-get`. The Brewfile includes macOS casks without Linux guards;
   this is not an unattended cross-platform installer.
-- Optionally create a personal `~/AGENTS.md`. Pi reads it for projects under `$HOME`. Keep its
-  personal contents outside Git.
+- Create a machine-specific `~/AGENTS.md` that selects the matching profile in the shared `~/life/`
+  vault. Keep this selector outside Git; the shared global instructions tell Pi and Claude Code to
+  read it.
 - Use an interactive terminal for sudo, Touch ID and login-shell prompts.
 
 If Git is missing, install it first. On macOS, finish the command-line tools installer:
@@ -80,6 +81,19 @@ and grant your terminal's macOS microphone permission if requested. No API-key f
 by this setup. Read [Pi and live voice](coding-agents/pi/README.md) for the model defaults,
 controls, and limitations.
 Restart an already-running Pi session after provisioning so it loads the new configuration.
+
+## Shared life map
+
+Waldo and Lluvia use a shared Obsidian vault at `~/life/` for goals, domain links, ideas, and agent
+coordination. The vault is private and separate from this public-facing dotfiles repository.
+
+Each machine's untracked `~/AGENTS.md` selects that person's profile under `~/life/people/`. The
+shared global instructions load the selector for Pi and Claude Code. Cursor setup remains deferred.
+Agent edits in the vault are limited to Markdown; this is a written rule, not Sync enforcement.
+
+Both collaborators need active Obsidian Sync subscriptions. Obsidian's end-to-end encryption applies
+to remote vault data; local files are not encrypted by Obsidian. Keep work and NDA-restricted
+material outside the shared vault.
 
 ## Verify
 

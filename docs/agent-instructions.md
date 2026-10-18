@@ -28,9 +28,10 @@ behavior.
 | Claude Code | Copied `~/.claude/CLAUDE.md` imports `@~/.agents/AGENTS.md`. |
 | Pi | `~/.pi/agent/AGENTS.md` links to the shared source. |
 
-Claude's user-level import adapter remains separate from project instructions.
-Pi also loads ancestor context files, including personal `~/AGENTS.md` for projects beneath `$HOME`.
-Projects outside `$HOME` need their own personal-context arrangement.
+Claude's user-level import adapter remains separate from project instructions. The shared global
+source directs configured clients to read the untracked, machine-specific `~/AGENTS.md` when present;
+that file selects the person's shared profile. Pi also loads ancestor context files, including
+`~/AGENTS.md` beneath `$HOME`, so it may receive that context twice. Do not assume deduplication.
 Coding instructions do not replace the live-voice extension's separate prompt.
 
 **Cursor:** planned, not configured. Its project rules and user settings need separate loading

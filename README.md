@@ -1,7 +1,9 @@
 # Dotfiles
 
 A versioned development workstation: shell, Git, tools and AI coding agents configured together.
-Built for Apple Silicon macOS, with partial Debian support.
+Built for Apple Silicon macOS, with partial Debian support. This repository is also a personal setup
+reference for Lluvia and my close ones; it is not a universal installer. Review the configuration
+before adopting it.
 
 ## What you get
 
@@ -27,7 +29,7 @@ flowchart LR
     Agents --> Home
 ```
 
-[Set up a workstation](/docs/setup.md)
+[Set up a workstation](/docs/setup.md), including [the shared Obsidian life map](/docs/setup.md#shared-life-map).
 
 This is a personal setup, not a universal installer. Review its SSH/AWS defaults before adopting it.
 Installation changes home-directory files and the login shell. Full sync can remove packages and
