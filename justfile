@@ -102,18 +102,18 @@ lint-commit msg_file:
 [positional-arguments]
 pi-lens-dev *PI_ARGS:
   @for source_file in \
-    "$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js" \
-    "$HOME/projects/personal/pi-lens/src/index.ts" \
-    "$HOME/projects/personal/pi-subagents/index.ts" \
+    "$HOME/projects/open-source/pi/packages/coding-agent/dist/bundle/cli.js" \
+    "$HOME/projects/open-source/pi-lens/src/index.ts" \
+    "$HOME/projects/open-source/pi-subagents/index.ts" \
     "$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts"; do \
     test -f "$source_file" || { \
       printf 'Missing development file: %s\n' "$source_file" >&2; exit 1; \
     }; \
   done
-  node "$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js" \
+  node "$HOME/projects/open-source/pi/packages/coding-agent/dist/bundle/cli.js" \
     --no-extensions \
-    -e "$HOME/projects/personal/pi-lens/src/index.ts" \
-    -e "$HOME/projects/personal/pi-subagents/index.ts" \
+    -e "$HOME/projects/open-source/pi-lens/src/index.ts" \
+    -e "$HOME/projects/open-source/pi-subagents/index.ts" \
     -e "$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts" \
     "$@"
 
@@ -124,7 +124,7 @@ pi-lens-dev *PI_ARGS:
 claude-lens-dev *CLAUDE_ARGS:
   #!/usr/bin/env sh
   set -eu
-  plugin_dir="$HOME/projects/personal/claude-lens"
+  plugin_dir="$HOME/projects/open-source/claude-lens"
   test -f "$plugin_dir/.claude-plugin/plugin.json" || {
     printf 'Missing development file: %s\n' "$plugin_dir/.claude-plugin/plugin.json" >&2
     exit 1

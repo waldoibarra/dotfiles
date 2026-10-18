@@ -156,9 +156,9 @@ class AgentHarnessTest(unittest.TestCase):
             workspace.mkdir(parents=True)
             binary_dir.mkdir()
             sources = [
-                home / "projects/personal/pi/packages/coding-agent/dist/bundle/cli.js",
-                home / "projects/personal/pi-lens/src/index.ts",
-                home / "projects/personal/pi-subagents/index.ts",
+                home / "projects/open-source/pi/packages/coding-agent/dist/bundle/cli.js",
+                home / "projects/open-source/pi-lens/src/index.ts",
+                home / "projects/open-source/pi-subagents/index.ts",
                 home / ".pi/agent/npm/node_modules/pi-live-codex/index.ts",
             ]
             for source in sources:

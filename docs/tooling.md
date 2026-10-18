@@ -87,9 +87,9 @@ just --justfile "$HOME/.dotfiles/justfile" pi-lens-dev --continue
 
 | Component | Required file |
 | --- | --- |
-| Compiled Pi host | `$HOME/projects/personal/pi/packages/coding-agent/dist/bundle/cli.js` |
-| Pi Lens | `$HOME/projects/personal/pi-lens/src/index.ts` |
-| Subagents | `$HOME/projects/personal/pi-subagents/index.ts` |
+| Compiled Pi host | `$HOME/projects/open-source/pi/packages/coding-agent/dist/bundle/cli.js` |
+| Pi Lens | `$HOME/projects/open-source/pi-lens/src/index.ts` |
+| Subagents | `$HOME/projects/open-source/pi-subagents/index.ts` |
 | Installed live voice | `$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts` |
 
 The recipe checks those files. Prepare missing checkouts and the compiled host separately.
@@ -113,7 +113,7 @@ Use ordinary `pi` for the published package configuration.
 
 ### Claude Lens
 
-Run `just claude-lens-dev` to load `$HOME/projects/personal/claude-lens` through `--plugin-dir`.
+Run `just claude-lens-dev` to load `$HOME/projects/open-source/claude-lens` through `--plugin-dir`.
 Pass Claude CLI arguments after the recipe name, such as `--continue`.
 
 The recipe disables the installed `lens@claude-lens` plugin first and re-enables it when Claude
