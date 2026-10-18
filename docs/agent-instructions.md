@@ -29,9 +29,8 @@ behavior.
 | Pi | `~/.pi/agent/AGENTS.md` links to the shared source. |
 
 Claude's user-level import adapter remains separate from project instructions. The shared global
-source directs configured clients to read the untracked, machine-specific `~/AGENTS.md` when present;
-that file selects the person's shared profile. Pi also loads ancestor context files, including
-`~/AGENTS.md` beneath `$HOME`, so it may receive that context twice. Do not assume deduplication.
+source directs configured clients to read the shared vault overview and machine-local profile links.
+Pi also loads ancestor context files; remove obsolete home-directory selectors after migration.
 Coding instructions do not replace the live-voice extension's separate prompt.
 
 **Cursor:** planned, not configured. Its project rules and user settings need separate loading
@@ -39,30 +38,41 @@ verification before implementation.
 
 ## Personal profile routing
 
-The dotfiles repository is shared across people; it must not select one person's identity for every
-machine. Each person's untracked `~/AGENTS.md` selects their own profile without changing shared
-configuration.
+The shared global instructions read `~/life/README.md` and two machine-local profile links when present.
 
-| Location | Responsibility |
+| Link | Destination |
 | --- | --- |
-| `~/.agents/AGENTS.md` | Shared policy; asks configured clients to read the local selector. |
-| `~/AGENTS.md` | Machine-local selector; points to the current person's vault README. |
-| `~/life/people/<person>/README.md` | Personal context and reading triggers, including the person's agent identity file. |
-| `~/life/people/<person>/agent-identity.md` | Person-specific agent name and interaction rules. |
+| `~/.agents/personal-context.md` | `~/life/people/$LIFE_PROFILE/README.md` |
+| `~/.agents/agent-identity.md` | `~/life/people/$LIFE_PROFILE/agent-identity.md` |
 
-Keep the selector outside dotfiles and the shared vault. Do not sync one person's selector onto
-another person's machine. Use `~/life/` paths, never a hard-coded home-directory username.
+Set exported `LIFE_PROFILE` in untracked `~/.zprofile.local`; never infer identity from the OS username.
+Read [local shell configuration](zsh-configuration.md#machine-local-configuration)
+before selecting a profile.
 
-For example, Waldo's selector reads `~/life/people/waldo/README.md`; Lluvia's reads
-`~/life/people/lluvia/README.md`. Each README routes to its own `agent-identity.md`.
-Do not infer the person from the account name or load both profiles by default.
+`dots` and `just update-ca` run
+[`sync-life-profile.sh`](/scripts/update-coding-agents/sync-life-profile.sh).
+It validates a lowercase kebab-case profile name and both source files before changing links.
+Correct links remain unchanged; other symlinks are replaced.
+Ordinary files and directories are never overwritten.
+Missing vaults are skipped. Missing profile selection warns without changing existing links.
+Invalid profiles, missing source files, and conflicting ordinary files fail before changing either link.
 
-This indirection supports shared dotfiles and intentionally shared profiles; it is not an agent
-requirement. A single-user setup could keep all personal context directly in `~/AGENTS.md`, without
-vault profiles or a separate selector. Client loading still needs configuration: do not assume every
-coding agent automatically loads a home-directory `AGENTS.md` from every working directory.
+For a narrow update without packages or publication, run:
 
-Read [Global loaders](#global-loaders) before checking client discovery or troubleshooting profile loading.
+```sh
+bash ~/.dotfiles/scripts/update-coding-agents/sync-life-profile.sh
+```
+
+Generated links stay outside Git. They select the person while shared dotfiles remain identical
+across machines.
+Relative profile links resolve against the real vault destination, not the symlink directory.
+The links do not synchronize vault content; Obsidian owns synchronization.
+
+This replaces the earlier untracked `~/AGENTS.md` selector. After verifying the links, manually remove
+that old selector only if it has no unique instructions left. The updater never deletes it automatically.
+A single-user setup can keep personal context directly in its native agent instructions instead.
+
+Restart configured agents and verify loading; link creation alone does not prove fresh-session behavior.
 
 ## Project discovery
 

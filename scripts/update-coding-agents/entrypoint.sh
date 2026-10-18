@@ -163,6 +163,7 @@ install_pi_packages() (
 )
 
 main() {
+  bash "${ENTRYPOINT_DIR}/sync-life-profile.sh"
   # First: it resets ~/.claude/settings.json to the tracked bytes, which would
   # otherwise discard whatever the Herdr steps below write into that file.
   sync_managed_configs

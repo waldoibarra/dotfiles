@@ -8,14 +8,11 @@ support. Review the configuration before applying it to another account.
 - Back up existing dotfiles. [Dotbot configuration](/install.conf.yaml) enables backups and forced
   replacement; installation replaces configuration, installs packages and changes the login shell.
 - Review the [Brewfile](/home/.Brewfile), [Mise tools](/home/.config/mise/config.toml),
-  [SSH hosts](/home/.ssh/config) and [AWS profiles](/home/.aws/config). The login shell selects the
-  `waldo` AWS profile. Credentials are not supplied.
+  [SSH hosts](/home/.ssh/config) and [AWS profiles](/home/.aws/config). Credentials are not supplied.
 - macOS uses Homebrew at `/opt/homebrew`; Intel Macs are not handled. Debian uses
   `/home/linuxbrew/.linuxbrew` and `apt-get`. The Brewfile includes macOS casks without Linux guards;
   this is not an unattended cross-platform installer.
-- Create a machine-specific `~/AGENTS.md` that selects the matching profile in the shared `~/life/`
-  vault. Keep this selector outside Git; the shared global instructions tell Pi and Claude Code to
-  read it.
+- Set exported `LIFE_PROFILE` in `~/.zprofile.local` to select your directory under `~/life/people/`.
 - Use an interactive terminal for sudo, Touch ID and login-shell prompts.
 
 If Git is missing, install it first. On macOS, finish the command-line tools installer:
@@ -87,10 +84,16 @@ Restart an already-running Pi session after provisioning so it loads the new con
 Waldo and Lluvia use a shared Obsidian vault at `~/life/` for goals, domain links, ideas, and agent
 coordination. The vault is private and separate from this public-facing dotfiles repository.
 
-Each machine's untracked `~/AGENTS.md` selects that person's profile under `~/life/people/`. The
-shared global instructions load the selector for Pi and Claude Code. Cursor setup remains deferred.
-Read [personal profile routing](agent-instructions.md#personal-profile-routing) before creating or
-changing a machine's selector.
+Set `export LIFE_PROFILE="waldo"` or `export LIFE_PROFILE="lluvia"` in your untracked
+`~/.zprofile.local`. Open a new login terminal so `dots` inherits the selected profile.
+Read [local shell configuration](zsh-configuration.md#machine-local-configuration) before changing
+profile selection. Agent updates warn if the vault exists but `LIFE_PROFILE` is empty or unset.
+
+Agent updates provision `~/.agents/personal-context.md` and `~/.agents/agent-identity.md` as symlinks
+into the selected profile. Pi and Claude Code read these alongside `~/life/README.md`.
+Cursor setup remains deferred. Read
+[personal profile routing](agent-instructions.md#personal-profile-routing) before provisioning links
+or removing an old `~/AGENTS.md` selector.
 Agent edits in the vault are limited to Markdown; this is a written rule, not Sync enforcement.
 
 Both collaborators need active Obsidian Sync subscriptions. Obsidian's end-to-end encryption applies

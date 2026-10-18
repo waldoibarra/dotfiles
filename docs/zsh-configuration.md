@@ -9,7 +9,7 @@ Zsh reads these files in order when their conditions apply:
 | File | Loaded for | Repository behavior |
 | --- | --- | --- |
 | [.zshenv](/home/.zshenv) | Every Zsh process | Set Vim as editor; add Homebrew, Mise shims and `~/.local/bin` to PATH. |
-| [.zprofile](/home/.zprofile) | Login shells | Reapply PATH, set AWS profile and Ollama keep-alive, then load local overrides. |
+| [.zprofile](/home/.zprofile) | Login shells | Reapply PATH, set Ollama keep-alive, then load local overrides. |
 | [.zshrc](/home/.zshrc) | Interactive shells | Load Antigen/oh-my-zsh, random theme, Mise activation, pager settings and aliases. |
 | [.zlogin](/home/.zlogin) | Login shells, after `.zshrc` | In interactive shells, load the local welcome name, print a quote and greeting, then remove helper functions. |
 
@@ -22,7 +22,6 @@ and can reorder it. Homebrew paths are fixed to `/opt/homebrew` on macOS and
 
 ## Shared defaults
 
-- `.zprofile` selects `AWS_PROFILE=waldo`. Override it locally for another account.
 - Ollama keep-alive is `15m`: macOS sets it through `launchctl setenv`; Linux exports it.
 - `.zshrc` assumes Homebrew Antigen is installed and activates oh-my-zsh bundles.
 - `lso` runs `eza -aal --octal-permissions`; `dots` runs the
@@ -40,22 +39,22 @@ Create these directly in `$HOME`; do not track or symlink them through Dotbot:
 | `~/.zprofile.local` | Override login-session environment values, including account-specific settings. |
 | `~/.zlogin.local` | Set `NICKNAME` for the greeting; otherwise it uses `$USER`. |
 
-To select a different AWS profile on each machine, set `AWS_PROFILE` in `~/.zprofile.local`:
+Set the shared-vault profile in your untracked `~/.zprofile.local`:
 
 ```sh
-# ~/.zprofile.local
-export AWS_PROFILE="YOUR_PROFILE_NAME"
+export LIFE_PROFILE="waldo" # Use "lluvia" on Lluvia's machine.
 ```
 
-Replace `YOUR_PROFILE_NAME` with a profile defined in `~/.aws/config`.
-The local file loads after the shared default and overrides it.
-Open a new login terminal, then verify:
+The value names your directory under `~/life/people/`; never infer it from the operating-system username.
+Open a new login terminal, then verify with `printenv LIFE_PROFILE`.
 
-```sh
-printenv AWS_PROFILE
-```
+`dots` and `just update-ca` warn during agent updates if `~/life/` exists but this variable is
+empty or unset. The warning does not stop updates. The updater does not source `.zprofile.local`;
+it inherits exported values from the calling shell.
 
-The output must match your chosen profile name. This checks selection, not AWS authentication or permissions.
+Agent updates use `LIFE_PROFILE` to provision two local links into your vault profile.
+Read [profile routing](agent-instructions.md#personal-profile-routing) before provisioning or
+changing them.
 
 For a custom greeting name:
 

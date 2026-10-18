@@ -22,15 +22,15 @@ If required guidance is unavailable, report it before dependent work; never inve
 
 ## Machine-specific context
 
-At session start, read `~/AGENTS.md` if it exists; it contains context specific to this machine's
-user and may point to that person's shared profile. Never infer another person's identity or load
-their profile unless the task needs it. This file is deliberately untracked and may differ between
-machines.
+At session start, read these files when present:
 
-For shared life-map context, follow the profile and reading instructions in `~/AGENTS.md`. Read
-`~/life/AGENTS.md` when working in that vault. Read only relevant linked notes; do not search outside
-the current repository or infer work-directory locations from the map. Keep NDA-restricted work
-content out of the shared vault.
+- `~/life/README.md`: shared goals and knowledge navigation.
+- `~/.agents/personal-context.md`: the selected person's background and reading triggers.
+- `~/.agents/agent-identity.md`: the selected person's agent identity and interaction rules.
+
+The personal files are machine-local symlinks. Resolve relative links against their real destination,
+not `~/.agents/`. Read only relevant details; never infer another person's identity or load their
+profile without task relevance. Keep NDA-restricted content out of the shared vault.
 
 ## Evidence and decisions
 

@@ -29,6 +29,13 @@ Installation does not run the coding-agent updater, prune tools or install this 
 [`update-coding-agents/entrypoint.sh`](/scripts/update-coding-agents/entrypoint.sh) runs these steps
 in order through `just update-ca` and `just sync`:
 
+Before these steps, [sync-life-profile.sh](update-coding-agents/sync-life-profile.sh) provisions the
+personal-context and agent-identity symlinks using exported `LIFE_PROFILE`.
+Set the variable in `~/.zprofile.local` and open a new login terminal.
+If the vault exists without a profile, it warns without changing links or blocking updates.
+Invalid selections, missing source files, or ordinary files at link destinations stop updates.
+Run `python3 scripts/tests/test-life-profile.py` for isolated linking and preservation checks.
+
 1. Copy the two managed agent configs before refreshing Claude hooks.
 2. Register missing shared personal MCP servers through Claude's native user-scope command.
 3. Install the configured pinned subagent runner, then update declared Pi packages in the normal profile.
