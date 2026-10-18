@@ -27,6 +27,7 @@ This file always exists and provides shared goals and knowledge navigation.
 
 At session start, you MUST also read these files:
 
+- `~/life/people/README.md`: shared profile rules and preferences for both people.
 - `~/.agents/personal-context.md`: the selected person's background and reading triggers.
 - `~/.agents/agent-identity.md`: the selected person's agent identity and interaction rules.
 

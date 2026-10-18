@@ -40,7 +40,10 @@ verification before implementation.
 
 The shared global instructions require reading `~/life/README.md` at every session start,
 before responding or task work.
-Reading both machine-local profile links at session start is also mandatory.
+Read `~/life/people/README.md` for shared profile rules before both machine-local profile links at
+session start.
+Personal READMEs own background and priorities; agent identities own individual personas and
+interaction preferences.
 
 | Link | Destination |
 | --- | --- |
