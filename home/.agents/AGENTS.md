@@ -31,8 +31,9 @@ At session start, you MUST also read these files:
 - `~/.agents/agent-identity.md`: the selected person's agent identity and interaction rules.
 
 The personal files are machine-local symlinks. Resolve relative links against their real destination,
-not `~/.agents/`. Read only relevant details; never infer another person's identity or load their
-profile without task relevance. Keep NDA-restricted content out of the shared vault.
+not `~/.agents/`.
+
+Keep NDA-restricted work content out of the shared vault (`~/life/`).
 
 ## Evidence and decisions
 
