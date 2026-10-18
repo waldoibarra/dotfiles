@@ -20,6 +20,9 @@ location.
 
 ## Choose a task
 
+Read [Write effective AI prompts](/docs/prompting.md) before drafting prompts or refining unhelpful
+responses.
+
 | Read before… | Guide |
 | --- | --- |
 | Changing shared rules, personal instructions or Claude response styles | [Agent instructions](/docs/agent-instructions.md) |
