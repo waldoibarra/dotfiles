@@ -38,7 +38,9 @@ verification before implementation.
 
 ## Personal profile routing
 
-The shared global instructions read `~/life/README.md` and two machine-local profile links when present.
+The shared global instructions require reading `~/life/README.md` at every session start,
+before responding or task work.
+Reading both machine-local profile links at session start is also mandatory.
 
 | Link | Destination |
 | --- | --- |

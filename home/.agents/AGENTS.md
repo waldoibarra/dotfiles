@@ -22,9 +22,11 @@ If required guidance is unavailable, report it before dependent work; never inve
 
 ## Machine-specific context
 
-At session start, read these files when present:
+You MUST read `~/life/README.md` at every session start, before responding or performing task work.
+This file always exists and provides shared goals and knowledge navigation.
 
-- `~/life/README.md`: shared goals and knowledge navigation.
+At session start, you MUST also read these files:
+
 - `~/.agents/personal-context.md`: the selected person's background and reading triggers.
 - `~/.agents/agent-identity.md`: the selected person's agent identity and interaction rules.
 
