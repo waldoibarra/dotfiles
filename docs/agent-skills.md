@@ -25,13 +25,14 @@ Dotbot links these bundles individually; the external lockfile does not manage t
 | Maintaining touched Markdown documentation without losing information | [`docs-maintenance`](/home/.agents/skills/docs-maintenance/SKILL.md) |
 | Proposing scoped session-improvement packets at handoff | [`session-improvement`](/home/.agents/skills/session-improvement/SKILL.md) |
 | Teaching with Socratic questions and checked application | [`socratic-learning`](/home/.agents/skills/socratic-learning/SKILL.md) |
+| Adding assigned manual tasks to the shared life list | [`to-do`](/home/.agents/skills/to-do/SKILL.md) |
 | Starting an empty project without an application stack | [`start-project`](/home/.agents/skills/start-project/SKILL.md) |
 | Writing or reviewing shell scripts | [`shell-scripting`](/home/.agents/skills/shell-scripting/SKILL.md) |
 | Building/debugging/reviewing interfaces with behavior and layout | [`web-app-craft`](/home/.agents/skills/web-app-craft/SKILL.md) |
 | Standards-first or frameworkless web work | [`web-standards`](/home/.agents/skills/web-standards/SKILL.md) |
 | Isolated layout, intrinsic reflow, spacing, or overflow work | [`css-layout`](/home/.agents/skills/css-layout/SKILL.md) |
 
-The eight `home/.agents/skills/` bundles link to both `~/.agents/skills/` and `~/.claude/skills/`.
+The nine `home/.agents/skills/` bundles link to both `~/.agents/skills/` and `~/.claude/skills/`.
 Editing an installed symlink edits this checkout; edit the tracked source.
 
 New bundles acquire links on the next Dotbot sync. Source creation alone does not install them.

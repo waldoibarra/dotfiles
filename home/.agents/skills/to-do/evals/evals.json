@@ -1,0 +1,26 @@
+{
+  "skill_name": "to-do",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add my pending task to our shared to-do: review the hosting charge for example.test. The selected profile is Alex; the fixture list is empty.",
+      "expected_output": "One unchecked task assigned to Alex in the fixture life/to-do.md; the empty placeholder is removed.",
+      "files": [],
+      "assertions": ["The task preserves hosting and example.test.", "The task is assigned to Alex.", "No billing action is performed."]
+    },
+    {
+      "id": 2,
+      "prompt": "Add my task: review the hosting charge for example.test. The fixture list already contains this pending task for the selected profile, Alex.",
+      "expected_output": "The agent reports the existing task without duplicating it.",
+      "files": [],
+      "assertions": ["The fixture contains exactly one matching pending task.", "Other tasks remain unchanged."]
+    },
+    {
+      "id": 3,
+      "prompt": "Explain how to investigate a hosting charge; do not add anything to our list.",
+      "expected_output": "The agent answers without invoking the shared-task addition workflow or changing the list.",
+      "files": [],
+      "assertions": ["No vault files change.", "No task is added."]
+    }
+  ]
+}
