@@ -12,6 +12,21 @@ compatibility: Requires Git, mise, just, Node.js for Markdown linting, and netwo
 - **IS:** a stack-free local baseline for an empty directory, including working lint hooks.
 - **IS NOT:** application scaffolding; use `scaffold-nextjs` or `scaffold-cli` when explicitly requested.
 
+## Setup defaults
+
+- Use mise for project tools, with versions pinned in `.mise.toml`.
+  Reuse workstation runtimes for this stack-free baseline.
+- Use grouped just recipes; `just setup` owns setup.
+  Add `just run` when an application exists, not a placeholder.
+- Install repository-local Git hooks through mise and hk.
+  Retain Markdown and conventional-commit checks from the templates.
+- Respect inherited EditorConfig settings.
+  Add an EditorConfig check when extending the baseline's file checks.
+- Keep secrets untracked. Verify project-specific secret paths are ignored before staging.
+  Never rely on ignores for already tracked files.
+- For prototype databases or emulatable infrastructure, use Docker instead of host-installed servers.
+  Do not add services to the stack-free baseline or containerize the application by default.
+
 ## Workflow
 
 1. Inspect the destination, including hidden files and any enclosing Git repository.

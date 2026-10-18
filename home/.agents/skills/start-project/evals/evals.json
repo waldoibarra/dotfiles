@@ -24,7 +24,10 @@
         "The justfile exposes Setup and Linting groups.",
         "Markdown and commit-message hooks are exercised.",
         "The README contains only a title and short project status.",
-        "No commit or remote is created without a request."
+        "No commit or remote is created without a request.",
+        "Pinned tools and local hk hooks use mise; setup is exposed through just setup.",
+        "No placeholder just run recipe is added without an application.",
+        "Inherited EditorConfig settings are respected and project-specific secret paths are checked before staging."
       ]
     },
     {
