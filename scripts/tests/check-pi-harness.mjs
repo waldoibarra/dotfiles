@@ -31,6 +31,10 @@ const cwd = mkdtempSync(join(tmpdir(), "dotfiles-pi-harness-"));
 const agentDir = join(homedir(), ".pi/agent");
 const runner = join(agentDir, "npm/node_modules/pi-subagents/index.js");
 assert(existsSync(runner), "Install the configured pi-subagents pin before checking");
+const { resolveHostPeerAliases } = await import(pathToFileURL(join(dirname(runner),
+  "src/runs/background/runner-aliases.js")));
+assert.deepEqual(resolveHostPeerAliases(hostRoot).missing, [],
+  "Background runner must resolve this host's declared dependencies");
 writeFileSync(join(cwd, "AGENTS.md"), "# Fixture\n\nFixture marker: shared-role-fixture.\n");
 const settingsManager = SettingsManager.create(cwd, agentDir, { projectTrusted: false });
 let context;

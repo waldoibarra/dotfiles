@@ -1,6 +1,7 @@
 # Pi delegation
 
-Pi declares `pi-subagents@0.77.0`; this machine also has a local warning-routing trial build.
+Pi declares `pi-subagents@0.79.1`, which fixes obsolete Chord requirements on Pi 1.2 and newer.
+The previous local warning-routing trial build was backed up before replacement.
 Shared roles remain provider-neutral; runtime trial artifacts stay outside this repository.
 Read [shared roles](/docs/agent-instructions.md#shared-role-agents) before editing a role's instructions.
 
