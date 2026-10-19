@@ -49,6 +49,7 @@
     # Files.
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.agents/AGENTS.md: home/.agents/AGENTS.md
+    ~/.codex/AGENTS.md: home/.agents/AGENTS.md
     ~/.agents/RTK.md: home/.agents/RTK.md
     ~/.agents/mcp.json: home/.agents/mcp.json
     ~/.local/bin/google-sheets-personal-mcp: home/.local/bin/google-sheets-personal-mcp

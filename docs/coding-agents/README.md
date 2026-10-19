@@ -65,7 +65,7 @@ installed paths replace `home/` with `~/` unless noted.
 | `home/.agents/RTK.md` | Linked to `~/.agents/RTK.md` and `~/.claude/RTK.md`; shared RTK reference |
 | `home/.config/rtk/*` | Linked to `~/Library/Application Support/rtk/` on macOS or `~/.config/rtk/` on Linux |
 | `home/.agents/.skill-lock.json` | Linked; external skill sources and installer targets |
-| `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`; global policy and reading map |
+| `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`, `~/.pi/agent/AGENTS.md`, and `~/.codex/AGENTS.md`; global policy and reading map |
 | `home/.agents/references/*.md` | Linked individually to `~/.agents/references/`; shared on-demand detail |
 | `home/.agents/mcp.json` | Shared personal MCP definitions; Pi link and derived Claude user registrations |
 | Repo-authored skill directories | Linked individually; [destinations](/docs/agent-skills.md#repo-managed-skills) |

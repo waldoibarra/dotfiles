@@ -27,6 +27,7 @@ behavior.
 | --- | --- |
 | Claude Code | Copied `~/.claude/CLAUDE.md` imports `@~/.agents/AGENTS.md`. |
 | Pi | `~/.pi/agent/AGENTS.md` links to the shared source. |
+| Codex | Dotbot links `~/.codex/AGENTS.md` to the shared source. |
 
 Claude's user-level import adapter remains separate from project instructions. The shared global
 source directs configured clients to read the shared vault overview and machine-local profile links.
