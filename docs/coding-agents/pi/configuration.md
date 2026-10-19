@@ -121,9 +121,11 @@ was needed. [Live voice](live-voice.md) lists the voice controls and commands.
 ## Instructions and skills
 
 Pi natively discovers `~/.agents/skills`; there is no second skill copy or new Skills CLI target.
-Its global `AGENTS.md` supplies shared policy, and ancestor context discovery loads personal
-`~/AGENTS.md` for projects under `$HOME`. Projects elsewhere need their own personal-context
-arrangement. Coding context does not replace the extension's separate hardcoded voice prompt.
+Its global `AGENTS.md` supplies shared policy and directs sessions to the vault and machine-local
+profile links.
+Read [personal profile routing](/docs/agent-instructions.md#personal-profile-routing) before
+provisioning those links or removing an obsolete `~/AGENTS.md` selector.
+Coding context does not replace the extension's separate hardcoded voice prompt.
 
 `AGENTS.override.md` is an upstream Pi convention, not a file created by these dotfiles. If present,
 it takes precedence over an ordinary context file in the same directory. A profile override can
