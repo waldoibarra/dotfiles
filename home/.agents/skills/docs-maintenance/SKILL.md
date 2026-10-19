@@ -2,10 +2,10 @@
 name: docs-maintenance
 description: >-
   Maintains accurate, information-preserving Markdown documentation within the active task.
-  Use when creating, editing, rewriting, or reviewing READMEs, guides, or other Markdown
-  documentation.
+  Use when creating, editing, rewriting, or reviewing READMEs, guides, plans, or other Markdown,
+  including small doc edits alongside code or config changes and edits by workers.
   Proposes concern-based splits before restructuring. For AGENTS.md use agents-md; for SKILL.md use
-  agent-skills-creator.
+  agent-skills-creator; model prompt files follow prompting.md.
 ---
 
 # Documentation maintenance
@@ -21,11 +21,19 @@ exact scope.
 ## Establish scope
 
 1. Read repository instructions for documentation ownership, confidentiality, and recording rules.
-2. Name the documents created, edited, or explicitly reviewed for this task.
-3. Inspect only those documents and sources needed to verify their claims, context, or links.
-4. Exclude unrelated dirty files; a Git diff alone does not establish task ownership.
+2. Read the project's shared language (its glossary file) before choosing terms.
+3. Name the documents created, edited, or explicitly reviewed for this task.
+4. After a code or config change, search docs for each identifier, flag, recipe, and number it
+    changed.
+5. Add each stale match to this task's documents.
+6. Inspect only those documents and sources needed to verify their claims, context, or links.
+7. Exclude unrelated dirty files; a Git diff alone does not establish task ownership.
 
+- Repository instructions name the shared-language file; third-party skills may call it
+  `GLOSSARY.md`.
 - Reading or summarizing Markdown does not authorize rewriting it.
+- Plans are in scope. Mark a superseded decision with its decision-log reference; never delete it.
+- Prompt files sent to models are out of scope; `~/.agents/references/prompting.md` owns their rules.
 - For `AGENTS.md` and `SKILL.md`, use `agents-md` and `agent-skills-creator` respectively.
 - Preserve generated, vendored, and frozen historical files; use their owning process instead.
 - If scope or ownership is unclear, ask before expanding it.
@@ -55,6 +63,8 @@ exact scope.
 - Combine repeated facts only when no distinct condition or meaning is lost.
 - Keep unchanged text when no useful improvement is supported.
 - Use `ghostwriter` for prose when available; otherwise follow the repository's writing conventions.
+- A doc adding an agent rule needs `Read <doc> before <action>.` in the instructions file, via
+  `agents-md`.
 
 ```text
 Never shorten safety content, including destructive-action confirmations, to fit a word budget.
@@ -85,6 +95,13 @@ moves, new directories, or substantial rewrites.
   reliability across all sessions.
 - Follow local rules for retaining outcomes; do not create logs or global memories for this
   workflow.
+
+## Gotchas
+
+Stale docs survived code commits; scope step 4 searches for exactly these misses:
+
+- A doc kept claiming a limit was unenforced after code enforced it.
+- A new recipe shipped without an entry in the tooling reference.
 
 **Maintenance:** Read `evals/evals.json` when changing this skill; authored scenarios are not
 executed behavioral evidence.

@@ -10,6 +10,11 @@ editing, or reviewing Markdown documentation.
 
 - Shared instructions require the skill during Markdown documentation tasks across repositories
   using this harness.
+- Small doc edits beside code changes and edits by workers also load it.
+- After a code or config change, it searches docs for changed identifiers, flags, recipes, and
+  numbers.
+- Plans are in scope; it marks superseded decisions instead of deleting them.
+- It reads the project's shared language (its glossary file) before choosing terms.
 - Within authorized edits, it improves clarity and verifies facts without requiring separate
   cosmetic approval.
 - It explains the big picture first, preserving unique information and distinguishing current
@@ -40,6 +45,9 @@ edited during the session.
 
 **Boundary:** Reading grants no edit permission; instructions, skill definitions, and frozen
 archives have separate owners.
+
+**Prompts:** Read [Write effective AI prompts](/docs/prompting.md) before editing prompt files sent
+to models.
 
 ## Verify a change
 

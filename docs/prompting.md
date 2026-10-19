@@ -18,6 +18,8 @@ Clarification: Ask about missing information that would change the answer.
 Verification: Identify assumptions, support major claims, and flag uncertainty.
 ```
 
+**Prune:** In saved prompt files, keep a rule only if removing it could change a correct output.
+
 ## Refine an unhelpful response
 
 - Check whether the role, context, or goal needs correction.

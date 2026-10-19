@@ -5,13 +5,16 @@
       "Update this README after the timeout change",
       "Rewrite the Markdown deployment guide without losing information",
       "Review this documentation page for accuracy",
-      "This touched guide mixes overview and operations; propose a better structure"
+      "This touched guide mixes overview and operations; propose a better structure",
+      "I renamed the --max-cost flag; fix the one README line that mentions it",
+      "Worker task: update the plan's decisions table after the review"
     ],
     "negative": [
       "Summarize this article without changing it",
       "Rewrite my AGENTS.md instructions",
       "Create a new SKILL.md",
-      "Rename a function in the source code"
+      "Rename a function in the source code",
+      "Trim the system prompt file we send to the parser model"
     ]
   },
   "evals": [
@@ -19,7 +22,13 @@
       "id": 1,
       "prompt": "Update readme.md to reflect relay.py and decisions.md. Make it clearer and easier to scan. Only readme.md is authorized for editing; preserve its information and safety warnings.",
       "expected_output": "An in-place README improvement that loads the skill without naming it in the request, preserves unique facts, corrects current timeout to 30 seconds, and labels the approved 60-second target unimplemented.",
-      "files": ["evals/files/parcel-relay/readme.md", "evals/files/parcel-relay/relay.py", "evals/files/parcel-relay/decisions.md", "evals/files/parcel-relay/docs/retention.md", "evals/files/parcel-relay/archive/launch.md"],
+      "files": [
+        "evals/files/parcel-relay/readme.md",
+        "evals/files/parcel-relay/relay.py",
+        "evals/files/parcel-relay/decisions.md",
+        "evals/files/parcel-relay/docs/retention.md",
+        "evals/files/parcel-relay/archive/launch.md"
+      ],
       "assertions": [
         "Loads docs-maintenance before editing documentation",
         "Explains purpose before detailed settings",
@@ -37,7 +46,11 @@
       "id": 2,
       "prompt": "Review readme.md against relay.py and decisions.md. Propose how to separate its concerns and make the big picture clear. Do not edit files or reorganize the repository.",
       "expected_output": "A read-only, source-grounded concern map and minimal scoped proposal, preserving facts and approval boundaries.",
-      "files": ["evals/files/parcel-relay/readme.md", "evals/files/parcel-relay/relay.py", "evals/files/parcel-relay/decisions.md"],
+      "files": [
+        "evals/files/parcel-relay/readme.md",
+        "evals/files/parcel-relay/relay.py",
+        "evals/files/parcel-relay/decisions.md"
+      ],
       "assertions": [
         "Explains the product before proposing its document structure",
         "Proposes only a split of the named document and necessary link updates",
@@ -101,6 +114,55 @@
         "Routes agent instructions to agents-md",
         "Routes skill definitions to agent-skills-creator",
         "Does not rewrite the historical snapshot without explicit authority to alter the record"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "In cli.py, rename --max-cost to --budget-ceiling, raise its default from 10 to 20, and add a `just budget-report` recipe. Commit when done.",
+      "expected_output": "The code change carries every affected doc update: stale flag names, the old ceiling, and the missing recipe entry.",
+      "files": [],
+      "assertions": [
+        "Loads docs-maintenance although the request names no documentation",
+        "Searches docs for --max-cost, the value 10, and the recipe list",
+        "Updates each stale match, including any tooling reference that lists recipes",
+        "Puts doc updates in the same commit as the code change",
+        "Reports matches it could not verify instead of guessing"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Write docs/budget.md: agents must run `just budget-check` before raising a cost limit. AGENTS.md names SHARED-LANGUAGE.md as the project's glossary file.",
+      "expected_output": "A new doc in the shared-language terms, plus a reading trigger in AGENTS.md added through agents-md.",
+      "files": [],
+      "assertions": [
+        "Reads SHARED-LANGUAGE.md before choosing terms",
+        "Uses one shared-language term per concept, without synonyms",
+        "Adds `Read docs/budget.md before raising a cost limit.` to AGENTS.md",
+        "Edits AGENTS.md through agents-md, not as ordinary documentation"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Decision D3 in .agents/plans/budget.md is replaced by D7 (log entry 2026-10-19). Update the plan. Also tighten prompts/extract.md, which we send to the parser model.",
+      "expected_output": "The plan keeps D3 marked superseded with its log reference; the prompt file follows prompting.md instead of documentation rules.",
+      "files": [],
+      "assertions": [
+        "Treats the plan as in scope",
+        "Marks D3 superseded with a reference to the 2026-10-19 log entry",
+        "Does not delete D3",
+        "Routes prompts/extract.md to prompting.md, not documentation edits",
+        "Applies the pruning rule from prompting.md to the prompt file"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "You are an implementer worker. After changing the default port in server.py, adjust the single README line that states it.",
+      "expected_output": "The worker loads the skill for a one-line edit and preserves surrounding facts.",
+      "files": [],
+      "assertions": [
+        "Loads docs-maintenance despite the small edit and worker context",
+        "Changes only the stale port claim",
+        "Leaves surrounding text unchanged"
       ]
     }
   ]

@@ -1,20 +1,28 @@
 # Agent skills
 
-Read [Coding agents](coding-agents/README.md) before changing agent files. External skills belong
-to their source repositories; repo-authored skills belong in the tracked directories below.
+Read [Coding agents](coding-agents/README.md) before changing agent files.
+
+External skills belong to their source repositories; repo-authored skills belong in the tracked
+directories below.
 
 ## External skills
 
 [`sync-global-skills-from-lock.sh`](/scripts/update-coding-agents/sync-global-skills-from-lock.sh)
-installs missing entries from [`home/.agents/.skill-lock.json`](/home/.agents/.skill-lock.json),
-then runs `npx -y skills update -g` for all installed global skills. This updates skills rather
-than reinstalling frozen lockfile bytes. A changed tracked lockfile triggers a commit and push.
-Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before running the updater;
-it can publish other unpushed commits on the branch too.
+updates external skills:
 
-Keep `lastSelectedAgents` set to `pi` and `claude-code`; these become the installer's `-a`
-flags. The `pi` target installs into `~/.agents/skills`. Edit external skills in their owning
-source repository, not their installed copies.
+- It installs missing entries from
+  [`home/.agents/.skill-lock.json`](/home/.agents/.skill-lock.json).
+- It then runs `npx -y skills update -g` for all installed global skills.
+- It updates skills rather than reinstalling frozen lockfile bytes.
+- A changed tracked lockfile triggers a commit and push.
+
+**Publishing risk:** the updater can publish other unpushed commits on the branch too.
+
+Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before running the updater.
+
+- Keep `lastSelectedAgents` set to `pi` and `claude-code`; these become the installer's `-a` flags.
+- The `pi` target installs into `~/.agents/skills`.
+- Edit external skills in their owning source repository, not their installed copies.
 
 ## Repo-managed skills
 
@@ -32,19 +40,23 @@ Dotbot links these bundles individually; the external lockfile does not manage t
 | Standards-first or frameworkless web work | [`web-standards`](/home/.agents/skills/web-standards/SKILL.md) |
 | Isolated layout, intrinsic reflow, spacing, or overflow work | [`css-layout`](/home/.agents/skills/css-layout/SKILL.md) |
 
-The nine `home/.agents/skills/` bundles link to both `~/.agents/skills/` and `~/.claude/skills/`.
-Editing an installed symlink edits this checkout; edit the tracked source.
+- The nine `home/.agents/skills/` bundles link to both `~/.agents/skills/` and `~/.claude/skills/`.
+- Editing an installed symlink edits this checkout; edit the tracked source.
 
-New bundles acquire links on the next Dotbot sync. Source creation alone does not install them.
-Check link targets and restart the host before checking discovery; do not run a full machine sync
-just to validate a skill. In Pi, use `/skill:<name>` after reload to check discovery.
-In Claude Code, start a fresh session and invoke the skill by name. Maintenance scenarios live in
-each bundle's `evals/evals.json` where present. Format checks do not establish model or browser
-behavior.
+**New bundles:** they acquire links on the next Dotbot sync.
+
+- Source creation alone does not install them.
+- Check link targets and restart the host before checking discovery.
+- Do not run a full machine sync just to validate a skill.
+- In Pi, use `/skill:<name>` after reload to check discovery.
+- In Claude Code, start a fresh session and invoke the skill by name.
+- Maintenance scenarios live in each bundle's `evals/evals.json` where present.
+- Format checks do not establish model or browser behavior.
 
 The `start-project` skill keeps requirements and POC setup separate from application scaffolding.
-It reuses workstation defaults, minimal project docs, and mise/just lint tooling
-instead of choosing a stack.
+
+It reuses workstation defaults, minimal project docs, and mise/just lint tooling instead of choosing
+a stack.
 
 ## Documentation maintenance
 
@@ -69,20 +81,21 @@ checking its activation limits.
 
 ## Learning and session improvement
 
-Use `socratic-learning` for guided learning.
-Use `session-improvement` to review how the work could improve.
-They share neither learner records nor project curricula.
-Projects can require the teaching skill in their own instructions and keep local content separately.
+- Use `socratic-learning` for guided learning.
+- Use `session-improvement` to review how the work could improve.
+- They share neither learner records nor project curricula.
+- Projects can require the teaching skill in their own instructions and keep local content
+  separately.
 
 | Task | Pi | Claude Code |
 | --- | --- | --- |
 | Start guided learning | `/skill:socratic-learning` | `/socratic-learning` |
 | Review session improvements | `/skill:session-improvement` | `/session-improvement` |
 
-Natural-language requests can also select these skills through their descriptions.
-A closure question requests review, not permission to edit or publish.
-`session-improvement` assesses evidence first, then loads its placement reference only for warranted
-proposals.
+- Natural-language requests can also select these skills through their descriptions.
+- A closure question requests review, not permission to edit or publish.
+- `session-improvement` assesses evidence first, then loads its placement reference only for
+  warranted proposals.
 
 **Touched docs:** `session-improvement` reads `docs-maintenance` for a scoped, read-only review of
 session-edited Markdown documentation.
@@ -94,14 +107,17 @@ session-edited Markdown documentation.
 **Approved edits:** Use the owning specialist workflow and repository delivery rules.
 
 `ghostwriter` owns prose; it replaces the former `docs-writing` name.
-No shutdown hook runs either skill, and neither reconstructs inaccessible conversation history.
+
+No shutdown hook runs `socratic-learning` or `session-improvement`; neither reconstructs inaccessible
+conversation history.
 
 Read [Claude skill loading](https://code.claude.com/docs/en/features-overview)
 before changing Claude invocation or discovery expectations.
 
 ## Pi discovery
 
-Pi natively scans `~/.agents/skills`; no `~/.pi/agent/skills` copy is needed. A fresh Pi session
-or `/reload` refreshes discovery; startup diagnostics and `/skill:<name>` check visibility, not
-skill execution. See [Pi and live voice](coding-agents/pi/README.md) for provisioning and the
-separate voice-model limitations.
+- Pi natively scans `~/.agents/skills`; no `~/.pi/agent/skills` copy is needed.
+- A fresh Pi session or `/reload` refreshes discovery.
+- Startup diagnostics and `/skill:<name>` check visibility, not skill execution.
+
+Read [Pi and live voice](coding-agents/pi/README.md) before provisioning Pi or using live voice.
