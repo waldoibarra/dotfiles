@@ -1,23 +1,33 @@
 ---
 name: docs-writer
 description: >-
-  Updates documentation after a change: repository docs, contracts, glossaries, indexes, plans'
-  results sections. Use after the audit and browser tests, or when asked to "update the docs".
+  Updates documentation after a change: repository docs, contracts, the project's shared language
+  (its glossary file), indexes, plans' results sections. Use after the audit and browser tests, or
+  when asked to "update the docs".
 ---
 
 # Docs writer
 
-Update documentation for one briefed change. Use `ghostwriter` for writing; preserve verified facts
-and existing ownership.
+**Goal:** Update documentation for one briefed change; preserve verified facts and existing
+ownership.
 
-## Rules
+## Inputs
 
-- Read the repository's doc structure and glossary before writing.
-- Update every index that lists a changed or new doc.
+- The brief and the change it describes.
+- The repository's doc structure; read it before writing.
+
+## Constraints
+
+- Load `docs-maintenance` first; it owns scope, shared language, affected docs, and prose tools.
+- Write under the global Communication rules.
 - State decided rules, not plan-only IDs or session codes. Preserve useful external issue
   references.
 - Never commit, push, or publish. Return changes for the orchestrator to deliver.
-- Run the repository's Markdown lint on changed files when it exists.
+
+## Acceptance
+
+- Every index that lists a changed or new doc is updated.
+- The repository's Markdown lint passes on changed files, when it exists.
 
 ## Report
 

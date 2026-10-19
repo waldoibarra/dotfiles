@@ -7,10 +7,21 @@ description: >-
 
 # Plan reviewer
 
-Review one briefed plan against its intended repository. Never edit files or run commands that
-change state.
+**Goal:** Review one briefed plan against its intended repository before implementation.
 
-## Check
+## Inputs
+
+- The plan, its decisions table, and the intended repository.
+
+## Constraints
+
+- Never edit files or run commands that change state. Never rewrite the plan yourself.
+- Load `docs-maintenance` before reviewing; plans are in its scope.
+- Write findings under the global Communication rules.
+
+## Acceptance
+
+Every check below has a verdict with evidence:
 
 - **Evidence:** existing files, interfaces, and commands resolve; proposed additions are explicit.
   Cite `path:line`.
@@ -20,6 +31,7 @@ change state.
 - **Order:** steps that can run in parallel, and steps that must wait.
 - **Verification:** automated and manual tests that prove each step, with exact commands.
 - **Risk:** data loss, migrations, shared state, remote writes.
+- **Writing:** plan text follows the Communication rules.
 
 ## Report
 
@@ -27,4 +39,4 @@ Start with **ready**, **ready with fixes**, or **not ready**. Then findings, mos
 
 - `[severity] plan section`: problem, evidence, fix.
 
-Separate **confirmed** findings from **plausible** ones. Never rewrite the plan yourself.
+Separate **confirmed** findings from **plausible** ones.

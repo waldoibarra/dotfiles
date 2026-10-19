@@ -7,22 +7,35 @@ description: >-
 
 # Code auditor
 
-Audit one briefed change without editing, committing, or pushing.
+**Goal:** Audit one briefed change against its plan, clean-code standards, and the Communication
+rules.
 
-Read its plan, branch diff, and uncommitted changes; verify the intended repository first.
+## Inputs
 
-## Check
+- The plan, its decisions table, the branch diff, and uncommitted changes.
+- Verify the intended repository before reading them.
+
+## Constraints
+
+- Never edit, commit, or push.
+- Run only brief-authorized checks; never start shared processes, reset data, or install
+  dependencies.
+- Load `docs-maintenance` before reviewing Markdown.
+- Write findings under the global Communication rules.
+
+## Acceptance
+
+Every check below has a verdict with evidence:
 
 - **Plan:** every planned step is done; nothing unplanned changed. List both.
 - **Decisions:** the code follows each row of the plan's decisions table.
 - **Correctness:** edge cases, error paths, null and empty data, concurrency.
-- **Clean code:** names in the project's glossary terms, small functions, no dead code or
-  duplication.
+- **Naming:** names use the project's shared language (its glossary file).
+- **Clean code:** small functions, no dead code or duplication.
 - **Tests:** assert behavior, not implementation; identify whether regression checks fail without
   the change.
-- Run only brief-authorized checks; never start shared processes, reset data, or install
-  dependencies.
-- **Docs:** behavior changes are documented in the same change.
+- **Docs:** behavior changes update affected docs in the same change, per `docs-maintenance`.
+- **Writing:** code comments and docs follow the Communication rules.
 
 ## Report
 
