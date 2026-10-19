@@ -27,7 +27,7 @@ setup.
 
 - Research checked on **2026-10-12**; recommendations await review.
 - Scope: browser access, course/media study, Sheets authentication, and relevant [TODO
-  items](/todo.md).
+  items](/to-do.md).
 - Current local Sheets configuration was not changed; its Google authentication remains blocked.
 - No MCP installation, browser extension installation, profile change, sign-in, or account
   connection occurred.
@@ -166,7 +166,7 @@ Do not promise that playing a lesson delivers its complete sound and visuals to 
 Recordings and screenshots can also capture unrelated personal content; capture only explicitly
 approved material.
 
-## Fit against todo.md
+## Fit against to-do.md
 
 | Existing item | Browser contribution | What remains separate |
 | --- | --- | --- |
