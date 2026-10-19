@@ -10,8 +10,8 @@ Global authority, model exclusions, quota stops, and retry limits remain binding
   update documentation.
 - Define observable acceptance before implementation. Documentation-only work needs factual and link
   checks, not fabricated runtime failures.
-- Keep plan decisions in a table: stable IDs, decision, reason. Mark superseded rows; never delete
-  them.
+- Keep plan decisions in a table: stable IDs, decision, reason. `docs-maintenance` owns superseding
+  rows.
 - State decided rules in documentation, comments, tests, PRs, and tickets; omit plan-only IDs and
   session codes.
 - When reviews converge, propose a fix freeze; defer later findings to the next iteration.
@@ -22,6 +22,8 @@ Global authority, model exclusions, quota stops, and retry limits remain binding
 - Choose role, model, and supported effort independently. Shared roles stay provider- and
   effort-neutral.
 - Brief each worker with its goal, files, constraints, acceptance criteria, and prohibited commands.
+- Run at most four workers on one task at once.
+- Use one worker for a search or alternatives survey, never one worker per query or source.
 - Bind each worker to its intended repository; verify the Git root before source inspection.
 - Report unavailable models or effort controls. Use supported or actual/default effort; never invent
   API parameters.
