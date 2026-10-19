@@ -31,7 +31,7 @@ Name the reader's next action, then choose one shape. Never mix reply shapes.
 
 ## Keep artifacts coherent
 
-- Use the project's glossary: one term per concept, no synonym cycling.
+- Use the project's shared language (its glossary file): one term per concept, no synonym cycling.
 - State shared context once across related tickets, PRs, and messages.
 - Omit material the reader already has through attachments, links, or the surrounding context.
 - An artifact's required syntax and structure take precedence over reply formatting.

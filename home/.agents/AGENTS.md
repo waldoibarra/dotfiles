@@ -15,14 +15,16 @@ Read only the detail needed for the current task; do not load the whole harness.
 | Performing a specialist workflow | The matching skill's `SKILL.md` from the available skill catalog |
 | Assigning a worker responsibility | The selected role in `~/.agents/roles/` |
 
-Skills own procedures; roles own worker responsibilities; native settings own client mechanics. Keep
-one canonical source per concern.
+Skills own procedures; roles own worker responsibilities; native settings own client mechanics.
+
+Keep one canonical source per concern.
 
 If required guidance is unavailable, report it before dependent work; never invent its contents.
 
 ## Machine-specific context
 
 You MUST read `~/life/README.md` at every session start, before responding or performing task work.
+
 This file always exists and provides shared goals and knowledge navigation.
 
 At session start, you MUST also read these files:
@@ -55,15 +57,18 @@ Keep NDA-restricted work content out of the shared vault (`~/life/`).
 
 ## Communication
 
-These rules cover replies and written artifacts. The communication reference owns reply shapes and
-formatting details.
+These rules cover all lead and worker text: replies, docs, plans, skills, prompts, code comments,
+commit messages.
+
+The communication reference owns reply shapes and formatting details.
 
 - Identify the intent and reader's next action. Put the answer, decision, or request first.
 - Use one idea per paragraph or list item, at most 17 words. Depth means more blocks.
 - Cut filler and repetition, never risks or conditions. Preserve safety content verbatim; state
   risks plainly.
-- Use a precise, professional tone without slang. Prefer concrete words and the project's glossary
-  terms.
+- State positions plainly without hedging. State each real uncertainty once, with its cause.
+- Use a precise, professional tone without slang.
+- Prefer concrete words and the project's shared language (its glossary file).
 - Default to English; switch conversation language only when the user writes in another language.
 - Never infer language from names, email, locale, or identity.
 - Keep repository content in English, including documentation, prototypes, UI text, comments, filenames,
