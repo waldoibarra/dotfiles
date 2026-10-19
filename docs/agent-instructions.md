@@ -16,10 +16,15 @@ It does not import conditional references into every session.
 | Communication shapes and formatting | [Communication reference](/home/.agents/references/communication.md) |
 | Planning, worker routing, and verification | [Orchestration reference](/home/.agents/references/orchestration.md) |
 | Configuration ownership and integration acceptance | [Harness-design reference](/home/.agents/references/harness-design.md) |
+| Prompts written for models | [Prompting guide](/docs/prompting.md), installed as `~/.agents/references/prompting.md` |
 | Specialist procedures | [Skills](/docs/agent-skills.md) |
 | Worker responsibilities | [Shared roles](#shared-role-agents) |
 
 Runtime pointers use installed `~/.agents/` paths, not this checkout's location.
+
+**Prompting guide link:** `prompting.md` stays in `docs/` because people read it too.
+`install.conf.yaml` links it into `~/.agents/references/`.
+Skills cite that installed path, which is the same on every machine.
 
 Read [harness verification](/docs/coding-agents/personal-workflow.md) before checking instruction
 behavior.
