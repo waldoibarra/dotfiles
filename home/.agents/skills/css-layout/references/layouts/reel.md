@@ -11,20 +11,24 @@
 
 ## Problem and mechanism
 
-Offer a horizontally browsable collection without turning the entire page into a two-axis scrolling
-surface. A nonwrapping flex row with nonshrinking children creates the strip; local
-`overflow-x: auto` makes the browser provide scrolling. This is an alternative to a scripted
-carousel, not an auto-advancing slideshow.
+Offer a horizontally browsable collection without making the entire page scroll on two axes.
 
-The chapter's diagrams contrast page-wide horizontal overflow with a local horizontal strip inside a
-vertically scrolling page. Its sequencer analogy explains the important relationship: content
-determines the strip's length; the viewport reveals only part of it. Avoid text that itself needs
-back-and-forth horizontal scrolling, and do not assume every nested horizontal scroller
-automatically satisfies WCAG Reflow.
+- A nonwrapping flex row with nonshrinking children creates the strip.
+- Local `overflow-x: auto` makes the browser provide scrolling.
+- This is an alternative to a scripted carousel, not an auto-advancing slideshow.
 
-Use for product/category browsing, image galleries, and short navigation links. Prefer
-`references/layouts/cluster.md` when wrapping is acceptable, or `references/layouts/grid.md` when
-every item should participate in the page's normal vertical reading flow.
+The chapter's diagrams contrast page-wide horizontal overflow with a local strip in a vertical page.
+
+- Its sequencer analogy explains the key relationship.
+  - Content determines the strip's length; the viewport reveals only part of it.
+- Avoid text that itself needs back-and-forth horizontal scrolling.
+- Do not assume every nested horizontal scroller automatically satisfies WCAG Reflow.
+
+Use for product/category browsing, image galleries, and short navigation links.
+
+- Prefer `references/layouts/cluster.md` when wrapping is acceptable.
+- Prefer `references/layouts/grid.md` when every item should join the page's normal vertical
+  reading flow.
 
 ## Primary HTML/CSS example
 
@@ -62,18 +66,21 @@ This authored example uses native focus and scrolling, with no script required.
 
 ## Height, spacing, and affordance variants
 
-**Height.** Content cards normally determine the strip's height; flex stretching aligns them to the
-tallest card. A nested Stack can push card attribution to the bottom
-(`references/layouts/stack.md`). For direct-child images, a deliberately bounded gallery height plus
-`block-size: 100%; inline-size: auto; flex-basis: auto` preserves each image's aspect ratio while
-equalizing heights. Scope these rules with `>` so images inside cards remain unaffected. Avoid
-constraining text-card height and then hiding its overflow.
-
-**Between items.** The chapter retains logical sibling margins for its nonwrapping strip; modern
-flex `gap` is an authored alternative, as above. Do not combine both unintentionally. For an inset
-border around the scroller, the chapter documents an end-padding problem: the last item can meet the
-scroll edge despite parent padding. Its workaround uses margins on children, zero inline-end margin,
-and a final nonshrinking pseudo-item:
+- **Height.** Content cards normally determine the strip's height.
+  - Flex stretching aligns them to the tallest card.
+  - A nested Stack can push card attribution to the bottom (`references/layouts/stack.md`).
+  - For direct-child images, use a deliberately bounded gallery height plus
+    `block-size: 100%; inline-size: auto; flex-basis: auto`.
+    - That preserves each image's aspect ratio while equalizing heights.
+  - Scope these rules with `>` so images inside cards remain unaffected.
+  - Avoid constraining text-card height and then hiding its overflow.
+- **Between items.** The chapter retains logical sibling margins for its nonwrapping strip.
+  - Modern flex `gap` is an authored alternative, as above.
+  - Do not combine both unintentionally.
+  - For an inset border around the scroller, the chapter documents an end-padding problem.
+    - The last item can meet the scroll edge despite parent padding.
+  - Its workaround uses margins on children and zero inline-end margin.
+    - It adds a final nonshrinking pseudo-item:
 
 ```css
 /* Spacing variant: use instead of the primary example's gap. */
@@ -93,33 +100,41 @@ and a final nonshrinking pseudo-item:
 }
 ```
 
-That pseudo-item represents real trailing space in the flex strip. Unlike the site's global border
-reset, the example explicitly supplies border style and color inheritance.
-
-**Scrollbar.** A visible bar both permits dragging and advertises more content. `scrollbar-color`
-takes thumb then track; the chapter also styles WebKit scrollbar pseudo-elements. Its
-dark/light/dark gradient makes the thumb appear inset because those pseudo-elements do not accept
-all ordinary box styling. OS preferences can still affect visibility; test the target platform.
-
-**Overflow-only spacing.** Compare `scrollWidth > clientWidth`, toggle an `overflowing` class, and
-add bottom padding only when needed. The class is concatenated with the component selector, so
-unrelated `overflowing` elements are untouched. A ResizeObserver detects host size changes; a
-child-list MutationObserver handles direct item additions/removals. Without these enhancements,
-native scrolling still works, but conditional spacing may not appear.
-
-**Hidden bar.** Short slidable navigation may omit the bar, but must communicate overflow another
-way. The partly visible next-item diagram explains why exact fractional item widths can misleadingly
-look complete. An instruction revealed by `.overflowing` indicates that more content exists, not
-whether the user has reached an endpoint. Endpoint-aware instructions need scroll-position logic.
-The chapter also describes scroll shadows: stationary shadow backgrounds with locally scrolling
-cover backgrounds hide the shadow at an endpoint.
+- That pseudo-item represents real trailing space in the flex strip.
+- Unlike the site's global border reset, the example explicitly supplies border style and color
+  inheritance.
+- **Scrollbar.** A visible bar both permits dragging and advertises more content.
+  - `scrollbar-color` takes thumb then track.
+  - The chapter also styles WebKit scrollbar pseudo-elements.
+  - Its dark/light/dark gradient makes the thumb appear inset.
+    - Those pseudo-elements do not accept all ordinary box styling.
+  - OS preferences can still affect visibility; test the target platform.
+- **Overflow-only spacing.** Compare `scrollWidth > clientWidth` and toggle an `overflowing` class.
+  - Add bottom padding only when needed.
+  - The class is concatenated with the component selector.
+    - So unrelated `overflowing` elements are untouched.
+  - A ResizeObserver detects host size changes.
+  - A child-list MutationObserver handles direct item additions/removals.
+  - Without these enhancements, native scrolling still works, but conditional spacing may not
+    appear.
+- **Hidden bar.** Short slidable navigation may omit the bar.
+  - It must then communicate overflow another way.
+  - Exact fractional item widths can misleadingly look complete.
+    - The partly visible next-item diagram explains why.
+  - An instruction revealed by `.overflowing` indicates that more content exists.
+    - It does not indicate whether the user has reached an endpoint.
+  - Endpoint-aware instructions need scroll-position logic.
+  - The chapter also describes scroll shadows.
+    - Stationary shadow backgrounds sit under locally scrolling cover backgrounds.
+    - The covers hide the shadow at an endpoint.
 
 ## Downloaded component
 
-Include `Reel.css`, import `Reel.js` as a module, and define `--s0`, `--color-light`, and
-`--color-dark` or replace their uses. For a meaningful CSS-only fallback, also define
-`--item-width`: the companion stylesheet references it without a fallback. Shared integration:
-`references/component-integration.md`.
+- Include `Reel.css` and import `Reel.js` as a module.
+- Define `--s0`, `--color-light`, and `--color-dark`, or replace their uses.
+- For a meaningful CSS-only fallback, also define `--item-width`.
+  - The companion stylesheet references it without a fallback.
+- Shared integration: `references/component-integration.md`.
 
 **Component usage** (article widths are independent of viewport breakpoints):
 
@@ -143,45 +158,57 @@ Include `Reel.css`, import `Reel.js` as a module, and define `--s0`, `--color-li
 | `height`                      | string  | `auto`      | Reel height; direct images fill it                       |
 | `noBar`                       | boolean | false       | Presence hides scrollbar; does not disable scrolling     |
 
-The module exports `Reel` and registers `reel-l`. Getters read attributes; string setters write
-them, and `noBar`'s setter adds/removes its presence attribute. Rendering constructs a configuration
-`data-i` and caches one document-head style block per configuration. Generated rules set physical
-height, child flex basis, direct image dimensions, logical sibling margin, conditional bottom
-padding, and optional hidden-scrollbar rules.
+- The module exports `Reel` and registers `reel-l`.
+- Getters read attributes; string setters write them.
+- `noBar`'s setter adds/removes its presence attribute.
+- Rendering constructs a configuration `data-i`.
+  - It caches one document-head style block per configuration.
+- Generated rules set:
+  - physical height and child flex basis;
+  - direct image dimensions;
+  - logical sibling margin and conditional bottom padding;
+  - optional hidden-scrollbar rules.
 
-`connectedCallback` renders and creates feature-detected ResizeObserver and MutationObserver
-instances. The selected **implementation excerpt** captures the overflow and mutation scope:
+- `connectedCallback` renders.
+- It creates feature-detected ResizeObserver and MutationObserver instances.
+
+The selected **implementation excerpt** captures the overflow and mutation scope:
 
 ```js
 elem.classList.toggle("overflowing", this.scrollWidth > this.clientWidth);
 // MutationObserver observes this element with { childList: true }.
 ```
 
-The observed-attribute list is `['itemWidth', 'height', 'space', 'noBar']`;
-`attributeChangedCallback` renders. HTML lowercases attribute names, so the camelCase entries are an
-upstream reactivity hazard. **Observed in the historical Chromium checks recorded in
-`references/sources.md`:** changing `itemWidth` through `setAttribute` left `data-i` unchanged.
-Do not promise reactive width changes from this download without adapting its observed names.
-`noBar` has the same source-inspected naming risk; initial connection reads attribute values.
+- The observed-attribute list is `['itemWidth', 'height', 'space', 'noBar']`.
+- `attributeChangedCallback` renders.
+- HTML lowercases attribute names, so the camelCase entries are an upstream reactivity hazard.
+- **Historical Chromium observation:** changing `itemWidth` through `setAttribute` left `data-i`
+  unchanged (`references/sources.md`).
+- Do not promise reactive width changes from this download without adapting its observed names.
+- `noBar` has the same source-inspected naming risk.
+- Initial connection reads attribute values.
 
-The implementation does not retain/disconnect observer handles or provide `disconnectedCallback`;
-reconnection can add observers. Mutation observation excludes descendant text/attribute changes.
-Host ResizeObserver alone does not detect every change to overflowing child width. There is no
-built-in endpoint detection, focus management, or navigation-button script.
+- The implementation does not retain/disconnect observer handles or provide `disconnectedCallback`.
+  - Reconnection can add observers.
+- Mutation observation excludes descendant text/attribute changes.
+- Host ResizeObserver alone does not detect every change to overflowing child width.
+- There is no built-in endpoint detection, focus management, or navigation-button script.
 
 ## Pitfalls and checks
 
-- Exercise keyboard access to every item, focus-ring visibility, touch/trackpad scrolling, narrow
-  containers, RTL, large text, and long titles. The download's `overflow-y: hidden` can clip content
-  or focus outlines.
-- If children are not focusable, consider a labeled focusable scroll region. Focusable links often
-  bring themselves into view, but verify actual keyboard scrolling rather than assuming it.
-- A hidden scrollbar does not remove the need for an affordance. Never describe `noBar` as turning
-  scrolling off.
-- Check item insertion/removal and late-loading media; observer presence is not evidence that every
-  overflow transition is detected.
-- Native scrolling is the baseline; optional buttons should increment that same scroll position
-  instead of replacing it with an inaccessible parallel interaction.
+- Exercise keyboard access to every item, focus-ring visibility, and touch/trackpad scrolling.
+- Exercise narrow containers, RTL, large text, and long titles.
+- The download's `overflow-y: hidden` can clip content or focus outlines.
+- If children are not focusable, consider a labeled focusable scroll region.
+- Focusable links often bring themselves into view.
+  - Verify actual keyboard scrolling rather than assuming it.
+- A hidden scrollbar does not remove the need for an affordance.
+- Never describe `noBar` as turning scrolling off.
+- Check item insertion/removal and late-loading media.
+  - Observer presence is not evidence that every overflow transition is detected.
+- Native scrolling is the baseline.
+  - Optional buttons should increment that same scroll position.
+  - They should not replace it with an inaccessible parallel interaction.
 
 ## Sources
 

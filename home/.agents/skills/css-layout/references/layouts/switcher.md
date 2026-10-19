@@ -1,7 +1,9 @@
 # Switcher
 
-Use when a small group of peers should form either one row or one column, without an intermediate
-two-plus-one arrangement that accidentally makes the last item look more important.
+Use when a small group of peers should form either one row or one column.
+
+- It avoids an intermediate two-plus-one arrangement.
+  - That arrangement accidentally makes the last item look more important.
 
 ## Contents
 
@@ -14,26 +16,35 @@ two-plus-one arrangement that accidentally makes the last item look more importa
 
 ## Problem and mechanism
 
-Ordinary wrapping flex items grow independently on each line. The chapter's diagrams show how an
-incomplete last row then contains wider items, and how a Switcher bypasses that intermediate
-arrangement. Numbered steps and equally important offers often benefit from a single reading axis
-instead.
+Ordinary wrapping flex items grow independently on each line.
 
-The switching expression is `calc((threshold - 100%) * 999)` for each child's flex basis. Here
-`100%` is the flex container's inline size, not the viewport. Above the threshold the negative
-calculation reaches the property's nonnegative lower bound, leaving growth to distribute the row.
-Below it the large positive basis forces separate lines. This is a practical switching technique,
-not an actual conditional statement; extreme child minimum sizes and values very close to the
-threshold still merit checking.
+- The chapter's diagrams show an incomplete last row then containing wider items.
+- They show how a Switcher bypasses that intermediate arrangement.
+- Numbered steps and equally important offers often benefit from a single reading axis instead.
 
-The chapter describes the negative result both as an invalid declaration being dropped and as
-correction to zero. Do not depend on it reverting to intrinsic `auto` sizing: the useful mechanism
-is the calculated basis's zero lower bound. Equal growth also assumes no child's content-based
-minimum dominates its peers.
+The switching expression is `calc((threshold - 100%) * 999)` for each child's flex basis.
+
+- Here `100%` is the flex container's inline size, not the viewport.
+- Above the threshold, the negative calculation reaches the property's nonnegative lower bound.
+  - Growth then distributes the row.
+- Below it, the large positive basis forces separate lines.
+- This is a practical switching technique, not an actual conditional statement.
+- Still check extreme child minimum sizes and values very close to the threshold.
+
+The chapter describes the negative result two ways:
+
+- as an invalid declaration being dropped;
+- as correction to zero.
+
+Do not depend on it reverting to intrinsic `auto` sizing.
+
+- The useful mechanism is the calculated basis's zero lower bound.
+- Equal growth also assumes no child's content-based minimum dominates its peers.
 
 ## Primary example
 
-Runnable HTML/CSS. This uses a four-item quantity limit, independently of the width threshold.
+- Runnable HTML/CSS.
+- This uses a four-item quantity limit, independently of the width threshold.
 
 ```html
 <style>
@@ -78,26 +89,33 @@ Runnable HTML/CSS. This uses a four-item quantity limit, independently of the wi
 </ol>
 ```
 
-The quantity selector counts from the end: with at least five children, `:nth-last-child(n+5)` finds
-the earlier children and `~ *` reaches the rest. Fewer children match neither branch. This keeps
-excessive item counts from producing arbitrarily thin columns even in a wide parent.
+The quantity selector counts from the end.
+
+- With at least five children, `:nth-last-child(n+5)` finds the earlier children.
+  - `~ *` reaches the rest.
+- Fewer children match neither branch.
+- This keeps excessive item counts from producing arbitrarily thin columns, even in a wide parent.
 
 ## Variants and selection
 
-- **Proportions:** `.steps > :nth-child(2) { flex-grow: 2; }` gives the second item twice the share
-  of free space in the row. Borders, padding, and intrinsic minima mean its measured outer width
-  need not be exactly double. Stacked items still fill a line.
-- **Content width:** constrain images and other wide descendants with `max-inline-size: 100%`; make
-  long text wrap intentionally. The chapter's content-width diagram illustrates a large nested
-  element defeating otherwise equal proportions.
-- **Different quantity limit:** change both selectors' `n+5` to `n+(limit + 1)` expressed as an
-  actual number. This is an element-count limit, not a viewport breakpoint.
-- **Legacy gutters:** the chapter also covers a wrapper with negative half-gap margins and half-gap
-  child margins. Because that wrapper becomes wider, its calculation subtracts the gap from `100%`.
-  Prefer `gap` for new implementations; do not combine the two spacing schemes.
+- **Proportions:** `.steps > :nth-child(2) { flex-grow: 2; }` doubles the second item's share.
+  - That share is of free space in the row.
+  - Borders, padding, and intrinsic minima mean its measured outer width need not be exactly double.
+  - Stacked items still fill a line.
+- **Content width:** constrain images and other wide descendants with `max-inline-size: 100%`.
+  - Make long text wrap intentionally.
+  - The chapter's content-width diagram shows a large nested element defeating equal proportions.
+- **Different quantity limit:** change both selectors' `n+5` to `n+(limit + 1)`.
+  - Express that as an actual number.
+  - This is an element-count limit, not a viewport breakpoint.
+- **Legacy gutters:** the chapter also covers a wrapper with negative half-gap margins.
+  - Its children get half-gap margins.
+  - Because that wrapper becomes wider, its calculation subtracts the gap from `100%`.
+  - Prefer `gap` for new implementations; do not combine the two spacing schemes.
 
-Historical margin-based variant, distinct from the primary example; `.legacy-switcher` wraps a
-`.row` whose children are the items:
+Historical margin-based variant, distinct from the primary example:
+
+- `.legacy-switcher` wraps a `.row` whose children are the items.
 
 ```css
 .legacy-switcher {
@@ -116,10 +134,10 @@ Historical margin-based variant, distinct from the primary example; `.legacy-swi
 }
 ```
 
-Grid (`references/layouts/grid.md`) suits multiple rows with aligned columns, Cluster
-(`references/layouts/cluster.md`) permits independent wrapping, and Sidebar
-(`references/layouts/sidebar.md`) provides two deliberately unequal regions. A normal wrapping flex
-layout remains valid when a wider final row is not misleading.
+- Grid (`references/layouts/grid.md`) suits multiple rows with aligned columns.
+- Cluster (`references/layouts/cluster.md`) permits independent wrapping.
+- Sidebar (`references/layouts/sidebar.md`) provides two deliberately unequal regions.
+- A normal wrapping flex layout remains valid when a wider final row is not misleading.
 
 ## Downloaded component
 
@@ -152,10 +170,11 @@ Component usage after acquiring the named JS and companion CSS files:
 </switcher-l>
 ```
 
-The companion CSS establishes wrapping flex layout, child growth, and a fallback threshold using
-`--measure`; JavaScript generates the instance gap, configured basis, and quantity selectors.
-`references/component-integration.md` covers light-DOM integration, shared style caching, tokens,
-and import ownership.
+- The companion CSS establishes wrapping flex layout and child growth.
+  - It sets a fallback threshold using `--measure`.
+- JavaScript generates the instance gap, configured basis, and quantity selectors.
+- `references/component-integration.md` covers light-DOM integration and shared style caching.
+  - It also covers tokens and import ownership.
 
 | Attribute / JS property | Website default  | Downloaded behavior                                                                  |
 | ----------------------- | ---------------- | ------------------------------------------------------------------------------------ |
@@ -163,10 +182,11 @@ and import ownership.
 | `space`                 | `var(--s1)`      | Flex gap.                                                                            |
 | `limit`                 | integer `4`      | Getter defaults to string `'5'`; `parseInt` supplies the quantity selector's number. |
 
-**Material discrepancy:** the API and source JSDoc say four horizontal items, but the downloaded
-getter permits five; six triggers its quantity override. Specify `limit="4"` to get the documented
-default. The string `'5'` getter result was also observed in Chromium, not merely inferred from
-source.
+**Material discrepancy:** the API and source JSDoc say four horizontal items.
+
+- The downloaded getter permits five; six triggers its quantity override.
+- Specify `limit="4"` to get the documented default.
+- The string `'5'` getter result was also observed in Chromium, not merely inferred from source.
 
 Selected downloaded implementation expressions:
 
@@ -177,32 +197,38 @@ this.getAttribute("limit") || "5";
 parseInt(this.limit) + 1;
 ```
 
-`switcher-l` registers on import. All three properties have attribute-reflecting setters and
-fallback-reading getters. `observedAttributes` contains `threshold`, `space`, and `limit`;
-connection and attribute changes call render. Render joins those values into a configuration key,
-sets `data-i`, and creates a matching head style only once per key. Quantity adaptation itself is
-CSS: adding/removing children does not require an observer. There is no validation of malformed or
-negative limits; provide a deliberate positive integer.
+- `switcher-l` registers on import.
+- All three properties have attribute-reflecting setters and fallback-reading getters.
+- `observedAttributes` contains `threshold`, `space`, and `limit`.
+- Connection and attribute changes call render.
+- Render joins those values into a configuration key and sets `data-i`.
+  - It creates a matching head style only once per key.
+- Quantity adaptation itself is CSS: adding/removing children does not require an observer.
+- There is no validation of malformed or negative limits.
+  - Provide a deliberate positive integer.
 
 ## Pitfalls and checks
 
-- Check the same viewport with wide and narrow parent containers; changing viewport alone does not
-  prove container independence.
-- Check just below/above the chosen threshold and at the maximum item count plus one. Very narrow
-  parents, large gaps, and forced minimum widths can interfere with the intended row.
-- Keep DOM order meaningful in either orientation. A visual sequence still needs ordered-list or
-  equivalent content semantics.
-- Companion CSS alone does not implement the configured `limit` or gap. Supply those in a CSS
-  baseline if needed without JavaScript.
-- Chromium smoke of the acquired component observed three peers in one row at an `800px` container
-  and three rows at `300px`. This establishes those cases, not every threshold or browser. Further
-  checks belong in `references/verification.md`.
+- Check the same viewport with wide and narrow parent containers.
+  - Changing viewport alone does not prove container independence.
+- Check just below/above the chosen threshold and at the maximum item count plus one.
+- Very narrow parents, large gaps, and forced minimum widths can interfere with the intended row.
+- Keep DOM order meaningful in either orientation.
+- A visual sequence still needs ordered-list or equivalent content semantics.
+- Companion CSS alone does not implement the configured `limit` or gap.
+  - Supply those in a CSS baseline if needed without JavaScript.
+- Chromium smoke of the acquired component observed three peers in one row at an `800px` container.
+  - It observed three rows at `300px`.
+  - This establishes those cases, not every threshold or browser.
+- Further checks belong in `references/verification.md`.
 
 ## Sources
 
 Original summary and examples derived from
-[The Switcher](https://every-layout.dev/layouts/switcher/): intrinsic sizing, symmetry diagrams,
-switching expression, gutters, proportions, quantity query, generator, and API. Component details
-inspected in [Switcher.zip](https://every-layout.dev/downloads/Switcher.zip) (`README.txt`,
-`Switcher.css`, `Switcher.js`). Website-only evidence; no ebook/PDF or full downloaded
-implementation reproduced.
+[The Switcher](https://every-layout.dev/layouts/switcher/).
+
+- Topics: intrinsic sizing, symmetry diagrams, switching expression, gutters, and proportions.
+- Also: quantity query, generator, and API.
+- Component details inspected in [Switcher.zip](https://every-layout.dev/downloads/Switcher.zip)
+  (`README.txt`, `Switcher.css`, `Switcher.js`).
+- Website-only evidence; no ebook/PDF or full downloaded implementation reproduced.

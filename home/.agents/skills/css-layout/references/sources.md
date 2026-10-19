@@ -9,37 +9,45 @@
 - Verification record
 - Attribution and refresh policy
 
-This skill derives from the **Every Layout website**, by Heydon Pickering and Andy Bell, and the
-native component archives linked by its layout chapters. Retrieval session date: **2026-09-30**. No
-ebook, EPUB, or PDF was used. No upstream version or last-updated date was supplied with the
-captured chapter evidence.
+This skill derives from the **Every Layout website**, by Heydon Pickering and Andy Bell.
+
+It also uses the native component archives linked by its layout chapters.
+
+Retrieval session date: **2026-09-30**.
+
+No ebook, EPUB, or PDF was used.
+
+No upstream version or last-updated date was supplied with the captured chapter evidence.
 
 ## Evidence and publication boundary
 
-- **Website documentation:** authenticated, rendered chapter captures supplied the unlocked text,
-  headings, code examples, diagrams/images, tables, and download links. A raw HTTP response can
-  return a purchase placeholder with status 200; that is not evidence of reading the chapter.
-- **Downloaded implementation:** each archive below was retrieved from its public download URL and
-  inspected as `README.txt`, matching CSS, and matching JavaScript. SHA-256 values identify the
-  retrieved ZIP bytes, not a claimed release version. All thirteen READMEs were identical in this
-  retrieval.
+- **Website documentation:** authenticated, rendered chapter captures supplied the unlocked content.
+  - Captured: text, headings, code examples, diagrams/images, tables, and download links.
+  - A raw HTTP response can return a purchase placeholder with status 200.
+  - That placeholder is not evidence of reading the chapter.
+- **Downloaded implementation:** each archive below was retrieved from its public download URL.
+  - Each was inspected as `README.txt`, matching CSS, and matching JavaScript.
+  - SHA-256 values identify the retrieved ZIP bytes, not a claimed release version.
+  - All thirteen READMEs were identical in this retrieval.
 - **Observed behavior:** runtime confirmation is stated only for the paths actually exercised.
-  Source analysis is otherwise labeled as downloaded or documented behavior. Browser support is not
-  inferred from an API table.
-- **Public output:** references contain original concise explanations, authored illustrative
-  snippets, and limited selected implementation expressions. Complete authenticated captures,
-  archives, and paid implementation files are not bundled. Purchase/access does not by itself grant
-  republication permission; see
-  [terms and conditions](https://every-layout.dev/terms-and-conditions/).
+  - Source analysis is otherwise labeled as downloaded or documented behavior.
+  - Browser support is not inferred from an API table.
+- **Public output:** references contain original concise explanations and authored illustrative
+  snippets.
+  - They also contain limited selected implementation expressions.
+  - Complete authenticated captures, archives, and paid implementation files are not bundled.
+  - Purchase/access does not by itself grant republication permission; see
+    [terms and conditions](https://every-layout.dev/terms-and-conditions/).
 - **Private access:** no login, account, purchase, or authenticated access links belong in tracked
-  files. Canonical public URLs below identify sources without publishing credentials or session
-  details.
+  files.
+  - Canonical public URLs below identify sources without publishing credentials or session details.
 
 ## Six rudiments
 
-All rows use rendered website evidence retrieved in the session dated above. Coverage includes the
-chapter's substantive explanation, consequential examples and diagrams, and practical implications;
-references separate the underlying principle from the layout recipes.
+- All rows use rendered website evidence retrieved in the session dated above.
+- Coverage includes the chapter's substantive explanation, consequential examples and diagrams,
+  and practical implications.
+- References separate the underlying principle from the layout recipes.
 
 | Chapter and canonical URL                                                                | Installed reference                                |
 | ---------------------------------------------------------------------------------------- | -------------------------------------------------- |
@@ -52,9 +60,11 @@ references separate the underlying principle from the layout recipes.
 
 ## Thirteen layouts
 
-All rows use rendered website evidence retrieved in the same session. Each installed reference
-treats the problem, mechanism, relevant alternatives/variants, diagrams, primary illustrative
-HTML/CSS, and the corresponding downloaded component API and implementation.
+- All rows use rendered website evidence retrieved in the same session.
+- Each installed reference treats the problem, mechanism, relevant alternatives/variants, and
+  diagrams.
+  - It also treats primary illustrative HTML/CSS and the corresponding downloaded component API
+    and implementation.
 
 | Chapter and canonical URL                                    | Installed reference               |
 | ------------------------------------------------------------ | --------------------------------- |
@@ -74,11 +84,13 @@ HTML/CSS, and the corresponding downloaded component API and implementation.
 
 ## Thirteen component downloads
 
-Retrieval date for every row: **2026-09-30**. Each archive contains `README.txt`, `<Name>.css`, and
-`<Name>.js`. The shared README establishes module loading, companion CSS/fallbacks, scale-token
-dependencies, and the intended attribute-update interface. `references/component-integration.md`
-explains the shared contract; the individual layout references analyze component-specific behavior.
-Hashes below were recorded by the source retrieval, not computed from reformatted snippets.
+- Retrieval date for every row: **2026-09-30**.
+- Each archive contains `README.txt`, `<Name>.css`, and `<Name>.js`.
+- The shared README establishes module loading, companion CSS/fallbacks, scale-token dependencies,
+  and the intended attribute-update interface.
+- `references/component-integration.md` explains the shared contract.
+  - The individual layout references analyze component-specific behavior.
+- Hashes below were recorded by the source retrieval, not computed from reformatted snippets.
 
 | Download                                                          | SHA-256 of retrieved ZIP                                           |
 | ----------------------------------------------------------------- | ------------------------------------------------------------------ |
@@ -98,39 +110,46 @@ Hashes below were recorded by the source retrieval, not computed from reformatte
 
 ## Verification record
 
-The following results were recorded in the 2026-09-30 retrieval session, not rerun by later
-documentation edits. File and check counts describe that historical run's scope, not the current
-CSS skill inventory.
-
-- Markdown lint reported no errors across 26 files; the skill validator reported 29 passes and
-  four skips. A disposable symlink installation resolved all 22 reference paths; no global
-  workstation sync was performed.
-- Chromium rendered examples from all six rudiments and thirteen layouts. Layout examples had
-  no wrapper overflow at 320px and 960px, or at 320px with 24px text. All thirteen upstream
-  component imports and selected configuration paths were exercised; component-specific
-  limitations remain documented in the references. Keyboard Tab traversal reached Reel links
-  and scrolled the region by 512px.
-- Three isolated baseline/treatment scenarios were generated. Browser checks passed the
-  exercised outcomes in both arms; this does not establish superiority with the skill.
-  Semantic routing matched all nine positive and nine negative cases (18/18), but did not
-  prove actual host autoload behavior.
-
-These checks cover the exercised Chromium states, not every API path, browser, or content case.
+- These results were recorded in the 2026-09-30 retrieval session, not rerun by later
+  documentation edits.
+- File and check counts describe that historical run's scope, not the current CSS skill inventory.
+- Markdown lint reported no errors across 26 files.
+- The skill validator reported 29 passes and four skips.
+- A disposable symlink installation resolved all 22 reference paths.
+  - No global workstation sync was performed.
+- Chromium rendered examples from all six rudiments and thirteen layouts.
+  - Layout examples had no wrapper overflow at 320px and 960px, or at 320px with 24px text.
+  - All thirteen upstream component imports and selected configuration paths were exercised.
+  - Component-specific limitations remain documented in the references.
+  - Keyboard Tab traversal reached Reel links and scrolled the region by 512px.
+- Three isolated baseline/treatment scenarios were generated.
+  - Browser checks passed the exercised outcomes in both arms.
+  - This does not establish superiority with the skill.
+- Semantic routing matched all nine positive and nine negative cases (18/18).
+  - It did not prove actual host autoload behavior.
+- These checks cover the exercised Chromium states, not every API path, browser, or content case.
 
 ## Attribution and refresh policy
 
-Adopted: the website's content-driven layout relationships, composition model, chapter coverage, and
-analysis of the native components. Authored: the skill's routing, concise explanations, illustrative
-markup/CSS, and verification procedure. Not adopted: full chapter text, whole paid component
-sources, a compulsory custom-element architecture, or historical tooling/polyfill advice as a
-current dependency requirement.
+- **Adopted:** the website's content-driven layout relationships, composition model, chapter
+  coverage, and analysis of the native components.
+- **Authored:** the skill's routing, concise explanations, illustrative markup/CSS, and
+  verification procedure.
+- **Not adopted:** full chapter text, whole paid component sources, or a compulsory
+  custom-element architecture.
+  - Also not adopted: historical tooling/polyfill advice as a current dependency requirement.
 
-When updating, retrieve the canonical rendered chapter and its current archive together. Check
-substantive changes and hash changes rather than assuming the chapter and download agree. Keep a
-material mismatch beside the affected API: the retrieved Switcher documentation says default `4`
-while the downloaded getter returns `'5'`; Center documents boolean `gutters` while the download
-consumes a CSS string. No separate discrepancy catalogue is needed.
+When updating:
 
-The hub is `SKILL.md`; platform architecture remains owned by `web-standards`. This source record
-describes provenance, not permission to redistribute paid material and not a blanket verification
-result.
+- Retrieve the canonical rendered chapter and its current archive together.
+- Check substantive changes and hash changes rather than assuming the chapter and download agree.
+- Keep a material mismatch beside the affected API; no separate discrepancy catalogue is needed.
+  - The retrieved Switcher documentation says default `4`; the downloaded getter returns `'5'`.
+  - Center documents boolean `gutters`; the download consumes a CSS string.
+
+The hub is `SKILL.md`; platform architecture remains owned by `web-standards`.
+
+This source record describes provenance only:
+
+- It is not permission to redistribute paid material.
+- It is not a blanket verification result.

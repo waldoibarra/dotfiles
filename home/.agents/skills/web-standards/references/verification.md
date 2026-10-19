@@ -1,7 +1,9 @@
 # Verification
 
-Read before browser verification. Choose checks that exercise changed behavior, not every row
-for every task. Use the project's existing tools; no specific agent host or browser tool is required.
+Read before browser verification.
+
+- Choose checks that exercise changed behavior, not every row for every task.
+- Use the project's existing tools; no specific agent host or browser tool is required.
 
 | Changed surface | Exercise | Expected evidence |
 | --- | --- | --- |
@@ -14,16 +16,25 @@ for every task. Use the project's existing tools; no specific agent host or brow
 | Routing | Direct URL, refresh, Back/Forward, external/modified link | URL and content agree; browser conventions survive |
 | Shadow DOM | Accessible name, focus, events, styles, form if applicable | Boundary does not break consumer behavior |
 
-Serve over HTTP and interact with the actual page. Observe rendered output and console/network
-failures. Automated tests supplement this smoke run, not substitute for it. Run relevant existing
-tests after edits; add regression tests for real behavioral risks, not source-string checks.
+Run the page:
 
-Record tested browser, commands/scenarios, outcomes, and untested browser targets. A single
-Chromium run is not proof of Safari or Firefox compatibility.
+- Serve over HTTP and interact with the actual page.
+- Observe rendered output and console/network failures.
+- Automated tests supplement this smoke run, not substitute for it.
+- Run relevant existing tests after edits.
+- Add regression tests for real behavioral risks, not source-string checks.
 
-When performance is in scope or a comparative claim is made, measure rather than infer improvement
-from fewer dependencies. Use audience-representative devices/CPU and network conditions; record
-cache state. Distinguish initial loading, interactions, and later navigation for the relevant
-journeys. Measure transferred bytes and main-thread work alongside user-visible outcomes.
-Identify lab measurements versus field evidence and report comparable conditions and limitations.
-Derive any budgets from the audience and journey; impose no universal byte limits or scores.
+Record results:
+
+- Record tested browser, commands/scenarios, outcomes, and untested browser targets.
+- A single Chromium run is not proof of Safari or Firefox compatibility.
+
+When performance is in scope or a comparative claim is made, measure it:
+
+- Do not infer improvement from fewer dependencies.
+- Use audience-representative devices/CPU and network conditions; record cache state.
+- Distinguish initial loading, interactions, and later navigation for the relevant journeys.
+- Measure transferred bytes and main-thread work alongside user-visible outcomes.
+- Identify lab measurements versus field evidence.
+- Report comparable conditions and limitations.
+- Derive any budgets from the audience and journey; impose no universal byte limits or scores.

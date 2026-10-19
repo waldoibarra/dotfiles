@@ -8,36 +8,41 @@ description:
 
 # CSS Layout
 
-- **IS:** choosing, composing, implementing, and reviewing content-driven CSS layout, in any
-  framework or plain HTML.
+- **IS:** choosing, composing, implementing, and reviewing content-driven CSS layout.
+  - It applies in any framework or plain HTML.
 - **IS NOT:** application architecture, a framework migration, or a requirement to use custom
-  elements. Use `web-standards` for native semantics, progressive enhancement, component lifecycle,
-  Light/Shadow DOM, and platform tooling; `ui-design` for broader visual/interface design.
+  elements.
+  - Use `web-standards` for native semantics, progressive enhancement, component lifecycle,
+    Light/Shadow DOM, and platform tooling.
+  - Use `ui-design` for broader visual/interface design.
 
-Prefer relationships that adapt to their available space over device-specific exceptions. Intrinsic
-CSS is a default, not a prohibition on media or container queries. Preserve the project's tokens,
-semantics, browser targets, and existing component conventions.
-
-Load `web-standards` when a layout change also changes semantics, native interaction, or component
-lifecycle; geometry-only fixes do not need it. `web-app-craft` coordinates combined app-interface
-work, but is not a dependency of this skill.
+- Prefer relationships that adapt to their available space over device-specific exceptions.
+- Intrinsic CSS is a default, not a prohibition on media or container queries.
+- Preserve the project's tokens, semantics, browser targets, and existing component conventions.
+- Load `web-standards` when a layout change also changes semantics, native interaction, or
+  component lifecycle.
+  - Geometry-only fixes do not need it.
+- `web-app-craft` coordinates combined app-interface work, but is not a dependency of this skill.
 
 ## Workflow
 
-- Identify the relationship: space between siblings, readable measure, wrapping group, asymmetric
-  pair, threshold switch, repeated tracks, bounded media, or overlay. Inspect the actual containing
-  block, not just the viewport.
-- Load the matching layout reference below and the rudiment behind the uncertainty. Read
-  `references/rudiments/composition.md` when combining primitives; do not load the entire library.
-- Implement the CSS mechanism on semantic HTML first. When importing, configuring, or verifying
-  optional downloaded components, read `references/component-integration.md` and the chapter's
-  component section. Choose those components only when their attribute API is useful. Do not add a
-  runtime to obtain a CSS layout.
-- Exercise the changed surface using `references/verification.md`: resize its container, stress its
-  content, and inspect accessibility-relevant behavior. Fix the requested implementation through
-  the observed states; a working screenshot at one width is not completion.
+- Identify the relationship, inspecting the actual containing block, not just the viewport.
+  - Candidates: sibling spacing, readable measure, wrapping group, asymmetric pair, threshold
+    switch, repeated tracks, bounded media, or overlay.
+- Load the matching layout reference below and the rudiment behind the uncertainty.
+  - Read `references/rudiments/composition.md` when combining primitives.
+  - Do not load the entire library.
+- Implement the CSS mechanism on semantic HTML first.
+  - When importing, configuring, or verifying optional downloaded components, read
+    `references/component-integration.md` and the chapter's component section.
+  - Choose those components only when their attribute API is useful.
+  - Do not add a runtime to obtain a CSS layout.
+- Exercise the changed surface using `references/verification.md`.
+  - Resize its container, stress its content, and inspect accessibility-relevant behavior.
+  - Fix the requested implementation through the observed states.
+  - A working screenshot at one width is not completion.
 - Deliver the changed behavior, why the mechanism fits, and the browser states actually checked.
-  For review-only requests, give located findings and evidence rather than silently editing.
+  - For review-only requests, give located findings and evidence rather than silently editing.
 
 ## Rudiments: load for the decision
 
@@ -72,32 +77,35 @@ All paths resolve from this installed skill directory, not the application root.
 
 ## Integration and evidence
 
-- `references/component-integration.md`: before importing, configuring, or verifying any downloaded
-  component; covers companion CSS, token dependencies, light DOM, registration, and shared
-  implementation limits.
-- `references/verification.md`: when implementing or diagnosing a layout; select checks matching the
-  changed behavior.
-- `references/sources.md`: when checking provenance, refreshing a reference, or reconciling website
-  documentation with a download.
+- `references/component-integration.md`: read before importing, configuring, or verifying any
+  downloaded component.
+  - It covers companion CSS, token dependencies, light DOM, registration, and shared
+    implementation limits.
+- `references/verification.md`: read when implementing or diagnosing a layout.
+  - Select checks matching the changed behavior.
+- `references/sources.md`: read when checking provenance, refreshing a reference, or reconciling
+  website documentation with a download.
 
 ## Gotchas
 
-- Downloaded components need their companion CSS and referenced tokens; importing JavaScript alone
-  does not establish the baseline layout.
-- A custom tag supplies no landmark, list, button, or dialog semantics. Preserve semantic children
-  and native interaction.
-- The downloaded Switcher defaults to `5` items, although its documented API says `4`; set `limit`
-  explicitly when the count matters. Center's `gutters` is a CSS length string in the download, not
-  the documented boolean.
-- Configuration changes are not uniformly safe in the downloaded implementations. Read the relevant
-  chapter before relying on live attribute updates; source inspection is not runtime confirmation.
+- Downloaded components need their companion CSS and referenced tokens.
+  - Importing JavaScript alone does not establish the baseline layout.
+- A custom tag supplies no landmark, list, button, or dialog semantics.
+  - Preserve semantic children and native interaction.
+- The downloaded Switcher defaults to `5` items, although its documented API says `4`.
+  - Set `limit` explicitly when the count matters.
+- Center's `gutters` is a CSS length string in the download, not the documented boolean.
+- Configuration changes are not uniformly safe in the downloaded implementations.
+  - Read the relevant chapter before relying on live attribute updates.
+  - Source inspection is not runtime confirmation.
 
 ## Sources and maintenance
 
-Derived from the [Every Layout website](https://every-layout.dev/) by Heydon Pickering and Andy
-Bell: six rudiments, thirteen layouts, and their native component downloads. References are original
-concise explanations and illustrative examples, not redistributed book chapters or full paid
-implementations. No ebook or PDF source is used. `references/sources.md` records the inventory and
-retrieval evidence.
-
-`evals/evals.json` is maintenance-only; do not load it during ordinary layout work.
+- Derived from the [Every Layout website](https://every-layout.dev/) by Heydon Pickering and Andy
+  Bell.
+  - Scope: six rudiments, thirteen layouts, and their native component downloads.
+- References are original concise explanations and illustrative examples.
+  - They are not redistributed book chapters or full paid implementations.
+- No ebook or PDF source is used.
+- `references/sources.md` records the inventory and retrieval evidence.
+- `evals/evals.json` is maintenance-only; do not load it during ordinary layout work.

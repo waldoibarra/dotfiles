@@ -1,8 +1,9 @@
 # Grid
 
-Use for a collection whose columns should align across rows while their number adapts to the
-available container width. Build a grid **of content**, rather than requiring unknown content to fit
-a predetermined diagram.
+Use for a collection whose columns should align across rows while their number adapts to container
+width.
+
+Build a grid **of content**, rather than requiring unknown content to fit a predetermined diagram.
 
 ## Contents
 
@@ -15,10 +16,11 @@ a predetermined diagram.
 
 ## Problem and mechanism
 
-Wrapping flex items such as `flex: 1 1 30ch` are a valid content-first layout, but each line
-distributes free space independently. The chapter's comparison diagram shows discontinuous vertical
-gutters in flex versus aligned columns in Grid. Grid accepts an incomplete last row rather than
-making its final items wider than the others.
+- Wrapping flex items such as `flex: 1 1 30ch` are a valid content-first layout.
+  - But each line distributes free space independently.
+- The chapter's comparison diagram shows discontinuous vertical gutters in flex versus aligned
+  columns in Grid.
+- Grid accepts an incomplete last row rather than making its final items wider than the others.
 
 `repeat(auto-fit, minmax(min(18rem, 100%), 1fr))` combines three decisions:
 
@@ -26,17 +28,20 @@ making its final items wider than the others.
   breakpoints.
 - `minmax(..., 1fr)` lets the tracks share available width equally while retaining a wrapping
   threshold.
-- The nested `min(18rem, 100%)` caps the threshold at the container's width. A bare
-  `minmax(18rem, 1fr)` would overflow a container narrower than `18rem`.
+- The nested `min(18rem, 100%)` caps the threshold at the container's width.
+  - A bare `minmax(18rem, 1fr)` would overflow a container narrower than `18rem`.
 
-The source's overflow/solution diagrams isolate this last distinction: a nominally responsive grid
-can still be too wide as a single column unless the minimum itself can shrink. Setting the minimum
-to zero instead is not equivalent; it removes the useful track-size threshold for wrapping.
+The source's overflow/solution diagrams isolate this last distinction:
+
+- Unless the minimum itself can shrink, a nominally responsive grid can be too wide as one column.
+- Setting the minimum to zero instead is not equivalent.
+  - It removes the useful track-size threshold for wrapping.
 
 ## Primary example
 
-Runnable HTML/CSS with a single-column baseline and a feature-tested intrinsic grid. The `18rem`
-minimum is an authored example, not the download's `250px` default.
+Runnable HTML/CSS with a single-column baseline and a feature-tested intrinsic grid.
+
+The `18rem` minimum is an authored example, not the download's `250px` default.
 
 ```html
 <style>
@@ -90,34 +95,46 @@ minimum is an authored example, not the download's `250px` default.
 </div>
 ```
 
-Grid items stretch to their row's block size by default. Different rows can still have different
-heights; the pattern does not make every card in the entire collection equally tall. The card styles
-illustrate composition: outer padding/border corresponds to Box, inner rhythm to Stack, and text
-measure remains independent of track width.
+- Grid items stretch to their row's block size by default.
+- Different rows can still have different heights.
+  - The pattern does not make every card in the entire collection equally tall.
+- The card styles illustrate composition:
+  - Outer padding/border corresponds to Box.
+  - Inner rhythm corresponds to Stack.
+  - Text measure remains independent of track width.
 
 ## Variants and alternatives
 
-- **Typographic minimum:** choose a `ch`/`rem` value or `calc(var(--measure) / 3)` when a global
-  measure token exists. The layout minimum describes useful content width, not a device category.
+- **Typographic minimum:** choose a `ch`/`rem` value, or `calc(var(--measure) / 3)` when a global
+  measure token exists.
+  - The layout minimum describes useful content width, not a device category.
 - **Flex alternative:** a wrapping flex container with growing/shrinking `30ch` bases fills
-  incomplete rows. Keep a text measure inside wide final items so filling the row does not produce
-  excessively long lines. `references/rudiments/axioms.md` covers content-derived constraints.
-- **`auto-fill` versus `auto-fit`:** `auto-fill` retains empty tracks; `auto-fit` collapses them and
-  distributes that room to occupied tracks. With fewer cards than a row could hold, this changes
-  card width. It is not a cosmetic spelling difference.
-- **Fallback:** preserve the one-column grid if the enhanced expression is unsupported. The chapter
-  also suggests a flex fallback when its uneven final row is acceptable.
+  incomplete rows.
+  - Keep a text measure inside wide final items so filled rows avoid excessively long lines.
+  - `references/rudiments/axioms.md` covers content-derived constraints.
+- **`auto-fill` versus `auto-fit`:** `auto-fill` retains empty tracks.
+  - `auto-fit` collapses them and distributes that room to occupied tracks.
+  - With fewer cards than a row could hold, this changes card width.
+  - It is not a cosmetic spelling difference.
+- **Fallback:** preserve the one-column grid if the enhanced expression is unsupported.
+  - The chapter also suggests a flex fallback when its uneven final row is acceptable.
 - **Explicit placement:** named areas or manually positioned editorial grids solve a different
-  problem. Use content-driven queries when those relationships really need to change; the chapter's
-  intrinsic method is not a ban on modern container queries.
+  problem.
+  - Use content-driven queries when those relationships really need to change.
+  - The chapter's intrinsic method is not a ban on modern container queries.
 
-Historical observer alternative, not needed for the primary CSS: the chapter first measures a
-configured CSS minimum with a temporary element, converts it to pixels, and toggles a class using
-`ResizeObserver`. Only that class enables a bare fixed-minimum track rule. If the API is absent, the
-single-column baseline remains. The later `min()` solution removes this JavaScript requirement.
+Historical observer alternative, not needed for the primary CSS:
 
-Selected mechanism, expressed as an authored fragment; `grid` is the target element and
-`minimumPixels` is the measured configured minimum:
+- The chapter first measures a configured CSS minimum with a temporary element.
+- It converts that minimum to pixels and toggles a class using `ResizeObserver`.
+- Only that class enables a bare fixed-minimum track rule.
+- If the API is absent, the single-column baseline remains.
+- The later `min()` solution removes this JavaScript requirement.
+
+Selected mechanism, expressed as an authored fragment, where:
+
+- `grid` is the target element.
+- `minimumPixels` is the measured configured minimum.
 
 ```js
 const observer = new ResizeObserver((entries) => {
@@ -129,10 +146,11 @@ observer.observe(grid);
 // Disconnect when the owning view is removed; remeasure if the minimum changes.
 ```
 
-The source's `<watched-box>` mention is a general container-observation alternative, not a Grid
-dependency. Prefer the CSS minimum cap for this particular problem. Switcher
-(`references/layouts/switcher.md`) avoids all multirow intermediate states; Reel
-(`references/layouts/reel.md`) provides deliberate horizontal scrolling.
+- The source's `<watched-box>` mention is a general container-observation alternative, not a Grid
+  dependency.
+- Prefer the CSS minimum cap for this particular problem.
+- Switcher (`references/layouts/switcher.md`) avoids all multirow intermediate states.
+- Reel (`references/layouts/reel.md`) provides deliberate horizontal scrolling.
 
 ## Downloaded component
 
@@ -165,20 +183,25 @@ Usage after acquiring the JS and companion CSS files:
 </grid-l>
 ```
 
-Box (`references/layouts/box.md`) and Stack (`references/layouts/stack.md`) provide card styling
-within each cell; their custom elements also require their own JS and CSS imports. Grid does not
-style card internals. Shared light-DOM and token setup is in `references/component-integration.md`.
+- Box (`references/layouts/box.md`) and Stack (`references/layouts/stack.md`) provide card styling
+  within each cell.
+  - Their custom elements also require their own JS and CSS imports.
+- Grid does not style card internals.
+- Shared light-DOM and token setup is in `references/component-integration.md`.
 
 | Attribute / JS property | Default     | Effect                                                                |
 | ----------------------- | ----------- | --------------------------------------------------------------------- |
 | `min`                   | `250px`     | CSS length used as the first argument of the nested `min()` function. |
 | `space`                 | `var(--s1)` | Gap between rows and columns.                                         |
 
-`Grid.js` registers `grid-l`. Both properties have fallback-reading getters and attribute-reflecting
-setters; `observedAttributes` is `min`, `space`. Connection and attribute changes invoke render.
-Render derives a key from both values, assigns `data-i`, and appends a shared head style only for a
-new key. The generated gap is unconditional; the generated tracks are inside a
-`@supports (width: min(..., 100%))` rule. There is no `ResizeObserver` in this download.
+- `Grid.js` registers `grid-l`.
+- Both properties have fallback-reading getters and attribute-reflecting setters.
+- `observedAttributes` is `min`, `space`; connection and attribute changes invoke render.
+- Render derives a key from both values and assigns `data-i`.
+- It appends a shared head style only for a new key.
+- The generated gap is unconditional.
+- The generated tracks are inside a `@supports (width: min(..., 100%))` rule.
+- There is no `ResizeObserver` in this download.
 
 Selected downloaded CSS-template expressions:
 
@@ -191,32 +214,39 @@ Selected downloaded CSS-template expressions:
 }
 ```
 
-**Material discrepancy:** the website narrative and generator use `auto-fit`, but the downloaded
-component uses `auto-fill`. The primary example follows the website; the component retains empty
-tracks. Decide deliberately which behavior the product needs instead of assuming they are identical.
-The companion CSS independently establishes `display: grid`, `align-content: start`, a token-based
-gap, and `grid-template-columns: 100%`; JavaScript alone is insufficient.
+**Material discrepancy:**
+
+- The website narrative and generator use `auto-fit`, but the downloaded component uses `auto-fill`.
+  - The primary example follows the website; the component retains empty tracks.
+  - Decide deliberately which behavior the product needs instead of assuming they are identical.
+- The companion CSS independently establishes `display: grid`, `align-content: start`, a token-based
+  gap, and `grid-template-columns: 100%`.
+  - JavaScript alone is insufficient.
 
 ## Pitfalls and checks
 
-- Test a parent narrower than the configured minimum, not just a typical mobile viewport. Also test
-  one item, an incomplete row, and enough items for several rows.
-- Check long unbroken content, intrinsically wide media, and user-enlarged text. A track fitting its
-  container does not make every descendant fit its track; constrain media and handle wrapping
-  intentionally.
-- Do not confuse shared track width with shared height across all rows. If a different alignment is
-  chosen, inspect the resulting gaps rather than assuming a masonry layout.
-- Runtime smoke in Chromium with downloaded `min="18rem"` observed two `388px` tracks at an `800px`
-  container and one `180px` track at `180px`, without grid overflow. Those measurements confirm
-  those cases, not all content or browser combinations.
-- With JavaScript disabled, the companion stylesheet retains the single-column baseline; configured
-  `min` is not read by CSS. `references/verification.md` covers further checks.
+- Test a parent narrower than the configured minimum, not just a typical mobile viewport.
+  - Also test one item, an incomplete row, and enough items for several rows.
+- Check long unbroken content, intrinsically wide media, and user-enlarged text.
+  - A track fitting its container does not make every descendant fit its track.
+  - Constrain media and handle wrapping intentionally.
+- Do not confuse shared track width with shared height across all rows.
+  - If a different alignment is chosen, inspect the resulting gaps rather than assuming a masonry
+    layout.
+- Runtime smoke in Chromium used downloaded `min="18rem"`.
+  - It observed two `388px` tracks at an `800px` container.
+  - It observed one `180px` track at `180px`, without grid overflow.
+  - Those measurements confirm those cases, not all content or browser combinations.
+- With JavaScript disabled, the companion stylesheet retains the single-column baseline.
+  - Configured `min` is not read by CSS.
+  - `references/verification.md` covers further checks.
 
 ## Sources
 
-Original summary and authored examples derived from
-[The Grid](https://every-layout.dev/layouts/grid/): content-first diagrams, flex comparison and
-measure mitigation, fixed-minimum failure, observer alternative, `min()` solution, card composition,
-generator, and API. Download inspected: [Grid.zip](https://every-layout.dev/downloads/Grid.zip)
-(`README.txt`, `Grid.css`, `Grid.js`). Website only; no ebook/PDF or full implementation
-reproduction.
+- Original summary and authored examples derived from
+  [The Grid](https://every-layout.dev/layouts/grid/).
+  - Topics: content-first diagrams, flex comparison and measure mitigation, fixed-minimum failure.
+  - Also: observer alternative, `min()` solution, card composition, generator, and API.
+- Download inspected: [Grid.zip](https://every-layout.dev/downloads/Grid.zip) (`README.txt`,
+  `Grid.css`, `Grid.js`).
+- Website only; no ebook/PDF or full implementation reproduction.

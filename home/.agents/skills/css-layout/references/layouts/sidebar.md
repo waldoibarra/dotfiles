@@ -1,7 +1,9 @@
 # Sidebar
 
-Use for two unequal regions that sit alongside one another when the main region has enough room,
-then become full-width rows. The decision belongs to the container, not the viewport.
+Use for two unequal regions that sit alongside one another when the main region has enough room.
+
+- Without room, they become full-width rows.
+- The decision belongs to the container, not the viewport.
 
 ## Contents
 
@@ -14,17 +16,25 @@ then become full-width rows. The decision belongs to the container, not the view
 
 ## Problem and mechanism
 
-A viewport breakpoint cannot distinguish the same component in a narrow panel and a wide page. A
-wrapping flex container can. Give the sidebar a preferred basis and modest growth; give the main
-region a zero basis, much greater growth, and a percentage minimum. The main region consumes almost
-all remaining space. When its minimum and the sidebar's basis no longer fit together, they wrap and
-each grows across its own row.
+A viewport breakpoint cannot distinguish the same component in a narrow panel and a wide page.
 
-The chapter's diagrams distinguish three relationships: ordinary flex wrapping can leave uneven
-final rows; the Sidebar has just adjacent/stacked states; and the main region should remain the
-larger member while adjacent. A `50%` main minimum expresses that last relationship. The sidebar's
-width is a preference, not an exact fixed width: its nonzero growth still receives a small fraction
-of free space.
+- A wrapping flex container can.
+- Give the sidebar a preferred basis and modest growth.
+- Give the main region a zero basis, much greater growth, and a percentage minimum.
+- The main region consumes almost all remaining space.
+- When its minimum and the sidebar's basis no longer fit together, they wrap.
+  - Each then grows across its own row.
+
+The chapter's diagrams distinguish three relationships:
+
+- Ordinary flex wrapping can leave uneven final rows.
+- The Sidebar has just adjacent/stacked states.
+- The main region should remain the larger member while adjacent.
+  - A `50%` main minimum expresses that relationship.
+
+The sidebar's width is a preference, not an exact fixed width.
+
+- Its nonzero growth still receives a small fraction of free space.
 
 ## Primary example
 
@@ -68,22 +78,27 @@ Runnable HTML/CSS; the label and content make this usable without JavaScript or 
 </div>
 ```
 
-`gap` works in both configurations without external margins. Flexbox's default stretch gives
-adjacent regions equal block size; `align-items: flex-start` retains their natural heights.
+- `gap` works in both configurations without external margins.
+- Flexbox's default stretch gives adjacent regions equal block size.
+- `align-items: flex-start` retains their natural heights.
 
 ## Variants and selection
 
-- **Intrinsic sidebar:** remove its `flex-basis`; an image's declared width or a button's text then
-  supplies the preferred size. This is particularly useful for an input plus submit button. Cap
-  media at `max-inline-size: 100%` and retain its aspect ratio.
-- **Trailing sidebar:** put the main region first and sidebar second in the DOM. Keep their
-  corresponding flex rules; do not reverse visual order independently of reading/focus order. The
-  component's `side="right"` changes which child is the sidebar, not DOM order.
-- **Media object:** a direct image child needs natural-height alignment to avoid stretch distortion;
-  alternatively wrap the image and constrain the image within its wrapper. Reverse the emphasis by
-  making the text the trailing `30ch` sidebar while the image wrapper grows.
-- **Search controls:** use an intrinsic trailing button, zero gap, and a main minimum such as
-  `66.666%`. Keep an explicit input label; the layout does not provide accessibility semantics.
+- **Intrinsic sidebar:** remove its `flex-basis`.
+  - An image's declared width or a button's text then supplies the preferred size.
+  - This is particularly useful for an input plus submit button.
+  - Cap media at `max-inline-size: 100%` and retain its aspect ratio.
+- **Trailing sidebar:** put the main region first and sidebar second in the DOM.
+  - Keep their corresponding flex rules.
+  - Do not reverse visual order independently of reading/focus order.
+  - The component's `side="right"` changes which child is the sidebar, not DOM order.
+- **Media object:** a direct image child needs natural-height alignment to avoid stretch distortion.
+  - Alternatively, wrap the image and constrain the image within its wrapper.
+  - To reverse the emphasis, make the text the trailing `30ch` sidebar.
+    - The image wrapper then grows.
+- **Search controls:** use an intrinsic trailing button and zero gap.
+  - Use a main minimum such as `66.666%`.
+  - Keep an explicit input label; the layout does not provide accessibility semantics.
 
 Configuration variants for the primary example:
 
@@ -102,10 +117,10 @@ Configuration variants for the primary example:
 }
 ```
 
-Switcher (`references/layouts/switcher.md`) suits equal peers that should all switch together;
-Cluster (`references/layouts/cluster.md`) suits content-sized items that can wrap independently.
-`references/rudiments/composition.md` and `references/rudiments/axioms.md` cover composition and
-content-derived dimensions.
+- Switcher (`references/layouts/switcher.md`) suits equal peers that should all switch together.
+- Cluster (`references/layouts/cluster.md`) suits content-sized items that can wrap independently.
+- `references/rudiments/composition.md` and `references/rudiments/axioms.md` cover composition and
+  content-derived dimensions.
 
 ## Downloaded component
 
@@ -125,9 +140,10 @@ After placing the acquired `Sidebar.js` and `Sidebar.css` beside the application
 </sidebar-l>
 ```
 
-Explicit spacing avoids the default token dependency. `references/component-integration.md` covers
-module registration, light DOM, tokens, shared style caching, and attribute normalization. Companion
-CSS supplies wrapping flex layout and child growth; JavaScript alone does not.
+- Explicit spacing avoids the default token dependency.
+- `references/component-integration.md` covers module registration, light DOM, and tokens.
+  - It also covers shared style caching and attribute normalization.
+- Companion CSS supplies wrapping flex layout and child growth; JavaScript alone does not.
 
 | Attribute / JS property | Documented default | Effect                                                                                   |
 | ----------------------- | ------------------ | ---------------------------------------------------------------------------------------- |
@@ -137,12 +153,15 @@ CSS supplies wrapping flex layout and child growth; JavaScript alone does not.
 | `space`                 | `var(--s1)`        | Gap in either orientation.                                                               |
 | `noStretch`             | absent / `false`   | Presence requests `align-items: flex-start`; property setter adds/removes the attribute. |
 
-The module registers `sidebar-l`; string getters read attributes with the defaults above and setters
-reflect to attributes. `connectedCallback()` renders. Its observed list is `side`, `sideWidth`,
-`contentMin`, `space`, `noStretch`; `attributeChangedCallback()` calls render. Render warns for a
-`contentMin` without `%`, assigns a configuration-derived `data-i`, and inserts a shared head style
-only if that ID does not already exist. The generated selector gives the non-sidebar
-`flex-basis: 0`, `flex-grow: 999`, and the requested minimum.
+- The module registers `sidebar-l`.
+- String getters read attributes with the defaults above; setters reflect to attributes.
+- `connectedCallback()` renders.
+- Its observed list is `side`, `sideWidth`, `contentMin`, `space`, `noStretch`.
+- `attributeChangedCallback()` calls render.
+- Render warns for a `contentMin` without `%` and assigns a configuration-derived `data-i`.
+  - It inserts a shared head style only if that ID does not already exist.
+- The generated selector gives the non-sidebar `flex-basis: 0`, `flex-grow: 999`, and the
+  requested minimum.
 
 Selected downloaded expressions (not a complete implementation):
 
@@ -153,35 +172,41 @@ const mainSelector = this.side !== "left" ? ":first-child" : ":last-child";
 const configuration = [this.side, this.sideWidth, this.contentMin, this.space].join("");
 ```
 
-**Material discrepancies:** the chapter promises rerendering for all props, but camelCase names in
-`observedAttributes` do not match HTML's lowercased attribute names. Initial render reads those
-attributes; do not assume later `sideWidth`, `contentMin`, or `noStretch` changes trigger it. A
-Chromium mutation check confirmed that changing `contentMin` leaves `data-i` unchanged; the other
-two properties were inspected in source, not independently exercised. Also, source inspection shows
-`noStretch` is absent from the style cache key: two otherwise identical instances can reuse the
-first alignment rule, and changing that flag cannot create a different cached rule. Prefer the CSS
-pattern or adapt and verify the acquired implementation; these findings do not imply the download
-has been repaired.
+**Material discrepancies:** these findings do not imply the download has been repaired.
+
+- The chapter promises rerendering for all props.
+  - CamelCase names in `observedAttributes` do not match HTML's lowercased attribute names.
+- Initial render reads those attributes.
+  - Do not assume later `sideWidth`, `contentMin`, or `noStretch` changes trigger it.
+- A Chromium mutation check confirmed that changing `contentMin` leaves `data-i` unchanged.
+  - The other two properties were inspected in source, not independently exercised.
+- Source inspection shows `noStretch` is absent from the style cache key.
+  - Two otherwise identical instances can reuse the first alignment rule.
+  - Changing that flag cannot create a different cached rule.
+- Prefer the CSS pattern, or adapt and verify the acquired implementation.
 
 ## Pitfalls and checks
 
-- Keep exactly two direct layout children. Nest a Stack inside either region rather than making a
-  third sibling.
-- Check narrow and wide parent containers at the same viewport size, long unbroken content, large
-  text, and direct-image proportions. A percentage minimum is not protection against every
-  descendant's fixed width.
-- `side` means first/last-child selection in this implementation; its left/right vocabulary is not a
-  complete writing-direction policy.
-- Without JavaScript the companion CSS retains a wrapping flex layout, but not the configured
-  asymmetry, gap, or main-region minimum. Supply matching CSS if that behavior is required before
-  upgrade.
-- Verify dynamic configuration and opposite `noStretch` values on otherwise identical instances
-  before relying on the downloaded component. `references/verification.md` records shared checks.
+- Keep exactly two direct layout children.
+  - Nest a Stack inside either region rather than making a third sibling.
+- Check narrow and wide parent containers at the same viewport size.
+- Check long unbroken content, large text, and direct-image proportions.
+- A percentage minimum is not protection against every descendant's fixed width.
+- `side` means first/last-child selection in this implementation.
+  - Its left/right vocabulary is not a complete writing-direction policy.
+- Without JavaScript, the companion CSS retains a wrapping flex layout.
+  - It does not retain the configured asymmetry, gap, or main-region minimum.
+  - Supply matching CSS if that behavior is required before upgrade.
+- Before relying on the downloaded component, verify dynamic configuration.
+  - Also verify opposite `noStretch` values on otherwise identical instances.
+- `references/verification.md` records shared checks.
 
 ## Sources
 
 Original summary and illustrative examples derived from the website chapter
-[The Sidebar](https://every-layout.dev/layouts/sidebar/), including its generator, diagrams,
-media-object examples, and API. Component details inspected in
-[Sidebar.zip](https://every-layout.dev/downloads/Sidebar.zip) (`README.txt`, `Sidebar.css`,
-`Sidebar.js`). No ebook/PDF source used; no full downloaded implementation reproduced.
+[The Sidebar](https://every-layout.dev/layouts/sidebar/).
+
+- That includes its generator, diagrams, media-object examples, and API.
+- Component details inspected in [Sidebar.zip](https://every-layout.dev/downloads/Sidebar.zip)
+  (`README.txt`, `Sidebar.css`, `Sidebar.js`).
+- No ebook/PDF source used; no full downloaded implementation reproduced.
