@@ -46,6 +46,9 @@ edited during the session.
 **Boundary:** Reading grants no edit permission; instructions, skill definitions, and frozen
 archives have separate owners.
 
+**File names:** Read the Documentation section of
+[shared instructions](/home/.agents/AGENTS.md) before naming a file; it owns the rule.
+
 **Prompts:** Read [Write effective AI prompts](/docs/prompting.md) before editing prompt files sent
 to models.
 

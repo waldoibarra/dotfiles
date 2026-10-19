@@ -164,6 +164,11 @@ The communication reference owns reply shapes and formatting details.
 - Prefer repository-root Markdown links; use portable relative links inside installable bundles.
   Follow destination link rules.
 - Commit screenshots only when documentation needs them; reviewer aids belong in PRs.
+- Name files lowercase kebab-case, docs under `docs/`. Keep uppercase for root convention files,
+  such as `README.md`, `AGENTS.md`, `CHANGELOG.md`, `LICENSE`, `SHARED-LANGUAGE.md`,
+  `CONTEXT-MAP.md` and `STRUCTURE.md`.
+- Keep spec-mandated names (`SKILL.md`, `README.md`, `justfile`, `Dockerfile`) and language or tool
+  conventions (Python `snake_case`, React `PascalCase`, dotfiles, lockfiles).
 
 ## RTK
 
