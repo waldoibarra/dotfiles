@@ -5,11 +5,12 @@ without subscriptions or model calls.
 
 ## Setup
 
-**Existing vault:** Keep `~/life/` open in Obsidian and wait for Sync. No vault recreation is
-needed.
+**Existing vault:** Open the existing `~/life/` folder as a vault in Obsidian.
+No vault recreation is needed.
 
-**Manual once:** Enable community plugins.
-Register the CLI under **Settings → General → Advanced → Command line interface**.
+**Manual once:** Connect the vault to Obsidian Sync and wait until the app reports **Fully synced**.
+Enable community plugins.
+Enable the CLI under **Settings → General → Advanced → Command line interface**.
 Read [workstation setup](setup.md) only when dotfiles or Obsidian are missing.
 
 **Security:** Community plugins execute code with Obsidian's permissions. Review upstream before
@@ -101,6 +102,7 @@ printf '%s\n' '<https://obsidian.md/help/cli>' |
 
 **Verify:** Run `python3 scripts/tests/test-obsidian.py` before provisioning changed rules on both
 computers.
-Local setup and fixtures passed; Waldo confirmed formatting and the ruler. Lluvia's setup remains
-unverified.
+Local setup and fixtures passed; Waldo confirmed formatting and the ruler.
+Lluvia's setup passed: tools, plugins, formatter settings, and ruler activation were verified.
+Cmd+S formatting and the ruler's appearance remain unverified on Lluvia's machine.
 Agent requirements are instructions, not unavoidable hooks or watchers.
