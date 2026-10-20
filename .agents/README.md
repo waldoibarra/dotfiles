@@ -31,6 +31,7 @@ old files are later removed. Size alone does not replace the publication review 
 | Read before… | Record |
 | --- | --- |
 | Continuing Markdown default-app setup or reviewing its verification | [Markdown application plan](/.agents/plans/markdown-default-app.md) |
+| Evaluating evidence-aware meeting processing without duplicating retrieval or planning | [Meeting processing plan](/.agents/plans/meeting-processing.md) |
 | Continuing personal MCP parity, Sheets setup, and integration lessons | [Personal MCP plan](/.agents/plans/personal-mcp.md) |
 | Continuing the shared-role migration and Pi delegation verification | [Shared roles plan](/.agents/plans/pi-shared-roles.md) |
 | Choosing current harness priorities or checking pending decisions | [AI harness roadmap](/.agents/plans/ai-harness-roadmap.md) |
