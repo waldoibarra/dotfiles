@@ -15,6 +15,7 @@ Run from the repository root:
 
 ## Guardrails
 
+- Keep setup declarative; automate repeatable steps and document unavoidable manual actions.
 - Scripts MUST be idempotent: unchanged inputs and desired state must not cause repeated mutations.
 - Read [idempotency checks](/scripts/README.md#idempotency) before adding or changing scripts.
 
