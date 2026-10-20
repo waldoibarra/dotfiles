@@ -63,7 +63,7 @@ commit messages.
 The communication reference owns reply shapes and formatting details.
 
 - Identify the intent and reader's next action. Put the answer, decision, or request first.
-- Use one idea per paragraph or list item, at most 17 words. Depth means more blocks.
+- Use at most 17 words per sentence. Keep one idea per paragraph or list item.
 - Cut filler and repetition, never risks or conditions. Preserve safety content verbatim; state
   risks plainly.
 - State positions plainly without hedging. State each real uncertainty once, with its cause.

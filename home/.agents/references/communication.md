@@ -18,7 +18,8 @@ Name the reader's next action, then choose one shape. Never mix reply shapes.
 
 ## Shape the text
 
-- Use fewer blocks; added depth permits more blocks, never longer ones.
+- Keep paragraphs focused; several short sentences may develop one idea.
+- Split by idea, not merely to satisfy the sentence-length limit.
 - Start prose blocks with **bold lead-ins** of at most four words; the bold alone carries the
   message.
 - Use lists for parallel items; lead-ins are optional.
