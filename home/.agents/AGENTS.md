@@ -119,8 +119,6 @@ The communication reference owns reply shapes and formatting details.
 
 - Run commands directly, never through `bash -c` or `sh -c`; wrappers obstruct inspection and
   trigger permission prompts.
-- Never `rm` variables, globs, or computed paths. Use a new empty directory or remove one literal
-  path.
 - Use non-interactive flags; never run interactive commands.
 - Never name shell variables `path` or `status`; zsh binds them to `PATH` and the exit code.
 - Run commands that stash, commit, or trigger hooks one tool call at a time; parallel tool calls
