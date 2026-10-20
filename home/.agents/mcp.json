@@ -9,9 +9,9 @@
         "context7-mcp"
       ]
     },
-    "google-sheets-personal": {
-      "command": "google-sheets-personal-mcp",
-      "args": []
+    "fireflies": {
+      "type": "http",
+      "url": "https://api.fireflies.ai/mcp"
     }
   }
 }

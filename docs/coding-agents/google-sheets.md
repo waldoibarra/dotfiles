@@ -1,12 +1,18 @@
 # Connect personal Google Sheets
 
+**Inactive:** Removed from both clients after unsuccessful setup.
+Retained instructions describe optional reactivation.
+
+**Retained:** Launcher, fixtures, and private OAuth files remain;
+removal does not revoke Google's authorization grant.
+
 Use the local, MIT-licensed [mcp-google-sheets](https://github.com/xing5/mcp-google-sheets) server
 with Pi or Claude Code. No hosted connector subscription or monthly tool allowance applies.
 [Google API quotas](https://developers.google.com/workspace/sheets/api/limits) still apply.
 
 ## Before you start
 
-The shared [MCP manifest](/home/.agents/mcp.json) launches
+To reactivate, add the server to the shared [MCP manifest](/home/.agents/mcp.json), launching
 [`google-sheets-personal-mcp`](/home/.local/bin/google-sheets-personal-mcp).
 Both agents use the same personal OAuth files; ambient Google credentials are ignored.
 Read [MCP installation](/docs/coding-agents/mcp.md#apply-configuration)

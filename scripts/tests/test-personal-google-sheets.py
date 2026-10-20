@@ -157,10 +157,9 @@ with patch('socket.socket.connect', side_effect=AssertionError('network forbidde
                 servers = json.loads(config.read_text()).get("mcpServers", {})
                 self.assertNotIn("google-sheets-personal", servers, relative)
 
-    def test_manifest_and_dotbot_launcher_link(self):
+    def test_inactive_manifest_and_retained_launcher_link(self):
         manifest = json.loads((ROOT / "home/.agents/mcp.json").read_text())
-        server = manifest["mcpServers"]["google-sheets-personal"]
-        self.assertEqual(server["command"], "google-sheets-personal-mcp")
+        self.assertNotIn("google-sheets-personal", manifest["mcpServers"])
         self.assertIn("context7", manifest["mcpServers"])
         config = (ROOT / "install.conf.yaml").read_text()
         self.assertIn(
