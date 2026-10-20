@@ -37,9 +37,14 @@ Existing plugins are not reinstalled or unnecessarily reloaded.
 
 ## Humans and agents
 
-**Humans:** Press **Cmd+S**, or **Ctrl+S** elsewhere. Background autosave does not format; unfixable
-issues remain warnings.
-Test with `#  Example`; saving should produce `# Example`.
+**Humans:** Cmd+S applies supported Markdownlint fixes, such as heading spacing;
+use Ctrl+S outside macOS.
+It does not wrap long lines (`MD013`) or shorten sentences. Background autosave does not format.
+Diagnostics can appear without saving; warnings do not imply automatic fixes.
+
+**Deferred cleanup:** Humans may leave lint errors.
+Agents fix them when touching those notes, preserving intent.
+No additional formatter or background cleanup is configured.
 
 **Ruler:** Source mode uses uniform monospace typography and a 120-column guide. Live Preview and
 Reading view stay unchanged.
