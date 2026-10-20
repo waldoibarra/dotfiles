@@ -5,7 +5,7 @@ default:
 
 # Idempotently sync OS configuration, apply Brew packages, sync Mise tools, update coding agents.
 [group("Management")]
-sync: && print-separator brew mise-sync update-ca hooks
+sync: && print-separator brew mise-sync obsidian-sync update-ca hooks
   git pull
   ./scripts/install-dotfiles.sh
   @echo "Finished synchronizing the dotfiles."
@@ -56,6 +56,23 @@ hooks:
 [group("Management")]
 print-separator:
   @printf '%*s\n' 80 | tr ' ' '-' && printf "\n"
+
+# Install declared Obsidian tools/plugins and reconcile owned vault settings and snippets.
+[group("Management")]
+[positional-arguments]
+obsidian-setup vault=(env("HOME") / "life"):
+  python3 scripts/obsidian.py setup --vault "$1"
+
+# Reconcile the life vault during workstation sync; skip machines without that vault.
+[group("Management")]
+obsidian-sync:
+  python3 scripts/obsidian.py sync
+
+# Check touched notes and all local vault links without changing files or using the network.
+[group("Linting")]
+[positional-arguments]
+obsidian-check +files:
+  python3 scripts/obsidian.py check "$@"
 
 # Lint all.
 [group("Linting")]

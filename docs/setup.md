@@ -8,11 +8,12 @@ support. Review the configuration before applying it to another account.
 - Back up existing dotfiles. [Dotbot configuration](/install.conf.yaml) enables backups and forced
   replacement; installation replaces configuration, installs packages and changes the login shell.
 - Review the [Brewfile](/home/.Brewfile), [Mise tools](/home/.config/mise/config.toml),
-  [SSH hosts](/home/.ssh/config) and [AWS profiles](/home/.aws/config). Credentials are not supplied.
+[SSH hosts](/home/.ssh/config) and [AWS profiles](/home/.aws/config) . Credentials are not supplied.
 - macOS uses Homebrew at `/opt/homebrew`; Intel Macs are not handled. Debian uses
-  `/home/linuxbrew/.linuxbrew` and `apt-get`. The Brewfile includes macOS casks without Linux guards;
+`/home/linuxbrew/.linuxbrew` and `apt-get` . The Brewfile includes macOS casks without Linux guards;
   this is not an unattended cross-platform installer.
-- Set exported `LIFE_PROFILE` in `~/.zprofile.local` to select your directory under `~/life/people/`.
+- Set exported `LIFE_PROFILE` in `~/.zprofile.local` to select your directory under `~/life/people/`
+  .
 - Use an interactive terminal for sudo, Touch ID and login-shell prompts.
 
 If Git is missing, install it first. On macOS, finish the command-line tools installer:
@@ -73,8 +74,10 @@ workstation still needs its own subscription login and microphone permission. Cr
 never supplied by the repository.
 
 Start `pi`, use `/login openai-codex` to authorize your subscription, and check `/model` before
-starting voice. Select device-code or browser login in Pi's prompt. Then use `/live spruce` (or `/live`)
-and grant your terminal's macOS microphone permission if requested. No API-key fallback is configured
+starting voice. Select device-code or browser login in Pi's prompt. Then use `/live spruce` (or
+`/live` )
+and grant your terminal's macOS microphone permission if requested. No API-key fallback is
+configured
 by this setup. Read [Pi and live voice](coding-agents/pi/README.md) for the model defaults,
 controls, and limitations.
 Restart an already-running Pi session after provisioning so it loads the new configuration.
@@ -89,12 +92,16 @@ Set `export LIFE_PROFILE="waldo"` or `export LIFE_PROFILE="lluvia"` in your untr
 Read [local shell configuration](zsh-configuration.md#machine-local-configuration) before changing
 profile selection. Agent updates warn if the vault exists but `LIFE_PROFILE` is empty or unset.
 
-Agent updates provision `~/.agents/personal-context.md` and `~/.agents/agent-identity.md` as symlinks
+Agent updates provision `~/.agents/personal-context.md` and `~/.agents/agent-identity.md` as
+symlinks
 into the selected profile. Pi and Claude Code read these alongside `~/life/README.md`.
 Cursor setup remains deferred. Read
 [personal profile routing](agent-instructions.md#personal-profile-routing) before provisioning links
 or removing an old `~/AGENTS.md` selector.
-Agent edits in the vault are limited to Markdown; this is a written rule, not Sync enforcement.
+Agent note edits are Markdown-only, with approved exceptions for declared plugins, lint
+configuration, and the ruler.
+Read [Obsidian setup](obsidian.md) before provisioning human formatting or agent checks on either
+computer.
 
 Both collaborators need active Obsidian Sync subscriptions. Obsidian's end-to-end encryption applies
 to remote vault data; local files are not encrypted by Obsidian. Keep work and NDA-restricted

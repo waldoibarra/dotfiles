@@ -43,6 +43,7 @@ push skill-lockfile commits; the setup guide explains those boundaries before yo
 | Maintain packages and run checks | [Tooling](/docs/tooling.md) |
 | Configure agents, instructions and skills | [Coding agents](docs/coding-agents/README.md) |
 | Review Pi configuration, live voice, and integration status | [Pi and live voice](docs/coding-agents/pi/README.md) |
+| Set up vault formatting and agent checks | [Obsidian](docs/obsidian.md) |
 | Change shell behavior | [Zsh configuration](/docs/zsh-configuration.md) |
 | Set Git identity and signing | [Git configuration](/docs/git-configuration.md) |
 | Use editable UI designs | [Agent UI design tools](/docs/agent-ui-design-tools.md) |

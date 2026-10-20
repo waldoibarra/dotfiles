@@ -3,6 +3,16 @@
 Read this before changing installer or sync behavior. These scripts modify the workstation;
 use [tooling](/docs/tooling.md) to choose the narrowest operation.
 
+## Idempotency
+
+Read [repository guardrails](/AGENTS.md#guardrails) before changing script behavior.
+
+- Test initial setup, repeated runs, and retry after partial failure in isolated fixtures.
+- Verify unchanged file contents, timestamps, permissions, and unrelated settings.
+- Avoid duplicate installs, entries, backups, or reloads.
+- Hold external inputs fixed when testing updaters; a successful exit alone does not prove idempotency.
+- Prefer atomic writes and state checks. Fail safely when the current state cannot be determined.
+
 ## Installation
 
 [`install-dotfiles.sh`](/scripts/install-dotfiles.sh) initializes the Dotbot submodule and runs
@@ -38,16 +48,19 @@ Run `python3 scripts/tests/test-life-profile.py` for isolated linking and preser
 
 1. Copy the two managed agent configs before refreshing Claude hooks.
 2. Register missing shared personal MCP servers through Claude's native user-scope command.
-3. Install the configured pinned subagent runner, then update declared Pi packages in the normal profile.
+3. Install the configured pinned subagent runner, then update declared Pi packages in the normal
+profile.
 4. Refresh RTK's Pi extension when its dry run lists changes.
 5. Refresh Herdr's Claude and Pi integrations unless status reports them current.
 6. Install Moshi's Pi extension non-interactively with its native target-specific installer.
-7. Install missing lockfile skills, update global skills, then **commit and push** a changed lockfile.
+7. Install missing lockfile skills, update global skills, then **commit and push** a changed
+lockfile.
 
 RTK, Herdr and Moshi steps skip their integrations when the respective binary is missing. Their Pi
 steps also require the `pi` binary. Herdr's native installer requires an extension directory;
 the updater creates it when needed. Generated extensions stay outside Git.
-Read [Coding agents](../docs/coding-agents/README.md) before editing copied configs or running updates;
+Read [Coding agents](../docs/coding-agents/README.md) before editing copied configs or running
+updates;
 it lists ownership and publication risks. Read [Agent integrations](/docs/agent-integrations.md)
 before diagnosing hooks or plugins. Moshi's Pi hook file is refreshed on each run; pairing and
 daemon/service setup remain outside this updater. Redirecting installer
@@ -69,6 +82,20 @@ Pi's preferences and subagent configuration are Dotbot links, not managed copies
 Credentials, sessions, and locks are separate and untouched.
 [Pi configuration](../docs/coding-agents/pi/configuration.md) lists the ownership boundaries.
 
+## Obsidian vault checks
+
+Read [Obsidian setup](/docs/obsidian.md) before running `scripts/obsidian.py` to provision settings
+or check notes.
+
+- `setup` installs declared tools/plugins, backs up changed owned files, and reconciles settings and
+  the ruler.
+- `sync` runs during workstation synchronization; it skips machines without the life vault.
+- The app must be running with CLI access and completed Sync; incorrect vault selection stops setup.
+- `check` validates touched prose and vault-wide local links without editing notes or making network
+  requests.
+- Run `python3 scripts/tests/test-obsidian.py` for isolated provisioning, prose, and link-check
+  fixtures.
+
 ## Shared helpers and checks
 
 [`lib/shell-helpers.sh`](/scripts/lib/shell-helpers.sh) supplies `print_separator`.
@@ -82,6 +109,7 @@ Run `python3 scripts/tests/test-agent-harness.py` to check shared-role links, Pi
 package reconciliation. It uses temporary homes and a fake Pi executable; no inference or sync runs.
 Run `python3 scripts/tests/test-personal-mcp.py` for isolated MCP registration and linking checks.
 Run `python3 scripts/tests/test-personal-google-sheets.py` to verify credential isolation, work-root
-rejection, launch arguments, and private token-directory behavior using fake `uvx` and disposable homes.
+rejection, launch arguments, and private token-directory behavior using fake `uvx` and disposable
+homes.
 Run `python3 scripts/tests/test-markdown-app.py` for application guards and error propagation
 without changing real file associations.

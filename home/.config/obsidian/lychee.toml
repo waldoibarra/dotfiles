@@ -1,0 +1,4 @@
+# Local checks never send vault URLs to the network.
+offline = true
+include_fragments = "anchor-only"
+cache = false

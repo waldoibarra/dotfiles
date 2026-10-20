@@ -1,0 +1,5 @@
+{
+  "plugins": ["custom-note-width", "markdownlint"],
+  "snippets": ["editor-ruler"],
+  "tools": ["lychee", "npm:markdownlint-cli2"]
+}

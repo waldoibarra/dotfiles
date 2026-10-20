@@ -1,0 +1,24 @@
+/* Source-only column guide. Live Preview and Reading view retain their typography. */
+.markdown-source-view.mod-cm6:not(.is-live-preview) .cm-content {
+  font-family: var(--font-monospace);
+  font-variant-ligatures: none;
+  background-image: linear-gradient(
+    to right,
+    transparent 120ch,
+    var(--background-modifier-border-hover) 120ch,
+    var(--background-modifier-border-hover) calc(120ch + 1px),
+    transparent calc(120ch + 1px)
+  );
+  background-origin: content-box;
+  background-repeat: no-repeat;
+}
+
+/* Keep syntax styling from changing character widths or heading sizes in Source mode. */
+.markdown-source-view.mod-cm6:not(.is-live-preview) .cm-line,
+.markdown-source-view.mod-cm6:not(.is-live-preview) .cm-line * {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: normal;
+  font-style: normal;
+  letter-spacing: normal;
+}

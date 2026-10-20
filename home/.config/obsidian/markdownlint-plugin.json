@@ -1,0 +1,5 @@
+{
+  "lintOnSave": true,
+  "showDiagnostics": true,
+  "configFilePath": ".markdownlint.json"
+}

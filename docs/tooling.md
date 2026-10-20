@@ -17,8 +17,10 @@ The `dots` alias runs this from any directory. The recipe executes:
 1. `git pull`, then the [Dotbot installer](/scripts/README.md).
 2. Homebrew bundle upgrade, then removal of packages absent from the global Brewfile.
 3. Mise install, upgrade and prune.
-4. The [coding-agent updater](coding-agents/README.md).
-5. Repository Git-hook installation.
+4. [Obsidian setup](obsidian.md) for an existing life vault: tools, plugins, owned settings, and
+ruler.
+5. The [coding-agent updater](coding-agents/README.md).
+6. Repository Git-hook installation.
 
 **Sync changes the machine and can publish commits.** Review local changes and package lists first.
 The agent updater commits and pushes a changed skill lockfile; that push can include other unpushed
@@ -41,6 +43,9 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 | `just mise-sync` | Install, upgrade and prune Mise tools. |
 | `just update-ca` | Replace managed agent copies, reconcile Pi packages, refresh integrations and skills; may commit and push. |
 | `just hooks` | Install this checkout's hooks with hk. |
+| `just obsidian-setup [VAULT]` | Install declared tools/plugins and apply owned settings/ruler; see [Obsidian](obsidian.md). |
+| `just obsidian-sync` | Same reconciliation for `~/life/`; skip when the vault is absent. |
+| `just obsidian-check FILE...` | Check touched life-vault notes and all local links; no fixes or network requests. |
 | `just lint` | Run EditorConfig, Markdown, YAML and shell checks. |
 | `just lint-ec`, `just lint-md`, `just lint-yaml`, `just lint-sh` | Run one check. |
 | `just lint-commit MESSAGE_FILE` | Validate the message in `MESSAGE_FILE`. |
@@ -96,15 +101,18 @@ The recipe checks those files. Prepare missing checkouts and the compiled host s
 It uses the local compiled host, not Mise's `latest` binary.
 Ordinary `pi` and `dots` remain unchanged.
 
-Only the three named extensions load; installed Lens and other auto-discovered extensions remain disabled.
-This prevents double rendering. Voice loads without opening the microphone or connecting automatically.
+Only the three named extensions load; installed Lens and other auto-discovered extensions remain
+disabled.
+This prevents double rendering. Voice loads without opening the microphone or connecting
+automatically.
 Start voice with `/live spruce` or use Ctrl+L for the default voice.
 Read [live voice](coding-agents/pi/live-voice.md) before testing microphone and account access.
 Use `--no-session` only for disposable conversations that should not persist after exit.
 
 Sessions launched before voice was included need a new process.
 `/reload` retains their original extension paths.
-Keep the current conversation open and launch `just pi-lens-dev` in another terminal for voice testing.
+Keep the current conversation open and launch `just pi-lens-dev` in another terminal for voice
+testing.
 
 Edit Lens or subagent source, finish the active turn, then run `/reload` in the same Pi session.
 Reload replaces extensions without restarting the conversation.
@@ -125,7 +133,8 @@ Saving a Lens file reloads the plugin in place; a save during a turn applies whe
 Expanded folds and the current view survive the reload. For a loop without a model call, run
 `just test` in the Lens checkout; it drives the hooks through Claude Code's engine.
 Lens clicks need the tracked `"tui": "fullscreen"` setting.
-Read [Claude Lens development](https://github.com/waldoibarra/claude-lens/blob/main/docs/development.md)
+Read
+[Claude Lens development](https://github.com/waldoibarra/claude-lens/blob/main/docs/development.md)
 before changing its hooks or releasing it.
 
 ## Editor defaults
@@ -182,7 +191,8 @@ Expect Cursor's name, application path, and bundle ID.
 Already-correct state is a no-op: the script does not submit another change request.
 macOS may ask permission for the Markdown file type, including `.md` and `.markdown`.
 The script requests a change once, then checks the effective handler before reporting success.
-If it is not yet active, respond to any existing OS prompt before rerunning; do not queue repeated requests.
+If it is not yet active, respond to any existing OS prompt before rerunning; do not queue repeated
+requests.
 A successful duti exit alone does not prove the association changed.
 
 This changes the current user's Markdown association across applications, not just Pi.
@@ -229,7 +239,8 @@ limitations.
 ### OpenPencil
 
 Homebrew owns the `openpencil` desktop cask. Mise owns `npm:@open-pencil/cli` and
-`npm:@open-pencil/mcp`, both at `latest`. They upgrade independently; there is no shared version pin.
+`npm:@open-pencil/mcp`, both at `latest`. They upgrade independently; there is no shared version
+pin.
 
 Read [Agent UI design tools](/docs/agent-ui-design-tools.md) before using the CLI or desktop bridge.
 

@@ -15,6 +15,9 @@ Run from the repository root:
 
 ## Guardrails
 
+- Scripts MUST be idempotent: unchanged inputs and desired state must not cause repeated mutations.
+- Read [idempotency checks](/scripts/README.md#idempotency) before adding or changing scripts.
+
 - Edit tracked sources under `home/`, not installed copies. Symlink edits affect this repository;
   copied agent files are overwritten on sync. Read the agent guide before changing either.
 - Keep credentials, identities, signing keys and machine-local overrides outside the repository.
