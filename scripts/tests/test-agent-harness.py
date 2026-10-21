@@ -119,10 +119,21 @@ class AgentHarnessTest(unittest.TestCase):
                     self.assertEqual((home / relative).resolve(), ROOT / "home/.agents/AGENTS.md")
                 for relative in (".agents/RTK.md", ".claude/RTK.md"):
                     self.assertEqual((home / relative).resolve(), ROOT / "home/.agents/RTK.md")
+                roadmap = home / ".agents/harness-roadmap.md"
+                self.assertEqual(roadmap.resolve(), ROOT / ".agents/plans/ai-harness-roadmap.md")
+                self.assertEqual(
+                    roadmap.read_bytes(),
+                    (ROOT / ".agents/plans/ai-harness-roadmap.md").read_bytes(),
+                )
                 references = home / ".agents/references"
                 self.assertTrue(references.is_dir())
                 self.assertFalse(references.is_symlink())
-                for name in ("communication.md", "orchestration.md", "harness-design.md"):
+                for name in (
+                    "communication.md",
+                    "orchestration.md",
+                    "harness-design.md",
+                    "harness-context.md",
+                ):
                     source = ROOT / "home/.agents/references" / name
                     delivered = references / name
                     self.assertTrue(delivered.is_file(), name)

@@ -43,8 +43,24 @@ behavior.
 - Pi also loads ancestor context files; remove obsolete home-directory selectors after migration.
 - Coding instructions do not replace the live-voice extension's separate prompt.
 
-**Cursor:** planned, not configured. Its project rules and user settings need separate loading
-verification before implementation.
+**Cursor:** the next planned setup and work-ticket trial; configured and exercised states remain
+unverified.
+Its project rules and user settings need separate loading verification.
+
+## Harness direction discovery
+
+The global source requires reading installed `~/.agents/references/harness-context.md` at session
+start.
+This short overview supplies direction and scope, without loading the full roadmap.
+
+Read installed `~/.agents/harness-roadmap.md` before personal harness prioritization or
+cross-project planning.
+Dotbot links it to the existing repository roadmap; the overview uses only stable installed paths.
+Work sessions follow their project instructions to the company-owned roadmap instead.
+Company evidence and credentials never belong in these public personal records.
+
+**Limit:** Discovery instructions guide agents; they do not guarantee compliance or grant backlog
+execution authority.
 
 ## Personal profile routing
 
@@ -95,7 +111,8 @@ These links replace the earlier untracked `~/AGENTS.md` selector:
 - The updater never deletes it automatically.
 - A single-user setup can keep personal context directly in its native agent instructions instead.
 
-Restart configured agents and verify loading; link creation alone does not prove fresh-session behavior.
+Restart configured agents and verify loading; link creation alone does not prove fresh-session
+behavior.
 
 ## Project discovery
 

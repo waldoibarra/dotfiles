@@ -32,6 +32,7 @@ At session start, you MUST also read these files:
 - `~/life/people/README.md`: shared profile rules and preferences for both people.
 - `~/.agents/personal-context.md`: the selected person's background and reading triggers.
 - `~/.agents/agent-identity.md`: the selected person's agent identity and interaction rules.
+- `~/.agents/references/harness-context.md`: shared direction and scoped roadmap discovery.
 
 The personal files are machine-local symlinks. Resolve relative links against their real destination,
 not `~/.agents/`.

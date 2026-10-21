@@ -1,13 +1,96 @@
 # AI harness roadmap
 
-**Next:** Validate shared roles in ordinary Pi and Claude Code sessions.
+**Next:** Set up Cursor, then trial one bounded work ticket. Keep Pi and Claude Code available.
 
-**Scope:** Personal and open-source workflows. Company adaptation and Cursor support remain
-deferred.
+**Scope:** Personal and reusable harness structure lives here; company details belong in the team's
+knowledge hub.
 
-## Do next
+**Goal:** Harmonize personal and work practices, then reuse proven setup patterns with future
+clients.
+Start with existing dotfiles and scripts. Separate private context, operator preferences, and
+client-specific configuration.
 
-### ASAP: validate shared roles
+## Structure decisions
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| S1 | Extend existing roadmaps and project records. | Avoid competing backlogs and repeated implementation. |
+| S2 | Keep company analysis and plans in its team repository. | Coworkers need shared, private access. |
+| S3 | Schedule Cursor setup and one ticket trial next. | The user wants to exercise the existing subscription immediately. |
+| S4 | Use the current AI Big Picture repository first. | Learn from one experiment before opening more domain repositories. |
+| S5 | Keep a future learning app as a possibility. | No application scope, stack, deployment, or implementation is approved. |
+
+**Authority:** The user approved structure, discovery, and company-plan publication on 2026-10-20.
+These decisions supersede indefinite Cursor deferral and the unversioned company-plan destination.
+They do not authorize executing every historical proposal.
+
+**Discovery:** Installed `~/.agents/references/harness-context.md` gives new sessions the short
+direction.
+Installed `~/.agents/harness-roadmap.md` points here; work instructions point to the company-owned
+roadmap.
+
+## Organize future work
+
+1. Reconcile meeting ideas with existing plans, prototypes, branches, and verified outcomes.
+2. Group by scope and concern: safety, communication, knowledge, delegation, experiments, and
+  repeatable setup.
+3. Keep one record per outcome, with source, historical claim, current evidence, approval, and next
+  check.
+4. Validate an existing workflow before adding roles, skills, integrations, or a shared framework.
+5. Promote sanitized, proven practices into maintained setup documentation after explicit scope
+  review.
+
+**Evidence states:** Distinguish tracked, configured, installed, loaded, authenticated, and
+exercised.
+Keep authorization separate. Missing evidence means unknown, not undone.
+
+**Family projects:** The life repository map owns locations; individual repositories own their
+product records.
+Habit Tracker already records routine and checkpoint prototypes; Money Tracker records spending
+analysis before budgets.
+Those artifacts do not prove sustained use, completed budgets, or consent to automatic shared
+tracking.
+Keep daily schedules, journal access, purchases, and financial evidence out of this public roadmap.
+
+**Learning direction:** Use the current AI-focused Big Picture repository for learning and bounded
+experiments.
+Further domain repositories and a learning app remain future options.
+It owns knowledge, not the harness backlog or learner-progress tracking.
+
+## Immediate Cursor handoff
+
+**Requested:** Setup after this structuring session, followed by one work-ticket trial.
+The ticket, installed Cursor version, account state, and effective permissions still need
+confirmation.
+
+- Open the authorized company workspace and read its team-owned roadmap and pilot checklist.
+- Verify project instructions before editing; do not assume personal Pi or Claude settings transfer.
+- Confirm the ticket, allowed changes, model/account route, required tools, and approval boundaries.
+- Trial one bounded task; compare useful outcomes and correction effort with the existing workflow.
+- Record loading, access, execution, and remaining gaps in the company record, not this public plan.
+
+**Acceptance:** Required instructions are observed, scope is respected, and the ticket produces
+independently checked evidence.
+Stop for missing permissions, unclear instructions, unintended personal context, or unsupported
+account usage.
+No Cursor configuration or authenticated ticket execution occurred during this structure change.
+
+### Structure verification
+
+**Verified on 2026-10-20:** Installed overview and roadmap links match their sources.
+Repeated linking preserves timestamps.
+Pi's global source and Claude's import adapter resolve to the updated startup instruction.
+Full lint, explicit shared Markdown checks, and delivery tests pass: 11 tests, one optional check skipped.
+Changed Markdown links and public/private content boundaries were checked.
+A fresh Sol worker in Pi followed the startup pointers to both scope-specific roadmaps.
+Its transcript confirms the reads. Independent personal review found no concrete blockers.
+
+**Limits:** Static delivery does not prove Claude or Cursor runtime loading or useful ticket outcomes.
+Start fresh sessions before verifying effective instructions; retain client-specific differences.
+
+## Existing follow-through
+
+### Validate shared roles
 
 **State:** Shared roles are installed. Historical probes passed; everyday use remains unverified.
 
@@ -107,17 +190,17 @@ removing retired applications or credentials.
 
 ### Work follow-up
 
-**Status:** Earlier work-hub changes used `chore/ai-harness`; current branch and commit state remain
-unverified.
+**Owner:** The company repository's `.agents/README.md` indexes its current roadmap, backlog, and
+historical evidence.
+Read the workspace instruction pointer before continuing company work.
 
-- Inspect the private companion before resuming work changes.
-- Confirm saved changes before switching branches.
-- Keep company configuration and evidence in the work workspace.
-- Verify `issue-handoff` and `staging-deploy` through actual use; earlier reports did not establish
-  execution.
+- Company analysis and related plans belong in the team repository, not an unversioned parent
+  directory.
+- Inspect the requested branch and current deployment separately before claiming availability.
+- Verify work skills through ordinary use; files and historical reports do not establish execution.
 
-**Private companion:** `<work root>/.agents/plans/ai-harness-work-scope.md` owns company-specific
-continuation.
+**Superseded:** The unversioned `<work root>/.agents/plans/ai-harness-work-scope.md` destination is
+historical.
 
 ## Completed and verified
 
@@ -177,11 +260,12 @@ historical evidence.
 | ID | Question | Current default |
 | --- | --- | --- |
 | D1 | Extend work MCPs to Pi? | Claude-only; Pi uses skill fallbacks. |
-| D2 | Where should company-specific roadmap details live? | Private companion; public notes remain generic. |
+| D2 | Where should company-specific roadmap details live? | Settled by S2: the team's private repository; public notes remain generic. |
 | D3 | How should PR images be attached? | Manual upload; automation remains unresolved. |
 | D4 | Remove the `docs/quotas.md` OpenCode Go reference? | Keep it; the subscription differs from the retired agent. |
 
-**Scope:** D1, D3, and D4 require work-context review; this document authorizes no company changes.
+**Scope:** D1, D3, and D4 require work-context review. S2 authorizes company planning structure, not
+backlog execution.
 
 ## Settled boundaries
 
@@ -190,7 +274,8 @@ historical evidence.
 | D5 | Unanswered proposals never authorize edits. | Silence is not approval. |
 | D6 | Keep individual preferences separate. | Another operator has not consented to inherit them. |
 
-**Approval:** Company adaptation, runtime changes, and publication require their own approval.
+**Approval:** Company-plan publication is approved under S2. Runtime changes and broader adaptations
+require scoped approval.
 
 **Policy:** Read [global instructions](/home/.agents/AGENTS.md) before changing shared behavioral
 boundaries.
@@ -224,10 +309,11 @@ before revisiting H1–H17, G1–G12, or S1–S8.
 - Check maintenance, licensing, loading behavior, and shared-source support before selecting an
   integration.
 
-### Cursor and company work
+### Company implementation candidates
 
-- Verify Cursor instruction loading before configuration; support has not started.
-- Defer company workflow adaptation until separately approved.
+**Cursor:** Indefinite deferral is superseded by S3; use the immediate handoff above.
+Company-plan structure is approved; workflow implementation remains separately scoped.
+
 - Consider a work `rfc` skill covering templates, tracker mirrors, indexing, and announcement
   drafts.
 - Consider a separate review server so development reloads do not interrupt review.

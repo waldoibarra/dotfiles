@@ -67,6 +67,7 @@ installed paths replace `home/` with `~/` unless noted.
 | `home/.agents/.skill-lock.json` | Linked; external skill sources and installer targets |
 | `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`, `~/.pi/agent/AGENTS.md`, and `~/.codex/AGENTS.md`; global policy and reading map |
 | `home/.agents/references/*.md` | Linked individually to `~/.agents/references/`; shared on-demand detail |
+| `.agents/plans/ai-harness-roadmap.md` | Linked to `~/.agents/harness-roadmap.md`; personal priorities, read on demand |
 | `home/.agents/mcp.json` | Shared personal MCP definitions; Pi link and derived Claude user registrations |
 | Repo-authored skill directories | Linked individually; [destinations](/docs/agent-skills.md#repo-managed-skills) |
 | `home/.pi/agent/settings.json` | Linked; coding defaults, packages, role overrides, compaction preferences |
@@ -91,7 +92,8 @@ Edit the repository source when refining the shared baseline. Profile edits thro
 link also change dotfiles.
 Review excerpts and learned preferences before committing; this profile is publishable
 configuration, not private storage.
-`GHOSTWRITER_HOME` overrides the default directory, bypassing this link unless it names the same location.
+`GHOSTWRITER_HOME` overrides the default directory, bypassing this link unless it names the same
+location.
 
 Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before applying the link on an
 existing workstation.

@@ -6,8 +6,8 @@ skill or integration.
 **Goal:** Reduce meeting rereading and mistaken assignments, supporting faster decisions and
 useful delegation without expanding global instructions.
 
-**Priority:** Retain as a candidate; ordinary shared-role validation remains the roadmap's next
-task.
+**Priority:** Retain as a candidate. Cursor setup and a bounded ticket trial come first.
+Shared-role validation remains follow-through, not a prerequisite for retaining meeting evidence.
 
 Read [the roadmap](/.agents/plans/ai-harness-roadmap.md) before scheduling implementation.
 
