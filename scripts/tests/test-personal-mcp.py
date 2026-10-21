@@ -160,7 +160,7 @@ class PersonalMcpTest(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 0)
         source = ROOT / "home/.agents/mcp.json"
-        for relative in (".agents/mcp.json", ".pi/agent/mcp.json"):
+        for relative in (".agents/mcp.json", ".pi/agent/mcp.json", ".cursor/mcp.json"):
             self.assertEqual((self.home / relative).resolve(), source)
         self.assertEqual(json.loads(self.registry.read_text()), self.initial)
 

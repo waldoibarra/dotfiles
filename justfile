@@ -88,6 +88,7 @@ lint-sh:
   shellcheck -a scripts/set-brew-zsh-as-default-shell.sh
   shellcheck -a scripts/update-coding-agents/entrypoint.sh
   shellcheck scripts/update-coding-agents/sync-life-profile.sh
+  shellcheck scripts/update-coding-agents/sync-cursor-rule.sh
   shellcheck -a home/.claude/statusline.sh
   shellcheck -a home/.claude/subagent-statusline.sh
   shellcheck home/.agents/skills/shell-scripting/assets/template.sh

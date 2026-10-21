@@ -42,7 +42,8 @@ Homebrew packages and Mise tools, then selects Homebrew Zsh. See the
 
 This command does **not** run the coding-agent updater or install this repository's Git hooks.
 The two [copy-managed agent files](coding-agents/README.md#copy-managed-files) are populated by
-the updater, not Dotbot.
+the updater, not Dotbot. The updater also renders
+[Cursor's global instructions](coding-agents/README.md#cursor-global-instructions) as a regular file.
 
 ## Add local settings
 
@@ -95,7 +96,7 @@ profile selection. Agent updates warn if the vault exists but `LIFE_PROFILE` is 
 Agent updates provision `~/.agents/personal-context.md` and `~/.agents/agent-identity.md` as
 symlinks
 into the selected profile. Pi and Claude Code read these alongside `~/life/README.md`.
-Cursor setup remains deferred. Read
+Cursor receives those reading instructions through its rendered global rule. Read
 [personal profile routing](agent-instructions.md#personal-profile-routing) before provisioning links
 or removing an old `~/AGENTS.md` selector.
 Agent note edits are Markdown-only, with approved exceptions for declared plugins, lint

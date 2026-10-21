@@ -167,6 +167,7 @@ main() {
   # First: it resets ~/.claude/settings.json to the tracked bytes, which would
   # otherwise discard whatever the Herdr steps below write into that file.
   sync_managed_configs
+  bash "${ENTRYPOINT_DIR}/sync-cursor-rule.sh"
   python3 "${ENTRYPOINT_DIR}/sync-personal-mcp.py"
   install_pi_packages
   install_rtk_agent_extension pi
@@ -175,7 +176,7 @@ main() {
   install_moshi_agent_extension pi
   sync_global_skills_from_lock
 
-  echo "Done updating. Restart Claude Code and Pi if they are open."
+  echo "Done updating. Restart Claude Code, Pi, and Cursor if they are open."
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

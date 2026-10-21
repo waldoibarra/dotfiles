@@ -6,8 +6,10 @@ Personal MCP definitions live in one shared source; work-only servers stay outsi
 ## Source and scope
 
 [`home/.agents/mcp.json`](/home/.agents/mcp.json) owns the personal server definitions.
-Dotbot links it to `~/.agents/mcp.json` and Pi's native `~/.pi/agent/mcp.json`.
-Pi reads that file directly; no MCP extension or duplicate definition is required.
+Dotbot links it to `~/.agents/mcp.json`, Pi's `~/.pi/agent/mcp.json`, and Cursor's `~/.cursor/mcp.json`.
+Pi and Cursor read that file directly; no duplicate definition is required.
+Cursor's directory stays real; only its MCP configuration is linked.
+Edits through either client's symlink change the tracked source.
 
 Claude Code stores user servers in `~/.claude.json`, alongside private client state.
 The [registration adapter](/scripts/update-coding-agents/sync-personal-mcp.py) derives user
@@ -64,7 +66,17 @@ Read the [tool reference](https://docs.fireflies.ai/mcp-tools/overview) before r
 **Pi verified:** Authenticated meeting discovery, summary retrieval, and transcript retrieval
 succeeded in a live session.
 
-**Still unverified:** Claude authentication and retrieval; exporting meeting content to local files.
+**Still unverified:** Claude and Cursor authentication and retrieval;
+exporting meeting content to local files.
+
+## Cursor
+
+Restart Cursor after installing the link, then inspect its MCP settings for Context7 and Fireflies.
+Authorize Fireflies through Cursor's native OAuth flow; credentials remain client-local.
+Verify a Context7 tool call in a fresh chat using the prompt below.
+The installed link alone proves neither loading, authentication, nor successful tool calls.
+Global instruction rules are separate from MCP setup.
+Read [Cursor global instructions](README.md#cursor-global-instructions) before changing their template.
 
 ## Apply configuration
 
@@ -133,6 +145,8 @@ Inspect tool results, not only the final response. Read the
 outcomes.
 
 ## Client references
+
+- Read [Cursor MCP documentation](https://cursor.com/docs/mcp) before changing its global configuration.
 
 - Read [Pi MCP
   documentation](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/mcp.md)

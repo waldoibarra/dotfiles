@@ -1,0 +1,6 @@
+---
+description: Load shared global agent instructions
+alwaysApply: true
+---
+
+@~/.agents/AGENTS.md

@@ -54,6 +54,7 @@
     ~/.agents/RTK.md: home/.agents/RTK.md
     ~/.agents/references/prompting.md: docs/prompting.md
     ~/.agents/mcp.json: home/.agents/mcp.json
+    ~/.cursor/mcp.json: home/.agents/mcp.json
     ~/.claude/RTK.md: home/.agents/RTK.md
     ~/.aws/config: home/.aws/config
     ~/.config/git/ignore: home/.config/git/ignore

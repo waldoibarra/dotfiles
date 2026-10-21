@@ -56,6 +56,7 @@ installed paths replace `home/` with `~/` unless noted.
 | Tracked source | Delivery and purpose |
 | --- | --- |
 | `home/.claude/CLAUDE.md` | Copied; Claude's global import adapter |
+| `home/.cursor/rules/global-instructions.mdc` | Template; updater renders a regular Cursor rule file |
 | `home/.claude/settings.json` | Copied; hooks, output style, permissions, plugins, status lines |
 | `home/.agents/roles/*.md` | Linked individually to `~/.agents/roles/` and `~/.claude/agents/`; [shared roles](/docs/agent-instructions.md#shared-role-agents) |
 | `home/.claude/output-styles/*.md` | Linked individually; the directory stays real |
@@ -67,7 +68,7 @@ installed paths replace `home/` with `~/` unless noted.
 | `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`, `~/.pi/agent/AGENTS.md`, and `~/.codex/AGENTS.md`; global policy and reading map |
 | `home/.agents/references/*.md` | Linked individually to `~/.agents/references/`; shared on-demand detail |
 | `.agents/plans/ai-harness-roadmap.md` | Linked to `~/.agents/harness-roadmap.md`; personal priorities, read on demand |
-| `home/.agents/mcp.json` | Shared personal MCP definitions; Pi link and derived Claude user registrations |
+| `home/.agents/mcp.json` | Shared personal MCP definitions; Pi and Cursor links, plus derived Claude user registrations |
 | Repo-authored skill directories | Linked individually; [destinations](/docs/agent-skills.md#repo-managed-skills) |
 | `home/.pi/agent/settings.json` | Linked; coding defaults, packages, role overrides, compaction preferences |
 | `home/.pi/agent/extensions/subagent/config.json` | Linked; minimal Pi runner configuration |
@@ -96,6 +97,33 @@ location.
 
 Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before applying the link on an
 existing workstation.
+
+## Cursor global instructions
+
+The tracked `home/.cursor/rules/global-instructions.mdc` is a template, not an installed symlink.
+Its literal `@~/.agents/AGENTS.md` marker does not currently work as a native Cursor import.
+It is our script placeholder, not syntax we expect Cursor to expand.
+
+During `dots` (`just sync`), the coding-agent updater runs
+[`sync-cursor-rule.sh`](/scripts/update-coding-agents/sync-cursor-rule.sh).
+It replaces that marker with the actual bytes from `~/.agents/AGENTS.md`.
+The result is a regular `~/.cursor/rules/global-instructions.mdc` file with its frontmatter preserved.
+Only this exact marker is expanded; references inside the instructions are not recursively included.
+
+The renderer atomically replaces old symlinks without modifying their targets.
+Matching bytes and permissions leave the installed file untouched; generated files use mode `0644`.
+Missing inputs or an invalid marker count fail before replacing the installed rule.
+Edit the tracked template or shared instructions; installed rule edits are overwritten on sync.
+Instruction edits reach Cursor on the next render, not immediately through a symlink.
+
+To refresh only this rule without package updates or publication:
+
+```sh
+bash scripts/update-coding-agents/sync-cursor-rule.sh
+```
+
+Restart Cursor afterward. File generation does not verify fresh-session instruction loading.
+Run `python3 scripts/tests/test-cursor-rule.py` for isolated rendering and migration checks.
 
 ## Copy-managed files
 
