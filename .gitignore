@@ -4,3 +4,5 @@ id_rsa
 
 # Personal-only historical evidence; never publish.
 /.agents/private/
+
+__pycache__/
