@@ -1,26 +1,27 @@
-# Harness direction
+# Harness scope routing
 
-**Goal:** Make personal and work harnesses cooperate, then reuse verified practices with future
-clients.
+**Direction:** Reuse verified practices while keeping plans, evidence, credentials, and
+preferences with their owners.
+Use existing instructions, skills, roles, and setup scripts before adding infrastructure.
 
-**Approach:** Start with existing dotfiles, scripts, shared instructions, skills, and roles.
-Keep company knowledge, credentials, permissions, and personal preferences with their respective
-owners.
-Promote reusable lessons deliberately; do not make a client depend on an operator's personal setup.
+**Company or client sessions:** Follow the current workspace's instruction pointer to its own
+roadmap.
+Do not open personal roadmaps, family project maps, or private personal evidence unless explicitly
+requested.
+Cross-repository company work remains company-scoped; it does not require personal planning context.
 
-**Current step:** Establish discoverable plans and reconcile existing work before adding features.
-Pi and Claude Code remain active targets. Cursor setup and one work-ticket trial are next.
-Cursor installation, authentication, instruction loading, and successful use remain unverified.
+**Personal sessions:** Read `~/.agents/harness-roadmap.md` before prioritizing personal harness
+improvements.
+Read the repository map linked from `~/life/README.md` when locating a personal or family project.
 
-**Learning:** Experiment with the existing AI-focused Big Picture repository first.
-Additional topic repositories and a learning application remain possibilities, not approved builds.
-Read the repository map linked from `~/life/README.md` before locating family projects.
+**Unclear scope:** Ask before reading private plans. Never infer scope from the client or model.
 
-**Navigation:** Read `~/.agents/harness-roadmap.md` before prioritizing personal harness or
-cross-project improvements.
-At work, read the project instruction file's company roadmap instead.
-Company records belong in the team's repository, never this shared personal reference or the life
-vault.
+**Retention:** Classify content before saving it. Ignored files remain accessible inside their
+workspace.
+Split mixed material into reviewed scope-specific records; do not archive mixed originals in
+either repository.
+Link only sources appropriate for the destination audience; a recording can contain material
+beyond its excerpt.
 
-**Authority:** A roadmap provides context, not permission to execute its backlog.
-Keep the requested task primary. Read detailed plans only when their concern becomes relevant.
+**Authority:** Roadmaps provide context, not permission to execute their backlogs.
+Keep the requested task primary and read detailed plans only when their concern becomes relevant.

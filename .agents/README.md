@@ -15,6 +15,12 @@ and experiments; maintained workstation documentation lives in `/docs/`.
   machine-local runtime files outside this directory. Record any evidence redactions in its
   manifest.
 
+## Private personal evidence
+
+Personal-only historical extracts may live under ignored `.agents/private/`, indexed by their
+local README.
+Never put company material or mixed-source originals there; Git ignore is not a scope boundary.
+
 ## Evidence storage
 
 Keep the curated `spikes/pi-media-learning-and-live-voice-evidence/` collection in Git. At roughly

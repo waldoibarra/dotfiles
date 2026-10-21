@@ -24,8 +24,8 @@ client-specific configuration.
 These decisions supersede indefinite Cursor deferral and the unversioned company-plan destination.
 They do not authorize executing every historical proposal.
 
-**Discovery:** Installed `~/.agents/references/harness-context.md` gives new sessions the short
-direction.
+**Discovery:** Installed `~/.agents/references/harness-context.md` routes sessions by scope.
+It contains no personal project plans; this personal roadmap is read only for personal planning.
 Installed `~/.agents/harness-roadmap.md` points here; work instructions point to the company-owned
 roadmap.
 
@@ -80,12 +80,17 @@ No Cursor configuration or authenticated ticket execution occurred during this s
 **Verified on 2026-10-20:** Installed overview and roadmap links match their sources.
 Repeated linking preserves timestamps.
 Pi's global source and Claude's import adapter resolve to the updated startup instruction.
-Full lint, explicit shared Markdown checks, and delivery tests pass: 11 tests, one optional check skipped.
+Full lint, explicit shared Markdown checks, and delivery tests pass: 11 tests, one optional check
+skipped.
 Changed Markdown links and public/private content boundaries were checked.
-A fresh Sol worker in Pi followed the startup pointers to both scope-specific roadmaps.
-Its transcript confirms the reads. Independent personal review found no concrete blockers.
+An earlier Pi review read both roadmaps while explicitly auditing both scopes.
+That observation did not establish isolation; company sessions now avoid personal roadmap discovery.
+Personal-only historical extracts remain ignored in this repository, never in a company workspace.
+The privacy correction removed mixed archives and source links exceeding their destination audience.
+Independent privacy review and static scope scans pass; fresh-session isolation remains untested.
 
-**Limits:** Static delivery does not prove Claude or Cursor runtime loading or useful ticket outcomes.
+**Limits:** Static delivery does not prove Claude or Cursor runtime loading or useful ticket
+outcomes.
 Start fresh sessions before verifying effective instructions; retain client-specific differences.
 
 ## Existing follow-through

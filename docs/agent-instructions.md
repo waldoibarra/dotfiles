@@ -51,10 +51,10 @@ Its project rules and user settings need separate loading verification.
 
 The global source requires reading installed `~/.agents/references/harness-context.md` at session
 start.
-This short overview supplies direction and scope, without loading the full roadmap.
+This shared reference routes by scope; it contains no personal project plans or current priorities.
 
-Read installed `~/.agents/harness-roadmap.md` before personal harness prioritization or
-cross-project planning.
+Only personal sessions read `~/.agents/harness-roadmap.md` for personal harness prioritization.
+Company cross-repository work stays company-scoped and uses its own roadmap.
 Dotbot links it to the existing repository roadmap; the overview uses only stable installed paths.
 Work sessions follow their project instructions to the company-owned roadmap instead.
 Company evidence and credentials never belong in these public personal records.
