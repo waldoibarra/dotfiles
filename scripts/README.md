@@ -108,8 +108,5 @@ isolated environment, never by running a real machine sync as a test.
 Run `python3 scripts/tests/test-agent-harness.py` to check shared-role links, Pi settings, and
 package reconciliation. It uses temporary homes and a fake Pi executable; no inference or sync runs.
 Run `python3 scripts/tests/test-personal-mcp.py` for isolated MCP registration and linking checks.
-Run `python3 scripts/tests/test-personal-google-sheets.py` to verify credential isolation, work-root
-rejection, launch arguments, and private token-directory behavior using fake `uvx` and disposable
-homes.
 Run `python3 scripts/tests/test-markdown-app.py` for application guards and error propagation
 without changing real file associations.

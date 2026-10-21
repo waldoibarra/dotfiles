@@ -28,7 +28,6 @@ responses.
 | Changing shared rules, personal instructions or Claude response styles | [Agent instructions](/docs/agent-instructions.md) |
 | Understanding Pi provisioning, voice choices, or accepted limitations | [Pi and live voice](pi/README.md) |
 | Configuring or verifying personal MCP servers across clients | [Personal MCP servers](mcp.md) |
-| Connecting personal Sheets or troubleshooting Google sign-in | [Google Sheets setup](google-sheets.md) |
 | Verifying shared instruction behavior and acceptance | [Harness verification](personal-workflow.md) |
 | Delegating with a shared role and an explicit model | [Pi delegation](pi/delegation.md) |
 | Adding, updating or checking skill discovery | [Agent skills](/docs/agent-skills.md) |

@@ -54,7 +54,6 @@
     ~/.agents/RTK.md: home/.agents/RTK.md
     ~/.agents/references/prompting.md: docs/prompting.md
     ~/.agents/mcp.json: home/.agents/mcp.json
-    ~/.local/bin/google-sheets-personal-mcp: home/.local/bin/google-sheets-personal-mcp
     ~/.claude/RTK.md: home/.agents/RTK.md
     ~/.aws/config: home/.aws/config
     ~/.config/git/ignore: home/.config/git/ignore

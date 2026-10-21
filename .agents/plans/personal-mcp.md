@@ -1,5 +1,16 @@
 # Personal MCP parity
 
+## Current status
+
+The personal Google Sheets MCP is retired at the user's request.
+Its launcher, Dotbot mapping, dedicated tests, and setup guide are removed.
+The installed launcher link and empty personal OAuth directories are removed.
+No Sheets entry remains in the normal Claude, Pi, Cursor, or shared MCP configurations.
+No personal token directory existed; no credential contents were read.
+MCP and harness fixtures pass, with their opt-in checks skipped; repository lint passes.
+Historical Sheets decisions and research below remain evidence, not instructions to reactivate it.
+No Google authorization grant is revoked by local file removal.
+
 ## Outcome
 
 Pi and Claude Code use one credential-free personal MCP source under `~/.agents/`.
@@ -417,8 +428,5 @@ No authentication mode or configuration has changed in response to the alternati
 
 ## Next session
 
-1. Resolve the onboarding blocker or obtain approval for a specific alternative authentication mode.
-2. Preserve local, free/open-source requirements and separate personal credentials.
-3. Verify a small read, then an explicitly authorized spreadsheet edit; do not claim access beforehand.
-4. Restart agents to load the changed shared instructions; behavioral smoke tests remain pending.
-5. Keep charting, hosted providers, and company integration deferred.
+Continue only active personal MCP verification. Sheets reactivation requires a new explicit request.
+Historical setup paths and commands above refer to removed artifacts.

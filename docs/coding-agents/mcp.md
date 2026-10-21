@@ -66,13 +66,6 @@ succeeded in a live session.
 
 **Still unverified:** Claude authentication and retrieval; exporting meeting content to local files.
 
-## Google Sheets
-
-The unused personal Sheets server is removed from the shared manifest and Claude user registrations.
-The launcher and private OAuth files remain; no Google authorization grant was revoked.
-Read the [retained setup guide](/docs/coding-agents/google-sheets.md)
-before reactivation or credential cleanup.
-
 ## Apply configuration
 
 Read [sync boundaries](/docs/tooling.md#sync-the-workstation) before running a full workstation
@@ -107,7 +100,6 @@ Run fixture checks from the repository root; they use disposable homes and a fak
 
 ```sh
 python3 scripts/tests/test-personal-mcp.py
-python3 scripts/tests/test-personal-google-sheets.py
 python3 scripts/tests/test-agent-harness.py
 ```
 
