@@ -34,6 +34,7 @@ responses.
 | Diagnosing RTK, Herdr or Moshi hooks and plugins, or the Lens plugin | [Agent integrations](/docs/agent-integrations.md) |
 | Applying tracked config changes | [Copy-managed files](#copy-managed-files), then [Sync the workstation](/docs/tooling.md#sync-the-workstation) |
 | Configuring design tools | [UI design tools](/docs/agent-ui-design-tools.md) |
+| Changing a behavior the work harness shares | [Work harness parity](work-parity.md) |
 
 **Publication risk:** `just update-ca`, and therefore `just sync`, can commit and push a changed
 skill lockfile, publishing other unpushed commits on the branch too. Read
