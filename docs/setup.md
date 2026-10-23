@@ -16,6 +16,9 @@ support. Review the configuration before applying it to another account.
   .
 - Use an interactive terminal for sudo, Touch ID and login-shell prompts.
 
+Git and Python 3.7+ must work before cloning and running Dotbot.
+Homebrew, Mise, and `just` are not prerequisites for initial installation.
+
 If Git is missing, install it first. On macOS, finish the command-line tools installer:
 
 ```sh
@@ -25,8 +28,19 @@ xcode-select --install
 On Debian:
 
 ```sh
-sudo apt-get install -y git
+sudo apt-get install -y git python3
 ```
+
+Verify both prerequisites before continuing:
+
+```sh
+git --version
+python3 --version
+```
+
+If macOS still lacks Python, install [Python 3](https://www.python.org/downloads/macos/)
+and reopen the terminal.
+The installer checks both prerequisites before changing submodules or invoking Dotbot.
 
 ## Install the dotfiles
 
@@ -36,9 +50,21 @@ cd ~/.dotfiles
 ./scripts/install-dotfiles.sh
 ```
 
-Dotbot updates submodules, links configuration, enables Touch ID for sudo on macOS, installs
-Homebrew packages and Mise tools, then selects Homebrew Zsh. See the
-[script reference](/scripts/README.md) for exact responsibilities.
+Dotbot updates submodules, links configuration, and enables Touch ID for sudo on macOS.
+It then bootstraps packages sequentially:
+
+1. Install Homebrew if absent and expose it on the installer's `PATH`.
+2. Install missing Brewfile packages, including Mise, without requesting upgrades of existing declarations.
+3. Trust the Mise configuration and install missing tools, including `just` and managed Python.
+4. Configure the Markdown handler and select Homebrew Zsh.
+
+Homebrew can still upgrade dependencies required by newly installed packages.
+The wrapper exposes Homebrew's supported prefix to later Dotbot commands,
+including the login-shell configuration.
+See the [script reference](/scripts/README.md) for exact responsibilities.
+
+Initial installation does not use the parallel coordinator or require `just`.
+Later `dots` runs defer Mise tools to that coordinator and use Brew's no-upgrade bootstrap check.
 
 This command does **not** run the coding-agent updater or install this repository's Git hooks.
 The two [copy-managed agent files](coding-agents/README.md#copy-managed-files) are populated by

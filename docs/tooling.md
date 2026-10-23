@@ -14,9 +14,10 @@ just sync
 
 The `dots` alias runs this from any directory. The recipe executes:
 
-1. `git pull`, then the [Dotbot installer](/scripts/README.md).
-2. Homebrew bundle upgrade, then removal of packages absent from the global Brewfile.
-3. Mise install, upgrade and prune.
+1. `git pull`, then [Dotbot bootstrap](/scripts/README.md), installing missing Brew packages
+without requesting upgrades.
+2. Upgrade Brew-owned Mise, then run remaining Brew upgrades alongside Mise install, upgrade and prune.
+3. Wait for both updates, then remove packages absent from the global Brewfile.
 4. [Obsidian setup](obsidian.md) for an existing life vault: tools, plugins, owned settings, and
 ruler.
 5. The [coding-agent updater](coding-agents/README.md).
@@ -31,6 +32,68 @@ and skip it otherwise. Prefer `just mise-sync`, `just update-ca` or `just hooks`
 their domain changed. Before running `dots`, tell the user it will run as part of the work so
 they can accept sudo, Touch ID or SSH prompts; run it in the background and wait for them.
 
+### Read package-update output
+
+`just packages-sync` coordinates three phases within `dots`:
+
+1. Upgrade the **Mise executable** through Brew before running Mise-managed tools.
+This prevents Brew from replacing Mise during its tool updates.
+2. Start remaining Brew upgrades and Mise tool installation, upgrades, and pruning concurrently.
+3. Wait for both jobs to succeed, then run Brewfile cleanup.
+
+Only the concurrent jobs receive `[brew]` and `[mise]` prefixes.
+The executable update and final cleanup remain unprefixed.
+Brew output therefore appears before and after parallel work.
+
+Illustrative output; lines from the two jobs can arrive in either order:
+
+```text
+Updating the Mise executable before parallel tool updates.
+Syncing Brew and Mise in parallel; cleanup waits for both.
+[brew] Starting updates.
+[mise] Starting updates.
+[brew] brew bundle upgrade --global
+[mise] mise install --yes
+[mise] mise upgrade --yes
+```
+
+Each label includes that job's stdout and stderr, including errors, in one combined stream.
+Brew runs without `--quiet`.
+Carriage-return progress updates become separate lines instead of overwriting previous output.
+Lines appear when tools flush their output; quiet gaps do not prove sequential execution.
+`[mise] Finished syncing Mise tools.` means that job finished, not that the entire sync succeeded.
+
+### Sequential mode and recovery
+
+For dependency-sensitive source builds, keep package updates sequential:
+
+```sh
+DOTS_SEQUENTIAL=1 just sync
+```
+
+Brew can replace libraries or build tools used by Mise backends during parallel updates.
+Sequential mode runs the complete Brew cycle before Mise tools and does not add output labels.
+Missing Brew-owned Mise also selects this mode; the coordinator prints `Syncing Brew and Mise sequentially.`
+A failed Brew probe stops the sync rather than assuming Mise is absent.
+
+A preflight failure prevents parallel jobs from starting.
+If either parallel job fails, the coordinator waits for the other.
+It then fails without running Brewfile cleanup.
+Later sync steps do not run. Successful package changes are not rolled back.
+Fix the reported error before retrying `just packages-sync` or the full `dots` workflow.
+Ctrl+C terminates the coordinator's subprocess groups; it does not undo completed updates.
+
+### Bootstrap versus updates
+
+The installer checks Brewfile packages with `--no-upgrade`.
+It uses that flag when installing missing packages too.
+Homebrew can still upgrade dependencies required by a missing package.
+During `dots`, `DOTS_DEFER_MISE_INSTALL=1` leaves Mise tools for the coordinator
+after trusting the configuration.
+This variable is scoped to the installer invocation; do not export it for first-time setup.
+Standalone installation remains sequential and installs Mise tools, including `just`.
+Read [first-time setup](setup.md) before bootstrap.
+
 ## Recipes
 
 Run recipes from the repository root. `just --list` lists them; `just` does the same.
@@ -38,6 +101,7 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 | Command | Scope and side effects |
 | --- | --- |
 | `just sync` | Full workflow above. |
+| `just packages-sync` | Coordinate Brew and Mise updates, then remove unlisted Brew packages. |
 | `just brew` | Install/upgrade Brewfile packages, then uninstall unlisted packages. |
 | `just brew-dump` | Overwrite the global Brewfile from installed packages; exclude VS Code extensions and npm packages. Review before committing. |
 | `just mise-sync` | Install, upgrade and prune Mise tools. |
@@ -155,7 +219,7 @@ The global source has a distinct filename so it cannot override those exceptions
 ## Homebrew
 
 [`home/.Brewfile`](/home/.Brewfile), linked to `~/.Brewfile`, owns system packages and desktop apps.
-Edit it to add or remove a package. `just brew` runs `brew bundle upgrade --global --quiet`, then
+Edit it to add or remove a package. `just brew` runs `brew bundle upgrade --global`, then
 `brew bundle cleanup --global --force`; removing a declaration can uninstall the package.
 
 `just sync` never dumps installed packages back into the file. `just brew-dump` is an explicit

@@ -17,12 +17,14 @@ Read [repository guardrails](/AGENTS.md#guardrails) before changing script behav
 
 [`install-dotfiles.sh`](/scripts/install-dotfiles.sh) initializes the Dotbot submodule and runs
 [install.conf.yaml](/install.conf.yaml) from the repository root. It forwards arguments to Dotbot.
+The wrapper checks Git and Python 3.7+ before invoking Dotbot.
+It exposes the supported Homebrew prefix to every Dotbot subprocess, even before Brew exists there.
 The configuration updates submodules from their remotes, manages links and runs these scripts:
 
 | Script | Behavior |
 | --- | --- |
 | [configure-touch-id-for-sudo.sh](/scripts/configure-touch-id-for-sudo.sh) | On macOS, build `/etc/pam.d/sudo_local` from Apple's template if Touch ID is not enabled; set mode `444`. Skip other systems; fail if the template is missing. |
-| [install-os-packages.sh](/scripts/install-os-packages.sh) | Install Homebrew if needed, check/install its global bundle, trust/install Mise tools, and install missing WezTerm terminfo on macOS when WezTerm is available. |
+| [install-os-packages.sh](/scripts/install-os-packages.sh) | Install Homebrew if needed, check/install its global bundle with `--no-upgrade`, trust/install Mise tools, and install missing WezTerm terminfo on macOS when WezTerm is available. |
 | [configure-markdown-app.sh](/scripts/configure-markdown-app.sh) | After package installation, apply the user-wide Markdown handler with duti. Skip non-macOS or an unavailable app. |
 | [set-brew-zsh-as-default-shell.sh](/scripts/set-brew-zsh-as-default-shell.sh) | Register Homebrew Zsh in `/etc/shells` and select it with `chsh`, unless `$SHELL` already matches. |
 
@@ -32,7 +34,40 @@ The Markdown step receives Homebrew's Apple Silicon PATH explicitly;
 package subprocesses cannot update its parent.
 
 Installation does not run the coding-agent updater, prune tools or install this checkout's hooks.
-`just sync` runs the installer, then those additional management steps.
+`just sync` sets `DOTS_DEFER_MISE_INSTALL=1` for the installer,
+deferring Mise tools to the package coordinator.
+Standalone installation installs Mise tools sequentially and needs neither Mise nor `just` beforehand.
+Brew's `--no-upgrade` avoids routine upgrades but permits dependency upgrades required by missing packages.
+
+Run `python3 scripts/tests/test-package-bootstrap.py` for isolated bootstrap, repeat-run, failure,
+prerequisite, and PATH checks.
+
+## Package updates
+
+[`sync-packages.py`](/scripts/sync-packages.py) coordinates Brew and Mise through `just packages-sync`.
+Read [package-update output](/docs/tooling.md#read-package-update-output)
+before interpreting interleaved logs.
+Read [sequential mode and recovery](/docs/tooling.md#sequential-mode-and-recovery)
+before retrying failed updates or running source builds.
+Python owns subprocess groups, waits for both update results, and terminates children on interruption.
+The Mise exclusion applies only to Brew upgrades, never the later Brewfile cleanup.
+
+Each parallel job has a reader thread that drains its merged stdout and stderr pipe.
+A shared output lock keeps labeled lines intact. Readers finish before cleanup starts.
+The coordinator forwards lines as they arrive, without waiting for job completion.
+
+Run these isolated checks after changing bootstrap, coordination, or output handling:
+
+```sh
+python3 scripts/tests/test-package-bootstrap.py
+python3 scripts/tests/test-sync-packages.py
+```
+
+The coordinator checks cover concurrency, sequential fallback, failure propagation, retries,
+and interruption cleanup.
+Output checks cover both streams, carriage-return progress,
+and visible output while both jobs remain running.
+Fixtures use fake package managers; they never update the workstation.
 
 ## Coding-agent updates
 

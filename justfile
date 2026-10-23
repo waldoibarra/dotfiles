@@ -5,10 +5,15 @@ default:
 
 # Idempotently sync OS configuration, apply Brew packages, sync Mise tools, update coding agents.
 [group("Management")]
-sync: && print-separator brew mise-sync obsidian-sync update-ca hooks
+sync: && print-separator packages-sync obsidian-sync update-ca hooks
   git pull
-  ./scripts/install-dotfiles.sh
+  DOTS_DEFER_MISE_INSTALL=1 ./scripts/install-dotfiles.sh
   @echo "Finished synchronizing the dotfiles."
+
+# Coordinate package updates before dependent workstation setup.
+[group("Management")]
+packages-sync:
+  python3 scripts/sync-packages.py
 
 # Apply the global Brewfile declaratively: install/upgrade listed, remove unlisted.
 [group("Management")]
@@ -19,7 +24,7 @@ brew: brew-apply brew-clean && print-separator
 [group("Management")]
 [private]
 brew-apply:
-  brew bundle upgrade --global --quiet
+  brew bundle upgrade --global
 
 # Clean up anything that's not in the global Brewfile.
 [group("Management")]

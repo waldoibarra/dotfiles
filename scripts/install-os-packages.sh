@@ -174,26 +174,31 @@ install_wezterm_terminfo() {
 }
 
 #######################################
-# Trusts this repo's mise config, installs its pinned tools, and activates
-# them for the rest of this script's process.
+# Trusts this repo's Mise config and installs missing tools during bootstrap.
+# Globals:
+#   DOTS_DEFER_MISE_INSTALL: when 1, leave tool installation to the sync coordinator.
 # Arguments:
 #   None
 #######################################
 install_mise_tools() {
   mise trust --yes --quiet
+  if [[ "${DOTS_DEFER_MISE_INSTALL:-0}" == "1" ]]; then
+    echo "Deferring Mise tools to the package sync coordinator."
+    return
+  fi
   mise install --yes
   activate_mise_tools
   echo "Installed missing Mise-managed tools."
 }
 
 #######################################
-# Installs the Homebrew packages declared in the global Brewfile, if they
-# aren't already satisfied.
+# Installs missing Brewfile packages without upgrading existing declarations.
+# Homebrew may still upgrade dependencies required by a missing package.
 # Arguments:
 #   None
 #######################################
 install_brew_packages() {
-  brew bundle check --global || brew bundle install --global
+  brew bundle check --global --no-upgrade || brew bundle install --global --no-upgrade
   echo "Installed Homebrew packages."
 }
 
