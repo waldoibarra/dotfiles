@@ -5,10 +5,10 @@ brew "antigen"
 brew "bash"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# Set default applications for file types on macOS
-brew "duti" if OS.mac?
 # Apjanke's fork of the classic cowsay project
 brew "cowsay"
+# Select default apps for documents and URL schemes on macOS
+brew "duti"
 # SDL2 compatibility layer that uses SDL3 behind the scenes
 brew "sdl2-compat"
 # Play, record, convert, and stream select audio and video codecs
@@ -51,6 +51,8 @@ brew "unbound"
 brew "zsh"
 # Portable daemon + CLI that bridges AI coding agents to the Moshi mobile app
 brew "rjyo/moshi/moshi-hook"
+# Web browser focusing on privacy
+cask "brave-browser"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # App to build and share containerised applications and microservices
