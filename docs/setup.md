@@ -16,8 +16,13 @@ support. Review the configuration before applying it to another account.
   .
 - Use an interactive terminal for sudo, Touch ID and login-shell prompts.
 
-Git and Python 3.7+ must work before cloning and running Dotbot.
+Git is required to clone the repository.
+[Dotbot's launcher](/dotbot/bin/dotbot) requires Python 3.7+ to run; our wrapper checks `python3`.
 Homebrew, Mise, and `just` are not prerequisites for initial installation.
+
+**Clean-machine verification pending:** This setup has not been exercised on clean macOS or Debian installations.
+Fixture tests simulate prerequisites; successful `dots` runs used an already-provisioned workstation.
+Whether platform setup leaves Python available, or requires a separate installation, remains unverified.
 
 If Git is missing, install it first. On macOS, finish the command-line tools installer:
 
