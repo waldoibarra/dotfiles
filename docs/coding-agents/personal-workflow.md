@@ -158,7 +158,7 @@ Claude invocation:
 ```sh
 claude --model sonnet --effort low --tools '' --strict-mcp-config \
   --mcp-config '{"mcpServers":{}}' --disable-slash-commands --setting-sources user \
-  --settings '{"disableAllHooks":true,"enabledPlugins":{"lens@claude-lens":false}}' \
+  --settings '{"disableAllHooks":true}' \
   --no-session-persistence --print '<synthetic prompt>'
 ```
 

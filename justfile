@@ -140,22 +140,6 @@ pi-lens-dev *PI_ARGS:
     -e "$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts" \
     "$@"
 
-# Open Claude Code with the local Lens working tree; saving a file reloads the plugin.
-[group("Development")]
-[no-cd]
-[positional-arguments]
-claude-lens-dev *CLAUDE_ARGS:
-  #!/usr/bin/env sh
-  set -eu
-  plugin_dir="$HOME/projects/open-source/claude-lens"
-  test -f "$plugin_dir/.claude-plugin/plugin.json" || {
-    printf 'Missing development file: %s\n' "$plugin_dir/.claude-plugin/plugin.json" >&2
-    exit 1
-  }
-  claude plugin disable lens@claude-lens
-  trap 'claude plugin enable lens@claude-lens' EXIT
-  claude --plugin-dir "$plugin_dir" "$@"
-
 # Run pre-commit hook against all files to verify hook configuration.
 [group("Debug")]
 check-hooks:

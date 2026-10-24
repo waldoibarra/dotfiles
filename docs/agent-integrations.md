@@ -107,10 +107,11 @@ shell's Mise PATH. [Moshi's hook reference](https://getmoshi.app/docs/hooks) des
 
 ## Lens
 
-[Pi Lens](https://github.com/waldoibarra/pi-lens) and
-[Claude Lens](https://github.com/waldoibarra/claude-lens)
-target matching display-only transcript views.
-Pi is the primary coding agent. Each sibling documents its supported behavior and host limitations.
+[Pi Lens](https://github.com/waldoibarra/pi-lens) draws a display-only transcript view for Pi,
+the primary coding agent. It documents its supported behavior and host limitations.
+
+Its Claude Code sibling, Claude Lens, was archived on 2026-10-23. Claude Code now folds, expands
+and labels tool calls natively, so dotfiles no longer installs it.
 
 ### Pi Lens
 
@@ -130,56 +131,17 @@ Local validation does not require `dots`, package publication, or replacing the 
 
 ### Release deployment
 
-Pi's binary remains on Mise `latest`. Both Lens deployments follow their GitHub `latest` tags.
+Pi's binary remains on Mise `latest`. Pi Lens follows its GitHub `latest` tag.
 There is no release branch. Versioned release tags remain immutable; only `latest` moves.
 
 Read [Pi publishing](https://github.com/waldoibarra/pi-lens/blob/main/docs/how-to/contribute.md)
 before publishing Pi Lens or moving its `latest` alias.
-Read [Claude publishing](https://github.com/waldoibarra/claude-lens/blob/main/docs/development.md)
-before publishing Claude Lens or moving its `latest` alias.
 
-1. Publish and verify an immutable version; update `latest` through that product's release procedure.
-2. Keep Pi's package-source tag and Claude's marketplace `source.ref` set to `latest`.
+1. Publish and verify an immutable version; update `latest` through the Pi Lens release procedure.
+2. Keep Pi's package-source tag set to `latest`.
 3. Run the harness tests, lint, and native installation checks against the released commit.
 4. Refresh installed packages on each machine and open a fresh agent.
 
 Moving `latest` does not reload running sessions. Verify installed commits after refresh.
 For rollback, select a previous immutable version in settings; never move versioned release tags.
 No credentials, sessions, or development checkouts are copied between machines.
-
-### Claude Lens
-
-The tracked Claude settings declare Lens in two keys:
-
-- `extraKnownMarketplaces.claude-lens` points at `waldoibarra/claude-lens`, with `source.ref: latest`.
-- `autoUpdate` refreshes that source; releases advance the GitHub `latest` tag.
-- `enabledPlugins` enables `lens@claude-lens` and disables the old `lens@claude-code-lens` identity.
-
-The updater copies the settings, and Claude Code clones the marketplace and installs the plugin
-in the background at the next session start. No install command or trust prompt is needed for a
-GitHub source declared in user settings.
-
-To use it before the next sync, install it into the current settings copy:
-
-```sh
-claude plugin marketplace add waldoibarra/claude-lens@latest
-claude plugin install lens@claude-lens
-```
-
-Both commands write the same two keys into the installed copy, and the next updater run replaces
-that copy with the tracked source. Edit the tracked keys, never the installed copy, to change the
-source or disable the plugin. `claude plugin list` shows the installed version and whether it is
-enabled.
-
-Existing machines may retain the old marketplace cache.
-The explicit disabled entry prevents duplicate rendering after sync.
-Read [Claude Lens migration](https://github.com/waldoibarra/claude-lens#install)
-before switching an existing installation.
-Use native plugin and marketplace commands; do not edit Claude's package cache by hand.
-
-Lens's clicks need the fullscreen interface that the tracked `"tui": "fullscreen"` setting turns
-on. Read [Develop Lens locally](/docs/tooling.md#claude-lens) before working from the Lens
-working tree; `just claude-lens-dev` disables the installed copy for that session.
-
-Known issue: clicking an expanded step does not collapse it. The fix is deferred; read the
-[Lens backlog](/.agents/plans/pi-lens-delivery.md#remaining-work) before picking it up.

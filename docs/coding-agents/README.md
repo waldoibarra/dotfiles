@@ -31,7 +31,7 @@ responses.
 | Verifying shared instruction behavior and acceptance | [Harness verification](personal-workflow.md) |
 | Delegating with a shared role and an explicit model | [Pi delegation](pi/delegation.md) |
 | Adding, updating or checking skill discovery | [Agent skills](/docs/agent-skills.md) |
-| Diagnosing RTK, Herdr or Moshi hooks and plugins, or the Lens plugin | [Agent integrations](/docs/agent-integrations.md) |
+| Diagnosing RTK, Herdr or Moshi hooks and plugins, or the Pi Lens package | [Agent integrations](/docs/agent-integrations.md) |
 | Applying tracked config changes | [Copy-managed files](#copy-managed-files), then [Sync the workstation](/docs/tooling.md#sync-the-workstation) |
 | Configuring design tools | [UI design tools](/docs/agent-ui-design-tools.md) |
 | Changing a behavior the work harness shares | [Work harness parity](work-parity.md) |

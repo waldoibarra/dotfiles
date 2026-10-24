@@ -10,7 +10,7 @@ Archived results retain their original context; they do not override this checkp
 | Product | Release commit | Verified state |
 | --- | --- | --- |
 | Pi Lens 0.2.0 | `237e3c561ba68e3e77c3f18d7613c3e45756e0ae` | Published; normal-profile checkout read back; discovery/views/reload passed on Pi 1.2.0 |
-| Claude Lens 0.1.2 | `1420f37cf82cb1290707fdcf652a22c9435f91f2` | Published; normal plugin list reports enabled; marketplace ref is v0.1.2 |
+| Claude Lens 0.1.2 | `1420f37cf82cb1290707fdcf652a22c9435f91f2` | Published; repository archived 2026-10-23 and removed from tracked settings |
 
 - Pi: 192 tests, full checks, direct/batch terminal fixtures in both modes, and model-visible baseline equivalence passed.
 - Pi 1.2.0 image fixture passed fullscreen; regular image mouse interaction remains explicitly unverified.

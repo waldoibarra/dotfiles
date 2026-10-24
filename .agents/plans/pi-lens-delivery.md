@@ -11,11 +11,10 @@ The archive preserves all decisions D1–D138, including original superseded mar
 | Component | Published / configured | Installed / exercised |
 | --- | --- | --- |
 | Pi Lens | `latest` → `0.2.0`, commit `237e3c561ba68e3e77c3f18d7613c3e45756e0ae` | Normal profile; Pi 1.2.0 discovery, views, and reload passed both terminal modes |
-| Claude Lens | `latest` → `0.1.2`, commit `1420f37cf82cb1290707fdcf652a22c9435f91f2` | Normal profile enabled; old `lens@claude-code-lens` remains disabled |
+| Claude Lens | Archived 2026-10-23 at `2c9ead4`; last release `0.1.2` (`1420f37`) | Removed from tracked settings; Claude Code now covers its features natively |
 | Installed Pi | Mise `latest`, currently `1.2.0` | Unchanged by Lens delivery |
 | Development Pi | Local compiled `1.1.0` | Patched host remains separate from installed Pi |
 | Development launch | Local host, Lens, subagents, installed voice | Persists by default; accepts `--continue` and explicit `--no-session` |
-| Claude development launch | `just claude-lens-dev` loads the working tree; installed plugin disabled for the session | Recipe smoke-run with `--version` on 2026-10-14; re-enable read back |
 
 User accepted the current presentation for now and requested more testing during ordinary use.
 Pi's stock host lacks patched input-origin and clipboard metadata; unknown input labels stay neutral.
@@ -54,7 +53,7 @@ Implementation commits: launcher `b8126fb`, workflow `f01cd86`, compact records 
 | Ctrl+S stash/pop | Not implemented; occupied-stash behavior remains undecided; swap was recommended |
 | Earlier duplicate-image feedback | Exact target was never resolved; obtain a concrete reproduction before changing attachment presentation |
 | Host patch distribution | Not included in Lens releases; normal Pi lacks patched attribution and clipboard support |
-| Claude Lens collapse click | Reported 2026-10-14: clicking an expanded step does not collapse it (`lens@claude-lens` 0.1.2, Claude Code 2.1.300, fullscreen). Deferred; unreproduced. Suspect: the inline native `ToolUse` row swallows the press. Next gate: add an expand-then-collapse case to `tests/render.test.tsx`; if it passes, inspect native hit-testing |
+| Claude Lens collapse click | Closed 2026-10-23 without a fix: Claude Lens is archived, and Claude Code's native collapse/expand replaces it |
 
 Approval for the five harness improvements does not authorize unfinished runner or host lifecycle implementation.
 Read [feedback history](/.agents/plans/history/pi-lens-delivery-2026-10-13.md#current-feedback-implementation)

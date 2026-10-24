@@ -88,17 +88,6 @@ class AgentHarnessTest(unittest.TestCase):
         self.assertFalse(config["scheduledRuns"]["enabled"])
         self.assertFalse(config["missions"]["enabled"])
 
-    def test_claude_lens_uses_one_renamed_marketplace(self):
-        settings = json.loads((ROOT / "home/.claude/settings.json").read_text())
-        self.assertTrue(settings["enabledPlugins"]["lens@claude-lens"])
-        self.assertFalse(settings["enabledPlugins"]["lens@claude-code-lens"])
-        marketplaces = settings["extraKnownMarketplaces"]
-        self.assertNotIn("claude-code-lens", marketplaces)
-        self.assertEqual(
-            marketplaces["claude-lens"]["source"],
-            {"source": "github", "repo": "waldoibarra/claude-lens", "ref": "latest"},
-        )
-
     def test_dotbot_links_shared_bytes_idempotently(self):
         with tempfile.TemporaryDirectory(prefix="dotfiles-harness-") as scratch:
             home = Path(scratch)

@@ -21,6 +21,5 @@
 - Create a test influencer profile and content, monetize it.
 - Setup agent to assist on a group call when asked questions.
 - Pin a message on coding agents. So that you can see a list while working on each one at a time.
-- Background agents launched does not add a Model + time tag on Claude Code lens plugin.
 - Render pasted images on Claude Code.
 - Sub-agents doing a lot of work, each thing they do is not expandable on click.
