@@ -124,9 +124,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/agent-skills-creator/SKILL.md",
-      "skillFolderHash": "fb2d348b47c967c7f8d1a5e1a59f09f28aee0ae3",
+      "skillFolderHash": "761dcc964ce072691bc56b274a9e0e30051e60e9",
       "installedAt": "2026-09-04T04:50:00.662Z",
-      "updatedAt": "2026-10-23T19:40:45.245Z"
+      "updatedAt": "2026-10-24T17:16:46.239Z"
     },
     "agents-md": {
       "source": "mblode/agent-skills",
@@ -205,9 +205,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/pr-babysitter/SKILL.md",
-      "skillFolderHash": "1b54800d38b3761fa8268054c7cf4108947cb16b",
+      "skillFolderHash": "9b5e4d43f3a08593f4bb5f78980771e98193545c",
       "installedAt": "2026-09-04T04:50:00.673Z",
-      "updatedAt": "2026-10-23T19:41:04.962Z"
+      "updatedAt": "2026-10-24T17:16:48.273Z"
     },
     "pr-creator": {
       "source": "mblode/agent-skills",
