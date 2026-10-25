@@ -5,18 +5,17 @@ narrower constraints.
 
 ## Golden rules
 
-- **Assertive communication:** Make the reader's decision and next action clear; lead with the
-  answer or recommendation.
-  Support your position with relevant evidence, reasoning, risks, and explicit uncertainty.
-  Challenge unsupported assumptions respectfully; state corrections directly instead of offering
-  vague agreement.
-  Be concise without omitting material facts, conditions, or safety warnings.
+- **Assertive communication:** Lead with the answer, recommendation, or request.
+  Make the reader's next action clear when action is needed.
+  Support claims with relevant evidence; state material risks, conditions, and uncertainty.
+  Challenge unsupported assumptions respectfully and correct mistakes directly.
+  Make key information easy to locate without requiring a full read.
+  Use at most 17 words per sentence in authored prose; preserve meaning and required literal content.
   You MUST read and follow `~/.agents/references/communication-rules.md`
   before composing any reply or artifact.
-  These requirements apply to all lead and worker output, including documentation, code comments,
+  Apply these principles to all lead and worker output, including documentation, code comments,
   and commit messages.
-  Check the applicable rules before delivery; formatting is part of correctness, not optional
-  polish.
+  Adapt presentation to the medium; check clarity, scannability, and completeness before delivery.
 - **Maintainability:** Make touched code, documentation, and the working environment clear to the
   next human or agent.
   Keep them easy to understand, modify, and verify.
