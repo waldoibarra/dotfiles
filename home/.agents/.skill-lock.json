@@ -375,7 +375,7 @@
       "skillFolderHash": "d6a0d9bf3cdc78cbfcbd6466ac5fd3deffb52877",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.098Z",
-      "updatedAt": "2026-10-25T14:34:57.098Z"
+      "updatedAt": "2026-10-25T19:35:45.496Z"
     },
     "code-review": {
       "source": "mattpocock/skills",
@@ -385,7 +385,7 @@
       "skillFolderHash": "fee7bb5fdddc069d58cbea09b2c36b5a859eac05",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.101Z",
-      "updatedAt": "2026-10-25T14:34:57.101Z"
+      "updatedAt": "2026-10-25T19:35:47.167Z"
     },
     "codebase-design": {
       "source": "mattpocock/skills",
@@ -395,7 +395,7 @@
       "skillFolderHash": "07ba1cd60efc12d0d3a083005c1d9651cf15e39a",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.102Z",
-      "updatedAt": "2026-10-25T14:34:57.102Z"
+      "updatedAt": "2026-10-25T19:35:48.779Z"
     },
     "diagnosing-bugs": {
       "source": "mattpocock/skills",
@@ -405,7 +405,7 @@
       "skillFolderHash": "5fdd6cc53385395441910b026c72d71768e993d4",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.103Z",
-      "updatedAt": "2026-10-25T14:34:57.103Z"
+      "updatedAt": "2026-10-25T19:35:50.342Z"
     },
     "implement": {
       "source": "mattpocock/skills",
@@ -415,7 +415,7 @@
       "skillFolderHash": "4804b466ab26c9b9d8d42917547db133d1f20a9f",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.105Z",
-      "updatedAt": "2026-10-25T14:34:57.105Z"
+      "updatedAt": "2026-10-25T19:35:51.984Z"
     },
     "implement-spec": {
       "source": "mattpocock/skills",
@@ -425,7 +425,7 @@
       "skillFolderHash": "0cfefc751d0cb64f0c948ffcb17e13b94e778f08",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.106Z",
-      "updatedAt": "2026-10-25T14:34:57.106Z"
+      "updatedAt": "2026-10-25T19:35:53.684Z"
     },
     "improve-codebase-architecture": {
       "source": "mattpocock/skills",
@@ -435,7 +435,7 @@
       "skillFolderHash": "39bd9cc130f7dfcc4e3ea0b3613f6ebed0d0ad2b",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.107Z",
-      "updatedAt": "2026-10-25T14:34:57.107Z"
+      "updatedAt": "2026-10-25T19:35:55.614Z"
     },
     "pr": {
       "source": "mattpocock/skills",
@@ -445,7 +445,7 @@
       "skillFolderHash": "00b896d811adffad747c7ca30078d909d60c7f93",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.108Z",
-      "updatedAt": "2026-10-25T14:34:57.108Z"
+      "updatedAt": "2026-10-25T19:35:57.767Z"
     },
     "research": {
       "source": "mattpocock/skills",
@@ -455,7 +455,7 @@
       "skillFolderHash": "0a6796c5667e95ed2301ba7381c123b4acb2ae1a",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.109Z",
-      "updatedAt": "2026-10-25T14:34:57.109Z"
+      "updatedAt": "2026-10-25T19:35:59.797Z"
     },
     "retro": {
       "source": "mattpocock/skills",
@@ -465,7 +465,7 @@
       "skillFolderHash": "335c1862a43da9d629abafdb79ca0c0de118be08",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.110Z",
-      "updatedAt": "2026-10-25T14:34:57.110Z"
+      "updatedAt": "2026-10-25T19:36:01.458Z"
     },
     "setup-matt-pocock-skills": {
       "source": "mattpocock/skills",
@@ -475,7 +475,7 @@
       "skillFolderHash": "aafaabf96fa3945d8a4069317a7a6d36b7169670",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.110Z",
-      "updatedAt": "2026-10-25T14:34:57.110Z"
+      "updatedAt": "2026-10-25T19:36:03.135Z"
     },
     "tdd": {
       "source": "mattpocock/skills",
@@ -485,7 +485,7 @@
       "skillFolderHash": "667dbdd00c09d0e2189e082986e6a4d61a67c2a6",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.110Z",
-      "updatedAt": "2026-10-25T14:34:57.110Z"
+      "updatedAt": "2026-10-25T19:36:04.632Z"
     },
     "to-spec": {
       "source": "mattpocock/skills",
@@ -495,7 +495,7 @@
       "skillFolderHash": "136b9651747cfccbfbb7c50a6b0dfb757e7547d2",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.111Z",
-      "updatedAt": "2026-10-25T14:34:57.111Z"
+      "updatedAt": "2026-10-25T19:36:06.703Z"
     },
     "to-tickets": {
       "source": "mattpocock/skills",
@@ -505,7 +505,7 @@
       "skillFolderHash": "2dee20ad722a31c04ededf9f2d83842473573045",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.112Z",
-      "updatedAt": "2026-10-25T14:34:57.112Z"
+      "updatedAt": "2026-10-25T19:36:08.195Z"
     },
     "triage": {
       "source": "mattpocock/skills",
@@ -515,7 +515,7 @@
       "skillFolderHash": "4cb951d62ecccaed601cdc5f9a1b7b3d8a799635",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.112Z",
-      "updatedAt": "2026-10-25T14:34:57.112Z"
+      "updatedAt": "2026-10-25T19:36:09.827Z"
     },
     "wayfinder": {
       "source": "mattpocock/skills",
@@ -525,7 +525,7 @@
       "skillFolderHash": "32b0ce970b1394ede47116e1d3e07f9ccc87591f",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.113Z",
-      "updatedAt": "2026-10-25T14:34:57.113Z"
+      "updatedAt": "2026-10-25T19:36:12.044Z"
     },
     "wizard": {
       "source": "mattpocock/skills",
@@ -535,7 +535,7 @@
       "skillFolderHash": "e396d3ba97c723a78ffd350fb14a3c409137b306",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.113Z",
-      "updatedAt": "2026-10-25T14:34:57.113Z"
+      "updatedAt": "2026-10-25T19:36:14.006Z"
     },
     "chief-of-staff": {
       "source": "mattpocock/skills",
@@ -544,7 +544,7 @@
       "skillPath": "skills/in-progress/chief-of-staff/SKILL.md",
       "skillFolderHash": "dbdf91354f95b560386d5bf25b624567dd9dadb1",
       "installedAt": "2026-10-25T14:34:57.113Z",
-      "updatedAt": "2026-10-25T14:34:57.113Z"
+      "updatedAt": "2026-10-25T19:36:15.800Z"
     },
     "claude-handoff": {
       "source": "mattpocock/skills",
@@ -553,7 +553,7 @@
       "skillPath": "skills/in-progress/claude-handoff/SKILL.md",
       "skillFolderHash": "57d198aca08eddccb113632d52c6c13f1f3066ac",
       "installedAt": "2026-10-25T14:34:57.114Z",
-      "updatedAt": "2026-10-25T14:34:57.114Z"
+      "updatedAt": "2026-10-25T19:36:22.889Z"
     },
     "loop-me": {
       "source": "mattpocock/skills",
@@ -562,7 +562,7 @@
       "skillPath": "skills/in-progress/loop-me/SKILL.md",
       "skillFolderHash": "a0dfdc3562686d920900973b50289b36e2f7eafe",
       "installedAt": "2026-10-25T14:34:57.114Z",
-      "updatedAt": "2026-10-25T14:34:57.114Z"
+      "updatedAt": "2026-10-25T19:36:25.081Z"
     },
     "setup-ts-deep-modules": {
       "source": "mattpocock/skills",
@@ -571,7 +571,7 @@
       "skillPath": "skills/in-progress/setup-ts-deep-modules/SKILL.md",
       "skillFolderHash": "b32508a8a7d62c07d32d7c5cff84d357719def7f",
       "installedAt": "2026-10-25T14:34:57.114Z",
-      "updatedAt": "2026-10-25T14:34:57.114Z"
+      "updatedAt": "2026-10-25T19:36:26.861Z"
     },
     "writing-beats": {
       "source": "mattpocock/skills",
@@ -580,7 +580,7 @@
       "skillPath": "skills/in-progress/writing-beats/SKILL.md",
       "skillFolderHash": "3a28fb076fdaaec0927080718abb98fc0f340011",
       "installedAt": "2026-10-25T14:34:57.115Z",
-      "updatedAt": "2026-10-25T14:34:57.115Z"
+      "updatedAt": "2026-10-25T19:36:28.706Z"
     },
     "writing-fragments": {
       "source": "mattpocock/skills",
@@ -589,7 +589,7 @@
       "skillPath": "skills/in-progress/writing-fragments/SKILL.md",
       "skillFolderHash": "98e500e0097ec80f52f6a024c5a2ff6d15235bdb",
       "installedAt": "2026-10-25T14:34:57.115Z",
-      "updatedAt": "2026-10-25T14:34:57.115Z"
+      "updatedAt": "2026-10-25T19:36:32.414Z"
     },
     "writing-shape": {
       "source": "mattpocock/skills",
@@ -598,7 +598,7 @@
       "skillPath": "skills/in-progress/writing-shape/SKILL.md",
       "skillFolderHash": "ac92229646fccf7315ae139c37b479b3790617f2",
       "installedAt": "2026-10-25T14:34:57.115Z",
-      "updatedAt": "2026-10-25T14:34:57.115Z"
+      "updatedAt": "2026-10-25T19:36:34.119Z"
     },
     "git-guardrails-claude-code": {
       "source": "mattpocock/skills",
@@ -607,7 +607,7 @@
       "skillPath": "skills/misc/git-guardrails-claude-code/SKILL.md",
       "skillFolderHash": "ceed97af09633b300826d0ca0b1464c527ec9a35",
       "installedAt": "2026-10-25T14:34:57.115Z",
-      "updatedAt": "2026-10-25T14:34:57.115Z"
+      "updatedAt": "2026-10-25T19:36:36.347Z"
     },
     "migrate-to-shoehorn": {
       "source": "mattpocock/skills",
@@ -616,7 +616,7 @@
       "skillPath": "skills/misc/migrate-to-shoehorn/SKILL.md",
       "skillFolderHash": "0aea91a3599a4bf7aeec17e3262d4cbcfcbeec23",
       "installedAt": "2026-10-25T14:34:57.116Z",
-      "updatedAt": "2026-10-25T14:34:57.116Z"
+      "updatedAt": "2026-10-25T19:36:38.989Z"
     },
     "scaffold-exercises": {
       "source": "mattpocock/skills",
@@ -625,7 +625,7 @@
       "skillPath": "skills/misc/scaffold-exercises/SKILL.md",
       "skillFolderHash": "44a0ee332b9d67ebbd59389c7eb4e5aff1ce845c",
       "installedAt": "2026-10-25T14:34:57.116Z",
-      "updatedAt": "2026-10-25T14:34:57.116Z"
+      "updatedAt": "2026-10-25T19:36:41.271Z"
     },
     "setup-pre-commit": {
       "source": "mattpocock/skills",
@@ -634,7 +634,7 @@
       "skillPath": "skills/misc/setup-pre-commit/SKILL.md",
       "skillFolderHash": "5b63f9f665bacc9be04cae51982e9ef1469d6699",
       "installedAt": "2026-10-25T14:34:57.116Z",
-      "updatedAt": "2026-10-25T14:34:57.116Z"
+      "updatedAt": "2026-10-25T19:36:43.040Z"
     },
     "handoff": {
       "source": "mattpocock/skills",
@@ -644,7 +644,7 @@
       "skillFolderHash": "ce24892bd2d4b9e7fd5ac9b95c03175e18bef388",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.117Z",
-      "updatedAt": "2026-10-25T14:34:57.117Z"
+      "updatedAt": "2026-10-25T19:36:45.109Z"
     },
     "teach": {
       "source": "mattpocock/skills",
@@ -654,7 +654,7 @@
       "skillFolderHash": "3fd617b610e59acbb99644de1ef37e394ff53cd1",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.118Z",
-      "updatedAt": "2026-10-25T14:34:57.118Z"
+      "updatedAt": "2026-10-25T19:36:46.621Z"
     },
     "to-questionnaire": {
       "source": "mattpocock/skills",
@@ -664,7 +664,7 @@
       "skillFolderHash": "46dfbeeba12a9e52eef446676f42e7551023d9a9",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.118Z",
-      "updatedAt": "2026-10-25T14:34:57.118Z"
+      "updatedAt": "2026-10-25T19:36:49.521Z"
     },
     "wait-what": {
       "source": "mattpocock/skills",
@@ -674,7 +674,7 @@
       "skillFolderHash": "c8b050e6b8c711be1a9008ceacb2126914f0763e",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.118Z",
-      "updatedAt": "2026-10-25T14:34:57.118Z"
+      "updatedAt": "2026-10-25T19:36:51.263Z"
     },
     "writing-for-agents": {
       "source": "mattpocock/skills",
@@ -684,7 +684,7 @@
       "skillFolderHash": "ad2925850efb8973a72d2e666f7a975f9a2d4a9b",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-25T14:34:57.119Z",
-      "updatedAt": "2026-10-25T14:34:57.119Z"
+      "updatedAt": "2026-10-25T19:36:53.085Z"
     }
   },
   "lastSelectedAgents": [
