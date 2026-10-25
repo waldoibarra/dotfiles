@@ -41,14 +41,21 @@ description: >-
 10. Check distinct application in a new example, contrast, or situation.
 11. Advance only when synthesis and application support current-session understanding.
 
-- The 17-word synthesis is the default checkpoint; explicit local project instructions may set another.
-- Explanations and application checks may span blocks; follow active communication rules within each.
+- The 17-word synthesis is the default checkpoint; explicit local project instructions may set
+  another.
+- Explanations and application checks may span blocks; follow active communication rules within
+  each.
 - Count whitespace-separated words; attached punctuation adds no word.
 - Never treat your rewrite of the learner's answer as evidence of their understanding.
 
 ## Knowledge and Scope
 
-- Use checked facts from code, docs, sources, or observed results.
+- Ground teaching in inspected primary sources, code, or observed results when available.
+- Separate source claims, your interpretation, and teaching analogies.
+- Cite the source supporting a material claim.
+- Never invent quotations or imply an unread source was checked.
+- When verification is unavailable, state the limit and keep unverified claims provisional.
+- Offer a relevant primary-source reading next step when it supports the learner's objective.
 - Never fabricate mastery, retention, progress, scores, or tracking state.
 - Previous sessions and confident answers never prove present understanding.
 
@@ -58,7 +65,8 @@ description: >-
 - The teacher manages file organization.
 - Ask the learner only when the learning goal or authorization is genuinely unclear.
 - Do not repeatedly ask permission for factual expansion already approved by local rules.
-- Behavior changes, harness changes, publication, and cross-repository edits require scoped approval.
+- Behavior changes, harness changes, publication, and cross-repository edits require scoped
+  approval.
 
 ## Approval and Routing
 

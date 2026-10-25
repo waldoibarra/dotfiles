@@ -25,6 +25,19 @@
         "Assigns control semantics to web-standards and overflow to css-layout.",
         "Does not modify files or invent source locations and browser observations."
       ]
+    },
+    {
+      "id": 3,
+      "files": [],
+      "prompt": "Review our order editor without edits. The UI calls draft orders purchases, but the glossary and API distinguish them. The browser environment cannot reach the preview. Identify the verification blocker and the smallest next step; do not claim observed behavior.",
+      "expected_output": "A read-only review that preserves domain distinctions and identifies missing executable feedback.",
+      "assertions": [
+        "Does not modify files.",
+        "Identifies the inconsistent domain terms without silently renaming code.",
+        "Separates source findings from unobserved browser behavior.",
+        "Names the missing preview access rather than adding generic instructions.",
+        "Does not launch an unrequested terminology interview."
+      ]
     }
   ],
   "routing": {

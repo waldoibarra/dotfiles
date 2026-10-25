@@ -12,7 +12,8 @@ metadata:
 ## Activation Contract
 
 - **IS:** coordinating platform behavior and layout for complete web app interface changes.
-- **IS NOT:** backend architecture, brand direction, framework scaffolding, or a framework migration.
+- **IS NOT:** backend architecture, brand direction, framework scaffolding, or a framework
+  migration.
 
 - Use for combined interface work or explicit invocation.
 - Route isolated layout work to `css-layout` and isolated platform work to `web-standards`.
@@ -42,18 +43,29 @@ metadata:
 
 ## Execution Steps
 
-1. Inspect the requested flow, existing implementation, browser targets, and project constraints.
+1. Establish the user's outcome, protected behavior, existing implementation, browser targets, and
+    project constraints.
+    - Reuse settled decisions; ask only about ambiguities that change behavior, risk, or scope.
+    - Compare domain terms across the interface, code, and existing glossary.
+    - Use `domain-modeling` for unresolved meanings, not routine UI work or automatic glossary
+      creation.
 2. Read both skills, then only their task-relevant references.
     - Establish semantic structure and interaction contracts before selecting and composing layout.
 3. Implement or diagnose the integrated flow using each specialist's rules.
     - When the layout changes, keep DOM reading order, keyboard behavior, and intrinsic reflow
       consistent.
-4. Use both skills' verification references to exercise the actual page.
+4. Establish a runnable verification path using both skills' verification references.
+    - Identify the local preview, safe test data, and browser access before claiming runtime
+      verification.
+    - If access is blocked, name the missing prerequisite.
+    - Continue source inspection without inventing browser observations.
     - Check the requested flow, keyboard access, narrow and wide containers, and long content.
     - Check applicable failure or lifecycle states.
     - Reuse overlapping checks instead of running two separate verification passes.
-5. Fix observed failures within scope and update affected documentation.
-    - Finish the requested behavior; do not stop at a scaffold or add an unsolicited approval
+5. Finish according to the selected mode.
+    - Implementation or debug: fix in-scope failures and update affected documentation.
+    - Review: report located findings and proposed remedies without changing files.
+    - Finish requested implementation; do not stop at a scaffold or add an unsolicited approval
       checkpoint.
 
 ## Output Contract

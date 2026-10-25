@@ -86,6 +86,18 @@
         "After removal and reinsertion, each instance still displays its own draft with one editor rather than duplicate controls.",
         "The closed-root editor upgrades successfully even though its public host.shadowRoot is null."
       ]
+    },
+    {
+      "id": 8,
+      "files": [],
+      "prompt": "Review this frameworkless form without editing files. Browser access is unavailable. Explain what source inspection establishes and what remains unverified; do not fix findings.",
+      "expected_output": "Read-only findings and a bounded verification gap, without repair or fabricated browser results.",
+      "assertions": [
+        "Does not modify files.",
+        "Does not claim browser interactions were exercised.",
+        "Reports the missing browser access.",
+        "Separates proposed checks from completed checks."
+      ]
     }
   ],
   "routing": {

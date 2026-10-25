@@ -37,9 +37,13 @@ description:
     `references/component-integration.md` and the chapter's component section.
   - Choose those components only when their attribute API is useful.
   - Do not add a runtime to obtain a CSS layout.
-- Exercise the changed surface using `references/verification.md`.
-  - Resize its container, stress its content, and inspect accessibility-relevant behavior.
-  - Fix the requested implementation through the observed states.
+- Verify the requested surface using `references/verification.md`.
+  - Resize its container, stress its content, and inspect accessibility-relevant behavior when
+    runtime access is available.
+  - Report unavailable browser access separately from source findings; do not invent layout
+    measurements.
+  - In implementation mode, fix the requested behavior through the observed states.
+  - Review mode reports findings without changing files.
   - A working screenshot at one width is not completion.
 - Deliver the changed behavior, why the mechanism fits, and the browser states actually checked.
   - For review-only requests, give located findings and evidence rather than silently editing.

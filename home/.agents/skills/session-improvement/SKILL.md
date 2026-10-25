@@ -4,8 +4,8 @@ description: >-
   Proposes minimal session-improvement changes from accessible evidence without applying them.
   Use when handing off, closing a session, or reviewing repeated corrections, failed checks, or
   manual friction.
-  For instruction edits use agents-md; for skills use agent-skills-creator; for prose use
-  ghostwriter.
+  For instruction edits use agents-md; for custom skill maintenance use skill-maintenance;
+  for prose use ghostwriter.
 ---
 
 # Session improvement
@@ -24,6 +24,9 @@ Skill invocation and session closure grant no write authority.
   unavailable history; never mine logs.
 2. Identify repeated friction, its current owner, and the repository's existing improvement rules.
 3. Separate reusable rules, project knowledge, harness mechanics, and individual preferences.
+    - Check whether missing tools, runnable fixtures, or feedback access caused the repeated
+      failure.
+    - Prefer repairing that environment over adding instructions the agent still cannot verify.
 4. Reject one-off, already-covered, or better-handled-manually proposals. Add no observation logs or
   automation.
 5. Before drafting a warranted proposal, read [placement](references/placement.md) for scope,
@@ -66,7 +69,8 @@ Use the owning specialist workflow after scoped approval; this skill does not ex
 | Target | Workflow |
 | --- | --- |
 | Agent instructions | `agents-md` |
-| Skills | `agent-skills-creator` |
+| Repository-owned custom skills | `skill-maintenance`, using `agent-skills-creator` for authoring |
+| Other skill definitions | `agent-skills-creator` in their owning repository |
 | Documentation or other prose | `ghostwriter` |
 
 - The execution workflow verifies each approved repository, preserves unrelated work, and follows

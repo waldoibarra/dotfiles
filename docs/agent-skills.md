@@ -30,6 +30,7 @@ Dotbot links these bundles individually; the external lockfile does not manage t
 
 | Read before… | Tracked source |
 | --- | --- |
+| Coordinating repository-owned skill creation, refactoring, and delivery | [`skill-maintenance`](/home/.agents/skills/skill-maintenance/SKILL.md) |
 | Maintaining touched Markdown documentation without losing information | [`docs-maintenance`](/home/.agents/skills/docs-maintenance/SKILL.md) |
 | Proposing scoped session-improvement packets at handoff | [`session-improvement`](/home/.agents/skills/session-improvement/SKILL.md) |
 | Teaching with Socratic questions and checked application | [`socratic-learning`](/home/.agents/skills/socratic-learning/SKILL.md) |
@@ -40,7 +41,7 @@ Dotbot links these bundles individually; the external lockfile does not manage t
 | Standards-first or frameworkless web work | [`web-standards`](/home/.agents/skills/web-standards/SKILL.md) |
 | Isolated layout, intrinsic reflow, spacing, or overflow work | [`css-layout`](/home/.agents/skills/css-layout/SKILL.md) |
 
-- The nine `home/.agents/skills/` bundles link to both `~/.agents/skills/` and `~/.claude/skills/`.
+- The ten `home/.agents/skills/` bundles link to both `~/.agents/skills/` and `~/.claude/skills/`.
 - Editing an installed symlink edits this checkout; edit the tracked source.
 
 **New bundles:** they acquire links on the next Dotbot sync.
@@ -57,6 +58,43 @@ The `start-project` skill keeps requirements and POC setup separate from applica
 
 It reuses workstation defaults, minimal project docs, and mise/just lint tooling instead of choosing
 a stack.
+
+## Custom skill maintenance
+
+Read [`skill-maintenance`](/home/.agents/skills/skill-maintenance/SKILL.md) before maintaining
+repository-owned custom skills as an integrated workflow.
+It coordinates local ownership and delivery; `agent-skills-creator` owns the authoring procedures.
+Generic skill-authoring requests still use that external specialist directly.
+`session-improvement` remains proposal-only and routes approved custom-skill work to the
+coordinator.
+
+- Start with the user's outcome, protected behavior, and existing owners; avoid another generic
+  checklist.
+- Keep domain vocabulary consistent; load `domain-modeling` only for unresolved meanings.
+- Prefer executable feedback and isolated checks over additional instructions for unobservable
+  failures.
+- Reuse `skill-creator` utilities only after checking their interfaces and active execution
+  permissions.
+- Do not inherit its model selection, unrestricted parallel launch, or retry defaults.
+
+**Checks:** Run the installed authoring validator against each changed bundle:
+
+```sh
+bash ~/.agents/skills/agent-skills-creator/scripts/validate.sh home/.agents/skills/skill-maintenance
+markdownlint-cli2 - < home/.agents/skills/skill-maintenance/SKILL.md
+python3 scripts/tests/test-agent-harness.py
+```
+
+**Boundaries:** The delivery test uses temporary homes and checks bundled bytes and unchanged-link
+timestamps.
+It does not exercise model routing or skill effectiveness.
+The JSON scenarios and routing examples remain specifications until adapted to an approved runner
+and executed.
+Missing authoring dependencies block dependent checks; do not install or update external skills
+implicitly.
+
+**Rollback:** Restore scoped source changes and remove only verified new links when installed.
+Reload each host before checking discovery; a source rollback alone does not prove runtime recovery.
 
 ## Documentation maintenance
 

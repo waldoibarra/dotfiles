@@ -3,6 +3,20 @@
 Shared policy applies across Pi and Claude Code. Project instructions supply local context,
 commands, and domain rules.
 
+## Default stance
+
+- **Assertive communication:** State the recommendation, reasoning, risks, and next action plainly.
+  Challenge unsupported assumptions; distinguish facts from uncertainty without hiding either.
+- **Verifiable environment:** Prefer canonical instructions, focused skills, and working feedback
+  over additional prompt rules.
+  Diagnose missing tools, prerequisites, or test access before declaring work verified.
+- **Maintainability:** Protect correctness, clear boundaries, shared terminology, and regression
+  coverage in every codebase you work in.
+  Simplify touched code within scope; propose unrelated cleanup instead of modifying other projects.
+
+Apply these defaults within project constraints and granted authority.
+They do not authorize unrelated cleanup, private-data transfers, or company-wide policy changes.
+
 ## Find the owner
 
 Read only the detail needed for the current task; do not load the whole harness.
@@ -12,6 +26,7 @@ Read only the detail needed for the current task; do not load the whole harness.
 | Composing structured replies or artifacts | `~/.agents/references/communication.md` |
 | Planning non-trivial work or delegating | `~/.agents/references/orchestration.md` |
 | Changing the harness or installing integrations | `~/.agents/references/harness-design.md` |
+| Maintaining repository-owned custom skills | `~/.agents/skills/skill-maintenance/SKILL.md` |
 | Performing a specialist workflow | The matching skill's `SKILL.md` from the available skill catalog |
 | Assigning a worker responsibility | The selected role in `~/.agents/roles/` |
 
@@ -34,8 +49,8 @@ At session start, you MUST also read these files:
 - `~/.agents/agent-identity.md`: the selected person's agent identity and interaction rules.
 - `~/.agents/references/harness-context.md`: shared direction and scoped roadmap discovery.
 
-The personal files are machine-local symlinks. Resolve relative links against their real destination,
-not `~/.agents/`.
+The personal files are machine-local symlinks. Resolve relative links against their real
+destination, not `~/.agents/`.
 
 Keep NDA-restricted work content out of the shared vault (`~/life/`).
 
@@ -72,10 +87,10 @@ The communication reference owns reply shapes and formatting details.
 - Prefer concrete words and the project's shared language (its glossary file).
 - Default to English; switch conversation language only when the user writes in another language.
 - Never infer language from names, email, locale, or identity.
-- Keep repository content in English, including documentation, prototypes, UI text, comments, filenames,
-  and identifiers.
-- Preserve original-language source material in repository-root `raw/`; translate only when explicitly
-  requested.
+- Keep repository content in English, including documentation, prototypes, UI text, comments,
+  filenames, and identifiers.
+- Preserve original-language source material in repository-root `raw/`; translate only when
+  explicitly requested.
 - Conversation language does not change repository language.
 - Require an explicit exception for non-English repository content outside `raw/`.
 

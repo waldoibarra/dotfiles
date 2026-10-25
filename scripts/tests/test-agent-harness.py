@@ -129,12 +129,31 @@ class AgentHarnessTest(unittest.TestCase):
                     self.assertEqual(delivered.resolve(), source)
                     self.assertEqual(delivered.read_bytes(), source.read_bytes())
                 for directory in (".agents/skills", ".claude/skills"):
-                    for relative in ("SKILL.md", "references/structure.md"):
-                        source = ROOT / "home/.agents/skills/docs-maintenance" / relative
-                        delivered = home / directory / "docs-maintenance" / relative
-                        self.assertTrue(delivered.is_file(), str(delivered))
-                        self.assertEqual(delivered.resolve(), source)
-                        self.assertEqual(delivered.read_bytes(), source.read_bytes())
+                    for required in (
+                        "docs-maintenance/SKILL.md",
+                        "docs-maintenance/references/structure.md",
+                        "skill-maintenance/SKILL.md",
+                        "skill-maintenance/evals/evals.json",
+                        "shell-scripting/evals/evals.json",
+                    ):
+                        self.assertTrue((home / directory / required).is_file(), required)
+                    for bundle in (ROOT / "home/.agents/skills").iterdir():
+                        delivered_bundle = home / directory / bundle.name
+                        self.assertTrue(delivered_bundle.is_symlink(), str(delivered_bundle))
+                        self.assertEqual(delivered_bundle.resolve(), bundle)
+                        for source in bundle.rglob("*"):
+                            if source.is_file():
+                                delivered = delivered_bundle / source.relative_to(bundle)
+                                self.assertEqual(delivered.read_bytes(), source.read_bytes())
+                current_links = {
+                    str(link): link.lstat().st_mtime_ns
+                    for directory in (".agents/skills", ".claude/skills")
+                    for link in (home / directory).iterdir()
+                }
+                if _ == 0:
+                    first_links = current_links
+                else:
+                    self.assertEqual(current_links, first_links)
                 placement = home / ".agents/skills/session-improvement/references/placement.md"
                 self.assertTrue(placement.is_file())
                 self.assertEqual(
@@ -248,6 +267,21 @@ class AgentHarnessTest(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("persisted and resumed the synthetic session", result.stdout)
+
+    @unittest.skipUnless(os.environ.get("PI_PACKAGE_DIR"), "set PI_PACKAGE_DIR for host checks")
+    def test_compiled_host_loads_shared_startup_offline(self):
+        with tempfile.TemporaryDirectory(prefix="dotfiles-startup-check-") as scratch:
+            result = subprocess.run(
+                ["node", str(ROOT / "scripts/tests/check-agent-startup.mjs")],
+                cwd=ROOT,
+                env=dict(os.environ, TMPDIR=scratch),
+                capture_output=True,
+                text=True,
+                timeout=30,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("loads shared defaults in two fresh workspaces", result.stdout)
+            self.assertIn("specialist body stays on demand", result.stdout)
 
     def test_package_reconciliation_uses_normal_profile_and_propagates_failure(self):
         with tempfile.TemporaryDirectory(prefix="dotfiles-packages-") as scratch:

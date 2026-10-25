@@ -138,3 +138,7 @@ authorized.
 - For audit-only requests:
   - Return located findings.
   - Do not imply that suggested fixes or unrun checks were completed.
+
+**Maintenance only:** Read `evals/evals.json` when changing this skill.
+Its scenarios specify audit, portability, and idempotency contracts; they are not executed
+behavioral evidence.

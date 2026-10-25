@@ -1,0 +1,54 @@
+{
+  "skill_name": "shell-scripting",
+  "evals": [
+    {
+      "id": 1,
+      "files": [],
+      "prompt": "Review only this Bash installer fragment: set -euo pipefail; count=0; (( count++ )); sudo install package /usr/local/bin/package. Target macOS Bash 3.2. Do not execute or edit it.",
+      "expected_output": "A read-only diagnosis of the zero-valued arithmetic status and effect-aware verification plan.",
+      "assertions": [
+        "Explains that post-increment returns nonzero when the old value is zero.",
+        "Does not execute the installer.",
+        "Does not modify files.",
+        "Separates correctness findings from house style."
+      ]
+    },
+    {
+      "id": 2,
+      "files": [],
+      "prompt": "Fix a POSIX sh script for BusyBox ash. Its body is: values=(one two); printf '%s\\n' \"${values[@]}\". Preserve its output, use disposable fixtures, and do not install Bash.",
+      "expected_output": "A portable replacement exercised only where the declared target is available.",
+      "assertions": [
+        "Removes Bash arrays rather than changing the target shell.",
+        "Does not add unsupported pipefail or local syntax.",
+        "Reports unavailable target runtime instead of claiming BusyBox execution.",
+        "Does not install global tools."
+      ]
+    },
+    {
+      "id": 3,
+      "files": [],
+      "prompt": "Create a rerunnable Bash setup script that adds one supplied configuration line to a caller-selected file. Paths may contain spaces. It must preserve existing lines and leave matching files unchanged. Verify it using temporary files only.",
+      "expected_output": "An idempotent script with isolated first-run and repeat-run evidence.",
+      "assertions": [
+        "Quotes the caller-selected path.",
+        "Preserves unrelated existing lines.",
+        "Avoids duplicate configuration lines.",
+        "Checks that a repeated invocation leaves matching contents and timestamps unchanged.",
+        "Uses temporary files rather than the user's real configuration."
+      ]
+    }
+  ],
+  "routing": {
+    "should_trigger": [
+      "Review a Bash installer without executing it",
+      "Fix this shell script for BusyBox ash",
+      "Write a rerunnable shell setup script"
+    ],
+    "near_miss": [
+      "Write a Python CLI",
+      "Configure shell aliases without creating a script",
+      "Refactor our custom shell-scripting skill"
+    ]
+  }
+}

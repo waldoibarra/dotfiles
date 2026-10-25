@@ -10,7 +10,8 @@ Read [repository guardrails](/AGENTS.md#guardrails) before changing script behav
 - Test initial setup, repeated runs, and retry after partial failure in isolated fixtures.
 - Verify unchanged file contents, timestamps, permissions, and unrelated settings.
 - Avoid duplicate installs, entries, backups, or reloads.
-- Hold external inputs fixed when testing updaters; a successful exit alone does not prove idempotency.
+- Hold external inputs fixed when testing updaters; a successful exit alone does not prove
+  idempotency.
 - Prefer atomic writes and state checks. Fail safely when the current state cannot be determined.
 
 ## Installation
@@ -36,20 +37,24 @@ package subprocesses cannot update its parent.
 Installation does not run the coding-agent updater, prune tools or install this checkout's hooks.
 `just sync` sets `DOTS_DEFER_MISE_INSTALL=1` for the installer,
 deferring Mise tools to the package coordinator.
-Standalone installation installs Mise tools sequentially and needs neither Mise nor `just` beforehand.
-Brew's `--no-upgrade` avoids routine upgrades but permits dependency upgrades required by missing packages.
+Standalone installation installs Mise tools sequentially and needs neither Mise nor `just`
+beforehand.
+Brew's `--no-upgrade` avoids routine upgrades but permits dependency upgrades required by missing
+packages.
 
 Run `python3 scripts/tests/test-package-bootstrap.py` for isolated bootstrap, repeat-run, failure,
 prerequisite, and PATH checks.
 
 ## Package updates
 
-[`sync-packages.py`](/scripts/sync-packages.py) coordinates Brew and Mise through `just packages-sync`.
+[`sync-packages.py`](/scripts/sync-packages.py) coordinates Brew and Mise through `just
+packages-sync`.
 Read [package-update output](/docs/tooling.md#read-package-update-output)
 before interpreting interleaved logs.
 Read [sequential mode and recovery](/docs/tooling.md#sequential-mode-and-recovery)
 before retrying failed updates or running source builds.
-Python owns subprocess groups, waits for both update results, and terminates children on interruption.
+Python owns subprocess groups, waits for both update results, and terminates children on
+interruption.
 The Mise exclusion applies only to Brew upgrades, never the later Brewfile cleanup.
 
 Each parallel job has a reader thread that drains its merged stdout and stderr pipe.
@@ -145,6 +150,12 @@ isolated environment, never by running a real machine sync as a test.
 
 Run `python3 scripts/tests/test-agent-harness.py` to check shared-role links, Pi settings, and
 package reconciliation. It uses temporary homes and a fake Pi executable; no inference or sync runs.
+Set `PI_PACKAGE_DIR` to the installed Pi package root to include compiled-host checks.
+Those checks cover session persistence and effective startup policy in fresh workspaces.
+The startup check reads installed user configuration and registers only the read tool.
+It disables extensions and makes no tool or provider calls.
+Read [harness verification](/docs/coding-agents/personal-workflow.md#fresh-startup-defaults) before
+interpreting its results.
 Run `python3 scripts/tests/test-personal-mcp.py` for isolated MCP registration and linking checks.
 Run `python3 scripts/tests/test-markdown-app.py` for application guards and error propagation
 without changing real file associations.

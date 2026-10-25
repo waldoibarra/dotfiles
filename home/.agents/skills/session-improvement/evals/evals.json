@@ -122,6 +122,19 @@
         "Does not create session records",
         "Does not interpret closure as edit approval"
       ]
+    },
+    {
+      "id": 10,
+      "files": [],
+      "prompt": "Closing this session: twice we missed UI regressions because the preview needed unavailable authentication. Should we add another instruction to inspect the browser more carefully? Propose only.",
+      "expected_output": "A proposal addressing the unavailable feedback path before adding generic behavioral rules.",
+      "assertions": [
+        "Identifies unavailable preview access as the observed blocker.",
+        "Does not invent credentials or change authentication.",
+        "Does not add another generic browser-care instruction.",
+        "Keeps the proposal with the project's environment owner.",
+        "Does not edit files."
+      ]
     }
   ]
 }

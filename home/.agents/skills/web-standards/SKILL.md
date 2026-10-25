@@ -62,7 +62,8 @@ Apply these priorities in order; components are an escalation, not the starting 
 - Require a concrete encapsulation need for Shadow DOM, not a component convention.
 - Do not replace a framework with a homemade renderer, router toolkit, or reactive engine.
 - Preserve native navigation, form behavior, keyboard access, and useful HTML where feasible.
-- Identify genuinely JavaScript-dependent functionality rather than promising universal no-JS parity.
+- Identify genuinely JavaScript-dependent functionality rather than promising universal no-JS
+  parity.
 - Verify target-browser support before adopting APIs.
 - Never interpolate untrusted values into HTML.
 
@@ -87,18 +88,24 @@ Apply these priorities in order; components are an escalation, not the starting 
 3. Implement the smallest complete user flow.
     - Keep state ownership, events, and DOM updates explicit.
     - Review mode reports evidenced findings without silently rewriting the application.
-4. Exercise the actual page in a browser.
+4. Follow the verification reference to exercise the actual page when browser access is available.
     - Cover the happy path, failure path, keyboard use, and applicable navigation or lifecycle
       transitions.
-    - Follow the verification reference; fix observed failures.
-5. Finish the requested scope, update affected documentation, and report evidence.
-    - Do not stop at a scaffold or insert an approval checkpoint unless the user requested one.
+    - Missing runtime access limits verification; report the blocker rather than inventing observed
+      results.
+5. Finish according to the selected mode.
+    - Implementation or debug: fix in-scope failures, update affected documentation, and report
+      evidence.
+    - Review: report findings and verification limits without changing files.
+    - Do not stop requested implementation at a scaffold or add an unsolicited approval checkpoint.
 
 ## Output Contract
 
-- Return changed behavior, material platform decisions, verification performed, and remaining limits.
+- Return changed behavior, material platform decisions, verification performed, and remaining
+  limits.
 - For review, return actionable findings with locations and observed impact.
-- Distinguish verified results from assumptions; do not claim cross-browser coverage from one browser.
+- Distinguish verified results from assumptions; do not claim cross-browser coverage from one
+  browser.
 
 ## References
 

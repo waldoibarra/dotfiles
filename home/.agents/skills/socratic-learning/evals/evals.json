@@ -67,6 +67,19 @@
         "Protects privacy by avoiding learner records",
         "Does not record learner answers or declare mastery from repeated wording"
       ]
+    },
+    {
+      "id": 4,
+      "files": [],
+      "prompt": "Orient me on domain-driven design from this interview transcript. The speaker says shared vocabulary helps agents. Distinguish that claim from checked primary material, give me one useful source to read, and do not quiz me.",
+      "expected_output": "Source-aware orientation without an imposed lesson or invented citation.",
+      "assertions": [
+        "Identifies the transcript as the speaker's experience rather than universal proof.",
+        "Separates an analogy from sourced claims.",
+        "Links inspected primary material or states that verification was unavailable.",
+        "Does not fabricate quotations.",
+        "Does not force a quiz in orientation mode."
+      ]
     }
   ]
 }

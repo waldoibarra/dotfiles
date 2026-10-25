@@ -22,7 +22,6 @@ Global authority, model exclusions, quota stops, and retry limits remain binding
 - Choose role, model, and supported effort independently. Shared roles stay provider- and
   effort-neutral.
 - Brief each worker with its goal, files, constraints, acceptance criteria, and prohibited commands.
-- Run at most four workers on one task at once.
 - Use one worker for a search or alternatives survey, never one worker per query or source.
 - Bind each worker to its intended repository; verify the Git root before source inspection.
 - Report unavailable models or effort controls. Use supported or actual/default effort; never invent

@@ -171,6 +171,187 @@ session.
 **Rollback:** Remove the skill, its two links, and shared reading rule; restore the local guide
 if needed.
 
+### Custom skill maintenance
+
+**Approved:** Refactor custom skills using both supplied videos and the user's notes.
+External updates remain deferred; model defaults remain unchanged.
+The later concurrency decision below supersedes retaining the four-worker cap.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| SK1 | Add `skill-maintenance` for repository-owned skill lifecycle work. | Local ownership and delivery need coordination, not another generic creator. |
+| SK2 | Reuse `agent-skills-creator` for authoring and validation. | Its existing procedures cover the first video's practices. |
+| SK3 | Keep existing skill names and distinct responsibilities. | Static review does not justify retirement or prove equivalent behavior. |
+| SK4 | Prioritize intent, shared terms, source evidence, and executable feedback. | The second video and user notes emphasize environment quality over model changes. |
+| SK5 | Keep behavioral evaluations approval-gated. | Authored scenarios and static checks cannot establish model effectiveness. |
+
+**Sources:** [Skill practices](https://www.youtube.com/watch?v=qYNs80FKIVc) and
+[Matt Pocock interview](https://www.youtube.com/watch?v=Z8lf5oWKfj0), supplied as local transcripts.
+The user's handwritten notes informed these priorities; the private image is not copied here.
+Treat model preferences and security statistics as speaker claims, not measured harness evidence.
+
+**Scope:** Coordinate maintenance, clarify review-only branches, strengthen teaching provenance,
+and diagnose missing verification access before adding instructions.
+Retain `start-project`, `to-do`, and documentation preservation contracts without cosmetic rewrites.
+
+**Review:** Independent GPT-6 Sol plan review completed; routing, delivery, and recovery findings
+were addressed.
+Existing Dotbot globs already cover new skill directories; no installer change is needed.
+
+**Verification:** Run the existing skill validator per changed bundle and lint edited Markdown
+through stdin.
+Run `python3 scripts/tests/test-agent-harness.py` for isolated delivery and unchanged-link
+timestamps.
+The new-bundle delivery assertion failed before source creation, establishing the delivery
+regression.
+Routing examples remain authored specifications; no behavioral probe is approved by this record.
+
+**Recovery:** Revert scoped skill, scenario, documentation, and test changes without touching
+unrelated edits.
+If installed later, remove only the new bundle's verified links from both hosts and reload them.
+
+**Status:** Source changes, isolated delivery, and final independent review pass.
+The review's remaining status-note correction is incorporated below.
+
+- Added `skill-maintenance`; reused the installed authoring validator instead of creating another
+  checker.
+- Refactored the three web skills' review branches; added intent and vocabulary checks to their
+  coordinator.
+- Strengthened `socratic-learning` source attribution and `session-improvement` environment
+  diagnosis.
+- Added shell maintenance scenarios; retained its runtime rubric and templates.
+- Retained `docs-maintenance`, `start-project`, and `to-do` without changes because their contracts
+  remain distinct.
+
+**Verified:** All seven changed bundles pass the existing skill validator, including authored
+scenario schema checks.
+Full repository lint and explicit skill Markdown checks pass.
+The harness suite reports ten tests, one optional compiled-host check skipped.
+Repeated isolated linking preserves bundle bytes and link timestamps for both hosts.
+`skills-ref` is unavailable; no independent metadata validation or behavioral evaluation ran.
+
+**Source preservation:** Renamed the second transcript to
+`raw/matt-pocock-the-most-valuable-skill-to-learn-in-the-age-of-ai.md`.
+Its contents match the captured pre-rename read; `raw/` remains ignored and local.
+
+**Deployment:** Existing linked skills expose their edited bytes; fresh-session behavior remains
+unverified.
+Installed only the coordinator's two links using a temporary, non-forcing Dotbot configuration.
+Both real-home links and bundled bytes match source; repeated linking preserves timestamps.
+This initial delivery ran no updater, full workstation sync, external upgrade, commit, or push.
+
+**Next:** Reload hosts and verify fresh-session discovery separately.
+Agree models and run limits before any behavioral comparison.
+
+**Concurrency:** Commit `8929977` records a task spawning over one hundred workers, mostly per web
+search.
+That incident motivated the four-worker cap and single-worker search policy; four is not a
+benchmarked optimum.
+
+**Superseded:** The user removed the numeric cap.
+They will revisit runaway delegation if it recurs.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| SK6 | Remove the four-worker cap without a replacement limit. | The user will reconsider controls if runaway delegation recurs. |
+
+**Scope:** The single-worker search policy, model restrictions, and quota stop rules remain
+unchanged.
+The linked orchestration reference now omits the cap; fresh-session behavior remains unverified.
+
+### Default stance across fresh sessions
+
+**Approved:** Make assertive communication, a verifiable environment, and maintainability defaults
+for every session.
+The user requested Sol reviews, verification, and publication of this session's changes.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| DF1 | Put the three defaults in shared startup policy. | Conditional skills alone cannot establish a universal baseline. |
+| DF2 | Keep procedures in existing references and skills. | Universal intent should not load every specialist workflow. |
+| DF3 | Preserve project scope and approval boundaries. | Caring about every codebase does not authorize unrelated rewrites or company configuration changes. |
+| DF4 | Verify startup delivery separately from model behavior. | Files, loaded context, and observed decisions establish different evidence. |
+| DF5 | Publish scoped commits; exclude pre-existing unrelated edits. | The user authorized this session's work, not unrelated configuration changes. |
+
+**Plan:** Add concise startup defaults and a custom-skill routing pointer; update instruction and
+verification guides.
+Check Pi's effective prompt in fresh isolated workspaces, plus Claude's adapter and Cursor's
+rendered rule.
+Refresh only Cursor's generated instructions; avoid external updates and full sync.
+Use fresh Sol workers to review scope and demonstrate loaded defaults through bounded scenarios.
+
+**Acceptance:** Startup policy is present in the effective Pi prompt outside this repository.
+Review and verification prompts preserve authority, privacy, and task scope while applying the three
+defaults.
+Static checks validate source delivery; workers supply observed model responses, not a guarantee of
+future compliance.
+Claude and Cursor runtime behavior remain unverified unless exercised through their actual hosts.
+
+**Checks:** Run `just lint`, explicit skill Markdown validation, and both Python harness and Cursor
+suites.
+Use `PI_PACKAGE_DIR` with the harness suite to enable compiled-host checks.
+The new `scripts/tests/check-agent-startup.mjs` will inspect effective Pi prompts without inference.
+
+**Sol probes:** Use `openai-codex/gpt-6-sol:medium` in fresh read-only children with no inherited
+conversation.
+Cover missing verification access, scope-preserving maintenance, and loaded startup directives.
+Allow two bounded probes with read-only tools; prohibit writes, external services, and nested
+delegation.
+Keep evidence private; dispose offline sessions before removing their temporary workspaces.
+No paid-provider fallback or main-model change is authorized.
+
+**Review budget:** Two review passes before checkpointing unresolved blockers, following existing
+policy.
+Quota or timeout failures stop further model dispatch pending user approval.
+No main-model changes, external skill upgrades, or company workspace edits are included.
+
+**Publication:** Commit and push only named session-owned paths to this repository's existing
+`origin/main`.
+Verify branch, upstream, staged paths, hooks, and push result; leave unrelated edits untouched.
+
+- Owned policy: `home/.agents/AGENTS.md` and `home/.agents/references/orchestration.md`.
+- Owned skills: `skill-maintenance`, `web-app-craft`, `web-standards`, `css-layout`,
+  `socratic-learning`, `session-improvement`, and `shell-scripting`.
+- Stage only their changed `SKILL.md` and `evals/evals.json` files under `home/.agents/skills/`.
+- Owned guides: `docs/agent-skills.md`, `docs/agent-instructions.md`,
+  `docs/coding-agents/personal-workflow.md`, and `scripts/README.md`.
+- Owned verification: `scripts/tests/test-agent-harness.py`,
+  `scripts/tests/check-agent-startup.mjs`, and this existing roadmap.
+- Exclude pre-existing `.gitignore` and `home/.claude/settings.json` edits, raw transcripts, private
+  images, and runtime evidence.
+
+**Recovery:** Revert the scoped commits and refresh Cursor's generated rule; reload hosts afterward.
+
+**Status:** Implemented and verified; ready for scoped commit and push.
+
+**Review:** Two Sol workers reviewed policy placement and delivery boundaries before implementation.
+Their scope and verification findings were addressed; a fresh Sol code audit passed without semantic
+findings.
+
+**Verified:** Pi 1.4.0 loads all three defaults in two fresh workspaces outside this repository.
+The effective prompt includes current policy bytes and coordinator metadata, without preloading its
+full body.
+The check failed before adding the defaults, then passed after implementation.
+The harness suite passes all eleven tests with compiled-host checks enabled; all six Cursor tests
+pass.
+Full lint, explicit skill Markdown, and seven skill validators pass; no external updates ran.
+
+**Behavioral evidence:** One fresh `openai-codex/gpt-6-sol:medium` review exercised the combined
+bounded scenario.
+Its recorded system context contains all three defaults; provider metadata confirms the selected
+model.
+It quoted the defaults without opening `AGENTS.md`, rejected unsupported completion, and preserved
+repository scope.
+Tool records show no writes, credential access, service calls, or nested delegation.
+The temporary workspace was removed after completion; runtime evidence remains private.
+
+**Host limits:** Pi startup construction and the fresh Sol response are verified, not universal
+future compliance.
+Claude's adapter and Cursor's rendered bytes match source; their native runtime behavior remains
+untested.
+Project overrides, disabled resources, or alternative client configurations can change effective
+behavior.
+
 ### Pending workstation steps
 
 1. **Restart:** Restart Pi and Claude Code after the completed `dots` integration updates.
@@ -298,6 +479,19 @@ before revisiting H1–H17, G1–G12, or S1–S8.
 - Consider broader model-selection scenarios; no capability ranking is established.
 - Review absorbed memories and unused skills; the earlier 100-line instruction target remains an
   unvalidated heuristic.
+
+### External skill update debt
+
+**Deferred:** The user requested recording this debt, not changing external skill updates now.
+
+- The updater installs missing external skills, updates installed versions, then commits and pushes
+  changed lockfile contents.
+- Investigate review before activation, reproducible approved versions, rollback, and separate
+  publication approval.
+- Keep current updater behavior unchanged until a scoped proposal is approved.
+
+**Owner:** Read [skill delivery](/docs/agent-skills.md#external-skills) before investigating this
+debt.
 
 ### Communication lint
 

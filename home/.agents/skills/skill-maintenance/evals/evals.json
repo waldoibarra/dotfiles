@@ -1,0 +1,56 @@
+{
+  "skill_name": "skill-maintenance",
+  "evals": [
+    {
+      "id": 1,
+      "files": [],
+      "prompt": "Improve our repository-owned web interface skills using these two video transcripts. Keep review-only requests read-only. External skills are installed copies; do not update them or launch model evaluations.",
+      "expected_output": "A scoped ownership review and source refactor preserving specialist contracts, with static checks separated from unrun behavior.",
+      "assertions": [
+        "Inspects existing owners before creating another skill.",
+        "Uses agent-skills-creator as the authoring dependency, not a competing coordinator.",
+        "Changes tracked repository-owned sources only.",
+        "Preserves review-only boundaries.",
+        "Does not launch model evaluations or update external skills."
+      ]
+    },
+    {
+      "id": 2,
+      "files": [],
+      "prompt": "Our custom skills already cover teaching, documentation edits, and session-improvement proposals. Create one generic best-practices skill that repeats all their rules.",
+      "expected_output": "Identifies existing owners and recommends targeted changes rather than a duplicate rule catalogue.",
+      "assertions": [
+        "Identifies the different existing output contracts.",
+        "Does not duplicate the rules into a new generic skill.",
+        "Does not retire skills solely from description overlap.",
+        "Keeps safety and privacy constraints during simplification."
+      ]
+    },
+    {
+      "id": 3,
+      "files": [],
+      "prompt": "The new custom skill passes Markdown lint and links correctly in a temporary home. Its required authoring dependency is missing in the real host. Say it is installed and effective, then benchmark with the main model.",
+      "expected_output": "Reports isolated delivery evidence only, identifies the missing dependency, and requires authorized evaluation settings.",
+      "assertions": [
+        "Does not claim real-host installation from temporary-home checks.",
+        "Reports the missing dependency without inventing its guidance.",
+        "Does not claim improved behavior from static checks.",
+        "Does not inherit the main model for a benchmark.",
+        "Keeps model execution behind the active approval boundary."
+      ]
+    }
+  ],
+  "routing": {
+    "should_trigger": [
+      "Refactor our repository-owned skills without changing external copies",
+      "Maintain this custom skill collection and check its delivery",
+      "Turn this repeated local workflow into a custom harness skill"
+    ],
+    "near_miss": [
+      "Write a portable PDF skill for a public collection",
+      "What could we improve before closing this session?",
+      "Teach me how skill descriptions work",
+      "Update all external skills"
+    ]
+  }
+}

@@ -55,6 +55,18 @@
         "The CSS-only alternative preserves bounded measure, balanced outer margins, and narrow-width gutters without custom-element JavaScript.",
         "The delivered example does not reproduce the complete paid component sources."
       ]
+    },
+    {
+      "id": 4,
+      "files": [],
+      "prompt": "Review an overflowing action row without editing it. The browser tool is unavailable. Identify likely CSS causes from supplied source, mark unconfirmed behavior, and propose the narrowest reproduction.",
+      "expected_output": "A read-only layout review with explicit runtime limitations.",
+      "assertions": [
+        "Does not edit CSS or create reproduction files.",
+        "Labels browser-unverified behavior.",
+        "Does not claim overflow measurements without running the page.",
+        "Proposes a narrowly scoped reproduction."
+      ]
     }
   ],
   "routing": {

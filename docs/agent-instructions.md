@@ -9,7 +9,13 @@ a maintenance guide.
 
 [`AGENTS.md`](/home/.agents/AGENTS.md) owns universal boundaries and the task-based reading map.
 
-It does not import conditional references into every session.
+Its default stance requires assertive communication, a verifiable environment, and maintainability
+across codebases.
+These defaults apply within task authority and project constraints, not as permission for unrelated
+cleanup.
+It does not import conditional references or full skill bodies into every session.
+Custom skill maintenance has an explicit reading trigger; specialist procedures remain with their
+skills.
 
 | Concern | Canonical source |
 | --- | --- |
@@ -43,8 +49,8 @@ behavior.
 - Pi also loads ancestor context files; remove obsolete home-directory selectors after migration.
 - Coding instructions do not replace the live-voice extension's separate prompt.
 
-**Cursor:** the next planned setup and work-ticket trial; configured and exercised states remain
-unverified.
+**Cursor:** The rendered global rule is installed; native instruction loading and the work-ticket
+trial remain unverified.
 Its project rules and user settings need separate loading verification.
 
 ## Harness direction discovery
