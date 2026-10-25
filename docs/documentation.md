@@ -11,7 +11,7 @@ before changing ownership.
 | --- | --- |
 | Maintained Markdown, including plans | [`docs`](/home/.agents/skills/docs/SKILL.md) |
 | Agent instruction files | `agents-md` |
-| Repository-owned skills | `skill-maintenance`, with `agent-skills-creator` for authoring |
+| Repository-owned skills | `custom-skills`, with `agent-skills-creator` for authoring |
 | Model prompts | [Prompting guide](/docs/prompting.md) |
 | Retention, temporary agreements, and ADR gates | [Memory lifecycle](/home/.agents/references/memory.md) |
 | Original, generated, or frozen evidence | Its source, publisher, and retention rules |
@@ -96,7 +96,7 @@ Reload Pi or start a fresh Claude session after installation.
 [Skill delivery](/docs/agent-skills.md#repo-managed-skills) owns installation and discovery checks.
 Discovery proves availability, not automatic selection or successful documentation work.
 
-At closure, `session-improvement` reviews session-edited Markdown and proposes warranted corrections
+At closure, `session-review` reviews session-edited Markdown and proposes warranted corrections
 without applying them.
 Read [historical verification](/.agents/plans/ai-harness-roadmap.md#documentation-maintenance)
 before citing earlier results; those records do not verify the current workflow.

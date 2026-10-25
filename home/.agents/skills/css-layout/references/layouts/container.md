@@ -166,8 +166,8 @@ get name() {
 - Test missing JavaScript and unsupported queries: content should remain readable, even if enhanced
   typography is absent.
 - Query breakpoints still require a reason.
-  - If it only forces one/two columns at a width that natural flex wrapping already handles,
-    prefer the intrinsic arrangement.
+  - If natural flex wrapping already handles the columns, prefer that intrinsic arrangement over a
+    width-triggered rule.
 
 ## Sources
 

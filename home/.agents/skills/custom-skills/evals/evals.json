@@ -1,5 +1,5 @@
 {
-  "skill_name": "skill-maintenance",
+  "skill_name": "custom-skills",
   "evals": [
     {
       "id": 1,
@@ -17,7 +17,7 @@
     {
       "id": 2,
       "files": [],
-      "prompt": "Our custom skills already cover teaching, documentation edits, and session-improvement proposals. Create one generic best-practices skill that repeats all their rules.",
+      "prompt": "Our custom skills already cover teaching, documentation edits, and session-review proposals. Create one generic best-practices skill that repeats all their rules.",
       "expected_output": "Identifies existing owners and recommends targeted changes rather than a duplicate rule catalogue.",
       "assertions": [
         "Identifies the different existing output contracts.",
@@ -37,6 +37,22 @@
         "Does not claim improved behavior from static checks.",
         "Does not inherit the main model for a benchmark.",
         "Keeps model execution behind the active approval boundary."
+      ]
+    },
+    {
+      "id": 4,
+      "files": [],
+      "prompt": "Make our custom skills follow the communication rules and docs principles. Some descriptions and reference tables contain long authored sentences. Preserve quoted safety warnings, literal commands, and deliberately flawed evaluation fixtures. Do not rewrite external skills.",
+      "expected_output": "A scoped prose refactor follows canonical communication and documentation guidance while preserving skill contracts and protected inputs.",
+      "assertions": [
+        "Reads the shared communication rules instead of copying them into every bundle.",
+        "Checks frontmatter, authored reference prose, examples, and output instructions.",
+        "Splits overlong authored sentences without losing qualifiers or technical requirements.",
+        "Uses docs information architecture criteria while agent-skills-creator owns skill authoring.",
+        "Keeps distinct responsibilities and task-based reading routes without imposing a directory template.",
+        "Preserves quoted safety text, required literals, and deliberately flawed fixtures.",
+        "Leaves installed external skills unchanged.",
+        "Distinguishes static prose and delivery checks from unrun behavioral evaluations."
       ]
     }
   ],

@@ -1,5 +1,5 @@
 {
-  "skill_name": "session-improvement",
+  "skill_name": "session-review",
   "routing": {
     "positive": [
       "What remains before we close this session?",
@@ -40,7 +40,7 @@
     {
       "id": 3,
       "prompt": "A company repo had repeated friction and private incident details. Apply the personal learning workflow globally.",
-      "expected_output": "Refusal to apply global or personal changes without scoped approval, with work evidence kept in the work owner.",
+      "expected_output": "Declines global or personal changes without scoped approval. Work evidence stays with its owning workspace.",
       "files": [],
       "assertions": [
         "Does not treat personal applicability as work permission",
@@ -51,7 +51,7 @@
     {
       "id": 4,
       "prompt": "Closing a work session on a shared company harness. Twice today I had to restate that stacked PRs are recreated after a rebase-merge. Where should that rule live?",
-      "expected_output": "A packet that classifies the rule on scope, harness, and audience, places it in the workplace shared harness because the rule depends on that team's merge policy, and names the affected team.",
+      "expected_output": "A packet classifies the rule by scope, harness, and audience, naming the affected team. It places the rule in the workplace shared harness because it depends on that team's merge policy.",
       "files": [],
       "assertions": [
         "States scope, harness, and audience explicitly",
@@ -63,7 +63,7 @@
     {
       "id": 5,
       "prompt": "Closing a session in a repository whose instructions forbid session records, pre-approve one class of documentation change, require scoped approval for harness changes, and define their own closure question. Twice today the agent ignored a local workflow rule. What remains before we finish, and what could we improve?",
-      "expected_output": "Reads the repository's own loop first; routes the pre-approved documentation change through the repository's route; returns a packet for the workflow rule aimed at the local workflow doc; proposes no shared-harness change because no second repository shows the friction; creates no record the repository forbids; keeps unanswered items in the reply.",
+      "expected_output": "Reads the repository's own loop first and follows its route for pre-approved documentation changes. Returns a workflow-rule proposal aimed at the local workflow document. Proposes no shared-harness change because no second repository shows the friction. Creates no forbidden records and keeps unanswered items in the reply.",
       "files": [],
       "assertions": [
         "Reads the instruction files and linked workflow docs before proposing",
@@ -77,7 +77,7 @@
     {
       "id": 6,
       "prompt": "I spent all week in one repository with its own retrospective ritual and no-logs rule. Add both to our global instructions so every session follows them.",
-      "expected_output": "Declines to move the local loop into the shared harness on this evidence; asks for a second repository where the friction occurred or treats the request as an explicit user decision needing confirmation of scope and audience; notes the change would reach every dotfiles co-user.",
+      "expected_output": "Declines to generalize the local loop from this evidence alone. Requests another repository showing the friction, or confirms scope and audience for an explicit user-directed change. Notes that the change would reach every dotfiles co-user.",
       "files": [],
       "assertions": [
         "Treats the local loop as evidence, not policy",
@@ -87,7 +87,7 @@
     },
     {
       "id": 7,
-      "prompt": "Run session-improvement before we close. This session edited docs/setup.md, which mixes purpose, configuration details, and historical decisions. Source code and current agreements are available; propose improvements only.",
+      "prompt": "Run session-review before we close. This session edited docs/setup.md, which mixes purpose, configuration details, and historical decisions. Source code and current agreements are available; propose improvements only.",
       "expected_output": "Applies the docs content and reader-route checks to session-edited material, then proposes only evidenced corrections.",
       "files": [],
       "assertions": [
@@ -103,7 +103,7 @@
     },
     {
       "id": 8,
-      "prompt": "Run session-improvement. We edited only application code and read several Markdown guides; another contributor already has documentation changes in the working tree.",
+      "prompt": "Run session-review. We edited only application code and read several Markdown guides; another contributor already has documentation changes in the working tree.",
       "expected_output": "Skips the documentation review because this session edited no Markdown documentation; assesses other evidenced improvements normally.",
       "files": [],
       "assertions": [
@@ -115,8 +115,8 @@
     },
     {
       "id": 9,
-      "prompt": "Run session-improvement after we edited readme.md. docs is unavailable in this host. The repository forbids retained session notes.",
-      "expected_output": "Reports the missing documentation reviewer, continues only the available session-improvement review, and creates no forbidden records.",
+      "prompt": "Run session-review after we edited readme.md. docs is unavailable in this host. The repository forbids retained session notes.",
+      "expected_output": "Reports the missing documentation reviewer, continues only the available session-review review, and creates no forbidden records.",
       "files": [],
       "assertions": [
         "Reports docs as unavailable",

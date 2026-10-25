@@ -59,7 +59,7 @@ Report inaccessible sources and uncertainty instead of inventing missing agreeme
 - Without recurring friction, propose no session improvement; do not create observation logs merely
   for collection.
 
-**Closure:** Use `session-improvement` for proposals; it does not authorize edits, installation,
+**Closure:** Use `session-review` for proposals; it does not authorize edits, installation,
 publication, or model experiments.
 If unavailable, disclose the limitation; propose only evidenced changes with scope, benefit,
 verification, and rollback.

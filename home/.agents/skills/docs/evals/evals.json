@@ -22,7 +22,7 @@
     {
       "id": 1,
       "prompt": "Update readme.md to reflect relay.py and decisions.md. Make it clearer and easier to scan. Only readme.md is authorized for editing; preserve its information and safety warnings.",
-      "expected_output": "An in-place README improvement that loads the skill without naming it in the request, preserves unique facts, corrects current timeout to 30 seconds, and labels the approved 60-second target unimplemented.",
+      "expected_output": "An in-place README improvement loads the skill without an explicit invocation and preserves unique facts. It corrects the current timeout to 30 seconds and labels the approved 60-second target unimplemented.",
       "files": [
         "evals/files/parcel-relay/readme.md",
         "evals/files/parcel-relay/relay.py",
@@ -122,7 +122,7 @@
     {
       "id": 8,
       "prompt": "In cli.py, rename --max-cost to --budget-ceiling, raise its default from 10 to 20, and add a `just budget-report` recipe. Commit when done.",
-      "expected_output": "The code change carries every affected doc update: stale flag names, the old ceiling, and the missing recipe entry.",
+      "expected_output": "The code change carries every affected doc update. It corrects stale flag names, the old ceiling, and the missing recipe entry.",
       "files": [],
       "assertions": [
         "Loads docs although the request names no documentation",
@@ -147,7 +147,7 @@
     {
       "id": 10,
       "prompt": "Decision D3 in .agents/plans/budget.md is replaced by D7 (log entry 2026-10-19). Update the plan. Also tighten prompts/extract.md, which we send to the parser model.",
-      "expected_output": "The plan keeps D3 marked superseded with its log reference; the prompt file follows prompting.md instead of documentation rules.",
+      "expected_output": "The plan keeps D3 marked superseded with its log reference. The prompt file follows prompting.md instead of documentation rules.",
       "files": [],
       "assertions": [
         "Treats the plan as in scope",
@@ -325,6 +325,20 @@
         "Does not invent a tutorial or glossary to complete a template",
         "Preserves evaluation fixtures rather than rewriting deliberately flawed inputs",
         "Distinguishes authored evaluation cases from executed behavior"
+      ]
+    },
+    {
+      "id": 24,
+      "prompt": "Rewrite this guide with the docs skill. Its prose is verbose, but the quoted production warning and command syntax must remain exact. Apply our current communication rules, not an older paragraph-length or mandatory-bold template.",
+      "expected_output": "Reads the canonical communication rules before drafting. Checks the final prose against them without rewriting protected literals.",
+      "files": [],
+      "assertions": [
+        "Reads and follows the shared communication-rules.md reference before drafting",
+        "Measures authored sentence lengths under the current rules",
+        "Checks headings and emphasis before reviewing full-text coherence and completeness",
+        "Preserves quoted warnings and required command syntax",
+        "Does not replace the rules with obsolete paragraph limits or mandatory bold labels",
+        "Does not treat passing Markdown lint as proof of communication quality"
       ]
     }
   ]

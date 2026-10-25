@@ -1,10 +1,10 @@
 {
-  "skill_name": "web-app-craft",
+  "skill_name": "web-interface",
   "evals": [
     {
       "id": 1,
       "files": [],
-      "prompt": "Use web-app-craft to build a runnable frameworkless settings form with a sidebar and save feedback. Preserve native validation. Exercise keyboard submission, invalid input, long labels, and narrow and wide containers.",
+      "prompt": "Use web-interface to build a runnable frameworkless settings form with a sidebar and save feedback. Preserve native validation. Exercise keyboard submission, invalid input, long labels, and narrow and wide containers.",
       "expected_output": "A complete native form flow with intrinsic layout and observed browser evidence.",
       "assertions": [
         "Reads both specialist skills and relevant references before implementation.",
@@ -17,7 +17,7 @@
     {
       "id": 2,
       "files": [],
-      "prompt": "Use web-app-craft to review an existing React account editor whose action row overflows in a narrow panel and whose Save control is a clickable div. Do not edit files. Explain what you would inspect and how you would verify the findings.",
+      "prompt": "Use web-interface to review an existing React account editor whose action row overflows in a narrow panel and whose Save control is a clickable div. Do not edit files. Explain what you would inspect and how you would verify the findings.",
       "expected_output": "A review-only workflow that loads both specialists, preserves React, and separates proposed checks from observed results.",
       "assertions": [
         "Loads both specialists without recursively loading the orchestrator.",
@@ -44,7 +44,7 @@
     "should_trigger": [
       "Build a web app settings interface with native form behavior and responsive layout",
       "Review this checkout interface for keyboard behavior and narrow-container reflow",
-      "Use web-app-craft to debug my account editor"
+      "Use web-interface to debug my account editor"
     ],
     "near_miss": [
       "Fix only the gap between these cards; leave behavior unchanged",

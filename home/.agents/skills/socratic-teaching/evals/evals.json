@@ -1,5 +1,5 @@
 {
-  "skill_name": "socratic-learning",
+  "skill_name": "socratic-teaching",
   "evals": [
     {
       "id": 1,
@@ -27,7 +27,7 @@
     {
       "id": 2,
       "prompt": "During a lesson, I ask to add a new topic folder and global teaching rule based on this explanation.",
-      "expected_output": "Allows approved local factual expansion when repository rules permit it, but routes global behavior changes through scoped approval.",
+      "expected_output": "Allows approved local factual expansion when repository rules permit it. Routes global behavior changes through scoped approval.",
       "files": [],
       "routing": {
         "positive": [

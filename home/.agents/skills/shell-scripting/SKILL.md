@@ -1,20 +1,20 @@
 ---
 name: shell-scripting
 description: >-
-  Write, audit, fix, update, or review Bash and POSIX shell scripts for their target
-  runtime. Use when working on *.sh files or shell-shebang executables, including
-  installers, wrappers, CI scripts, hooks, and entrypoints; or changing portability,
-  strict mode, quoting, pipelines, shebangs, and variable declarations.
+  Writes, audits, fixes, updates, and reviews Bash or POSIX shell scripts for their target runtime.
+  Use when working on *.sh files or shell-shebang executables.
+  Includes installers, wrappers, CI scripts, hooks, and entrypoints.
+  Also use when changing portability, strict mode, quoting, pipelines, shebangs, or variable declarations.
 ---
 
-# Shell Scripting
+# Maintain scripts for their target shell
 
-Write, review, or repair scripts for their actual runtime.
+**Outcome:** Write, review, or repair scripts against their actual runtime and repository contracts.
+Work only on named scripts unless the user requested a repository-wide audit.
+Review mode reports findings without edits; implementation resolves in-scope defects and verifies
+the result.
 
-- Work only on the scripts the user named, unless they requested a repository-wide audit.
-- Review mode reports findings without edits.
-
-## Load the rubric
+## Choose the supporting guidance
 
 Resolve these paths from this installed skill directory:
 
@@ -25,10 +25,9 @@ Resolve these paths from this installed skill directory:
 | Creating a script with useful helper functions | [Structured Bash template](assets/template.sh) |
 | Creating a short, linear script without functions | [Linear Bash template](assets/template-linear.sh) |
 
-- The checklist owns the rules, examples, and deliberate Google deviations.
-- The checklist wins when the verbatim guide disagrees; use the guide where the checklist is silent.
-- Load templates only for creation.
-- Adapt templates to the target rather than copying Bash syntax into a POSIX script.
+The checklist owns operational rules, examples, and deliberate Google deviations.
+It takes precedence over the verbatim guide; consult upstream only where the checklist is silent.
+Load templates only for creation. Adapt them to the target rather than copying Bash into POSIX scripts.
 
 ## Establish the target
 
@@ -67,14 +66,10 @@ Read `.editorconfig`, `.shellcheckrc`, and the surrounding code.
 - When none exist, use the checklist defaults.
 - Offer a configuration file only if it helps the requested work.
 
-Keep correctness failures separate from house-policy findings.
-
-- The checklist requires these house policies:
-  - Strict mode for standalone Bash executables.
-  - Headers for every function except `main`.
-  - No leading-underscore private markers.
-- Report violations in the requested scope, even when siblings share them.
-- Do not turn a targeted fix into an unrequested convention migration.
+**Finding types:** Keep technical correctness failures separate from the checklist's house-policy
+findings.
+Report in-scope violations even when siblings share them.
+Do not turn a targeted fix into an unrequested migration.
 
 ## Choose the mode
 
@@ -128,10 +123,10 @@ authorized.
   - Source it only in an isolated test shell, or extract a library that follows the
     sourced-file contract.
 - Adapt the template to the target, then apply the checklist and effect-aware verification.
-- If the script grows past roughly 100 lines or needs non-trivial data structures/control flow:
-  - Recommend a more suitable language rather than expanding the shell design unquestioningly.
+- Apply the checklist's shell-suitability guidance before expanding a script with complex control
+  flow or data structures.
 
-## Report
+## Report verification without overstating it
 
 - For changes, summarize the behavior changed, findings resolved, checks actually performed, and
   remaining runtime or portability limits.

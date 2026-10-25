@@ -1,18 +1,5 @@
 {
-  "skill_name": "start-project",
-  "validation": {
-    "passed": [
-      "Skill format validator and dotfiles lint suite",
-      "Disposable Dotbot installation with byte-matched bundle files",
-      "Template setup and grouped recipe discovery",
-      "Installed hooks accept valid inputs and reject invalid inputs"
-    ],
-    "not_run": [
-      "Model-based routing and with-versus-without-skill comparison",
-      "Independent skills-ref validation: executable unavailable",
-      "Independent review: previously selected worker model unavailable"
-    ]
-  },
+  "skill_name": "project-init",
   "evals": [
     {
       "id": 1,
@@ -49,7 +36,7 @@
       "files": [],
       "assertions": [
         "The request is identified as application scaffolding.",
-        "The start-project baseline is not substituted for the requested app."
+        "The project-init baseline is not substituted for the requested app."
       ]
     }
   ]

@@ -11,38 +11,40 @@ metadata:
   version: "1.0"
 ---
 
-# Web Standards
+# Build with web standards
 
-## Activation Contract
+**Outcome:** Implement, extend, debug, or review standards-first browser behavior and ultra-light
+design systems.
+Pure Web is an architecture, not a mandatory stack.
+This skill owns platform implementation, not brand direction or backend architecture.
 
-- Build, extend, debug, or review standards-first web apps and ultra-light design systems.
-- Pure Web is an architecture, not a mandatory stack.
-- Own platform implementation, not brand direction or backend architecture.
-- Do not migrate an existing framework app unless requested.
-- Do not substitute React, Vue, or another application framework for a standards-first request.
-- Explicit zero-dependency, no-build, or frameworkless requirements override defaults and
-  framework-oriented scaffolding skills.
+Do not migrate an existing framework app unless requested.
+Do not substitute React, Vue, or another application framework for a standards-first request.
+Explicit zero-dependency, no-build, and frameworkless requirements override defaults and
+framework-oriented scaffolding skills.
 
-- Use `css-layout` for layout selection, composition, intrinsic reflow, spacing, overflow, or
-  Every Layout component CSS/token requirements.
-- Its shared installation path is `~/.agents/skills/css-layout/SKILL.md`.
-- `css-layout` owns layout geometry across frameworks.
-- This skill retains semantic HTML, enhancement, custom-element lifecycle, Light/Shadow DOM, and
-  platform tooling.
-- Use both when a layout task also changes those platform contracts.
-- Do not load platform guidance for geometry alone.
-- For combined app-interface work, `web-app-craft` coordinates both skills.
-- When invoked directly, load `css-layout` only for layout decisions.
-- Do not load the orchestrator as a dependency.
+## Route platform and layout concerns
 
-## Hard Rules
+| Concern | Owner |
+| --- | --- |
+| Semantic HTML, enhancement, lifecycle, Light/Shadow DOM, and platform tooling | This skill |
+| Layout selection, composition, intrinsic reflow, spacing, overflow, and Every Layout CSS/token requirements | `css-layout` |
+| A complete interface flow combining both concerns | `web-interface` coordinates both specialists |
+
+Resolve `css-layout` through discovery or `~/.agents/skills/css-layout/SKILL.md`.
+Use both specialists when a task crosses their contracts; geometry alone does not require platform
+guidance.
+When invoked directly, load `css-layout` only for layout decisions, never the coordinator as a
+dependency.
+
+## Start with native capabilities
 
 ### Pure Web Manifesto: five ground rules
 
 Apply these priorities in order; components are an escalation, not the starting point.
 
-1. **Start with pure HTML**, preferably semantic constructs, and leverage CSS fully.
-2. **Use progressive enhancement** before even thinking about Web Components.
+1. **Start with pure HTML**, preferably semantic constructs, and use CSS capabilities fully.
+2. **Use progressive enhancement** before introducing Web Components.
 3. **Extend HTML** with custom elements when needed.
     - Attach JavaScript behavior later, only when the element needs it.
     - Custom tags alone supply no accessibility semantics.
@@ -71,7 +73,7 @@ Apply these priorities in order; components are an escalation, not the starting 
 - Verify target-browser support before adopting APIs.
 - Never interpolate untrusted values into HTML.
 
-## Decision Gates
+## Choose the smallest suitable mechanism
 
 | Need | Default | Escalate only when |
 | --- | --- | --- |
@@ -83,7 +85,7 @@ Apply these priorities in order; components are an escalation, not the starting 
 | State | Local state and explicit updates | Multiple owners need an explicit shared contract |
 | Tooling | Serve native source over HTTP | An existing requirement justifies a build step |
 
-## Execution Steps
+## Implement or review the requested flow
 
 1. Inspect the project, requested behavior, browser targets, and existing tooling.
     - Preserve its contracts; choose build, debug, or review mode from the request.
@@ -103,7 +105,7 @@ Apply these priorities in order; components are an escalation, not the starting 
     - Review: report findings and verification limits without changing files.
     - Do not stop requested implementation at a scaffold or add an unsolicited approval checkpoint.
 
-## Output Contract
+## Report verified outcomes
 
 - Return changed behavior, material platform decisions, verification performed, and remaining
   limits.
@@ -111,9 +113,10 @@ Apply these priorities in order; components are an escalation, not the starting 
 - Distinguish verified results from assumptions; do not claim cross-browser coverage from one
   browser.
 
-## References
+## Read focused platform guidance
 
-Read these files relative to this skill's directory:
+Read the relevant reference before its decision, resolving paths from this installed skill
+directory:
 
 - `references/foundations.md` before design-system, markup, CSS, or compatibility decisions.
 - `references/components.md` before creating or modifying custom elements.

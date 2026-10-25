@@ -1,37 +1,38 @@
 ---
 name: css-layout
-description:
-  "Build and diagnose intrinsic, composable CSS layouts using Every Layout's primitives. Use when
-  fixing responsive wrapping, spacing, alignment, overflow, or choosing Stack, Sidebar, Switcher,
-  Grid, and related patterns. For Web Component architecture rather than layout, use web-standards."
+description: >-
+  Builds, diagnoses, and reviews intrinsic, composable CSS layouts using Every Layout's primitives.
+  Use when fixing responsive wrapping, spacing, alignment, overflow, or choosing layout patterns.
+  Covers Stack, Sidebar, Switcher, Grid, and related primitives.
+  For Web Component architecture rather than layout, use web-standards.
 ---
 
-# CSS Layout
+# Build layouts around available space
 
-- **IS:** choosing, composing, implementing, and reviewing content-driven CSS layout.
-  - It applies in any framework or plain HTML.
-- **IS NOT:** application architecture, a framework migration, or a requirement to use custom
-  elements.
-  - Use `web-standards` for native semantics, progressive enhancement, component lifecycle,
-    Light/Shadow DOM, and platform tooling.
-  - Use `ui-design` for broader visual/interface design.
+**Outcome:** Choose, compose, implement, or review content-driven layout in any framework or plain
+HTML.
+Prefer relationships that adapt to available space over device-specific exceptions.
+Intrinsic CSS is a default, not a prohibition on media or container queries.
+Preserve project tokens, semantics, browser targets, and component conventions.
 
-- Prefer relationships that adapt to their available space over device-specific exceptions.
-- Intrinsic CSS is a default, not a prohibition on media or container queries.
-- Preserve the project's tokens, semantics, browser targets, and existing component conventions.
-- Load `web-standards` when a layout change also changes semantics, native interaction, or
-  component lifecycle.
-  - Geometry-only fixes do not need it.
-- `web-app-craft` coordinates combined app-interface work, but is not a dependency of this skill.
+## Keep layout with its owner
 
-## Workflow
+- This skill owns layout geometry, not application architecture or framework migration.
+- Custom elements are optional; never add a runtime merely to obtain CSS layout.
+- Use `web-standards` when changes affect semantics, enhancement, native interaction, lifecycle, DOM
+  isolation, or platform tooling.
+- Geometry-only fixes do not require platform guidance.
+- Use `ui-design` for broader visual/interface design.
+- `web-interface` coordinates combined work but is not a dependency of this skill.
+
+## Diagnose, implement, or review
 
 - Identify the relationship, inspecting the actual containing block, not just the viewport.
   - Candidates: sibling spacing, readable measure, wrapping group, asymmetric pair, threshold
     switch, repeated tracks, bounded media, or overlay.
-- Load the matching layout reference below and the rudiment behind the uncertainty.
-  - Read `references/rudiments/composition.md` when combining primitives.
-  - Do not load the entire library.
+- Use the reading maps below for the matching primitive and the rudiment behind the uncertainty.
+  - Read `references/rudiments/composition.md` when combining primitives; do not load the entire
+    library.
 - Implement the CSS mechanism on semantic HTML first.
   - When importing, configuring, or verifying optional downloaded components, read
     `references/component-integration.md` and the chapter's component section.
@@ -79,7 +80,7 @@ All paths resolve from this installed skill directory, not the application root.
 | Align an inline icon with text and its font metrics                      | `references/layouts/icon.md`      | Accessible naming remains a semantic decision                   |
 | Style descendants according to the containing region's size              | `references/layouts/container.md` | Use intrinsic wrapping first when it already expresses the rule |
 
-## Integration and evidence
+## Read component and verification contracts
 
 - `references/component-integration.md`: read before importing, configuring, or verifying any
   downloaded component.
@@ -103,7 +104,7 @@ All paths resolve from this installed skill directory, not the application root.
   - Read the relevant chapter before relying on live attribute updates.
   - Source inspection is not runtime confirmation.
 
-## Sources and maintenance
+## Preserve attribution during maintenance
 
 - Derived from the [Every Layout website](https://every-layout.dev/) by Heydon Pickering and Andy
   Bell.

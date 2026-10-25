@@ -44,7 +44,7 @@ class LintExclusionsTest(unittest.TestCase):
     def test_markdown_configs_preserve_raw(self):
         for source in (
             ROOT / ".markdownlint-cli2.yaml",
-            ROOT / "home/.agents/skills/start-project/assets/markdownlint-cli2.yaml",
+            ROOT / "home/.agents/skills/project-init/assets/markdownlint-cli2.yaml",
         ):
             with self.subTest(config=str(source)):
                 (self.cwd / "docs/bad.md").unlink(missing_ok=True)
@@ -109,7 +109,7 @@ class LintExclusionsTest(unittest.TestCase):
         subprocess.run(["git", "init", "--quiet", str(self.cwd)], check=True)
         for source in (
             ROOT / "hk.pkl",
-            ROOT / "home/.agents/skills/start-project/assets/hk.pkl",
+            ROOT / "home/.agents/skills/project-init/assets/hk.pkl",
         ):
             with self.subTest(config=str(source)):
                 shutil.copyfile(source, self.cwd / "hk.pkl")

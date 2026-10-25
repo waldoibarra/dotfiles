@@ -46,7 +46,7 @@ Loading checks establish delivery, not universal writing compliance.
 `install.conf.yaml` links it into `~/.agents/references/`.
 Skills cite that installed path, which is the same on every machine.
 
-Read [harness verification](/docs/coding-agents/personal-workflow.md) before checking instruction
+Read [harness verification](/docs/coding-agents/harness-verification.md) before checking instruction
 behavior.
 
 ## Global loaders
@@ -216,5 +216,5 @@ changing style metadata or activation.
 - Installed files prove delivery, not loaded instructions or successful behavior.
 - Read [file ownership](/docs/coding-agents/README.md#file-ownership) before applying links or
   replacing copied files.
-- Read [harness verification](/docs/coding-agents/personal-workflow.md) before spending quota on
+- Read [harness verification](/docs/coding-agents/harness-verification.md) before spending quota on
   behavioral probes.

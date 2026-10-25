@@ -149,7 +149,7 @@ timeout failures stop dispatch immediately.
 **Delivery:** Verify actual loaded bytes, not merely filesystem presence; report configured,
 installed, loaded, and exercised states separately.
 
-Read [harness verification](/docs/coding-agents/personal-workflow.md) before probes or installation.
+Read [harness verification](/docs/coding-agents/harness-verification.md) before probes or installation.
 
 Read [skill delivery](/docs/agent-skills.md#repo-managed-skills) before changing installation
 tests or verifying either host.

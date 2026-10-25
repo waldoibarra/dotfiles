@@ -80,7 +80,7 @@ Read only task-relevant detail, not the entire harness, roadmap, or vault.
 | --- | --- |
 | Creating, editing, organizing, or reviewing Markdown documentation | `docs` |
 | Authoring or reviewing instruction files or skill definitions | `agents-md` or `agent-skills-creator`, respectively |
-| Maintaining repository-owned custom skills | `~/.agents/skills/skill-maintenance/SKILL.md` |
+| Maintaining repository-owned custom skills | `~/.agents/skills/custom-skills/SKILL.md` |
 | Writing a commit message, committing, or pushing | `~/.agents/skills/commit/SKILL.md` |
 | Assigning a worker responsibility | The selected role in `~/.agents/roles/` and `~/.agents/references/delegation.md` |
 | Performing another specialist workflow | Its `SKILL.md` from the available skill catalog |
@@ -146,7 +146,7 @@ procedures.
 
 - **Record verified outcomes, unresolved questions, and next steps** with their existing owner
   where permitted.
-- Use `session-improvement` at closure or repeated friction; its recommendations **remain
+- Use `session-review` at closure or repeated friction; its recommendations **remain
   proposals until approved**.
 - If unavailable, disclose that limitation; propose only evidenced changes with scope, benefit,
   verification, and rollback.

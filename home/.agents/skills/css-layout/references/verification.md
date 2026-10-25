@@ -51,21 +51,21 @@ different mechanisms and defaults.
 
 ## Checks by primitive
 
-| Primitive | Observable contract                                                                                                                                                  |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Stack     | Equal intended space only between participating siblings; recursive/nested rules do not unintentionally space internals; a split consumes genuinely available height |
-| Box       | Padding/border stay inside the intended sizing budget; inversion does not damage media; a meaningful boundary survives forced colors where required                  |
-| Center    | Measure is bounded, outer margins balance when space exists, and gutters remain at narrow sizes; text alignment changes only when requested                          |
-| Cluster   | Items wrap without overlap and keep intended gaps; long controls remain usable; visual arrangement does not change keyboard order                                    |
-| Sidebar   | The pair becomes adjacent only with adequate main-content space; stacked items fill available width; long content does not force page overflow                       |
-| Switcher  | Peers switch together rather than leaving an accidental partial row; threshold and maximum-item policy both work                                                     |
-| Cover     | Main content is centered when room exists, but growing content expands the region rather than clipping header/footer or controls                                     |
-| Grid      | Tracks meet the minimum when space permits and shrink to the container when narrower; partially filled rows follow the chosen auto-fill/auto-fit behavior            |
-| Frame     | Reserved ratio is correct before media loads; crop preserves important content; intrinsic image dimensions do not distort the frame                                  |
-| Reel      | Only the intended region scrolls; offscreen content is reachable using the target input methods; scrollbar visibility and focus cues remain understandable           |
-| Imposter  | Positioning uses the intended containing block; long content can be reached; focus, dismissal, and modality work if the surrounding feature requires them            |
-| Icon      | Icon/text alignment holds at multiple font sizes; accessible naming is not duplicated or lost; interactive controls retain a usable name                             |
-| Container | The query responds to the named ancestor's size, not merely viewport changes; containment does not unexpectedly collapse or change intrinsic sizing                  |
+| Primitive | Observable contract                                                                                                                                                           |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stack     | Equal intended space appears only between participating siblings. Recursive/nested rules do not unintentionally space internals. A split consumes genuinely available height. |
+| Box       | Padding/border stay inside the intended sizing budget. Inversion does not damage media. A meaningful boundary survives forced colors where required.                          |
+| Center    | Measure is bounded; outer margins balance when space exists. Gutters remain at narrow sizes. Text alignment changes only when requested.                                      |
+| Cluster   | Items wrap without overlap and keep intended gaps. Long controls remain usable. Visual arrangement does not change keyboard order.                                            |
+| Sidebar   | The pair becomes adjacent only with adequate main-content space. Stacked items fill available width. Long content does not force page overflow.                               |
+| Switcher  | Peers switch together rather than leaving an accidental partial row; threshold and maximum-item policy both work                                                              |
+| Cover     | Main content is centered when room exists. Growing content expands the region without clipping header/footer or controls.                                                     |
+| Grid      | Tracks meet the minimum when space permits and shrink to the container when narrower. Partially filled rows follow the chosen auto-fill/auto-fit behavior.                    |
+| Frame     | Reserved ratio is correct before media loads. Cropping preserves important content. Intrinsic image dimensions do not distort the frame.                                      |
+| Reel      | Only the intended region scrolls. Offscreen content is reachable using the target input methods. Scrollbar visibility and focus cues remain understandable.                   |
+| Imposter  | Positioning uses the intended containing block. Long content can be reached. Focus, dismissal, and modality work if the surrounding feature requires them.                    |
+| Icon      | Icon/text alignment holds at multiple font sizes. Accessible naming is not duplicated or lost. Interactive controls retain a usable name.                                     |
+| Container | The query responds to the named ancestor's size, not merely viewport changes. Containment does not unexpectedly collapse or change intrinsic sizing.                          |
 
 ## Optional component checks
 

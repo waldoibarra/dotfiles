@@ -10,6 +10,12 @@ description: >-
 
 # Maintain documentation
 
+**Required:** Before drafting or reviewing, read and follow
+`~/.agents/references/communication-rules.md`.
+Apply it to authored prose, comments, examples, and review findings; preserve its literal and safety
+exceptions.
+Report unavailable guidance before dependent work rather than inventing its contents.
+
 - **IS:** improving authorized documentation, preserving information, and organizing it around
   reader needs.
 - **IS NOT:** repository-wide cleanup, new product decisions, or permission to edit merely because
@@ -26,7 +32,7 @@ Use the references for their distinct concerns; they are not mandatory sequentia
 
 | Before… | Read |
 | --- | --- |
-| Looking up rules while writing or reviewing documentation | [Conventions](references/conventions.md): entrypoints, shared language, filenames, and retention |
+| Looking up artifact conventions after reading the required communication rules | [Conventions](references/conventions.md): entrypoints, shared language, filenames, and retention |
 | Choosing or reviewing a guide's organization and page purposes | [Information architecture](references/structure.md): concerns, Diátaxis, progressive disclosure, and navigation checks |
 | Retiring agreements or proposing ADRs | `~/.agents/references/memory.md` for lifecycle and decision gates |
 | Editing model prompt files | `~/.agents/references/prompting.md` instead of this workflow |
@@ -117,8 +123,11 @@ Never shorten safety content, including destructive-action confirmations, to fit
     ownership and cross-concern navigation.
 3. Resolve changed links and anchors; verify commands against maintained implementations or safe
     execution evidence.
-4. Run repository checks and measure applicable prose limits; inspect meaning separately from
-    formatting.
+4. Run repository checks and measure authored sentences against the shared communication rules.
+    Check headings and emphasis first, then read the full text for coherence, qualifications, and
+    completeness.
+    Preserve required literals and safety wording; formatting alone does not establish communication
+    quality.
 5. Report applied changes, remaining proposals, failed checks, and uncertainties without claiming
     universal reliability.
 
@@ -140,3 +149,5 @@ Keep the workflow here, information architecture in `references/structure.md`, a
 conventions in `references/conventions.md`.
 Fixtures are evaluation inputs, not current guidance or prose to polish.
 No tutorial is required merely to complete a Diátaxis set.
+The communication requirement is an instruction-followed gate, not an automatic linter or guarantee
+of model compliance.

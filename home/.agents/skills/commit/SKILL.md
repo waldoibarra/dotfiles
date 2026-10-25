@@ -1,78 +1,78 @@
 ---
 name: commit
 description: >-
-  Prepares atomic, verified Git commits and authorized pushes using repository conventions and
-  readable messages. Use when asked to "commit these changes", "push when done", or
-  "write a commit message". Message drafting alone never authorizes Git writes.
+  Prepares atomic, verified Git commits and authorized pushes using repository conventions and readable messages.
+  Use when asked to "commit these changes", "push when done", or "write a commit message".
+  Message drafting alone never authorizes Git writes.
 ---
 
-# Commit and deliver
+# Commit verified changes
 
-- **IS:** scoped Git delivery and readable commit messages after implementation is ready.
-- **IS NOT:** implementation, unrelated cleanup, automatic publication, or a replacement for
-  repository hooks.
+**Outcome:** Commit the authorized changes and verify any separately requested push against the
+intended remote branch.
+This workflow owns scoped Git delivery, not implementation, unrelated cleanup, automatic
+publication, or replacing repository hooks.
+A local commit does not prove remote delivery, CI success, or deployment.
 
-**Done:** Authorized changes are committed; requested pushes are verified against the intended
-remote branch.
-Report local and remote outcomes separately; a commit is not proof of a successful push.
+## Determine the authorized action
 
-## Establish scope
+- Drafting a message permits no mutation.
+- Commit and push only within the user's granted scope.
+- Never change visibility, force-push, discard edits, or bypass hooks to make delivery succeed.
+- Keep messages, comments, and posts behind their own publication approvals.
+
+## Inspect the change before staging
 
 1. Read repository instructions, current status, branch, upstream, and commit-message configuration.
-2. Identify authorized files and existing unrelated edits; inspect the full diff, including
-  untracked files.
+2. Identify task-owned files and unrelated edits; inspect the full diff, including untracked files.
 3. Verify the intended destination, audience, repository visibility, and any deployment triggered by
-  pushing.
+    pushing.
 4. Check secrets, private evidence, source links, and generated files before staging.
-5. Run the applicable checks; report unavailable prerequisites or unresolved failures before
-  delivery.
+5. Run applicable checks; report unavailable prerequisites or unresolved failures before delivery.
 
-**Authority:** Drafting a message permits no mutation. Commit and push only within the user's
-granted scope.
-Never change visibility, force-push, discard edits, or bypass hooks to make delivery succeed.
-Keep messages, comments, and posts behind their own publication approvals.
+## Write one coherent commit
 
-## Shape the commit
+| Part | Contract |
+| --- | --- |
+| Scope | One concern, with affected documentation updated alongside behavior |
+| Subject | Conventional type, imperative summary, at most 50 characters |
+| Body | Optional; wrap at 72 characters and explain intent, constraints, or tradeoffs |
+| Separation | Blank line between the subject and optional body |
+| Footers | Breaking changes and references |
+| Attribution | Never add `Co-Authored-By` or AI attribution |
 
-- Never add `Co-Authored-By` or AI attribution.
-- Use atomic conventional commits: one concern, typed subject, at most 50 characters.
-- Wrap optional bodies at 72 characters; explain why. Put breaking changes and references in
-  footers.
-- Update affected documentation in the same commit as behavior changes.
-- Use an imperative summary; separate it from an optional body with a blank line.
-- Explain intent, constraints, and trade-offs when the diff cannot explain them.
-- Match repository-required types and casing; do not introduce a new convention during delivery.
+Match repository-required types and casing; do not introduce a new convention during delivery.
+Explain what the diff cannot show rather than repeating obvious file changes.
 
 ```text
 docs(harness): clarify memory ownership
 
-Separate current guidance from historical evidence so later sessions
-can retrieve decisions without treating superseded steps as active.
+Separate current guidance from historical evidence. Later sessions can
+retrieve decisions without treating superseded steps as active.
 ```
 
-## Deliver serially
+## Deliver serially and inspect the result
 
-1. Stage the named authorized paths; inspect the staged diff and run `git diff --check`.
+1. Stage named authorized paths; inspect the staged diff and run `git diff --check`.
 2. Run each commit or hook-triggering command separately; shared hook stashes can absorb concurrent
-  work.
-3. Inspect the resulting commit and working tree; preserve unrelated edits.
+    work.
+3. Inspect the resulting commit and working tree, preserving unrelated edits.
 4. If pushing is authorized, push the explicit intended branch without rewriting remote history.
-5. Verify the remote branch matches the intended commit; report any remaining local changes.
+5. Verify the remote branch matches the intended commit; report remaining local changes.
 
-**Failure:** Stop on rejected pushes or hook failures; diagnose before retrying.
-Fetch and reconcile within authority; never force-push or conceal validation failures.
-Do not claim remote CI or deployment passed merely because Git accepted the push.
+**Failure:** Stop on rejected pushes or hook failures and diagnose before retrying.
+Fetch and reconcile only within authority; never force-push or conceal validation failures.
+Report local and remote outcomes separately, without treating Git acceptance as CI or deployment
+evidence.
 
-## Sources
+## Source and maintenance
 
-**Adaptation:** Tim Pope's [A Note About Git Commit
-Messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) supplies
-subject/body separation,
-imperative summaries, and readable wrapping.
-Our existing Conventional Commit prefix and strict 50-character subject limit remain local
-conventions.
+Tim Pope's [A Note About Git Commit
+Messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
+informs subject/body separation, imperative summaries, and readable wrapping.
+The Conventional Commit prefix and strict 50-character subject limit are local conventions.
 The article recommends approximately 50 characters; it does not prescribe Conventional Commits.
-Editor-specific setup examples are excluded because they are not part of Git delivery.
+Editor-specific setup examples are excluded because they are outside Git delivery.
 
-**Maintenance:** Read `evals/evals.json` when changing this skill; scenarios are specifications, not
-executed evidence.
+Read `evals/evals.json` when changing this skill; scenarios are specifications, not executed
+evidence.

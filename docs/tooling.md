@@ -151,7 +151,7 @@ Original sources stay unchanged; maintained documentation outside that directory
 | ShellCheck | The maintained-file allowlist in `just lint-sh` never selects `raw/` |
 | Hook file selection | `hk.pkl` |
 
-**Shared defaults:** The `start-project` templates preserve the Markdown and hook exclusions for new
+**Shared defaults:** The `project-init` templates preserve the Markdown and hook exclusions for new
 repositories.
 The shared `docs` conventions require native exclusions when maintaining other linter or formatter configurations.
 Existing repositories are not automatically migrated; Git ignores alone do not enforce these exclusions.

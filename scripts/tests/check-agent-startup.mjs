@@ -1,6 +1,8 @@
 // Inspect fresh Pi context without inference, extensions, MCP, or persistent sessions.
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs";
+import {
+  mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync,
+} from "node:fs";
 import { homedir, tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -62,8 +64,9 @@ try {
     assert(communication.includes("~/.agents/references/communication-rules.md"));
     assert(communication.includes("before composing any reply or artifact"));
     assert.equal(prompt.includes("Local contract marker: scoped-orders."), localInstructions);
-    for (const name of ["skill-maintenance", "docs", "commit"]) {
-      assertOnDemandSkill(resourceLoader, prompt, name);
+    const bundles = readdirSync(join(root, "home/.agents/skills"), { withFileTypes: true });
+    for (const bundle of bundles.filter(entry => entry.isDirectory())) {
+      assertOnDemandSkill(resourceLoader, prompt, bundle.name);
     }
     assert(!resourceLoader.getSkills().skills.some(item => item.name === "docs-maintenance"));
     for (const reference of [

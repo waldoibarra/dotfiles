@@ -128,12 +128,12 @@ its architecture.
 The renamed bundle, active references, and local client links use `docs`; no legacy alias is
 installed.
 
-**Verified:** Fourteen harness tests, six Cursor tests, skill validators, and changed-document
+**Verified:** Fifteen harness tests, six Cursor tests, skill validators, and changed-document
 checks pass.
 Fresh Pi context discovers exactly one `docs` skill; its body stays on demand.
 Independent review found obsolete writing assertions; those assertions now follow current
 communication rules.
-Twenty-three authored documentation scenarios cover the contracts but do not establish model conformance.
+Twenty-four authored documentation scenarios cover the contracts but do not establish model conformance.
 Repository lint passes with native `raw/` exclusions; protected source files remain unchanged.
 Six isolated exclusion tests cover maintained-file controls, repeat runs, hook selection, and
 global YAML delivery.
@@ -145,6 +145,76 @@ editing.
 Record observed navigation and maintenance results here, without treating installation as behavioral
 verification.
 The later OpenWiki comparison remains in [tooling ideas](/to-do.md#agent-tools).
+
+### Session guide and skill naming
+
+**Scope:** Add a human session guide, clarify names, and rewrite all eleven custom skill
+entrypoints.
+Preserve technical references, executable examples, fixtures, privacy boundaries, and specialist
+ownership.
+Existing communication fixes are included; unrelated workspace migration remains outside this
+delivery.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| SG1 | Add `docs/coding-agents/session-workflow.md`. | Humans need session checkpoints without reading implementation procedures. |
+| SG2 | Rename `personal-workflow.md` to `harness-verification.md`. | Its content verifies the harness rather than describing everyday work. |
+| SG3 | Keep `docs/agent-skills.md`. | The name accurately covers the catalogue and skill delivery. |
+| SG4 | Rename `skill-maintenance` to `custom-skills`. | Distinguish repository-owned maintenance from general skill authoring. |
+| SG5 | Rename `session-improvement` to `session-review`. | Review produces proposals, not automatic improvements. |
+| SG6 | Rename `socratic-learning` to `socratic-teaching`. | Describe the agent's teaching responsibility without implying learner tracking. |
+| SG7 | Rename `start-project` to `project-init`. | Identify empty-project initialization rather than general product development. |
+| SG8 | Rename `to-do` to `shared-todo`. | Identify the shared personal list rather than arbitrary task management. |
+| SG9 | Rename `web-app-craft` to `web-interface`. | Name the coordinated interface work rather than an abstract craft. |
+| SG10 | Keep `docs`, `commit`, `shell-scripting`, `css-layout`, and `web-standards`. | Existing names identify their responsibilities clearly. |
+| SG11 | Require communication-rule reading and review directly in `docs`. | Make its acceptance contract explicit without copying shared policy. |
+
+**Delivery:** Update active references, scenario invocations, client links, and migration tests
+together.
+Do not rewrite frozen records or install duplicate legacy skills.
+Check external references for breakage without changing unrelated repositories or installed external
+skills.
+
+**Verification:** Test all six renamed skills in both `.agents/skills` and `.claude/skills`.
+Assert old-link removal, new targets, preserved unmanaged files, and unchanged timestamps on the
+second run.
+Update cross-skill links, frontmatter, catalogue commands, and scenario invocations before checking
+discovery.
+
+Run `python3 scripts/tests/test-agent-harness.py`, `python3 scripts/tests/test-cursor-rule.py`, and
+`just lint`.
+Validate each edited bundle and lint ignored Markdown through stdin.
+Use `PI_PACKAGE_DIR` with `scripts/tests/check-agent-startup.mjs` for the installed Pi host.
+Vault checks are unnecessary because this plan does not edit the vault.
+Audit staged paths and contents explicitly; include prior task-owned communication fixes, not the
+workspace migration.
+Instruction loading does not establish behavioral compliance; no new model benchmark is approved.
+
+**Rollback:** Restore scoped sources and their links, refresh affected clients, and recheck
+discovery.
+The user requested a commit, not a push or OpenWiki installation.
+
+**Implemented:** Added the session guide, clarified verification naming, and rewrote all eleven
+skill entrypoints.
+`docs` directly requires reading, applying, and checking the canonical communication rules.
+`custom-skills` coordinates that review with documentation criteria while preserving specialist
+authoring ownership.
+Removed an undated validation summary from project setup scenarios; current results stay with this
+project record.
+
+**Checked:** All eleven validators, repository lint, fifteen harness tests, six Cursor tests, and
+six exclusion tests pass.
+Fresh installed Pi discovers all custom skills without preloading their bodies.
+Both clients' renamed links pass isolated repeat-run and unrelated-file preservation checks.
+Technical references, assets, fixtures, and vendor text match the pre-rewrite snapshot.
+Existing scenario inputs changed only where invocation names changed; new communication coverage
+remains an authored specification.
+Independent preservation review confirmed the contracts and identified a stale verification-guide
+link, which was corrected.
+
+**Limits:** Native Claude discovery and behavioral compliance remain unverified; no model comparison
+was run.
+The separate documentation pilot and OpenWiki evaluation remain deferred.
 
 ### Validate shared roles
 
@@ -162,7 +232,7 @@ outcomes.
 - Read [shared roles](/.agents/plans/pi-shared-roles.md) before reviewing historical discovery and
   dispatch evidence.
 - Read [delegation](/docs/coding-agents/pi/delegation.md) before selecting Pi roles and models.
-- Read [harness verification](/docs/coding-agents/personal-workflow.md) before defining acceptance
+- Read [harness verification](/docs/coding-agents/harness-verification.md) before defining acceptance
   or approving behavioral probes.
 
 ### Documentation maintenance

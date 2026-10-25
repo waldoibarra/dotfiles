@@ -55,24 +55,24 @@
       "id": 5,
       "files": [],
       "prompt": "Maintain a Pure Web settings panel in an existing Lit component library consumed by plain HTML applications. Existing consumers require its Lit reactive-property update contract; the repository already uses TypeScript for a shared typed public API and Vite for its supported production build. Build a runnable representative panel with a labeled native checkbox. Setting the public enabled property must update the checkbox; toggling it must publish the new value through the documented enabled-change event. Show two independent instances and explain the decisions about retaining Lit, TypeScript, and Vite versus using dependency-free HTML for a standalone disclosure. Do not migrate consumers to another framework or make this toolchain a Pure Web prerequisite.",
-      "expected_output": "A working standards-first panel preserving the justified existing Lit contract and optional tooling, with a native-only recommendation for the standalone disclosure.",
+      "expected_output": "A working standards-first panel preserves the justified existing Lit contract and optional tooling. The standalone disclosure receives a native-only recommendation.",
       "assertions": [
-        "A plain HTML consumer can set enabled to true and false and observe the matching native checkbox state.",
+        "A plain HTML consumer sets enabled to true and false; the native checkbox matches each state.",
         "A keyboard toggle publishes exactly one enabled-change event with the new enabled value.",
         "Changing either instance leaves the other instance unchanged.",
-        "The decision explains Lit's existing runtime contract separately from TypeScript and Vite development/build requirements, without rejecting Lit categorically or requiring those tools for Pure Web.",
-        "The standalone disclosure recommendation uses native HTML without adding a runtime dependency or migrating consumers to React, Vue, or another framework."
+        "The decision distinguishes Lit's existing runtime contract from TypeScript and Vite development/build requirements. It neither rejects Lit categorically nor requires those tools for Pure Web.",
+        "The standalone disclosure recommendation uses native HTML without adding a runtime dependency. It does not migrate consumers to React, Vue, or another framework."
       ]
     },
     {
       "id": 6,
       "files": [],
       "prompt": "Build a dependency-free preferences form with labeled checkboxes sharing name=topics and values html, css, and js. The declared endpoint accepts all selected topics as repeated form fields or an array. On successful submission, store the saved preferences in one explicit owner and notify a summary panel. Let the panel be created after a save, then disconnected while another save occurs and reconnected. Demonstrate html+css saved before the panel exists, then js saved while it is disconnected. Do not add a global event bus or reactive framework.",
-      "expected_output": "A runnable form preserving repeated values and a summary that initializes from current saved state after late connection and reconnection.",
+      "expected_output": "A runnable form preserves repeated values. Its summary initializes from current saved state after late connection and reconnection.",
       "assertions": [
         "Submitting html and css sends both values to the declared endpoint, not only the last value.",
-        "A summary first connected after that successful save displays html and css without requiring another submit or a replayed event.",
-        "After saving only js while the summary is disconnected, reconnecting it displays js and no stale html or css selection."
+        "A summary first connected after that successful save displays html and css. No additional submission or replayed event is required.",
+        "Only js is saved while the summary is disconnected. Reconnection displays js, with no stale html or css selection."
       ]
     },
     {
@@ -83,7 +83,7 @@
       "assertions": [
         "With registration withheld, each parser-delivered editor displays its label and accepts text input.",
         "Upgrading each instance preserves its entered draft and selection range without an attachment exception.",
-        "After removal and reinsertion, each instance still displays its own draft with one editor rather than duplicate controls.",
+        "After removal and reinsertion, each instance displays its own draft in one editor without duplicate controls.",
         "The closed-root editor upgrades successfully even though its public host.shadowRoot is null."
       ]
     },

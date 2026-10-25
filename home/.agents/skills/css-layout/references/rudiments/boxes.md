@@ -52,7 +52,7 @@ An unstyled document already has layout.
 | --------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `block`         | In ordinary flow, takes available inline space and follows the previous block along the block axis.               | Use for paragraphs, regions, and containers whose block size should grow with content.             |
 | `inline`        | Runs with text and can fragment across lines; ordinary non-replaced inline elements ignore explicit width/height. | Use for text-level emphasis and links rather than rectangular widgets.                             |
-| `inline-block`  | Occupies an atomic place in an inline line, but accepts box dimensions.                                           | Use when an inline item needs a complete sized box; its box and margins can increase the line box. |
+| `inline-block`  | Occupies an atomic place in an inline line, but accepts box dimensions.                                           | Use for a complete sized inline box. Its box and margins can increase line height.                 |
 | `none`          | Generates no layout box and ordinarily removes the subtree from the accessibility tree.                           | Use for genuinely unavailable content, not visually hiding content that should remain readable.    |
 | `flex` / `grid` | Keeps a block-level outer box while changing the layout of direct children.                                       | Choose the inner formatting context separately from how the container sits among siblings.         |
 

@@ -338,7 +338,7 @@ Implementation and verification:
    Recommend one compatible option instead of installing successive mismatched alternatives.
    Ask only about unresolved constraints; existing answers carry forward.
    Verify actual interfaces; distinguish configuration, authentication, and successful operations.
-6. Extend `docs/coding-agents/personal-workflow.md` with synthetic acceptance cases for those failures.
+6. Extend `docs/coding-agents/harness-verification.md` with synthetic acceptance cases for those failures.
    Keep policy canonical in the shared instruction file. Do not encode a universal free-provider preference.
    The new behavior is personal/open-source scoped; no company policy adaptation is authorized.
 7. Run the explicit checks below, followed by independent diff audit.

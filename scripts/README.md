@@ -158,7 +158,7 @@ Set `PI_PACKAGE_DIR` to the installed Pi package root to include compiled-host c
 Those checks cover session persistence and effective startup policy in fresh workspaces.
 The startup check reads installed user configuration and registers only the read tool.
 It disables extensions and makes no tool or provider calls.
-Read [harness verification](/docs/coding-agents/personal-workflow.md#fresh-startup-defaults) before
+Read [harness verification](/docs/coding-agents/harness-verification.md#fresh-startup-defaults) before
 interpreting its results.
 Run `python3 scripts/tests/test-personal-mcp.py` for isolated MCP registration and linking checks.
 Run `python3 scripts/tests/test-markdown-app.py` for application guards and error propagation

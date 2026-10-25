@@ -35,15 +35,16 @@ conflicts.
 - Bash for anything non-trivial; POSIX `sh` only when the target forces it (minimal
   Alpine/BusyBox, constrained boot environments).
   - _Why:_ bashisms (`[[ ]]`, arrays, `local`) are worth having when Bash is available.
-  - For POSIX `sh`, use `[ ]`/`test`, `=` for string equality, `$(( ))` for arithmetic
-    expansion, and positional parameters where suitable.
+  - For POSIX `sh`, use `[ ]`/`test` and `=` for string equality.
+    Use `$(( ))` for arithmetic expansion and positional parameters where suitable.
   - Bash arrays, `local`, `[[ ]]`, process substitution, `BASH_SOURCE`, and Bash traps are not
     portable substitutes.
   - Check shell/version support for options such as `pipefail`.
   - Do not add an unsupported option merely to satisfy the Bash default.
 - Shell is for **small utilities and wrappers**.
-  - Past ~100 lines or with non-trivial data structures/control flow, recommend a real language.
-  - _Why:_ shell's error handling and data handling don't scale; it gets unmaintainable.
+  - Past ~100 lines or with non-trivial data structures/control flow, recommend a more suitable
+    programming language.
+  - _Why:_ shell makes complex error handling and data structures harder to maintain.
 - **Idempotency (for re-runnable scripts).** Make operations check-before-act so a re-run is a
   safe no-op.
   - Apply it if a script is meant to run more than once: installers, setup/bootstrap,

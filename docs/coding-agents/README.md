@@ -30,10 +30,11 @@ responses.
 
 | Read before… | Guide |
 | --- | --- |
+| Starting, directing, or closing an everyday agent session | [Session workflow](session-workflow.md) |
 | Changing shared rules, personal instructions or Claude response styles | [Agent instructions](/docs/agent-instructions.md) |
 | Understanding Pi provisioning, voice choices, or accepted limitations | [Pi and live voice](pi/README.md) |
 | Configuring or verifying personal MCP servers across clients | [Personal MCP servers](mcp.md) |
-| Verifying shared instruction behavior and acceptance | [Harness verification](personal-workflow.md) |
+| Verifying shared instruction behavior and acceptance | [Harness verification](harness-verification.md) |
 | Delegating with a shared role and an explicit model | [Pi delegation](pi/delegation.md) |
 | Adding, updating or checking skill discovery | [Agent skills](/docs/agent-skills.md) |
 | Diagnosing RTK, Herdr or Moshi hooks and plugins, or the Pi Lens package | [Agent integrations](/docs/agent-integrations.md) |

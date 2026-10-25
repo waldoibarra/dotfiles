@@ -99,21 +99,40 @@ class AgentHarnessTest(unittest.TestCase):
         self.assertFalse(config["scheduledRuns"]["enabled"])
         self.assertFalse(config["missions"]["enabled"])
 
-    def test_docs_skill_rename_migrates_links_idempotently(self):
-        source = ROOT / "home/.agents/skills/docs"
-        metadata = yaml.safe_load((source / "SKILL.md").read_text().split("---", 2)[1])
-        self.assertEqual(metadata["name"], "docs")
-        scenarios = json.loads((source / "evals/evals.json").read_text())
-        self.assertEqual(scenarios["skill_name"], metadata["name"])
-        self.assertFalse((source.parent / "docs-maintenance").exists())
+    def test_docs_requires_shared_communication_rules(self):
+        skill = " ".join((ROOT / "home/.agents/skills/docs/SKILL.md").read_text().split())
+        self.assertIn(
+            "Before drafting or reviewing, read and follow "
+            "`~/.agents/references/communication-rules.md`", skill,
+        )
+        self.assertIn("measure authored sentences against the shared communication rules", skill)
+        self.assertIn("Preserve required literals and safety wording", skill)
+
+    def test_skill_renames_migrate_links_idempotently(self):
+        renames = {
+            "docs-maintenance": "docs",
+            "skill-maintenance": "custom-skills",
+            "session-improvement": "session-review",
+            "socratic-learning": "socratic-teaching",
+            "start-project": "project-init",
+            "to-do": "shared-todo",
+            "web-app-craft": "web-interface",
+        }
+        sources = ROOT / "home/.agents/skills"
+        for old, new in renames.items():
+            source = sources / new
+            metadata = yaml.safe_load((source / "SKILL.md").read_text().split("---", 2)[1])
+            self.assertEqual(metadata["name"], new)
+            scenarios = json.loads((source / "evals/evals.json").read_text())
+            self.assertEqual(scenarios["skill_name"], new)
+            self.assertFalse((sources / old).exists())
         with tempfile.TemporaryDirectory(prefix="dotfiles-docs-rename-") as scratch:
             home = Path(scratch)
             directories = (home / ".agents/skills", home / ".claude/skills")
             for directory in directories:
                 directory.mkdir(parents=True)
-                (directory / "docs-maintenance").symlink_to(
-                    source.parent / "docs-maintenance"
-                )
+                for old in renames:
+                    (directory / old).symlink_to(sources / old)
                 (directory / "unmanaged").mkdir()
                 (directory / "unmanaged/note.md").write_text("Keep local content.\n")
             command = [
@@ -129,14 +148,15 @@ class AgentHarnessTest(unittest.TestCase):
                 )
                 current = []
                 for directory in directories:
-                    self.assertFalse((directory / "docs-maintenance").is_symlink())
-                    delivered = directory / "docs"
-                    self.assertTrue(delivered.is_symlink())
-                    self.assertEqual(delivered.resolve(), source)
+                    for old, new in renames.items():
+                        self.assertFalse((directory / old).is_symlink())
+                        delivered = directory / new
+                        self.assertTrue(delivered.is_symlink())
+                        self.assertEqual(delivered.resolve(), sources / new)
+                        current.append(delivered.lstat().st_mtime_ns)
                     self.assertEqual(
                         (directory / "unmanaged/note.md").read_text(), "Keep local content.\n"
                     )
-                    current.append(delivered.lstat().st_mtime_ns)
                 if previous is not None:
                     self.assertEqual(current, previous)
                 previous = current
@@ -285,8 +305,8 @@ class AgentHarnessTest(unittest.TestCase):
                         "docs/references/conventions.md",
                         "commit/SKILL.md",
                         "commit/evals/evals.json",
-                        "skill-maintenance/SKILL.md",
-                        "skill-maintenance/evals/evals.json",
+                        "custom-skills/SKILL.md",
+                        "custom-skills/evals/evals.json",
                         "shell-scripting/evals/evals.json",
                     ):
                         self.assertTrue((home / directory / required).is_file(), required)
@@ -311,11 +331,11 @@ class AgentHarnessTest(unittest.TestCase):
                     first_links = current_links
                 else:
                     self.assertEqual(current_links, first_links)
-                placement = home / ".agents/skills/session-improvement/references/placement.md"
+                placement = home / ".agents/skills/session-review/references/placement.md"
                 self.assertTrue(placement.is_file())
                 self.assertEqual(
                     placement.resolve(),
-                    ROOT / "home/.agents/skills/session-improvement/references/placement.md",
+                    ROOT / "home/.agents/skills/session-review/references/placement.md",
                 )
                 config = home / ".pi/agent/extensions/subagent/config.json"
                 self.assertEqual(

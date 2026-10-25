@@ -3,11 +3,12 @@
 Verify personal/open-source instruction changes through static checks, isolated delivery, and
 explicitly approved behavioral probes.
 Company workflow adaptation remains outside this guide.
+For everyday human checkpoints, read [session workflow](session-workflow.md) instead.
 
 Read [Agent instructions](/docs/agent-instructions.md) before changing policy or loading behavior.
 The [orchestration reference](/home/.agents/references/orchestration.md) owns planning and
 delegation procedure.
-The [improvement skill](/home/.agents/skills/session-improvement/SKILL.md) owns proposals and
+The [improvement skill](/home/.agents/skills/session-review/SKILL.md) owns proposals and
 local-loop precedence.
 
 ## Define acceptance before implementation
@@ -57,7 +58,7 @@ python3 scripts/tests/test-cursor-rule.py
 - It inspects the actual effective prompt and checks shared-policy bytes and both golden-rule
   markers.
 - It verifies privacy, approval, and untrusted-content boundaries remain present after the split.
-- It verifies coordinator and commit-skill discovery, source paths, and metadata without preloading
+- It verifies every repository-owned skill's discovery, source path, and metadata without preloading
   procedure bodies.
 - It checks the communication, orchestration, memory, shell, and delegation reference links.
 - Only the read tool is registered; no tool or provider calls run.

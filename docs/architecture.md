@@ -68,7 +68,7 @@ Read [file ownership](/docs/coding-agents/README.md#file-ownership) before chang
 **Evidence:** Source, installation, loading, authentication, and exercised behavior are separate
 states.
 A passing link test does not prove the next agent follows the instruction.
-Read [verification](/docs/coding-agents/personal-workflow.md) before defining or claiming
+Read [verification](/docs/coding-agents/harness-verification.md) before defining or claiming
 acceptance.
 
 ## Understand shared memory
