@@ -1,6 +1,6 @@
 # Global instructions
 
-Shared policy applies across Pi and Claude Code. Project instructions supply local context,
+Shared policy applies across harnesses. Project instructions supply local context,
 commands, and domain rules.
 
 ## Default stance
