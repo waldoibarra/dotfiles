@@ -1,7 +1,9 @@
 # Pi live voice
 
-**Models:** `pi-live-codex` uses `gpt-live-1-codex` for speech, independently of Pi's coding model.
+**Use `/live` to start or stop voice, and `/live spruce` to select Spruce while stopped.**
+The inspected `pi-live-codex` extension uses `gpt-live-1-codex`, independently of Pi's coding model.
 Voice names change its sound, not the coding or voice model.
+Commands below describe the tested extension; account access and later releases can differ.
 Read [installation](installation.md) before changing packages or subscription authentication.
 
 ## Commands and controls
@@ -22,7 +24,7 @@ Silence before the first spoken question does not by itself indicate failure.
 
 ## Tested voices
 
-Waldo confirmed all nine voices work in his setup:
+Waldo confirmed these nine voices during the [recorded trial](limitations.md#trial-environment):
 
 | Voice | Command |
 | --- | --- |
@@ -36,9 +38,10 @@ Waldo confirmed all nine voices work in his setup:
 | Spruce | `/live spruce` |
 | Vale | `/live vale` |
 
-Spruce is Waldo's manual choice. The installed extension hardcodes Sol for bare `/live`, Ctrl+L,
-and its controller fallback. It has no supported default-voice setting. A patch to change that
-was declined; package updates must retain the unmodified upstream behavior.
+Spruce is Waldo's manual choice.
+The inspected extension hardcodes Sol for bare `/live`, Ctrl+L, and its controller fallback.
+It had no supported default-voice setting.
+A default-voice patch was declined; package updates must retain unmodified upstream behavior.
 
 No reliable age, gender, or per-voice accent catalog was established for this model.
 Changing text wording or claiming a British accent did not prove a change in audible delivery.

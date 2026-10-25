@@ -73,10 +73,11 @@ Later `dots` runs defer Mise tools to that coordinator and use Brew's no-upgrade
 
 This command does **not** run the coding-agent updater or install this repository's Git hooks.
 The updater populates
-[copy-managed Claude settings](ai-harness/README.md#copy-managed-files), not Dotbot.
+[copy-managed Claude settings](ai-harness/configuration.md#copy-managed-files), not Dotbot.
 Dotbot links Claude's global instructions directly to the shared source; no import adapter runs.
 The updater renders
-[Cursor's global instructions](ai-harness/README.md#cursor-global-instructions) as a regular file.
+[Cursor's global instructions](ai-harness/configuration.md#cursor-global-instructions) as a regular
+file.
 
 ## Add local settings
 

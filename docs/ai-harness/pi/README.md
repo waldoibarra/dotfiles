@@ -1,48 +1,34 @@
 # Pi and live voice
 
-**Purpose:** Pi runs the coding agent.
-The `pi-live-codex` extension adds a separate voice model.
-It can delegate work to Pi while conversation continues.
+**Use Pi for coding, with optional voice conversation while the coding agent works.**
+The `pi-live-codex` extension runs a separate voice model and can delegate requests to Pi.
 Both use the configured OpenAI Codex subscription login.
+Voice and coding do not share a complete transcript.
 
 **Experimental:** the extension uses an internal Codex voice connection, not a supported public
-Realtime API contract. Working account access and voices can change independently of this repository.
+Realtime API contract. Working account access and voices can change independently of this
+repository.
 
-`dots` installs or upgrades Pi through Mise.
-Dotbot links shared instructions and preferences; the updater reconciles voice and delegation packages.
-Login and microphone permission remain interactive.
+## Choose a task
 
-| Task | Guide |
+| Need | Guide |
 | --- | --- |
-| Understand installation, updates, authentication, and verification | [Installation and sync](installation.md) |
-| Choose a subagent role and model, or verify delegation | [Pi delegation](delegation.md) |
-| Change model defaults, context windows, shortcuts, or instructions | [Configuration](configuration.md) |
-| Choose a voice, use the controls, or diagnose access errors | [Live voice](live-voice.md) |
-| Review test evidence, accepted limitations, and future improvements | [Limitations](limitations.md) |
-
-Read [workstation setup](../../setup.md) before provisioning a new machine.
-Read [sync boundaries](../../tooling.md#sync-the-workstation) before running `dots`.
+| Install, update, authenticate, or verify Pi | [Installation and sync](installation.md) |
+| Change settings, context windows, shortcuts, or instruction loading | [Configuration](configuration.md) |
+| Select worker roles and models | [Delegation](delegation.md) |
+| Choose a voice or troubleshoot access | [Live voice](live-voice.md) |
+| Understand context loss, cancellation, and evidence limits | [Limitations and trial evidence](limitations.md) |
 
 ## Components and ownership
 
-| Component | Owner and configuration |
-| --- | --- |
-| Pi binary | Mise: `npm:@earendil-works/pi-coding-agent = "latest"` in [global tools](../../../home/.config/mise/config.toml). Trial version: 1.0.4. |
-| Node | Mise's existing `lts` selection. Trial runtime: 24.21.0; Pi required Node 22.19 or newer. |
-| Voice extension | Pi package `npm:pi-live-codex`, unpinned and unmodified. Trial version: 0.1.9. |
-| Delegation extension | Pi package `npm:pi-subagents@latest`; shared roles and explicit per-call model selection. |
-| Profile | Normal `~/.pi/agent` directory, not a separate trial profile. |
-| Coding model | Provider `openai-codex`, default model `gpt-6-astra`. A session can override this default. |
-| Voice model | `gpt-live-1-codex`, selected by the extension independently of the coding model. |
-| Voice choice | Sol by default. Spruce is selected manually with `/live spruce`. |
-| File search | Pi's private `~/.pi/agent/bin/fd`; the trial verified version 10.5.0. No second package owner was added. |
-| Shell alias | Existing `pi='caffeinate -i pi'` keeps the workstation awake while Pi runs. |
+Mise owns the Pi binary; Dotbot links configuration into the normal `~/.pi/agent` profile.
+The updater reconciles voice, delegation, and Lens packages from tracked settings.
+Login, microphone permission, credentials, and session data remain machine-local.
 
-Pi, voice, and the delegation runner follow latest releases. The tested versions describe the trial;
-they are not version pins or guarantees about later releases. Homebrew does not own a second Pi
-installation. The Codex CLI is not required for Pi's login.
+[Configuration](configuration.md#managed-files) owns the file inventory and coding defaults.
+[Live voice](live-voice.md) owns voice choices and controls.
+[Trial evidence](limitations.md#trial-environment) records tested versions without treating them as
+current pins.
 
-The extension's trial dependencies included `ws` 8.22.0 and `@oh-my-pi/pi-natives` 18.4.9, with an
-optional Apple Silicon native package. This dependency does not run the OMP agent. Native audio
-exports loaded successfully; no blanket dependency-build exception was added. Live voice was
-validated on Apple Silicon macOS, not Debian.
+Read [workstation setup](/docs/setup.md) before provisioning a new machine.
+Read [sync boundaries](/docs/tooling.md#sync-the-workstation) before running `dots`.

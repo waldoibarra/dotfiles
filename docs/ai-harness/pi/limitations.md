@@ -1,8 +1,31 @@
-# Pi voice limitations and test evidence
+# Pi voice limitations and trial evidence
 
-**Evidence:** These results combine Waldo's live reports with the coding agent's visible file operations.
-They are not a controlled benchmark. No raw private audio or exact delegation payload was retained.
-Read the [Pi overview](README.md) before comparing tested versions or component ownership.
+**Voice context can be lost, and spoken requests can arrive after their intended cancellation.**
+Check uncertain request status before repeating consequential work.
+These accepted limitations remain relevant until a new test establishes otherwise.
+
+The results below combine Waldo's trial reports with visible coding-agent file operations.
+They are historical observations, not a controlled benchmark or verification of current releases.
+No raw private audio or exact delegation payload was retained.
+Read [live voice](live-voice.md) for controls and [configuration](configuration.md) for current settings.
+
+## Trial environment
+
+| Component | Recorded trial version or result |
+| --- | --- |
+| Pi | 1.0.4; Node 22.19 or newer required |
+| Node | 24.21.0, selected through Mise's `lts` configuration |
+| Voice extension | Unmodified `pi-live-codex` 0.1.9 |
+| File search | Pi's private `~/.pi/agent/bin/fd`, verified as 10.5.0 |
+| Voice dependencies | `ws` 8.22.0 and `@oh-my-pi/pi-natives` 18.4.9 |
+| Platform | Apple Silicon macOS; Debian voice operation was not tested |
+| Login | Device-code and browser authorization were available; the method used was not recorded |
+
+The native package supplied audio exports; it did not run the OMP agent.
+An optional Apple Silicon package loaded successfully without a blanket dependency-build exception.
+Pi, voice, and delegation follow release updates; these versions are evidence, not pins.
+The [integration summary](/docs/plans/pi-dotfiles-integration-summary.md) and
+[trial notes](/docs/plans/pi-live-codex-trial.notes.md) retain the original integration record.
 
 ## Observed behavior
 
@@ -28,8 +51,7 @@ A manual handoff can retrieve coding context after voice restarts.
 It cannot recover speech the coding agent never received.
 A recall exercise using facts already visible in coding chat was inconclusive.
 Later attempts to delegate a separate spoken topic omitted the details.
-The cause
-could not be assigned to recognition, summarization, or transport from the evidence collected.
+The evidence could not distinguish recognition, summarization, or transport as the cause.
 
 ## Queuing and cancellation
 
@@ -37,9 +59,8 @@ Repeated cancellation attempts used empty files in a disposable temporary direct
 Creation completed before each cancellation reached the agent.
 Eventual delivery was observed.
 Exactly-once execution and persistence across errors or restarts were not established.
-Waldo chose to stop
-pursuing cancellation tests or fixes. A future consequential request should not be blindly
-resubmitted when its status is uncertain.
+Waldo chose to stop pursuing cancellation tests or fixes.
+A future consequential request should not be blindly resubmitted when its status is uncertain.
 
 ## Subscription usage
 

@@ -43,7 +43,8 @@ Separate design files belong only to schemas requiring them or warranted support
 `openspec/` is the upstream default.
 Do not invent roadmap or legacy subdirectories inside it.
 Existing records remain source evidence; convert only the scope of an actual change.
-The full historical-document migration is deferred to the next documentation session.
+Historical plans remain indexed in [the workspace](/docs/workspace.md).
+Routine changes do not require bulk migration.
 
 ## Provision both machines
 
@@ -78,11 +79,18 @@ local.
 
 ## Verify the change
 
-Use native commands for artifact state and structural validation:
+Use native commands for artifact state and structural validation.
+Replace `CHANGE_NAME` with the actual change listed by `openspec list`:
 
 ```sh
-openspec status --change adopt-openspec-harness
-openspec validate adopt-openspec-harness --strict --no-interactive
+openspec list
+openspec status --change CHANGE_NAME
+openspec validate CHANGE_NAME --strict --no-interactive
+```
+
+For changes to shared delivery or schema behavior, run the owning isolated checks:
+
+```sh
 python3 scripts/tests/test-agent-harness.py
 python3 scripts/tests/test-openspec-sync.py
 python3 scripts/tests/test-openspec-schema.py

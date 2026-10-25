@@ -9,7 +9,8 @@ Read [configuration](configuration.md) before changing linked files or ownership
 
 [Dotbot](../../../install.conf.yaml) creates the real Pi directories and links `AGENTS.md`,
 `settings.json`, `models.json`, `keybindings.json`, `mcp.json`, and `extensions/subagent/config.json`.
-It links shared roles individually; credentials and sessions remain separate.
+It also links `APPEND_SYSTEM.md` for Pi-specific skill compatibility and installs shared roles individually.
+Credentials and sessions remain separate.
 Pi files do not use the managed-copy helper.
 
 The updater reconciles shared personal MCP definitions with Claude's user registry first.
@@ -29,8 +30,9 @@ Both commands use `PI_CODING_AGENT_DIR="$HOME/.pi/agent"` without `OPENAI_API_KE
 Inherited trial profiles and project-local packages do not change this target.
 Only packages are reconciled; Mise remains responsible for the Pi binary and remains on `latest`.
 
-The original trial used `pi install npm:pi-live-codex --no-approve`.
 Both operations use Pi's [package mechanism](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md).
+Homebrew does not own another Pi installation.
+The shell alias `pi='caffeinate -i pi'` keeps the workstation awake during interactive use.
 An install/update failure stops the updater with an error. Configuration may already be linked;
 a later successful run reconciles the packages. Neither operation starts a model conversation or
 opens the microphone.
@@ -60,10 +62,9 @@ installers, data sent by Moshi, environment requirements, and verification limit
 
 ## Authentication and billing
 
-Pi's `/login openai-codex` handles subscription authentication.
-The inspected Pi version offers device-code and browser authorization. Waldo completed
-login and verified text and voice access; the exact login method used was not recorded. First-run
-login and macOS microphone permission remain interactive user actions.
+Pi's `/login openai-codex` handles subscription authentication without requiring the Codex CLI.
+First-run login and macOS microphone permission remain interactive user actions.
+Earlier text and voice access succeeded; those results do not establish current account access.
 
 The chosen billing route is subscription-backed Codex access. There is no authorized API-key
 fallback, credit purchase, or automatic top-up. Device codes, tokens, callback URLs, and credential
@@ -86,10 +87,10 @@ to alter identity or attestation or switch billing routes.
 | Fresh interactive Pi and `/hotkeys` | Package loading and shortcut registration. |
 | `/live spruce` | A user-run spoken check of the selected voice. |
 
-Provisioning changes are smoke-tested in a disposable home, without a microphone or model call.
+The provisioning suite uses a disposable home, without a microphone or model call.
 Read [Pi delegation](delegation.md#install-and-verify) before testing role/model execution.
-Waldo performs the spoken check. `pi --continue` resumes coding context but does not repair the known
-[voice-context limitation](limitations.md).
+The user performs the spoken check.
+`pi --continue` resumes coding context but does not repair the known [voice-context limitation](limitations.md).
 
 ## Upstream references
 

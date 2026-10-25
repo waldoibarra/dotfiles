@@ -214,7 +214,7 @@ changing style metadata or activation.
 4. Exercise the requested behavior before reporting it verified.
 
 - Installed files prove delivery, not loaded instructions or successful behavior.
-- Read [file ownership](/docs/ai-harness/README.md#file-ownership) before applying links or
+- Read [file ownership](/docs/ai-harness/configuration.md#file-ownership) before applying links or
   replacing copied files.
 - Read [harness verification](/docs/ai-harness/harness-verification.md) before spending quota on
   behavioral probes.

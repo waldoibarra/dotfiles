@@ -64,7 +64,9 @@ implementation authority.
 ### Durable change
 
 Use the project's existing planning convention; do not initialize OpenSpec without authorization.
-Dotfiles trials the [session-workflow schema](/openspec/schemas/session-workflow/schema.yaml).
+Dotfiles selects the [session-workflow schema](/openspec/schemas/session-workflow/schema.yaml) for
+new changes.
+Its behavioral acceptance remains separate from schema selection.
 
 | Artifact | Responsibility |
 | --- | --- |
@@ -88,25 +90,13 @@ The schema implements the artifact contract without replacing these owners.
 **Refinement and approval precede implementation; specialist skills depend on the task.**
 For durable changes, start with `grill-with-docs`, compare alternatives, and review the plan before
 authorizing implementation.
-For prototypes, use the bounded conversational agreement above instead of the durable-change plan format.
+For prototypes, use the bounded conversational agreement above instead of the durable-change plan
+format.
 Use natural-language requests by default; name a skill when you want an explicit workflow.
 
-| Need | Custom skill |
-| --- | --- |
-| Learn a concept or orient yourself | `socratic-teaching` |
-| Initialize an empty, stack-free project | `project-init` |
-| Test an idea with throwaway code | `prototype`, or the relevant specialist |
-| Maintain documentation | `docs` |
-| Work on shell scripts | `shell-scripting` |
-| Coordinate interface behavior and layout | `web-interface` |
-| Work on platform behavior or layout alone | `web-standards` or `css-layout` |
-| Prepare a verified commit or authorized push | `commit` |
-| Review recurring friction and propose improvements | `feedback-loop` |
-| Maintain repository-owned skill bundles | `custom-skills` |
-| Record an assigned personal manual task | `shared-todo` |
-
-The [catalogue](/docs/agent-skills.md) owns installation and invocation details; individual skills
-own their procedures.
+Use the [skill catalogue](/docs/agent-skills.md#repo-managed-skills) to find the procedure for the
+task.
+It owns installation and invocation details; individual skills own their procedures.
 Skill names do not grant authority, install dependencies, or guarantee automatic selection.
 Roles assign bounded worker responsibilities; tools perform actions under the applicable approval
 boundaries.
@@ -185,10 +175,10 @@ Report remaining blockers and the next action.
 Use `feedback-loop` when closing or examining repeated friction; it proposes supported changes
 without applying them.
 A review can legitimately produce no improvement proposal.
-After an approved change, compare observed outcomes and correction effort against the original
-problem.
-Missing follow-up evidence means improvement remains unverified, even when installation and static
-checks pass.
+Compare observed outcomes and correction effort against the original problem after an approved
+change.
+Without follow-up evidence, improvement remains unverified even when installation and static checks
+pass.
 Approved follow-up work uses its owning workflow; closure itself does not authorize policy changes
 or new records.
 Keep durable outcomes and next steps with their repository or vault owner, following local

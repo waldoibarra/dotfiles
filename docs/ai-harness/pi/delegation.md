@@ -1,9 +1,7 @@
 # Pi delegation
 
 Pi declares `pi-subagents@latest`; updates follow the current npm release.
-The previous `0.79.1` pin fixed obsolete Chord requirements on Pi 1.2 and newer.
-The previous local warning-routing trial build was backed up before replacement.
-Shared roles remain provider-neutral; runtime trial artifacts stay outside this repository.
+Shared roles remain provider-neutral; private runtime evidence stays outside this repository.
 Read [shared roles](/docs/agent-instructions.md#shared-role-agents) before editing a role's
 instructions.
 
@@ -12,8 +10,6 @@ instructions.
 Read [cross-harness selection](/home/.agents/references/delegation.md) before choosing a
 responsibility, model, or effort.
 The examples below require active registry availability; configured entries do not prove access.
-GPT-5.5 was unavailable during the information-architecture refactor; Sol completed the replacement
-review.
 
 Ask naturally: “Use `code-auditor` with `openai-codex/gpt-6-sol` to review this diff.”
 Or launch directly in interactive Pi:
@@ -38,9 +34,8 @@ Use `/subagents-models` to inspect available models and effective role mappings.
 Pass an explicit non-lead model. The strict worker allowlist rejects Astra, including inherited
 selection.
 Choose model and supported effort separately under the shared routing policy.
-For GPT-5.5, start bounded mechanical work at medium; native lifecycle or safety risk can justify
-high.
-Use observed acceptance results, not a claim that one effort level guarantees correctness.
+The [shared selection policy](/home/.agents/references/delegation.md) owns model and effort recommendations.
+Use observed acceptance results; no effort level guarantees correctness.
 The allowlist is in tracked settings; it does not rank models or prove provider availability.
 Trusted project settings can replace the user scope;
 shared instructions still prohibit leader-model children.
@@ -154,9 +149,9 @@ This checks configuration, not real browser interaction or role performance on p
 The script requires an npm-installed Pi host; `PI_PACKAGE_DIR` can name that host's package
 directory.
 
-**Headless limitation:** `pi -p '/run …'` returned a stale-context error with this Pi/runner pair.
-Use model-issued `subagent` calls or the SDK check for headless execution, not slash-command
-dispatch.
+**Historical headless limitation:** An earlier `pi -p '/run …'` check returned a stale-context error.
+That result does not establish behavior for every later Pi/runner pair.
+Use model-issued `subagent` calls or the SDK check for headless verification.
 Recheck these boundaries when updating the runner or Pi.
 
 ## Upstream references

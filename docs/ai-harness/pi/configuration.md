@@ -1,7 +1,8 @@
 # Pi configuration
 
 **Ownership:** Tracked preferences live under [`home/.pi/agent`](../../../home/.pi/agent).
-Dotbot links preferences and Pi-specific instructions into the normal profile.
+Dotbot links preferences, shared policy, and Pi-specific compatibility instructions into the normal
+profile.
 The profile directory stays real; credentials and runtime data stay outside the repository.
 
 ## Managed files
@@ -24,9 +25,12 @@ The profile directory stays real; credentials and runtime data stay outside the 
 | `~/.pi/agent/models-store.json` | Generated model cache, not the configuration source. |
 | `~/.pi/pi-live-codex.lock` | Shared microphone-ownership lock, outside the agent directory. |
 
-The coding defaults are `defaultProvider: "openai-codex"`, `defaultModel: "gpt-6-astra"`,
-and `compaction.enabled: true`. Package declarations include voice, the subagent runner following `latest`,
-and `git:github.com/waldoibarra/pi-lens@latest` with empty skill and prompt filters.
+## Coding defaults and packages
+
+The coding defaults are `defaultProvider: "openai-codex"` and `defaultModel: "gpt-6-astra"`.
+Automatic compaction is enabled through `compaction.enabled: true`.
+Packages declare voice, `npm:pi-subagents@latest`, and `git:github.com/waldoibarra/pi-lens@latest`.
+The runner and Lens declarations disable package skills and prompts with empty filters.
 Edit tracked sources for persistent preferences and package declarations.
 Pi's settings writer follows the symlink; UI or package commands can change the repository.
 Review those diffs before committing.
@@ -34,7 +38,8 @@ Keep secrets and machine-specific values out of linked files.
 There is no Pi merge layer or managed-copy step.
 Dotbot's normal backup behavior applies when it replaces existing local files with links.
 
-Read [Lens compatibility](/docs/agent-integrations.md#pi-lens) before relying on Lens after a Pi upgrade.
+Read [Lens compatibility](/docs/agent-integrations.md#pi-lens) before relying on Lens after a Pi
+upgrade.
 
 Authentication, sessions, caches, native binaries, and voice locks stay outside Git.
 This configuration step does not link, copy, or remove them.
@@ -42,20 +47,24 @@ Read [installation and sync](installation.md) before reconciling packages.
 
 ## Laptop image rendering
 
-`terminal.images: "kitty"` enables Pi's native image renderer for the configured Ghostty → Herdr stack.
+`terminal.images: "kitty"` selects the native Kitty image protocol for Ghostty through Herdr.
 Ghostty starts Herdr through [its tracked configuration](/home/.config/ghostty/config).
-The inspected laptop runs Ghostty 1.3.1 and Herdr 0.9.3.
 
-Pi 1.1.0's automatic detection disables images when `TERM_PROGRAM=herdr`.
+The override was introduced after Pi 1.1.0 disabled automatic image detection for
+`TERM_PROGRAM=herdr`.
+That check used Ghostty 1.3.1 and Herdr 0.9.3.
 [Herdr 0.9.3 supports Kitty graphics][herdr-kitty], including local Ghostty clients.
-The native override bypasses that conservative detection without changing terminal identity.
+The override avoids changing terminal identity; it does not establish compatibility with every
+terminal.
 
 [herdr-kitty]: https://github.com/herdrdev/herdr/blob/v0.9.3/docs/next/website/src/content/docs/configuration.mdx#kitty-graphics
 
-After the current response finishes, run `/reload`, then expand an image-bearing read result.
+Wait for the response to finish before reloading changed settings.
+Run `/reload`, then expand an image-bearing result.
 The setting changes rendering only; it does not change image uploads or model input.
 Lens keeps tool results collapsed until opened.
-Pasted-image tokens require compatible host metadata; installing Lens does not add that host support.
+Pasted-image tokens require compatible host metadata; installing Lens does not add that host
+support.
 
 This preference applies to every terminal using the linked profile, not only this laptop.
 Moshi and other terminal stacks remain unverified.
@@ -65,13 +74,14 @@ No `dots`, package installation, or terminal restart is required.
 
 ## Queued messages
 
-`steeringMode: "all"` delivers pending steering messages together at the next native tool-batch boundary.
+`steeringMode: "all"` delivers pending steering messages together at the next native tool-batch
+boundary.
 Enter uses steering while Pi works; Alt+Enter requests a follow-up after the current work.
 This does not interrupt an active model response or an unfinished tool batch.
 A Codemode call remains one outer tool call, even when it contains several operations.
 
-Pi 1.1.0 reloads this preference through `/reload`; use it only after the current response finishes.
-This is distinct from the unfinished send-now/background-handoff patch.
+Run `/reload` after changing the preference, once the current response finishes.
+This setting does not provide an immediate background handoff.
 Read [Claude's queue behavior](https://code.claude.com/docs/en/interactive-mode#when-claude-code-sends-what-you-queued)
 before comparing messages with queued slash or shell commands.
 
@@ -96,7 +106,7 @@ for each of these exact model IDs. In `settings.json`, the corresponding
 models leave 922,000 tokens before the response reserve. The reserve also affects compaction
 summary limits; it is not only a trigger threshold.
 
-Pi loaded these settings and displayed Astra as `1.1M (auto)`, rounding the total window.
+A previous loading check displayed Astra as `1.1M (auto)`, rounding the total window.
 Requests beyond the previous 272,000-token catalog limit were not tested against the subscription
 backend. Client metadata and published model capacities do not prove backend acceptance at the
 maximum window.
@@ -116,10 +126,10 @@ The local `keybindings.json` contains:
 }
 ```
 
-Both original bindings conflicted with the extension's Ctrl+L shortcut. `/model` still opens the
-model selector, and Option+L selects the tree's labeled-only filter. A fresh Pi session and
-`/hotkeys` confirmed Ctrl+L was registered for live voice without conflicts. No extension patch
-was needed. [Live voice](live-voice.md) lists the voice controls and commands.
+These overrides avoid conflicts with the voice extension's Ctrl+L shortcut.
+`/model` opens the model selector; Option+L selects the tree's labeled-only filter.
+After editing, run `/reload` and inspect `/hotkeys` for effective bindings.
+[Live voice](live-voice.md) lists voice controls and commands.
 
 ## Instructions and skills
 
@@ -144,8 +154,10 @@ Pi loads skill instructions through `read` instead.
 shared `AGENTS.md` remains client-neutral.
 Dotbot installs its link through [install.conf.yaml](/install.conf.yaml).
 
-Pi appends this file to its system prompt without replacing shared instructions or its default prompt.
-A trusted project's `.pi/APPEND_SYSTEM.md` replaces the global append file; Pi does not combine them.
+Pi appends this file to its system prompt without replacing shared instructions or its default
+prompt.
+A trusted project's `.pi/APPEND_SYSTEM.md` replaces the global append file; Pi does not combine
+them.
 Projects using that override must explicitly retain any needed compatibility instruction.
 The [upstream configuration guide](https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/configuration.md)
 documents this precedence.
@@ -157,7 +169,8 @@ Verify isolated delivery and native prompt loading without inference:
 PI_PACKAGE_DIR=/path/to/pi-package node scripts/tests/check-pi-skill-compatibility.mjs
 ```
 
-The check covers repeated linking, shared-policy preservation, and trusted project override precedence.
+The check covers repeated linking, shared-policy preservation, and trusted project override
+precedence.
 It does not prove model compliance; exercise `/skill:grill-with-docs` separately in a fresh session.
 
 Read [Pi delegation](delegation.md) before changing role discovery, child instructions, or models.

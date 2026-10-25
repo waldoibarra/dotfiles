@@ -10,8 +10,7 @@ Read [architecture](/docs/architecture.md) before changing ownership.
 - `docs/spikes/` holds investigations and their supporting evidence.
 - `home/.agents/` holds shared harness configuration, not project plans or research.
 
-The full documentation refactor is deferred to the next session.
-These existing locations are provisional, not a template for new planning or research archives.
+Existing plan and research locations remain unchanged; they are not templates for new archives.
 These records explain work; maintained operational guides describe current behavior.
 Frozen history and evidence retain their original bytes, including historical paths.
 For those records, map `.agents/plans/` to `docs/plans/` and `.agents/spikes/` to `docs/spikes/`.
@@ -55,6 +54,8 @@ Size alone does not replace the publication review above.
 
 | Read before… | Record |
 | --- | --- |
+| Reviewing the harness-guide refactor and verification limits | [Documentation refactor](/openspec/changes/refactor-harness-guides/proposal.md) and [checks](/openspec/changes/refactor-harness-guides/tasks.md) |
+| Comparing historical Pi voice results with current usage | [Voice trial evidence](/docs/ai-harness/pi/limitations.md#trial-environment) |
 | Continuing Markdown default-app setup or reviewing its verification | [Markdown application plan](/docs/plans/markdown-default-app.md) |
 | Evaluating evidence-aware meeting processing without duplicating retrieval or planning | [Meeting processing plan](/docs/plans/meeting-processing.md) |
 | Continuing personal MCP parity or reviewing retired Sheets integration lessons | [Personal MCP plan](/docs/plans/personal-mcp.md) |

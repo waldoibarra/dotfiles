@@ -686,7 +686,7 @@ historical.
 - Preferences come from the setup conversation; representative platform samples remain unmeasured.
 - Refinement through real drafts is optional, not an ASAP setup task.
 
-**Owner:** Read [Ghostwriter voice](/docs/ai-harness/README.md#ghostwriter-voice) before changing
+**Owner:** Read [Ghostwriter voice](/docs/ai-harness/ghostwriter.md) before changing
 profile ownership or delivery.
 
 ### Shared harness foundation

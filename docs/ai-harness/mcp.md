@@ -1,7 +1,9 @@
 # Personal MCP servers
 
-Read [the harness design policy](/home/.agents/references/harness-design.md) before adding integrations.
-Personal MCP definitions live in one shared source; work-only servers stay outside this setup.
+**Configure personal MCP servers once, then verify each client separately.**
+Personal definitions share one source; work-only servers stay outside this setup.
+Read [the harness design policy](/home/.agents/references/harness-design.md) before adding
+integrations.
 
 ## Source and scope
 
@@ -20,7 +22,7 @@ through `claude mcp add-json --scope user`. It never replaces that file or impor
 | `context7` | `npx -y --package=@upstash/context7-mcp@2.2.5 -- context7-mcp` | Resolve library IDs and retrieve public documentation. |
 | `fireflies` | `https://api.fireflies.ai/mcp` (HTTP) | Retrieve personal meeting summaries and full transcripts through OAuth. |
 
-Context7's pinned stdio command preserves the existing Claude configuration.
+Context7's stdio package version is pinned in the shared manifest.
 Node/npm and network access are required; `npx` downloads the pinned package if absent.
 Context7 accepts unauthenticated requests but may rate-limit them.
 No account or API key is provisioned.
@@ -63,11 +65,11 @@ Read the [tool reference](https://docs.fireflies.ai/mcp-tools/overview) before r
 - The server also exposes write tools; retrieval approval does not authorize sharing or changing
   meetings.
 
-**Pi verified:** Authenticated meeting discovery, summary retrieval, and transcript retrieval
-succeeded in a live session.
-
-**Still unverified:** Claude and Cursor authentication and retrieval;
-exporting meeting content to local files.
+**Recorded evidence:** Pi meeting discovery, summary retrieval, and transcript retrieval succeeded
+in an earlier live session.
+That result does not establish current authentication or availability.
+Claude and Cursor retrieval, plus local exports, remain unverified in the
+[personal MCP record](/docs/plans/personal-mcp.md#progress).
 
 ## Cursor
 
@@ -76,7 +78,8 @@ Authorize Fireflies through Cursor's native OAuth flow; credentials remain clien
 Verify a Context7 tool call in a fresh chat using the prompt below.
 The installed link alone proves neither loading, authentication, nor successful tool calls.
 Global instruction rules are separate from MCP setup.
-Read [Cursor global instructions](README.md#cursor-global-instructions) before changing their template.
+Read [Cursor global instructions](configuration.md#cursor-global-instructions) before changing their
+template.
 
 ## Apply configuration
 
@@ -125,8 +128,8 @@ That test registers inert fixture commands.
 It never launches an MCP server or changes your real registry.
 It demonstrates observed native behavior, not a guarantee against every competing writer.
 
-These commands connect servers and may start browser consent.
-Run them yourself from a personal directory after completing setup.
+The Pi command below connects every enabled server; account authorization may be required.
+Run these inspection commands from a personal directory after completing setup.
 Use isolated profiles for unattended connection checks:
 
 ```sh
@@ -146,8 +149,8 @@ outcomes.
 
 ## Client references
 
-- Read [Cursor MCP documentation](https://cursor.com/docs/mcp) before changing its global configuration.
-
+- Read [Cursor MCP documentation](https://cursor.com/docs/mcp) before changing its global
+  configuration.
 - Read [Pi MCP
   documentation](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/mcp.md)
   before changing its transport or tool exposure.

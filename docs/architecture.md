@@ -63,7 +63,7 @@ flowchart LR
 **Delivery:** Pi and Claude global instructions link to the shared source; Cursor receives a
 rendered regular file.
 Skills and references have individual links; credentials and runtime state remain client-native.
-Read [file ownership](/docs/ai-harness/README.md#file-ownership) before changing delivery paths.
+Read [file ownership](/docs/ai-harness/configuration.md#file-ownership) before changing delivery paths.
 
 **Evidence:** Source, installation, loading, authentication, and exercised behavior are separate
 states.
