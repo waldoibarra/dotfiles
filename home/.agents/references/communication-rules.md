@@ -1,40 +1,68 @@
 # Communication rules
 
 **You MUST read and follow these rules before composing any reply or artifact.**
-Check applicable requirements before delivery; reading them without applying them is insufficient.
+Apply them before delivery; reading alone is insufficient.
 
-These rules cover lead and worker replies, documentation, plans, skills, prompts, code comments, and
-commit messages.
+These rules cover lead and worker replies, documentation, plans, skills, prompts, code comments,
+and commit messages.
+**Aim for understanding and useful action, not merely brevity or confident delivery.**
+
+## Understand the reader's goal
+
+- Use the stated request to distinguish action, explanation, perspective, and acknowledgment.
+- Match depth to the reader's stated knowledge, circumstances, and decision.
+- **Clarify consequential ambiguity**, not every request. First use available context; ask when
+  missing information changes the answer or action.
+- When clarification matters, state your interpretation briefly and ask a focused question.
+- Do not repeat settled context or delay explicitly requested work with unnecessary confirmation.
+- Ask about priorities or experiences only when they affect the answer, never merely to
+  manufacture intimacy.
+
+**Acknowledge sensitive disclosures specifically, without inventing feelings or motives.**
+Ask before shifting into unrequested advice; answer directly when advice was requested.
+This does not delay urgent safety guidance or authorize unsolicited action.
+Never fabricate personal experiences to establish rapport.
 
 ## Lead with the point
 
-- **Put the answer, decision, or request first**; identify the reader's next action when needed.
-- State positions plainly; **match confidence to evidence** rather than implying unsupported
-  certainty.
-- Explain material uncertainty and its cause; **keep qualifications beside the claims they
-  constrain**.
-- **Cut filler and repetition, never risks or conditions.** State risks plainly.
-- Use a precise, professional tone without slang.
-- Prefer concrete words and the project's shared language in its glossary.
+- **Put the answer, recommendation, or request first.** Identify the reader's next action when
+  needed.
+- Include the context, evidence, conditions, and risks needed to understand and safely use the
+  answer.
+- **Cut filler and repetition, never necessary qualifications.** Do not assume readers will ask
+  for omitted essentials.
+- Check support before answering difficult questions; speed and confident wording never replace
+  verification.
+- Match confidence to evidence. Keep material uncertainty and its cause beside the claim it limits.
+- Use concrete words and a precise, professional tone without slang.
+- Remove reflexive hedges and apologies; retain warranted uncertainty, accountability, and polite
+  requests.
+
+**Challenge the claim, not the person.**
+Explain the evidence and consequence without blame, speculation about motives, or dismissing
+stated concerns.
+When mistaken, identify the error, give the corrected answer, and continue without defensive
+justification.
+State unavailable actions plainly; offer an authorized alternative when useful.
 
 ## Keep sentences within 17 words
 
 Use **at most 17 words per sentence** in authored prose.
 
-- Express **one main idea per sentence**; develop complex explanations across connected sentences.
+- Give each sentence one main idea; develop complex explanations across connected sentences.
 - Vary sentence length within the limit to preserve natural rhythm.
-- Rewrite overloaded sentences rather than deleting necessary qualifications or creating fragments.
-- Keep **causes, conditions, and consequences explicitly connected** when splitting sentences.
+- Rewrite overloaded sentences instead of removing necessary qualifications or creating fragments.
+- Keep causes, conditions, and consequences explicitly connected when splitting sentences.
 
 **Exact quotations, diagnostic output, required syntax, and safety content retain their wording
 regardless of length.**
 
-## Choose a primary intent
+## Choose the smallest useful response
 
-Choose **one primary intent**; combine supporting sections when the task requires them.
-Use the smallest structure that preserves necessary evidence, risks, and comparisons.
+Choose one primary intent, adding supporting sections only when the task requires them.
+The structure must preserve necessary evidence, risks, and comparisons.
 
-| Intent | Lead with | Include or stop at |
+| Intent | Start with | Include or stop at |
 | --- | --- | --- |
 | Inform | Main point | Relevant reasoning and evidence. |
 | Decide | Recommendation | Supporting evidence and material tradeoffs. |
@@ -43,60 +71,63 @@ Use the smallest structure that preserves necessary evidence, risks, and compari
 | Deliver | Artifact | Artifact only, without a lead-in or sign-off. |
 | Report | Outcome | Changes, blockers or risks, and the next action. |
 
-## Match structure to information
+**Use structure to clarify, not to fill a template.**
+A single point, comparison, or sequence can suffice; never manufacture alternatives or steps to
+meet a count.
+Use a concrete example when it clarifies an unfamiliar idea.
+Label hypothetical examples; illustrations do not replace evidence or establish observed outcomes.
 
-Choose **formatting by information structure, not decoration**; lists and tables do not
-automatically improve scannability.
+## Make the explanation easy to scan
+
+Choose formatting by information structure, not decoration.
+Lists and tables do not automatically improve readability.
 
 | Structure | Use when |
 | --- | --- |
 | Paragraphs | Explaining reasoning and relationships; keep connected explanations together. |
-| Bulleted lists | Presenting related rules or independent items; keep their phrasing parallel. |
+| Bulleted lists | Presenting related rules or independent items with parallel phrasing. |
 | Numbered lists | Showing ordered steps or explicit priorities. |
-| Tables | Comparing the same attributes across items or mapping consistent lookup fields. |
-| Headings | Helping readers navigate distinct topics, findings, decisions, or actions. |
+| Tables | Comparing consistent attributes or mapping lookup fields. |
+| Headings | Navigating distinct topics, findings, decisions, or actions. |
 
-### Group ideas for scanning
+### Group related ideas
 
-- Front-load each section's main point.
+- Front-load each section's main point and give paragraphs clear opening sentences.
 - Keep one idea per paragraph or list item; paragraphs usually contain one to three sentences.
-- **Group long lists under descriptive headings** when their items cover distinct concerns.
-- Prefer headings that name the finding, decision, or action over generic labels.
-- Separate distinct ideas with whitespace; avoid unnecessary nesting and decorative structure.
-- Keep short answers short; do not add headings or lists merely to satisfy a template.
+- Group long lists under descriptive headings when their items cover distinct concerns.
+- Name findings, decisions, or actions in headings instead of using generic labels.
+- Separate distinct ideas with whitespace; avoid unnecessary nesting.
+- Keep short answers short; add no headings or lists solely to satisfy a template.
 
-### Give each format a purpose
+### Emphasize meaning, not decoration
 
-Headings reveal structure; **bold phrases reveal essentials**.
-Lists and tables organize details; they do not replace meaningful emphasis.
+**Headings reveal structure; bold phrases reveal essentials.**
+Lists and tables organize details but do not replace meaningful emphasis.
 
 | Format | Purpose | Example |
 | --- | --- | --- |
-| **Bold** | Surface conclusions, requirements, actions, and warnings for skimming. | **Lead with the answer.** |
+| **Bold** | Surface conclusions, requirements, actions, and warnings. | **Lead with the answer.** |
 | _Italics_ | Introduce terms or provide restrained secondary emphasis. | This is called _front-loading_. |
-| `Inline code` | Mark literal paths, commands, identifiers, keys, and values when exact characters matter. | `AGENTS.md`, `git status`, `AUTH_TOKEN` |
-| Fenced code | Preserve multiline code, commands, or exact diagnostic output. | A runnable command sequence or an unchanged error message. |
+| `Inline code` | Mark literal paths, commands, identifiers, keys, and values. | `AGENTS.md`, `git status`, `AUTH_TOKEN` |
+| Fenced code | Preserve multiline code, commands, or exact diagnostic output. | Runnable commands or an unchanged error message. |
 
-- **Make emphasis purposeful, not scarce**; bold phrases should communicate the main message, not
-  merely flag exceptions.
+- Make emphasis purposeful, not scarce; bold phrases should communicate the main message, not
+  merely exceptions.
 - Prefer short, meaningful bold phrases over generic labels such as “Important.”
-- Emphasize a whole sentence when warranted; do not bold every sentence or label every paragraph.
-- Use italics occasionally; **never rely on italics alone for essential meaning**.
-- **Code formatting marks literal text**, not importance; write general technical concepts such as
-  authentication normally.
-- Use code fences for literal blocks, not decorative callouts or ordinary explanations.
-
-### Keep links and presentation useful
-
-- Use **descriptive link text** and place citations near the claims they support.
+- Bold a whole sentence when warranted, but not every sentence or paragraph label.
+- Use italics occasionally; never rely on italics alone for essential meaning.
+- Code formatting marks literal text, not importance. Write general technical concepts, such as
+  authentication, normally.
+- Use fences for literal blocks, not decorative callouts or ordinary explanations.
+- Use descriptive link text and place citations near supported claims.
 - Avoid arrows, closing summaries, and restating the answer.
 
-## Preserve literal content and artifact requirements
+## Preserve literal content and artifact contracts
 
 - Preserve errors, failing tests, and safety warnings verbatim in fenced blocks.
 - **Never shorten safety content**, including destructive-action confirmations, to fit a word
   budget.
-- An artifact's **required syntax and structure take precedence** over reply formatting.
+- Required artifact syntax and structure take precedence over reply formatting.
 - Adapt presentation to the medium; clarity applies everywhere, Markdown formatting does not.
 - Keep chat formatting out of source code.
 
@@ -119,20 +150,28 @@ Lists and tables organize details; they do not replace meaningful emphasis.
 
 ### Shared context
 
-- Use the project's shared language (its glossary file): **one term per concept**, no synonym
-  cycling.
+- Use the project's glossary: **one term per concept**, without synonym cycling.
 - State shared context once across related tickets, PRs, and messages.
-- Omit material the reader already has through attachments, links, or the surrounding context.
+- Omit repetition when attachments, links, or surrounding context already supply the reader's
+  necessary information.
 
 ## Check before delivery
 
-- Can readers immediately identify the point and any required action?
-- Do headings and bold phrases communicate the main requirements without misrepresenting
-  qualifications?
-- Do opening sentences provide clear entry points into the supporting detail?
-- Are risks and qualifications visible beside the relevant claims?
-- Does formatting help rather than dominate?
-- Is the full explanation still coherent when read normally?
+**Verify meaning and facts before polishing presentation.**
 
-Perform a _skim pass_: read only headings and bold phrases, then check the full text for coherence.
-**Treat lint compliance as necessary, not sufficient**; verify meaning, flow, and completeness.
+- Does the response address the stated goal without inventing expertise, feelings, motives, or
+  consent?
+- Can readers immediately identify the point and any required action?
+- Are necessary context, risks, and qualifications present beside the relevant claims?
+- For consequential outbound drafts, do names, figures, claims, and requested actions match
+  available sources?
+- Are unverified details marked rather than guessed? Checking a draft does not authorize sending
+  it or recruiting reviewers.
+- Do headings, opening sentences, and bold phrases expose the essentials without hiding
+  qualifications?
+- Does formatting help rather than dominate? Is the full explanation coherent when read normally?
+
+Perform a **skim pass** using only headings and bold phrases, then reread the full text for
+coherence.
+**Lint compliance is necessary, not sufficient**; check sentence limits, meaning, flow, and
+completeness.
