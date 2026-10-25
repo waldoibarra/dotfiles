@@ -3,15 +3,15 @@ name: session-improvement
 description: >-
   Proposes minimal session-improvement changes from accessible evidence without applying them.
   Use when handing off, closing a session, or reviewing repeated corrections, failed checks, or
-  manual friction.
+  manual friction. Includes evidence-backed voice-profile suggestions.
   For instruction edits use agents-md; for custom skill maintenance use skill-maintenance;
   for prose use ghostwriter.
 ---
 
 # Session improvement
 
-- **IS:** deciding whether recurring friction warrants a proposal, then preparing its approval
-  packet.
+- **IS:** assessing recurring friction or explicit writing preferences, then preparing warranted
+  approval packets.
 - **IS NOT:** editing, committing, publishing, installing, syncing, or mining private history.
 
 Finish with one scoped proposal per pattern, or no proposal when none is warranted.
@@ -27,8 +27,9 @@ Skill invocation and session closure grant no write authority.
     - Check whether missing tools, runnable fixtures, or feedback access caused the repeated
       failure.
     - Prefer repairing that environment over adding instructions the agent still cannot verify.
-4. Reject one-off, already-covered, or better-handled-manually proposals. Add no observation logs or
-  automation.
+4. Reject unsupported one-off incidents, already-covered concerns, and changes better handled manually.
+    Explicit writing preferences use the profile-review criteria below.
+    Add no observation logs or automation.
 5. Before drafting a warranted proposal, read [placement](references/placement.md) for scope,
   audience, local-loop precedence, and permitted retention.
 
@@ -47,6 +48,30 @@ Skill invocation and session closure grant no write authority.
   warranted.
 - Name affected paths, necessary link updates, verification, and rollback; do not apply rewrites or
   create directories.
+
+## Review voice-profile feedback
+
+When the session contains writing feedback, read `ghostwriter` and the relevant profile before
+proposing improvements.
+Explicit user preferences can justify a proposal without repeated mistakes.
+Otherwise, use recurring corrections or edited drafts; silence and uncorrected output do not
+establish preferences.
+
+- Resolve the active profile root through Ghostwriter's instructions; inspect only profiles
+  relevant to the evidence.
+- Confirm whose voice the profile represents and who receives changes through its storage or
+  installation.
+- Propose the smallest profile change, keeping observed habits separate from explicit preferences.
+- Keep personal preferences out of shared communication rules; exclude company details and
+  private source material.
+- Use Ghostwriter's profile and correction procedures instead of inventing another schema or
+  learning log.
+- Return no proposal when evidence is absent or the preference is already covered.
+
+Profile changes remain proposals, including corrections that Ghostwriter would otherwise retain
+in its Learn mode.
+Name the target, audience, evidence, verification, and rollback; approval routes implementation
+through `ghostwriter`.
 
 ## Draft the approval packet
 

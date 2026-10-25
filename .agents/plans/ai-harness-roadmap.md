@@ -533,6 +533,13 @@ loading, or shared roles.
   only.
 - Live teaching effectiveness and comparative skill performance remain unmeasured.
 
+**Voice-profile refinement:** The user requested Ghostwriter profile suggestions during session improvement.
+The skill now reviews explicit writing preferences and relevant corrections, without applying changes.
+It checks profile ownership and co-users before proposing changes; Ghostwriter owns approved implementation.
+Three authored scenarios cover explicit preferences, absent evidence, and confidential company examples.
+The skill validator and isolated delivery suite pass; no comparative behavioral evaluation was run.
+Rollback restores the scoped skill, scenarios, and catalogue changes; existing skill links remain unchanged.
+
 **Owner:** Read [learning skills](/docs/agent-skills.md#learning-and-session-improvement) before
 changing either skill's responsibilities.
 

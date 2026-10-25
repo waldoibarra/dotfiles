@@ -135,6 +135,42 @@
         "Keeps the proposal with the project's environment owner.",
         "Does not edit files."
       ]
+    },
+    {
+      "id": 11,
+      "prompt": "We are closing this writing session. I explicitly prefer sparse emoji, but my shared voice profile omits that preference. Propose improvements only.",
+      "expected_output": "A scoped Ghostwriter profile proposal, not a shared communication rule or an automatic edit.",
+      "files": [],
+      "assertions": [
+        "Reads Ghostwriter and the relevant active profile.",
+        "Treats an explicit preference as evidence without demanding repeated mistakes.",
+        "Identifies the profile owner and co-users affected by shared storage.",
+        "Names the smallest change, verification, and rollback.",
+        "Does not apply edits or invoke Learn mode to bypass approval."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Close this coding session. No writing preferences or corrected drafts were supplied. My voice profiles exist, but we did not use them.",
+      "expected_output": "No speculative profile audit or voice-preference proposal.",
+      "files": [],
+      "assertions": [
+        "Skips profile review without relevant writing feedback.",
+        "Does not infer preference from uncorrected assistant output.",
+        "Does not scan unrelated profiles, backups, or private history."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Review our writing feedback before handoff. I corrected a company draft twice. Its confidential examples illustrate my preference for shorter openings.",
+      "expected_output": "A sanitized, person-scoped proposal only if the preference is not already covered.",
+      "files": [],
+      "assertions": [
+        "Separates personal voice from company voice and checks the appropriate owner.",
+        "Does not copy company evidence into personal profiles or shared rules.",
+        "Suppresses duplicate proposals when the relevant profile already covers the preference.",
+        "Requires approval before changing any profile."
+      ]
     }
   ]
 }

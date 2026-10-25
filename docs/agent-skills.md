@@ -173,6 +173,12 @@ session-edited Markdown documentation.
 - Exclude unrelated Git changes; documentation improvements remain proposals, not permission to
   rewrite or create directories.
 
+**Voice feedback:** `session-improvement` reads Ghostwriter and relevant profiles when the
+session supplies writing feedback.
+It proposes evidence-backed profile changes, checking whose voice and which co-users are affected.
+Explicit preferences can justify proposals without repeated corrections; profile changes still
+require approval.
+
 **Approved edits:** Use the owning specialist workflow and repository delivery rules.
 
 `ghostwriter` owns prose; it replaces the former `docs-writing` name.
