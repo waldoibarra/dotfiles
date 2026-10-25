@@ -226,8 +226,12 @@ No quota or timeout failure occurred.
 No behavioral comparison or new native Claude/Cursor loading probe ran.
 Configured, installed, loaded, exercised, committed, and pushed states remain separate.
 
-**Publication:** Commit only reviewed session changes to each existing upstream branch.
-Verify remote equality after each push; Git refs own the resulting commit identifiers.
+**Published:** All five repository changes were committed and pushed to their existing upstream branches.
+Remote refs matched local HEAD and all five working trees were clean after delivery.
+Dotfiles implementation: `7ea7c15`; family knowledge: `8a1a4a5`; Habit Tracker: `a0cd507`;
+Money Tracker: `05f2532`; portfolio: `1ef486a`.
+The portfolio commit hook required capitalization; the corrected commit passed without bypassing hooks.
+Obsidian CLI and app report completion; no Git operation ran in the vault.
 Portfolio Markdown, EditorConfig, and local-link checks pass; its final prose review was
 non-independent.
 Strict bold-lead-in coverage remains incomplete in some legacy prose; do not claim universal
