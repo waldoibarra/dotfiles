@@ -1,7 +1,7 @@
 # Pi configuration
 
 **Ownership:** Tracked preferences live under [`home/.pi/agent`](../../../home/.pi/agent).
-Dotbot links each JSON file into the normal profile.
+Dotbot links preferences and Pi-specific instructions into the normal profile.
 The profile directory stays real; credentials and runtime data stay outside the repository.
 
 ## Managed files
@@ -12,6 +12,7 @@ The profile directory stays real; credentials and runtime data stay outside the 
 | `~/.pi/agent/models.json` | Linked to [models.json](../../../home/.pi/agent/models.json): per-model context-window overrides. |
 | `~/.pi/agent/keybindings.json` | Linked to [keybindings.json](../../../home/.pi/agent/keybindings.json): Ctrl+L for voice, Option+L for the tree filter. |
 | `~/.pi/agent/AGENTS.md` | Dotbot link to [shared agent instructions](../../../home/.agents/AGENTS.md). |
+| `~/.pi/agent/APPEND_SYSTEM.md` | Linked [Pi skill compatibility instructions](/home/.pi/agent/APPEND_SYSTEM.md); separate from shared policy. |
 | `~/.pi/agent/mcp.json` | Linked to [shared personal MCP definitions](/home/.agents/mcp.json); no work servers. |
 | `~/.pi/agent/npm/node_modules/pi-live-codex` | Pi-managed voice extension code and dependencies. |
 | `~/.pi/agent/npm/node_modules/pi-subagents` | Pi-managed delegation runner following `latest`; never edit installed code. |
@@ -133,6 +134,31 @@ Coding context does not replace the extension's separate hardcoded voice prompt.
 it takes precedence over an ordinary context file in the same directory. A profile override can
 therefore replace the linked global instructions; a project override affects that directory's
 context. This integration neither creates nor requires an override file.
+
+### Third-party skill compatibility
+
+**Keep third-party skills unchanged.**
+Some request Claude Code's `Skill` tool, which this Pi setup lacks.
+Pi loads skill instructions through `read` instead.
+[APPEND_SYSTEM.md](/home/.pi/agent/APPEND_SYSTEM.md) owns this compatibility instruction;
+shared `AGENTS.md` remains client-neutral.
+Dotbot installs its link through [install.conf.yaml](/install.conf.yaml).
+
+Pi appends this file to its system prompt without replacing shared instructions or its default prompt.
+A trusted project's `.pi/APPEND_SYSTEM.md` replaces the global append file; Pi does not combine them.
+Projects using that override must explicitly retain any needed compatibility instruction.
+The [upstream configuration guide](https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/docs/configuration.md)
+documents this precedence.
+
+After installing the link, start a fresh session or run `/reload`.
+Verify isolated delivery and native prompt loading without inference:
+
+```sh
+PI_PACKAGE_DIR=/path/to/pi-package node scripts/tests/check-pi-skill-compatibility.mjs
+```
+
+The check covers repeated linking, shared-policy preservation, and trusted project override precedence.
+It does not prove model compliance; exercise `/skill:grill-with-docs` separately in a fresh session.
 
 Read [Pi delegation](delegation.md) before changing role discovery, child instructions, or models.
 Read [personal MCP setup](../mcp.md) before changing servers or testing shared client access.
