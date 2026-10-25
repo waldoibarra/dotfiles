@@ -16,8 +16,8 @@ Read [personal MCP setup](../mcp.md) before changing or verifying those registra
 
 The [agent updater](../../../scripts/update-coding-agents/entrypoint.sh) then runs
 `pi install <configured-runner-source> --no-approve`, then `pi update --extensions --no-approve`
-from `$HOME`. The runner source comes from linked settings, keeping its pin in one place.
-Explicit installation is required because Pi's update command skips pinned npm packages, even when missing.
+from `$HOME`. The runner source comes from linked settings and follows `npm:pi-subagents@latest`.
+Explicit installation resolves the tag and covers missing installations.
 The package filter object remains intact when installing the same source.
 
 `pi update --extensions` reconciles the remaining declared packages, including the Pi Lens Git

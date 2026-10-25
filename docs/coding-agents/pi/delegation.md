@@ -1,6 +1,7 @@
 # Pi delegation
 
-Pi declares `pi-subagents@0.79.1`, which fixes obsolete Chord requirements on Pi 1.2 and newer.
+Pi declares `pi-subagents@latest`; updates follow the current npm release.
+The previous `0.79.1` pin fixed obsolete Chord requirements on Pi 1.2 and newer.
 The previous local warning-routing trial build was backed up before replacement.
 Shared roles remain provider-neutral; runtime trial artifacts stay outside this repository.
 Read [shared roles](/docs/agent-instructions.md#shared-role-agents) before editing a role's instructions.
@@ -47,7 +48,7 @@ with explicit role/model pairs.
 | Source | Responsibility |
 | --- | --- |
 | [`home/.agents/roles/`](/home/.agents/roles) | Shared role instructions; Pi scans installed `~/.agents/roles/`. |
-| [`settings.json`](/home/.pi/agent/settings.json) | Package pin, role discovery, context inheritance, and Pi tool selection. |
+| [`settings.json`](/home/.pi/agent/settings.json) | Package source, role discovery, context inheritance, and Pi tool selection. |
 | [`subagent/config.json`](/home/.pi/agent/extensions/subagent/config.json) | Minimal runner feature selection and execution defaults. |
 
 All five roles append their prompt to Pi's base prompt and retain global rules, project instructions,
@@ -104,8 +105,8 @@ Keep company roles, skills, and MCP servers work-scoped; never move them into gl
 ## Install and verify
 
 Read [installation](/docs/coding-agents/pi/installation.md) before applying configuration.
-Pi's `update` skips pinned npm packages, including missing ones.
-The updater reads the runner source from settings and explicitly installs that pin before updating packages.
+The updater reads the runner source from settings and explicitly installs it before updating packages.
+This resolves `latest` and covers missing installations without duplicating the source in scripts.
 
 Restart Pi after installation. `/subagents-doctor` checks discovery, not successful child execution.
 Run the isolated provisioning checks from the repository root:
@@ -131,7 +132,7 @@ The script requires an npm-installed Pi host; `PI_PACKAGE_DIR` can name that hos
 
 **Headless limitation:** `pi -p '/run …'` returned a stale-context error with this Pi/runner pair.
 Use model-issued `subagent` calls or the SDK check for headless execution, not slash-command dispatch.
-Recheck these boundaries when updating the pinned runner or Pi.
+Recheck these boundaries when updating the runner or Pi.
 
 ## Upstream references
 
@@ -140,4 +141,4 @@ Recheck these boundaries when updating the pinned runner or Pi.
 - Read [model selection](https://github.com/nicobailon/pi-subagents/blob/main/docs/models.md)
   before changing model routing.
 - Read [runner configuration](https://github.com/nicobailon/pi-subagents/blob/main/docs/configuration.md)
-  before enabling additional features. Prefer the installed package's docs for the pinned version.
+  before enabling additional features. Prefer the installed package's docs for the installed version.

@@ -361,14 +361,21 @@ Installed Claude settings match the tracked Opus and medium-effort defaults.
 **Sync:** The user explicitly requested `dots`; its `just sync` command completed with exit code zero.
 Global skills were already current, and the working tree remained clean afterward.
 
-**Open warning:** npm reported the following during runner installation.
-Affected packages and exploitability remain unverified; no automatic dependency fix was applied.
+**Initial warning:** npm reported the following during the original runner installation.
+Affected packages and exploitability were initially unverified; no automatic dependency fix was applied.
 
 ```text
 2 vulnerabilities (1 moderate, 1 high)
 ```
 
-**Next:** Restart active clients. Investigate the audit warning before changing dependency versions.
+**Resolved:** The user selected `npm:pi-subagents@latest` instead of another fixed version.
+Installed `pi-subagents@0.82.0` with `undici@8.12.3`; the npm audit now reports zero vulnerabilities.
+The tracked source, updater wording, documentation, and regression expectations now follow `latest`.
+Role discovery, leader rejection, and steering checks pass against the installed runner without inference.
+Future syncs resolve the tag; this verification covers the installed version, not future releases.
+
+**Next:** Reload Pi to use the upgraded runner.
+Live delegated execution remains untested on this version.
 
 ### Pending workstation steps
 

@@ -28,7 +28,7 @@ For a new machine, start with [workstation setup](../../setup.md). Read the
 | Pi binary | Mise: `npm:@earendil-works/pi-coding-agent = "latest"` in [global tools](../../../home/.config/mise/config.toml). Trial version: 1.0.4. |
 | Node | Mise's existing `lts` selection. Trial runtime: 24.21.0; Pi required Node 22.19 or newer. |
 | Voice extension | Pi package `npm:pi-live-codex`, unpinned and unmodified. Trial version: 0.1.9. |
-| Delegation extension | Pi package `npm:pi-subagents@0.79.1`; shared roles and explicit per-call model selection. |
+| Delegation extension | Pi package `npm:pi-subagents@latest`; shared roles and explicit per-call model selection. |
 | Profile | Normal `~/.pi/agent` directory, not a separate trial profile. |
 | Coding model | Provider `openai-codex`, default model `gpt-6-astra`. A session can override this default. |
 | Voice model | `gpt-live-1-codex`, selected by the extension independently of the coding model. |
@@ -36,7 +36,7 @@ For a new machine, start with [workstation setup](../../setup.md). Read the
 | File search | Pi's private `~/.pi/agent/bin/fd`; the trial verified version 10.5.0. No second package owner was added. |
 | Shell alias | Existing `pi='caffeinate -i pi'` keeps the workstation awake while Pi runs. |
 
-Both Pi and the voice package follow latest releases. The tested versions describe the trial;
+Pi, voice, and the delegation runner follow latest releases. The tested versions describe the trial;
 they are not version pins or guarantees about later releases. Homebrew does not own a second Pi
 installation. The Codex CLI is not required for Pi's login.
 

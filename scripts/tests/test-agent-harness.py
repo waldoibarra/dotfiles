@@ -66,13 +66,13 @@ class AgentHarnessTest(unittest.TestCase):
             self.assertNotIn("edit", tools)
             self.assertIn("bash", tools)
 
-    def test_runner_is_pinned_and_optional_resources_are_off(self):
+    def test_runner_tracks_latest_and_optional_resources_are_off(self):
         settings = json.loads((ROOT / "home/.pi/agent/settings.json").read_text())
         package = next(
             p for p in settings["packages"]
             if isinstance(p, dict) and p["source"].startswith("npm:pi-subagents@")
         )
-        self.assertEqual(package["source"], "npm:pi-subagents@0.79.1")
+        self.assertEqual(package["source"], "npm:pi-subagents@latest")
         self.assertEqual(package["skills"], [])
         self.assertEqual(package["prompts"], [])
         lens_package = next(
@@ -330,7 +330,7 @@ class AgentHarnessTest(unittest.TestCase):
                 self.assertEqual(result.returncode, expected, result.stderr)
                 calls = [json.loads(line) for line in capture.read_text().splitlines()]
                 self.assertEqual(
-                    calls[0]["argv"], ["install", "npm:pi-subagents@0.79.1", "--no-approve"]
+                    calls[0]["argv"], ["install", "npm:pi-subagents@latest", "--no-approve"]
                 )
                 self.assertEqual(len(calls), 1 if install_exit else 2)
                 if not install_exit:

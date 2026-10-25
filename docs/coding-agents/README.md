@@ -43,7 +43,7 @@ skill lockfile, publishing other unpushed commits on the branch too. Read
 ## Pi provisioning
 
 Mise installs Pi and keeps its binary on `latest`. Dotbot links shared instructions, roles, Pi
-preferences, and runner configuration. The updater installs the pinned runner and updates declared
+preferences, and runner configuration. The updater installs the latest runner and updates declared
 packages, including Git sources, in the normal profile. Changes to linked settings, including Pi UI
 edits, change the repository. Per-machine credentials, sessions, package caches, and native installs
 remain outside dotfiles. The [Pi guides](pi/README.md) cover file ownership, voice commands, and

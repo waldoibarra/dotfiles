@@ -91,7 +91,7 @@ The Cursor renderer expands our `@~/.agents/AGENTS.md` placeholder into a regula
 Read [Cursor global instructions](../docs/coding-agents/README.md#cursor-global-instructions)
 before changing the template or refreshing only that rule.
 2. Register missing shared personal MCP servers through Claude's native user-scope command.
-3. Install the configured pinned subagent runner, then update declared Pi packages in the normal
+3. Install the configured subagent runner from `latest`, then update declared Pi packages in the normal
 profile.
 4. Refresh RTK's Pi extension when its dry run lists changes.
 5. Refresh Herdr's Claude and Pi integrations unless status reports them current.
@@ -115,9 +115,9 @@ for those machine-local preferences.
 with `python3`, without package upgrades or publication. It preserves matching registrations and
 fails on conflicts; read [personal MCP setup](/docs/coding-agents/mcp.md) before applying changes.
 
-Pi binary installation belongs to Mise. Package reconciliation reads the runner pin from linked
+Pi binary installation belongs to Mise. Package reconciliation reads the runner source from linked
 settings, explicitly installs it, then runs `pi update --extensions --no-approve` from `$HOME`.
-Pi's update command skips pinned npm packages even when missing, so installation cannot be omitted.
+Explicit installation resolves `latest` and covers missing installations.
 Both calls use the normal profile, exclude project packages, and omit `OPENAI_API_KEY`.
 Failures stop the updater. No model, microphone, or authentication call is requested.
 

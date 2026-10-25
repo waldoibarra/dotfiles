@@ -30,7 +30,7 @@ const { createAgentSession, DefaultResourceLoader, SettingsManager, SessionManag
 const cwd = mkdtempSync(join(tmpdir(), "dotfiles-pi-harness-"));
 const agentDir = join(homedir(), ".pi/agent");
 const runner = join(agentDir, "npm/node_modules/pi-subagents/index.js");
-assert(existsSync(runner), "Install the configured pi-subagents pin before checking");
+assert(existsSync(runner), "Install the configured pi-subagents package before checking");
 const { resolveHostPeerAliases } = await import(pathToFileURL(join(dirname(runner),
   "src/runs/background/runner-aliases.js")));
 assert.deepEqual(resolveHostPeerAliases(hostRoot).missing, [],
