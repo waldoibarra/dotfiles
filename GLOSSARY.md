@@ -111,5 +111,13 @@ An approved modification intended to remain maintained after the session.
 An OpenSpec definition of change artifacts, their dependencies, and implementation task tracking.
 
 **Evolutionary architecture**:
-Deliberate structural change guided by feedback, preserved
-boundaries, and observable checks.
+An architectural approach supporting guided, incremental change across technical, domain, data,
+and operational dimensions.
+Feedback and fitness functions protect important architectural characteristics as the system evolves.
+
+**Architectural fitness function**:
+An objective assessment of whether a system preserves a chosen architectural characteristic as it
+changes.
+Examples include checks of security, performance, modularity, and data integrity.
+
+Source: [Building Evolutionary Architectures](https://evolutionaryarchitecture.com/precis.html).
