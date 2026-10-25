@@ -367,7 +367,8 @@
   },
   "lastSelectedAgents": [
     "pi",
-    "claude-code"
+    "claude-code",
+    "cursor"
   ],
   "dismissed": {
     "findSkillsPrompt": true
