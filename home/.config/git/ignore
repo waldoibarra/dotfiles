@@ -7,7 +7,7 @@
 .env
 
 # Harnesses.
-/.claude/
+/.claude/*
 !/.claude/settings.json
 
 # Unorganized immutable source materials.
