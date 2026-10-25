@@ -322,7 +322,8 @@ Verify branch, upstream, staged paths, hooks, and push result; leave unrelated e
 
 **Recovery:** Revert the scoped commits and refresh Cursor's generated rule; reload hosts afterward.
 
-**Status:** Implemented and verified; ready for scoped commit and push.
+**Status:** Implemented and verified. Feature commit `c4bb821` is pushed to `origin/main`.
+Pre-existing `.gitignore` and Claude model-setting edits remain outside this delivery.
 
 **Review:** Two Sol workers reviewed policy placement and delivery boundaries before implementation.
 Their scope and verification findings were addressed; a fresh Sol code audit passed without semantic
