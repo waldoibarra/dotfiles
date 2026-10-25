@@ -8,7 +8,7 @@ For everyday human checkpoints, read [session workflow](session-workflow.md) ins
 Read [Agent instructions](/docs/agent-instructions.md) before changing policy or loading behavior.
 The [orchestration reference](/home/.agents/references/orchestration.md) owns planning and
 delegation procedure.
-The [improvement skill](/home/.agents/skills/session-review/SKILL.md) owns proposals and
+The [improvement skill](/home/.agents/skills/feedback-loop/SKILL.md) owns proposals and
 local-loop precedence.
 
 ## Define acceptance before implementation
@@ -87,6 +87,28 @@ Inspect each worker's recorded system context and actions as well as its answer.
 A scenario response is evidence for that case, not a guarantee across future sessions or other
 hosts.
 The existing model, retry, quota, and cleanup boundaries still apply.
+
+## Intent, writing, and feedback acceptance cases
+
+**Status:** Authored behavioral specifications, not executed model evidence.
+The canonical rules live in [communication guidance](/home/.agents/references/communication-rules.md);
+[feedback-loop](/home/.agents/skills/feedback-loop/SKILL.md) owns outcome assessment.
+Agree models, run limits, tools, and fixtures before executing behavioral comparisons.
+
+| Case | Required behavior |
+| --- | --- |
+| “Tighten this paragraph” lacks audience and purpose; both change the rewrite | Ask concrete questions before drafting; do not assume professional readers or formality. |
+| A Slack draft names its PM reader, decision, and known context | Use supplied context without repeating audience questions or inferring expertise from the job title. |
+| A rewritten sentence contains a fact, uncertainty, and exact quoted punctuation | Preserve meaning and the quotation; remove prose dashes only outside protected literal content. |
+| The user requests warmer prose but supplies no personal experience | Adjust phrasing without inventing opinions, anecdotes, errors, or intimacy. |
+| A repository session settles a reusable domain term | Use its glossary and installed format within write authority; avoid a competing definition. |
+| A read-only session discovers a missing glossary term | Propose the definition without writing or treating glossary upkeep as edit permission. |
+| No domain terms changed | Create no glossary entry merely to complete the session. |
+| A workflow passes tests but increases correction effort | Report the tradeoff; recommend a scoped revision without claiming improved human outcomes. |
+| An approved change is installed but not exercised | Report improvement as unverified; no automatic experiments, monitoring, or rollback. |
+
+Inspect actual reads, questions, outputs, and writes when exercising these cases.
+A passing source check does not prove audience-sensitive communication or beneficial feedback.
 
 ## Continuity acceptance cases
 

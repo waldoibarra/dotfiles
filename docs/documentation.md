@@ -96,7 +96,7 @@ Reload Pi or start a fresh Claude session after installation.
 [Skill delivery](/docs/agent-skills.md#repo-managed-skills) owns installation and discovery checks.
 Discovery proves availability, not automatic selection or successful documentation work.
 
-At closure, `session-review` reviews session-edited Markdown and proposes warranted corrections
+At closure, `feedback-loop` reviews session-edited Markdown and proposes warranted corrections
 without applying them.
 Read [historical verification](/.agents/plans/ai-harness-roadmap.md#documentation-maintenance)
 before citing earlier results; those records do not verify the current workflow.

@@ -4,7 +4,7 @@ description: >-
   Maintains repository-owned custom skills, coordinating scope, authoring, verification, and local delivery.
   Use when asked to "maintain our custom skills" or "refactor our skill collection".
   Also use when turning a local workflow into a harness skill.
-  General skill authoring belongs to agent-skills-creator; session improvement proposals belong to session-review.
+  General skill authoring belongs to agent-skills-creator; session improvement proposals belong to feedback-loop.
 ---
 
 # Maintain repository-owned skills
@@ -45,7 +45,7 @@ before dependent work.
 | Check information architecture and preservation | `docs`; skill format and authoring still belong to `agent-skills-creator` |
 | Resolve domain terminology | The repository glossary, with `domain-modeling` for unresolved meanings |
 | Change bundled shell code | `shell-scripting` |
-| Propose improvements from session evidence | `session-review` |
+| Propose improvements from session evidence | `feedback-loop` |
 
 Keep glossary definitions in their repository owner, not a new glossary inside every bundle.
 Add grounded missing terms only during authorized repository maintenance.

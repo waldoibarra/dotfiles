@@ -97,8 +97,12 @@ procedures.
   obsolete instructions as current.
 - Each maintained repository and vault needs a meaningful `GLOSSARY.md`; read it before domain
   edits.
-- If missing, add grounded terms during authorized maintenance; otherwise report the gap without
-  expanding scope.
+- Maintain settled, reusable domain terms in the owning glossary during authorized work, not only at
+  closure.
+Read `domain-modeling` and the `docs` conventions before glossary edits; use their existing formats.
+  Read-only scope and stricter local approval rules still apply; otherwise propose the update.
+Add missing glossaries during authorized maintenance; never manufacture entries merely to complete a
+  session.
 - If required guidance is unavailable, **report it before dependent work**; never invent its
   contents.
 
@@ -146,8 +150,9 @@ procedures.
 
 - **Record verified outcomes, unresolved questions, and next steps** with their existing owner
   where permitted.
-- Use `session-review` at closure or repeated friction; its recommendations **remain
-  proposals until approved**.
+- Use `feedback-loop` at closure, repeated friction, or when assessing an approved improvement's
+  observed results.
+  Its recommendations **remain proposals until approved**.
 - If unavailable, disclose that limitation; propose only evidenced changes with scope, benefit,
   verification, and rollback.
 - Apply corrections in the current task; durable behavioral changes still require approval and a

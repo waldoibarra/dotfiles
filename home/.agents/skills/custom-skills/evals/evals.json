@@ -17,7 +17,7 @@
     {
       "id": 2,
       "files": [],
-      "prompt": "Our custom skills already cover teaching, documentation edits, and session-review proposals. Create one generic best-practices skill that repeats all their rules.",
+      "prompt": "Our custom skills already cover teaching, documentation edits, and feedback-loop proposals. Create one generic best-practices skill that repeats all their rules.",
       "expected_output": "Identifies existing owners and recommends targeted changes rather than a duplicate rule catalogue.",
       "assertions": [
         "Identifies the different existing output contracts.",

@@ -26,6 +26,10 @@ Report confirmed defects separately from unverified concerns.
 ```
 
 The agent should inspect relevant instructions and evidence before choosing a procedure.
+It checks intent, audience, and required reader context before answering or drafting.
+A medium such as Slack does not identify the readers or establish their knowledge.
+Read [intent clarification](/docs/prompting.md#clarify-intent-in-its-rhetorical-situation) for
+examples and source distinctions.
 You do not need to prescribe every tool call or repeat rules already owned by the harness.
 
 ## Let the task select the skills
@@ -43,7 +47,7 @@ Use natural-language requests by default; name a skill when you want an explicit
 | Coordinate interface behavior and layout | `web-interface` |
 | Work on platform behavior or layout alone | `web-standards` or `css-layout` |
 | Prepare a verified commit or authorized push | `commit` |
-| Review recurring friction and propose improvements | `session-review` |
+| Review recurring friction and propose improvements | `feedback-loop` |
 | Maintain repository-owned skill bundles | `custom-skills` |
 | Record an assigned personal manual task | `shared-todo` |
 
@@ -99,9 +103,13 @@ Commit the verified changes for this task. Do not push.
 Report remaining blockers and the next action.
 ```
 
-Use `session-review` when closing or examining repeated friction; it proposes supported changes
+Use `feedback-loop` when closing or examining repeated friction; it proposes supported changes
 without applying them.
 A review can legitimately produce no improvement proposal.
+After an approved change, compare observed outcomes and correction effort against the original
+problem.
+Missing follow-up evidence means improvement remains unverified, even when installation and static
+checks pass.
 Approved follow-up work uses its owning workflow; closure itself does not authorize policy changes
 or new records.
 Keep durable outcomes and next steps with their repository or vault owner, following local

@@ -62,7 +62,7 @@ Dotbot links these bundles individually; the external lockfile does not manage t
 | Preparing atomic commits and authorized pushes | [`commit`](/home/.agents/skills/commit/SKILL.md) |
 | Coordinating repository-owned skill creation, refactoring, and delivery | [`custom-skills`](/home/.agents/skills/custom-skills/SKILL.md) |
 | Maintaining accurate documentation with concern-based reading paths | [`docs`](/home/.agents/skills/docs/SKILL.md) |
-| Proposing scoped session-review packets at handoff | [`session-review`](/home/.agents/skills/session-review/SKILL.md) |
+| Assessing outcomes, repeated friction, and approved improvements | [`feedback-loop`](/home/.agents/skills/feedback-loop/SKILL.md) |
 | Teaching with Socratic questions and checked application | [`socratic-teaching`](/home/.agents/skills/socratic-teaching/SKILL.md) |
 | Adding assigned manual tasks to the shared life list | [`shared-todo`](/home/.agents/skills/shared-todo/SKILL.md) |
 | Starting an empty project without an application stack | [`project-init`](/home/.agents/skills/project-init/SKILL.md) |
@@ -96,7 +96,7 @@ Read [`custom-skills`](/home/.agents/skills/custom-skills/SKILL.md) before maint
 repository-owned custom skills as an integrated workflow.
 It coordinates local ownership and delivery; `agent-skills-creator` owns the authoring procedures.
 Generic skill-authoring requests still use that external specialist directly.
-`session-review` remains proposal-only and routes approved custom-skill work to the
+`feedback-loop` remains proposal-only and routes approved custom-skill work to the
 coordinator.
 
 - Start with the user's outcome, protected behavior, and existing owners; avoid another generic
@@ -146,7 +146,7 @@ Shared instructions and worker roles route documentation work through the same s
 invocation.
 The skill owns editing authority and preservation; instruction files and skill definitions retain
 their specialist workflows.
-`ghostwriter` handles prose under house conventions; `session-review` remains proposal-only at
+`ghostwriter` handles prose under house conventions; `feedback-loop` remains proposal-only at
 closure.
 
 **Limits:** Discovery and model-followed routing are not file watchers or guaranteed execution
@@ -163,7 +163,7 @@ Historical records may use prior names; use these current names for invocation a
 | --- | --- | --- |
 | `docs-maintenance` | `docs` | Maintain documentation |
 | `skill-maintenance` | `custom-skills` | Coordinate repository-owned skill maintenance |
-| `session-improvement` | `session-review` | Review evidence and propose improvements without applying them |
+| `session-improvement`, `session-review` | `feedback-loop` | Compare outcomes with intent and propose improvements without applying them |
 | `socratic-learning` | `socratic-teaching` | Teach without learner tracking |
 | `start-project` | `project-init` | Initialize an empty, stack-free project |
 | `to-do` | `shared-todo` | Record assigned tasks in the shared personal list |
@@ -176,7 +176,8 @@ Reload the client after migration and verify discovery separately from actual ta
 ## Learning and session improvement
 
 - Use `socratic-teaching` for guided learning.
-- Use `session-review` to review how the work could improve.
+- Use `feedback-loop` to compare intended and observed outcomes, including follow-up evidence after
+  approved changes.
 - They share neither learner records nor project curricula.
 - Projects can require the teaching skill in their own instructions and keep local content
   separately.
@@ -184,28 +185,36 @@ Reload the client after migration and verify discovery separately from actual ta
 | Task | Pi | Claude Code |
 | --- | --- | --- |
 | Start guided learning | `/skill:socratic-teaching` | `/socratic-teaching` |
-| Review session improvements | `/skill:session-review` | `/session-review` |
+| Review session improvements | `/skill:feedback-loop` | `/feedback-loop` |
 
 - Natural-language requests can also select these skills through their descriptions.
 - A closure question requests review, not permission to edit or publish.
-- `session-review` assesses evidence first, then loads its placement reference only for
+- `feedback-loop` assesses evidence first, then loads its placement reference only for
   warranted proposals.
 
-**Touched docs:** `session-review` uses `docs` for read-only review of session-edited Markdown.
+**Touched docs:** `feedback-loop` uses `docs` for read-only review of session-edited Markdown.
 It skips unrelated Git changes and read-only sources; any proposed corrections still require
 execution authority.
 
-**Voice feedback:** `session-review` reads Ghostwriter and relevant profiles when the
+**Voice feedback:** `feedback-loop` reads Ghostwriter and relevant profiles when the
 session supplies writing feedback.
 It proposes evidence-backed profile changes, checking whose voice and which co-users are affected.
 Explicit preferences can justify proposals without repeated corrections; profile changes still
 require approval.
 
+**Follow-up:** The skill assesses correction effort, repeated context, review burden, and decision
+clarity from available evidence.
+It diagnoses intent and audience mismatches through the canonical communication rules.
+Without comparable evidence, report improvement as unverified; static checks and installation do not
+prove reduced human effort.
+No monitoring, observation logs, automatic learning, or model experiments follow from invoking the
+skill.
+
 **Approved edits:** Use the owning specialist workflow and repository delivery rules.
 
 `ghostwriter` owns prose; it replaces the former `docs-writing` name.
 
-No shutdown hook runs `socratic-teaching` or `session-review`; neither reconstructs
+No shutdown hook runs `socratic-teaching` or `feedback-loop`; neither reconstructs
 inaccessible
 conversation history.
 

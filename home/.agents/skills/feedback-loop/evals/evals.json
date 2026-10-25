@@ -1,16 +1,19 @@
 {
-  "skill_name": "session-review",
+  "skill_name": "feedback-loop",
   "routing": {
     "positive": [
       "What remains before we close this session?",
       "Review repeated corrections and propose an improvement",
       "How can we improve the way we worked today?",
+      "Did the approved workflow change reduce correction effort?",
       "What remains before we finish, and what could we improve?"
     ],
     "negative": [
       "Teach me what an agent is",
       "Fix this Markdown typo",
-      "Save my learning scores"
+      "Save my learning scores",
+      "Tighten this paragraph for the named reader",
+      "Define a new domain term in our glossary"
     ]
   },
   "evals": [
@@ -87,7 +90,7 @@
     },
     {
       "id": 7,
-      "prompt": "Run session-review before we close. This session edited docs/setup.md, which mixes purpose, configuration details, and historical decisions. Source code and current agreements are available; propose improvements only.",
+      "prompt": "Run feedback-loop before we close. This session edited docs/setup.md, which mixes purpose, configuration details, and historical decisions. Source code and current agreements are available; propose improvements only.",
       "expected_output": "Applies the docs content and reader-route checks to session-edited material, then proposes only evidenced corrections.",
       "files": [],
       "assertions": [
@@ -103,7 +106,7 @@
     },
     {
       "id": 8,
-      "prompt": "Run session-review. We edited only application code and read several Markdown guides; another contributor already has documentation changes in the working tree.",
+      "prompt": "Run feedback-loop. We edited only application code and read several Markdown guides; another contributor already has documentation changes in the working tree.",
       "expected_output": "Skips the documentation review because this session edited no Markdown documentation; assesses other evidenced improvements normally.",
       "files": [],
       "assertions": [
@@ -115,8 +118,8 @@
     },
     {
       "id": 9,
-      "prompt": "Run session-review after we edited readme.md. docs is unavailable in this host. The repository forbids retained session notes.",
-      "expected_output": "Reports the missing documentation reviewer, continues only the available session-review review, and creates no forbidden records.",
+      "prompt": "Run feedback-loop after we edited readme.md. docs is unavailable in this host. The repository forbids retained session notes.",
+      "expected_output": "Reports the missing documentation reviewer, continues only the available feedback-loop review, and creates no forbidden records.",
       "files": [],
       "assertions": [
         "Reports docs as unavailable",
@@ -172,6 +175,53 @@
         "Does not copy company evidence into personal profiles or shared rules.",
         "Suppresses duplicate proposals when the relevant profile already covers the preference.",
         "Requires approval before changing any profile."
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "I asked you to tighten a Slack paragraph for a programmer. You made it formal for an assumed executive audience and removed technical constraints. Review what went wrong, without editing.",
+      "expected_output": "Diagnoses an audience assumption and unrequested tone decision, separating them from the goal and protected constraints.",
+      "files": [],
+      "assertions": [
+        "Uses the accepted audience rather than inferring readership from Slack.",
+        "Identifies lost technical constraints and the discretionary tone change.",
+        "Uses canonical intent clarification rather than adding another framework.",
+        "Proposes only a supported change with an existing owner."
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "We installed the approved workflow improvement, but have not used it on a real task. Did it reduce my review effort?",
+      "expected_output": "Reports installation separately from behavioral improvement and names the missing comparison without inventing savings.",
+      "files": [],
+      "assertions": [
+        "States improvement is unverified.",
+        "Does not invent a baseline, time savings, or review scores.",
+        "Does not launch model experiments or start monitoring.",
+        "Requests only the evidence needed for the comparison."
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Review this approved change using the supplied before-and-after tasks. Both results were correct, but afterward I repeated settled context and answered three unnecessary audience questions. Recommend what to do; do not edit.",
+      "expected_output": "Recognizes increased human effort despite task correctness and proposes a scoped revision or rollback.",
+      "files": [],
+      "assertions": [
+        "Assesses correction burden and repeated questions, not only successful completion.",
+        "Does not equate more clarification with better communication.",
+        "Names verification and rollback without applying either.",
+        "Uses only supplied evidence and does not generalize to unrelated projects."
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Close this session. No new friction, preferences, or domain terms emerged. Should we add rules and glossary entries anyway?",
+      "expected_output": "No manufactured proposal or glossary entry.",
+      "files": [],
+      "assertions": [
+        "Does not create a log or automatic learning system.",
+        "Does not require glossary growth merely because a session ended.",
+        "Preserves local write authority."
       ]
     }
   ]

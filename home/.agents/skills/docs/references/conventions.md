@@ -15,6 +15,7 @@ Verify their claims, commands, boundaries, and links before acceptance.
 - [README.md](#readmemd-earn-the-readers-interest)
 - [AGENTS.md](#agentsmd-define-the-working-contract)
 - [Share language](#share-language)
+- [Installed formats](#reuse-installed-artifact-formats)
 - [Links and names](#link-and-name-consistently)
 - [Preservation](#preserve-what-matters)
 
@@ -83,11 +84,30 @@ Read it before choosing terminology; use `GLOSSARY-MAP.md` when multiple establi
 require separate glossaries.
 Define existing concepts precisely; do not invent product commitments or pad the glossary with
 generic dictionary terms.
-Keep implementation details and procedures outside definitions; use `domain-modeling` for unresolved
-meanings.
+Keep implementation details and procedures outside definitions; use `domain-modeling` for glossary
+work.
+Read `~/.agents/skills/domain-modeling/GLOSSARY-FORMAT.md` before editing; preserve local meaning when
+adopting its structure.
+Capture newly settled, reusable terms during authorized sessions; clarify conflicting meanings
+before recording them.
+Read-only requests and local approval rules still govern writes; propose updates when authority is
+absent.
+No glossary entry is required when a session establishes no new domain language.
 If absent during authorized maintenance, add grounded definitions and link them from the overview
 and instructions.
 For read-only or narrower work, report the missing glossary without expanding write authority.
+
+## Reuse installed artifact formats
+
+Use the owning installed skill's template or format before designing another artifact structure.
+For glossary and ADR formats, use `domain-modeling` from [Matt Pocock's
+skills](https://github.com/mattpocock/skills).
+An available ADR template does not bypass the ADR gates or authorize creating a record.
+Other artifacts use their applicable specialist's format; house conventions and local contracts
+retain precedence.
+Link the canonical format instead of copying its instructions into multiple documents.
+Report missing templates before dependent work; do not modify external installed skills or update
+them implicitly.
 
 ## Link and name consistently
 

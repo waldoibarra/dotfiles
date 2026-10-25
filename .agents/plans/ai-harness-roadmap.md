@@ -116,6 +116,84 @@ Start fresh sessions before verifying effective instructions; retain client-spec
 
 ## Existing follow-through
 
+### Intent clarification and feedback loop
+
+**Approved:** Combine the video and Purdue lenses, adapt selected Humanizer defaults, and rename the
+review skill.
+The user authorized implementation and push; another agent's WIP is stashed until delivery
+completes.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| FL1 | Use intent clarification with explicit audience analysis. | Requests and responses can hide assumptions about readers, purpose, and tone. |
+| FL2 | Keep runtime checks in communication guidance and explanations in `docs/prompting.md`. | One owner per concern avoids another mandatory template or competing framework. |
+| FL3 | Rename `session-review` to `feedback-loop`, without aliases. | Assess both initial mismatches and outcomes after approved changes. |
+| FL4 | Preserve proposal-only authority and existing privacy boundaries. | Feedback does not authorize automatic learning, edits, or monitoring. |
+| FL5 | Adopt no prose dashes and selective editorial checks. | Preserve reader fit without installing an overlapping rewriting skill. |
+| FL6 | Maintain settled domain language using installed skill formats. | Existing `domain-modeling` formats avoid duplicate glossary conventions. |
+| FL7 | Record Matt's skills study in `to-do.md`. | Further evaluation remains separate from this implementation. |
+
+**Scope:** Shared communication rules, glossary routing, the renamed skill, current references, and
+verification cases.
+The approved writing defaults apply across this shared harness; individual learned voices remain
+separately owned.
+The clarification gate follows consequential uncertainty, consistent with existing scope and
+approval rules.
+Preserve quotations, safety wording, code, and required syntax when applying the no-dashes default.
+Do not rewrite frozen history or modify external installed skills.
+
+**Alternatives:** Installing Humanizer duplicates Ghostwriter; mandatory message fields add
+unnecessary user effort.
+Keeping `session-review` understates follow-up assessment; automatic modification would exceed the
+approved authority boundary.
+
+**Sequence:** Update cases and sources, test isolated migration, then deliver only the renamed skill
+links.
+Verify current discovery and rendered instructions before committing and pushing the scoped change.
+Restore the other agent's stash afterward, preserving its WIP and resolving conflicts without
+publishing it.
+
+**Verification:** Run harness and Cursor suites, repository lint, explicit ignored Markdown checks,
+and skill validators.
+Enable compiled-host checks with `PI_PACKAGE_DIR` when available; behavioral scenarios remain
+unexecuted without separate approval.
+The migration regression failed before implementation because `feedback-loop/SKILL.md` did not
+exist.
+Independent plan review required both retired names, scoped installation, and retained stash
+recovery.
+
+**Recovery:** Revert scoped source changes, restore verified skill links, and refresh clients.
+Keep the WIP stash until restoration and conflict checks succeed; never publish the restored work.
+
+**Implemented:** Current sources and client skill links use `feedback-loop`; no retired alias is
+installed.
+The merged communication guidance, glossary format, source rationale, and Matt's skills TODO are
+documented.
+No external skill, workstation package, or personal profile was changed.
+
+**Verified:** All fifteen harness tests pass, including compiled Pi 1.4.0 host checks.
+All six Cursor tests, repository lint, explicit skill Markdown checks, and four skill validators
+pass.
+The migration test exercises both retired names, new targets, unrelated files, and unchanged
+repeated runs.
+A separate scoped Dotbot fixture preserves an unrelated broken link and installs both destinations
+idempotently.
+Fresh Pi context discovers the new skill and excludes both retired names without inference.
+Cursor's rendered rule was refreshed; native Cursor and Claude behavior remain untested.
+
+**Review:** Independent plan and implementation checks found no remaining semantic blocker.
+The implementation check required explicitly staging the Git-ignored replacement bundle before
+commit.
+Seventeen skill scenarios and the communication acceptance table remain authored specifications, not
+executed behavioral evidence.
+No comparative human-effort measurement or new model experiment ran; improvement remains unverified.
+The optional `skills-ref` metadata checker was unavailable; the installed authoring validator
+passed.
+
+**Follow-through:** Assess reader fit and correction effort during ordinary authorized work using
+the existing feedback loop.
+Source correctness and fresh discovery do not guarantee future compliance.
+
 ### Documentation philosophy pilot
 
 **Implemented:** `docs` owns the concern-based documentation workflow and links its canonical
@@ -147,6 +225,9 @@ verification.
 The later OpenWiki comparison remains in [tooling ideas](/to-do.md#agent-tools).
 
 ### Session guide and skill naming
+
+**Successor:** FL3 above replaces SG5's `session-review` name with `feedback-loop`; its
+proposal-only boundary remains.
 
 **Scope:** Add a human session guide, clarify names, and rewrite all eleven custom skill
 entrypoints.

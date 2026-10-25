@@ -4,7 +4,7 @@ description: >-
   Teaches through Socratic questions, checked facts, graduated hints, concise synthesis, and independent application.
   Use when teaching concepts, running orientation or learning sessions, or adapting domain docs for curiosity-led study.
   Also use for "teach me", "help me understand", "orient me", or "learn this with me".
-  It does not track learners. For reusable session improvements use session-review; for prose use ghostwriter.
+  It does not track learners. For reusable session improvements use feedback-loop; for prose use ghostwriter.
 ---
 
 # Teach one useful concept
@@ -66,7 +66,7 @@ Do not repeatedly ask permission for factual expansion already approved by local
 
 Use repository instructions for persistence, tests, commits, and push rules.
 Behavior changes, harness changes, publication, and cross-repository edits require scoped approval.
-Use `session-review` for reusable improvement proposals; its execution boundaries remain separate
+Use `feedback-loop` for reusable improvement proposals; its execution boundaries remain separate
 from teaching.
 Report unavailable teaching guidance, sources, or repository rules rather than inventing them.
 Keep private identity, project, and learner details out of reusable global material.

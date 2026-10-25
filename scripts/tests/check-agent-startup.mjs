@@ -68,7 +68,9 @@ try {
     for (const bundle of bundles.filter(entry => entry.isDirectory())) {
       assertOnDemandSkill(resourceLoader, prompt, bundle.name);
     }
-    assert(!resourceLoader.getSkills().skills.some(item => item.name === "docs-maintenance"));
+    for (const retired of ["docs-maintenance", "session-review", "session-improvement"]) {
+      assert(!resourceLoader.getSkills().skills.some(item => item.name === retired));
+    }
     for (const reference of [
       "communication-rules.md", "orchestration.md", "memory.md", "shell.md", "delegation.md",
     ]) {

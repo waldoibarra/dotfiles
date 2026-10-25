@@ -56,10 +56,10 @@ Report inaccessible sources and uncertainty instead of inventing missing agreeme
 - Follow repository-local improvement rules locally; global promotion needs cross-repository
   evidence and explicit approval.
 - Silence is not approval. Retain unanswered proposals only in permitted existing plans.
-- Without recurring friction, propose no session improvement; do not create observation logs merely
-  for collection.
+- Without supported friction, explicit preferences, or follow-up evidence, propose no improvement.
+  Do not create observation logs merely for collection.
 
-**Closure:** Use `session-review` for proposals; it does not authorize edits, installation,
+**Closure:** Use `feedback-loop` for proposals; it does not authorize edits, installation,
 publication, or model experiments.
 If unavailable, disclose the limitation; propose only evidenced changes with scope, benefit,
 verification, and rollback.

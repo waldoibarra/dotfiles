@@ -15,6 +15,11 @@ Check current configuration and existing plans before treating an older observat
 
 ## Agent tools
 
+- [ ] Study [Matt Pocock's skills](https://github.com/mattpocock/skills), starting with the already
+  installed workflows and formats.
+Assess useful practices, overlap, and compatibility; propose scoped adaptations without updating
+  external skills automatically.
+
 - [ ] Compare [OpenWiki](https://github.com/langchain-ai/openwiki) with the manual documentation baseline
   after the [dotfiles pilot](/.agents/plans/ai-harness-roadmap.md#documentation-philosophy-pilot).
   Evaluate navigation, factual accuracy, duplication, maintenance effort, and generated changes in one

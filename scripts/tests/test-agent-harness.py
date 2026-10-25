@@ -112,7 +112,8 @@ class AgentHarnessTest(unittest.TestCase):
         renames = {
             "docs-maintenance": "docs",
             "skill-maintenance": "custom-skills",
-            "session-improvement": "session-review",
+            "session-improvement": "feedback-loop",
+            "session-review": "feedback-loop",
             "socratic-learning": "socratic-teaching",
             "start-project": "project-init",
             "to-do": "shared-todo",
@@ -331,11 +332,11 @@ class AgentHarnessTest(unittest.TestCase):
                     first_links = current_links
                 else:
                     self.assertEqual(current_links, first_links)
-                placement = home / ".agents/skills/session-review/references/placement.md"
+                placement = home / ".agents/skills/feedback-loop/references/placement.md"
                 self.assertTrue(placement.is_file())
                 self.assertEqual(
                     placement.resolve(),
-                    ROOT / "home/.agents/skills/session-review/references/placement.md",
+                    ROOT / "home/.agents/skills/feedback-loop/references/placement.md",
                 )
                 config = home / ".pi/agent/extensions/subagent/config.json"
                 self.assertEqual(

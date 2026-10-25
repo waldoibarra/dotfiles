@@ -1,17 +1,23 @@
 ---
-name: session-review
+name: feedback-loop
 description: >-
-  Reviews session evidence and proposes focused workflow or voice-profile improvements without applying them.
-  Use when handing off, closing a session, or examining repeated corrections, failed checks, or manual friction.
-  For instruction edits use agents-md; for custom skill maintenance use custom-skills; for prose use ghostwriter.
+  Compares intended and observed outcomes and proposes scoped improvements without applying them.
+  Use when closing a session, reviewing repeated corrections, or asking whether an approved improvement helped.
 ---
 
-# Review a session without changing policy
+# Close the feedback loop without changing policy
 
-**Outcome:** Return one scoped proposal per supported pattern, or no proposal when none is
-warranted.
-Recurring friction and explicit writing preferences can justify review; closure does not authorize
-execution.
+**Outcome:** Return an evidence-backed assessment and only warranted, scoped improvement proposals.
+Repeated friction, explicit preferences, and follow-up evidence can justify review; closure never
+authorizes execution.
+
+- **IS:** comparing intent with outcomes, diagnosing mismatches, and assessing approved changes from
+  available evidence.
+- **IS NOT:** implementation, monitoring, automatic learning, or a required interview before every
+  reply.
+
+Use `agents-md` for instruction edits, `custom-skills` for owned skills, and `ghostwriter` for
+prose.
 
 This skill never edits, commits, publishes, installs, syncs, or mines private history.
 
@@ -29,6 +35,24 @@ This skill never edits, commits, publishes, installs, syncs, or mines private hi
 Explicit writing preferences use the profile criteria below; they need not recur before
 consideration.
 Add no observation logs or automation.
+
+## Compare intent with observed outcomes
+
+Read `~/.agents/references/communication-rules.md` for the canonical intent and audience checks.
+Use the accepted request and accessible evidence, not a reconstructed or invented baseline.
+
+- Identify the intended outcome, actual result, and any remaining uncertainty.
+- Diagnose mismatched goals, constraints, assumptions, targets, audiences, author voices, or reader
+  context.
+- Distinguish missing access or feedback from missing guidance and misunderstood intent.
+- Assess correction effort, repeated context, review burden, and whether the user could make the
+  consequential decision.
+- Use qualitative observations unless measurements exist; do not invent time savings or scores.
+- Check whether clarification questions resolved consequential uncertainty or merely repeated
+  settled context.
+
+Prefer fixing the owning context, tool, or procedure over adding another global rule.
+Useful feedback can support removing instructions or retaining the current workflow unchanged.
 
 ## Follow the relevant review route
 
@@ -90,7 +114,16 @@ rules.
 Report partial failures and configured, installed, loaded, exercised, committed, and pushed states
 separately.
 Source edits do not establish fresh-session loading or behavioral improvement.
-Compare verified results with the original problem; retain the change or propose scoped rollback.
+
+## Assess an approved change afterward
+
+Compare available follow-up evidence against the original problem and its acceptance criteria.
+Distinguish source edits, installation, loading, observed behavior, and user effort.
+Recommend keeping, revising, or reverting the change; this skill applies none of those actions.
+Without a comparable baseline or exercised outcome, report improvement as unverified and name the
+missing check.
+New model experiments, monitoring, or access require separate authorization.
+Keep permitted outcomes with the existing owner; do not create a parallel learning log.
 
 **Maintenance:** Read `evals/evals.json` when changing this skill; scenarios are specifications, not
 executed behavioral evidence.
