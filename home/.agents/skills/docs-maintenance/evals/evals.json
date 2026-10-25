@@ -199,6 +199,31 @@
         "Checks the temporary decision's condition before reuse.",
         "Keeps superseded rationale discoverable when consequential."
       ]
+    },
+    {
+      "id": 15,
+      "prompt": "Rewrite the repository README using our house conventions. Setup and usage already have verified guides.",
+      "expected_output": "A concise human entrypoint explains why, then what, and links to existing how-to guides.",
+      "files": [],
+      "assertions": [
+        "Opens with the reader's problem and supported benefit before describing features.",
+        "Explains the audience, project offering, and relevant limitations.",
+        "Links setup and usage without copying their commands.",
+        "Does not invent marketing claims, visuals, or mandatory sections."
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Document README.md and AGENTS.md conventions. External advice mandates a persona, 100 lines, and banning AI-written drafts.",
+      "expected_output": "House conventions govern both formats; agents-md owns instruction authoring and validation.",
+      "files": [],
+      "assertions": [
+        "Distinguishes human-facing value and navigation from agent operational instructions.",
+        "Routes AGENTS.md authoring to agents-md while retaining house precedence.",
+        "Preserves safety boundaries without adopting arbitrary personas or line limits.",
+        "Permits authorized AI-assisted drafts subject to evidence and verification.",
+        "Does not treat external performance claims as established evidence."
+      ]
     }
   ]
 }

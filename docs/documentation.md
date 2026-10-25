@@ -19,6 +19,10 @@ Read [docs-maintenance](/home/.agents/skills/docs-maintenance/SKILL.md) before c
 reviewing Markdown documentation.
 Read [conventions](/home/.agents/skills/docs-maintenance/references/conventions.md) before naming
 files or changing navigation.
+Read its [README guidance](/home/.agents/skills/docs-maintenance/references/conventions.md#readmemd-earn-the-readers-interest)
+before writing repository entrypoints.
+Read its [AGENTS guidance](/home/.agents/skills/docs-maintenance/references/conventions.md#agentsmd-define-the-working-contract)
+before defining agent instructions; `agents-md` owns the workflow.
 
 ## Keep guidance useful
 

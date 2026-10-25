@@ -31,6 +31,12 @@ baseline.
 next human or agent.
 
 - Make them easy to understand, modify, and verify.
+- **DRY (Don't Repeat Yourself):** Give each rule, fact, and behavior one canonical owner; reuse or
+  link.
+- **YAGNI (You Aren't Gonna Need It):** Build for demonstrated needs; avoid speculative features,
+  abstractions, and configuration.
+- **Separation of concerns:** Keep distinct responsibilities behind clear boundaries in code,
+  documentation, and instructions.
 - Protect **correctness, clear boundaries, shared terminology, and regression coverage**.
 - Prefer canonical instructions, focused skills, and working feedback over additional prompt rules.
 - Diagnose missing tools, prerequisites, or test access before declaring work verified.
@@ -77,6 +83,11 @@ Read only task-relevant detail, not the entire harness, roadmap, or vault.
 | Writing a commit message, committing, or pushing | `~/.agents/skills/commit/SKILL.md` |
 | Assigning a worker responsibility | The selected role in `~/.agents/roles/` and `~/.agents/references/delegation.md` |
 | Performing another specialist workflow | Its `SKILL.md` from the available skill catalog |
+
+Read `~/.agents/skills/docs-maintenance/references/conventions.md` before writing or reviewing
+`README.md` or `AGENTS.md`.
+Its house conventions take precedence over generic authoring advice; specialist skills own their
+procedures.
 
 ### Preserve ownership and report missing guidance
 
