@@ -2,8 +2,26 @@
 
 Read before composing structured replies or written artifacts.
 
-The global Communication rules apply throughout; this reference owns shapes and scanning
-conventions.
+These rules cover lead and worker replies, documentation, plans, skills, prompts, code comments, and
+commit messages.
+
+## State the point clearly
+
+- Identify the intent and reader's next action. Put the answer, decision, or request first.
+- Use at most 17 words per sentence. Keep one idea per paragraph or list item.
+- Cut filler and repetition, never risks or conditions. Preserve safety content verbatim; state
+  risks plainly.
+- State positions plainly without hedging. State each real uncertainty once, with its cause.
+- Use a precise, professional tone without slang.
+- Prefer concrete words and the project's shared language in its glossary.
+- Default to English; switch conversation language only when the user writes in another language.
+- Never infer language from names, email, locale, or identity.
+- Keep repository content in English, including documentation, prototypes, UI text, comments,
+  filenames, and identifiers.
+- Preserve original-language source material in repository-root `raw/`; translate only when
+  explicitly requested.
+- Conversation language does not change repository language.
+- Require an explicit exception for non-English repository content outside `raw/`.
 
 ## Choose one intent
 

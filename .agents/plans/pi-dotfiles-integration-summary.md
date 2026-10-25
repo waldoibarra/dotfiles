@@ -1,17 +1,25 @@
 # Pi dotfiles integration: trial summary
 
-Phase 5 is implemented and a full `dots` run completed successfully. Maintained documentation is
-[Pi guides](../../docs/coding-agents/pi/README.md), written using Ghostwriter; the
-[execution notes](pi-live-codex-trial.notes.md#phase-5-implementation-and-verification) contain the
-verification record. OMP remains available. The original pre-implementation summary below is kept
-as decision history; its pending-work descriptions are superseded by those documents.
+**Current outcome:** Phase 5 is implemented, and a full `dots` run completed successfully.
+OMP remains available. Read [Pi guides](../../docs/coding-agents/pi/README.md) for setup instructions.
+Read [execution notes](pi-live-codex-trial.notes.md#phase-5-implementation-and-verification)
+for the verification record.
+The guides were written using Ghostwriter.
+
+**Historical scope:** The pre-implementation requirements below are decision history, not pending tasks.
+The Pi guides and execution notes supersede their pending-work descriptions.
 
 This summary carries forward the [execution notes](pi-live-codex-trial.notes.md) and
 [original plan](pi-live-codex-trial.md). It supersedes their earlier statements that adoption had
 not been requested. Both the notes and this handoff are versioned decision records. Maintained setup
 instructions live in the Pi guides linked above.
 
-## Installation and ownership
+## Historical integration requirements
+
+Read this section when investigating the original installation choices or accepted trial limitations.
+Do not execute its future-tense steps as current setup instructions.
+
+### Installation and ownership
 
 | Component | Decision or observed state |
 | --- | --- |
@@ -30,20 +38,26 @@ The trial's global Mise installation already added the Pi declaration to
 `home/.config/mise/config.toml`. That tracked file is modified in the working tree; preserve the
 existing change. Do not install a competing Homebrew Pi package.
 
-`dots` already calls `just sync`, which runs the Dotbot installer, Homebrew updates/cleanup, Mise
-install/upgrade/prune, the coding-agent updater, and hook installation. The Pi declaration therefore
+`dots` already calls `just sync`.
+It runs Dotbot, Homebrew updates/cleanup, Mise install/upgrade/prune,
+the coding-agent updater, and hook installation. The Pi declaration therefore
 covers the binary through the existing Mise path. The inspected updater does not yet provision
 Pi's voice package or manage its profile configuration.
 
-Phase 5 must finish the package/configuration path through these existing owners. Installing the
+The original Phase 5 plan used these existing owners for package and configuration.
+Installing the
 Pi binary alone does not reproduce the trial. First-run account login and microphone permission
-remain interactive user actions; `dots` must not open a microphone or copy credentials.
+remain interactive
+user actions.
+`dots` must not open a microphone or copy credentials.
 
-## Configuration to preserve
+### Configuration to preserve
 
 Track safe configuration sources under `home/`, then apply them through the existing installer and
 updater conventions. Keep `~/.pi/agent` a real directory. Choose individual file links or managed
-copies during implementation; do not link the entire profile or import it wholesale.
+copies during
+implementation.
+Do not link the entire profile or import it wholesale.
 
 The accepted profile preferences are:
 
@@ -70,7 +84,7 @@ Exclude authentication, sessions, caches, locks, native binaries, and machine-sp
 Git. The shared voice lock is `~/.pi/pi-live-codex.lock`, outside the agent directory. Never remove
 an active session's lock as part of installation or validation.
 
-### Extended context
+#### Extended context
 
 Preserve `contextWindow: 1050000` for these exact `openai-codex` model IDs:
 
@@ -88,12 +102,12 @@ Leave `gpt-5.3-codex-spark` at 128,000. For each expanded model, the trial uses
 `compaction.enabled: true`. Pi displays the expanded window as `1.1M (auto)`.
 
 These preferences load successfully in Pi. Requests beyond the old 272,000-token boundary were not
-tested against the subscription backend. The 1,050,000 total window is not all input capacity;
-128,000 tokens are reserved for output. The reserve also affects compaction summary limits.
+tested against the subscription backend. The 1,050,000 total window is not all input capacity.
+Reserve 128,000 tokens for output. The reserve also affects compaction summary limits.
 Recheck current Pi support and model specifications before carrying the overrides forward. Do not
 apply them indiscriminately to future models. Source links are in the execution notes.
 
-## Voice selection
+### Voice selection
 
 Waldo confirmed all nine voices work in his trial:
 
@@ -113,9 +127,10 @@ Waldo selects Spruce manually. Bare `/live` and Ctrl+L remain on Sol. The instal
 hardcodes that default and does not remember the last voice. He declined a patch or customization.
 Stop the current session before starting another voice; `/live` toggles the session.
 
-Autocomplete is misleading: the extension suggests public Realtime voices such as Ash that did
-not work in this trial, and omits several working Codex voices. Explicit arguments still pass
-through. The observed error was `Voice session access denied`; it alone does not establish an
+**Autocomplete:** The extension suggests public Realtime voices such as Ash.
+They did not work in this trial; suggestions omit several working Codex
+voices. Explicit arguments still pass through.
+The observed error was `Voice session access denied`; it alone does not establish an
 account entitlement problem. The complete set of rejected voices was not recorded.
 
 OpenAI Codex source separates the nine working names from the public Realtime family. Third-party
@@ -123,7 +138,7 @@ reports also describe successful Cove and Spruce calls. These sources support th
 do not guarantee every account's availability. Preserve that qualification in user documentation.
 Do not reuse the earlier unverified voice age, gender, or accent descriptions.
 
-## Results and accepted limitations
+### Results and accepted limitations
 
 | Area | Result and disposition |
 | --- | --- |
@@ -145,17 +160,18 @@ Do not reuse the earlier unverified voice age, gender, or accent descriptions.
 
 Manual context recovery cannot restore speech the coding agent never received. Do not describe
 voice and coding as sharing a complete transcript. Source inspection and visible messages establish
-configuration and delivery behavior, not the exact missing audio or delegation payloads.
+configuration and delivery behavior.
+They do not reveal the exact missing audio or delegation payloads.
 
 The original plan's isolation and pinning decisions were superseded by Waldo's normal-profile and
 latest-version choices. Preserve the remaining privacy and billing boundaries. Acceptance of these
 limitations is not evidence that the untested scenarios pass.
 
-## Documentation and integration requirements
+### Documentation and integration requirements
 
 Use Ghostwriter for maintained prose. No local Ghostwriter profile was present during this summary;
-plain technical documentation is the fallback. Keep trial chronology in these local notes and
-publish only durable setup, ownership, usage, and limitations in tracked docs.
+plain technical documentation is the fallback. Keep trial chronology in these local notes.
+Publish only durable setup, ownership, usage, and limitations in tracked docs.
 
 | Location | Required coverage |
 | --- | --- |
@@ -165,8 +181,8 @@ publish only durable setup, ownership, usage, and limitations in tracked docs.
 | A tracked Pi voice guide, if needed | The two model roles, tested voice commands, shortcuts, manual Spruce selection, errors, and accepted limitations. |
 | `scripts/README.md` | The actual Pi provisioning step and its place in the existing updater once implemented. |
 
-Implementation still needs to decide the exact settings ownership, how Pi package install/update
-runs idempotently, and how shared instructions and skills reach Pi without duplication. Verify
+At planning time, implementation still needed settings ownership and idempotent Pi package installation.
+It also needed to decide how shared instructions and skills reached Pi without duplication. Verify
 those against the installed Pi documentation and existing repository conventions. Do not assume
 coding instructions also configure the separate voice model.
 
@@ -176,8 +192,9 @@ Pi resolution, package loading, keybindings, model metadata, and instruction/ski
 Waldo performs any live microphone check. Run relevant lint for the changed sources and docs.
 
 Do not run a full sync as validation. When applying the actual workstation changes requires `dots`,
-announce it first and follow `docs/tooling.md`. Full sync can remove packages and the skill updater
-can commit and push changes, including earlier unpushed commits.
+announce it first and follow `docs/tooling.md`. Full sync can remove packages.
+The skill updater can commit and push changes, including earlier
+unpushed commits.
 
 Combining Pi and OMP voice experiences is a future idea. No extension fork, voice-default patch,
 context-recovery fix, cancellation fix, or OMP retirement is part of this integration summary.

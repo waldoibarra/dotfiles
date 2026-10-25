@@ -1,7 +1,8 @@
 # Agent workspace
 
-Versioned plans, trial notes, spikes, and supporting evidence. These records preserve decisions
-and experiments; maintained workstation documentation lives in `/docs/`.
+**Purpose:** Versioned plans, trial notes, spikes, and evidence explain decisions and experiments.
+Maintained workstation documentation lives in `/docs/`; read [architecture](/docs/architecture.md)
+for current ownership.
 
 ## Maintenance
 
@@ -23,14 +24,17 @@ Never put company material or mixed-source originals there; Git ignore is not a 
 
 ## Evidence storage
 
-Keep the curated `spikes/pi-media-learning-and-live-voice-evidence/` collection in Git. At roughly
-2 MB, its transcripts, metrics, and public-video frames are small enough to version alongside the
-findings they support, preserving evidence across machines.
+**Curated evidence:** Keep `spikes/pi-media-learning-and-live-voice-evidence/` in Git.
+The roughly 2 MB collection contains transcripts, metrics, and public-video frames supporting the
+recorded findings.
+Versioning preserves that evidence across machines.
 
-Keep raw audio/video, model weights, caches, and large generated batches outside Git; add targeted
-ignore rules if these are stored locally in the workspace. Reconsider external artifact storage
-if evidence accumulates frequently: repeated binary revisions grow repository history even when
-old files are later removed. Size alone does not replace the publication review above.
+**Large artifacts:** Keep raw audio/video, model weights, caches, and large generated batches
+outside Git.
+Add targeted ignores for local artifacts; reconsider external storage when evidence accumulates
+frequently.
+Binary revisions grow Git history even after files are removed.
+Size alone does not replace the publication review above.
 
 ## Index
 
@@ -40,6 +44,7 @@ old files are later removed. Size alone does not replace the publication review 
 | Evaluating evidence-aware meeting processing without duplicating retrieval or planning | [Meeting processing plan](/.agents/plans/meeting-processing.md) |
 | Continuing personal MCP parity or reviewing retired Sheets integration lessons | [Personal MCP plan](/.agents/plans/personal-mcp.md) |
 | Continuing the shared-role migration and Pi delegation verification | [Shared roles plan](/.agents/plans/pi-shared-roles.md) |
+| Refactoring shared instructions, memory lifecycle, and cross-repository documentation | [Harness information architecture](/.agents/plans/harness-information-architecture.md) |
 | Continuing reusable setup direction, Cursor trial planning, or current harness priorities | [AI harness roadmap](/.agents/plans/ai-harness-roadmap.md) |
 | Revisiting harness decisions, historical verification, or superseded proposals | [Harness roadmap archive](/.agents/plans/history/ai-harness-roadmap-2026-10-13.md) |
 | Continuing Pi setup or reviewing the integration outcome | [Integration summary](/.agents/plans/pi-dotfiles-integration-summary.md) |

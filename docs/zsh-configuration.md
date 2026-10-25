@@ -1,6 +1,6 @@
 # Zsh configuration
 
-Read this before editing shell startup files or adding local environment overrides.
+**Scope:** Read this before editing Zsh startup files or adding local environment overrides.
 
 ## Startup order
 
@@ -13,8 +13,9 @@ Zsh reads these files in order when their conditions apply:
 | [.zshrc](/home/.zshrc) | Interactive shells | Load Antigen/oh-my-zsh, random theme, Mise activation, pager settings and aliases. |
 | [.zlogin](/home/.zlogin) | Login shells, after `.zshrc` | In interactive shells, load the local welcome name, print a quote and greeting, then remove helper functions. |
 
-A login interactive terminal loads all four. A non-login, non-interactive command loads only
-`.zshenv`; keep it quiet and free of prompt or terminal-dependent work.
+An interactive login terminal loads all four files.
+A non-login, non-interactive command loads only `.zshenv`.
+Keep it free of prompts and terminal-dependent work.
 
 `.zprofile` repeats PATH setup because macOS `/etc/zprofile` runs `path_helper` after `.zshenv`
 and can reorder it. Homebrew paths are fixed to `/opt/homebrew` on macOS and
@@ -64,7 +65,8 @@ export NICKNAME="Waldo"
 ```
 
 `.zshenv` and `.zshrc` have no local counterpart. Variables in `.zprofile.local` are not loaded by a
-fresh non-login shell; scripts receive them only if inherited from a login session or set elsewhere.
+fresh non-login shell.
+Scripts receive them only when inherited from a login session or set elsewhere.
 Keep secrets outside this repository.
 
 ## Docker Desktop PATH changes

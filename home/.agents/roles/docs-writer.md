@@ -19,7 +19,7 @@ ownership.
 ## Constraints
 
 - Load `docs-maintenance` first; it owns scope, shared language, affected docs, and prose tools.
-- Write under the global Communication rules.
+- Read `~/.agents/references/communication.md` before writing; follow the global Communication rules.
 - State decided rules, not plan-only IDs or session codes. Preserve useful external issue
   references.
 - Never commit, push, or publish. Return changes for the orchestrator to deliver.

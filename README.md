@@ -1,50 +1,60 @@
 # Dotfiles
 
-A versioned development workstation: shell, Git, tools and AI coding agents configured together.
-Built for Apple Silicon macOS, with partial Debian support. This repository is also a personal setup
-reference for Lluvia and my close ones; it is not a universal installer. Review the configuration
-before adopting it.
+**Purpose:** A versioned development workstation with shell, Git, tools, and AI coding agents
+configured together.
+Built for Apple Silicon macOS, with partial Debian support.
+This is a personal setup reference for Lluvia and my close ones, not a universal installer.
 
-## What you get
+## Understand the environment
 
-- A Zsh environment with completion, aliases, terminal settings and a welcome prompt.
-- Explicit package lists: Homebrew for apps and system tools, Mise for development tools.
-- Configuration for Claude Code and Pi, with shared instructions and separate ownership for
-  tracked configuration and generated assets. Pi includes subscription live voice through
-  `pi-live-codex`; [setup and limitations](docs/coding-agents/pi/README.md) are documented.
-- Local overrides for Git identity, signing and shell settings, so personal values can stay off Git.
-
-## Why keep it together
-
-Review workstation changes like code. Carry the same defaults between machines. Change a tool list
-or agent rule in one place, then apply it through the documented installer or sync workflow.
+**Principles:** Communicate assertively and care about maintainability.
+Keep code, documentation, and the working environment understandable, verifiable, and easy to
+change.
 
 ```mermaid
 flowchart LR
-    Repo[Versioned configuration] --> Dotbot[Dotbot links]
-    Repo --> Tools[Homebrew and Mise]
-    Repo --> Agents[Agent config and skill sync]
-    Dotbot --> Home[Workstation]
-    Tools --> Home
-    Agents --> Home
+    Repo[Versioned configuration] --> Workstation[Shell, Git, and tools]
+    Repo --> Harness[AI clients, skills, and roles]
+    Harness --> Projects[Project knowledge and checks]
+    Harness --> Vault[Shared Obsidian memory]
+    Projects --> Feedback[Verified feedback]
+    Vault --> Feedback
+    Feedback --> Repo
 ```
 
-[Set up a workstation](/docs/setup.md), including [the shared Obsidian life map](/docs/setup.md#shared-life-map).
+Read [the architecture](/docs/architecture.md) before changing how configuration, agents, and shared
+memory connect.
+Read [the glossary](/GLOSSARY.md) before changing the environment's shared terminology.
 
-This is a personal setup, not a universal installer. Review its SSH/AWS defaults before adopting it.
-Installation changes home-directory files and the login shell. Full sync can remove packages and
-push skill-lockfile commits; the setup guide explains those boundaries before you run anything.
+## Set up and use
 
-## Explore
+- Read [setup](/docs/setup.md) before installing or configuring local overrides.
+- Read [tooling](/docs/tooling.md) before maintaining packages, running checks, or synchronizing the
+  workstation.
+- Read [coding agents](/docs/coding-agents/README.md) before configuring Pi, Claude Code, or Cursor.
+- Read [Pi and live voice](/docs/coding-agents/pi/README.md) before using subscription voice or
+  Pi-specific integrations.
+- Read [Obsidian](/docs/obsidian.md) before provisioning the shared vault's tools and checks.
 
-| Task | Guide |
-| --- | --- |
-| Refactor documentation around reader needs | [Documentation workflow](/docs/documentation.md) |
-| Maintain packages and run checks | [Tooling](/docs/tooling.md) |
-| Configure agents, instructions and skills | [Coding agents](docs/coding-agents/README.md) |
-| Review Pi configuration, live voice, and integration status | [Pi and live voice](docs/coding-agents/pi/README.md) |
-| Set up vault formatting and agent checks | [Obsidian](docs/obsidian.md) |
-| Change shell behavior | [Zsh configuration](/docs/zsh-configuration.md) |
-| Set Git identity and signing | [Git configuration](/docs/git-configuration.md) |
-| Use editable UI designs | [Agent UI design tools](/docs/agent-ui-design-tools.md) |
-| Inspect installation and update behavior | [Scripts](/scripts/README.md) |
+**Included:** Zsh completion, aliases, terminal settings, and a welcome prompt.
+Homebrew owns applications and system tools; Mise owns development tools.
+Local Git identity, signing, and shell overrides keep personal values outside Git.
+
+**Installation risks:** Review SSH/AWS defaults before adopting this setup.
+Installation changes home-directory files and the login shell.
+Full sync can remove packages and push skill-lockfile commits; read setup boundaries before running
+commands.
+
+## Maintain and evolve
+
+- Read [agent instructions](/AGENTS.md) before changing this repository.
+- Read [documentation maintenance](/docs/documentation.md) before restructuring or retiring
+  maintained information.
+- Read [Zsh configuration](/docs/zsh-configuration.md) before changing shell startup behavior.
+- Read [Git configuration](/docs/git-configuration.md) before changing defaults, identity, or
+  signing.
+- Read [scripts](/scripts/README.md) before changing installation and update behavior.
+- Read [design tooling](/docs/agent-ui-design-tools.md) before using editable UI designs.
+
+**History:** Plans and evidence live in [the agent workspace](/.agents/README.md).
+They explain prior work; current guides and verified configuration own present behavior.

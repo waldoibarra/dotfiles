@@ -1,8 +1,8 @@
 # Pi voice limitations and test evidence
 
-These results combine Waldo's live reports with the coding agent's visible file operations.
+**Evidence:** These results combine Waldo's live reports with the coding agent's visible file operations.
 They are not a controlled benchmark. No raw private audio or exact delegation payload was retained.
-The tested versions and component ownership are in the [Pi overview](README.md).
+Read the [Pi overview](README.md) before comparing tested versions or component ownership.
 
 ## Observed behavior
 
@@ -24,26 +24,31 @@ The tested versions and component ownership are in the [Pi overview](README.md).
 
 ## Context handoff
 
-A manual handoff can retrieve coding context after voice restarts, but it cannot recover speech the
-coding agent never received. A recall exercise using facts already visible in the coding chat was
-inconclusive. Later attempts to delegate a separate spoken topic omitted the details. The cause
+A manual handoff can retrieve coding context after voice restarts.
+It cannot recover speech the coding agent never received.
+A recall exercise using facts already visible in coding chat was inconclusive.
+Later attempts to delegate a separate spoken topic omitted the details.
+The cause
 could not be assigned to recognition, summarization, or transport from the evidence collected.
 
 ## Queuing and cancellation
 
-Repeated cancellation attempts used empty files in a disposable temporary directory. Creation
-completed before each cancellation reached the agent. Eventual delivery was observed; exactly-once
-execution and persistence across errors or restarts were not established. Waldo chose to stop
+Repeated cancellation attempts used empty files in a disposable temporary directory.
+Creation completed before each cancellation reached the agent.
+Eventual delivery was observed.
+Exactly-once execution and persistence across errors or restarts were not established.
+Waldo chose to stop
 pursuing cancellation tests or fixes. A future consequential request should not be blindly
 resubmitted when its status is uncertain.
 
 ## Subscription usage
 
-Waldo monitored the weekly subscription usage display during approximately one to two hours of
-conversation and observed little increase. No starting/ending percentages, reset time, or separate
-voice/coding attribution were recorded. This supports his practical assessment of the experience,
-not a per-minute cost, remaining-hours estimate, zero-cost claim, or guarantee that the meter
-immediately reflects all activity.
+Waldo monitored weekly subscription usage during approximately one to two hours of conversation.
+He observed little increase. No starting/ending percentages or reset time were recorded.
+Separate voice/coding attribution was not recorded.
+This supports his practical assessment of the experience.
+It does not establish a per-minute cost, remaining-hours estimate, or zero-cost claim.
+It does not guarantee that the meter immediately reflects all activity.
 
 ## Deferred improvements
 

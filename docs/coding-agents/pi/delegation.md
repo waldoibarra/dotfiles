@@ -4,15 +4,22 @@ Pi declares `pi-subagents@latest`; updates follow the current npm release.
 The previous `0.79.1` pin fixed obsolete Chord requirements on Pi 1.2 and newer.
 The previous local warning-routing trial build was backed up before replacement.
 Shared roles remain provider-neutral; runtime trial artifacts stay outside this repository.
-Read [shared roles](/docs/agent-instructions.md#shared-role-agents) before editing a role's instructions.
+Read [shared roles](/docs/agent-instructions.md#shared-role-agents) before editing a role's
+instructions.
 
 ## Choose a role and model
 
-Ask naturally: “Use `code-auditor` with `openai-codex/gpt-5.5` to review this diff.”
+Read [cross-harness selection](/home/.agents/references/delegation.md) before choosing a
+responsibility, model, or effort.
+The examples below require active registry availability; configured entries do not prove access.
+GPT-5.5 was unavailable during the information-architecture refactor; Sol completed the replacement
+review.
+
+Ask naturally: “Use `code-auditor` with `openai-codex/gpt-6-sol` to review this diff.”
 Or launch directly in interactive Pi:
 
 ```text
-/run code-auditor[model=openai-codex/gpt-5.5:medium] Review the supplied diff without changing files.
+/run code-auditor[model=openai-codex/gpt-6-sol:medium] Review the supplied diff without changing files.
 ```
 
 The model-facing tool accepts independent `agent` and `model` fields:
@@ -28,9 +35,11 @@ The model-facing tool accepts independent `agent` and `model` fields:
 ```
 
 Use `/subagents-models` to inspect available models and effective role mappings.
-Pass an explicit non-lead model. The strict worker allowlist rejects Astra, including inherited selection.
+Pass an explicit non-lead model. The strict worker allowlist rejects Astra, including inherited
+selection.
 Choose model and supported effort separately under the shared routing policy.
-For GPT-5.5, start bounded mechanical work at medium; native lifecycle or safety risk can justify high.
+For GPT-5.5, start bounded mechanical work at medium; native lifecycle or safety risk can justify
+high.
 Use observed acceptance results, not a claim that one effort level guarantees correctness.
 The allowlist is in tracked settings; it does not rank models or prove provider availability.
 Trusted project settings can replace the user scope;
@@ -38,7 +47,8 @@ shared instructions still prohibit leader-model children.
 Availability and authentication depend on the provider.
 Model selection does not authorize billing changes.
 
-Foreground calls wait for completion. Use `async: true` for background work and inspect its final status.
+Foreground calls wait for completion. Use `async: true` for background work and inspect its final
+status.
 The configured simplified `tasks` mode applies one top-level model to every child.
 For concurrent children using different models, launch separate background calls
 with explicit role/model pairs.
@@ -51,8 +61,10 @@ with explicit role/model pairs.
 | [`settings.json`](/home/.pi/agent/settings.json) | Package source, role discovery, context inheritance, and Pi tool selection. |
 | [`subagent/config.json`](/home/.pi/agent/extensions/subagent/config.json) | Minimal runner feature selection and execution defaults. |
 
-All five roles append their prompt to Pi's base prompt and retain global rules, project instructions,
-and the shared skills catalog. Children start with fresh task context unless explicitly requested otherwise.
+All five roles append their prompt to Pi's base prompt.
+They retain global rules, project instructions, and the shared skills catalog. Children start with
+fresh task context unless explicitly requested
+otherwise.
 The caller must supply the goal, files, constraints, and verification criteria.
 
 ### Bind repository work before dispatch
@@ -69,7 +81,8 @@ Set the tool's native `cwd` to the intended repository root for every repository
 }
 ```
 
-Keep each chain or parallel workflow inside one repository. Use separate invocations for different roots.
+Keep each chain or parallel workflow inside one repository. Use separate invocations for different
+roots.
 The native cwd starts the child correctly; task prose names the expected root as a second check.
 Before source inspection, set `EXPECTED_REPO_ROOT` to that absolute, resolved Git root and run:
 
@@ -92,7 +105,8 @@ Pi reviewers receive `read`, `grep`, `find`, `ls`, and `bash`, without `edit` or
 Other roles receive Pi's normal built-in tools. Nested delegation is not granted by these roles.
 Child ambient extensions are disabled; voice and unrelated integrations do not start in each child.
 Models provided by extensions need an explicit child extension allowlist.
-Browser testing requires available tooling; a role prompt does not install Playwright or an MCP server.
+Browser testing requires available tooling; a role prompt does not install Playwright or an MCP
+server.
 
 Bundled roles and package skill/prompt resources are disabled. Role management, scripted workflows,
 schedules, missions, watchdog, and unused orchestration features are disabled in the runner config.
@@ -105,7 +119,8 @@ Keep company roles, skills, and MCP servers work-scoped; never move them into gl
 ## Install and verify
 
 Read [installation](/docs/coding-agents/pi/installation.md) before applying configuration.
-The updater reads the runner source from settings and explicitly installs it before updating packages.
+The updater reads the runner source from settings and explicitly installs it before updating
+packages.
 This resolves `latest` and covers missing installations without duplicating the source in scripts.
 
 Restart Pi after installation. `/subagents-doctor` checks discovery, not successful child execution.
@@ -115,23 +130,33 @@ Run the isolated provisioning checks from the repository root:
 python3 scripts/tests/test-agent-harness.py
 ```
 
-Check the installed runner without inference, then explicitly enable authenticated live checks:
+Check the installed runner without inference:
 
 ```sh
 node scripts/tests/check-pi-harness.mjs
-node scripts/tests/check-pi-harness.mjs --live openai-codex/gpt-6-luna:low openai-codex/gpt-5.5:low
+```
+
+**Optional live check:** Obtain execution approval and select two eligible IDs from the active
+registry first.
+Replace both placeholders below; they are not model names or claims of availability.
+
+```sh
+node scripts/tests/check-pi-harness.mjs --live '<first-provider/model:effort>' '<second-provider/model:effort>'
 ```
 
 The live check executes all five roles in a disposable workspace.
 Private runtime evidence stays outside Git.
 It verifies inherited rules/skills and provider model metadata, not model self-reports.
-Two background children use different models. Every live child uses an explicit eligible worker model.
+Two background children use different models. Every live child uses an explicit eligible worker
+model.
 Offline checks reject Astra selection, including inheritance when Astra is the main model.
 This checks configuration, not real browser interaction or role performance on production tasks.
-The script requires an npm-installed Pi host; `PI_PACKAGE_DIR` can name that host's package directory.
+The script requires an npm-installed Pi host; `PI_PACKAGE_DIR` can name that host's package
+directory.
 
 **Headless limitation:** `pi -p '/run …'` returned a stale-context error with this Pi/runner pair.
-Use model-issued `subagent` calls or the SDK check for headless execution, not slash-command dispatch.
+Use model-issued `subagent` calls or the SDK check for headless execution, not slash-command
+dispatch.
 Recheck these boundaries when updating the runner or Pi.
 
 ## Upstream references
@@ -140,5 +165,7 @@ Recheck these boundaries when updating the runner or Pi.
   before changing discovery or inheritance.
 - Read [model selection](https://github.com/nicobailon/pi-subagents/blob/main/docs/models.md)
   before changing model routing.
-- Read [runner configuration](https://github.com/nicobailon/pi-subagents/blob/main/docs/configuration.md)
-  before enabling additional features. Prefer the installed package's docs for the installed version.
+- Read [runner
+  configuration](https://github.com/nicobailon/pi-subagents/blob/main/docs/configuration.md)
+  before enabling additional features. Prefer the installed package's docs for the installed
+  version.

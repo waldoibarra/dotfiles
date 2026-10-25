@@ -21,6 +21,8 @@ exact scope.
 ## Establish scope
 
 1. Read repository instructions for documentation ownership, confidentiality, and recording rules.
+    Read [conventions](references/conventions.md) for shared language, naming, links, and
+    information lifecycle.
 2. Read the project's shared language (its glossary file) before choosing terms.
 3. Name the documents created, edited, or explicitly reviewed for this task.
 4. After a code or config change, search docs for each identifier, flag, recipe, and number it
@@ -32,8 +34,13 @@ exact scope.
 - Repository instructions name the shared-language file; third-party skills may call it
   `GLOSSARY.md`.
 - Reading or summarizing Markdown does not authorize rewriting it.
-- Plans are in scope. Mark a superseded decision with its decision-log reference; never delete it.
-- Prompt files sent to models are out of scope; `~/.agents/references/prompting.md` owns their rules.
+- Plans are in scope. Mark consequential superseded decisions with their successor and retain
+  discoverable rationale.
+- Remove obsolete operational guidance within authorized scope; ordinary editorial history needs no
+  permanent duplicate.
+- Read `~/.agents/references/memory.md` before retiring agreements or proposing ADRs.
+- Prompt files sent to models are out of scope; `~/.agents/references/prompting.md` owns their
+  rules.
 - For `AGENTS.md` and `SKILL.md`, use `agents-md` and `agent-skills-creator` respectively.
 - Preserve generated, vendored, and frozen historical files; use their owning process instead.
 - If scope or ownership is unclear, ask before expanding it.
@@ -56,10 +63,14 @@ exact scope.
 
 - During authorized editing, fix organization, duplication, clarity, and verified inaccuracies
   without another cosmetic approval round.
-- Preserve every unique item from the inventory, either in place or at an approved linked
-  destination.
-- Correct stale claims explicitly; retain necessary historical context rather than silently erasing
-  earlier agreements.
+- Preserve unique current facts, qualifications, safety conditions, and consequential rationale in
+  place or at their approved owner.
+- Account for retired material explicitly; do not preserve obsolete instructions as current
+  guidance.
+- Correct stale claims explicitly; retain necessary historical context without making every old
+  instruction permanent.
+- Check comments beside changed code for stale intent; preserve still-relevant constraints and
+  explain uncertainty.
 - Combine repeated facts only when no distinct condition or meaning is lost.
 - Keep unchanged text when no useful improvement is supported.
 - Use `ghostwriter` for prose when available; otherwise follow the repository's writing conventions.

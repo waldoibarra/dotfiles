@@ -1,19 +1,19 @@
 # Agent UI design tools
 
-Read this before choosing a design-to-code workflow. Use
-[OpenPencil](https://github.com/open-pencil/open-pencil) when you need an editable design file:
-its CLI supports file-based inspection, editing and export without an agent-specific integration.
+**Choice:** Use [OpenPencil](https://github.com/open-pencil/open-pencil)
+when you need an editable design file.
+Its CLI inspects, edits, and exports files without an agent-specific integration.
 
-The requirements are an open-source preference, support across coding agents, and a design the
-agent can use as an implementation reference. CLI access avoids making MCP support a prerequisite.
+The requirements favor open source, cross-agent support, and designs usable as implementation references.
+CLI access does not require MCP support.
 
 ## Managed installation
 
 [Tooling](/docs/tooling.md#openpencil) assigns the desktop app to Homebrew and the CLI/MCP packages
 to Mise. Installing the packages does not register an MCP server with every coding agent.
 
-Use the CLI directly. This repository has no `open-design` recipe or tracked design document;
-project-specific launch commands and `.fig` files belong to their respective projects.
+Use the CLI directly. This repository has no `open-design` recipe or tracked design document.
+Keep project-specific launch commands and `.fig` files in their respective projects.
 
 ## Inspect and render
 
@@ -25,9 +25,10 @@ openpencil tree "$DESIGN_FILE" --json
 openpencil export "$DESIGN_FILE" --format png --font-policy strict --output /tmp/design-preview.png
 ```
 
-The export writes or replaces `/tmp/design-preview.png`. Strict font policy rejects unavailable
-fonts instead of silently accepting substitutions. Use node data, renders and extracted assets as
-implementation references; build responsive components rather than copying fixed-position output.
+The export writes or replaces `/tmp/design-preview.png`.
+Strict font policy rejects unavailable fonts instead of silently substituting them.
+Use node data, renders, and extracted assets as implementation references.
+Build responsive components instead of copying fixed-position output.
 
 [CLI import/export](https://openpencil.dev/reference/cli) supports HTML/CSS/Tailwind import and
 JSX/HTML export. It does not keep the design and application code synchronized.

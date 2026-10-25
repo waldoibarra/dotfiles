@@ -1,8 +1,8 @@
 # Pi live voice
 
-`pi-live-codex` uses `gpt-live-1-codex` for speech, independently of Pi's coding model. Voice names
-select how that model sounds. They do not select another coding or voice model. See
-[installation](installation.md) for package ownership and subscription authentication.
+**Models:** `pi-live-codex` uses `gpt-live-1-codex` for speech, independently of Pi's coding model.
+Voice names change its sound, not the coding or voice model.
+Read [installation](installation.md) before changing packages or subscription authentication.
 
 ## Commands and controls
 
@@ -17,8 +17,8 @@ select how that model sounds. They do not select another coding or voice model. 
 | `pi --continue` | Resumes a saved coding session; it does not establish voice-context recovery. |
 
 `/live` is a toggle, not an in-session voice-change command. A stopped session is needed before
-starting another voice. The extension's prompt requests silence on connection, so silence before
-the first spoken question does not by itself indicate failure.
+starting another voice. The extension's prompt requests silence on connection.
+Silence before the first spoken question does not by itself indicate failure.
 
 ## Tested voices
 
@@ -40,20 +40,23 @@ Spruce is Waldo's manual choice. The installed extension hardcodes Sol for bare 
 and its controller fallback. It has no supported default-voice setting. A patch to change that
 was declined; package updates must retain the unmodified upstream behavior.
 
-No reliable age, gender, or per-voice accent catalog was established for this model. Changing text
-wording or claiming a British accent in a reply did not prove a change in audible delivery.
+No reliable age, gender, or per-voice accent catalog was established for this model.
+Changing text wording or claiming a British accent did not prove a change in audible delivery.
 
 ## Misleading autocomplete and access errors
 
-The extension suggests Sol plus the public Realtime names Alloy, Ash, Ballad, Cedar, Coral, Echo,
-Marin, Sage, Shimmer, and Verse. Several working Codex voices are absent from autocomplete, but
-the command handler passes explicit names through to `audio.output.voice`.
+The extension suggests Sol and public Realtime names.
+Those names are Alloy, Ash, Ballad, Cedar, Coral, Echo, Marin, Sage, Shimmer, and Verse.
+Several working Codex voices are absent from autocomplete.
+The command handler passes explicit names through to `audio.output.voice`.
 
-An attempt with Ash showed `Voice session access denied`. Waldo reported the same error with other
-suggested alternatives, but the full set of failed names was not recorded. Sol and the eight other
-confirmed voices worked. The error alone does not establish a Sol-only account restriction or
-identify an authentication failure. A known-working voice is the useful comparison before changing
-anything else; persistent rejection needs diagnosis without a billing fallback.
+An attempt with Ash showed `Voice session access denied`.
+Waldo reported the same error with other suggested alternatives.
+The full set of failed names was not recorded. Sol and the eight other
+confirmed voices worked.
+The error does not establish a Sol-only restriction or identify an authentication failure.
+Compare with a known-working voice before changing anything else.
+Diagnose persistent rejection without a billing fallback.
 
 [OpenAI Codex source](https://github.com/openai/codex/blob/main/codex-rs/protocol/src/protocol.rs)
 groups the nine confirmed names separately from public Realtime voices. An

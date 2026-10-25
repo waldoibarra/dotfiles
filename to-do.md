@@ -1,25 +1,39 @@
-# TO DO
+# Tooling ideas
 
-## Improvements
+**Purpose:** Unapproved improvement candidates, not an execution backlog.
+Check current configuration and existing plans before treating an older observation as unresolved.
 
-- Mise threw an error about GitHub API rate limit for artifact attestations, this on a fresh
-  MacOS machine.
-- AWS profile is hardcoded to `waldo` on `.zprofile`.
-- AWS credentials are not managed.
-- Pimp the top screen bar (can't remember the tool name, but I think it's on the git history).
-- Add Hermes installation?
-  `curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash -s -- --non-interactive --skip-setup`,
-  then `npx playwright install` on the hermes dir.
-- Improve my dotfiles, get inspiration from this other [dotfiles repo](https://github.com/davidarny/dotfiles/tree/main).
-- Research best option for AI models to browse the web with a browser or something similar?
-  Read [browser and OAuth investigation](/.agents/spikes/browser-access-and-google-oauth.md)
-  before approving a pilot; implementation remains pending.
-- Make my models study my courses for me, start with Clief notes.
-  Read [course/media possibilities](/.agents/spikes/browser-access-and-google-oauth.md#course-video-and-saved-media-workflow)
-  before choosing the first source.
-- Check Higgsfield and alternatives to create videos.
-- Create a test influencer profile and content, monetize it.
-- Setup agent to assist on a group call when asked questions.
-- Pin a message on coding agents. So that you can see a list while working on each one at a time.
-- Render pasted images on Claude Code.
-- Sub-agents doing a lot of work, each thing they do is not expandable on click.
+## Workstation
+
+- Investigate the reported GitHub artifact-attestation rate-limit error during a fresh macOS Mise setup.
+- Review the hardcoded AWS profile `waldo` in `.zprofile`.
+  An earlier note reports unmanaged AWS credentials; verify the current state before changing it.
+  Keep credentials outside tracked configuration.
+- Clarify the intended top-screen-bar tool before changing it; its name remains unknown.
+- Review [this dotfiles repository](https://github.com/davidarny/dotfiles/tree/main) for useful,
+  scoped improvements.
+
+## Agent tools
+
+- Evaluate Hermes installation before running its installer or adding browser dependencies.
+  The earlier candidate commands were:
+
+  ```sh
+  curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash -s -- --non-interactive --skip-setup
+  npx playwright install
+  ```
+
+  Run the second command from the Hermes directory only after installation and execution approval.
+- Read [browser investigation](/.agents/spikes/browser-access-and-google-oauth.md) before approving
+  a browser pilot.
+  Implementation remains pending.
+- Explore pinned-message support for coding agents and image rendering in Claude Code.
+- Investigate sub-agent tool details that cannot expand on click.
+
+## Explorations
+
+- Read [course/media possibilities](/.agents/spikes/browser-access-and-google-oauth.md#course-video-and-saved-media-workflow)
+  before choosing the first learning source; Clief notes were the initial candidate.
+- Compare Higgsfield with alternatives for video creation.
+- Evaluate a test influencer profile and monetization without treating the idea as publication approval.
+- Explore an agent assisting a group call when explicitly asked questions.

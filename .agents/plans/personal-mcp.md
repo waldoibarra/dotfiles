@@ -2,7 +2,7 @@
 
 ## Current status
 
-The personal Google Sheets MCP is retired at the user's request.
+**Active boundary:** The personal Google Sheets MCP is retired at the user's request.
 Its launcher, Dotbot mapping, dedicated tests, and setup guide are removed.
 The installed launcher link and empty personal OAuth directories are removed.
 No Sheets entry remains in the normal Claude, Pi, Cursor, or shared MCP configurations.
@@ -11,7 +11,7 @@ MCP and harness fixtures pass, with their opt-in checks skipped; repository lint
 Historical Sheets decisions and research below remain evidence, not instructions to reactivate it.
 No Google authorization grant is revoked by local file removal.
 
-## Outcome
+## Active Context7 outcome
 
 Pi and Claude Code use one credential-free personal MCP source under `~/.agents/`.
 Verify real public-documentation calls, not just configuration or process startup.
@@ -112,9 +112,15 @@ Inspect conflicting user entries manually; do not force replacement during sync.
 - MCP configuration is installed and verified; this plan preserves the fresh-session handoff.
 - No work-only MCP configuration, credentials, other-agent changes, or pending cleanup were included.
 
-## Google Sheets extension: preparation
+## Historical Google Sheets record
 
-Personal Google Sheets setup is authorized; company configuration remains untouched.
+**Historical scope:** The following sections record past preparation, provider trials, and restoration.
+They are not current authorization.
+Sheets reactivation requires a new explicit request. Read [Next session](#next-session) before resuming.
+
+### Google Sheets extension: preparation
+
+At this stage, personal Google Sheets setup was authorized; company configuration remained untouched.
 The user selected personal OAuth and then confirmed Sheets-only scope.
 The earlier service-account recommendation is superseded by that explicit selection.
 
@@ -148,12 +154,13 @@ Implementation plan:
    Allow only `get_sheet_data`, `get_sheet_formulas`, `list_sheets`, `update_cells`, `batch_update`,
    `create_spreadsheet`, and `copy_sheet`. Raw batch updates include destructive spreadsheet operations.
 6. Add `google-sheets-personal` to the shared manifest; preserve Context7 and the registration adapter.
-   Add tests first: missing/malformed OAuth, hostile inherited credentials, work-directory rejection,
-   symlink rejection, exact launch command/environment, private state permissions, and Dotbot linkage.
+   Add tests first for missing/malformed OAuth, hostile inherited credentials, and work-directory rejection.
+   Cover symlink rejection, exact launch command/environment, private state permissions, and Dotbot
+   linkage.
 7. Run isolated fixtures, package tool-discovery checks, and an independent implementation audit.
    Apply only the new Dotbot link and targeted Claude registration; never run a full workstation sync.
-8. Document Desktop OAuth setup, full Sheets/Drive scopes, and testing-mode token expiration,
-   one-client-at-a-time first login, startup guard limits, rollback, and incomplete live verification.
+8. Document Desktop OAuth setup, full Sheets/Drive scopes, and testing-mode token expiration.
+   Cover one-client-at-a-time first login, startup guard limits, rollback, and incomplete live verification.
    Keep sign-in user-driven; do not create Google resources or inspect existing private credentials.
 9. Verify both clients against a disposable personal spreadsheet after credentials become available.
    Chart creation needs write access; no real spreadsheet changes are authorized by configuration alone.
@@ -182,7 +189,7 @@ Implementation plan:
 - No full updater, workstation sync, company configuration change, or Google resource write occurred.
 - Simultaneous token refresh remains unverified; upstream token writes are unsynchronized.
 
-### Native sign-in replacement: pending provider approval
+### Native sign-in replacement: historical pending approval
 
 The user rejected manual OAuth JSON provisioning after installation. Do not continue that setup.
 The local launcher and registrations remain installed until a replacement is selected and applied.
@@ -211,7 +218,7 @@ before assuming the official extension supports Sheets writes.
 Read [Composio Connect](https://docs.composio.dev/docs/composio-connect) before configuring the endpoint.
 Read [Sheets tools](https://docs.composio.dev/toolkits/googlesheets) before retrieving chart schemas.
 
-Provider approval remains pending:
+At this stage, provider approval remained pending:
 
 - Composio would handle Google authorization and process accessed spreadsheet data.
 - The endpoint exposes general app-discovery and remote-execution tools, not a Sheets-only allowlist.
@@ -228,7 +235,8 @@ This is research authorization, not approval to purchase, connect another provid
 Verified published [Composio pricing](https://composio.dev/pricing):
 
 - Hobby is $0, requires no card, and pauses at its limits.
-- Managed OAuth apps receive up to 20,000 calls and 10,000 trigger events monthly within the free allowance.
+- Managed OAuth apps receive up to 20,000 calls monthly within the free allowance.
+  They also receive 10,000 trigger events monthly.
 - Pro is $29 monthly, including $29 usage credit; managed-call overage is $0.0005 per call.
 - Own-app/API-key/MCP usage has 100,000 free calls; do not promise this for managed Google OAuth.
 - Sandbox, proxy, Instant Tools, and other add-ons may introduce separate costs.
@@ -261,10 +269,12 @@ The requested reference connector remains unidentified; ask rather than substitu
 Charting, company integration, and other app connections remain out of scope.
 
 1. Independently review this replacement plan, then add failing project-scope fixtures.
-2. Add `home/.agents/google-sheets.mcp.json` containing only `google-sheets-personal`:
-   `type: http`, `url: https://connect.composio.dev/mcp`; no credentials, headers, or paid settings.
-3. Dotbot links that source to both files inside `~/projects/personal/google-sheets`:
-   `.mcp.json` for Claude Code and `.pi/mcp.json` for Pi. Global Context7 remains unchanged.
+2. Add `home/.agents/google-sheets.mcp.json` containing only `google-sheets-personal`.
+   Use `type: http` and `url: https://connect.composio.dev/mcp`.
+   Include no credentials, headers, or paid settings.
+3. Dotbot links that source inside `~/projects/personal/google-sheets`.
+   The destinations are `.mcp.json` for Claude Code and `.pi/mcp.json` for Pi.
+   Global Context7 remains unchanged.
 4. Remove the superseded global Sheets manifest entry, launcher, launcher link declaration,
    launcher-only tests, and launcher assertions. Preserve generic registration/link regression coverage.
 5. Test both project paths resolve to one canonical file; no global manifest contains Sheets.
@@ -273,8 +283,8 @@ Charting, company integration, and other app connections remain out of scope.
    Refuse conflicting destinations. Do not run the full installer or updater.
 7. Main inspects and removes only the old `google-sheets-personal` Claude user registration.
    Main removes only the verified old launcher symlink; never delete OAuth files or other private state.
-8. Document starting either client from the personal workspace, trusting project configuration,
-   using `/mcp` for authentication, then authorizing only Google Sheets when requested.
+8. Document starting either client from the personal workspace and trusting project configuration.
+   Cover `/mcp` authentication and authorizing only Google Sheets when requested.
    Composio signup and Google consent remain user-driven; neither agent should enable paid services.
 9. Verify configuration and OAuth discovery without registering OAuth clients or signing in.
    Authenticated tool availability and spreadsheet editing remain pending user login.
@@ -285,7 +295,7 @@ Published free-platform limits do not establish exact personal Connect quotas; n
 Projects outside the personal workspace do not load this project manifest.
 Reusing an already-running personal session in another directory is not an isolation boundary.
 
-### Pi-only immediate trial
+### Pi-only immediate trial (historical)
 
 - The user prioritized testing Pi immediately; the supplied screenshot identified a Claude-hosted connector.
 - Added `.pi/mcp.json` with a project override for `google-sheets-personal` at Pipedream's native endpoint.
@@ -306,7 +316,7 @@ The documented personal OAuth path requires a one-time Google Cloud Desktop OAut
 Browser consent follows that setup; it is not native remote `/mcp` authentication.
 This clarification did not change installed configuration or authorize Google resource creation.
 
-### Authorized local restoration and harness improvement
+### Authorized local restoration and harness improvement (completed)
 
 The user accepted the local server and requested implementation, documentation, and harness improvements.
 No further provider selection is needed. Personal OAuth consent remains a user action.
@@ -324,8 +334,8 @@ Implementation and verification:
    Keep charts, hosted providers, work configuration, and new authentication frameworks out of scope.
 5. Add a short personal/open-source integration rule under the existing shared Harness design section.
    Establish hosting, license, costs/quotas, authentication effort, operations, and client scope first.
-   Check existing/first-party options, distinguish hosted account connectors from portable servers,
-   and recommend one compatible option instead of installing successive mismatched alternatives.
+   Check existing/first-party options and distinguish hosted account connectors from portable servers.
+   Recommend one compatible option instead of installing successive mismatched alternatives.
    Ask only about unresolved constraints; existing answers carry forward.
    Verify actual interfaces; distinguish configuration, authentication, and successful operations.
 6. Extend `docs/coding-agents/personal-workflow.md` with synthetic acceptance cases for those failures.
@@ -342,10 +352,12 @@ Exact verification contract:
 
 - Red: the project-override regression fails while the Pipedream override exists.
   The missing-client error regression fails until it includes the expected client path.
-- Green: `python3 scripts/tests/test-personal-google-sheets.py`,
-  `python3 scripts/tests/test-personal-mcp.py`, and `python3 scripts/tests/test-agent-harness.py` pass.
+- Green: `python3 scripts/tests/test-personal-google-sheets.py` and
+  `python3 scripts/tests/test-personal-mcp.py` pass.
+  `python3 scripts/tests/test-agent-harness.py` passes too.
 - `MCP_SHEETS_PACKAGE_CHECK=1 python3 scripts/tests/test-personal-google-sheets.py` passes
-  with real upstream tool discovery and ADC rejection; it never starts OAuth or calls Google.
+  with real upstream tool discovery and ADC rejection.
+  It never starts OAuth or calls Google.
 - `just lint`, `markdownlint-cli2 - < home/.agents/AGENTS.md`, and `git diff --check` pass.
 - Main checks installed links and the named Claude registration as configuration only.
   Do not run normal-profile `pi mcp list` or `claude mcp get`, which connect servers.
@@ -402,13 +414,13 @@ before approving a pilot. It recommends Playwright MCP's extension, with Chrome 
 Browser session reuse is explicitly distinguished from native remote OAuth.
 No integration, authentication, or work configuration changed during that research.
 
-### OAuth onboarding blocker
+### OAuth onboarding blocker (historical)
 
 The user reports required app links and verification prompts, and rejects the setup effort.
 The exact console state remains unknown; general testing exemptions do not resolve that observed blocker.
 Do not continue insisting that the fields are optional or imply the integration is authenticated.
 
-Alternatives under discussion, not approved:
+Alternatives discussed at this stage, not approved:
 
 - Recommended: the same local MCP with a service account and explicitly shared spreadsheets.
   It avoids the OAuth consent-screen flow but still requires a service-account JSON key.

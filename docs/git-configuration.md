@@ -1,8 +1,8 @@
 # Git configuration
 
-Read this before changing Git identity, signing, aliases or shared defaults.
-Dotbot links [home/.gitconfig](/home/.gitconfig) to `~/.gitconfig`; it includes the untracked
-`~/.gitconfig.local` first.
+**Ownership:** Dotbot links [home/.gitconfig](/home/.gitconfig) to `~/.gitconfig`.
+Read this before changing Git identity, signing, aliases, or shared defaults.
+The linked file includes untracked `~/.gitconfig.local` first.
 
 Shared defaults use `main`, delta paging, `zdiff3` merge conflicts and fetch pruning.
 Identity and signing keys belong in local files, not this repository.
@@ -26,9 +26,9 @@ For GPG signing, add your key and enable signing in that same file:
     gpgsign = true
 ```
 
-Find `YOUR_GPG_KEY_ID` with `gpg --list-secret-keys --keyid-format=long`; use the long hexadecimal
-ID after `/` on the `sec` line. The Brewfile supplies `gnupg`; the shared config selects `gpg` but
-does not enable signing.
+Find `YOUR_GPG_KEY_ID` with `gpg --list-secret-keys --keyid-format=long`.
+Use the long hexadecimal ID after `/` on the `sec` line.
+The Brewfile supplies `gnupg`; shared config selects `gpg` but does not enable signing.
 
 For directory-specific identities, put a conditional include **after** the local defaults:
 
@@ -42,8 +42,8 @@ Later values win for these settings. The tracked shared file has no conditional 
 
 ## Branch diff aliases
 
-Each alias fetches first and stops on fetch failure. It compares from the merge base with
-`origin/main`, excluding changes made only on main after the branch diverged.
+Each alias fetches first and stops on fetch failure. It compares from the merge base with `origin/main`.
+Changes made only on main after divergence are excluded.
 
 | Command | Output | Compared with |
 | --- | --- | --- |
@@ -52,7 +52,8 @@ Each alias fetches first and stops on fetch failure. It compares from the merge 
 | `git db` | Full diff | Working tree, including staged and unstaged tracked changes |
 | `git dbc` | Full diff | `HEAD` |
 
-Untracked files are excluded. These aliases require an `origin/main` ref and remote access.
+Untracked files are excluded.
+These aliases require an `origin/main` ref and remote access.
 
 ## Branch cleanup aliases
 

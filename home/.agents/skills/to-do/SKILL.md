@@ -2,7 +2,8 @@
 name: to-do
 description: >-
   Adds personal manual tasks to the shared life to-do list with an assignee and duplicate checks.
-  Use when asked to add a pending task, put something on our shared to-do, or record a personal task.
+  Use when asked to add a pending task or put something on our shared to-do.
+  Also use when asked to record a personal task.
   Not for coding checklists, issue trackers, scheduled reminders, or performing the recorded task.
 ---
 

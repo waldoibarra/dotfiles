@@ -10,8 +10,9 @@ Do not open personal roadmaps, family project maps, or private personal evidence
 requested.
 Cross-repository company work remains company-scoped; it does not require personal planning context.
 
-**Personal sessions:** Read `~/.agents/harness-roadmap.md` before prioritizing personal harness
-improvements.
+**Personal sessions:** Read the navigation section of `~/.agents/harness-roadmap.md` before
+prioritizing harness improvements.
+Follow only the relevant current section; do not load the full historical roadmap by default.
 Read the repository map linked from `~/life/README.md` when locating a personal or family project.
 
 **Unclear scope:** Ask before reading private plans. Never infer scope from the client or model.

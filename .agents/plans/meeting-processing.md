@@ -1,10 +1,14 @@
 # Meeting processing plan
 
+**Navigation:** Read [decisions](#decisions) before approving implementation.
+Read [proposed contract](#proposed-contract) before designing the trial.
+Read [stop conditions](#stop-conditions-and-recovery) before handling meeting evidence.
+
 **Status:** Reviewed scope; implementation remains unapproved. This task delivers the plan, not a
 skill or integration.
 
-**Goal:** Reduce meeting rereading and mistaken assignments, supporting faster decisions and
-useful delegation without expanding global instructions.
+**Goal:** Reduce meeting rereading and mistaken assignments.
+Support faster decisions and useful delegation without expanding global instructions.
 
 **Priority:** Retain as a candidate. Cursor setup and a bounded ticket trial come first.
 Shared-role validation remains follow-through, not a prerequisite for retaining meeting evidence.
@@ -97,8 +101,8 @@ evaluation references before authoring.
 
 ### 2. Trial the smallest skill
 
-- Add proposed `home/.agents/skills/meeting-processing/SKILL.md` and `evals/evals.json`; start
-  without scripts or bundled references.
+- Add proposed `home/.agents/skills/meeting-processing/SKILL.md` and `evals/evals.json`.
+  Start without scripts or bundled references.
 - Encode only meeting-specific interpretation and routing; refer to existing authority rules
   instead of duplicating their policy.
 - Extend `scripts/tests/test-agent-harness.py` for identical delivery to both skill directories in
@@ -185,8 +189,8 @@ native credentials untouched.
 
 ## Handoff
 
-**Notes:** Create `.agents/plans/meeting-processing.notes.md` only during implementation, with
-Deviations and How the run ended sections.
+**Notes:** Create `.agents/plans/meeting-processing.notes.md` only during implementation.
+Include Deviations and How the run ended sections.
 
 **Discovery:** Index the notes in `.agents/README.md` when created; link them here without
 duplicating their outcomes.

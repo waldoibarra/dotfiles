@@ -1,8 +1,8 @@
 # Pi configuration
 
-Tracked preferences live under [`home/.pi/agent`](../../../home/.pi/agent). Dotbot links each JSON
-file into the normal profile. The profile directory stays real; credentials and runtime data do
-not enter the repository.
+**Ownership:** Tracked preferences live under [`home/.pi/agent`](../../../home/.pi/agent).
+Dotbot links each JSON file into the normal profile.
+The profile directory stays real; credentials and runtime data stay outside the repository.
 
 ## Managed files
 
@@ -25,18 +25,19 @@ not enter the repository.
 
 The coding defaults are `defaultProvider: "openai-codex"`, `defaultModel: "gpt-6-astra"`,
 and `compaction.enabled: true`. Package declarations include voice, the subagent runner following `latest`,
-and `git:github.com/waldoibarra/pi-lens@latest` with empty skill and prompt filters. Edit the
-tracked sources for persistent preferences and package declarations. Pi's settings writer follows
-the symlink, so changes through Pi's UI or package commands can also change the repository. Review
-those diffs before committing. Keep secrets and machine-specific values out of linked files. There
-is no Pi merge layer or managed-copy step. Dotbot's normal backup behavior applies when it replaces
-existing local files with links.
+and `git:github.com/waldoibarra/pi-lens@latest` with empty skill and prompt filters.
+Edit tracked sources for persistent preferences and package declarations.
+Pi's settings writer follows the symlink; UI or package commands can change the repository.
+Review those diffs before committing.
+Keep secrets and machine-specific values out of linked files.
+There is no Pi merge layer or managed-copy step.
+Dotbot's normal backup behavior applies when it replaces existing local files with links.
 
 Read [Lens compatibility](/docs/agent-integrations.md#pi-lens) before relying on Lens after a Pi upgrade.
 
-Authentication, sessions, caches, native binaries, and voice locks are separate and stay outside
-Git. They are not linked, copied, or removed by this configuration step.
-[Installation and sync](installation.md) describes package reconciliation.
+Authentication, sessions, caches, native binaries, and voice locks stay outside Git.
+This configuration step does not link, copy, or remove them.
+Read [installation and sync](installation.md) before reconciling packages.
 
 ## Laptop image rendering
 
@@ -99,8 +100,9 @@ Requests beyond the previous 272,000-token catalog limit were not tested against
 backend. Client metadata and published model capacities do not prove backend acceptance at the
 maximum window.
 
-The integration retains the tested overrides. Recheck native Pi support and current model
-specifications when changing them. New model IDs do not inherit these values automatically.
+The integration retains the tested overrides.
+Recheck native Pi support and model specifications before changing them.
+New model IDs do not inherit these values automatically.
 
 ## Keybindings
 
@@ -142,12 +144,12 @@ Read [personal MCP setup](../mcp.md) before changing servers or testing shared c
   and [compaction settings](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/compaction.md#per-model-overrides).
 - [Pi keybindings](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/keybindings.md).
 - Model capacity references inspected during the trial:
-  [GPT-5.5](https://developers.openai.com/api/docs/models/gpt-5.5),
-  [GPT-5.6 Luna](https://developers.openai.com/api/docs/models/gpt-5.6-luna),
-  [Sol](https://developers.openai.com/api/docs/models/gpt-5.6-sol),
-  [Terra](https://developers.openai.com/api/docs/models/gpt-5.6-terra),
-  [GPT-6 Astra](https://developers.openai.com/api/docs/models/gpt-6-astra),
-  [Luna](https://developers.openai.com/api/docs/models/gpt-6-luna),
-  [Sol](https://developers.openai.com/api/docs/models/gpt-6-sol),
-  [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), and
-  [Spark](https://openai.com/index/introducing-gpt-5-3-codex-spark/).
+  - [GPT-5.5](https://developers.openai.com/api/docs/models/gpt-5.5).
+  - [GPT-5.6 Luna](https://developers.openai.com/api/docs/models/gpt-5.6-luna).
+  - [Sol](https://developers.openai.com/api/docs/models/gpt-5.6-sol).
+  - [Terra](https://developers.openai.com/api/docs/models/gpt-5.6-terra).
+  - [GPT-6 Astra](https://developers.openai.com/api/docs/models/gpt-6-astra).
+  - [Luna](https://developers.openai.com/api/docs/models/gpt-6-luna).
+  - [Sol](https://developers.openai.com/api/docs/models/gpt-6-sol).
+  - [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol).
+  - [Spark](https://openai.com/index/introducing-gpt-5-3-codex-spark/).

@@ -46,7 +46,9 @@ Read dependencies before using their guidance; report missing dependencies befor
     evidence.
   - Load only references relevant to the selected mode.
 - Use `domain-modeling` only when terms or domain relationships need resolution.
-  - Reuse existing vocabulary; do not create a glossary merely because a skill is being edited.
+  - Read the owning repository's glossary; add missing grounded definitions during authorized
+    repository maintenance.
+  - Keep the repository glossary canonical; do not create a glossary inside every skill bundle.
 - Read `shell-scripting` when changing bundled shell code.
 - Inspect optional `skill-creator` utilities and their interfaces before use.
   - Do not adopt its whole orchestration loop alongside the existing authoring owner.

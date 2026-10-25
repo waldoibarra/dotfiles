@@ -1,27 +1,28 @@
 # Pi workstation trial notes
 
-Running record of Waldo's configuration decisions, observed behavior, and adoption requirements.
-Read these notes before continuing the trial or proposing dotfiles integration. Read the
-[trial plan](pi-live-codex-trial.md) before voice testing; the deviations below supersede its
-installation and version-pinning instructions for this run.
+**Purpose:** This running record preserves Waldo's decisions, observed behavior, and adoption requirements.
+Read these notes before investigating trial history or proposing further integration changes. Read
+the [trial plan](pi-live-codex-trial.md) before voice testing.
+The deviations below supersede its installation and version-pinning instructions for this run.
 
 This is a versioned trial record. Never record credentials, device codes, callback URLs, or raw
 private audio here.
 
-**Current direction:** Waldo has requested Phase 5 integration through `dots` and maintained
-documentation using Ghostwriter. The [integration summary](pi-dotfiles-integration-summary.md)
-consolidates the configuration, trial results, accepted limitations, and remaining implementation
-decisions. Earlier statements below withholding adoption describe the decisions at those points
-in the trial. Phase 5 is now implemented and applied through a successful `dots` run. Maintained
-setup and limitation documentation lives in the [Pi guides](../../docs/coding-agents/pi/README.md).
-See the Phase 5
-verification record below; no fresh microphone test was run during provisioning.
+**Current outcome:** Phase 5 is implemented and applied through a successful `dots` run.
+Read [Pi guides](../../docs/coding-agents/pi/README.md) for setup and limitations.
+Read [integration summary](pi-dotfiles-integration-summary.md) for trial results and accepted limitations.
+Read [Phase 5 verification](#phase-5-implementation-and-verification) for observed provisioning checks.
+No fresh microphone test ran during provisioning.
+
+**Historical scope:** Earlier statements withholding adoption describe past decisions.
+Their pending implementation instructions are not current authorization.
 
 ## Live chat close error
 
-User-reported observation for Waldo review: closing a live chat produced the exact error
-`Error: Context append text must not exceed 500 tokens.` Cause, affected versions, reproduction
-steps, and remediation are unknown. This note records the report only; no diagnosis, fix, or
+**User report:** Closing a live chat produced this exact error:
+`Error: Context append text must not exceed 500 tokens.`
+Cause, affected versions, reproduction steps, and remediation are unknown. This note records the
+report only; no diagnosis, fix, or
 additional live-chat test was performed.
 
 ## Configuration ownership correction
@@ -29,7 +30,8 @@ additional live-chat test was performed.
 Waldo rejected the speculative merge layer (YAGNI), then questioned whether Pi needed the
 managed-copy exception at all. The final implementation uses native Dotbot links for settings,
 models, and keybindings. Pi was removed from the copy list. Its native settings writer was tested
-against a disposable symlink: it updates the target without replacing the link. Pi UI edits can
+against a disposable symlink.
+It updates the target without replacing the link. Pi UI edits can
 therefore change tracked configuration, which should be reviewed before committing.
 
 Credentials, sessions, and locks remain separate and untouched. The custom merge helper, its test
@@ -43,9 +45,10 @@ Native installers do not modify Pi's JSON settings. Herdr requires the extension
 exist; the updater creates them only when needed. No custom extension code was added.
 
 Verification: isolated fresh and repeated installs passed without changing JSON settings. Native
-Herdr extensions reported lifecycle/session events to a test socket; RTK's native Pi tool handler
-rewrote `git status` to `rtk git status`. The real `dots` run completed with exit status 0, installed
-the extensions, and replaced the previous Pi copies with links using Dotbot backups. Herdr reports
+Herdr extensions reported lifecycle/session events to a test socket.
+RTK's native Pi tool handler rewrote `git status` to `rtk git status`.
+The real `dots` run completed with exit status 0 and installed the extensions.
+It replaced previous Pi copies with links using Dotbot backups. Herdr reports
 Pi v9 and OMP v10 current; RTK's subsequent Pi dry run has no changes. Pi's offline resource loader
 loads voice, RTK, and Herdr without errors. Pi authentication and OMP configuration checksums remain
 unchanged. Live Herdr pane rendering and new microphone interaction were not tested.
@@ -56,8 +59,8 @@ commit/push occurred during the final sync. Restart Pi and OMP to load the new i
 
 ## Decisions and deviations
 
-- Waldo chose his **normal workstation environment and normal Pi profile**, not the isolated trial
-  workspace or a separate `PI_CODING_AGENT_DIR`.
+- Waldo chose his **normal workstation environment and normal Pi profile**.
+  He did not choose the isolated trial workspace or a separate `PI_CODING_AGENT_DIR`.
 - Install globally through **mise**, using **`latest` rather than pinned versions**. The voice package
   likewise uses the unversioned `npm:pi-live-codex` declaration, resolving to the latest release.
 - Waldo explicitly accepted the incidental change to the symlinked global mise configuration in the
@@ -65,8 +68,8 @@ commit/push occurred during the final sync. Restart Pi and OMP to load the new i
   integration, workstation sync, or a commit.
 - Preserve OMP, its configuration, and its credentials. Use existing subscription-backed Codex
   authentication; do not introduce API-key billing or purchase credits.
-- Keep recording configuration choices during testing so Waldo can review them another day and
-  decide what should become managed configuration after adoption.
+- Keep recording configuration choices during testing for Waldo's later review.
+  He can decide what becomes managed configuration after adoption.
 
 ## Installation and authentication baseline
 
@@ -78,22 +81,25 @@ mise use --global --fuzzy 'npm:@earendil-works/pi-coding-agent@latest'
 
 - npm's latest release at installation was Pi **1.0.4**. The saved version selector is `latest`.
 - Existing Node was **24.21.0**, selected through mise's `lts` declaration; no Node upgrade was made.
-- The global declaration is in `~/.config/mise/config.toml`, linked to the repository's
-  `home/.config/mise/config.toml`.
+- The global declaration is in `~/.config/mise/config.toml`.
+  That path links to the repository's `home/.config/mise/config.toml`.
 - `pi --version`, `pi --help`, and launch resolution in a fresh interactive Zsh shell succeeded.
-  The existing shell alias is `pi='caffeinate -i pi'`; it was not added or changed during this trial.
-- Waldo confirmed that the normal Pi TUI opens, he completed subscription login, selected a GPT
-  model, and received working text responses.
+  The existing shell alias is `pi='caffeinate -i pi'`.
+  It was not added or changed during this trial.
+- Waldo confirmed the normal Pi TUI opens and completed subscription login.
+  He selected a GPT model and received working text responses.
 - Normal-profile defaults are provider `openai-codex` and model `gpt-6-astra`.
-- The voice package is installed and its command/native bindings load. Waldo subsequently reported
-  a working spoken trial and a preference for Pi over OMP; see the manual results below.
+- The voice package is installed and its command/native bindings load.
+  Waldo subsequently reported a working spoken trial and preferred Pi over OMP.
+  See the manual results below.
 
 ## 1. fd dependency
 
 ### Observation and explanation
 
-Waldo reported Pi's startup message that `fd` was missing, followed by its download/installation
-into Pi's agent bin directory. The exact installation interaction was not observed by the assistant.
+Waldo reported Pi's startup message that `fd` was missing.
+Pi then downloaded/installed it into the agent bin directory. The exact installation interaction was
+not observed by the assistant.
 A subsequent direct check confirmed:
 
 ```text
@@ -102,13 +108,15 @@ fd 10.5.0
 ```
 
 `fd` searches for files and directories by name or pattern. It is a supporting CLI utility, not an
-agent or model, and is distinct from searching file contents. It respects `.gitignore` and skips
+agent or model.
+It differs from searching file contents. It respects `.gitignore` and skips
 hidden files by default. Pi's private executable does not by itself establish shell-wide availability.
 
 ### Adoption consideration
 
 Record Pi's dependency ownership explicitly when adopting it. The current working arrangement is
-Pi's own `~/.pi/agent/bin/fd`; no global mise or Homebrew `fd` declaration was added. Do not add a
+Pi's own `~/.pi/agent/bin/fd`.
+No global mise or Homebrew `fd` declaration was added. Do not add a
 second package owner merely because the initial startup needed this executable. On a fresh-machine
 smoke run, verify the dependency is available to Pi and startup no longer reports it missing.
 
@@ -116,22 +124,22 @@ smoke run, verify the dependency is available to Pi and startup no longer report
 
 ### Requested behavior
 
-Waldo wants each available OpenAI Codex model to use its maximum context capacity, rather than
-Pi's smaller default. He clarified that he meant approximately **one million**, not one billion,
+Waldo wants each available OpenAI Codex model to use its maximum context capacity.
+Pi's default is smaller. He clarified that he meant approximately **one million**, not one billion,
 tokens. This is a normal-profile preference, not yet a managed dotfiles feature.
 
 ### Findings
 
-- Pi's catalog and CLI initially reported **272,000** context tokens for `gpt-6-astra` and the other
-  larger Codex models below. Spark reported **128,000**.
+- Pi's catalog and CLI initially reported **272,000** context tokens for `gpt-6-astra`.
+  The other larger Codex models below had the same limit. Spark reported **128,000**.
 - OMP has an `extendedContext` boolean, already enabled in Waldo's global OMP configuration. Its
   description warns that larger windows can incur premium pricing. OMP was not changed.
 - Pi **1.0.4** has no equivalent toggle in its settings reference or built-in slash-command list.
   The actual `/settings` TUI was inspected; a `context` search found no matching settings.
 - Pi supports per-model metadata overrides in `~/.pi/agent/models.json`. Do not edit the generated
   `models-store.json` cache to express this preference.
-- OpenAI's model documentation lists **1,050,000** total context tokens and **128,000** maximum
-  output tokens for the eight expanded models. The GPT-5.6 and GPT-6 family pages additionally
+- OpenAI's model documentation lists **1,050,000** total context tokens for the eight expanded models.
+  Their maximum output is **128,000** tokens. The GPT-5.6 and GPT-6 family pages additionally
   specify **922,000** maximum input tokens.
 
 ### Applied configuration
@@ -154,8 +162,9 @@ Updated `~/.pi/agent/settings.json`:
 
 - `compaction.enabled: true`.
 - `compaction.modelOverrides["openai-codex/<model-id>"].reserveTokens: 128000` for each expanded model.
-- The resulting compaction threshold is above **922,000** context tokens, reserving output space
-  rather than treating the entire total window as input. This reserve also influences compaction
+- The resulting compaction threshold exceeds **922,000** context tokens.
+  It reserves output space instead of treating the entire window as input. This reserve also
+  influences compaction
   summary output limits; it is not solely a trigger threshold.
 - Existing provider/model defaults and unrelated settings were preserved.
 
@@ -175,8 +184,9 @@ Updated `~/.pi/agent/settings.json`:
 
 ### Context configuration adoption
 
-After explicit approval, preserve these model-window and per-model compaction preferences through
-safe individual files using existing dotfiles conventions. Re-evaluate whether the adopted Pi
+After explicit approval, preserve model-window and per-model compaction preferences in safe
+individual files.
+Use existing dotfiles conventions. Re-evaluate whether the adopted Pi
 version has gained a native extended-context setting before retaining manual overrides. Keep auth,
 sessions, caches, and machine-local data unmanaged; do not link or copy the entire `~/.pi/agent`
 directory. No dotfiles integration was made for this context configuration.
@@ -187,12 +197,12 @@ directory. No dotfiles integration was made for this context configuration.
   before changing model metadata or choosing a future replacement for the overrides.
 - Read [Pi compaction configuration](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/compaction.md#per-model-overrides)
   before adjusting the output reserve or threshold.
-- Read the OpenAI model specifications before changing maximum windows:
-  [GPT-5.5](https://developers.openai.com/api/docs/models/gpt-5.5),
+- Read the OpenAI model specifications before changing maximum windows.
+  For GPT-5, consult [GPT-5.5](https://developers.openai.com/api/docs/models/gpt-5.5),
   [GPT-5.6 Luna](https://developers.openai.com/api/docs/models/gpt-5.6-luna),
   [GPT-5.6 Sol](https://developers.openai.com/api/docs/models/gpt-5.6-sol),
-  [GPT-5.6 Terra](https://developers.openai.com/api/docs/models/gpt-5.6-terra),
-  [GPT-6 Astra](https://developers.openai.com/api/docs/models/gpt-6-astra),
+  [GPT-5.6 Terra](https://developers.openai.com/api/docs/models/gpt-5.6-terra).
+  For GPT-6, consult [GPT-6 Astra](https://developers.openai.com/api/docs/models/gpt-6-astra),
   [GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna),
   [GPT-6 Sol](https://developers.openai.com/api/docs/models/gpt-6-sol), and
   [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol).
@@ -204,8 +214,9 @@ directory. No dotfiles integration was made for this context configuration.
 ### Voice installation and source review
 
 Waldo asked the assistant to prepare the installation and leave actual voice testing to him.
-The npm latest release was still **pi-live-codex 0.1.9**, compatible with the installed Pi **1.0.4**
-and Node **24.21.0**. Installed without a version pin from outside the dotfiles checkout:
+The npm latest release was still **pi-live-codex 0.1.9**.
+It was compatible with installed Pi **1.0.4** and Node **24.21.0**. Installed without a version pin
+from outside the dotfiles checkout:
 
 ```sh
 env -u OPENAI_API_KEY mise exec -- pi install npm:pi-live-codex --no-approve
@@ -215,16 +226,17 @@ env -u OPENAI_API_KEY mise exec -- pi install npm:pi-live-codex --no-approve
 - `pi list` reports a user package, `npm:pi-live-codex`, at
   `~/.pi/agent/npm/node_modules/pi-live-codex`. Pi saved its declaration in the normal profile's
   `settings.json`; no project-local package declaration was created.
-- The package depends on `ws` **8.22.0** and `@oh-my-pi/pi-natives` **18.4.9**, with an optional
-  platform package providing the Apple Silicon binary. Those versions are upstream dependency
+- The package depends on `ws` **8.22.0** and `@oh-my-pi/pi-natives` **18.4.9**.
+  An optional platform package provides the Apple Silicon binary. Those versions are upstream dependency
   choices, not a pinned top-level trial package. No blanket build-script exception was added.
-- Source review covered the manifest, README, extension startup/command registration, native
-  loader, credential lookup, transport, attestation, and shared voice-lock location.
+- Source review covered the manifest, README, extension startup/command registration, and native loader.
+  It also covered credential lookup, transport, attestation, and shared voice-lock location.
 - Voice requests use Pi's `openai-codex` provider credential. No credential file was printed or
   copied. The setup/probe processes removed inherited `OPENAI_API_KEY` from their environments;
   the user's shell environment was not changed.
 - The transport uses experimental Codex Desktop signaling at
-  `https://chatgpt.com/backend-api/codex/realtime/calls` and an OpenAI live WebSocket sideband.
+  `https://chatgpt.com/backend-api/codex/realtime/calls`.
+  It also uses an OpenAI live WebSocket sideband.
   It identifies itself as Codex Desktop and attempts Apple DeviceCheck attestation on macOS arm64.
   This is the unmodified upstream implementation, not an officially supported public voice API.
 - The shared microphone lock is `~/.pi/pi-live-codex.lock`, outside the agent directory. Its
@@ -235,8 +247,9 @@ env -u OPENAI_API_KEY mise exec -- pi install npm:pi-live-codex --no-approve
 
 ### Observed voice load result
 
-- Loaded the native `AudioCapture`, `LiveWebRtcPeer`, and `deviceCheckGenerateToken` exports
-  successfully under Node, without constructing audio objects or calling attestation.
+- Loaded native `AudioCapture`, `LiveWebRtcPeer`, and `deviceCheckGenerateToken` exports
+  successfully under Node.
+  No audio objects were constructed, and attestation was not called.
 - Opened the actual Pi TUI with extensions enabled and unrelated discovery disabled. Startup
   listed `pi-live-codex`; typing `/li` showed the registered `/live` command.
 - Did **not** submit `/live`, open the microphone, connect voice to OpenAI, or send a model prompt.
@@ -296,39 +309,42 @@ quota measurement, repeated-trial count, or coding output was supplied.
 | Speech while the coding agent is working | Issue observed | Voice sometimes cut across his speech abruptly while coding work was in progress. |
 | Source of the abrupt interruption | Not verified | Waldo suspects the coding agent sends an update that causes the voice model to speak. The exact event and whether it is progress or completion are not established. |
 
-The reported spoken exchange establishes that basic live voice worked in this trial. It does not
-establish interruption reliability across repeated samples, correct handling of the replacement
-question, or verified concurrent coding results. Waldo subsequently confirmed mute/resume works:
+**Live result:** The reported spoken exchange establishes basic live voice worked in this trial.
+It does not establish interruption reliability across repeated samples or correct handling of the
+replacement question. Concurrent coding results also remain unverified. Waldo subsequently confirmed
+mute/resume works:
 muted speech was ignored and conversation resumed after pressing Space again. Record this as a
 user-reported pass, not an assistant-run microphone test. Queued delivery and cancellation were
 subsequently exercised; see the results and Waldo's acceptance decision below. One-question policy
 and subscription usage have not yet been reported. Voice stop/restart context recovery was
 subsequently tested by Waldo; see the result below.
 
-**Carry-forward issue:** preserve user speech when coding-work updates arrive. Keep it distinct from
-the small delay when the user interrupts playback; these are different directions of interruption.
+**Carry-forward issue:** Preserve user speech when coding-work updates arrive.
+This differs from the small delay when the user interrupts playback.
+These are different directions of interruption.
 No extension modification or specific remediation has been authorized. Positive initial preference
 is not approval for dotfiles adoption or OMP retirement.
 
 ### Voice-to-coding-agent handoff context
 
-Waldo reports that he had already confirmed mute/resume in spoken conversation, but the coding
-agent asked for confirmation again. He suspects the voice delegation omitted the surrounding
-conversation. Record this as a reported handoff-context issue, not a verified cause: the exact
-delegation payload was not inspected. Do not assume the coding agent receives the full spoken
+Waldo reports confirming mute/resume in spoken conversation.
+The coding agent asked for confirmation again.
+Waldo suspects the voice delegation omitted the surrounding conversation.
+Record this as a reported handoff-context issue, not a verified cause.
+The exact delegation payload was not inspected. Do not assume the coding agent receives the full spoken
 conversation. This is distinct from context loss after stopping/restarting voice. Mute/resume
 remains user-confirmed passed; the subsequent queue/cancellation results are recorded below.
 
-A subsequent handoff test produced a repeated clarification loop. Waldo discussed a monetization
-topic with voice, then repeatedly asked it to pass that context to the coding agent. The requests
-visible to the coding agent contained generic delegation instructions or the topic name, but not
-the discussion details. Waldo also reported that a delegated request differed from what he had
-actually said. No raw voice transcript or internal delegation payload was inspected, so do not
+**Handoff test:** A subsequent handoff produced a repeated clarification loop.
+Waldo discussed monetization with voice, then repeatedly requested a coding-agent handoff.
+The coding agent saw generic instructions or the topic name, not discussion details.
+Waldo also reported that a delegated request differed from what he had said. No raw voice transcript
+or internal delegation payload was inspected, so do not
 attribute the failure specifically to transcription, voice summarization, or transport.
 
-The practical failure is that relevant spoken context did not reach the coding agent despite
-repeated explicit requests. The earlier successful manual context handoff is not proof of reliable
-handoffs in both directions. The proposed Lantern recall test was inconclusive because its facts
+**Observed failure:** Relevant spoken context did not reach the coding agent despite repeated requests.
+The earlier successful manual handoff does not prove reliable handoffs in both directions. The
+proposed Lantern recall test was inconclusive because its facts
 already appeared in the coding conversation. Waldo requested documentation only and chose to move
 on: do not investigate, patch, or repeat this test without a new request.
 
@@ -337,10 +353,11 @@ on: do not investigate, patch, or repeat this test without a new request.
 Waldo now reports that `/live` delegation sends only his last spoken message, omitting earlier
 conversation. This is user-reported behavior; the exact payload and cause remain unverified.
 
-**Proposal:** have the voice model send transcript sections to the coding agent. Each section
-contains all conversation since the previous section was sent, including both speakers' turns in
-order—not just the latest request or a summary. The first section starts at the beginning of the
-voice session. This preserves the requirements, clarifications, and decisions behind delegated work.
+**Proposal:** Have the voice model send transcript sections to the coding agent.
+Each section contains conversation since the previous section was sent.
+Include both speakers' turns in order, not just the latest request or a summary.
+The first section starts at the beginning of the voice session. This preserves the requirements,
+clarifications, and decisions behind delegated work.
 
 - Include the unsent section when delegating. Whether to send context-only sections between
   delegations remains an open design question.
@@ -355,14 +372,15 @@ Idea only: documentation requested, not investigation, testing, or extension cha
 ### Queued delivery and cancellation trial
 
 Waldo reports speaking file-creation and cancellation requests while harmless 20- and 40-second
-waits were running. The coding agent received and executed the creation requests after the waits;
-cancellation requests reached it after the files already existed. This pattern repeated for
+waits were running. The coding agent received and executed creation requests after the waits.
+Cancellation requests reached it after the files already existed. This pattern repeated for
 `test-two.md`, `learned.obj`, and `content.obj`. All files were empty and created in a disposable
 temporary directory, not the repository. Completed creations were not undone or deleted.
 
-Evidence supports eventual delivery and execution of the tested creation requests. It does not
-locate the buffering layer (voice delegation versus coding-agent queue), establish exactly-once
-semantics generally, or prove pending delegations are technically impossible to cancel. No queue
+**Delivery evidence:** Tested creation requests were eventually delivered and executed.
+The buffering layer (voice delegation versus coding-agent queue) remains unknown.
+Neither exactly-once semantics nor impossibility of cancelling pending delegations was established.
+No queue
 trace or speech/delegation timestamps were captured. Cancellation did not prevent creation in
 these attempts; cancellation of a demonstrably pending task remains unverified.
 
@@ -377,22 +395,25 @@ and does not authorize overall dotfiles adoption.
 Waldo reports that stopping and restarting voice **does not automatically carry over the previous
 conversation context**. The plan's automatic recovery requirement therefore fails in his trial.
 
-A manual workaround works: after restarting voice, Waldo can explicitly ask it to delegate to the
-main coding agent for context, and that agent can provide a contextual handoff. This is
-user-requested reconstruction, not automatic voice-session continuity or proof that every spoken
-turn, decision, and pending question survives. Exact completeness was not measured.
+**Manual workaround:** After restarting voice, Waldo can ask it to delegate to the main coding agent.
+That agent can provide a contextual handoff.
+This is user-requested reconstruction, not automatic voice-session continuity.
+It does not prove every spoken turn, decision, and pending question survives. Exact completeness was
+not measured.
 
 This finding applies to stopping/restarting voice, not quitting/relaunching Pi or recovering from a
 network error. Those scenarios, and recovery of queued work, remain unverified. No fix was applied.
-Waldo says context recovery is important, but the manual workaround is better than nothing and he
-wants to move on for now. Keep automatic recovery marked as not working in the current setup;
+Waldo says context recovery is important.
+He considers the manual workaround better than nothing and wants to move on for now. Keep automatic
+recovery marked as not working in the current setup;
 this is not a passed test, a request for remediation, or approval for overall adoption.
 
 ### Voice selection findings and manual results (October 6)
 
-Waldo confirmed **Sol, Cove, and Ember** work in his setup. He subsequently identified the voice
-he was using as **Spruce**, requested it as the default, then chose to select it manually instead
-of customizing the extension. Treat Spruce as user-reported working, not an independently captured
+**Working voices:** Waldo confirmed **Sol, Cove, and Ember** work in his setup.
+He subsequently identified his voice as **Spruce** and requested it as the default.
+He chose manual selection instead of customizing the extension. Treat Spruce as user-reported
+working, not an independently captured
 session configuration. The assistant cannot identify the active voice from conversation text alone.
 
 #### Models versus voices
@@ -403,8 +424,8 @@ Direct inspection of installed files, rather than relying only on these notes, c
   These are profile defaults; a session may override the coding model.
 - `~/.pi/agent/npm/node_modules/pi-live-codex/protocol.ts`: live model `gpt-live-1-codex`.
   The session payload sends the selected voice in `audio.output.voice`.
-- Voice names such as `sol`, `cove`, `ember`, and `spruce` select the sound of the live model;
-  they are not separate coding or voice models.
+- Voice names such as `sol`, `cove`, `ember`, and `spruce` select the live model's sound.
+  They are not separate coding or voice models.
 
 | Voice | Evidence in this trial | Command |
 | --- | --- | --- |
@@ -415,20 +436,23 @@ Direct inspection of installed files, rather than relying only on these notes, c
 | Arbor, Juniper, Maple, Vale | Subsequently confirmed working by Waldo | `/live <name>` |
 | Breeze | Subsequently confirmed working by Waldo | `/live breeze` |
 
-Waldo subsequently confirmed that **all nine voices in the table work**: Sol, Cove, Ember, Spruce,
-Arbor, Breeze, Juniper, Maple, and Vale. These are user-reported live results, not assistant-run
+Waldo subsequently confirmed **all nine voices work**.
+They are Sol, Cove, Ember, Spruce, Arbor, Breeze, Juniper, Maple, and Vale. These are user-reported
+live results, not assistant-run
 microphone tests.
 
 #### Misleading suggestions and access errors
 
-The installed extension's `index.ts` suggests `sol` plus the public Realtime voices `alloy`, `ash`,
-`ballad`, `cedar`, `coral`, `echo`, `marin`, `sage`, `shimmer`, and `verse`. Its command handler passes
-explicit voice arguments through; suggestions are not an enforced allowlist or proof of backend
-support. This is why Cove, Ember, and Spruce can be requested even though absent from autocomplete.
+**Suggestions:** The installed extension's `index.ts` suggests `sol` and public Realtime voices.
+They include `alloy`, `ash`, `ballad`, `cedar`, `coral`, `echo`, `marin`, `sage`, `shimmer`, and `verse`.
+Its command handler passes explicit voice arguments through.
+Suggestions are neither an enforced allowlist nor proof of backend support. This is why Cove, Ember,
+and Spruce can be requested even though absent from autocomplete.
 
 Waldo's screenshot showed **"Voice session access denied"** after attempting Ash. He reported the
-other alternatives he tried failed the same way while Sol continued to connect. The complete set
-of failed names was not individually recorded; do not mark every suggested voice as tested.
+other alternatives he tried failed the same way while Sol continued to connect. The complete set of
+failed names was not individually recorded.
+Do not mark every suggested voice as tested.
 The assistant initially inferred a Sol-only account restriction, then corrected that unsupported
 claim. Successful alternative voices disprove the Sol-only explanation for this setup. The generic
 error alone does not distinguish a rejected voice from an authentication or entitlement problem.
@@ -436,13 +460,15 @@ error alone does not distinguish a rejected voice from an authentication or enti
 Internet research found stronger evidence for separate voice families:
 
 - [OpenAI Codex source](https://github.com/openai/codex/blob/main/codex-rs/protocol/src/protocol.rs):
-  `RealtimeVoicesList::builtin()` groups Juniper, Maple, Spruce, Ember, Vale, Breeze, Arbor, Sol,
-  and Cove in `v1`, with Cove as its default. The public Realtime names appear in the separate
+  `RealtimeVoicesList::builtin()` groups Juniper, Maple, Spruce, Ember, Vale, and Breeze.
+  Arbor, Sol, and Cove also appear in `v1`.
+  Cove is its default. The public Realtime names appear in the separate
   `v2` list. Those are the source's list labels, not a claim about this extension's protocol version.
   A source declaration is not a successful backend test for each voice.
 - [OpenClaw repair and live results](https://github.com/openclaw/openclaw/pull/133079): reports
-  successful subscription speech round trips with Spruce and Cove, and a mismatched voice picker
-  offering GA Realtime names rejected by the Codex GPT-Live contract. This is third-party evidence,
+  successful subscription speech round trips with Spruce and Cove.
+  It reports a mismatched picker offering GA Realtime names rejected by the Codex GPT-Live contract.
+  This is third-party evidence,
   not an OpenAI availability guarantee.
 - [OpenClaw user report](https://github.com/openclaw/openclaw/issues/154468): reports
   `gpt-live-1-codex` with Cove working through subscription authentication.
@@ -476,8 +502,8 @@ finding is a voice-family mismatch in suggestions, not proof of every backend el
 
 ### Evaluation scope accepted by Waldo
 
-After reviewing the remaining plan checks, Waldo chose to use the behavior observed in this session
-rather than repeat every synthetic scenario:
+Waldo chose to use behavior observed in this session rather than repeat every synthetic scenario.
+He made that choice after reviewing the remaining plan checks:
 
 | Check | Current disposition |
 | --- | --- |
@@ -488,8 +514,8 @@ rather than repeat every synthetic scenario:
 | One spoken question at a time | Passed in the three-question monetization exercise. Questions were asked separately, and Waldo confirmed the spoken experience also behaved that way. |
 | Subscription usage | Waldo monitored his OpenAI subscription's weekly usage during approximately one to two hours of conversation and observed little increase. Qualitative evidence only; no before/after values or separate voice/coding attribution were recorded. |
 
-Waldo's working understanding is that voice holds its own conversation and selects what to delegate
-to the coding agent; he accepts proceeding on that basis. Do not promise that asking the coding
+Waldo understands voice holds its own conversation and selects what to delegate to the coding agent.
+He accepts proceeding on that basis. Do not promise that asking the coding
 agent restores the entire spoken conversation: earlier attempts showed omitted context and
 clarification loops. This is acceptance of practical limitations and reduced test scope, not proof
 that untested recovery scenarios pass. No new investigation, modification, or dotfiles adoption
@@ -506,8 +532,8 @@ previously recorded handoff-context limitation.
 
 ### Subscription usage observation
 
-Waldo reports monitoring his OpenAI subscription's weekly usage limit throughout approximately one
-to two hours of conversation and seeing little increase. This is useful real-use evidence without
+**Usage observation:** Waldo monitored his OpenAI subscription's weekly usage during approximately
+one to two hours of conversation. He reported little increase. This is useful real-use evidence without
 requiring another dedicated timed trial. No exact starting/ending percentages, reset time, or
 voice-versus-coding breakdown were recorded. Do not infer zero cost, a per-minute rate, remaining
 voice hours, or whether the meter immediately reflects all activity. The assistant did not inspect
@@ -515,15 +541,15 @@ the account usage display. No billing-route change or credit purchase was reques
 
 ### Current preference and future idea — notes only
 
-Waldo describes the Pi voice experience as decent to really good, and likes aspects of both Pi
-and OMP voice. For now he may switch between the two, while trying to use Pi more. Keep both
-available; this is not a decision to retire OMP or adopt managed Pi dotfiles configuration.
+Waldo describes Pi voice as decent to really good.
+He likes aspects of both Pi and OMP voice. For now he may switch between the two, while trying to
+use Pi more. Keep both available.
+This is not a decision to retire OMP or adopt managed Pi dotfiles configuration.
 
-He is interested in potentially combining the best aspects of both voice experiences when more
-time is available. This is a future idea only: no design, research, implementation, migration,
-or extension customization is requested now. Specific features to combine have not been selected.
-This nuanced preference supersedes treating the earlier positive Pi comparison as an exclusive
-choice of Pi over OMP.
+He may combine the best aspects of both voice experiences when more time is available.
+This remains a future idea; no design, research, implementation, migration, or extension
+customization is requested. Specific features to combine have not been selected.
+This preference supersedes treating the earlier positive Pi comparison as an exclusive choice over OMP.
 
 ### Voice adoption consideration
 
@@ -540,29 +566,30 @@ before diagnosing connection or eligibility failures.
 
 Waldo authorized implementation and a real `dots` run. Mise remains Pi's binary owner at `latest`.
 Dotbot links shared `AGENTS.md`; Pi discovers shared skills natively. The coding-agent updater now
-merges tracked settings, models, and keybindings into real profile files, preserving unrelated
-preferences, then reconciles only `npm:pi-live-codex` through Pi's package mechanism. Spruce remains
-manual and the extension remains unmodified. The implementation and accepted limitations are
-maintained in the [Pi guides](../../docs/coding-agents/pi/README.md), linked from the
-setup/tooling/agent guides and README.
+merges tracked settings, models, and keybindings into real profile files.
+It preserves unrelated preferences, then reconciles only `npm:pi-live-codex` through Pi's package
+mechanism. Spruce remains manual, and the extension remains unmodified. The [Pi guides](../../docs/coding-agents/pi/README.md)
+maintain the implementation and accepted limitations.
+They are linked from the setup/tooling/agent guides and README.
 
 Verification completed:
 
-- `just check-pi`: five isolated tests passed for fresh/repeated merges, preservation, invalid JSON,
-  symlink rejection, normal-profile scope, and propagation of package failures.
+- `just check-pi`: five isolated tests passed for fresh/repeated merges, preservation, and invalid JSON.
+  They also covered symlink rejection, normal-profile scope, and propagation of package failures.
 - A fresh temporary home installed the real voice package; a second reconciliation succeeded
   without duplicate declarations. Dotbot create/link checks passed after supplying the existing
   `~/AGENTS.md` prerequisite. The setup guide now states that requirement before installation.
-- The actual `dots` alias ran from `$HOME` in a fresh interactive login Zsh, in the background with
-  a pseudo-terminal for prompts. It completed with exit status 0, including the Pi updater and hooks.
+- The actual `dots` alias ran from `$HOME` in a fresh interactive login Zsh.
+  It ran in the background with a pseudo-terminal for prompts. It completed with exit status 0,
+  including the Pi updater and hooks.
 - Full sync upgraded Ollama and AWS CLI (2.37.9 to 2.37.10). No skill-lockfile update occurred, so
   the updater did not commit or push. The pre-existing unpushed alias commit remains unpushed.
-- Fresh interactive Zsh still resolves `dots` to the repository's `just sync` and `pi` to its
-  caffeinated Mise binary. Pi reports 1.0.4; `pi list` includes `npm:pi-live-codex`.
+- Fresh interactive Zsh still resolves `dots` to the repository's `just sync`.
+  It resolves `pi` to its caffeinated Mise binary. Pi reports 1.0.4; `pi list` includes `npm:pi-live-codex`.
 - Model listing shows eight expanded windows and Spark at 128,000. This does not test large-context
   inference. The package and native-loading checks did not open a microphone or make a model call.
-- Offline SDK resource discovery passed for both the isolated and normal profiles: `/live` and
-  Ctrl+L registered, shared and personal instructions loaded, and no extension/skill diagnostics.
+- Offline SDK resource discovery passed for both the isolated and normal profiles.
+  `/live` and Ctrl+L registered; shared and personal instructions loaded without extension/skill diagnostics.
   The isolated profile discovered four repo-authored skills; the normal profile discovered 47.
 - Checksums confirmed Pi's auth file and OMP's config were unchanged by sync.
 - Repository lint passed before sync; final documentation review uses Ghostwriter. Changes remain
@@ -572,32 +599,38 @@ The unrelated `TODO.md` working-tree change was left alone. No extension remedia
 migration, OMP retirement, or extra billing was performed. Earlier trial verdict text below is
 historical; this verification record supersedes its integration-pending status.
 
-## How the run ended
+## Historical trial verdict
 
-**Trial complete enough to prepare Phase 5; integration summary written, implementation pending.**
+**Status at trial close:** The trial was complete enough to prepare Phase 5.
+The integration summary was written; implementation was pending.
 Waldo wants repeatable Pi setup through `dots`, with OMP preserved and the documented limitations
 accepted. See the [Phase 5 handoff](pi-dotfiles-integration-summary.md). Pi installation and
 subscription-backed text use work. The private `fd` binary is present and executable. Expanded
 context settings load in Pi, but large-context backend acceptance remains unverified.
 `pi-live-codex` and its Ctrl+L shortcut load without conflicts. Waldo reports working spoken
-conversation, successful mid-sentence interruption with some delay, and an overall preference for
-Pi over OMP. Abrupt voice interruptions during coding work remain an observed issue.
-Sol, Cove, and Ember are explicitly user-confirmed working; Spruce is also user-reported working
-and is Waldo's chosen manual selection via `/live spruce`. Bare `/live` and Ctrl+L remain on Sol.
+conversation and successful mid-sentence interruption with some delay.
+He initially preferred Pi over OMP. Abrupt voice interruptions during coding work remain an observed
+issue.
+Sol, Cove, and Ember are explicitly user-confirmed working.
+Spruce is also user-reported working and is Waldo's manual selection via `/live spruce`. Bare
+`/live` and Ctrl+L remain on Sol.
 The extension was not customized. Voice-family research and its verification limits are recorded
 above; no adoption or permanent voice-default change was approved. Waldo subsequently confirmed
 all nine voices work, including Arbor, Breeze, Juniper, Maple, and Vale. Transcription difficulty
 with certain names and words remains a reported usability issue. Automatic context recovery after
-voice stop/restart fails by Waldo's test; explicitly asking voice to consult the main coding agent
-provides a working manual context handoff, with completeness unmeasured. Subsequent delegation
+voice stop/restart fails by Waldo's test.
+Asking voice to consult the main coding agent provides a manual context handoff; completeness is
+unmeasured. Subsequent delegation
 attempts also exposed missing-context loops, recorded above. File requests were delivered after
 waits, but cancellations arrived too late to prevent creation. Waldo accepts queued delivery without
-cancellation for now and wants to move on; no cancellation fix or further test is requested.
-He also accepts coding-while-talking as demonstrated by this session's real note/file edits, and
-accepts missing automatic voice context. Separate process/network and pending-work recovery remain
-unverified rather than failed or passed by analogy; see the accepted evaluation scope above.
+cancellation for now and wants to move on.
+No cancellation fix or further test is requested.
+He accepts coding-while-talking, demonstrated by this session's real note/file edits.
+He also accepts missing automatic voice context. Separate process/network and pending-work recovery
+remain unverified, not failed or passed by analogy.
+See the accepted evaluation scope above.
 
-Continue collecting Waldo's test feedback and the remaining scenarios above. Investigate the
+At trial close, the next step was collecting Waldo's feedback and remaining scenarios. Investigate the
 coding-update interruption only when he asks to diagnose or remediate it; do not silently patch the
 baseline. Preserve the trial plan's billing, privacy, microphone, and explicit-adoption gates except
 where superseded above. No commits, pushes, `dots`, or updater scripts were run.

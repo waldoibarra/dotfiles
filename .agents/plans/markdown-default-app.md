@@ -1,5 +1,10 @@
 # Markdown default application
 
+**Current use:** Read [progress and handoff](#progress-and-handoff) for completed checks.
+It also records remaining manual verification.
+Read [decisions](#decisions) for the chosen mechanism and superseded alternatives.
+The implementation sequence records completed work; it is not a request to rerun installation.
+
 ## Outcome
 
 Open local Markdown documents with Cursor through macOS's user-wide file association.
@@ -23,7 +28,9 @@ The user approved implementation after being told this changes all Markdown file
 The pre-change `duti -x md` query reported Antigravity (`com.google.antigravity`).
 Cursor's installed bundle ID is `com.todesktop.230313mzl4w4u92`.
 
-## Implementation and checks
+## Historical implementation and checks
+
+These steps describe the original implementation contract, not outstanding setup tasks.
 
 1. Add macOS-only duti, a single-row mapping, and a guarded Bash script with ShellCheck coverage.
 2. Read the mapping's bundle ID; resolve the app through JXA without launching it.

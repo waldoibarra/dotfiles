@@ -1,9 +1,11 @@
 <!-- markdownlint-disable MD013 -->
 # Lens verification current record
 
+**Current use:** Read [released and installed](#released-and-installed) for this checkpoint's observed states.
+Read [repeat the verified checks](#repeat-the-verified-checks) before repeating commands.
 Read [current delivery status](/.agents/plans/pi-lens-delivery.md) before changing scope.
 Read [verification history](/.agents/plans/history/pi-lens-verification-2026-10-13.md) before reusing earlier results.
-Archived results retain their original context; they do not override this checkpoint.
+**Historical boundary:** Archived results retain their original context; they do not override this checkpoint.
 
 ## Released and installed
 
@@ -24,8 +26,8 @@ Archived results retain their original context; they do not override this checkp
 ## Harness follow-through
 
 Independent audit passed the worker implementation; lead inspection corrected additional gaps before acceptance.
-Corrections scoped positional arguments to one recipe, selected the intended compiled SDK explicitly,
-added fixture cleanup, completed native-cwd dispatch guidance, and fixed current-state/link inaccuracies.
+Corrections scoped positional arguments to one recipe and selected the intended compiled SDK explicitly.
+They added fixture cleanup and native-cwd dispatch guidance, and fixed current-state/link inaccuracies.
 
 | Target | Evidence / limit |
 | --- | --- |

@@ -1,8 +1,10 @@
 <!-- markdownlint-disable MD013 -->
 # Lens delivery current status
 
-This is the authoritative Lens coordination record. Historical statuses are not current authorization.
+**Current authority:** This is the authoritative Lens coordination record.
+Historical statuses are not current authorization.
 Read [verification](/.agents/plans/pi-lens-verification.md) before claiming acceptance or repeating checks.
+Read [remaining work](#remaining-work) before reopening an unfinished target.
 Read [delivery history](/.agents/plans/history/pi-lens-delivery-2026-10-13.md) before investigating earlier decisions.
 The archive preserves all decisions D1–D138, including original superseded markings.
 
@@ -62,7 +64,8 @@ before reopening those targets.
 ## Direct-launch diagnostic
 
 Waldo reports unfolded subagent wake messages labeled `Input` when launching ordinary `pi`.
-Read-back confirmed Mise Pi `1.2.0`, linked settings, and installed Lens `v0.2.0` at the recorded commit.
+Read-back confirmed Mise Pi `1.2.0` and linked settings.
+Installed Lens `v0.2.0` matched the recorded commit.
 The installed runner sends this wake through `sendUserMessage`; Lens folds only inputs attributed as `extension`.
 Stock Pi lacks that attribution, matching the screenshot and the documented host limitation.
 This is not evidence of a missing Lens installation. No runtime or configuration changes were made.

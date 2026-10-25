@@ -9,8 +9,9 @@ a maintenance guide.
 
 [`AGENTS.md`](/home/.agents/AGENTS.md) owns universal boundaries and the task-based reading map.
 
-Its default stance requires assertive communication, a verifiable environment, and maintainability
-across codebases.
+Its golden rules require assertive communication and maintainability, including a verifiable working
+environment.
+Maintainability covers code, documentation, and the working environment for the next human or agent.
 These defaults apply within task authority and project constraints, not as permission for unrelated
 cleanup.
 It does not import conditional references or full skill bodies into every session.
@@ -20,11 +21,17 @@ skills.
 | Concern | Canonical source |
 | --- | --- |
 | Communication shapes and formatting | [Communication reference](/home/.agents/references/communication.md) |
-| Planning, worker routing, and verification | [Orchestration reference](/home/.agents/references/orchestration.md) |
+| Lead coordination and verification | [Orchestrator role](/home/.agents/references/orchestration.md) |
 | Configuration ownership and integration acceptance | [Harness-design reference](/home/.agents/references/harness-design.md) |
 | Prompts written for models | [Prompting guide](/docs/prompting.md), installed as `~/.agents/references/prompting.md` |
 | Specialist procedures | [Skills](/docs/agent-skills.md) |
 | Worker responsibilities | [Shared roles](#shared-role-agents) |
+
+**On demand:** Read [model selection](/home/.agents/references/delegation.md) before dispatching
+workers.
+Read [memory lifecycle](/home/.agents/references/memory.md) before retaining or retiring agreements.
+Read the [commit skill](/home/.agents/skills/commit/SKILL.md) before Git delivery and
+[shell guidance](/home/.agents/references/shell.md) before executing commands.
 
 Runtime pointers use installed `~/.agents/` paths, not this checkout's location.
 
@@ -127,9 +134,9 @@ behavior.
 ## Project discovery
 
 - This repository uses root `AGENTS.md`, without a root `CLAUDE.md` wrapper.
-- [Project settings](/.claude/settings.json) exclude the tracked Claude adapter from project
-  discovery.
-- The exclusion prevents the adapter from loading again as project guidance.
+- [Project settings](/.claude/settings.json) retain an exclusion for the former tracked Claude
+  adapter path.
+- The adapter was removed; the global instruction symlink is separate from project discovery.
 
 **Pi:** reads context files along the working directory's ancestor path.
 
@@ -139,6 +146,11 @@ behavior.
 - A profile override can therefore replace the linked global policy.
 
 ## Shared role agents
+
+**Lead role:** [Orchestration](/home/.agents/references/orchestration.md) is read by the main
+session, not registered as a child.
+The five worker roles remain provider-neutral; [selection
+guidance](/home/.agents/references/delegation.md) owns cross-harness choices.
 
 [Shared roles](/home/.agents/roles/) state each worker's goal, inputs, constraints, acceptance, and
 report.
@@ -188,8 +200,8 @@ changing style metadata or activation.
 
 ## Activate and verify
 
-1. Verify the shared source, reference links, role links, and Claude import resolve to the intended
-  files.
+1. Verify the shared source, reference links, role links, and Claude instruction symlink resolve
+  to the intended files.
 2. Check profile and project overrides before assuming shared instructions take effect.
 3. Restart the agent; inspect its loaded context and skill/role discovery.
 4. Exercise the requested behavior before reporting it verified.

@@ -1,60 +1,71 @@
-# Maintain documentation as you work
+# Maintain current knowledge
 
-**Goal:** Keep touched documentation understandable, accurate, and complete without expanding into
-repository-wide cleanup.
+**Goal:** Keep maintained documentation and comments clear, current, and easy to navigate without
+erasing useful rationale.
+Read [the glossary](/GLOSSARY.md) before changing terminology and
+[architecture](/docs/architecture.md) before changing ownership.
 
-**Owner:** Read [docs-maintenance](/home/.agents/skills/docs-maintenance/SKILL.md) before creating,
-editing, or reviewing Markdown documentation.
+## Choose the owner
 
-## What happens automatically
+| Material | Owner | Treatment |
+| --- | --- | --- |
+| Global instructions | `agents-md` workflow | Keep universal boundaries visible; load procedures when needed. |
+| Skill definitions | `skill-maintenance` and `agent-skills-creator` | Preserve workflow contracts and verify discovery separately. |
+| Maintained Markdown | `docs-maintenance` | Check facts, clarity, scope, links, and lifecycle. |
+| Model prompts | [Prompting guide](/docs/prompting.md) | Follow prompt-specific pruning and validation. |
+| Original or frozen evidence | Its source and retention rules | Do not rewrite it as current guidance. |
 
-- Shared instructions require the skill during Markdown documentation tasks across repositories
-  using this harness.
-- Small doc edits beside code changes and edits by workers also load it.
-- After a code or config change, it searches docs for changed identifiers, flags, recipes, and
-  numbers.
-- Plans are in scope; it marks superseded decisions instead of deleting them.
-- It reads the project's shared language (its glossary file) before choosing terms.
-- Within authorized edits, it improves clarity and verifies facts without requiring separate
-  cosmetic approval.
-- It explains the big picture first, preserving unique information and distinguishing current
-  behavior from planned changes.
-- Structural changes and substantial rewrites remain proposals unless their exact scope is already
-  approved.
-- It follows repository-specific owners, confidentiality, and approval boundaries.
+Read [docs-maintenance](/home/.agents/skills/docs-maintenance/SKILL.md) before creating, editing, or
+reviewing Markdown documentation.
+Read [conventions](/home/.agents/skills/docs-maintenance/references/conventions.md) before naming
+files or changing navigation.
 
-## Review at session end
+## Keep guidance useful
 
-**Closure:** Run `session-improvement` for read-only proposals covering Markdown documentation
-edited during the session.
+1. Establish the document's audience, concern, canonical owner, and evidence.
+2. Explain the big picture first; route readers to task-specific detail instead of duplicating it.
+3. Search affected docs and comments for changed identifiers, defaults, commands, and constraints.
+4. Correct verified stale claims; distinguish accepted future behavior from implemented and
+  exercised behavior.
+5. Retire obsolete operational steps within scope; preserve consequential rationale with status and
+  successor links.
+6. Update incoming links and indexes alongside moves, removals, and glossary changes.
 
-- It reads `docs-maintenance` for review criteria and skips the review when no documentation was
-  edited.
-- It does not apply rewrites, create directories, or inspect unrelated documentation.
+**Authority:** Reading grants no edit permission; unrelated documents and other contributors'
+changes remain outside the task.
+Substantial rewrites and structural moves require approval unless the request already covers them.
+Markdown guidance loads through instructions and skills, not a guaranteed file watcher.
 
-## Load it explicitly
+**Shared language:** Each maintained repository and vault has a meaningful root `GLOSSARY.md`.
+Definitions describe existing domain concepts; procedures and implementation details stay in their
+own documents.
+Do not copy every global term into every project or create empty glossaries to satisfy a checklist.
 
-| Host | Invocation |
-| --- | --- |
-| Pi | `/skill:docs-maintenance` |
-| Claude Code | `/docs-maintenance` |
+## Retire without losing rationale
 
-**Discovery:** Reload Pi or start a fresh Claude Code session after installation.
+**Current guidance:** Update the maintained source and remove obsolete instructions from active
+navigation.
+**Consequential history:** Keep the decision, its status, successor, and useful rejected
+alternatives in an existing history location.
+**Temporary agreements:** State scope and an end or recheck condition; age alone does not establish
+expiry.
+**Uncertain claims:** Preserve the evidence gap; do not replace it with confident prose.
 
-**Limit:** This is model-followed guidance, not a file watcher or guaranteed automatic execution.
+Read [memory lifecycle](/home/.agents/references/memory.md) before changing retention or ADR policy.
+Its three ADR gates prevent reference facts and routine tasks becoming permanent decision records.
+No ADR is created merely because a refactor finished.
 
-**Boundary:** Reading grants no edit permission; instructions, skill definitions, and frozen
-archives have separate owners.
+**Comments:** Explain intent and hidden constraints near the code they affect.
+Update or remove stale comments with the authorized behavior change; verify unfamiliar rationale
+before deleting it.
+Documentation maintenance does not authorize a repository-wide code cleanup.
 
-**File names:** Read the Documentation section of
-[shared instructions](/home/.agents/AGENTS.md) before naming a file; it owns the rule.
+**Protected sources:** Preserve original-language `raw/`, legal text, upstream copies, generated
+output, fixtures, and frozen evidence.
+Use the owning generation or source process when those materials need change.
+Historical evidence remains available but does not authorize replaying old commands.
 
-**Prompts:** Read [Write effective AI prompts](/docs/prompting.md) before editing prompt files sent
-to models.
-
-## Verify a change
-
-**Checks:** Run this repository's formatting checks after editing its documentation:
+## Verify and close
 
 ```sh
 just lint-md
@@ -62,13 +73,22 @@ just lint-ec
 git diff --check
 ```
 
-**Skills:** Check edited skill Markdown through stdin because normal discovery skips
-`home/.agents/`.
+**Ignored skills:** Validate edited shared skills through stdin because normal Markdown discovery
+skips `home/.agents/`.
 
 ```sh
 markdownlint-cli2 - < home/.agents/skills/docs-maintenance/SKILL.md
-markdownlint-cli2 - < home/.agents/skills/docs-maintenance/references/structure.md
+markdownlint-cli2 - < home/.agents/skills/docs-maintenance/references/conventions.md
 ```
 
-**Evidence:** Read the [roadmap](/.agents/plans/ai-harness-roadmap.md#documentation-maintenance)
-before claiming installation or behavioral verification.
+**Meaning:** Check unique facts, safety conditions, successor links, command accuracy, and sentence
+limits explicitly.
+Formatting checks alone do not prove preservation or model behavior.
+At closure, `session-improvement` reviews session-edited Markdown and proposes corrections without
+applying them.
+
+**Invocation:** Use `/skill:docs-maintenance` in Pi or `/docs-maintenance` in Claude Code.
+Reload Pi or start a fresh Claude session after installation; discovery alone does not prove
+execution.
+Read [historical verification](/.agents/plans/ai-harness-roadmap.md#documentation-maintenance)
+before citing earlier behavioral results.

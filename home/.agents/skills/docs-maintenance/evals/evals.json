@@ -149,7 +149,7 @@
       "assertions": [
         "Treats the plan as in scope",
         "Marks D3 superseded with a reference to the 2026-10-19 log entry",
-        "Does not delete D3",
+        "Retains D3 rationale in place or in an authorized historical owner with a successor link",
         "Routes prompts/extract.md to prompting.md, not documentation edits",
         "Applies the pruning rule from prompting.md to the prompt file"
       ]
@@ -163,6 +163,41 @@
         "Loads docs-maintenance despite the small edit and worker context",
         "Changes only the stale port claim",
         "Leaves surrounding text unchanged"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Retire a superseded deployment guide during an approved docs refactor. Its old command is wrong, but a vendor constraint still explains the current architecture.",
+      "expected_output": "Removes obsolete operational instructions, preserves consequential rationale with a successor link, and keeps safety warnings intact.",
+      "files": [],
+      "assertions": [
+        "Does not preserve stale commands as current guidance.",
+        "Retains meaningful constraints with provenance.",
+        "Repairs incoming links and indexes.",
+        "Does not rewrite frozen original evidence."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Create ADRs for fixing a typo, choosing a temporary experiment name, and a requested hard-to-reverse vendor boundary with viable alternatives and surprising constraints.",
+      "expected_output": "Rejects trivial ADRs and records only the authorized decision passing all three gates.",
+      "files": [],
+      "assertions": [
+        "Requires costly reversal, surprising context, and genuine alternatives together.",
+        "Routes reference and how-to material to ordinary docs.",
+        "Does not invent alternatives or user approval."
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Maintain this repository's README. It has no glossary but uses two confirmed domain terms. A temporary decision has an end condition already met.",
+      "expected_output": "Adds grounded shared language within maintenance scope and marks the expired exception without promoting it to policy.",
+      "files": [],
+      "assertions": [
+        "Creates a meaningful root glossary and reading links.",
+        "Does not invent product requirements or generic filler terms.",
+        "Checks the temporary decision's condition before reuse.",
+        "Keeps superseded rationale discoverable when consequential."
       ]
     }
   ]

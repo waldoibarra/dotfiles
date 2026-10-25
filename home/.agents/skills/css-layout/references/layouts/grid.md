@@ -33,7 +33,7 @@ Build a grid **of content**, rather than requiring unknown content to fit a pred
 
 The source's overflow/solution diagrams isolate this last distinction:
 
-- Unless the minimum itself can shrink, a nominally responsive grid can be too wide as one column.
+- A fixed minimum can make even one responsive grid column too wide for its container.
 - Setting the minimum to zero instead is not equivalent.
   - It removes the useful track-size threshold for wrapping.
 

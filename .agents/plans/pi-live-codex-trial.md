@@ -1,5 +1,10 @@
 # Plan: trial Pi with pi-live-codex before dotfiles integration
 
+**Current use:** Read this record for original scenarios and safety gates.
+Its installation instructions are historical. Phase 5 is implemented.
+Read [integration summary](pi-dotfiles-integration-summary.md) before changing Pi setup.
+Read [trial notes](pi-live-codex-trial.notes.md) for later decisions and observed results.
+
 ## Outcome and authority
 
 Give Waldo a real, reversible trial of original Pi with subscription-backed live voice. First prove
@@ -7,11 +12,12 @@ installation, authentication, speech, and concurrent coding with the unmodified 
 known gaps before deciding whether to extend it. Integrate with dotfiles only after it works well
 enough for Waldo and he explicitly chooses adoption.
 
-This is the authoritative execution plan, written October 6, 2026. Planning did not install anything,
-authenticate, open a microphone, or make a model call. Read the
+This was the authoritative execution plan on October 6, 2026.
+Planning did not install anything, authenticate, open a microphone, or make a model call. Read the
 [spike](../spikes/pi-media-learning-and-live-voice.md#voice-migration-decision) before executing for
 prior findings and the full requirement comparison. This plan and that spike are versioned research
-records; read the [trial notes](pi-live-codex-trial.notes.md) before resuming work for later decisions.
+records.
+Read the [trial notes](pi-live-codex-trial.notes.md) before resuming work for later decisions.
 
 ## Decisions and boundaries
 
@@ -39,18 +45,24 @@ Observed during planning:
 - `command -v pi`: no executable on the current PATH. Check again at execution time; this does not
   prove that no other Pi installation or settings exist.
 - npm reports Pi 1.0.4. Homebrew has `pi-coding-agent` 1.0.2, so fallback is a different version.
-- `pi-live-codex` 0.1.9 uses the current `@earendil-works/pi-*` peers and native dependency
-  `@oh-my-pi/pi-natives` 18.4.9. This does not require running the OMP agent.
-- Upstream documents `PI_CODING_AGENT_DIR`, versioned package installs, `/login openai-codex`,
-  `/live`, Ctrl+L, Esc, and Space with an empty editor.
+- `pi-live-codex` 0.1.9 uses the current `@earendil-works/pi-*` peers.
+  Its native dependency is `@oh-my-pi/pi-natives` 18.4.9. This does not require running the OMP agent.
+- Upstream documents `PI_CODING_AGENT_DIR`, versioned package installs, `/login openai-codex`, and `/live`.
+  It also documents Ctrl+L, Esc, and Space with an empty editor.
 - The repository's global mise configuration is linked into `$HOME`. Consequently,
   `mise use --global` would change tracked dotfiles and is forbidden during the trial.
 
-Unverified: the selected Pi/package pair at runtime, native audio loading, microphone permissions,
-account eligibility, subscription allowance impact, real interruption quality, and user preference.
+**Unverified:** Runtime Pi/package compatibility, native audio loading, microphone permissions, and
+account eligibility.
+Subscription allowance impact, real interruption quality, and user preference also remain unverified.
 Published documentation and source support the setup path; they are not runtime proof.
 
-## Phase 1: install Pi without adopting it into dotfiles
+## Historical trial phases
+
+These phases preserve the original execution contract.
+Later adoption decisions supersede trial-only installation instructions.
+
+### Phase 1: install Pi without adopting it into dotfiles
 
 Read [Tooling](/docs/tooling.md) before package operations. Recheck executable paths and existing
 trial directories without reading or printing credentials. If the proposed trial directory already
@@ -89,7 +101,7 @@ security concerns. Do not run `just brew`, `just mise-sync`, `dots`, or updater 
 those upgrade/prune unrelated tools or can publish commits. An unlisted Homebrew trial package can
 also be removed by a later bundle cleanup, so avoid overlapping workstation syncs.
 
-## Phase 2: install the voice package and authenticate
+### Phase 2: install the voice package and authenticate
 
 1. Review the pinned package manifest, native dependency installation behavior, credential access,
    and `transport.ts` before installing or granting account access. The voice connection uses an
@@ -124,16 +136,17 @@ also be removed by a later bundle cleanup, so avoid overlapping workstation sync
    code; Waldo opens <https://auth.openai.com/codex/device> on his phone or another browser, signs
    into the account with his subscription, and enters that code. Pi polls for completion; the
    inspected implementation allows 15 minutes. No browser is needed on the machine running Pi.
-   This selectable method was verified in the
-   [published Pi 1.0.4 OAuth implementation](https://cdn.jsdelivr.net/npm/@earendil-works/pi-ai@1.0.4/dist/auth/oauth/openai-codex.js),
-   but has not been exercised with Waldo's account. If device login is unavailable, record the
+   The [published Pi 1.0.4 OAuth implementation](https://cdn.jsdelivr.net/npm/@earendil-works/pi-ai@1.0.4/dist/auth/oauth/openai-codex.js)
+   verifies this selectable method.
+   It has not been exercised with Waldo's account. If device login is unavailable, record the
    error; browser login with a pasted authorization code/redirect URL is the supported alternative.
    Do not change authentication routes silently.
 
    No API key, separate authentication application, or Codex desktop app is required for this
-   flow. The repository already declares `codex = "latest"` through mise, and the installed CLI
-   reported `codex-cli 0.160.1` during the follow-up check. Pi handles its own login; the installed
-   Codex CLI is not a prerequisite, and its existing login is not assumed to transfer to Pi.
+   flow. The repository already declares `codex = "latest"` through mise.
+   The installed CLI reported `codex-cli 0.160.1` during the follow-up check. Pi handles its own
+   login; the installed Codex CLI is not a prerequisite.
+   Its existing login is not assumed to transfer to Pi.
 
    Waldo completes authorization himself. Do not persist or share device codes, tokens, callback
    URLs, or `auth.json` in notes or chat. Confirm credentials are stored in
@@ -148,10 +161,11 @@ also be removed by a later bundle cleanup, so avoid overlapping workstation sync
 text login alone does not prove voice eligibility. If voice is rejected, capture the redacted status
 and stop at that boundary; do not switch to API billing or spoof additional client requirements.
 
-## Phase 3: baseline live evaluation
+### Phase 3: baseline live evaluation
 
 Waldo must be present for microphone interaction and subjective judgment. Run a short initial
-session of about 10–15 minutes, stopping earlier for auth, billing, privacy, or audio failures. If it
+session of about 10–15 minutes.
+Stop earlier for auth, billing, privacy, or audio failures. If it
 passes the basic experience check, repeat with a representative 20–30 minute coding session.
 These are proposed trial windows, not claims about included voice allowance.
 
@@ -176,7 +190,7 @@ or source-inspected behavior from what happened on the microphone. Do not patch 
 Do not infer automatic approval from voice. If a consequential confirmation appears, Waldo must
 explicitly answer it; do not test destructive operations to exercise confirmation handling.
 
-## Phase 4: user verdict and remediation gate
+### Phase 4: user verdict and remediation gate
 
 Present the observed matrix, usage evidence, and Waldo's assessment of interruption, latency,
 voice quality, and coding usefulness. Distinguish **baseline usable** from **all requirements met**.
@@ -195,24 +209,25 @@ Ask Waldo to choose based on the evidence:
 - **Approve adoption:** proceed to Phase 5 only once the required behavior works or Waldo explicitly
   accepts named remaining limitations, and confirms he likes the experience.
 
-The normal trial finish is a reproducible pass/fail record and an explicit user verdict, not a
-mandatory implementation project. Account ineligibility or incompatible native audio is also a
-valid finish if the exact blocking boundary and attempted narrow diagnosis are documented.
+**Trial finish:** Record reproducible pass/fail results and an explicit user verdict; implementation
+is not mandatory.
+Account ineligibility or incompatible native audio is also a valid finish.
+Document the exact blocking boundary and attempted narrow diagnosis.
 
-## Phase 5: conditional dotfiles integration, last
+### Phase 5: conditional dotfiles integration, last
 
 **Current handoff:** Waldo has now requested repeatable Pi setup through `dots` and maintained
 documentation. Read the [integration summary](pi-dotfiles-integration-summary.md) and
-[execution notes](pi-live-codex-trial.notes.md) for accepted limitations and superseding decisions,
-including normal-profile installation and latest-version policy. Phase 5 is now implemented;
+[execution notes](pi-live-codex-trial.notes.md) for accepted limitations and superseding decisions.
+These include normal-profile installation and latest-version policy. Phase 5 is now implemented;
 `dots` completed successfully. Read the
 [verification record](pi-live-codex-trial.notes.md#phase-5-implementation-and-verification) and
 [maintained Pi documentation](../../docs/coding-agents/pi/README.md) before further changes.
 
-The original gate below is retained for context; trial execution alone did not authorize adoption.
-After the adoption
-gate, read [Coding agents](/docs/coding-agents/README.md), [Tooling](/docs/tooling.md), and
-[Scripts](/scripts/README.md) before changing ownership or sync behavior.
+The original gate remains for context; trial execution alone did not authorize adoption.
+At the adoption gate, the plan required reading [Coding agents](/docs/coding-agents/README.md),
+[Tooling](/docs/tooling.md), and [Scripts](/scripts/README.md).
+Those guides informed ownership and sync changes.
 
 1. Add the validated Pi version to `home/.config/mise/config.toml`, using its existing npm backend
    convention. Use `home/.Brewfile` instead only if the evidenced Homebrew fallback was selected;
@@ -235,7 +250,7 @@ gate, read [Coding agents](/docs/coding-agents/README.md), [Tooling](/docs/tooli
    `dots` run beforehand; account for its upgrade/prune and possible commit/push effects. Do not
    run `just brew` as validation. Leave OMP available even after Pi adoption.
 
-## Recovery and execution notes
+### Recovery and execution notes
 
 - Stop `/live` normally and exit Pi; confirm the microphone is released. Never delete a lock while
   its owning session is still alive. Close the dedicated trial terminal to discard exported vars.
@@ -255,7 +270,7 @@ At execution time, create `.agents/plans/pi-live-codex-trial.notes.md` with **De
 the scenario matrix, redacted usage observations, and Waldo's verdict. Log deviations without
 secrets or raw private audio. If a deviation reverses a decision above, stop and consult Waldo.
 
-## Sources and verification limits
+### Sources and verification limits
 
 Read these before executing the corresponding setup step; recheck installed-version help if current
 upstream documentation differs:
@@ -271,6 +286,7 @@ upstream documentation differs:
 - [Pinned voice transport](https://cdn.jsdelivr.net/npm/pi-live-codex@0.1.9/transport.ts)
 - [Pinned audio ownership notes](https://cdn.jsdelivr.net/npm/pi-live-codex@0.1.9/global-voice-broker.md)
 
-Planning checked local mise command help, installed Node, npm version/engine metadata, Homebrew
-formula availability, repository conventions, and upstream documentation. No installation or live
-compatibility claim is established until the corresponding execution gate passes.
+**Planning checks:** Local mise command help, installed Node, and npm version/engine metadata.
+Planning also checked Homebrew formula availability, repository conventions, and upstream
+documentation. No installation or live compatibility claim is established until the corresponding
+execution gate passes.

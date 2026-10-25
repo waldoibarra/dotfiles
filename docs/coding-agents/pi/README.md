@@ -1,14 +1,16 @@
 # Pi and live voice
 
-Pi runs the coding agent. The `pi-live-codex` extension adds a separate voice model that can delegate
-work to it while conversation continues. Both use the configured OpenAI Codex subscription login.
+**Purpose:** Pi runs the coding agent.
+The `pi-live-codex` extension adds a separate voice model.
+It can delegate work to Pi while conversation continues.
+Both use the configured OpenAI Codex subscription login.
 
 **Experimental:** the extension uses an internal Codex voice connection, not a supported public
 Realtime API contract. Working account access and voices can change independently of this repository.
 
-`dots` installs or upgrades Pi through Mise, links its shared instructions and profile preferences
-through Dotbot, then reconciles voice and delegation packages through the coding-agent updater. Login
-and microphone permission remain interactive.
+`dots` installs or upgrades Pi through Mise.
+Dotbot links shared instructions and preferences; the updater reconciles voice and delegation packages.
+Login and microphone permission remain interactive.
 
 | Task | Guide |
 | --- | --- |
@@ -18,8 +20,8 @@ and microphone permission remain interactive.
 | Choose a voice, use the controls, or diagnose access errors | [Live voice](live-voice.md) |
 | Review test evidence, accepted limitations, and future improvements | [Limitations](limitations.md) |
 
-For a new machine, start with [workstation setup](../../setup.md). Read the
-[sync boundaries](../../tooling.md#sync-the-workstation) before running `dots`.
+Read [workstation setup](../../setup.md) before provisioning a new machine.
+Read [sync boundaries](../../tooling.md#sync-the-workstation) before running `dots`.
 
 ## Components and ownership
 

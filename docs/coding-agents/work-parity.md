@@ -1,10 +1,11 @@
 # Work harness parity
 
-**Goal:** Keep the personal harness and the work harness behaving the same way.
-Each behavior has one owner on each side. A duplicate is accepted when this page tracks it.
+**Goal:** Keep personal and work harness behavior aligned.
+Each behavior has one owner on each side.
+This page records accepted duplication.
 
-Read this page before changing a shared rule, hook, or integration on either side.
-Apply the same change to the other owner, or record here why the sides differ.
+Read this page before changing a shared rule, hook, or integration.
+Apply the change to both owners, or record why they differ.
 
 ## Shared behaviors
 

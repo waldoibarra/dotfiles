@@ -1,6 +1,8 @@
 ---
 name: web-app-craft
-description: "Use when building, debugging, or reviewing web app interfaces that combine behavior and layout. Coordinate web-standards and css-layout."
+description: >-
+  Coordinates web-standards and css-layout for web app interfaces.
+  Use when building, debugging, or reviewing interfaces combining behavior and layout.
 license: MIT
 metadata:
   author: waldoibarra
@@ -31,7 +33,7 @@ metadata:
 - Keep their implementation rules in those skills.
 - Preserve the existing framework, build system, design tokens, and component conventions.
 - Apply platform guidance within those contracts; do not replace the stack without a request.
-- Child skills hand off directly to each other when needed; do not route back through this skill.
+- Child skills hand off directly when needed; do not route back through this skill.
 
 ## Decision Gates
 

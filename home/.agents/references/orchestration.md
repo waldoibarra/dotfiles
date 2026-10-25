@@ -1,57 +1,68 @@
-# Orchestration detail
+# Orchestrator role
 
-Read before planning non-trivial work or delegating.
+**Scope:** The lead session coordinates non-trivial work; this reference is not a discoverable
+child-agent definition.
+Read before planning multi-step work, delegating, or coordinating shared processes.
+Read [model and role selection](delegation.md) before dispatching any worker.
 
-Global authority, model exclusions, quota stops, and retry limits remain binding.
+## Own the outcome
+
+- Delegate broad reading and parallel work when available; retain decisions, Git writes, shared
+  processes, and user communication.
+- Determine personal/company scope before harness changes; ask when unclear.
+- Keep one writer per working tree; isolate concurrent writers in separate worktrees or
+  repositories.
+- Brief each worker with its goal, files, constraints, acceptance criteria, and prohibited commands.
+- Give each child one acceptance target; bind repository work to its verified Git root.
+- Use one worker for a search or alternatives survey, never one worker per query or source.
+- Avoid rereading unchanged context; reuse focused context for follow-ups.
 
 ## Plan and deliver
 
-- Plan, independently review, implement test-first, audit against the plan, verify behavior, then
-  update documentation.
-- Define observable acceptance before implementation. Documentation-only work needs factual and link
-  checks, not fabricated runtime failures.
-- Keep plan decisions in a table: stable IDs, decision, reason. `docs-maintenance` owns superseding
-  rows.
-- State decided rules in documentation, comments, tests, PRs, and tickets; omit plan-only IDs and
-  session codes.
-- When reviews converge, propose a fix freeze; defer later findings to the next iteration.
-- Write ADRs or RFCs only when requested or required by the project's process.
+1. Ground the plan in current source, accepted decisions, and explicit authority.
+2. Define observable acceptance; obtain independent review for consequential changes.
+3. Implement with regression coverage where applicable; review against the plan and verify actual
+  behavior.
+4. Update affected documentation and indexes; distinguish local completion, installation, loading,
+  and remote delivery.
+5. Record outcomes and unresolved questions with their existing owner, then hand off the next
+  action.
 
-## Dispatch workers
+**Proportion:** Documentation-only work needs factual, preservation, and link checks, not fabricated
+runtime failures.
+Keep plan decisions in a table with stable IDs, choices, and reasons.
+State actual rules in product docs and code; leave plan-only IDs in the plan.
+When reviews converge, propose a fix freeze; defer unrelated findings to a later iteration.
+Without delegation, work sequentially and identify self-review as non-independent.
 
-- Choose role, model, and supported effort independently. Shared roles stay provider- and
-  effort-neutral.
-- Brief each worker with its goal, files, constraints, acceptance criteria, and prohibited commands.
-- Use one worker for a search or alternatives survey, never one worker per query or source.
-- Bind each worker to its intended repository; verify the Git root before source inspection.
-- Report unavailable models or effort controls. Use supported or actual/default effort; never invent
-  API parameters.
-- Do not silently substitute models.
-- Without delegation, work sequentially; identify self-review as non-independent.
+**Decisions:** Read [memory lifecycle](memory.md#gate-architectural-decisions) before proposing an
+ADR or retiring an agreement.
+A plan is context, not permission to execute its backlog.
 
-## Select by scope
+## Respect model boundaries
 
-Determine scope from project and user context, never client, provider, or payment.
+**Ownership:** [Model and role selection](delegation.md) owns provider routing, explicit selection,
+exclusions, and effort guidance.
+Reserve Astra/Fable for main chat, never workers or auxiliary probes. Main-model selection belongs
+to the user.
+Never inherit the lead or change parent model, billing, or privileges.
+Report unavailable models or effort controls; never invent parameters or silently substitute models.
 
-**Company sessions:** use the strongest eligible worker for planning, review, and audit.
-
-- Use a mid-tier worker for implementation and the smallest for lookups, unless adaptation is
-  approved.
-
-**Personal/open-source sessions:** select the least expensive capable non-lead worker within the
-authorized provider.
-
-- Consider context, tools, risk, observed reliability, latency, and usage; briefly record the
-  rationale.
-- Pi workers use available OpenAI models; Claude workers use Anthropic models.
-- Give each child one acceptance target.
-- Avoid rereading unchanged context; reuse retained context only for focused follow-ups.
-- Summarize passing checks. Close activation blockers before opening additional implementation
-  lanes.
+**Stop conditions:** After two failed acceptance passes, obtain approval before further
+personal/open-source model work.
+Quota or timeout failures stop personal/open-source dispatch; ask before launching or resuming any
+model run.
+Summarize passing checks and close activation blockers before opening additional implementation
+lanes.
 
 ## Verify safely
 
-- Bound fixture runtime, provider calls, and output; preserve required evidence.
-- Stop owned processes before deleting artifacts on success, failure, timeout, and cancellation.
-- For async UI, test concurrent input across awaits before mutating drafts or queued work.
+- Bound fixtures, provider calls, output, and runtime; preserve only required evidence.
+- Stop owned processes before deleting artifacts, including failure, timeout, and cancellation
+  paths.
+- For asynchronous UI, test concurrent input across waits before mutating drafts or queued work.
 - Verify actual interfaces; mocks alone do not establish compatibility.
+- Independently inspect worker claims, file changes, numbers, and sources before reporting or
+  publishing them.
+- Read the `commit` skill before Git delivery; serialize commands that commit, stash, or trigger
+  hooks.

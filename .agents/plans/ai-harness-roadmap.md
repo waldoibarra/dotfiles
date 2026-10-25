@@ -1,6 +1,27 @@
 # AI harness roadmap
 
-**Next:** Set up Cursor, then trial one bounded work ticket. Keep Pi and Claude Code available.
+**Current:** Complete the approved information-architecture refactor before resuming the Cursor
+work-ticket trial.
+Keep Pi and Claude Code available; work repositories remain outside this refactor.
+
+## Read by task
+
+Read this navigation first; open only the section needed for the current decision.
+Older verification records explain prior outcomes, not current authorization or guaranteed
+readiness.
+
+| Before… | Read |
+| --- | --- |
+| Continuing the approved cross-repository documentation refactor | [Information architecture](/.agents/plans/harness-information-architecture.md) |
+| Choosing current follow-through | [Existing follow-through](#existing-follow-through) |
+| Resuming Cursor setup or the work-ticket trial | [Cursor handoff](#immediate-cursor-handoff) |
+| Reopening a deferred option | [Deferred ideas](#deferred-ideas) |
+| Checking prior verification or superseded choices | [Completed records](#completed-and-verified) and [history](#evidence-and-maintenance) |
+
+Read [the current architecture](/docs/architecture.md) for ownership and [the
+glossary](/GLOSSARY.md) for shared terms.
+
+## Direction
 
 **Scope:** Personal and reusable harness structure lives here; company details belong in the team's
 knowledge hub.
@@ -353,25 +374,60 @@ untested.
 Project overrides, disabled resources, or alternative client configurations can change effective
 behavior.
 
+### Maintainability clarification and design-interview audit
+
+**Approved:** Audit `grill-with-docs` and clarify maintainability across code, documentation, and
+the working environment.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| MC1 | Clarify the existing maintainability default. | The next human or agent must understand, modify, and verify touched work. |
+| MC2 | Keep the external skill unchanged; document explicit invocation and its tool fallback. | Discovery is intentionally manual; installed copies are not owned sources. |
+| MC3 | Reuse existing decisions and documentation owners. | Interviews do not authorize unrelated implementation or new document structures. |
+
+**Audit:** `grill-with-docs` is installed from `mattpocock/skills` and disables automatic model
+invocation.
+Its body assumes a `Skill` tool unavailable in this Pi setup.
+Both dependencies, `grilling` and `domain-modeling`, are installed and advertised.
+Read [design interviews](/docs/agent-skills.md#design-interviews-with-documentation) before
+invoking the workflow in Pi.
+
+**Verified:** All eleven harness tests and six Cursor tests pass, including fresh Pi context
+construction.
+Pi discovers the wrapper, hides it from automatic selection, and expands its explicit command
+offline.
+The linked policy sources match; Cursor's generated rule was refreshed without a workstation sync.
+The plan received independent Sol review; implementation review was non-independent.
+No interview-quality comparison or native Claude/Cursor behavioral probe ran.
+
+**Rollback:** Restore the scoped policy and documentation changes, then rerender Cursor and
+reload configured hosts.
+No external skill installation or metadata changes are included.
+
 ### Claude defaults and workstation sync
 
-**Verified:** Commits `2627db5` and `581783a` are pushed; raw transcripts remain ignored and untracked.
+**Verified:** Commits `2627db5` and `581783a` are pushed; raw transcripts remain ignored and
+untracked.
 Installed Claude settings match the tracked Opus and medium-effort defaults.
 
-**Sync:** The user explicitly requested `dots`; its `just sync` command completed with exit code zero.
+**Sync:** The user explicitly requested `dots`; its `just sync` command completed with exit code
+zero.
 Global skills were already current, and the working tree remained clean afterward.
 
 **Initial warning:** npm reported the following during the original runner installation.
-Affected packages and exploitability were initially unverified; no automatic dependency fix was applied.
+Affected packages and exploitability were initially unverified; no automatic dependency fix was
+applied.
 
 ```text
 2 vulnerabilities (1 moderate, 1 high)
 ```
 
 **Resolved:** The user selected `npm:pi-subagents@latest` instead of another fixed version.
-Installed `pi-subagents@0.82.0` with `undici@8.12.3`; the npm audit now reports zero vulnerabilities.
+Installed `pi-subagents@0.82.0` with `undici@8.12.3`; the npm audit now reports zero
+vulnerabilities.
 The tracked source, updater wording, documentation, and regression expectations now follow `latest`.
-Role discovery, leader rejection, and steering checks pass against the installed runner without inference.
+Role discovery, leader rejection, and steering checks pass against the installed runner without
+inference.
 Future syncs resolve the tag; this verification covers the installed version, not future releases.
 
 **Next:** Reload Pi to use the upgraded runner.
@@ -389,7 +445,8 @@ The user tested native Claude Code loading; no agent-run model probe was part of
 - Preserved the user's existing shared-policy edit without modifying it.
 
 **Verified:** The migration test failed before implementation and now passes.
-It covers backup preservation, repeated linking, updater survival, and unchanged shared-source bytes.
+It covers backup preservation, repeated linking, updater survival, and unchanged shared-source
+bytes.
 The real-home link resolves to the shared source; repeated linking preserves its timestamp.
 Dotbot retained the previous regular file as a local backup.
 

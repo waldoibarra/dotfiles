@@ -1,7 +1,7 @@
 # Write effective AI prompts
 
-**Use:** Start with the template, refine unclear instructions, and verify the response before relying
-on it.
+**Use:** Start with the template, refine unclear instructions,
+and verify responses before relying on them.
 
 ## Prompt template
 
@@ -18,7 +18,7 @@ Clarification: Ask about missing information that would change the answer.
 Verification: Identify assumptions, support major claims, and flag uncertainty.
 ```
 
-**Prune:** In saved prompt files, keep a rule only if removing it could change a correct output.
+**Prune:** Keep saved prompt rules only when their removal could change a correct output.
 
 ## Refine an unhelpful response
 
@@ -36,7 +36,7 @@ Verification: Identify assumptions, support major claims, and flag uncertainty.
 - Identify assumptions and uncertainty; model-reported confidence is not proof.
 - Request two independent sources per major claim, including titles, URLs, and supporting quotations.
 - Open those sources yourself and confirm the quotations support the claims.
-- Seek credible counterevidence and identify which conditions or assumptions explain disagreements.
+- Seek credible counterevidence. Identify conditions or assumptions explaining disagreements.
 - Recompute figures and inspect the math or code.
 - Use another model to critique claims when useful, then check the underlying evidence.
 

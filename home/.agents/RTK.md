@@ -23,8 +23,8 @@ rtk proxy <command>   # Run without filtering; still records usage
 
 The tracked Claude Code settings register `rtk hook claude` for `PreToolUse` on `Bash`.
 The coding-agent updater refreshes Pi's machine-local extension with `rtk init -g --agent pi`.
-These integrations rewrite supported commands, such as `git status` to `rtk git status`;
-they do not wrap every command or every tool call. Other agents need their own integration.
+These integrations rewrite supported commands, such as `git status` to `rtk git status`.
+They do not wrap every command or every tool call. Other agents need their own integration.
 
 To inspect support without executing a command, use `rtk rewrite "git status"` and inspect the
 printed rewrite. This checks RTK's mapping, not whether an agent loaded its hook or plugin.

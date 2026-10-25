@@ -1,28 +1,28 @@
 # Set up a workstation
 
-Read this before installing. This is a personal **Apple Silicon macOS** setup, with partial Debian
-support. Review the configuration before applying it to another account.
+**Scope:** This setup targets Apple Silicon macOS, with partial Debian support.
+Review the configuration before installing it for another account.
 
 ## Before you start
 
 - Back up existing dotfiles. [Dotbot configuration](/install.conf.yaml) enables backups and forced
   replacement; installation replaces configuration, installs packages and changes the login shell.
 - Review the [Brewfile](/home/.Brewfile), [Mise tools](/home/.config/mise/config.toml),
-[SSH hosts](/home/.ssh/config) and [AWS profiles](/home/.aws/config) . Credentials are not supplied.
-- macOS uses Homebrew at `/opt/homebrew`; Intel Macs are not handled. Debian uses
-`/home/linuxbrew/.linuxbrew` and `apt-get` . The Brewfile includes macOS casks without Linux guards;
-  this is not an unattended cross-platform installer.
-- Set exported `LIFE_PROFILE` in `~/.zprofile.local` to select your directory under `~/life/people/`
-  .
+  [SSH hosts](/home/.ssh/config), and [AWS profiles](/home/.aws/config). Credentials are not supplied.
+- macOS uses Homebrew at `/opt/homebrew`; Intel Macs are not handled.
+  Debian uses `/home/linuxbrew/.linuxbrew` and `apt-get`.
+  The Brewfile includes macOS casks without Linux guards;
+this is not an unattended cross-platform installer.
+- Export `LIFE_PROFILE` in `~/.zprofile.local` to select your directory under `~/life/people/`.
 - Use an interactive terminal for sudo, Touch ID and login-shell prompts.
 
 Git is required to clone the repository.
 [Dotbot's launcher](/dotbot/bin/dotbot) requires Python 3.7+ to run; our wrapper checks `python3`.
 Homebrew, Mise, and `just` are not prerequisites for initial installation.
 
-**Clean-machine verification pending:** This setup has not been exercised on clean macOS or Debian installations.
+**Clean-machine verification pending:** Neither clean macOS nor clean Debian installation has been exercised.
 Fixture tests simulate prerequisites; successful `dots` runs used an already-provisioned workstation.
-Whether platform setup leaves Python available, or requires a separate installation, remains unverified.
+Python availability after platform setup remains unverified; a separate installation may be necessary.
 
 If Git is missing, install it first. On macOS, finish the command-line tools installer:
 
@@ -72,8 +72,10 @@ Initial installation does not use the parallel coordinator or require `just`.
 Later `dots` runs defer Mise tools to that coordinator and use Brew's no-upgrade bootstrap check.
 
 This command does **not** run the coding-agent updater or install this repository's Git hooks.
-The [copy-managed Claude settings](coding-agents/README.md#copy-managed-files) are populated by
-the updater, not Dotbot. The updater also renders
+The updater populates
+[copy-managed Claude settings](coding-agents/README.md#copy-managed-files), not Dotbot.
+Dotbot links Claude's global instructions directly to the shared source; no import adapter runs.
+The updater renders
 [Cursor's global instructions](coding-agents/README.md#cursor-global-instructions) as a regular file.
 
 ## Add local settings
@@ -106,27 +108,26 @@ workstation still needs its own subscription login and microphone permission. Cr
 never supplied by the repository.
 
 Start `pi`, use `/login openai-codex` to authorize your subscription, and check `/model` before
-starting voice. Select device-code or browser login in Pi's prompt. Then use `/live spruce` (or
-`/live` )
-and grant your terminal's macOS microphone permission if requested. No API-key fallback is
-configured
-by this setup. Read [Pi and live voice](coding-agents/pi/README.md) for the model defaults,
-controls, and limitations.
+starting voice. Select device-code or browser login in Pi's prompt.
+Then use `/live spruce` (or `/live`) and grant macOS microphone permission if requested.
+This setup does not configure an API-key fallback.
+Read [Pi and live voice](coding-agents/pi/README.md) for model defaults, controls, and limitations.
 Restart an already-running Pi session after provisioning so it loads the new configuration.
 
 ## Shared life map
 
-Waldo and Lluvia use a shared Obsidian vault at `~/life/` for goals, domain links, ideas, and agent
-coordination. The vault is private and separate from this public-facing dotfiles repository.
+Waldo and Lluvia use a shared Obsidian vault at `~/life/`.
+It holds goals, domain links, ideas, and agent coordination.
+The vault is private and separate from this public-facing dotfiles repository.
 
 Set `export LIFE_PROFILE="waldo"` or `export LIFE_PROFILE="lluvia"` in your untracked
 `~/.zprofile.local`. Open a new login terminal so `dots` inherits the selected profile.
 Read [local shell configuration](zsh-configuration.md#machine-local-configuration) before changing
 profile selection. Agent updates warn if the vault exists but `LIFE_PROFILE` is empty or unset.
 
-Agent updates provision `~/.agents/personal-context.md` and `~/.agents/agent-identity.md` as
-symlinks
-into the selected profile. Pi and Claude Code read these alongside `~/life/README.md`.
+Agent updates link `~/.agents/personal-context.md` and `~/.agents/agent-identity.md`
+into the selected profile.
+Pi and Claude Code read these alongside `~/life/README.md`.
 Cursor receives those reading instructions through its rendered global rule. Read
 [personal profile routing](agent-instructions.md#personal-profile-routing) before provisioning links
 or removing an old `~/AGENTS.md` selector.

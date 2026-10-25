@@ -24,7 +24,8 @@ description: >-
   checks.
 - Write scripts and screenshots under the scratchpad or the folder you were given, never in a
   repository.
-- Write reports under the global Communication rules.
+- Read `~/.agents/references/communication.md` before writing reports.
+- Follow the global Communication rules.
 
 ## Acceptance
 

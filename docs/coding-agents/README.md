@@ -3,6 +3,11 @@
 Pi and Claude Code share policy, skills, and worker roles; client configuration stays native.
 Edit tracked sources under `home/`, not installed copies.
 
+Read [the architecture](/docs/architecture.md) before changing how configuration, project knowledge,
+and shared memory connect.
+Read [model and role selection](/home/.agents/references/delegation.md) before delegating in Pi,
+Claude Code, or Cursor.
+
 ## Understand the layers
 
 | Layer | Responsibility |
@@ -107,7 +112,8 @@ It is our script placeholder, not syntax we expect Cursor to expand.
 During `dots` (`just sync`), the coding-agent updater runs
 [`sync-cursor-rule.sh`](/scripts/update-coding-agents/sync-cursor-rule.sh).
 It replaces that marker with the actual bytes from `~/.agents/AGENTS.md`.
-The result is a regular `~/.cursor/rules/global-instructions.mdc` file with its frontmatter preserved.
+The result is a regular `~/.cursor/rules/global-instructions.mdc` file with its frontmatter
+preserved.
 Only this exact marker is expanded; references inside the instructions are not recursively included.
 
 The renderer atomically replaces old symlinks without modifying their targets.

@@ -8,7 +8,7 @@ without subscriptions or model calls.
 **Existing vault:** Open the existing `~/life/` folder as a vault in Obsidian.
 No vault recreation is needed.
 
-**Manual once:** Connect the vault to Obsidian Sync and wait until the app reports **Fully synced**.
+**Manual once:** Connect the vault to Obsidian Sync and wait for **Fully synced**.
 Enable community plugins.
 Enable the CLI under **Settings → General → Advanced → Command line interface**.
 Read [workstation setup](setup.md) only when dotfiles or Obsidian are missing.
@@ -31,7 +31,7 @@ just obsidian-setup
 stop visibly.
 
 **Repeat safely:** Unchanged configuration retains its bytes and timestamps.
-Existing plugins are not reinstalled or unnecessarily reloaded.
+Existing plugins are neither reinstalled nor unnecessarily reloaded.
 
 **Other vault:** Use `just obsidian-setup "$HOME/other-vault"`.
 

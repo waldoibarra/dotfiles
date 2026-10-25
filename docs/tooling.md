@@ -1,7 +1,7 @@
 # Tooling
 
 Read this before changing package lists, running a sync or editing Git hooks.
-For first installation, use [setup](/docs/setup.md).
+Read [workstation setup](/docs/setup.md) before first installation.
 
 ## Sync the workstation
 
@@ -16,7 +16,8 @@ The `dots` alias runs this from any directory. The recipe executes:
 
 1. `git pull`, then [Dotbot bootstrap](/scripts/README.md), installing missing Brew packages
 without requesting upgrades.
-2. Upgrade Brew-owned Mise, then run remaining Brew upgrades alongside Mise install, upgrade and prune.
+2. Upgrade Brew-owned Mise, then run remaining Brew upgrades alongside Mise install, upgrade and
+  prune.
 3. Wait for both updates, then remove packages absent from the global Brewfile.
 4. [Obsidian setup](obsidian.md) for an existing life vault: tools, plugins, owned settings, and
 ruler.
@@ -24,13 +25,13 @@ ruler.
 6. Repository Git-hook installation.
 
 **Sync changes the machine and can publish commits.** Review local changes and package lists first.
-The agent updater commits and pushes a changed skill lockfile; that push can include other unpushed
-commits, which is accepted.
+The agent updater commits and pushes changed skill lockfiles.
+That push can include other unpushed commits, which is accepted.
 
-Agents run `dots` when a change must reach `$HOME` or the change targets the sync path itself,
-and skip it otherwise. Prefer `just mise-sync`, `just update-ca` or `just hooks` when only
-their domain changed. Before running `dots`, tell the user it will run as part of the work so
-they can accept sudo, Touch ID or SSH prompts; run it in the background and wait for them.
+Agents run `dots` only when a change must reach `$HOME` or targets the sync path.
+Prefer `just mise-sync`, `just update-ca`, or `just hooks` for narrower changes.
+Before running `dots`, tell the user it will run during the work.
+Allow time for sudo, Touch ID, or SSH prompts; run it in the background and wait.
 
 ### Read package-update output
 
@@ -72,9 +73,12 @@ DOTS_SEQUENTIAL=1 just sync
 ```
 
 Brew can replace libraries or build tools used by Mise backends during parallel updates.
-Sequential mode runs the complete Brew cycle before Mise tools and does not add output labels.
-Missing Brew-owned Mise also selects this mode; the coordinator prints `Syncing Brew and Mise sequentially.`
-A failed Brew probe stops the sync rather than assuming Mise is absent.
+Sequential mode runs the complete Brew cycle before Mise tools.
+It does not add output labels.
+Missing Brew-owned Mise also selects sequential mode.
+The coordinator prints `Syncing Brew and Mise sequentially.`
+
+A failed Brew probe stops the sync; it does not assume Mise is absent.
 
 A preflight failure prevents parallel jobs from starting.
 If either parallel job fails, the coordinator waits for the other.
@@ -92,7 +96,7 @@ During `dots`, `DOTS_DEFER_MISE_INSTALL=1` leaves Mise tools for the coordinator
 after trusting the configuration.
 This variable is scoped to the installer invocation; do not export it for first-time setup.
 Standalone installation remains sequential and installs Mise tools, including `just`.
-Read [first-time setup](setup.md) before bootstrap.
+Read [first-time setup](setup.md) before bootstrapping packages.
 
 ## Recipes
 
@@ -136,8 +140,8 @@ EditorConfig checks, with variable indentation for numbered-list continuations.
 
 ## Develop Lens locally
 
-The recipe keeps the caller's working directory, forwards arguments without re-parsing them, and
-never builds, installs, or changes package declarations.
+The recipe keeps the caller's working directory and forwards arguments without re-parsing them.
+It never builds, installs, or changes package declarations.
 
 From this checkout, run `just pi-lens-dev` to use the local sources shown below.
 The recipe uses Pi's normal session persistence by default.
@@ -232,17 +236,21 @@ duti -x md
 
 Expect Cursor's name, application path, and bundle ID.
 Already-correct state is a no-op: the script does not submit another change request.
-macOS may ask permission for the Markdown file type, including `.md` and `.markdown`.
-The script requests a change once, then checks the effective handler before reporting success.
-If it is not yet active, respond to any existing OS prompt before rerunning; do not queue repeated
-requests.
+
+macOS may ask permission for Markdown files, including `.md` and `.markdown`.
+
+The script requests a change once.
+It checks the effective handler before reporting success.
+If the handler is not active, respond to any existing OS prompt before rerunning.
+Do not queue repeated requests.
 A successful duti exit alone does not prove the association changed.
 
 This changes the current user's Markdown association across applications, not just Pi.
 It does not change `EDITOR`, `VISUAL`, or Pi's external prompt editor.
 Terminal-specific editor overrides and per-file choices can still affect a click; test a real link.
 
-To choose another app or undo this preference, change the mapping's bundle ID and rerun the script.
+To choose another app, change the mapping's bundle ID and rerun the script.
+Use the same process to undo this preference.
 An OS-only manual change will be overwritten by the next installer run.
 Keep the desired mapping in Git; never copy the machine's LaunchServices database into dotfiles.
 
@@ -270,12 +278,14 @@ Keep these backend choices unless the underlying constraint changes:
 ### Pi
 
 Mise owns `npm:@earendil-works/pi-coding-agent = "latest"`, so `just mise-sync` and `dots` include
-Pi binary installation and upgrades. The `pi-live-codex` extension is a separate Pi-managed package.
-Dotbot links Pi's tracked JSON preferences and subagent configuration into `~/.pi/agent`;
+Pi binary installation and upgrades.
+The `pi-live-codex` extension is a separate Pi-managed package.
+Dotbot links Pi's tracked JSON preferences and subagent configuration into `~/.pi/agent`.
 Pi UI changes can therefore modify the repository. `just update-ca` installs the configured
 subagent pin and updates declared packages. Shared instructions and roles are linked by Dotbot;
-Pi discovers shared skills natively. Read [Pi delegation](coding-agents/pi/delegation.md)
-before changing the runner or role/model selection.
+Pi discovers shared skills natively.
+Read [Pi delegation](coding-agents/pi/delegation.md) before changing the runner or role/model
+selection.
 [Pi and live voice](coding-agents/pi/README.md) documents ownership, shortcuts, and accepted
 limitations.
 
@@ -300,7 +310,9 @@ just hooks
 just check-hooks
 ```
 
-Use atomic conventional commits, a subject of at most 50 characters and a body explaining why.
+**Owner:** Read the [commit skill](/home/.agents/skills/commit/SKILL.md) before preparing commits or
+authorized pushes.
+The checked-in [commit rules](/committed.toml) remain the executable message contract.
 
 ## RTK
 

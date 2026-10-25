@@ -1,6 +1,6 @@
 # Personal MCP servers
 
-Read [the harness design policy](/home/.agents/AGENTS.md#harness-design) before adding integrations.
+Read [the harness design policy](/home/.agents/references/harness-design.md) before adding integrations.
 Personal MCP definitions live in one shared source; work-only servers stay outside this setup.
 
 ## Source and scope
@@ -12,8 +12,7 @@ Cursor's directory stays real; only its MCP configuration is linked.
 Edits through either client's symlink change the tracked source.
 
 Claude Code stores user servers in `~/.claude.json`, alongside private client state.
-The [registration adapter](/scripts/update-coding-agents/sync-personal-mcp.py) derives user
-registrations
+The [registration adapter](/scripts/update-coding-agents/sync-personal-mcp.py) derives user registrations
 through `claude mcp add-json --scope user`. It never replaces that file or imports project servers.
 
 | Server | Launch | Purpose |
@@ -23,8 +22,8 @@ through `claude mcp add-json --scope user`. It never replaces that file or impor
 
 Context7's pinned stdio command preserves the existing Claude configuration.
 Node/npm and network access are required; `npx` downloads the pinned package if absent.
-Context7 accepts unauthenticated requests but may rate-limit them; no account or API key is
-provisioned.
+Context7 accepts unauthenticated requests but may rate-limit them.
+No account or API key is provisioned.
 Queries reach Context7's external service. Keep private code, company details, and secrets out of
 queries.
 
@@ -32,7 +31,8 @@ Use the common `mcpServers` schema. Pi supports stdio and streamable HTTP, not l
 Keep client-specific exposure settings out of the shared definition.
 Never put credentials in this public repository or replace the entire Claude registry with a
 symlink.
-Pi commands can follow the config symlink and change tracked bytes; review any such changes.
+Pi commands can follow the config symlink and change tracked bytes.
+Review any such changes.
 
 Work roots, project `.mcp.json`, project `.pi/mcp.json`, and unrelated user entries are untouched.
 Project servers can shadow user servers.
@@ -90,9 +90,9 @@ To reconcile only Claude registrations after the shared source is installed:
 python3 scripts/update-coding-agents/sync-personal-mcp.py
 ```
 
-The adapter targets the normal home configuration, ignoring `CLAUDE_CONFIG_DIR` overrides.
-Matching entries cause no writes. Missing entries are added through Claude's native command.
-Detected conflicts and invalid manifest shapes fail before registration.
+The adapter targets normal home configuration, ignoring `CLAUDE_CONFIG_DIR` overrides.
+Matching entries cause no writes. Claude's native command adds missing entries.
+Conflicts and invalid manifest shapes stop registration.
 Unrelated entries are never removed.
 A later native-command failure leaves earlier successful additions intact; registration is not a
 transaction.
@@ -121,8 +121,8 @@ To additionally exercise concurrent native Claude registrations inside a disposa
 MCP_NATIVE_CHECK=1 python3 scripts/tests/test-personal-mcp.py
 ```
 
-That test registers inert fixture commands; it never launches an MCP server or changes your real
-registry.
+That test registers inert fixture commands.
+It never launches an MCP server or changes your real registry.
 It demonstrates observed native behavior, not a guarantee against every competing writer.
 
 These commands connect servers and may start browser consent.

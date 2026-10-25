@@ -268,7 +268,7 @@ placeholder.
 - **Helper order:** order helper functions bottom-up by call depth.
   - Read the file from `main` (bottom-most, depth 0) upward.
   - Directly above `main` sit the functions it calls, in the order it calls them (depth 1).
-  - Above those sit the functions _they_ call, in their call order (depth 2), and so on outward.
+  - Above those sit their callees, in call order (depth 2), and so on outward.
   - Reading bottom-to-top walks the call graph breadth-first, from the entry point out to its
     leaves.
   - _Why:_ gives every function one deterministic slot.
@@ -296,7 +296,7 @@ placeholder.
     `main`'s own callees.
   - Fall back to the heuristic's invariant: **a callee must sit above every one of its
     callers.**
-  - Place the shared helper at the top of its depth group to clear all callers at once.
+  - Place the shared helper above all its callers within its depth group.
   - Use call-order only to break ties among true siblings that share no callee.
 
   ```text

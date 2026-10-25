@@ -1,8 +1,9 @@
 # Pi installation and sync
 
-Pi provisioning runs through the existing `dots` workflow. Mise owns the binary; Dotbot owns the
-instruction, role, and preference links; the coding-agent updater reconciles declared packages.
-[Configuration](configuration.md) lists the linked files and ownership boundaries.
+**Ownership:** Pi provisioning runs through `dots`.
+Mise owns the binary; Dotbot links instructions, roles, and preferences.
+The coding-agent updater reconciles declared packages.
+Read [configuration](configuration.md) before changing linked files or ownership boundaries.
 
 ## Provisioning sequence
 
@@ -28,15 +29,16 @@ Both commands use `PI_CODING_AGENT_DIR="$HOME/.pi/agent"` without `OPENAI_API_KE
 Inherited trial profiles and project-local packages do not change this target.
 Only packages are reconciled; Mise remains responsible for the Pi binary and remains on `latest`.
 
-The original trial used `pi install npm:pi-live-codex --no-approve`. Both operations use Pi's
-[package mechanism](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md).
+The original trial used `pi install npm:pi-live-codex --no-approve`.
+Both operations use Pi's [package mechanism](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md).
 An install/update failure stops the updater with an error. Configuration may already be linked;
 a later successful run reconciles the packages. Neither operation starts a model conversation or
 opens the microphone.
 
-The existing `dots` alias runs `just sync`; it can remove undeclared packages, and the skill updater
-can commit and push changes, including earlier unpushed commits. It is not a harmless validation
-command. See [sync boundaries](../../tooling.md#sync-the-workstation) before applying workstation
+The `dots` alias runs `just sync`, which can remove undeclared packages.
+The skill updater can commit and push changes, including earlier unpushed commits.
+Do not use `dots` as a validation command.
+Read [sync boundaries](../../tooling.md#sync-the-workstation) before applying workstation
 changes, and [workstation setup](../../setup.md) for the complete fresh-machine sequence.
 
 ## RTK, Herdr and Moshi extensions
@@ -58,8 +60,8 @@ installers, data sent by Moshi, environment requirements, and verification limit
 
 ## Authentication and billing
 
-Pi's `/login openai-codex` handles subscription authentication. Device-code login is available in
-the inspected Pi version, with browser authorization as another supported route. Waldo completed
+Pi's `/login openai-codex` handles subscription authentication.
+The inspected Pi version offers device-code and browser authorization. Waldo completed
 login and verified text and voice access; the exact login method used was not recorded. First-run
 login and macOS microphone permission remain interactive user actions.
 

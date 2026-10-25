@@ -227,7 +227,7 @@ Character-relative units make measure follow typography.
 
 ## Pitfalls and related layouts
 
-- Do not set a pixel root, then claim rem units automatically honor the user's chosen default font size.
+- A pixel root prevents rem units from automatically honoring the user's chosen default font size.
 - Do not equate default-font-size changes, text zoom, and full-page zoom.
   - Exercise the relevant modes separately.
 - Avoid fixing heights in px while allowing text to grow in rem.

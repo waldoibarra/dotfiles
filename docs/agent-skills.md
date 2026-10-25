@@ -24,12 +24,39 @@ Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before runnin
 - The `pi` target installs into `~/.agents/skills`.
 - Edit external skills in their owning source repository, not their installed copies.
 
+## Design interviews with documentation
+
+**Use when:** A consequential design has unresolved decisions or terminology worth recording.
+Use `grill-with-docs` for the interview; ordinary edits do not need this workflow.
+
+**Discovery:** The external skill sets `disable-model-invocation: true`.
+Pi discovers it but omits it from the model's advertised skills.
+Invoke it explicitly with `/skill:grill-with-docs` after discovery or reload.
+
+**Portability:** Its body requests a `Skill` tool, which this Pi setup does not provide.
+Ask the agent to read these installed files instead of calling that unavailable tool:
+
+- `~/.agents/skills/grilling/SKILL.md`
+- `~/.agents/skills/domain-modeling/SKILL.md`
+
+**Boundaries:** Confirm decisions before implementation; record accepted decisions in existing
+project documents.
+Glossary and ADR creation remain subject to task authority and local documentation rules.
+Do not create either merely because the wrapper mentions them.
+
+**Ownership:** Keep the external installation unchanged; upstream owns its metadata and
+tool-specific wording.
+Read [external skill maintenance](#external-skills) before proposing a source fix or updating it.
+Loader checks establish discovery and explicit command expansion, not interview quality or
+automatic selection.
+
 ## Repo-managed skills
 
 Dotbot links these bundles individually; the external lockfile does not manage them.
 
 | Read before… | Tracked source |
 | --- | --- |
+| Preparing atomic commits and authorized pushes | [`commit`](/home/.agents/skills/commit/SKILL.md) |
 | Coordinating repository-owned skill creation, refactoring, and delivery | [`skill-maintenance`](/home/.agents/skills/skill-maintenance/SKILL.md) |
 | Maintaining touched Markdown documentation without losing information | [`docs-maintenance`](/home/.agents/skills/docs-maintenance/SKILL.md) |
 | Proposing scoped session-improvement packets at handoff | [`session-improvement`](/home/.agents/skills/session-improvement/SKILL.md) |
@@ -41,7 +68,8 @@ Dotbot links these bundles individually; the external lockfile does not manage t
 | Standards-first or frameworkless web work | [`web-standards`](/home/.agents/skills/web-standards/SKILL.md) |
 | Isolated layout, intrinsic reflow, spacing, or overflow work | [`css-layout`](/home/.agents/skills/css-layout/SKILL.md) |
 
-- The ten `home/.agents/skills/` bundles link to both `~/.agents/skills/` and `~/.claude/skills/`.
+- The eleven `home/.agents/skills/` bundles link to both `~/.agents/skills/` and
+  `~/.claude/skills/`.
 - Editing an installed symlink edits this checkout; edit the tracked source.
 
 **New bundles:** they acquire links on the next Dotbot sync.
@@ -70,6 +98,9 @@ coordinator.
 
 - Start with the user's outcome, protected behavior, and existing owners; avoid another generic
   checklist.
+- Read [shared language and lifecycle
+  conventions](/home/.agents/skills/docs-maintenance/references/conventions.md)
+  before changing glossary, naming, or retention behavior.
 - Keep domain vocabulary consistent; load `domain-modeling` only for unresolved meanings.
 - Prefer executable feedback and isolated checks over additional instructions for unobservable
   failures.
@@ -146,7 +177,8 @@ session-edited Markdown documentation.
 
 `ghostwriter` owns prose; it replaces the former `docs-writing` name.
 
-No shutdown hook runs `socratic-learning` or `session-improvement`; neither reconstructs inaccessible
+No shutdown hook runs `socratic-learning` or `session-improvement`; neither reconstructs
+inaccessible
 conversation history.
 
 Read [Claude skill loading](https://code.claude.com/docs/en/features-overview)

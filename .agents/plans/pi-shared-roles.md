@@ -1,5 +1,9 @@
 # Shared roles for Pi and Claude Code
 
+**Current use:** Read [progress](#progress) for observed migration results.
+Read [decisions](#decisions) for the original implementation contract.
+The implementation sequence is historical; it does not authorize repeating workstation changes.
+
 ## Outcome
 
 Shared rules, skills, references, and role prompts live under `~/.agents/`.
@@ -16,7 +20,7 @@ Read [the roadmap](/.agents/plans/ai-harness-roadmap.md) for the broader work an
 | P1 | Use pinned `pi-subagents@0.77.0`. | Published runner supports per-call `agent` and `model`; no local runner maintenance. |
 | P2 | Move the five roles into `home/.agents/roles/`. | One Markdown prompt per role; retain only portable name/description frontmatter. |
 | P3 | Link shared roles individually into `~/.claude/agents/`; configure Pi's scan directory. | Native adapters avoid copied prompts; Claude inherits tools and uses policy-only reviewer restrictions. |
-| P4 | Choose models per delegation; otherwise inherit the parent model. | Avoid provider-specific defaults in generic role definitions. |
+| P4 | Historical runner behavior: choose models per delegation; omission inherits the parent model. | Avoid provider-specific defaults in generic role definitions. Current shared policy requires explicit worker selection. |
 | P5 | Configure Pi context inheritance and tools through role overrides. | Package defaults strip global rules; Pi-specific fields belong in Pi settings. |
 | P6 | Disable bundled roles, prompts, skills, schedules, missions, and scripted workflows. | Single/parallel calls suffice; different parallel models require separate single-agent launches. |
 | P7 | Retain Bash for reviewers, with a no-mutation instruction. | Git inspection needs Bash; this is policy, not a sandbox. |
@@ -25,10 +29,12 @@ Read [the roadmap](/.agents/plans/ai-harness-roadmap.md) for the broader work an
 | P10 | Explicitly install the configured runner pin before package updates. | Pi 1.1.0 skips pinned npm packages during updates, even when missing. |
 
 Waldo requested DRY/YAGNI, explicit role/model selection, tests, and commits.
-Workstation sync is authorized.
+Workstation sync was authorized for this migration, not for a new run.
 The existing five roles are retained; no new roles are introduced.
 
-## Implementation
+## Historical implementation sequence
+
+The numbered steps record the completed migration, not remaining instructions.
 
 1. Review this plan independently using a read-only Pi process before editing runtime configuration.
 2. Add isolated checks for role discovery, inheritance, installer links, and package reconciliation.
@@ -70,7 +76,8 @@ The existing five roles are retained; no new roles are introduced.
   Both were fixed; role override tools use arrays as required by the installed runner.
 - Four isolated provisioning tests pass, including repeat linking and both package failure paths.
 - Installed SDK checks pass: five executable roles; invalid role/model selections fail explicitly.
-- All five roles ran successfully in a disposable workspace on Pi 1.1.0 with runner 0.77.0.
+- All five roles ran successfully in a disposable workspace.
+  The environment used Pi 1.1.0 and runner 0.77.0.
   Foreground tests selected Luna/Astra explicitly and inherited the parent model for `docs-writer`.
   Concurrent background tests selected different models for `implementer` and `browser-tester`.
 - Child sessions contain global rules, project fixture instructions, shared skills, and role bodies.
@@ -85,5 +92,5 @@ The existing five roles are retained; no new roles are introduced.
 - All four isolated tests also pass against an exported staged tree, independent of unstaged cleanup.
 - Only changed agent links and the pinned package were installed; no full `dots` or publication ran.
 - Runtime evidence remains in temporary directories, outside Git. Work skills/MCPs remain unverified.
-- Commit scope includes shared-role provisioning and its required skill/config ownership updates.
-  Separate cleanup and concurrent Lens notes are excluded.
+- Commit scope included shared-role provisioning and its required skill/config ownership updates.
+  Separate cleanup and concurrent Lens notes were excluded.

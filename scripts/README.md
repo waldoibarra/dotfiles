@@ -47,8 +47,7 @@ prerequisite, and PATH checks.
 
 ## Package updates
 
-[`sync-packages.py`](/scripts/sync-packages.py) coordinates Brew and Mise through `just
-packages-sync`.
+[`sync-packages.py`](/scripts/sync-packages.py) coordinates Brew and Mise through `just packages-sync`.
 Read [package-update output](/docs/tooling.md#read-package-update-output)
 before interpreting interleaved logs.
 Read [sequential mode and recovery](/docs/tooling.md#sequential-mode-and-recovery)
@@ -79,21 +78,23 @@ Fixtures use fake package managers; they never update the workstation.
 [`update-coding-agents/entrypoint.sh`](/scripts/update-coding-agents/entrypoint.sh) runs these steps
 in order through `just update-ca` and `just sync`:
 
-Before these steps, [sync-life-profile.sh](update-coding-agents/sync-life-profile.sh) provisions the
-personal-context and agent-identity symlinks using exported `LIFE_PROFILE`.
+Before these steps,
+[sync-life-profile.sh](update-coding-agents/sync-life-profile.sh)
+provisions personal-context and agent-identity symlinks using exported `LIFE_PROFILE`.
 Set the variable in `~/.zprofile.local` and open a new login terminal.
 If the vault exists without a profile, it warns without changing links or blocking updates.
 Invalid selections, missing source files, or ordinary files at link destinations stop updates.
 Run `python3 scripts/tests/test-life-profile.py` for isolated linking and preservation checks.
 
 1. Copy managed Claude settings and render Cursor's global instruction template.
-Dotbot owns the global `~/.claude/CLAUDE.md` symlink; the updater leaves it intact.
-The Cursor renderer expands our `@~/.agents/AGENTS.md` placeholder into a regular file.
-Read [Cursor global instructions](../docs/coding-agents/README.md#cursor-global-instructions)
-before changing the template or refreshing only that rule.
+  Dotbot links `~/.claude/CLAUDE.md` to shared instructions; the updater leaves that link intact.
+  Claude's global instructions need no import adapter.
+  The Cursor renderer expands `@~/.agents/AGENTS.md` into a regular file.
+  Read [Cursor global instructions](../docs/coding-agents/README.md#cursor-global-instructions)
+  before changing the template or refreshing only that rule.
 2. Register missing shared personal MCP servers through Claude's native user-scope command.
 3. Install the configured subagent runner from `latest`, then update declared Pi packages in the normal
-profile.
+  profile.
 4. Refresh RTK's Pi extension when its dry run lists changes.
 5. Refresh Herdr's Claude and Pi integrations unless status reports them current.
 6. Install Moshi's Pi extension non-interactively with its native target-specific installer.
@@ -103,13 +104,14 @@ lockfile.
 RTK, Herdr and Moshi steps skip their integrations when the respective binary is missing. Their Pi
 steps also require the `pi` binary. Herdr's native installer requires an extension directory;
 the updater creates it when needed. Generated extensions stay outside Git.
-Read [Coding agents](../docs/coding-agents/README.md) before editing copied configs or running
-updates;
-it lists ownership and publication risks. Read [Agent integrations](/docs/agent-integrations.md)
-before diagnosing hooks or plugins. Moshi's Pi hook file is refreshed on each run; pairing and
-daemon/service setup remain outside this updater. Redirecting installer
-stdin from `/dev/null` prevents interactive first-run settings prompts during sync without saving
-choices. Use [Moshi's separate setup](../docs/agent-integrations.md#first-run-settings-during-sync)
+Read [Coding agents](../docs/coding-agents/README.md) before editing copied configs or running updates.
+It lists ownership and publication risks.
+Read [Agent integrations](/docs/agent-integrations.md) before diagnosing hooks or plugins.
+Moshi's Pi hook file is refreshed on each run.
+Pairing and daemon/service setup remain outside this updater.
+Redirecting installer stdin from `/dev/null` prevents first-run settings prompts during sync.
+The redirect saves no preferences.
+Read [Moshi's separate setup](../docs/agent-integrations.md#first-run-settings-during-sync)
 for those machine-local preferences.
 
 [`sync-personal-mcp.py`](/scripts/update-coding-agents/sync-personal-mcp.py) can run separately

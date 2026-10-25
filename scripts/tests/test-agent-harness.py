@@ -151,6 +151,9 @@ class AgentHarnessTest(unittest.TestCase):
                     "orchestration.md",
                     "harness-design.md",
                     "harness-context.md",
+                    "memory.md",
+                    "shell.md",
+                    "delegation.md",
                 ):
                     source = ROOT / "home/.agents/references" / name
                     delivered = references / name
@@ -161,6 +164,9 @@ class AgentHarnessTest(unittest.TestCase):
                     for required in (
                         "docs-maintenance/SKILL.md",
                         "docs-maintenance/references/structure.md",
+                        "docs-maintenance/references/conventions.md",
+                        "commit/SKILL.md",
+                        "commit/evals/evals.json",
                         "skill-maintenance/SKILL.md",
                         "skill-maintenance/evals/evals.json",
                         "shell-scripting/evals/evals.json",

@@ -1,6 +1,10 @@
 ---
 name: web-standards
-description: "Use when building or reviewing standards-first or frameworkless apps, ultra-light design systems, vanilla JavaScript, Web Components, or Pure Web. Start with native HTML/CSS; Lit and TypeScript/Vite are optional, justified choices."
+description: >-
+  Builds or reviews standards-first web apps with native HTML/CSS.
+  Use when building or reviewing frameworkless apps or ultra-light design systems.
+  Also use for vanilla JavaScript, Web Components, or Pure Web.
+  Start with native HTML/CSS; Lit and TypeScript/Vite are optional, justified choices.
 license: MIT
 metadata:
   author: waldoibarra

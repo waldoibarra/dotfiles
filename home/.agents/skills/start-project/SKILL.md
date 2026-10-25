@@ -10,7 +10,8 @@ compatibility: Requires Git, mise, just, Node.js for Markdown linting, and netwo
 # Start Project
 
 - **IS:** a stack-free local baseline for an empty directory, including working lint hooks.
-- **IS NOT:** application scaffolding; use `scaffold-nextjs` or `scaffold-cli` when explicitly requested.
+- **IS NOT:** application scaffolding; use `scaffold-nextjs` or `scaffold-cli` when explicitly
+  requested.
 
 ## Setup defaults
 
@@ -42,6 +43,10 @@ compatibility: Requires Git, mise, just, Node.js for Markdown linting, and netwo
 5. Create `README.md` with a title and `To be defined.` unless scope is already known.
     - Create `AGENTS.md` with a title and one or two sentences stating known scope and unresolved
       stack.
+    - Add root `GLOSSARY.md` with confirmed domain terms and link it from the overview and
+      instructions.
+    - If no terms are known, ask for the first domain concepts.
+      Do not invent definitions or empty scaffolding.
     - Do not add plans, decision tables, architecture docs, or command documentation at this stage.
 6. Reuse effective home EditorConfig and global Git ignores.
     - After Git initialization, check `.env` and `.DS_Store` with `git check-ignore -v --no-index`.
@@ -70,10 +75,14 @@ Read these files before copying them; paths resolve relative to this skill.
 
 ## Gotchas
 
-- Direct recipe commands require the mise environment; use `mise exec -- just` when it is not activated.
+- Direct recipe commands require the mise environment; use `mise exec -- just` when it is not
+  activated.
 - Home EditorConfig applies beneath home only; a nearer `root = true` stops inheritance.
 - Git ignores do not protect already tracked files.
-- `committed` exempts unbreakable tokens from wrapping limits; test length rejection with ordinary prose.
-- `hk` does not support a `quote` template filter in this baseline; retain the tested quoted argument.
+- `committed` exempts unbreakable tokens from wrapping limits; test length rejection with ordinary
+  prose.
+- `hk` does not support a `quote` template filter in this baseline; retain the tested quoted
+  argument.
 
-**Maintenance only:** `evals/evals.json` contains authored scenarios, not executed behavioral results.
+**Maintenance only:** `evals/evals.json` contains authored scenarios, not executed behavioral
+results.
