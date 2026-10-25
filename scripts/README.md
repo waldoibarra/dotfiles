@@ -5,7 +5,8 @@ use [tooling](/docs/tooling.md) to choose the narrowest operation.
 
 ## Idempotency
 
-Read [repository guardrails](/AGENTS.md#guardrails) before changing script behavior.
+Read [repository guardrails](/AGENTS.md#protect-source-files-and-workstation-state) before changing
+script behavior.
 
 - Test initial setup, repeated runs, and retry after partial failure in isolated fixtures.
 - Verify unchanged file contents, timestamps, permissions, and unrelated settings.
