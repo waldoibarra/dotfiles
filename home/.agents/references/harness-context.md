@@ -10,10 +10,12 @@ Do not open personal roadmaps, family project maps, or private personal evidence
 requested.
 Cross-repository company work remains company-scoped; it does not require personal planning context.
 
-**Personal sessions:** Read the navigation section of `~/.agents/harness-roadmap.md` before
-prioritizing harness improvements.
+**Personal sessions:** Use the repository map linked from `~/life/README.md` to locate personal or
+family projects.
+Before prioritizing harness improvements, locate dotfiles and read its
+`docs/plans/ai-harness-roadmap.md` navigation.
 Follow only the relevant current section; do not load the full historical roadmap by default.
-Read the repository map linked from `~/life/README.md` when locating a personal or family project.
+Project plans and research stay in their repositories, not installed under `~/.agents/`.
 
 **Unclear scope:** Ask before reading private plans. Never infer scope from the client or model.
 

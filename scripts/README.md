@@ -48,7 +48,8 @@ prerequisite, and PATH checks.
 
 ## Package updates
 
-[`sync-packages.py`](/scripts/sync-packages.py) coordinates Brew and Mise through `just packages-sync`.
+[`sync-packages.py`](/scripts/sync-packages.py) coordinates Brew and Mise through `just
+packages-sync`.
 Read [package-update output](/docs/tooling.md#read-package-update-output)
 before interpreting interleaved logs.
 Read [sequential mode and recovery](/docs/tooling.md#sequential-mode-and-recovery)
@@ -91,21 +92,26 @@ Run `python3 scripts/tests/test-life-profile.py` for isolated linking and preser
   Dotbot links `~/.claude/CLAUDE.md` to shared instructions; the updater leaves that link intact.
   Claude's global instructions need no import adapter.
   The Cursor renderer expands `@~/.agents/AGENTS.md` into a regular file.
-  Read [Cursor global instructions](../docs/coding-agents/README.md#cursor-global-instructions)
+  Read [Cursor global instructions](../docs/ai-harness/README.md#cursor-global-instructions)
   before changing the template or refreshing only that rule.
 2. Register missing shared personal MCP servers through Claude's native user-scope command.
-3. Install the configured subagent runner from `latest`, then update declared Pi packages in the normal
+3. Install the configured subagent runner from `latest`, then update declared Pi packages in the
+  normal
   profile.
 4. Refresh RTK's Pi extension when its dry run lists changes.
 5. Refresh Herdr's Claude and Pi integrations unless status reports them current.
 6. Install Moshi's Pi extension non-interactively with its native target-specific installer.
 7. Install missing lockfile skills, update global skills, then **commit and push** a changed
 lockfile.
+8. Refresh upstream-generated OpenSpec skills when the native update preview reports changes.
+  `sync-openspec.py` fails visibly on unavailable tools, invalid previews, or native update errors.
+  Run `python3 scripts/tests/test-openspec-sync.py` for isolated no-op, update, and failure checks.
 
 RTK, Herdr and Moshi steps skip their integrations when the respective binary is missing. Their Pi
 steps also require the `pi` binary. Herdr's native installer requires an extension directory;
 the updater creates it when needed. Generated extensions stay outside Git.
-Read [Coding agents](../docs/coding-agents/README.md) before editing copied configs or running updates.
+Read [Coding agents](../docs/ai-harness/README.md) before editing copied configs or running
+updates.
 It lists ownership and publication risks.
 Read [Agent integrations](/docs/agent-integrations.md) before diagnosing hooks or plugins.
 Moshi's Pi hook file is refreshed on each run.
@@ -117,7 +123,7 @@ for those machine-local preferences.
 
 [`sync-personal-mcp.py`](/scripts/update-coding-agents/sync-personal-mcp.py) can run separately
 with `python3`, without package upgrades or publication. It preserves matching registrations and
-fails on conflicts; read [personal MCP setup](/docs/coding-agents/mcp.md) before applying changes.
+fails on conflicts; read [personal MCP setup](/docs/ai-harness/mcp.md) before applying changes.
 
 Pi binary installation belongs to Mise. Package reconciliation reads the runner source from linked
 settings, explicitly installs it, then runs `pi update --extensions --no-approve` from `$HOME`.
@@ -127,7 +133,7 @@ Failures stop the updater. No model, microphone, or authentication call is reque
 
 Pi's preferences and subagent configuration are Dotbot links, not managed copies.
 Credentials, sessions, and locks are separate and untouched.
-[Pi configuration](../docs/coding-agents/pi/configuration.md) lists the ownership boundaries.
+[Pi configuration](../docs/ai-harness/pi/configuration.md) lists the ownership boundaries.
 
 ## Obsidian vault checks
 
@@ -158,7 +164,8 @@ Set `PI_PACKAGE_DIR` to the installed Pi package root to include compiled-host c
 Those checks cover session persistence and effective startup policy in fresh workspaces.
 The startup check reads installed user configuration and registers only the read tool.
 It disables extensions and makes no tool or provider calls.
-Read [harness verification](/docs/coding-agents/harness-verification.md#fresh-startup-defaults) before
+Read [harness verification](/docs/ai-harness/harness-verification.md#fresh-startup-defaults)
+before
 interpreting its results.
 Run `python3 scripts/tests/test-personal-mcp.py` for isolated MCP registration and linking checks.
 Run `python3 scripts/tests/test-markdown-app.py` for application guards and error propagation

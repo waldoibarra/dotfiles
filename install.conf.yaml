@@ -51,10 +51,11 @@
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.agents/AGENTS.md: home/.agents/AGENTS.md
     ~/.claude/CLAUDE.md: home/.agents/AGENTS.md
-    ~/.agents/harness-roadmap.md: .agents/plans/ai-harness-roadmap.md
     ~/.codex/AGENTS.md: home/.agents/AGENTS.md
     ~/.agents/RTK.md: home/.agents/RTK.md
     ~/.agents/references/prompting.md: docs/prompting.md
+    ~/.agents/references/session-workflow.md: docs/ai-harness/session-workflow.md
+    ~/.local/share/openspec/schemas/session-workflow: openspec/schemas/session-workflow
     # Compatibility for existing vault and client references; one canonical rules source.
     ~/.agents/references/communication.md: home/.agents/references/communication-rules.md
     ~/.agents/mcp.json: home/.agents/mcp.json
@@ -62,6 +63,7 @@
     ~/.claude/RTK.md: home/.agents/RTK.md
     ~/.aws/config: home/.aws/config
     ~/.config/git/ignore: home/.config/git/ignore
+    ~/.config/openspec/config.json: home/.config/openspec/config.json
     ~/.config/ghostwriter/soul.md: home/.config/ghostwriter/soul.md
     ~/.config/ghostwriter/professional.md: home/.config/ghostwriter/professional.md
     ~/.config/ghostwriter/personal.md: home/.config/ghostwriter/personal.md
@@ -100,7 +102,7 @@
       path: home/.agents/references/*.md
     # Claude settings are copied by scripts/update-coding-agents/sync-managed-configs.sh.
     # CLAUDE.md and RTK.md use the explicit links above; directories link per child below.
-    # See docs/coding-agents/README.md.
+    # See docs/ai-harness/README.md.
     ~/.claude/:
       glob: true
       path: home/.claude/*
@@ -110,6 +112,19 @@
         - home/.claude/RTK.md
         - home/.claude/output-styles
         - home/.claude/settings.json
+    # OpenSpec owns these generated skills; all three harnesses share their source.
+    ~/.agents/skills/openspec-apply-change: .agents/skills/openspec-apply-change
+    ~/.claude/skills/openspec-apply-change: .agents/skills/openspec-apply-change
+    ~/.agents/skills/openspec-explore: .agents/skills/openspec-explore
+    ~/.claude/skills/openspec-explore: .agents/skills/openspec-explore
+    ~/.agents/skills/openspec-update-change: .agents/skills/openspec-update-change
+    ~/.claude/skills/openspec-update-change: .agents/skills/openspec-update-change
+    ~/.agents/skills/openspec-archive-change: .agents/skills/openspec-archive-change
+    ~/.claude/skills/openspec-archive-change: .agents/skills/openspec-archive-change
+    ~/.agents/skills/openspec-propose: .agents/skills/openspec-propose
+    ~/.claude/skills/openspec-propose: .agents/skills/openspec-propose
+    ~/.agents/skills/openspec-sync-specs: .agents/skills/openspec-sync-specs
+    ~/.claude/skills/openspec-sync-specs: .agents/skills/openspec-sync-specs
     # Link agents per file, like output styles below.
     ~/.claude/agents/:
       glob: true

@@ -270,12 +270,36 @@ class AgentHarnessTest(unittest.TestCase):
                 self.assertEqual(backups[0].read_bytes(), legacy_adapter)
                 for relative in (".agents/RTK.md", ".claude/RTK.md"):
                     self.assertEqual((home / relative).resolve(), ROOT / "home/.agents/RTK.md")
-                roadmap = home / ".agents/harness-roadmap.md"
-                self.assertEqual(roadmap.resolve(), ROOT / ".agents/plans/ai-harness-roadmap.md")
+                openspec_config = home / ".config/openspec/config.json"
                 self.assertEqual(
-                    roadmap.read_bytes(),
-                    (ROOT / ".agents/plans/ai-harness-roadmap.md").read_bytes(),
+                    openspec_config.resolve(), ROOT / "home/.config/openspec/config.json"
                 )
+                self.assertEqual(json.loads(openspec_config.read_text())["delivery"], "skills")
+                workflow = home / ".agents/references/session-workflow.md"
+                self.assertEqual(
+                    workflow.resolve(), ROOT / "docs/ai-harness/session-workflow.md"
+                )
+                schema = home / ".local/share/openspec/schemas/session-workflow"
+                self.assertEqual(schema.resolve(), ROOT / "openspec/schemas/session-workflow")
+                self.assertTrue((schema / "schema.yaml").is_file())
+                expected_skills = {
+                    "openspec-apply-change", "openspec-explore", "openspec-update-change",
+                    "openspec-archive-change", "openspec-propose", "openspec-sync-specs",
+                }
+                generated_skills = list((ROOT / ".agents/skills").glob("openspec-*"))
+                self.assertEqual({source.name for source in generated_skills}, expected_skills)
+                for source in generated_skills:
+                    for directory in (".agents/skills", ".claude/skills"):
+                        installed = home / directory / source.name
+                        self.assertTrue(installed.is_symlink(), str(installed))
+                        self.assertEqual(installed.resolve(), source)
+                        self.assertEqual(
+                            (installed / "SKILL.md").read_bytes(),
+                            (source / "SKILL.md").read_bytes(),
+                        )
+                roadmap = home / ".agents/harness-roadmap.md"
+                self.assertFalse(roadmap.exists())
+                self.assertFalse(roadmap.is_symlink())
                 references = home / ".agents/references"
                 self.assertTrue(references.is_dir())
                 self.assertFalse(references.is_symlink())
@@ -414,7 +438,7 @@ class AgentHarnessTest(unittest.TestCase):
                         source.touch()
 
     def test_documented_repository_guard_rejects_wrong_root(self):
-        guide = (ROOT / "docs/coding-agents/pi/delegation.md").read_text()
+        guide = (ROOT / "docs/ai-harness/pi/delegation.md").read_text()
         guard = guide.split("```sh\nactual_root=", 1)[1].split("```", 1)[0]
         with tempfile.TemporaryDirectory(prefix="dotfiles-repo-guard-") as scratch:
             expected = Path(scratch) / "expected repo"

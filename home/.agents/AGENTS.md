@@ -13,6 +13,7 @@ policy changes.
 before composing any reply or artifact.**
 This applies to all lead and worker output, including documentation, code comments, and commit
 messages.
+OpenSpec artifacts under `openspec/` follow these communication rules and the `docs` workflow.
 The reference owns detailed communication guidance; these requirements establish the universal
 baseline.
 
@@ -40,7 +41,12 @@ next human or agent.
 - Protect **correctness, clear boundaries, shared terminology, and regression coverage**.
 - Prefer canonical instructions, focused skills, and working feedback over additional prompt rules.
 - Diagnose missing tools, prerequisites, or test access before declaring work verified.
-- **Simplify within scope**; propose unrelated cleanup instead of modifying other projects.
+- **Proactively propose refactors** that improve codebase maintainability or make the harness
+  simpler and cleaner.
+  Justify each proposal with concrete evidence, expected benefits, affected scope, tradeoffs, and
+  verification.
+- **Simplify within scope**; proposals do not authorize unrelated implementation or changes to
+  other projects.
 
 ## Start with the right context
 
@@ -95,6 +101,9 @@ procedures.
 - Skills own procedures; roles own responsibilities; native settings own client mechanics.
 - Keep **one canonical source per concern**. Preserve meaningful rationale without presenting
   obsolete instructions as current.
+- During authorized refactors, remove obsolete operational guidance and repair affected links and
+  reading routes.
+  Preserve consequential rationale and protected evidence through `~/.agents/references/memory.md`.
 - Each maintained repository and vault needs a meaningful `GLOSSARY.md`; read it before domain
   edits.
 - Maintain settled, reusable domain terms in the owning glossary during authorized work, not only at
@@ -117,6 +126,24 @@ Add missing glossaries during authorized maintenance; never manufacture entries 
 - **Verify worker facts, numbers, and sources** before reporting or publishing them.
 
 ## Make decisions actionable
+
+**Agree on scope before implementation.**
+Read `~/.agents/references/session-workflow.md` before choosing a prototype or durable-change route.
+
+**Durable changes:** Plan before implementation, including configuration and documentation changes.
+First use `~/.agents/skills/grill-with-docs/SKILL.md` to refine the task against relevant evidence.
+Propose a plan comparing viable alternatives, tradeoffs, scope, verification, and recovery.
+Wait for explicit plan approval; feedback means revise the plan, not start implementation.
+Only an explicit task-specific waiver skips this planning gate.
+Approved steps need no repeated approval; material scope changes return for approval.
+Read `~/.agents/references/orchestration.md` before planning or coordinating implementation.
+
+**Prototypes:** Agree on the question, boundaries, observation method, stop condition, and approval
+in conversation.
+This concise agreement replaces the durable-change plan format; it does not waive approval or safety.
+Keep throwaway experiments outside OpenSpec, even inside an OpenSpec-enabled project.
+Production promotion requires a separate approved durable change; optional learnings stay with
+their owning project.
 
 - **Recommend one supported option.** Include alternatives and tradeoffs only when they affect the
   decision.

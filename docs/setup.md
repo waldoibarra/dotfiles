@@ -73,10 +73,10 @@ Later `dots` runs defer Mise tools to that coordinator and use Brew's no-upgrade
 
 This command does **not** run the coding-agent updater or install this repository's Git hooks.
 The updater populates
-[copy-managed Claude settings](coding-agents/README.md#copy-managed-files), not Dotbot.
+[copy-managed Claude settings](ai-harness/README.md#copy-managed-files), not Dotbot.
 Dotbot links Claude's global instructions directly to the shared source; no import adapter runs.
 The updater renders
-[Cursor's global instructions](coding-agents/README.md#cursor-global-instructions) as a regular file.
+[Cursor's global instructions](ai-harness/README.md#cursor-global-instructions) as a regular file.
 
 ## Add local settings
 
@@ -90,7 +90,7 @@ first. Keep credentials and these local files outside the repository.
 
 ## Finish agent setup
 
-Open a new terminal, then read [coding agents](coding-agents/README.md) before running:
+Open a new terminal, then read [coding agents](ai-harness/README.md) before running:
 
 ```sh
 cd ~/.dotfiles
@@ -111,7 +111,7 @@ Start `pi`, use `/login openai-codex` to authorize your subscription, and check 
 starting voice. Select device-code or browser login in Pi's prompt.
 Then use `/live spruce` (or `/live`) and grant macOS microphone permission if requested.
 This setup does not configure an API-key fallback.
-Read [Pi and live voice](coding-agents/pi/README.md) for model defaults, controls, and limitations.
+Read [Pi and live voice](ai-harness/pi/README.md) for model defaults, controls, and limitations.
 Restart an already-running Pi session after provisioning so it loads the new configuration.
 
 ## Shared life map

@@ -1,9 +1,9 @@
 # Skill catalogue and delivery
 
 **Use skills for task-specific procedures, not as a mandatory session checklist.**
-Read [session workflow](coding-agents/session-workflow.md) for human checkpoints and example
+Read [session workflow](ai-harness/session-workflow.md) for human checkpoints and example
 requests.
-Read [Coding agents](coding-agents/README.md) before changing agent files.
+Read [Coding agents](ai-harness/README.md) before changing agent files.
 
 External skills belong to their source repositories; repo-authored skills belong in the tracked
 directories below.
@@ -29,18 +29,17 @@ Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before runnin
 
 ## Design interviews with documentation
 
-**Use when:** A consequential design has unresolved decisions or terminology worth recording.
-Use `grill-with-docs` for the interview; ordinary edits do not need this workflow.
+**Use when:** The shared planning gate requires task refinement before implementation, unless
+explicitly waived.
+Read [the session workflow](/docs/ai-harness/session-workflow.md) before starting a change.
 
 **Discovery:** The external skill sets `disable-model-invocation: true`.
-Pi discovers it but omits it from the model's advertised skills.
-Invoke it explicitly with `/skill:grill-with-docs` after discovery or reload.
+Shared instructions explicitly route agents to its installed `SKILL.md`; users need not type slash commands.
+A missing skill or dependency blocks dependent work until reported and resolved.
 
-**Portability:** Its body requests a `Skill` tool, which this Pi setup does not provide.
-Ask the agent to read these installed files instead of calling that unavailable tool:
-
-- `~/.agents/skills/grilling/SKILL.md`
-- `~/.agents/skills/domain-modeling/SKILL.md`
+**Portability:** Pi's tracked `APPEND_SYSTEM.md` handles requests for the unavailable `Skill` tool.
+Pi reads the named dependencies, `grilling` and `domain-modeling`, from their installed skill files.
+No separate adapter or modification of the external skill is needed.
 
 **Boundaries:** Confirm decisions before implementation; record accepted decisions in existing
 project documents.
@@ -227,4 +226,4 @@ before changing Claude invocation or discovery expectations.
 - A fresh Pi session or `/reload` refreshes discovery.
 - Startup diagnostics and `/skill:<name>` check visibility, not skill execution.
 
-Read [Pi and live voice](coding-agents/pi/README.md) before provisioning Pi or using live voice.
+Read [Pi and live voice](ai-harness/pi/README.md) before provisioning Pi or using live voice.

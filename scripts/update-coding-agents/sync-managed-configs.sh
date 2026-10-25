@@ -5,7 +5,7 @@
 # that `herdr integration install claude` writes stays local and is discarded
 # instead of leaking into the repo. Dotbot excludes settings.json from its glob.
 # CLAUDE.md is linked by Dotbot and must not be replaced here.
-# See docs/coding-agents/README.md.
+# See docs/ai-harness/README.md.
 
 # Configs copied from the repo, as paths relative to both the repo's home/
 # directory and $HOME.

@@ -13,7 +13,7 @@ charset = utf-8
 max_line_length = off
 
 # Research records use Markdown's three-space numbered-list continuation indent.
-[.agents/**/*.md]
+[docs/{plans,spikes}/**/*.md]
 indent_size = unset
 
 # Git config format uses tabs by design and aliases can exceed 100 chars.

@@ -1,0 +1,5 @@
+schema: session-workflow
+context: |
+  Shared instructions and the docs skill govern authored OpenSpec artifacts.
+  Read AGENTS.md and docs/ai-harness/openspec.md before working on this change.
+  User approval is required before implementation; feedback requests plan revision.

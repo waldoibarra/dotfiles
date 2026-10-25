@@ -19,14 +19,23 @@ Read [model and role selection](delegation.md) before dispatching any worker.
 
 ## Plan and deliver
 
-1. Ground the plan in current source, accepted decisions, and explicit authority.
-2. Define observable acceptance; obtain independent review for consequential changes.
-3. Implement with regression coverage where applicable; review against the plan and verify actual
-  behavior.
-4. Update affected documentation and indexes; distinguish local completion, installation, loading,
-  and remote delivery.
-5. Record outcomes and unresolved questions with their existing owner, then hand off the next
-  action.
+For prototypes, use the session guide's conversational agreement instead of the durable-change
+sequence below.
+
+1. Follow the shared planning gate; use `grill-with-docs` and inspect relevant repository evidence.
+  Preserve settled decisions; ask only unresolved questions that affect the plan.
+2. Compare viable alternatives and recommend one, including scope, tradeoffs, verification, and
+  recovery.
+  Obtain independent review for consequential changes and wait for explicit user approval before
+  implementation.
+3. Classify prototypes before invoking OpenSpec, following the installed session workflow.
+  For durable changes in OpenSpec-enabled projects, use upstream skills and native CLI instructions.
+  Specialist skills refine the work; the OpenSpec change remains the canonical implementation plan.
+4. Implement approved steps with regression coverage; return material scope changes for approval.
+5. Update affected documentation and indexes; remove obsolete guidance while preserving
+  consequential rationale.
+6. Record verified outcomes, unresolved questions, and next steps with their owner.
+  Distinguish configured, installed, loaded, exercised, and remotely delivered states.
 
 **Proportion:** Documentation-only work needs factual, preservation, and link checks, not fabricated
 runtime failures.
@@ -38,6 +47,22 @@ Without delegation, work sequentially and identify self-review as non-independen
 **Decisions:** Read [memory lifecycle](memory.md#gate-architectural-decisions) before proposing an
 ADR or retiring an agreement.
 A plan is context, not permission to execute its backlog.
+
+## Coordinate across harnesses
+
+Read the delegation reference before assigning workers, whether through native subagents or
+terminal-controlled agents.
+Use one lead for the approved change, approvals, canonical task updates, and integration.
+Workers receive the change path, approved revision, repository root, bounded task, acceptance
+criteria, and prohibited actions.
+Keep one writer per working tree; parallel writers use separate worktrees with explicit change
+exchange.
+Worktrees do not share uncommitted edits; verify each worker's input revision before execution.
+
+Workers return changed files, verification evidence, blockers, and remaining work.
+The lead reconciles results and updates the change; terminal messages are not durable plan state.
+Serialize spec synchronization and archive operations through the lead.
+Terminal access never extends approval, model, privacy, or publication authority.
 
 ## Respect model boundaries
 

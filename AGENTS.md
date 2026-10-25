@@ -7,7 +7,7 @@ Dotbot links most files; the updater copies Claude settings and renders client a
 ## Protect source files and workstation state
 
 - **Edit tracked sources under `home/`, not installed copies.** Symlink edits affect this repository.
-  Read [agent ownership](/docs/coding-agents/README.md#file-ownership) before changing copied or
+  Read [agent ownership](/docs/ai-harness/README.md#file-ownership) before changing copied or
   generated configuration.
 - Keep credentials, identities, signing keys and machine-local overrides outside the repository.
   Use `$HOME`, supported `~` expansion or native path handling, never absolute personal home paths.
@@ -29,12 +29,13 @@ Use the relevant guide below; read only sections needed for the task.
 | Documentation structure, stale guidance, or decision retention | [Documentation workflow](/docs/documentation.md) |
 | Installation or local overrides | [Setup](/docs/setup.md) |
 | Packages, recipes, lint, or hooks | [Tooling](/docs/tooling.md) |
-| Agent prompts, settings, integrations, or skills | [Coding agents](/docs/coding-agents/README.md) |
+| Agent prompts, settings, integrations, or skills | [Coding agents](/docs/ai-harness/README.md) |
 | Installer or updater scripts | [Scripts](/scripts/README.md) |
 | Zsh startup | [Zsh configuration](/docs/zsh-configuration.md) |
 | Git defaults, identity, or signing | [Git configuration](/docs/git-configuration.md) |
 | Design tooling | [Agent UI design tools](/docs/agent-ui-design-tools.md) |
-| Plans, trial notes, spikes, or research evidence | [Workspace index](/.agents/README.md) |
+| Native OpenSpec changes and shared planning workflow | [OpenSpec integration](/docs/ai-harness/openspec.md) |
+| Existing plans, trial notes, spikes, or research evidence | [Workspace index](/docs/workspace.md) |
 
 **Historical evidence does not override current guidance or grant approval.**
 Update the workspace index whenever adding, moving, or removing records or evidence collections.

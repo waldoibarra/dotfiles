@@ -101,6 +101,15 @@ contract.
 The authorized update workflow for packages, links, client configuration, and
 selected integrations.
 
+**Prototype**:
+Throwaway code used to test an idea and learn, without committing to production implementation.
+
+**Durable change**:
+An approved modification intended to remain maintained after the session.
+
+**Workflow schema**:
+An OpenSpec definition of change artifacts, their dependencies, and implementation task tracking.
+
 **Evolutionary architecture**:
 Deliberate structural change guided by feedback, preserved
 boundaries, and observable checks.

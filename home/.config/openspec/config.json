@@ -1,0 +1,7 @@
+{
+  "profile": "core",
+  "delivery": "skills",
+  "telemetry": {
+    "enabled": false
+  }
+}

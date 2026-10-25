@@ -1,0 +1,79 @@
+name: session-workflow
+version: 1
+description: Approved durable changes with a proposal, conditional specifications, and tasks.
+artifacts:
+  - id: proposal
+    generates: proposal.md
+    description: Outcome, approach, alternatives, scope, acceptance, and approval state.
+    template: proposal.md
+    instruction: |
+      Read ~/.agents/references/session-workflow.md before creating artifacts.
+      It owns session routing and links the shared approval gate and specialist procedures.
+      Resolve guide links against its real source, not the current project.
+      If unavailable, report the missing reference before dependent work.
+      Prototype requests use its prototype route, without OpenSpec artifacts.
+      Use the completed refinement rather than repeating settled questions.
+      Keep standard Why, What Changes, Capabilities, and Impact headings.
+      Native CLI compatibility depends on those headings.
+      Put technical approach, alternatives, tradeoffs, and recovery in this proposal.
+      Reference existing facts instead of repeating them.
+      Define observable acceptance and identify assumptions affecting the approved scope.
+      Record actual approval or pending status; artifact existence does not establish approval.
+      No separate design, ADR, interview transcript, review manifest, or retrospective is required.
+      Add supporting documents only when complexity warrants them within approved scope.
+      For observable behavior changes, list capability deltas and remove any skip_specs marker.
+      Otherwise, set skip_specs: true in this change's .openspec.yaml and omit specifications.
+      Never use specification skipping to hide a behavior change.
+    requires: []
+  - id: specs
+    generates: specs/**/*.md
+    description: Observable behavior deltas, only when behavior changes.
+    template: specs/spec.md
+    instruction: |
+      Read the proposal and relevant existing specifications before writing deltas.
+      Use the capability paths declared in the proposal.
+      Use native ADDED, MODIFIED, REMOVED, or RENAMED Requirements sections.
+      Each requirement uses a ### Requirement heading and normative SHALL or MUST wording.
+      Each requirement includes a #### Scenario with WHEN and THEN steps.
+      Describe observable outcomes, not internal implementation or task sequencing.
+      For new capabilities, include a meaningful Purpose of at least 50 characters.
+      For MODIFIED requirements, copy the entire existing requirement and its scenarios.
+      Then edit the complete block.
+      Preserve unchanged behavior and scenario coverage.
+      REMOVED requirements explain Reason and Migration; RENAMED requirements use FROM and TO.
+      Skip this artifact only when change metadata declares skip_specs: true.
+    requires:
+      - proposal
+  - id: tasks
+    generates: tasks.md
+    description: Approved implementation steps, verification evidence, blockers, and handoff state.
+    template: tasks.md
+    instruction: |
+      Read the proposal and any required specification deltas.
+      Link supporting design detail instead of creating another implementation plan.
+      Group tasks under numbered headings.
+      Use - [ ] X.Y task descriptions and state each task's observable completion check.
+      Include tests and documentation with the work they verify.
+      Track evidence, blockers, and remaining work here, without mandatory separate reports.
+      Mark completion only after observing the stated check.
+      Keep archive and publication follow-up outside tracked implementation checkboxes.
+      Feedback revises the plan; it does not authorize implementation.
+    requires:
+      - proposal
+      - specs
+apply:
+  requires:
+    - tasks
+  tracks: tasks.md
+  instruction: |
+    Read ~/.agents/references/session-workflow.md and the current change before implementation.
+    Confirm explicit approval or a task-specific waiver.
+    File presence and CLI readiness are not approval.
+    Follow the shared prototype route if the request is a throwaway experiment.
+    Validate this change with the native CLI before implementation.
+    Repeat validation after meaningful artifact changes.
+    Execute only approved work and return material scope changes for approval.
+    Use relevant specialist skills without duplicating their procedures in this schema.
+    Record observed checks and blockers in tasks.md.
+    Never infer completion from another agent's message.
+    Use feedback-loop to assess outcomes without automatically changing policy or the schema.

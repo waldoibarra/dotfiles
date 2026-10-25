@@ -21,7 +21,7 @@ without requesting upgrades.
 3. Wait for both updates, then remove packages absent from the global Brewfile.
 4. [Obsidian setup](obsidian.md) for an existing life vault: tools, plugins, owned settings, and
 ruler.
-5. The [coding-agent updater](coding-agents/README.md).
+5. The [coding-agent updater](ai-harness/README.md).
 6. Repository Git-hook installation.
 
 **Sync changes the machine and can publish commits.** Review local changes and package lists first.
@@ -135,8 +135,8 @@ markdownlint-cli2 - < home/.agents/skills/shell-scripting/SKILL.md
 
 Verbatim upstream guides and output styles are intentionally exempt from house Markdown rules.
 The saved media-spike evidence collection is exempt from EditorConfig checks to preserve output
-formatting and manifest checksums. Research Markdown under `.agents/` still receives Markdown and
-EditorConfig checks, with variable indentation for numbered-list continuations.
+formatting and manifest checksums. Markdown under `docs/plans/` and `docs/spikes/` receives Markdown
+and EditorConfig checks, with variable indentation for numbered-list continuations.
 
 ## Preserve raw source material
 
@@ -153,13 +153,17 @@ Original sources stay unchanged; maintained documentation outside that directory
 
 **Shared defaults:** The `project-init` templates preserve the Markdown and hook exclusions for new
 repositories.
-The shared `docs` conventions require native exclusions when maintaining other linter or formatter configurations.
-Existing repositories are not automatically migrated; Git ignores alone do not enforce these exclusions.
+The shared `docs` conventions require native exclusions when maintaining other linter or formatter
+configurations.
+Existing repositories are not automatically migrated; Git ignores alone do not enforce these
+exclusions.
 
-**Native global fallback:** Dotbot links `home/.config/yamlfmt/.yamlfmt` into `~/.config/yamlfmt/.yamlfmt`.
+**Native global fallback:** Dotbot links `home/.config/yamlfmt/.yamlfmt` into
+`~/.config/yamlfmt/.yamlfmt`.
 Yamlfmt uses it when no nearer configuration applies; explicit local configuration can replace it.
 The fallback covers standard and doublestar discovery from the repository root.
-Custom `XDG_CONFIG_HOME` locations need their own configuration; no wrapper overrides project tooling.
+Custom `XDG_CONFIG_HOME` locations need their own configuration; no wrapper overrides project
+tooling.
 
 There is no shared exclusion setting honored by every linter.
 Markdownlint CLI2 and EditorConfig checker use project configurations here.
@@ -201,7 +205,7 @@ disabled.
 This prevents double rendering. Voice loads without opening the microphone or connecting
 automatically.
 Start voice with `/live spruce` or use Ctrl+L for the default voice.
-Read [live voice](coding-agents/pi/live-voice.md) before testing microphone and account access.
+Read [live voice](ai-harness/pi/live-voice.md) before testing microphone and account access.
 Use `--no-session` only for disposable conversations that should not persist after exit.
 
 Sessions launched before voice was included need a new process.
@@ -314,10 +318,18 @@ Dotbot links Pi's tracked JSON preferences and subagent configuration into `~/.p
 Pi UI changes can therefore modify the repository. `just update-ca` installs the configured
 subagent pin and updates declared packages. Shared instructions and roles are linked by Dotbot;
 Pi discovers shared skills natively.
-Read [Pi delegation](coding-agents/pi/delegation.md) before changing the runner or role/model
+Read [Pi delegation](ai-harness/pi/delegation.md) before changing the runner or role/model
 selection.
-[Pi and live voice](coding-agents/pi/README.md) documents ownership, shortcuts, and accepted
+[Pi and live voice](ai-harness/pi/README.md) documents ownership, shortcuts, and accepted
 limitations.
+
+### OpenSpec
+
+Mise installs `npm:@fission-ai/openspec` at `latest`; Dotbot links native skills-only preferences.
+The coding-agent updater refreshes this checkout's generated skills only when native preview reports
+changes.
+Read [OpenSpec integration](ai-harness/openspec.md) before initialization, upgrades, or change
+lifecycle operations.
 
 ### OpenPencil
 

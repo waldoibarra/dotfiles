@@ -36,7 +36,7 @@ The lead checks worker results and retains decisions, shared processes, and Git 
 | --- | --- | --- |
 | Global behavior | [Shared instructions](/home/.agents/AGENTS.md) | Golden rules, authority, privacy, and task routing |
 | Procedures and responsibilities | [Skills](/docs/agent-skills.md) and [roles](/docs/agent-instructions.md#shared-role-agents) | Loaded for the task, not copied into startup |
-| Client mechanics | [Coding-agent configuration](/docs/coding-agents/README.md) | Native models, tools, credentials, and runtime state |
+| Client mechanics | [Coding-agent configuration](/docs/ai-harness/README.md) | Native models, tools, credentials, and runtime state |
 | Product knowledge | Each repository's overview, glossary, docs, and decisions | Technical facts remain with their product |
 | Shared personal memory | The Obsidian life vault | Profiles, shared goals, repository navigation, and coordination |
 
@@ -63,12 +63,12 @@ flowchart LR
 **Delivery:** Pi and Claude global instructions link to the shared source; Cursor receives a
 rendered regular file.
 Skills and references have individual links; credentials and runtime state remain client-native.
-Read [file ownership](/docs/coding-agents/README.md#file-ownership) before changing delivery paths.
+Read [file ownership](/docs/ai-harness/README.md#file-ownership) before changing delivery paths.
 
 **Evidence:** Source, installation, loading, authentication, and exercised behavior are separate
 states.
 A passing link test does not prove the next agent follows the instruction.
-Read [verification](/docs/coding-agents/harness-verification.md) before defining or claiming
+Read [verification](/docs/ai-harness/harness-verification.md) before defining or claiming
 acceptance.
 
 ## Understand shared memory
@@ -124,5 +124,5 @@ a record.
   configured clients.
 - Read [documentation maintenance](/docs/documentation.md) before restructuring guidance or retiring
   stale material.
-- Read [the workspace index](/.agents/README.md) before consulting task-specific plans or historical
+- Read [the workspace index](/docs/workspace.md) before consulting task-specific plans or historical
   verification.

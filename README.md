@@ -47,8 +47,8 @@ Choose the guide for your task; read [agent instructions](/AGENTS.md) before cha
 | Before you… | Read |
 | --- | --- |
 | Maintain packages, run checks, or synchronize the workstation | [Tooling](/docs/tooling.md) |
-| Configure Pi, Claude Code, or Cursor | [Coding agents](/docs/coding-agents/README.md) |
-| Use subscription voice or Pi-specific integrations | [Pi and live voice](/docs/coding-agents/pi/README.md) |
+| Configure Pi, Claude Code, or Cursor | [Coding agents](/docs/ai-harness/README.md) |
+| Use subscription voice or Pi-specific integrations | [Pi and live voice](/docs/ai-harness/pi/README.md) |
 | Provision the shared vault's tools and checks | [Obsidian](/docs/obsidian.md) |
 | Change shell startup | [Zsh configuration](/docs/zsh-configuration.md) |
 | Change Git defaults, identity, or signing | [Git configuration](/docs/git-configuration.md) |
@@ -56,5 +56,5 @@ Choose the guide for your task; read [agent instructions](/AGENTS.md) before cha
 | Use editable UI designs | [Design tooling](/docs/agent-ui-design-tools.md) |
 | Restructure or retire maintained information | [Documentation maintenance](/docs/documentation.md) |
 
-Plans and evidence live in [the agent workspace](/.agents/README.md).
+Plans and evidence live in [the plans and research index](/docs/workspace.md).
 They explain prior work; **current guides and verified configuration own present behavior**.

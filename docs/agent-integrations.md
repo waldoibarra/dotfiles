@@ -1,6 +1,6 @@
 # Agent integrations
 
-Read [Coding agents](coding-agents/README.md) before editing tracked settings.
+Read [Coding agents](ai-harness/README.md) before editing tracked settings.
 Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before running the updater.
 Keep machine-local hooks, plugins and service configuration outside the repository.
 
@@ -53,6 +53,33 @@ Port it into the tracked `$HOME` form.
 
 See [Herdr's integrations reference](https://herdr.dev/docs/integrations/) for upstream behavior.
 
+### Cross-harness coordination
+
+Waldo reports testing Herdr's CLI to coordinate agents across terminal tabs and harnesses.
+The installed CLI exposes tab creation, agent startup, prompting, output reading, and lifecycle
+waiting.
+Command availability does not prove a successful end-to-end collaboration.
+
+Read [shared orchestration](/home/.agents/references/orchestration.md#coordinate-across-harnesses)
+before assigning work through Herdr.
+Read Herdr's native skill with `herdr --skill` before controlling panes or agents.
+Keep one lead and one approved OpenSpec change; terminal messages carry bounded assignments and
+evidence.
+
+Prefer agent-targeted prompting over raw pane input when addressing a running agent.
+Resolve the live target and repository before sending input; a pane can change occupants.
+Never treat an idle or blocked state as proof of task success or permission to accept a dialog.
+Read returned output and verify the resulting files and tests.
+
+Starting agents, sending prompts, and responding to permission dialogs retain their existing
+approval boundaries.
+Separate worktrees isolate concurrent writers; explicitly exchange revisions before integrating
+results.
+Do not copy private terminal output across project or company boundaries.
+
+Read [Herdr automation](https://herdr.dev/docs/agent-automation/) for native control surfaces.
+Same-harness subagents and cross-harness handoffs require separate behavioral verification.
+
 ## Moshi
 
 Homebrew owns `moshi-hook`.
@@ -79,7 +106,8 @@ nothing, but hook installation continues.
 The updater redirects each Moshi installer's stdin from `/dev/null`.
 An attached-terminal smoke test confirmed hooks install without showing the menu
 or writing preference files.
-Sync does not accept the preselected choices for you. Skipping the menu does not disable Moshi's defaults.
+Sync does not accept the preselected choices for you. Skipping the menu does not disable Moshi's
+defaults.
 Choose those machine-local preferences separately in an interactive terminal:
 
 ```sh
@@ -108,11 +136,13 @@ Native hooks ignore socket failures; an absent daemon does not interrupt an agen
 Pairing and daemon/LaunchAgent setup remain machine-local and are not provisioned by `dots`.
 `moshi-hook probe --json` checks the local daemon and gateway without changing them; it does not
 prove phone delivery. Waldo reports missing Pi phone notifications despite installed hooks;
-that diagnosis is deferred. On another computer, read [Moshi's setup guide](https://getmoshi.app/docs/install-moshi-hook)
+that diagnosis is deferred. On another computer, read [Moshi's setup
+guide](https://getmoshi.app/docs/install-moshi-hook)
 before pairing and service setup.
 Then restart agents and verify a harmless completion in the app.
 For daemon failures, inspect the service environment: launchd does not inherit the interactive
-shell's Mise PATH. [Moshi's hook reference](https://getmoshi.app/docs/hooks) describes upstream support.
+shell's Mise PATH. [Moshi's hook reference](https://getmoshi.app/docs/hooks) describes upstream
+support.
 
 ## Lens
 
@@ -125,13 +155,16 @@ and labels tool calls natively, so dotfiles no longer installs it.
 ### Pi Lens
 
 The tracked Pi settings declare `git:github.com/waldoibarra/pi-lens@latest` with empty `skills`
-and `prompts` filters. The updater runs `pi update --extensions --no-approve` against the normal profile.
+and `prompts` filters. The updater runs `pi update --extensions --no-approve` against the normal
+profile.
 The Git package needs no separate installer loop.
 
-Lens `v0.2.0` is verified with Pi `1.1.0` and `1.2.0`; unrecognized UI layouts retain native rendering.
+Lens `v0.2.0` is verified with Pi `1.1.0` and `1.2.0`; unrecognized UI layouts retain native
+rendering.
 Mise follows Pi `latest`; Lens no longer rejects hosts by version number.
 Future Pi versions still require compatibility verification.
-Check `pi --version` and `/lens` after sync. Credentials, sessions, and package caches remain machine-local.
+Check `pi --version` and `/lens` after sync. Credentials, sessions, and package caches remain
+machine-local.
 Clipboard previews and composer attribution require compatible host patches.
 The Lens package does not install them.
 

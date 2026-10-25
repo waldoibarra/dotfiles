@@ -40,10 +40,17 @@ owns instruction content conventions.
 
 **Dotfiles ownership:** Shared procedures live under `home/.agents/`; workstation maintenance guides
 live under `docs/`.
-[Plans and research](/.agents/README.md) own project records, outside shared harness configuration.
+[Plans and research](/docs/workspace.md) own project records, outside shared harness configuration.
 The root glossary defines existing domain concepts; implementation details belong with their
 maintained guides.
 Do not copy global vocabulary or create empty documentation to satisfy a template.
+
+## OpenSpec artifacts
+
+Authored `openspec/` proposals, designs, specifications, and tasks follow shared communication rules
+and the `docs` procedure.
+Upstream-generated skills remain unchanged and are refreshed by their owning CLI.
+Read [OpenSpec integration](/docs/ai-harness/openspec.md) before planning or delivering a change.
 
 ## Remove stale guidance within scope
 
@@ -98,5 +105,5 @@ Discovery proves availability, not automatic selection or successful documentati
 
 At closure, `feedback-loop` reviews session-edited Markdown and proposes warranted corrections
 without applying them.
-Read [historical verification](/.agents/plans/ai-harness-roadmap.md#documentation-maintenance)
+Read [historical verification](/docs/plans/ai-harness-roadmap.md#documentation-maintenance)
 before citing earlier results; those records do not verify the current workflow.

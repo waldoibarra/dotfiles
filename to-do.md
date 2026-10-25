@@ -21,7 +21,7 @@ Assess useful practices, overlap, and compatibility; propose scoped adaptations 
   external skills automatically.
 
 - [ ] Compare [OpenWiki](https://github.com/langchain-ai/openwiki) with the manual documentation baseline
-  after the [dotfiles pilot](/.agents/plans/ai-harness-roadmap.md#documentation-philosophy-pilot).
+  after the [dotfiles pilot](/docs/plans/ai-harness-roadmap.md#documentation-philosophy-pilot).
   Evaluate navigation, factual accuracy, duplication, maintenance effort, and generated changes in one
   approved repository.
   Installation and execution need separate approval; this item records the deferred evaluation.
@@ -35,7 +35,7 @@ Assess useful practices, overlap, and compatibility; propose scoped adaptations 
   ```
 
   Run the second command from the Hermes directory only after installation and execution approval.
-- Read [browser investigation](/.agents/spikes/browser-access-and-google-oauth.md) before approving
+- Read [browser investigation](/docs/spikes/browser-access-and-google-oauth.md) before approving
   a browser pilot.
   Implementation remains pending.
 - Explore pinned-message support for coding agents and image rendering in Claude Code.
@@ -43,7 +43,7 @@ Assess useful practices, overlap, and compatibility; propose scoped adaptations 
 
 ## Explorations
 
-- Read [course/media possibilities](/.agents/spikes/browser-access-and-google-oauth.md#course-video-and-saved-media-workflow)
+- Read [course/media possibilities](/docs/spikes/browser-access-and-google-oauth.md#course-video-and-saved-media-workflow)
   before choosing the first learning source; Clief notes were the initial candidate.
 - Compare Higgsfield with alternatives for video creation.
 - Evaluate a test influencer profile and monetization without treating the idea as publication approval.

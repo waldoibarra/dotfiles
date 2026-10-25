@@ -2,7 +2,7 @@
 
 Shared instructions orient every session; references, skills, and roles supply detail when needed.
 
-Read [Coding agents](/docs/coding-agents/README.md) before editing tracked configuration or choosing
+Read [Coding agents](/docs/ai-harness/README.md) before editing tracked configuration or choosing
 a maintenance guide.
 
 ## Policy ownership
@@ -46,7 +46,7 @@ Loading checks establish delivery, not universal writing compliance.
 `install.conf.yaml` links it into `~/.agents/references/`.
 Skills cite that installed path, which is the same on every machine.
 
-Read [harness verification](/docs/coding-agents/harness-verification.md) before checking instruction
+Read [harness verification](/docs/ai-harness/harness-verification.md) before checking instruction
 behavior.
 
 ## Global loaders
@@ -77,9 +77,9 @@ The global source requires reading installed `~/.agents/references/harness-conte
 start.
 This shared reference routes by scope; it contains no personal project plans or current priorities.
 
-Only personal sessions read `~/.agents/harness-roadmap.md` for personal harness prioritization.
+Personal sessions locate dotfiles through the life repository map before prioritizing harness improvements.
+They read `docs/plans/ai-harness-roadmap.md` inside that checkout; no roadmap is installed under `~/.agents/`.
 Company cross-repository work stays company-scoped and uses its own roadmap.
-Dotbot links it to the existing repository roadmap; the overview uses only stable installed paths.
 Work sessions follow their project instructions to the company-owned roadmap instead.
 Company evidence and credentials never belong in these public personal records.
 
@@ -175,7 +175,7 @@ They contain no provider, model, or effort defaults.
 - The main session owns decisions, Git writes, shared processes, and user communication.
 - Role restrictions are policy, not a sandbox; shell-capable reviewers can still mutate files.
 
-Read [Pi delegation](/docs/coding-agents/pi/delegation.md) before changing discovery, inheritance,
+Read [Pi delegation](/docs/ai-harness/pi/delegation.md) before changing discovery, inheritance,
 or dispatch controls.
 
 - Claude uses linked native agent definitions; dispatch must explicitly select an eligible worker
@@ -214,7 +214,7 @@ changing style metadata or activation.
 4. Exercise the requested behavior before reporting it verified.
 
 - Installed files prove delivery, not loaded instructions or successful behavior.
-- Read [file ownership](/docs/coding-agents/README.md#file-ownership) before applying links or
+- Read [file ownership](/docs/ai-harness/README.md#file-ownership) before applying links or
   replacing copied files.
-- Read [harness verification](/docs/coding-agents/harness-verification.md) before spending quota on
+- Read [harness verification](/docs/ai-harness/harness-verification.md) before spending quota on
   behavioral probes.
