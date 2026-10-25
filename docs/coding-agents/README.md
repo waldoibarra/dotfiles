@@ -87,20 +87,39 @@ for the settings and their separation from private runtime files.
 
 ## Ghostwriter voice
 
-[`home/.config/ghostwriter/soul.md`](/home/.config/ghostwriter/soul.md) owns the initial personal
-voice preferences.
-Dotbot links only this file into `~/.config/ghostwriter/`; the directory stays real.
-Platform profiles, private samples, evaluations, and backups remain local unless explicitly added to
-dotfiles.
+[`home/.config/ghostwriter/soul.md`](/home/.config/ghostwriter/soul.md) owns shared writing defaults
+and routes drafting by audience and purpose, not app.
+Dotbot links these four files individually into `~/.config/ghostwriter/`; the directory stays real.
 
-Edit the repository source when refining the shared baseline. Profile edits through the installed
-link also change dotfiles.
-Review excerpts and learned preferences before committing; this profile is publishable
-configuration, not private storage.
-`GHOSTWRITER_HOME` overrides the default directory, bypassing this link unless it names the same
+| Source | Scope |
+| --- | --- |
+| [soul.md](/home/.config/ghostwriter/soul.md) | Shared style defaults and profile selection |
+| [professional.md](/home/.config/ghostwriter/professional.md) | Work communication outside DMs and social content; client-facing documents |
+| [personal.md](/home/.config/ghostwriter/personal.md) | Every DM, including work-related messages, plus personal correspondence |
+| [social-media.md](/home/.config/ghostwriter/social-media.md) | Social content outside DMs: bios, stories, reels, posts, captions, comments, and replies |
+
+These audience-based names adapt Ghostwriter's surface-based convention through explicit routing
+in `soul.md`.
+Every DM uses `personal.md`, regardless of app or professional environment; this routing takes
+precedence.
+Social-media scope includes Instagram, LinkedIn, X, and other social platforms, excluding DMs.
+A Slack work DM uses `personal.md`; a LinkedIn post uses `social-media.md`.
+These files contain generic defaults, not learned voices for Waldo or Lluvia.
+Personal examples and measured habits are excluded; the current writer's stated preferences
+guide individual voice.
+Person-specific profile selection remains deferred.
+
+Private samples, evaluations, backups, and other unlisted profiles remain local.
+Dotbot cleans broken Ghostwriter links pointing into this checkout.
+This removes retired `bumble.md`, `slack.md`, `whatsapp.md`, and `discord.md` links without
+deleting unrelated local files.
+Edit repository sources; changes through installed links also change dotfiles.
+Keep individual samples and learned preferences outside these shared defaults.
+These profiles are publishable configuration, not private storage.
+`GHOSTWRITER_HOME` overrides the default directory, bypassing these links unless it names the same
 location.
 
-Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before applying the link on an
+Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before applying links on an
 existing workstation.
 
 ## Cursor global instructions

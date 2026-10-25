@@ -16,6 +16,7 @@
     ~/.claude/skills:
     ~/.claude:
     ~/.config:
+    ~/.config/ghostwriter:
     ~/.ssh:
     "~/Library/Application Support/Code/User":
     ~/Library/LaunchAgents:
@@ -62,6 +63,9 @@
     ~/.aws/config: home/.aws/config
     ~/.config/git/ignore: home/.config/git/ignore
     ~/.config/ghostwriter/soul.md: home/.config/ghostwriter/soul.md
+    ~/.config/ghostwriter/professional.md: home/.config/ghostwriter/professional.md
+    ~/.config/ghostwriter/personal.md: home/.config/ghostwriter/personal.md
+    ~/.config/ghostwriter/social-media.md: home/.config/ghostwriter/social-media.md
     ~/.pi/agent/AGENTS.md: home/.agents/AGENTS.md
     ~/.pi/agent/settings.json: home/.pi/agent/settings.json
     ~/.pi/agent/extensions/subagent/config.json: home/.pi/agent/extensions/subagent/config.json

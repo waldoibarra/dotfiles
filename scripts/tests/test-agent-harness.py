@@ -99,6 +99,62 @@ class AgentHarnessTest(unittest.TestCase):
         self.assertFalse(config["scheduledRuns"]["enabled"])
         self.assertFalse(config["missions"]["enabled"])
 
+    def test_ghostwriter_profiles_preserve_private_files_and_repeat_state(self):
+        names = ("soul.md", "professional.md", "personal.md", "social-media.md")
+        sources = ROOT / "home/.config/ghostwriter"
+        self.assertEqual({p.name for p in sources.glob("*.md")}, set(names))
+        with tempfile.TemporaryDirectory(prefix="dotfiles-ghostwriter-") as scratch:
+            home = Path(scratch)
+            profiles = home / ".config/ghostwriter"
+            profiles.mkdir(parents=True)
+            for name in names:
+                (profiles / name).write_text(f"Local {name}\n")
+            private = profiles / "backups/private.md"
+            private.parent.mkdir()
+            private.write_text("Private evidence\n")
+            private_state = (private.read_bytes(), private.stat().st_mtime_ns)
+            retired_names = ("bumble.md", "slack.md", "whatsapp.md", "discord.md")
+            for name in retired_names:
+                (profiles / name).symlink_to(sources / name)
+            private_link = profiles / "private-link"
+            private_link.symlink_to(home / "unavailable-private-profile")
+            command = [
+                sys.executable, str(ROOT / "dotbot/bin/dotbot"),
+                "-d", str(ROOT), "-c", str(ROOT / "install.conf.yaml"),
+                "--only", "create", "link",
+            ]
+            command.append("clean")
+            previous_state = None
+            for _ in range(2):
+                subprocess.run(
+                    command, env=dict(os.environ, HOME=str(home)), check=True,
+                    capture_output=True, text=True, timeout=15,
+                )
+                self.assertFalse(profiles.is_symlink())
+                for name in retired_names:
+                    self.assertFalse((profiles / name).is_symlink(), name)
+                self.assertEqual({p.name for p in profiles.glob("*.md")}, set(names))
+                self.assertTrue(private_link.is_symlink())
+                for name in names:
+                    source = ROOT / "home/.config/ghostwriter" / name
+                    installed = profiles / name
+                    self.assertTrue(installed.is_symlink(), name)
+                    self.assertEqual(installed.resolve(), source)
+                    self.assertEqual(installed.read_bytes(), source.read_bytes())
+                    backups = list(profiles.glob(f"{name}.dotbot-backup.*"))
+                    self.assertEqual(len(backups), 1, name)
+                    self.assertEqual(backups[0].read_text(), f"Local {name}\n")
+                self.assertEqual(
+                    (private.read_bytes(), private.stat().st_mtime_ns), private_state
+                )
+                state = {
+                    str(p.relative_to(profiles)): (p.lstat().st_mtime_ns, p.lstat().st_mode)
+                    for p in profiles.rglob("*")
+                }
+                if previous_state is not None:
+                    self.assertEqual(state, previous_state)
+                previous_state = state
+
     def test_dotbot_links_shared_bytes_idempotently(self):
         with tempfile.TemporaryDirectory(prefix="dotfiles-harness-") as scratch:
             home = Path(scratch)

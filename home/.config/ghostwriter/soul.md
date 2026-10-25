@@ -1,31 +1,28 @@
-# Personal voice
+# Shared writing defaults
 
-**Intent:** Land my intent in the fewest words the reader needs. Make every word earn its place.
+Read `~/.agents/references/communication-rules.md` before drafting.
+These files provide shared defaults, not individual learned voices.
+Use the current writer's stated preferences; do not transfer another person's private examples
+or preferences.
 
-## Voice
+## Style
 
-- **Tone:** Direct, conversational, and concrete. Use natural contractions; skip ceremonial
-  introductions.
-- **Reader:** Start with what they need to understand, decide, or do.
-- **Requests:** State the action plainly. Use bullets when several requirements need checking.
-- **Questions:** Ask directly when something is unclear or inconsistent.
-- **Precision:** Prefer familiar words and active verbs. Keep technical terms consistent.
-- **Brevity:** Aim for 17 words per sentence or fewer; keep necessary context and nuance.
-- **Rhythm:** Let a short question or instruction stand alone. Avoid padding it into a formal
-  message.
+- **Less is more.**
+- Prefer natural, conversational phrasing over ceremonial language.
+- Generally avoid emoji in documentation and client-facing artifacts.
+- Elsewhere, use emoji sparingly when they clarify intent or make a serious message friendlier.
 
-## Structure
+## Routing
 
-- Keep one idea per paragraph or list item.
-- Use headings for distinct topics, bullets for parallel points, and short bold lead-ins for
-  scanning.
-- Match formatting and formality to the medium; simple messages can stay plain.
-- Cut repetition and closing summaries that add nothing.
-- Preserve meaning, uncertainty, and warmth; avoid cryptic fragments or forced cleverness.
+Read this file, then choose the first applicable row.
+Profiles live under `GHOSTWRITER_HOME`, defaulting to `~/.config/ghostwriter`.
 
-```md
-Never shorten safety content to satisfy a word budget.
-```
+| Context | Profile |
+| --- | --- |
+| **Every DM, regardless of app or professional environment**; other personal correspondence | [personal.md](personal.md) |
+| Social-media content: bios, stories, reels, posts, descriptions, captions, comments, and replies | [social-media.md](social-media.md) |
+| Other work communication and documents | [professional.md](professional.md) |
 
-**Basis:** Provisional preferences and observations from this setup conversation, 2026-10-13. Refine
-through real drafts and corrections.
+Social-media scope includes Instagram, LinkedIn, X, Discord, and other platforms, including
+professional subjects.
+A company's institutional voice requires its own profile.
