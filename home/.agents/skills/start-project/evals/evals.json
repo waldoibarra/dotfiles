@@ -23,6 +23,7 @@
         "No application package manifest is created.",
         "The justfile exposes Setup and Linting groups.",
         "Markdown and commit-message hooks are exercised.",
+        "Linters and automatic formatters exclude repository-root raw/ while checking maintained files.",
         "The README contains a title, short project status, and a glossary reading link.",
         "Creates a meaningful root glossary from confirmed terms or reports missing domain input without inventing definitions.",
         "No commit or remote is created without a request.",

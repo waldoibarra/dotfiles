@@ -19,6 +19,18 @@ _Avoid_: Global memory, when referring to instructions.
 delivery.
 _Avoid_: Orchestrator worker.
 
+**Information architecture (IA):** Organization, naming, and relationships that make information
+understandable and findable.
+Use “documentation information architecture” when distinguishing documentation from other
+information systems.
+
+**Progressive disclosure:** Presenting essential information first, with additional detail available
+when readers need it.
+
+**Directory layout:** The physical arrangement of directories and files, representing one aspect of
+information architecture.
+_Avoid_: Dirs/files architecture, when referring to information organization beyond filesystem paths.
+
 **Canonical source:** The maintained owner of a fact or rule; other locations point to it.
 
 **Shared memory:** Durable, scoped knowledge retained in repository documentation or the shared life

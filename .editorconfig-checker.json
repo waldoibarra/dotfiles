@@ -1,5 +1,6 @@
 {
   "Exclude": [
+    "^raw/",
     "home/\\.agents/skills/shell-scripting/references/google-shell-style-guide\\.md",
     "^\\.agents/spikes/pi-media-learning-and-live-voice-evidence/"
   ]

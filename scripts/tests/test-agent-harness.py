@@ -99,6 +99,48 @@ class AgentHarnessTest(unittest.TestCase):
         self.assertFalse(config["scheduledRuns"]["enabled"])
         self.assertFalse(config["missions"]["enabled"])
 
+    def test_docs_skill_rename_migrates_links_idempotently(self):
+        source = ROOT / "home/.agents/skills/docs"
+        metadata = yaml.safe_load((source / "SKILL.md").read_text().split("---", 2)[1])
+        self.assertEqual(metadata["name"], "docs")
+        scenarios = json.loads((source / "evals/evals.json").read_text())
+        self.assertEqual(scenarios["skill_name"], metadata["name"])
+        self.assertFalse((source.parent / "docs-maintenance").exists())
+        with tempfile.TemporaryDirectory(prefix="dotfiles-docs-rename-") as scratch:
+            home = Path(scratch)
+            directories = (home / ".agents/skills", home / ".claude/skills")
+            for directory in directories:
+                directory.mkdir(parents=True)
+                (directory / "docs-maintenance").symlink_to(
+                    source.parent / "docs-maintenance"
+                )
+                (directory / "unmanaged").mkdir()
+                (directory / "unmanaged/note.md").write_text("Keep local content.\n")
+            command = [
+                sys.executable, str(ROOT / "dotbot/bin/dotbot"),
+                "-d", str(ROOT), "-c", str(ROOT / "install.conf.yaml"),
+                "--only", "clean", "create", "link",
+            ]
+            previous = None
+            for _ in range(2):
+                subprocess.run(
+                    command, env=dict(os.environ, HOME=str(home)), check=True,
+                    capture_output=True, text=True, timeout=15,
+                )
+                current = []
+                for directory in directories:
+                    self.assertFalse((directory / "docs-maintenance").is_symlink())
+                    delivered = directory / "docs"
+                    self.assertTrue(delivered.is_symlink())
+                    self.assertEqual(delivered.resolve(), source)
+                    self.assertEqual(
+                        (directory / "unmanaged/note.md").read_text(), "Keep local content.\n"
+                    )
+                    current.append(delivered.lstat().st_mtime_ns)
+                if previous is not None:
+                    self.assertEqual(current, previous)
+                previous = current
+
     def test_ghostwriter_profiles_preserve_private_files_and_repeat_state(self):
         names = ("soul.md", "professional.md", "personal.md", "social-media.md")
         sources = ROOT / "home/.config/ghostwriter"
@@ -238,9 +280,9 @@ class AgentHarnessTest(unittest.TestCase):
                 )
                 for directory in (".agents/skills", ".claude/skills"):
                     for required in (
-                        "docs-maintenance/SKILL.md",
-                        "docs-maintenance/references/structure.md",
-                        "docs-maintenance/references/conventions.md",
+                        "docs/SKILL.md",
+                        "docs/references/structure.md",
+                        "docs/references/conventions.md",
                         "commit/SKILL.md",
                         "commit/evals/evals.json",
                         "skill-maintenance/SKILL.md",

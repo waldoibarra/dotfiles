@@ -19,6 +19,17 @@ const defaults = [
   "**Assertive communication:**", "**Maintainability:**",
 ];
 const workspaces = [];
+
+function assertOnDemandSkill(resourceLoader, prompt, name) {
+  const matches = resourceLoader.getSkills().skills.filter(item => item.name === name);
+  assert.equal(matches.length, 1, `Discover exactly one ${name} skill`);
+  const skill = matches[0];
+  assert.equal(realpathSync(skill.filePath), join(root, `home/.agents/skills/${name}/SKILL.md`));
+  assert(prompt.includes(`<name>${name}</name>`), `${name} must be advertised`);
+  const body = readFileSync(skill.filePath, "utf8").split("---", 3)[2].trim();
+  assert(!prompt.includes(body), `${name} stays on demand`);
+}
+
 let session;
 try {
   for (const localInstructions of [false, true]) {
@@ -51,21 +62,10 @@ try {
     assert(communication.includes("~/.agents/references/communication-rules.md"));
     assert(communication.includes("before composing any reply or artifact"));
     assert.equal(prompt.includes("Local contract marker: scoped-orders."), localInstructions);
-    const skill = resourceLoader.getSkills().skills.find(item => item.name === "skill-maintenance");
-    assert(skill, "Custom skill coordinator must be discoverable");
-    assert.equal(realpathSync(skill.filePath),
-      join(root, "home/.agents/skills/skill-maintenance/SKILL.md"));
-    assert(prompt.includes(`<name>${skill.name}</name>`),
-      "Coordinator must be advertised to the model");
-    const skillBody = readFileSync(skill.filePath, "utf8").split("---", 3)[2].trim();
-    assert(!prompt.includes(skillBody), "Do not preload the specialist body");
-    const commit = resourceLoader.getSkills().skills.find(item => item.name === "commit");
-    assert(commit, "Commit workflow must be discoverable");
-    assert.equal(realpathSync(commit.filePath),
-      join(root, "home/.agents/skills/commit/SKILL.md"));
-    assert(prompt.includes(`<name>${commit.name}</name>`));
-    const commitBody = readFileSync(commit.filePath, "utf8").split("---", 3)[2].trim();
-    assert(!prompt.includes(commitBody), "Commit procedure stays on demand");
+    for (const name of ["skill-maintenance", "docs", "commit"]) {
+      assertOnDemandSkill(resourceLoader, prompt, name);
+    }
+    assert(!resourceLoader.getSkills().skills.some(item => item.name === "docs-maintenance"));
     for (const reference of [
       "communication-rules.md", "orchestration.md", "memory.md", "shell.md", "delegation.md",
     ]) {

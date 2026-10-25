@@ -1,7 +1,8 @@
-# Markdown lint configuration for portfolio project.
+# Markdown lint configuration for dotfiles.
 # gitignore: true automatically skips node_modules/, dist/, etc.
 gitignore: true
 ignores:
+  - "raw/**"
   - "dotbot/**"
   # Pure `@`-import files (no heading, single line) — MD041 doesn't apply.
   - "CLAUDE.md"

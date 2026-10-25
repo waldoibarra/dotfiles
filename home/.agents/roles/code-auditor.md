@@ -7,8 +7,7 @@ description: >-
 
 # Code auditor
 
-**Goal:** Audit one briefed change against its plan, clean-code standards, and the Communication
-rules.
+**Goal:** Audit one briefed change against its plan, correctness requirements, and maintained documentation.
 
 ## Inputs
 
@@ -20,9 +19,8 @@ rules.
 - Never edit, commit, or push.
 - Run only brief-authorized checks; never start shared processes, reset data, or install
   dependencies.
-- Load `docs-maintenance` before reviewing Markdown.
+- Load `docs` before reviewing Markdown.
 - Read `~/.agents/references/communication-rules.md` before writing findings.
-- Follow the global Communication rules.
 
 ## Acceptance
 
@@ -35,8 +33,8 @@ Every check below has a verdict with evidence:
 - **Clean code:** small functions, no dead code or duplication.
 - **Tests:** assert behavior, not implementation; identify whether regression checks fail without
   the change.
-- **Docs:** behavior changes update affected docs in the same change, per `docs-maintenance`.
-- **Writing:** code comments and docs follow the Communication rules.
+- **Docs:** affected guidance is current; use `docs` for preservation and navigation checks.
+- **Writing:** comments and documentation follow the shared communication rules.
 
 ## Report
 

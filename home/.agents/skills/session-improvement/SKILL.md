@@ -38,16 +38,11 @@ Skill invocation and session closure grant no write authority.
 - Identify Markdown documentation created or edited during this session; skip this review when none
   was touched.
 - Exclude documents merely read, unrelated Git changes, and repository-wide audits.
-- Read [docs-maintenance](../docs-maintenance/SKILL.md) for documentation review criteria; report if
-  unavailable rather than inventing its guidance.
-- Use its read-only review mode; this skill's proposal-only boundary still applies.
-- Inspect only touched documents and references needed to verify their context, claims, or links.
-- Propose supported improvements to the big picture, concern boundaries, information preservation,
-  and factual accuracy.
-- Apply the same evidence and placement gates; return no documentation proposal when none is
-  warranted.
-- Name affected paths, necessary link updates, verification, and rollback; do not apply rewrites or
-  create directories.
+- Read [docs](../docs/SKILL.md) and follow its applicable content and reader-route checks without editing.
+  Report unavailable guidance instead of inventing it.
+- Inspect only session-edited documents and references needed to verify their context, claims, or links.
+- Return a scoped proposal only for evidenced gaps; the approval packet below owns its required contents.
+- Do not apply rewrites, create directories, or treat closure as authorization.
 
 ## Review voice-profile feedback
 

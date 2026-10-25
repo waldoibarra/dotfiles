@@ -112,7 +112,7 @@ lint-ec:
 # Use yamlfmt to lint YAML files.
 [group("Linting")]
 lint-yaml:
-  yamlfmt -lint "**/*.yaml"
+  yamlfmt -lint -dstar -exclude "raw/**,dotbot/**" "**/*.yaml"
 
 # Use committed to lint a commit message file.
 [group("Linting")]

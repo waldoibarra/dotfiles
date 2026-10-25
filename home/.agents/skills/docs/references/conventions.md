@@ -1,24 +1,28 @@
 # Documentation conventions
 
-Read before naming, organizing, or editing maintained documentation.
+Use this reference for entrypoints, shared language, filenames, links, and retention.
+The `docs` entrypoint owns the workflow; its structure reference owns information architecture and
+page-purpose guidance.
+
+**House conventions take precedence over generic templates and external recommendations across
+maintained documentation.**
+AI-assisted drafts are permitted within authorized scope.
+Verify their claims, commands, boundaries, and links before acceptance.
 
 ## Contents
 
-- [Explain before detailing](#explain-before-detailing)
+- [Lead with the reader's need](#lead-with-the-readers-need)
 - [README.md](#readmemd-earn-the-readers-interest)
 - [AGENTS.md](#agentsmd-define-the-working-contract)
 - [Share language](#share-language)
 - [Links and names](#link-and-name-consistently)
 - [Preservation](#preserve-what-matters)
 
-## Explain before detailing
+## Lead with the reader's need
 
-- Give each document one concern and audience. Keep facts with their owner; link instead of
-  duplicating.
-- Match the code, explain what and why first, then reveal detail as needed.
-- Split by concern, never convenience; keep task instructions separate from history and reference
-  facts.
-- Describe links with reading triggers: `Read <doc> before <action>.`
+**Each page serves a reader's question.** Lead with its answer, then the evidence or action needed.
+Keep terminology consistent with the project's glossary and claims consistent with inspected
+sources.
 
 ## README.md: earn the reader's interest
 
@@ -68,12 +72,9 @@ choices.
   checks.
 - Do not repeat the README pitch, shared policy, or discoverable facts without operational value.
 
-**Our rules take precedence over generic templates and external recommendations.**
-AI-assisted drafts are permitted within authorized scope. Verify their claims, commands, boundaries,
-and links before acceptance.
 Treat external performance claims as unverified unless their evidence supports the specific claim.
-Neither authorship nor line count proves instruction quality; check actual loading and observed
-behavior separately.
+Neither authorship nor line count proves instruction quality; check loading and observed behavior
+separately.
 
 ## Share language
 
@@ -108,8 +109,12 @@ For read-only or narrower work, report the missing glossary without expanding wr
 outside default reading paths.
 **Protected content:** Leave frozen snapshots, original sources, generated output, and vendored
 material to their owning process.
+Exclude repository-root `raw/` from linters and automatic formatters when maintaining project
+tooling.
+Use native exclusions; Git ignores alone do not establish linter coverage.
+Verify exclusions with invalid source fixtures and confirm equivalent maintained files still fail
+checks.
 
 Read `~/.agents/references/memory.md` before changing decision status, retention, or ADR guidance.
-Read `~/.agents/references/communication-rules.md` before writing; safety warnings and source
-quotations
-retain their wording.
+Read `~/.agents/references/communication-rules.md` before writing.
+Safety warnings and source quotations retain their wording.

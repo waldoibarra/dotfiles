@@ -16,9 +16,9 @@ description: >-
 ## Constraints
 
 - Never edit files or run commands that change state. Never rewrite the plan yourself.
-- Load `docs-maintenance` before reviewing; plans are in its scope.
+- Use `docs` for plan-document quality; assess implementation feasibility against repository
+  evidence.
 - Read `~/.agents/references/communication-rules.md` before writing findings.
-- Follow the global Communication rules.
 
 ## Acceptance
 
@@ -32,7 +32,8 @@ Every check below has a verdict with evidence:
 - **Order:** steps that can run in parallel, and steps that must wait.
 - **Verification:** automated and manual tests that prove each step, with exact commands.
 - **Risk:** data loss, migrations, shared state, remote writes.
-- **Writing:** plan text follows the Communication rules.
+- **Writing:** the plan distinguishes current facts, proposed work, and decisions using the shared
+  communication rules.
 
 ## Report
 

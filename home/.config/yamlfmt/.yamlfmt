@@ -1,0 +1,4 @@
+# Preserve repository-root source material; local configurations can override this fallback.
+exclude:
+  - raw
+  - raw/**

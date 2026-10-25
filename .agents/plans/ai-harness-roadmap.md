@@ -116,6 +116,36 @@ Start fresh sessions before verifying effective instructions; retain client-spec
 
 ## Existing follow-through
 
+### Documentation philosophy pilot
+
+**Implemented:** `docs` owns the concern-based documentation workflow and links its canonical
+structure reference.
+That reference combines concern-based information architecture, Diátaxis page purposes, and
+progressive disclosure.
+Its guidance is adaptable; neither a directory tree nor four documentation categories are mandatory.
+Shared instructions, worker roles, and closure review use the same workflow instead of duplicating
+its architecture.
+The renamed bundle, active references, and local client links use `docs`; no legacy alias is
+installed.
+
+**Verified:** Fourteen harness tests, six Cursor tests, skill validators, and changed-document
+checks pass.
+Fresh Pi context discovers exactly one `docs` skill; its body stays on demand.
+Independent review found obsolete writing assertions; those assertions now follow current
+communication rules.
+Twenty-three authored documentation scenarios cover the contracts but do not establish model conformance.
+Repository lint passes with native `raw/` exclusions; protected source files remain unchanged.
+Six isolated exclusion tests cover maintained-file controls, repeat runs, hook selection, and
+global YAML delivery.
+
+**Next session:** Trial one dotfiles documentation area using the reader-route checks in
+[concern-based structure](/home/.agents/skills/docs/references/structure.md#check-reader-routes).
+Read [documentation maintenance](/docs/documentation.md) for local commands and ownership before
+editing.
+Record observed navigation and maintenance results here, without treating installation as behavioral
+verification.
+The later OpenWiki comparison remains in [tooling ideas](/to-do.md#agent-tools).
+
 ### Validate shared roles
 
 **State:** Shared roles are installed. Historical probes passed; everyday use remains unverified.

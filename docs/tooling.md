@@ -138,6 +138,36 @@ The saved media-spike evidence collection is exempt from EditorConfig checks to 
 formatting and manifest checksums. Research Markdown under `.agents/` still receives Markdown and
 EditorConfig checks, with variable indentation for numbered-list continuations.
 
+## Preserve raw source material
+
+**Repository-root `raw/` is excluded from file linting and automatic formatting.**
+Original sources stay unchanged; maintained documentation outside that directory remains checked.
+
+| Check | Exclusion owner |
+| --- | --- |
+| Markdown lint and automatic fixes | `.markdownlint-cli2.yaml` |
+| EditorConfig checks | `.editorconfig-checker.json` |
+| YAML lint | Explicit exclusion in `just lint-yaml` |
+| ShellCheck | The maintained-file allowlist in `just lint-sh` never selects `raw/` |
+| Hook file selection | `hk.pkl` |
+
+**Shared defaults:** The `start-project` templates preserve the Markdown and hook exclusions for new
+repositories.
+The shared `docs` conventions require native exclusions when maintaining other linter or formatter configurations.
+Existing repositories are not automatically migrated; Git ignores alone do not enforce these exclusions.
+
+**Native global fallback:** Dotbot links `home/.config/yamlfmt/.yamlfmt` into `~/.config/yamlfmt/.yamlfmt`.
+Yamlfmt uses it when no nearer configuration applies; explicit local configuration can replace it.
+The fallback covers standard and doublestar discovery from the repository root.
+Custom `XDG_CONFIG_HOME` locations need their own configuration; no wrapper overrides project tooling.
+
+There is no shared exclusion setting honored by every linter.
+Markdownlint CLI2 and EditorConfig checker use project configurations here.
+No universal ignore file is assumed.
+Run `python3 scripts/tests/test-lint-exclusions.py` to exercise exclusions, repeat runs, and invalid
+maintained-file controls.
+The fixtures use temporary directories and never rewrite retained source files.
+
 ## Develop Lens locally
 
 The recipe keeps the caller's working directory and forwards arguments without re-parsing them.

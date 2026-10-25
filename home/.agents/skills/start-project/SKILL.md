@@ -21,6 +21,8 @@ compatibility: Requires Git, mise, just, Node.js for Markdown linting, and netwo
 - Add `just run` when an application exists, not a placeholder.
 - Install repository-local Git hooks through mise and hk.
 - Retain Markdown and conventional-commit checks from the templates.
+- Preserve the templates' `raw/` exclusions; exclude source material when adding other linters or
+  formatters.
 - Respect inherited EditorConfig settings.
 - Add an EditorConfig check when extending the baseline's file checks.
 - Keep secrets untracked; verify project-specific secret paths are ignored before staging.

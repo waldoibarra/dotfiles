@@ -78,13 +78,14 @@ Read only task-relevant detail, not the entire harness, roadmap, or vault.
 
 | Before… | Read |
 | --- | --- |
-| Creating, editing, or reviewing Markdown | `docs-maintenance`; use `agents-md` for instructions and `agent-skills-creator` for skills |
+| Creating, editing, organizing, or reviewing Markdown documentation | `docs` |
+| Authoring or reviewing instruction files or skill definitions | `agents-md` or `agent-skills-creator`, respectively |
 | Maintaining repository-owned custom skills | `~/.agents/skills/skill-maintenance/SKILL.md` |
 | Writing a commit message, committing, or pushing | `~/.agents/skills/commit/SKILL.md` |
 | Assigning a worker responsibility | The selected role in `~/.agents/roles/` and `~/.agents/references/delegation.md` |
 | Performing another specialist workflow | Its `SKILL.md` from the available skill catalog |
 
-Read `~/.agents/skills/docs-maintenance/references/conventions.md` before writing or reviewing
+Read `~/.agents/skills/docs/references/conventions.md` before writing or reviewing
 `README.md` or `AGENTS.md`.
 Its house conventions take precedence over generic authoring advice; specialist skills own their
 procedures.

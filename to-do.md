@@ -15,6 +15,12 @@ Check current configuration and existing plans before treating an older observat
 
 ## Agent tools
 
+- [ ] Compare [OpenWiki](https://github.com/langchain-ai/openwiki) with the manual documentation baseline
+  after the [dotfiles pilot](/.agents/plans/ai-harness-roadmap.md#documentation-philosophy-pilot).
+  Evaluate navigation, factual accuracy, duplication, maintenance effort, and generated changes in one
+  approved repository.
+  Installation and execution need separate approval; this item records the deferred evaluation.
+
 - Evaluate Hermes installation before running its installer or adding browser dependencies.
   The earlier candidate commands were:
 

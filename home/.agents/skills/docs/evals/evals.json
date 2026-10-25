@@ -1,5 +1,5 @@
 {
-  "skill_name": "docs-maintenance",
+  "skill_name": "docs",
   "routing": {
     "positive": [
       "Update this README after the timeout change",
@@ -7,7 +7,8 @@
       "Review this documentation page for accuracy",
       "This touched guide mixes overview and operations; propose a better structure",
       "I renamed the --max-cost flag; fix the one README line that mentions it",
-      "Worker task: update the plan's decisions table after the review"
+      "Worker task: update the plan's decisions table after the review",
+      "Organize our docs so I can understand the system before reading implementation details"
     ],
     "negative": [
       "Summarize this article without changing it",
@@ -30,7 +31,7 @@
         "evals/files/parcel-relay/archive/launch.md"
       ],
       "assertions": [
-        "Loads docs-maintenance before editing documentation",
+        "Loads docs before editing documentation",
         "Explains purpose before detailed settings",
         "Reports 30 seconds as current timeout",
         "Retains 60 seconds as agreed but unimplemented",
@@ -39,7 +40,8 @@
         "Preserves the retention link, launch decision, and relay-west example",
         "Changes only readme.md",
         "Does not create directories or invent runtime verification",
-        "Applies active paragraph limits and bold prose lead-ins to the edited document"
+        "Uses at most 17 words per authored prose sentence, excluding preserved warnings and required literals",
+        "Uses headings and emphasis to expose meaning rather than imposing a fixed paragraph template"
       ]
     },
     {
@@ -57,7 +59,8 @@
         "Names approval as the gate before restructuring",
         "Identifies current versus planned timeout honestly",
         "Does not modify files",
-        "Applies active paragraph limits and bold prose lead-ins to the proposal"
+        "Uses at most 17 words per authored prose sentence in the proposal",
+        "Makes the requested approval and its scope clear"
       ]
     },
     {
@@ -122,7 +125,7 @@
       "expected_output": "The code change carries every affected doc update: stale flag names, the old ceiling, and the missing recipe entry.",
       "files": [],
       "assertions": [
-        "Loads docs-maintenance although the request names no documentation",
+        "Loads docs although the request names no documentation",
         "Searches docs for --max-cost, the value 10, and the recipe list",
         "Updates each stale match, including any tooling reference that lists recipes",
         "Puts doc updates in the same commit as the code change",
@@ -160,7 +163,7 @@
       "expected_output": "The worker loads the skill for a one-line edit and preserves surrounding facts.",
       "files": [],
       "assertions": [
-        "Loads docs-maintenance despite the small edit and worker context",
+        "Loads docs despite the small edit and worker context",
         "Changes only the stale port claim",
         "Leaves surrounding text unchanged"
       ]
@@ -223,6 +226,105 @@
         "Preserves safety boundaries without adopting arbitrary personas or line limits.",
         "Permits authorized AI-assisted drafts subject to evidence and verification.",
         "Does not treat external performance claims as established evidence."
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Propose documentation architecture for a service with authentication, storage, and request processing. Its docs mirror src/controllers and src/utils. Readers cannot find the system overview. Do not edit files.",
+      "expected_output": "A concern-based proposal separates orientation, concern overviews, and focused detail without requiring three directory levels.",
+      "files": [],
+      "assertions": [
+        "Explains system purpose and boundaries before proposing paths",
+        "Groups documentation by responsibilities and reader needs rather than source directories",
+        "Distinguishes conceptual layers from physical directory depth",
+        "Links the cross-concern request flow to canonical authentication and storage pages",
+        "Names necessary incoming-link repairs",
+        "Does not edit files"
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "Rewrite docs/authentication.md only. It repeats timeout defaults maintained in docs/configuration.md and starts with a file inventory. Keep the existing session-expiry explanation and recovery steps; explain the big picture first.",
+      "expected_output": "An in-place rewrite explains responsibility and flow, links canonical configuration, and keeps recovery directly reachable.",
+      "files": [],
+      "assertions": [
+        "Opens with the concern's responsibility and boundaries",
+        "Links configuration defaults instead of maintaining a second copy",
+        "Keeps the session-expiry explanation",
+        "Provides a direct route to recovery steps",
+        "Uses headings where they solve the problem without creating directories",
+        "Changes only docs/authentication.md"
+      ]
+    },
+    {
+      "id": 19,
+      "prompt": "Review our proposed docs tree. It mandates overview/concepts/details directories for every feature and splits every page at 100 lines. We have one short guide and no OpenWiki installation. Propose only.",
+      "expected_output": "A minimal alternative keeps the cohesive guide and rejects mechanical directory and length requirements.",
+      "files": [],
+      "assertions": [
+        "Treats the architecture as adaptable guidance rather than a universal template",
+        "Adapts the proposal to the project's size and established documentation contracts",
+        "Rejects mandatory three-level directory nesting",
+        "Rejects line count as the reason to split a page",
+        "Keeps the cohesive guide when headings and links suffice",
+        "Does not install or require OpenWiki",
+        "Distinguishes a navigation index from a system explanation"
+      ]
+    },
+    {
+      "id": 20,
+      "prompt": "Review a documentation refactor. Links and Markdown lint pass, but every overview only lists files. Generated index.md files belong to a separate publisher. Do not change files.",
+      "expected_output": "A review identifies missing orientation and tests reader routes without treating formatting as proof of understanding.",
+      "files": [],
+      "assertions": [
+        "Checks whether the overview explains purpose and system boundaries",
+        "Checks a route to a specific procedure",
+        "Checks a cross-concern relationship",
+        "Checks whether one fact has a single canonical owner",
+        "Does not rewrite publisher-owned indexes",
+        "Does not claim behavioral success from lint or authored scenarios"
+      ]
+    },
+    {
+      "id": 21,
+      "prompt": "Improve our documentation proposal using Diataxis. Authentication has a first-login lesson, credential-rotation steps, settings, and session-design rationale. Organize it by concern without forcing a folder template.",
+      "expected_output": "Concern-based organization uses distinct page purposes and optional reading routes rather than four mandatory directories.",
+      "files": [],
+      "assertions": [
+        "Identifies first-login guided practice as a tutorial",
+        "Identifies credential rotation as a how-to guide",
+        "Identifies settings as reference material",
+        "Identifies session-design rationale as explanation",
+        "Treats page purpose and reading depth as independent dimensions",
+        "Does not require four folders or an empty document for each quadrant"
+      ]
+    },
+    {
+      "id": 22,
+      "prompt": "Rewrite our credential-rotation how-to using progressive disclosure. It currently requires an architecture essay before the commands. Preserve the production warning, prerequisites, and verification procedure.",
+      "expected_output": "A task-focused guide keeps essential context and safety inline while linking optional explanation.",
+      "files": [],
+      "assertions": [
+        "Leads with the task and prerequisites rather than an architecture lesson",
+        "Preserves the complete production warning",
+        "Keeps verification reachable within the procedure",
+        "Links optional conceptual explanation without requiring it as a reading stage",
+        "Does not hide safety conditions as optional background"
+      ]
+    },
+    {
+      "id": 23,
+      "prompt": "Apply the docs skill's own information architecture guidance to its bundle. It has SKILL.md, conventions.md, structure.md, and evaluation fixtures. Improve only that bundle, preserving all authority and safety constraints.",
+      "expected_output": "A navigable workflow entrypoint routes to focused architecture and convention references without forced Diataxis scaffolding.",
+      "files": [],
+      "assertions": [
+        "Keeps workflow and approval boundaries in the entrypoint",
+        "Gives information architecture and page-purpose guidance one canonical reference",
+        "Keeps naming and artifact conventions in their lookup reference",
+        "Provides task-based routes without mandatory sequential reading",
+        "Does not invent a tutorial or glossary to complete a template",
+        "Preserves evaluation fixtures rather than rewriting deliberately flawed inputs",
+        "Distinguishes authored evaluation cases from executed behavior"
       ]
     }
   ]

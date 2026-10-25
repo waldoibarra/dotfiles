@@ -58,7 +58,7 @@ Dotbot links these bundles individually; the external lockfile does not manage t
 | --- | --- |
 | Preparing atomic commits and authorized pushes | [`commit`](/home/.agents/skills/commit/SKILL.md) |
 | Coordinating repository-owned skill creation, refactoring, and delivery | [`skill-maintenance`](/home/.agents/skills/skill-maintenance/SKILL.md) |
-| Maintaining touched Markdown documentation without losing information | [`docs-maintenance`](/home/.agents/skills/docs-maintenance/SKILL.md) |
+| Maintaining accurate documentation with concern-based reading paths | [`docs`](/home/.agents/skills/docs/SKILL.md) |
 | Proposing scoped session-improvement packets at handoff | [`session-improvement`](/home/.agents/skills/session-improvement/SKILL.md) |
 | Teaching with Socratic questions and checked application | [`socratic-learning`](/home/.agents/skills/socratic-learning/SKILL.md) |
 | Adding assigned manual tasks to the shared life list | [`to-do`](/home/.agents/skills/to-do/SKILL.md) |
@@ -99,7 +99,7 @@ coordinator.
 - Start with the user's outcome, protected behavior, and existing owners; avoid another generic
   checklist.
 - Read [shared language and lifecycle
-  conventions](/home/.agents/skills/docs-maintenance/references/conventions.md)
+  conventions](/home/.agents/skills/docs/references/conventions.md)
   before changing glossary, naming, or retention behavior.
 - Keep domain vocabulary consistent; load `domain-modeling` only for unresolved meanings.
 - Prefer executable feedback and isolated checks over additional instructions for unobservable
@@ -129,24 +129,26 @@ Reload each host before checking discovery; a source rollback alone does not pro
 
 ## Documentation maintenance
 
-**Purpose:** `docs-maintenance` checks information preservation, factual accuracy, and concern-based
-structure in touched Markdown documentation.
+**Purpose:** `docs` maintains accurate Markdown and concern-based reading paths within the active
+task.
+Its [structure reference](/home/.agents/skills/docs/references/structure.md) owns documentation
+information architecture, including Diátaxis and progressive disclosure.
+Shared instructions and worker roles route documentation work through the same skill.
 
-**Routing:** Shared instructions require reading it before creating, editing, or reviewing Markdown
-documentation.
+**Use:** Read [documentation maintenance](/docs/documentation.md) for ownership, local checks, and
+invocation.
+The skill owns editing authority and preservation; instruction files and skill definitions retain
+their specialist workflows.
+`ghostwriter` handles prose under house conventions; `session-improvement` remains proposal-only at
+closure.
 
-**Limit:** This is model-followed routing, not a file watcher or guaranteed execution hook.
+**Limits:** Discovery and model-followed routing are not file watchers or guaranteed execution
+hooks.
+The reference requires no generator; OpenWiki evaluation remains deferred in [tooling
+ideas](/to-do.md#agent-tools).
 
-- Authorized in-place improvements need no separate cosmetic approval.
-- Structural moves, splits, deletion, and substantial rewrites require approval unless already
-  covered by the task.
-- Unrelated documents, other contributors' changes, and frozen historical records remain outside
-  automatic editing scope.
-- `ghostwriter` owns prose; instruction and skill definitions retain their specialist workflows.
-- `session-improvement` remains the separate, proposal-only closure workflow.
-
-**Guide:** Read [documentation maintenance](/docs/documentation.md) before using the workflow or
-checking its activation limits.
+**Rename:** `docs` replaces `docs-maintenance`; the current bundle is `home/.agents/skills/docs/`.
+No legacy alias is installed; update old external references before invoking the retired name.
 
 ## Learning and session improvement
 
@@ -166,12 +168,9 @@ checking its activation limits.
 - `session-improvement` assesses evidence first, then loads its placement reference only for
   warranted proposals.
 
-**Touched docs:** `session-improvement` reads `docs-maintenance` for a scoped, read-only review of
-session-edited Markdown documentation.
-
-- Skip this review when no documentation was edited.
-- Exclude unrelated Git changes; documentation improvements remain proposals, not permission to
-  rewrite or create directories.
+**Touched docs:** `session-improvement` uses `docs` for read-only review of session-edited Markdown.
+It skips unrelated Git changes and read-only sources; any proposed corrections still require
+execution authority.
 
 **Voice feedback:** `session-improvement` reads Ghostwriter and relevant profiles when the
 session supplies writing feedback.

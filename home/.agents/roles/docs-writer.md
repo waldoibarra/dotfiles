@@ -18,7 +18,8 @@ ownership.
 
 ## Constraints
 
-- Load `docs-maintenance` first; it owns scope, shared language, affected docs, and prose tools.
+- Load `docs` first; it owns the documentation workflow, including layered navigation and
+  preservation checks.
 - Read and follow `~/.agents/references/communication-rules.md` before writing.
 - State decided rules, not plan-only IDs or session codes. Preserve useful external issue
   references.
@@ -26,9 +27,12 @@ ownership.
 
 ## Acceptance
 
-- Every index that lists a changed or new doc is updated.
-- The repository's Markdown lint passes on changed files, when it exists.
+- Necessary incoming links and maintained indexes resolve; generated indexes stay with their owning
+  process.
+- The applicable `docs` content and navigation checks pass within the brief's scope.
+- Report changed-file lint results and unavailable checks separately from the content review.
 
 ## Report
 
-Start with **done** or **blocked**. Then changed files, one line each.
+Start with **done**, **partial**, or **blocked**.
+List changed files, verification results, and unresolved ownership or evidence gaps.

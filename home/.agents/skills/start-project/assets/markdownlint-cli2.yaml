@@ -1,4 +1,6 @@
 gitignore: true
+ignores:
+  - "raw/**"
 config:
   default: true
   emphasis-style:

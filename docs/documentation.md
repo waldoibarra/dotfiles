@@ -1,75 +1,72 @@
 # Maintain current knowledge
 
-**Goal:** Keep maintained documentation and comments clear, current, and easy to navigate without
-erasing useful rationale.
-Read [the glossary](/GLOSSARY.md) before changing terminology and
-[architecture](/docs/architecture.md) before changing ownership.
+**Goal:** Keep documentation understandable, current, and navigable without duplicating facts or
+preserving obsolete instructions.
+Read [the glossary](/GLOSSARY.md) before domain edits and [architecture](/docs/architecture.md)
+before changing ownership.
 
 ## Choose the owner
 
-| Material | Owner | Treatment |
-| --- | --- | --- |
-| Global instructions | `agents-md` workflow | Keep universal boundaries visible; load procedures when needed. |
-| Skill definitions | `skill-maintenance` and `agent-skills-creator` | Preserve workflow contracts and verify discovery separately. |
-| Maintained Markdown | `docs-maintenance` | Check facts, clarity, scope, links, and lifecycle. |
-| Model prompts | [Prompting guide](/docs/prompting.md) | Follow prompt-specific pruning and validation. |
-| Original or frozen evidence | Its source and retention rules | Do not rewrite it as current guidance. |
+| Material | Workflow or source |
+| --- | --- |
+| Maintained Markdown, including plans | [`docs`](/home/.agents/skills/docs/SKILL.md) |
+| Agent instruction files | `agents-md` |
+| Repository-owned skills | `skill-maintenance`, with `agent-skills-creator` for authoring |
+| Model prompts | [Prompting guide](/docs/prompting.md) |
+| Retention, temporary agreements, and ADR gates | [Memory lifecycle](/home/.agents/references/memory.md) |
+| Original, generated, or frozen evidence | Its source, publisher, and retention rules |
 
-Read [docs-maintenance](/home/.agents/skills/docs-maintenance/SKILL.md) before creating, editing, or
-reviewing Markdown documentation.
-Read [conventions](/home/.agents/skills/docs-maintenance/references/conventions.md) before naming
-files or changing navigation.
-Read its [README guidance](/home/.agents/skills/docs-maintenance/references/conventions.md#readmemd-earn-the-readers-interest)
-before writing repository entrypoints.
-Read its [AGENTS guidance](/home/.agents/skills/docs-maintenance/references/conventions.md#agentsmd-define-the-working-contract)
-before defining agent instructions; `agents-md` owns the workflow.
+**Read `docs` before creating, editing, organizing, or reviewing maintained Markdown.**
+It owns scope, evidence, preservation, affected-document discovery, and verification.
+The other workflows retain their specialist responsibilities; reading a file never grants edit
+permission.
 
-## Keep guidance useful
+## Apply the shared documentation architecture
 
-1. Establish the document's audience, concern, canonical owner, and evidence.
-2. Explain the big picture first; route readers to task-specific detail instead of duplicating it.
-3. Search affected docs and comments for changed identifiers, defaults, commands, and constraints.
-4. Correct verified stale claims; distinguish accepted future behavior from implemented and
-  exercised behavior.
-5. Retire obsolete operational steps within scope; preserve consequential rationale with status and
-  successor links.
-6. Update incoming links and indexes alongside moves, removals, and glossary changes.
+Read [information architecture](/home/.agents/skills/docs/references/structure.md) before creating,
+rewriting, or reviewing a guide's organization.
+It owns concerns, Diátaxis page purposes, progressive disclosure, directory boundaries, and
+reader-route checks.
+Use it incrementally within the task; do not impose a new tree on unrelated documentation.
 
-**Authority:** Reading grants no edit permission; unrelated documents and other contributors'
-changes remain outside the task.
-Substantial rewrites and structural moves require approval unless the request already covers them.
-Markdown guidance loads through instructions and skills, not a guaranteed file watcher.
+Read [conventions](/home/.agents/skills/docs/references/conventions.md) before naming files or
+writing entrypoints.
+Its [README
+guidance](/home/.agents/skills/docs/references/conventions.md#readmemd-earn-the-readers-interest)
+owns human orientation; its
+[AGENTS
+guidance](/home/.agents/skills/docs/references/conventions.md#agentsmd-define-the-working-contract)
+owns instruction content conventions.
 
-**Shared language:** Each maintained repository and vault has a meaningful root `GLOSSARY.md`.
-Definitions describe existing domain concepts; procedures and implementation details stay in their
-own documents.
-Do not copy every global term into every project or create empty glossaries to satisfy a checklist.
+**Dotfiles ownership:** Shared procedures live under `home/.agents/`; workstation maintenance guides
+live under `docs/`.
+[Plans and research](/.agents/README.md) own project records, outside shared harness configuration.
+The root glossary defines existing domain concepts; implementation details belong with their
+maintained guides.
+Do not copy global vocabulary or create empty documentation to satisfy a template.
 
-## Retire without losing rationale
+## Remove stale guidance within scope
 
-**Current guidance:** Update the maintained source and remove obsolete instructions from active
-navigation.
-**Consequential history:** Keep the decision, its status, successor, and useful rejected
-alternatives in an existing history location.
-**Temporary agreements:** State scope and an end or recheck condition; age alone does not establish
-expiry.
-**Uncertain claims:** Preserve the evidence gap; do not replace it with confident prose.
+**Retirement:** Remove obsolete instructions; retain rationale only when it still explains a current
+constraint or decision.
+Git preserves ordinary edit history; do not create archives for routine rewrites.
+Update successors and incoming links when consequential retained material moves.
+Use the memory lifecycle reference for temporary exceptions, disputed claims, and all three ADR
+gates.
+A completed refactor alone does not justify an ADR.
 
-Read [memory lifecycle](/home/.agents/references/memory.md) before changing retention or ADR policy.
-Its three ADR gates prevent reference facts and routine tasks becoming permanent decision records.
-No ADR is created merely because a refactor finished.
-
-**Comments:** Explain intent and hidden constraints near the code they affect.
-Update or remove stale comments with the authorized behavior change; verify unfamiliar rationale
-before deleting it.
-Documentation maintenance does not authorize a repository-wide code cleanup.
+**Comments:** Check intent and hidden constraints beside changed code; verify unfamiliar rationale
+before removing it.
+Documentation maintenance does not authorize unrelated code cleanup or changes to other
+contributors' work.
 
 **Protected sources:** Preserve original-language `raw/`, legal text, upstream copies, generated
 output, fixtures, and frozen evidence.
-Use the owning generation or source process when those materials need change.
-Historical evidence remains available but does not authorize replaying old commands.
+Use their owning process for changes; historical evidence does not authorize replaying old commands.
 
-## Verify and close
+## Verify the change
+
+Run from the repository root:
 
 ```sh
 just lint-md
@@ -77,22 +74,29 @@ just lint-ec
 git diff --check
 ```
 
-**Ignored skills:** Validate edited shared skills through stdin because normal Markdown discovery
-skips `home/.agents/`.
+**Ignored skills:** Normal Markdown discovery skips `home/.agents/`; check edited skill documents
+through stdin.
 
 ```sh
-markdownlint-cli2 - < home/.agents/skills/docs-maintenance/SKILL.md
-markdownlint-cli2 - < home/.agents/skills/docs-maintenance/references/conventions.md
+markdownlint-cli2 - < home/.agents/skills/docs/SKILL.md
+markdownlint-cli2 - < home/.agents/skills/docs/references/conventions.md
+markdownlint-cli2 - < home/.agents/skills/docs/references/structure.md
 ```
 
-**Meaning:** Check unique facts, safety conditions, successor links, command accuracy, and sentence
-limits explicitly.
-Formatting checks alone do not prove preservation or model behavior.
-At closure, `session-improvement` reviews session-edited Markdown and proposes corrections without
-applying them.
+**Content:** Use the skill's preservation checks and the structure reference's reader-route
+questions.
+Verify command accuracy, safety wording, links, and applicable prose limits separately from
+formatting.
+Report failures outside the task without changing protected sources to make lint pass.
 
-**Invocation:** Use `/skill:docs-maintenance` in Pi or `/docs-maintenance` in Claude Code.
-Reload Pi or start a fresh Claude session after installation; discovery alone does not prove
-execution.
+## Load and exercise the workflow
+
+Use `/skill:docs` in Pi or `/docs` in Claude Code.
+Reload Pi or start a fresh Claude session after installation.
+[Skill delivery](/docs/agent-skills.md#repo-managed-skills) owns installation and discovery checks.
+Discovery proves availability, not automatic selection or successful documentation work.
+
+At closure, `session-improvement` reviews session-edited Markdown and proposes warranted corrections
+without applying them.
 Read [historical verification](/.agents/plans/ai-harness-roadmap.md#documentation-maintenance)
-before citing earlier behavioral results.
+before citing earlier results; those records do not verify the current workflow.

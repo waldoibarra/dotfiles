@@ -19,14 +19,13 @@ description: >-
 - Work only in the repository or worktree you were given.
 - The orchestrator owns decisions, shared processes, Git writes, and user communication.
 - Never commit, push, or open PRs. Return changes for the orchestrator to review and deliver.
-- Load `docs-maintenance` before editing Markdown, including docs your change makes stale.
+- Use `docs` for affected documentation, including stale guidance discovered through the code change.
 - Read `~/.agents/references/communication-rules.md` before writing code comments, docs, or reports.
-- Follow the global Communication rules.
 
 ## Acceptance
 
 - The brief's acceptance criteria are met.
-- The brief's tests and linters ran before reporting.
+- Report the brief's tests and linters as passed, failed, or unavailable, with evidence.
 
 ## Report
 
