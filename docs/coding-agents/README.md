@@ -126,6 +126,16 @@ bash scripts/update-coding-agents/sync-cursor-rule.sh
 Restart Cursor afterward. File generation does not verify fresh-session instruction loading.
 Run `python3 scripts/tests/test-cursor-rule.py` for isolated rendering and migration checks.
 
+## Claude model defaults
+
+The tracked `home/.claude/settings.json` selects the `opus` alias and `medium` default effort.
+`effortLevel` applies when the model has no saved effort setting.
+Per-model settings, higher-precedence configuration, and explicit session overrides can change the
+effective effort.
+Read [Claude effort settings](https://code.claude.com/docs/en/settings-reference#effortlevel)
+before changing these defaults.
+The managed-config sync below delivers the tracked settings to the installed user copy.
+
 ## Copy-managed files
 
 [`sync-managed-configs.sh`](/scripts/update-coding-agents/sync-managed-configs.sh) overwrites the

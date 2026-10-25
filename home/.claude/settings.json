@@ -134,5 +134,7 @@
     "type": "command"
   },
   "theme": "auto",
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "model": "opus",
+  "effortLevel": "medium"
 }
