@@ -354,9 +354,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mblode/agent-skills.git",
       "skillPath": "skills/ghostwriter/SKILL.md",
-      "skillFolderHash": "48e2a0955ab16c420fbf584eff6931c9ab7783d2",
+      "skillFolderHash": "7a2bda7859b50cd8d60d09d4c616cc269ae05bbc",
       "installedAt": "2026-09-22T17:40:34.713Z",
-      "updatedAt": "2026-10-23T19:41:17.503Z"
+      "updatedAt": "2026-10-25T18:14:18.244Z"
     },
     "workout-program-designer": {
       "source": "onewave-ai/claude-skills",
