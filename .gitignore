@@ -6,3 +6,4 @@ id_rsa
 /.agents/private/
 
 __pycache__/
+raw/
