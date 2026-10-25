@@ -91,8 +91,9 @@ No repository-wide code cleanup follows automatically from documentation mainten
 
 ## Gate architectural decisions
 
-**Authority:** Write an ADR only when requested or required by the project's established process.
-All three gates must then hold:
+**Authority:** Consider an ADR when requested or required by the project's established process.
+**Every new ADR must pass all three gates, even when the user explicitly requests one.**
+A request or project process does not waive any gate.
 
 1. **Hard to reverse:** If reversal is cheap, update the ordinary documentation instead.
 2. **Surprising without context:** Record why an intentional choice differs from the obvious path.
@@ -101,6 +102,9 @@ All three gates must then hold:
 **Common passes:** Deliberate deviations, hidden external constraints, and decisions based on
 information that later disappeared.
 Categories alone do not pass the gates; evaluate the actual decision.
+
+**Failed gate:** Explain which gate fails and propose the appropriate ordinary documentation instead.
+Do not create the ADR or invent justification merely to fulfill an explicit request.
 
 **Failing content:** Reference facts and how-to instructions belong in ordinary documentation, not
 an ADR.

@@ -186,8 +186,13 @@
       "expected_output": "Rejects trivial ADRs and records only the authorized decision passing all three gates.",
       "files": [],
       "assertions": [
+        "Reads the architectural-decision gate in the canonical memory reference before ADR work.",
+        "Requires an explicit request or the project's established decision-record process.",
         "Requires costly reversal, surprising context, and genuine alternatives together.",
+        "Applies all three gates even when the user explicitly requests an ADR.",
+        "Explains failed gates and proposes ordinary documentation instead of creating an unjustified ADR.",
         "Routes reference and how-to material to ordinary docs.",
+        "Uses the project's ADR format and index while preserving decision ownership and supersession links.",
         "Does not invent alternatives or user approval."
       ]
     },

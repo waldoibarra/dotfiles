@@ -34,7 +34,7 @@ Use the references for their distinct concerns; they are not mandatory sequentia
 | --- | --- |
 | Looking up artifact conventions after reading the required communication rules | [Conventions](references/conventions.md): entrypoints, shared language, filenames, and retention |
 | Choosing or reviewing a guide's organization and page purposes | [Information architecture](references/structure.md): concerns, Diátaxis, progressive disclosure, and navigation checks |
-| Retiring agreements or proposing ADRs | `~/.agents/references/memory.md` for lifecycle and decision gates |
+| Retiring agreements or proposing, writing, reviewing, or updating ADRs | `~/.agents/references/memory.md` for lifecycle and decision gates |
 | Editing model prompt files | `~/.agents/references/prompting.md` instead of this workflow |
 
 Small factual corrections need not become structural reviews.
@@ -95,6 +95,16 @@ Before splits, moves, deletions, or substantial rewrites:
 A structural proposal never authorizes an unsolicited repository-wide audit or cross-repository
 migration.
 Local documentation contracts retain precedence.
+
+**ADRs:** Read and follow “Gate architectural decisions” in `~/.agents/references/memory.md`
+before ADR work.
+An ADR requires an explicit request or the project's established decision-record process.
+All three gates must hold: hard to reverse, surprising without context, and a real trade-off.
+An explicit ADR request does not waive these gates; follow the canonical failed-gate response.
+Reference facts and how-to instructions belong in ordinary documentation; completed work alone does
+not justify an ADR.
+Use the project's existing ADR format and index; preserve decision ownership and supersession links.
+Use `domain-modeling` when terminology or domain relationships need resolution.
 
 **Preservation:** Keep unique current information at its existing or approved owner.
 Correct obsolete operational claims; preserve consequential rationale with explicit status and
