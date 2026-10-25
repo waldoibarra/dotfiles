@@ -92,6 +92,17 @@ class AgentHarnessTest(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="dotfiles-harness-") as scratch:
             home = Path(scratch)
             env = dict(os.environ, HOME=str(home))
+            claude_instructions = home / ".claude/CLAUDE.md"
+            claude_instructions.parent.mkdir()
+            legacy_adapter = b"@~/.agents/AGENTS.md\n"
+            claude_instructions.write_bytes(legacy_adapter)
+            shared_source = ROOT / "home/.agents/AGENTS.md"
+            shared_bytes = shared_source.read_bytes()
+            driver = home / "sync-managed.sh"
+            driver.write_text(
+                f"source '{ROOT}/scripts/update-coding-agents/entrypoint.sh'\n"
+                "sync_managed_configs\n"
+            )
             command = [
                 sys.executable, str(ROOT / "dotbot/bin/dotbot"),
                 "-d", str(ROOT), "-c", str(ROOT / "install.conf.yaml"),
@@ -104,8 +115,26 @@ class AgentHarnessTest(unittest.TestCase):
                 for source in (ROOT / "home/.agents/roles").glob("*.md"):
                     for directory in (".agents/roles", ".claude/agents"):
                         self.assertEqual((home / directory / source.name).resolve(), source)
-                for relative in (".agents/AGENTS.md", ".pi/agent/AGENTS.md"):
-                    self.assertEqual((home / relative).resolve(), ROOT / "home/.agents/AGENTS.md")
+                for relative in (".agents/AGENTS.md", ".pi/agent/AGENTS.md", ".claude/CLAUDE.md"):
+                    self.assertTrue((home / relative).is_symlink(), relative)
+                    self.assertEqual((home / relative).resolve(), shared_source)
+                    self.assertEqual((home / relative).read_bytes(), shared_bytes)
+                instruction_mtime = claude_instructions.lstat().st_mtime_ns
+                subprocess.run(
+                    ["bash", str(driver)], env=env, check=True,
+                    capture_output=True, text=True, timeout=10,
+                )
+                self.assertTrue(claude_instructions.is_symlink())
+                self.assertEqual(claude_instructions.resolve(), shared_source)
+                self.assertEqual(claude_instructions.lstat().st_mtime_ns, instruction_mtime)
+                self.assertEqual(shared_source.read_bytes(), shared_bytes)
+                self.assertEqual(
+                    (home / ".claude/settings.json").read_bytes(),
+                    (ROOT / "home/.claude/settings.json").read_bytes(),
+                )
+                backups = list(claude_instructions.parent.glob("CLAUDE.md.dotbot-backup.*"))
+                self.assertEqual(len(backups), 1)
+                self.assertEqual(backups[0].read_bytes(), legacy_adapter)
                 for relative in (".agents/RTK.md", ".claude/RTK.md"):
                     self.assertEqual((home / relative).resolve(), ROOT / "home/.agents/RTK.md")
                 roadmap = home / ".agents/harness-roadmap.md"
@@ -150,6 +179,7 @@ class AgentHarnessTest(unittest.TestCase):
                     for directory in (".agents/skills", ".claude/skills")
                     for link in (home / directory).iterdir()
                 }
+                current_links[str(claude_instructions)] = instruction_mtime
                 if _ == 0:
                     first_links = current_links
                 else:

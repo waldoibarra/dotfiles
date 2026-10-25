@@ -377,6 +377,31 @@ Future syncs resolve the tag; this verification covers the installed version, no
 **Next:** Reload Pi to use the upgraded runner.
 Live delegated execution remains untested on this version.
 
+### Claude global instruction symlink trial
+
+**Approved:** Link Claude's global instruction file directly to the shared source through Dotbot.
+The user tested native Claude Code loading; no agent-run model probe was part of this trial.
+
+- Dotbot now links `~/.claude/CLAUDE.md` to `home/.agents/AGENTS.md`, matching the other global
+  instruction links.
+- The updater copies only Claude settings; it cannot replace the instruction link.
+- Removed the obsolete tracked import adapter and updated affected ownership guides.
+- Preserved the user's existing shared-policy edit without modifying it.
+
+**Verified:** The migration test failed before implementation and now passes.
+It covers backup preservation, repeated linking, updater survival, and unchanged shared-source bytes.
+The real-home link resolves to the shared source; repeated linking preserves its timestamp.
+Dotbot retained the previous regular file as a local backup.
+
+**User-confirmed:** Claude Code loads the symlinked global instructions following the requested
+`/context` check.
+This is user-reported confirmation; the agent did not inspect the client's context output.
+Desktop Cowork skips symlinked user `CLAUDE.md`; this trial does not establish Cowork compatibility.
+
+**Rollback:** Revert the Dotbot mapping and copier exclusion, then restore the saved import adapter.
+Remove only the verified Claude link before restoring a regular file; never write through it into
+shared instructions.
+
 ### Pending workstation steps
 
 1. **Restart:** Restart Pi and Claude Code after the completed `dots` integration updates.

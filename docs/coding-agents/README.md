@@ -56,7 +56,6 @@ installed paths replace `home/` with `~/` unless noted.
 
 | Tracked source | Delivery and purpose |
 | --- | --- |
-| `home/.claude/CLAUDE.md` | Copied; Claude's global import adapter |
 | `home/.cursor/rules/global-instructions.mdc` | Template; updater renders a regular Cursor rule file |
 | `home/.claude/settings.json` | Copied; hooks, output style, permissions, plugins, status lines |
 | `home/.agents/roles/*.md` | Linked individually to `~/.agents/roles/` and `~/.claude/agents/`; [shared roles](/docs/agent-instructions.md#shared-role-agents) |
@@ -66,7 +65,7 @@ installed paths replace `home/` with `~/` unless noted.
 | `home/.agents/RTK.md` | Linked to `~/.agents/RTK.md` and `~/.claude/RTK.md`; shared RTK reference |
 | `home/.config/rtk/*` | Linked to `~/Library/Application Support/rtk/` on macOS or `~/.config/rtk/` on Linux |
 | `home/.agents/.skill-lock.json` | Linked; external skill sources and installer targets |
-| `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`, `~/.pi/agent/AGENTS.md`, and `~/.codex/AGENTS.md`; global policy and reading map |
+| `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`, `~/.claude/CLAUDE.md`, `~/.pi/agent/AGENTS.md`, and `~/.codex/AGENTS.md`; global policy and reading map |
 | `home/.agents/references/*.md` | Linked individually to `~/.agents/references/`; shared on-demand detail |
 | `.agents/plans/ai-harness-roadmap.md` | Linked to `~/.agents/harness-roadmap.md`; personal priorities, read on demand |
 | `home/.agents/mcp.json` | Shared personal MCP definitions; Pi and Cursor links, plus derived Claude user registrations |
@@ -139,8 +138,9 @@ The managed-config sync below delivers the tracked settings to the installed use
 ## Copy-managed files
 
 [`sync-managed-configs.sh`](/scripts/update-coding-agents/sync-managed-configs.sh) overwrites the
-two copied configs from tracked sources, removing leftover target symlinks first. Source edits
-reach these copies on the next updater run; local edits to installed copies are discarded.
+Claude settings from the tracked source, removing a leftover settings symlink first.
+Source edits reach this copy on the next updater run; local settings edits are discarded.
+Dotbot owns Claude's global instruction symlink; the updater does not replace it.
 
 Herdr's machine-specific hook stays in the installed Claude settings copy. Read
 [Herdr integration](/docs/agent-integrations.md#herdr) before changing that hook.

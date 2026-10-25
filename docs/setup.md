@@ -72,7 +72,7 @@ Initial installation does not use the parallel coordinator or require `just`.
 Later `dots` runs defer Mise tools to that coordinator and use Brew's no-upgrade bootstrap check.
 
 This command does **not** run the coding-agent updater or install this repository's Git hooks.
-The two [copy-managed agent files](coding-agents/README.md#copy-managed-files) are populated by
+The [copy-managed Claude settings](coding-agents/README.md#copy-managed-files) are populated by
 the updater, not Dotbot. The updater also renders
 [Cursor's global instructions](coding-agents/README.md#cursor-global-instructions) as a regular file.
 

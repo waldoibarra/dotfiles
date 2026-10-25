@@ -49,6 +49,7 @@
     # Files.
     ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.agents/AGENTS.md: home/.agents/AGENTS.md
+    ~/.claude/CLAUDE.md: home/.agents/AGENTS.md
     ~/.agents/harness-roadmap.md: .agents/plans/ai-harness-roadmap.md
     ~/.codex/AGENTS.md: home/.agents/AGENTS.md
     ~/.agents/RTK.md: home/.agents/RTK.md
@@ -90,9 +91,9 @@
     ~/.agents/references/:
       glob: true
       path: home/.agents/references/*.md
-    # The excluded config files are copied by scripts/update-coding-agents/sync-managed-configs.sh
-    # instead of linked by Dotbot; excluded directories are linked per child below. See
-    # docs/coding-agents/README.md.
+    # Claude settings are copied by scripts/update-coding-agents/sync-managed-configs.sh.
+    # CLAUDE.md and RTK.md use the explicit links above; directories link per child below.
+    # See docs/coding-agents/README.md.
     ~/.claude/:
       glob: true
       path: home/.claude/*

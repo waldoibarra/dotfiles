@@ -39,11 +39,15 @@ behavior.
 
 | Agent | Loader |
 | --- | --- |
-| Claude Code | Copied `~/.claude/CLAUDE.md` imports `@~/.agents/AGENTS.md`. |
+| Claude Code | Dotbot links `~/.claude/CLAUDE.md` to the shared `home/.agents/AGENTS.md` source. |
 | Pi | `~/.pi/agent/AGENTS.md` links to the shared source. |
 | Codex | Dotbot links `~/.codex/AGENTS.md` to the shared source. |
 
-- Claude's user-level import adapter remains separate from project instructions.
+- Claude's user-level symlink remains separate from project instructions.
+- The user confirmed native Claude Code loading with the symlink in place.
+  After changing delivery, verify a fresh session with `/context`.
+- Desktop Cowork skips symlinked user `CLAUDE.md` files; this trial targets Claude Code.
+  Read [Claude memory behavior](https://code.claude.com/docs/en/memory) before extending the trial.
 - The shared global source directs configured clients to read the shared vault overview and
   machine-local profile links.
 - Pi also loads ancestor context files; remove obsolete home-directory selectors after migration.

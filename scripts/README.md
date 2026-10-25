@@ -86,7 +86,8 @@ If the vault exists without a profile, it warns without changing links or blocki
 Invalid selections, missing source files, or ordinary files at link destinations stop updates.
 Run `python3 scripts/tests/test-life-profile.py` for isolated linking and preservation checks.
 
-1. Copy the two managed Claude configs and render Cursor's global instruction template.
+1. Copy managed Claude settings and render Cursor's global instruction template.
+Dotbot owns the global `~/.claude/CLAUDE.md` symlink; the updater leaves it intact.
 The Cursor renderer expands our `@~/.agents/AGENTS.md` placeholder into a regular file.
 Read [Cursor global instructions](../docs/coding-agents/README.md#cursor-global-instructions)
 before changing the template or refreshing only that rule.

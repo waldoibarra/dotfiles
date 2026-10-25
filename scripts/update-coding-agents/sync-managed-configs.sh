@@ -1,15 +1,15 @@
-# Copies the managed coding agent configs from the repo into $HOME.
+# Copies managed Claude settings from the repo into $HOME.
 #
-# These configs are copies, not Dotbot symlinks: the updater resets
+# These settings are a copy, not a Dotbot symlink: the updater resets
 # ~/.claude/settings.json on every run, so the machine-specific duplicate hook
 # that `herdr integration install claude` writes stays local and is discarded
-# instead of leaking into the repo. Dotbot excludes these files from its globs,
-# so this copy is their only delivery mechanism. See docs/coding-agents/README.md.
+# instead of leaking into the repo. Dotbot excludes settings.json from its glob.
+# CLAUDE.md is linked by Dotbot and must not be replaced here.
+# See docs/coding-agents/README.md.
 
 # Configs copied from the repo, as paths relative to both the repo's home/
 # directory and $HOME.
 readonly MANAGED_CONFIGS=(
-  ".claude/CLAUDE.md"
   ".claude/settings.json"
 )
 
