@@ -99,7 +99,7 @@ ownership.
 - Evidence and decisions: preserve all nine evidence, uncertainty, decision, approval, and readiness
   requirements globally.
 - Communication: move all sentence, paragraph, tone, language, source-material, and exception rules
-  to `communication.md`.
+  to `communication-rules.md`.
 - Authority: preserve every message approval, write scope, memory approval, privacy, and
   individual-preference boundary globally.
 - Orchestration: move all eight rules verbatim into `orchestration.md`; require it before planning
@@ -226,11 +226,13 @@ No quota or timeout failure occurred.
 No behavioral comparison or new native Claude/Cursor loading probe ran.
 Configured, installed, loaded, exercised, committed, and pushed states remain separate.
 
-**Published:** All five repository changes were committed and pushed to their existing upstream branches.
+**Published:** All five repository changes were committed and pushed to their existing upstream
+branches.
 Remote refs matched local HEAD and all five working trees were clean after delivery.
 Dotfiles implementation: `7ea7c15`; family knowledge: `8a1a4a5`; Habit Tracker: `a0cd507`;
 Money Tracker: `05f2532`; portfolio: `1ef486a`.
-The portfolio commit hook required capitalization; the corrected commit passed without bypassing hooks.
+The portfolio commit hook required capitalization; the corrected commit passed without bypassing
+hooks.
 Obsidian CLI and app report completion; no Git operation ran in the vault.
 Portfolio Markdown, EditorConfig, and local-link checks pass; its final prose review was
 non-independent.
@@ -238,3 +240,23 @@ Strict bold-lead-in coverage remains incomplete in some legacy prose; do not cla
 formatting compliance.
 Two portfolio implementation passes are complete; further model formatting work requires an approval
 checkpoint.
+
+## Communication rules follow-through
+
+**Approved:** Preserve the user's `communication-rules.md` rename and strengthen the global
+assertive-communication requirement.
+The golden rule now requires reading, applying, and checking the rules for every reply or artifact.
+It covers lead and worker output, including documentation, code comments, and commit messages.
+
+**Compatibility:** Existing vault pointers still use `communication.md`; its installed alias
+resolves to the renamed source.
+Both paths share one canonical policy; no vault or external-skill rewrite was needed.
+Claude's Clear adapter now references the golden rule instead of the removed Communication section.
+
+**Verified:** The new requirement and alias-migration tests failed before implementation, then
+passed.
+All twelve harness tests and six Cursor tests pass, including fresh Pi prompt construction.
+Repository lint, explicit home Markdown checks, and local links pass.
+The renamed link, compatibility alias, and refreshed Cursor rule are installed.
+These checks prove delivery and loaded requirements, not universal writing compliance or resolved
+legacy formatting.

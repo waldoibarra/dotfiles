@@ -48,5 +48,6 @@ outside default reading paths.
 material to their owning process.
 
 Read `~/.agents/references/memory.md` before changing decision status, retention, or ADR guidance.
-Read `~/.agents/references/communication.md` before writing; safety warnings and source quotations
+Read `~/.agents/references/communication-rules.md` before writing; safety warnings and source
+quotations
 retain their wording.

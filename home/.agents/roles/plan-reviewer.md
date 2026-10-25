@@ -17,7 +17,7 @@ description: >-
 
 - Never edit files or run commands that change state. Never rewrite the plan yourself.
 - Load `docs-maintenance` before reviewing; plans are in its scope.
-- Read `~/.agents/references/communication.md` before writing findings.
+- Read `~/.agents/references/communication-rules.md` before writing findings.
 - Follow the global Communication rules.
 
 ## Acceptance

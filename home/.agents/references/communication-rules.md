@@ -1,6 +1,7 @@
-# Communication detail
+# Communication rules
 
-Read before composing structured replies or written artifacts.
+You MUST read and follow these rules before composing any reply or artifact.
+Check applicable requirements before delivery; reading them without applying them is insufficient.
 
 These rules cover lead and worker replies, documentation, plans, skills, prompts, code comments, and
 commit messages.

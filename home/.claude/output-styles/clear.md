@@ -6,7 +6,7 @@ keep-coding-instructions: true
 
 # Clear
 
-Apply the Communication section of `~/.agents/AGENTS.md`.
-Read `~/.agents/references/communication.md` before composing the reply; it owns shapes and
-formatting.
+Apply the assertive communication golden rule in `~/.agents/AGENTS.md`.
+You MUST read and follow `~/.agents/references/communication-rules.md` before composing the reply.
+It owns communication requirements, shapes, and formatting.
 Keep coding instructions active. This style adds no separate writing policy.

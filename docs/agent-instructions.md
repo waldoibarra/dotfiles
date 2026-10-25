@@ -12,6 +12,9 @@ a maintenance guide.
 Its golden rules require assertive communication and maintainability, including a verifiable working
 environment.
 Maintainability covers code, documentation, and the working environment for the next human or agent.
+The communication golden rule requires reading and following the communication rules before every
+reply or artifact.
+It applies to leads and workers, including documentation, code comments, and commit messages.
 These defaults apply within task authority and project constraints, not as permission for unrelated
 cleanup.
 It does not import conditional references or full skill bodies into every session.
@@ -20,7 +23,7 @@ skills.
 
 | Concern | Canonical source |
 | --- | --- |
-| Communication shapes and formatting | [Communication reference](/home/.agents/references/communication.md) |
+| Communication shapes and formatting | [Communication reference](/home/.agents/references/communication-rules.md) |
 | Lead coordination and verification | [Orchestrator role](/home/.agents/references/orchestration.md) |
 | Configuration ownership and integration acceptance | [Harness-design reference](/home/.agents/references/harness-design.md) |
 | Prompts written for models | [Prompting guide](/docs/prompting.md), installed as `~/.agents/references/prompting.md` |
@@ -34,6 +37,10 @@ Read the [commit skill](/home/.agents/skills/commit/SKILL.md) before Git deliver
 [shell guidance](/home/.agents/references/shell.md) before executing commands.
 
 Runtime pointers use installed `~/.agents/` paths, not this checkout's location.
+`communication-rules.md` is canonical; Dotbot retains `communication.md` as an installed
+compatibility alias.
+Both names resolve to the same source; existing vault and client pointers need no duplicate policy.
+Loading checks establish delivery, not universal writing compliance.
 
 **Prompting guide link:** `prompting.md` stays in `docs/` because people read it too.
 `install.conf.yaml` links it into `~/.agents/references/`.

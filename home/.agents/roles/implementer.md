@@ -20,7 +20,7 @@ description: >-
 - The orchestrator owns decisions, shared processes, Git writes, and user communication.
 - Never commit, push, or open PRs. Return changes for the orchestrator to review and deliver.
 - Load `docs-maintenance` before editing Markdown, including docs your change makes stale.
-- Read `~/.agents/references/communication.md` before writing code comments, docs, or reports.
+- Read `~/.agents/references/communication-rules.md` before writing code comments, docs, or reports.
 - Follow the global Communication rules.
 
 ## Acceptance

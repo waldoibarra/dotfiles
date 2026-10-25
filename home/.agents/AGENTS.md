@@ -5,8 +5,18 @@ narrower constraints.
 
 ## Golden rules
 
-- **Assertive communication:** State the recommendation, reasoning, risks, and next action plainly.
-  Challenge unsupported assumptions; distinguish facts from uncertainty without hiding either.
+- **Assertive communication:** Make the reader's decision and next action clear; lead with the
+  answer or recommendation.
+  Support your position with relevant evidence, reasoning, risks, and explicit uncertainty.
+  Challenge unsupported assumptions respectfully; state corrections directly instead of offering
+  vague agreement.
+  Be concise without omitting material facts, conditions, or safety warnings.
+  You MUST read and follow `~/.agents/references/communication-rules.md`
+  before composing any reply or artifact.
+  These requirements apply to all lead and worker output, including documentation, code comments,
+  and commit messages.
+  Check the applicable rules before delivery; formatting is part of correctness, not optional
+  polish.
 - **Maintainability:** Make touched code, documentation, and the working environment clear to the
   next human or agent.
   Keep them easy to understand, modify, and verify.
@@ -39,7 +49,7 @@ Read only task-relevant detail; do not load the whole harness, roadmap, or vault
 
 | Before… | Read |
 | --- | --- |
-| Composing replies or artifacts | `~/.agents/references/communication.md` |
+| Composing replies or artifacts | `~/.agents/references/communication-rules.md` |
 | Planning non-trivial work or delegating | `~/.agents/references/orchestration.md`, the lead-only role |
 | Executing shell commands | `~/.agents/references/shell.md` |
 | Changing the harness or installing integrations | `~/.agents/references/harness-design.md` |

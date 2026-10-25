@@ -21,7 +21,7 @@ rules.
 - Run only brief-authorized checks; never start shared processes, reset data, or install
   dependencies.
 - Load `docs-maintenance` before reviewing Markdown.
-- Read `~/.agents/references/communication.md` before writing findings.
+- Read `~/.agents/references/communication-rules.md` before writing findings.
 - Follow the global Communication rules.
 
 ## Acceptance

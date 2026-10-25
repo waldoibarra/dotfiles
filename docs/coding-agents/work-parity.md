@@ -11,7 +11,7 @@ Apply the change to both owners, or record why they differ.
 
 | Behavior | Personal owner | Work owner | Sync |
 | --- | --- | --- | --- |
-| Communication rules | `home/.agents/AGENTS.md` and `references/communication.md` | The work handbook's communication page | Personal leads; copy rule changes to work |
+| Communication rules | `home/.agents/AGENTS.md` and `references/communication-rules.md` | The work handbook's communication page | Personal leads; copy rule changes to work |
 | Sentence limit lint (17 words) | `home/.config/obsidian/communication.cjs` | A copy of the rule in the work repository's markdownlint config | Byte-equal except rule name; copy on change |
 | One MCP definition, native links | `home/.agents/mcp.json`, Dotbot links for Pi and Cursor, Claude adapter | The work `.agents/mcp.json`, linked by the work setup script for all three clients | Same concept; servers differ by scope |
 | Developer-local `.agents/` directory | `~/.agents/` as the shared source; `.agents/` ignored by the global Git ignore | `.agents/` at the work root and in each repo, ignored by each repo | Same convention; the work side tracks only its MCP file |

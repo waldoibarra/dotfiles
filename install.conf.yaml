@@ -54,6 +54,8 @@
     ~/.codex/AGENTS.md: home/.agents/AGENTS.md
     ~/.agents/RTK.md: home/.agents/RTK.md
     ~/.agents/references/prompting.md: docs/prompting.md
+    # Compatibility for existing vault and client references; one canonical rules source.
+    ~/.agents/references/communication.md: home/.agents/references/communication-rules.md
     ~/.agents/mcp.json: home/.agents/mcp.json
     ~/.cursor/mcp.json: home/.agents/mcp.json
     ~/.claude/RTK.md: home/.agents/RTK.md

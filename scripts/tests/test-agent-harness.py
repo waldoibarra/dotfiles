@@ -14,6 +14,17 @@ import yaml  # noqa: E402 - use Dotbot's existing parser, not another dependency
 
 
 class AgentHarnessTest(unittest.TestCase):
+    def test_communication_rules_are_mandatory_in_golden_rule(self):
+        policy = (ROOT / "home/.agents/AGENTS.md").read_text()
+        golden = policy.split("**Assertive communication:**", 1)[1].split(
+            "**Maintainability:**", 1
+        )[0]
+        golden = " ".join(golden.split())
+        self.assertIn("You MUST read and follow", golden)
+        self.assertIn("~/.agents/references/communication-rules.md", golden)
+        self.assertIn("before composing any reply or artifact", golden)
+        self.assertIn("lead and worker", golden)
+
     def test_pi_binary_tracks_latest(self):
         config = (ROOT / "home/.config/mise/config.toml").read_text()
         self.assertRegex(
@@ -98,6 +109,9 @@ class AgentHarnessTest(unittest.TestCase):
             claude_instructions.write_bytes(legacy_adapter)
             shared_source = ROOT / "home/.agents/AGENTS.md"
             shared_bytes = shared_source.read_bytes()
+            legacy_communication = home / ".agents/references/communication.md"
+            legacy_communication.parent.mkdir(parents=True)
+            legacy_communication.symlink_to(ROOT / "home/.agents/references/communication.md")
             driver = home / "sync-managed.sh"
             driver.write_text(
                 f"source '{ROOT}/scripts/update-coding-agents/entrypoint.sh'\n"
@@ -147,7 +161,7 @@ class AgentHarnessTest(unittest.TestCase):
                 self.assertTrue(references.is_dir())
                 self.assertFalse(references.is_symlink())
                 for name in (
-                    "communication.md",
+                    "communication-rules.md",
                     "orchestration.md",
                     "harness-design.md",
                     "harness-context.md",
@@ -160,6 +174,12 @@ class AgentHarnessTest(unittest.TestCase):
                     self.assertTrue(delivered.is_file(), name)
                     self.assertEqual(delivered.resolve(), source)
                     self.assertEqual(delivered.read_bytes(), source.read_bytes())
+                communication_source = ROOT / "home/.agents/references/communication-rules.md"
+                self.assertTrue(legacy_communication.is_symlink())
+                self.assertEqual(legacy_communication.resolve(), communication_source)
+                self.assertEqual(
+                    legacy_communication.read_bytes(), communication_source.read_bytes()
+                )
                 for directory in (".agents/skills", ".claude/skills"):
                     for required in (
                         "docs-maintenance/SKILL.md",
@@ -186,6 +206,9 @@ class AgentHarnessTest(unittest.TestCase):
                     for link in (home / directory).iterdir()
                 }
                 current_links[str(claude_instructions)] = instruction_mtime
+                for name in ("communication.md", "communication-rules.md"):
+                    link = references / name
+                    current_links[str(link)] = link.lstat().st_mtime_ns
                 if _ == 0:
                     first_links = current_links
                 else:

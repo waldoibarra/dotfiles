@@ -45,6 +45,11 @@ try {
     for (const marker of defaults) {
       assert.equal(prompt.split(marker).length - 1, 1, `Expected one startup default: ${marker}`);
     }
+    const communication = prompt.split("**Assertive communication:**", 2)[1]
+      .split("**Maintainability:**", 1)[0].replace(/\s+/g, " ");
+    assert(communication.includes("You MUST read and follow"));
+    assert(communication.includes("~/.agents/references/communication-rules.md"));
+    assert(communication.includes("before composing any reply or artifact"));
     assert.equal(prompt.includes("Local contract marker: scoped-orders."), localInstructions);
     const skill = resourceLoader.getSkills().skills.find(item => item.name === "skill-maintenance");
     assert(skill, "Custom skill coordinator must be discoverable");
@@ -62,7 +67,7 @@ try {
     const commitBody = readFileSync(commit.filePath, "utf8").split("---", 3)[2].trim();
     assert(!prompt.includes(commitBody), "Commit procedure stays on demand");
     for (const reference of [
-      "communication.md", "orchestration.md", "memory.md", "shell.md", "delegation.md",
+      "communication-rules.md", "orchestration.md", "memory.md", "shell.md", "delegation.md",
     ]) {
       assert(prompt.includes(`~/.agents/references/${reference}`));
       assert.equal(realpathSync(join(homedir(), ".agents/references", reference)),
