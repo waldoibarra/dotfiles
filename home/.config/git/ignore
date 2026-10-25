@@ -5,5 +5,10 @@
 
 .DS_Store
 .env
-**/.claude/settings.local.json
-.agents/
+
+# Harnesses.
+/.claude/
+!/.claude/settings.json
+
+# Unorganized immutable source materials.
+/raw/
