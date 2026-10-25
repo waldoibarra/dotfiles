@@ -353,6 +353,23 @@ untested.
 Project overrides, disabled resources, or alternative client configurations can change effective
 behavior.
 
+### Claude defaults and workstation sync
+
+**Verified:** Commits `2627db5` and `581783a` are pushed; raw transcripts remain ignored and untracked.
+Installed Claude settings match the tracked Opus and medium-effort defaults.
+
+**Sync:** The user explicitly requested `dots`; its `just sync` command completed with exit code zero.
+Global skills were already current, and the working tree remained clean afterward.
+
+**Open warning:** npm reported the following during runner installation.
+Affected packages and exploitability remain unverified; no automatic dependency fix was applied.
+
+```text
+2 vulnerabilities (1 moderate, 1 high)
+```
+
+**Next:** Restart active clients. Investigate the audit warning before changing dependency versions.
+
 ### Pending workstation steps
 
 1. **Restart:** Restart Pi and Claude Code after the completed `dots` integration updates.
