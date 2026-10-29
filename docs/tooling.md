@@ -218,6 +218,12 @@ Reload replaces extensions without restarting the conversation.
 Host changes require rebuilding and restarting Pi.
 Use ordinary `pi` for the published package configuration.
 
+## Local audio transcription
+
+Read [audio transcription](/docs/audio-transcription.md) to transcribe recordings offline with Whisper
+on Apple Silicon.
+The guide covers prerequisites, model downloads, cache reuse, privacy, and uncertain speech.
+
 ## Editor defaults
 
 [.editorconfig.global](/.editorconfig.global) is linked to `~/.editorconfig` by Dotbot.
