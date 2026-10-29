@@ -135,6 +135,6 @@
   },
   "theme": "auto",
   "tui": "fullscreen",
-  "model": "opus",
+  "model": "fable",
   "effortLevel": "medium"
 }
