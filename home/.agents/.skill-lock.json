@@ -534,9 +534,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/in-progress/chief-of-staff/SKILL.md",
-      "skillFolderHash": "e27d538afafcd3dc55b7787e1476101b2f1f319e",
+      "skillFolderHash": "58e0a4122260ba45c150d8201dad2d6de4153d18",
       "installedAt": "2026-10-25T14:34:57.113Z",
-      "updatedAt": "2026-10-29T22:46:11.996Z"
+      "updatedAt": "2026-10-31T22:14:28.033Z"
     },
     "claude-handoff": {
       "source": "mattpocock/skills",
