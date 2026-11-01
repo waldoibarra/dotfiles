@@ -54,6 +54,7 @@ Size alone does not replace the publication review above.
 
 | Read before… | Record |
 | --- | --- |
+| Continuing shared ambition and disposable prototype selection | [Approved scope and verification](/docs/plans/ai-harness-roadmap.md#shared-ambition-and-disposable-prototype-selection) |
 | Separating shared skill declarations from local installation state | [Skill reconciliation plan](/openspec/changes/separate-skill-intent-from-state/proposal.md) and [tasks](/openspec/changes/separate-skill-intent-from-state/tasks.md) |
 | Reviewing the harness-guide refactor and verification limits | [Documentation refactor](/openspec/changes/refactor-harness-guides/proposal.md) and [checks](/openspec/changes/refactor-harness-guides/tasks.md) |
 | Comparing historical Pi voice results with current usage | [Voice trial evidence](/docs/ai-harness/pi/limitations.md#trial-environment) |

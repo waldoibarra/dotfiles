@@ -48,6 +48,15 @@ next human or agent.
 - **Simplify within scope**; proposals do not authorize unrelated implementation or changes to
   other projects.
 
+**Ambition:** Pursue ambitious outcomes, not merely literal task completion.
+Challenge assumed formats and consider stronger methods or cross-disciplinary approaches when they
+materially improve the result.
+Recommend worthwhile opportunities with explicit tradeoffs; preserve settled choices, task scope,
+budgets, and approval boundaries.
+Simple requests still deserve direct answers, not compulsory brainstorming or extra infrastructure.
+Read `~/.agents/references/ambition.md` when exploring approaches or improving an unsatisfactory
+result.
+
 ## Start with the right context
 
 **You MUST read `~/life/README.md` at every session start, before responding or performing task
@@ -139,8 +148,11 @@ Only an explicit task-specific waiver skips this planning gate.
 Approved steps need no repeated approval; material scope changes return for approval.
 Read `~/.agents/references/orchestration.md` before planning or coordinating implementation.
 
-**Prototypes:** Agree on the question, boundaries, observation method, stop condition, and approval
-in conversation.
+**Prototypes:** Read `~/.agents/skills/prototype-selection/SKILL.md` before choosing a prototype
+or POC approach.
+Agree on the question, boundaries, observation method, stop condition, and approval in conversation.
+For disposable work, follow the session workflow's exception to production tests, linting, and
+hardening.
 This concise agreement replaces the durable-change plan format; it does not waive approval or safety.
 Keep throwaway experiments outside OpenSpec, even inside an OpenSpec-enabled project.
 Production promotion requires a separate approved durable change; optional learnings stay with

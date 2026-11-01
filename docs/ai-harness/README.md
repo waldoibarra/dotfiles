@@ -28,7 +28,9 @@ installed reading routes.
 | Need | Guide |
 | --- | --- |
 | Start, direct, or close a session | [Session workflow](session-workflow.md) |
-| Improve prompts or clarify a request | [Prompting](/docs/prompting.md) |
+| Author model prompts for apps and services | [Prompting](/docs/prompting.md) |
+| Explore ambitious outcomes or different approaches | [Ambition](/home/.agents/references/ambition.md) |
+| Choose a disposable prototype or POC | [Prototype selection](/home/.agents/skills/prototype-selection/SKILL.md) |
 | Change shared rules or personal instruction loading | [Agent instructions](/docs/agent-instructions.md) |
 | Configure Pi or use subscription voice | [Pi and live voice](pi/README.md) |
 | Delegate with an explicit role and model | [Pi delegation](pi/delegation.md) |

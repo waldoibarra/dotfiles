@@ -76,13 +76,14 @@ Dotbot links these bundles individually; the external manifest does not manage t
 | Assessing outcomes, repeated friction, and approved improvements | [`feedback-loop`](/home/.agents/skills/feedback-loop/SKILL.md) |
 | Teaching with Socratic questions and checked application | [`socratic-teaching`](/home/.agents/skills/socratic-teaching/SKILL.md) |
 | Adding assigned manual tasks to the shared life list | [`shared-todo`](/home/.agents/skills/shared-todo/SKILL.md) |
+| Selecting a disposable prototype or POC and routing its execution | [`prototype-selection`](/home/.agents/skills/prototype-selection/SKILL.md) |
 | Starting an empty project without an application stack | [`project-init`](/home/.agents/skills/project-init/SKILL.md) |
 | Writing or reviewing shell scripts | [`shell-scripting`](/home/.agents/skills/shell-scripting/SKILL.md) |
 | Building/debugging/reviewing interfaces with behavior and layout | [`web-interface`](/home/.agents/skills/web-interface/SKILL.md) |
 | Standards-first or frameworkless web work | [`web-standards`](/home/.agents/skills/web-standards/SKILL.md) |
 | Isolated layout, intrinsic reflow, spacing, or overflow work | [`css-layout`](/home/.agents/skills/css-layout/SKILL.md) |
 
-- The eleven `home/.agents/skills/` bundles link to `~/.agents/skills/`,
+- The twelve `home/.agents/skills/` bundles link to `~/.agents/skills/`,
   `~/.claude/skills/`, and `~/.cursor/skills/`.
 - Editing an installed symlink edits this checkout; edit the tracked source.
 
@@ -96,10 +97,19 @@ Dotbot links these bundles individually; the external manifest does not manage t
 - Maintenance scenarios live in each bundle's `evals/evals.json` where present.
 - Format checks do not establish model or browser behavior.
 
-The `project-init` skill keeps requirements and POC setup separate from application scaffolding.
+The `project-init` skill establishes maintained project tooling without choosing an application stack.
+Disposable prototypes and POCs use `prototype-selection` instead, without that linting or hook baseline.
 
-It reuses workstation defaults, minimal project docs, and mise/just lint tooling instead of choosing
-a stack.
+## Prototype selection and execution
+
+`prototype-selection` compares formats and bounds the experiment before execution.
+Its references cover capabilities and gamification evidence without loading the full menu at
+startup.
+Matt Pocock's external `prototype` skill remains unchanged and handles suitable logic or UI
+experiments.
+The [session workflow](ai-harness/session-workflow.md#prototype) owns disposable-work and
+production-promotion boundaries.
+Its no-tests/no-linters exception does not exempt maintained harness changes from verification.
 
 ## Custom skill maintenance
 

@@ -5,7 +5,7 @@ description: >-
   Use when creating, editing, rewriting, or reviewing READMEs, guides, plans, or documentation structure.
   Includes small doc edits alongside code changes and edits by workers.
   For AGENTS.md use agents-md; for SKILL.md use agent-skills-creator.
-  Model prompts follow prompting.md.
+  App and service model prompts follow prompting.md.
 ---
 
 # Maintain documentation
@@ -35,7 +35,7 @@ Use the references for their distinct concerns; they are not mandatory sequentia
 | Looking up artifact conventions after reading the required communication rules | [Conventions](references/conventions.md): entrypoints, shared language, filenames, and retention |
 | Choosing or reviewing a guide's organization and page purposes | [Information architecture](references/structure.md): concerns, Diátaxis, progressive disclosure, and navigation checks |
 | Retiring agreements or proposing, writing, reviewing, or updating ADRs | `~/.agents/references/memory.md` for lifecycle and decision gates |
-| Editing model prompt files | `~/.agents/references/prompting.md` instead of this workflow |
+| Editing model prompts for apps and services | `~/.agents/references/prompting.md` instead of this workflow |
 
 Small factual corrections need not become structural reviews.
 Use `agents-md` for instruction files and `agent-skills-creator` for skill definitions.

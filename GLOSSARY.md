@@ -102,7 +102,19 @@ The authorized update workflow for packages, links, client configuration, and
 selected integrations.
 
 **Prototype**:
-Throwaway code used to test an idea and learn, without committing to production implementation.
+A disposable artifact or experience answering a bounded question without committing to production
+implementation.
+
+**Proof of concept (POC)**:
+A prototype focused on whether a capability or approach is feasible under stated conditions.
+
+**Ambition**:
+Seeking materially better outcomes through stronger methods, reframed approaches, or
+cross-disciplinary possibilities within authorized boundaries.
+
+**Gamification**:
+Game-design elements applied to a non-game activity to influence the experience or behavior.
+_Avoid_: Proof of user benefit or commercial success.
 
 **Durable change**:
 An approved modification intended to remain maintained after the session.

@@ -31,8 +31,13 @@ Report confirmed defects separately from unverified concerns.
 The agent should inspect relevant instructions and evidence before choosing a procedure.
 It checks intent, audience, and required reader context before answering or drafting.
 A medium such as Slack does not identify the readers or establish their knowledge.
-Read [intent clarification](/docs/prompting.md#clarify-intent-in-its-rhetorical-situation) for
-examples and source distinctions.
+Read [intent
+clarification](/home/.agents/references/communication-rules.md#clarify-intent-and-audience)
+for conversation guidance.
+Read [ambition](/home/.agents/references/ambition.md) when exploring better outcomes or materially
+different approaches.
+The [prompting guide](/docs/prompting.md) instead covers model prompts authored for apps and
+services.
 You do not need to prescribe every tool call or repeat rules already owned by the harness.
 
 ## Choose the work route
@@ -42,14 +47,27 @@ artifacts.
 
 | Route | Outcome | Planning record |
 | --- | --- | --- |
-| Prototype | Throwaway code answering a bounded question | A concise agreement in conversation |
+| Prototype | Disposable artifact or experience answering a bounded question | A concise agreement in conversation |
 | Durable change | Maintained behavior, configuration, or documentation | The project's approved change plan |
 
 ### Prototype
 
+Use [`prototype-selection`](/home/.agents/skills/prototype-selection/SKILL.md) before choosing an
+approach.
+It owns tradeoff comparisons, inventive alternatives, capability checks, and routing to execution
+skills.
+Carry settled choices forward; selection is not a repeated approval ceremony.
 Agree on the question, boundaries, observation method, and stop condition before building.
-Keep the experiment disposable and clearly identified; use the relevant prototype or specialist
-skill.
+Keep the experiment disposable and clearly identified.
+
+**Throwaway exception:** Do not add or require test suites, linters, coverage targets, or
+production hardening.
+This exception applies to disposable artifacts, not maintained harness changes or production code.
+If a project's mandatory checks conflict, use an approved isolated experiment location rather than
+disabling its safeguards.
+Observe the output sufficiently to answer the question; measurements or evaluations may themselves
+be the experiment.
+Protect credentials, private data, spending, and participants regardless of the artifact's lifespan.
 Do not initialize OpenSpec or create its artifacts for prototype requests.
 This exclusion also applies inside repositories already using OpenSpec.
 

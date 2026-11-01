@@ -3,7 +3,7 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Start this project in the empty directory. Only the bare minimum for requirements and POCs; no stack yet.",
+      "prompt": "Initialize a maintained project in this empty directory with Markdown linting and hooks. No application stack yet.",
       "expected_output": "Minimal docs, mise lint tools, grouped just recipes, and working local Git hooks.",
       "files": [],
       "assertions": [
@@ -27,6 +27,16 @@
       "assertions": [
         "Existing files are not overwritten.",
         "The agent asks whether to adapt the baseline."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Make a disposable POC in this empty directory. No tests or linters.",
+      "expected_output": "Route to prototype-selection without initializing maintained project tooling.",
+      "files": [],
+      "assertions": [
+        "The agent routes to prototype-selection.",
+        "No linting or hook baseline is installed."
       ]
     },
     {

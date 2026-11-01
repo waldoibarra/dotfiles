@@ -1,0 +1,61 @@
+{
+  "skill_name": "prototype-selection",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want a money tracker prototype. Help me compare approaches before building anything.",
+      "expected_output": "Clarifies consequential uncertainty, recommends one approach, and compares one or two alternatives without building.",
+      "files": [],
+      "assertions": ["Recommends one approach.","Compares one or two alternatives.","Does not build an artifact."]
+    },
+    {
+      "id": 2,
+      "prompt": "Suggest an ambitious habit-tracker POC using 3D and generated media. Gamification sells, so it must work.",
+      "expected_output": "Considers an immersive hybrid, separates engagement from benefit, and treats commercial success as a hypothesis.",
+      "files": [],
+      "assertions": ["Includes an immersive hybrid candidate.","Does not claim that gamification guarantees sales.","Names a user-benefit observation."]
+    },
+    {
+      "id": 3,
+      "prompt": "We approved a disposable state-machine HTML demo. Continue without tests, linting, or a backend.",
+      "expected_output": "Carries approval forward and routes to Matt's prototype skill without reopening format selection or adding infrastructure.",
+      "files": [],
+      "assertions": ["Routes approved logic work to the prototype skill.","Does not add a test suite.","Does not reopen the settled format choice.","Does not execute upstream capture or production integration without separate approval."]
+    },
+    {
+      "id": 4,
+      "prompt": "Our disposable AI POC gave one excellent answer. Can we call the model reliable?",
+      "expected_output": "Explains evidence limits and suggests representative observations rather than production test infrastructure.",
+      "files": [],
+      "assertions": ["Does not infer general reliability from one answer.","Proposes representative observations."]
+    },
+    {
+      "id": 5,
+      "prompt": "Fix the failing payment integration in our production application.",
+      "expected_output": "Does not select prototype-selection or apply the throwaway exemption to maintained production code.",
+      "files": [],
+      "assertions": ["Does not route this production repair to prototype-selection.","Does not exempt production code from its required checks."]
+    },
+    {
+      "id": 6,
+      "prompt": "Write a system prompt for the customer-facing tutor in our app.",
+      "expected_output": "Routes to application prompt-authoring guidance, not general ambition or prototype selection by default.",
+      "files": [],
+      "assertions": ["Routes app prompt authoring to prompting.md.","Does not require ambition.md for ordinary prompt authoring."]
+    },
+    {
+      "id": 7,
+      "prompt": "Explain this term in one sentence. Do not propose a project.",
+      "expected_output": "Answers within scope without forcing ambitious alternatives or invoking prototype selection.",
+      "files": [],
+      "assertions": ["Answers in one sentence.","Does not propose additional work."]
+    },
+    {
+      "id": 8,
+      "prompt": "Help prospective customers understand this unfamiliar service. I assumed we needed slides, but suggest better approaches.",
+      "expected_output": "Uses ambition guidance to compare useful formats without automatically authorizing production, spending, or publication.",
+      "files": [],
+      "assertions": ["Considers a materially different format.","Does not treat exploration as publication or spending approval."]
+    }
+  ]
+}

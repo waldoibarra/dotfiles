@@ -116,6 +116,95 @@ Start fresh sessions before verifying effective instructions; retain client-spec
 
 ## Existing follow-through
 
+### Shared ambition and disposable prototype selection
+
+**Approved:** Apply ambition across shared harness users and select prototypes through evidence
+and tradeoffs.
+The user confirmed the co-user's agreement; this is shared policy, not an individual profile
+preference.
+Implementation approval covers documentation, the selection skill, scoped delivery, and verification.
+The user subsequently requested a Sol review loop, followed by a scoped commit and push.
+They also approved publishing the existing predecessor commit `39193cf` with this change.
+
+| ID | Decision | Reason |
+| --- | --- | --- |
+| AP1 | Keep a concise ambition default in shared startup instructions. | A conditional skill alone cannot establish a session-wide stance. |
+| AP2 | Put techniques in a separate on-demand ambition reference. | Application prompt authoring has a different reader need. |
+| AP3 | Add prototype selection without modifying Matt's external execution skill. | The menu includes non-code and immersive hybrid experiments. |
+| AP4 | Skip test suites, linters, and hardening for disposable prototypes. | Observation answers the experiment; production-quality infrastructure is unnecessary. |
+| AP5 | Research gamification before recommending transferable mechanisms. | Company success alone cannot establish causal effects or user benefit. |
+| AP6 | Keep detailed research and study materials in the learning workspace. | Global runtime guidance needs selected conclusions, not session transcripts. |
+
+**Alternatives:** A skill-only ambition default may not load; copying Matt's skill creates
+unnecessary update divergence.
+Always choosing the cheapest artifact can miss necessary realism; always choosing an elaborate app
+wastes effort.
+The shared session workflow owns experiment boundaries; prototype selection owns the format
+decision and execution handoff.
+
+**Verification:** Check source links, skill metadata, Markdown, isolated delivery, and fresh
+offline startup context.
+Inspect routes for application prompt authoring, general ambition, prototype selection, and
+production near-misses.
+Scenario specifications do not establish behavioral improvement; report inference-based
+verification separately.
+Preserve unrelated work already present in this checkout; use targeted links and Cursor rendering,
+not full sync.
+
+**Recovery:** Revert only this change's edits, remove its verified new links, and rerender
+Cursor's instructions.
+Restore pre-existing working changes rather than resetting files to Git HEAD.
+No external skill update, credential setup, company changes, or app prototype is authorized.
+
+**Implemented:** Shared startup guidance routes to the separate ambition reference and
+prototype-selection skill.
+The prompting guide now explicitly covers app and service prompt authoring; affected reading
+routes agree.
+Prototype references include immersive hybrids, capability prerequisites, and qualified Duolingo
+and Temu findings.
+Research and an interactive HTML lesson live in `~/projects/learning/prototypes-best-practices/`.
+Matt's external prototype skill and original transcript remain unchanged.
+
+**Review:** Independent review found a conflict with `project-init` offering linting for
+disposable POCs.
+Its scope now explicitly covers maintained project setup; a near-miss scenario protects the
+distinction.
+A subsequent user-requested Sol review found ambiguous delegation to Matt's capture rule.
+The handoff now excludes capture, production integration, and Git delivery without separate approval.
+Application output style is also explicitly separated from the coding harness's editorial
+preferences.
+The first review attempt encountered a provider fetch failure; the retained Sol reviewer resumed
+successfully.
+The final Sol recheck passed with no blocking findings.
+It confirmed the capture approval boundary and separation of application style from harness
+editorial rules.
+
+**Verified:** All fifteen harness tests and six Cursor tests pass, including compiled Pi 1.4.0
+checks.
+Repository lint, learning-document lint, three skill validators, and scoped local-link checks pass.
+Scoped Dotbot delivery preserves unrelated files and leaves repeated links unchanged.
+The new reference and skill are installed locally; Cursor's regular rule was refreshed through its
+renderer.
+Fresh offline Pi contexts contain the shared policy and discover the skill without preloading its
+body.
+Chrome 156 renders the lesson at 390px and 1200px without horizontal overflow.
+Focused Space-key disclosure, print rendering, and absence of runtime exceptions were checked.
+
+**Limits:** Eight prototype-selection scenarios and the new setup near-miss remain specifications,
+not model-behavior results.
+No comparative model experiment or native Claude/Cursor runtime check ran; other browsers remain
+untested.
+The optional `skills-ref` checker was unavailable; no dependency was installed to replace it.
+No provider credentials, external generation access, or second-workstation readiness were
+established.
+
+**Next:** Reload clients and inspect ordinary-session choices before claiming improved ambition or
+prototype selection.
+The user authorized committing this change and pushing it with predecessor `39193cf` to
+`origin/main`.
+The learning workspace is not a Git repository and remains local.
+The co-user's workstation still needs separately authorized delivery.
+
 ### Intent clarification and feedback loop
 
 **Approved:** Combine the video and Purdue lenses, adapt selected Humanizer defaults, and rename the

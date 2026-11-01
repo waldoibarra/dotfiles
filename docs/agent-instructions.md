@@ -9,8 +9,11 @@ a maintenance guide.
 
 [`AGENTS.md`](/home/.agents/AGENTS.md) owns universal boundaries and the task-based reading map.
 
-Its golden rules require assertive communication and maintainability, including a verifiable working
-environment.
+Its golden rules require assertive communication, maintainability, and proportionate ambition
+across configured users.
+Maintainability includes a verifiable working environment.
+Ambition broadens considered approaches without expanding execution authority or turning every
+request into brainstorming.
 Maintainability covers code, documentation, and the working environment for the next human or agent.
 The communication golden rule requires reading and following the communication rules before every
 reply or artifact.
@@ -26,7 +29,8 @@ skills.
 | Communication shapes and formatting | [Communication reference](/home/.agents/references/communication-rules.md) |
 | Lead coordination and verification | [Orchestrator role](/home/.agents/references/orchestration.md) |
 | Configuration ownership and integration acceptance | [Harness-design reference](/home/.agents/references/harness-design.md) |
-| Prompts written for models | [Prompting guide](/docs/prompting.md), installed as `~/.agents/references/prompting.md` |
+| General ambition and cross-disciplinary approaches | [Ambition reference](/home/.agents/references/ambition.md) |
+| Model prompts authored for apps and services | [Prompting guide](/docs/prompting.md), installed as `~/.agents/references/prompting.md` |
 | Specialist procedures | [Skills](/docs/agent-skills.md) |
 | Worker responsibilities | [Shared roles](#shared-role-agents) |
 
@@ -42,7 +46,14 @@ compatibility alias.
 Both names resolve to the same source; existing vault and client pointers need no duplicate policy.
 Loading checks establish delivery, not universal writing compliance.
 
-**Prompting guide link:** `prompting.md` stays in `docs/` because people read it too.
+**Progressive disclosure:** Startup carries the short ambition principle and its conditional
+reading trigger.
+The ambition reference owns techniques; prototype selection owns its procedure and loads detailed
+options only when needed.
+Research and lessons remain in their learning workspace, outside global startup context.
+
+**Prompting guide link:** `prompting.md` stays in `docs/` because people author application
+prompts with it.
 `install.conf.yaml` links it into `~/.agents/references/`.
 Skills cite that installed path, which is the same on every machine.
 

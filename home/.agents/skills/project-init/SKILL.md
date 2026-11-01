@@ -1,7 +1,7 @@
 ---
 name: project-init
 description: >-
-  Initializes empty project directories for requirements and POCs without choosing an application stack.
+  Initializes empty maintained project directories without choosing an application stack.
   Includes mise, grouped just recipes, Markdown linting, and Git-message hooks.
   Use when asked to "start a new project" or "initialize this empty directory".
   Also use for "set up the bare minimum" when no application stack is requested.
@@ -12,7 +12,9 @@ compatibility: Requires Git, mise, just, Node.js for Markdown linting, and netwo
 
 **Outcome:** Establish a stack-free local baseline with minimal grounded documentation and working
 lint hooks.
-Use `scaffold-nextjs` or `scaffold-cli` when an application stack is explicitly requested.
+For disposable prototypes or POCs, use `prototype-selection` instead.
+Do not add this baseline's linting or hooks to disposable experiments.
+Use `scaffold-nextjs` or `scaffold-cli` when a maintained application stack is explicitly requested.
 This workflow does not create a remote, commit, publish, or deploy without a separate request.
 
 ## Check the destination

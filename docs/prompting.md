@@ -1,16 +1,24 @@
-# Write effective AI prompts
+# Write prompts for apps and services
 
-**Use:** Start with the template, refine unclear instructions,
-and verify responses before relying on them.
+**Scope:** Author and revise model prompts used by apps and services, including their agents and
+workflows.
+Start with the template, refine unclear instructions, and verify outputs against the application's
+intended behavior.
+This guide does not define the coding assistant's general ambition or ordinary conversation policy.
+Read [ambition](/home/.agents/references/ambition.md) for outcome reframing and broader approach
+selection.
+Read [communication rules](/home/.agents/references/communication-rules.md) for the harness's own
+replies.
 
 ## Clarify intent in its rhetorical situation
 
 **Intent clarification combines the requested outcome with the circumstances of communication.**
 It is our practical synthesis, not an established four-dimensional theory or mandatory message
 schema.
+Apply these lenses to the application's intended readers, users, inputs, and outputs.
 The [communication
-rules](/home/.agents/references/communication-rules.md#clarify-intent-and-audience) own the agent's
-pre-response checks.
+rules](/home/.agents/references/communication-rules.md#clarify-intent-and-audience) separately own
+the harness's pre-response checks.
 The [glossary](/GLOSSARY.md) defines our terms; this guide explains their application.
 
 | Source lens | Contribution | Harness interpretation |
@@ -41,14 +49,13 @@ exposing an internal checklist.
 
 ## Writing defaults and sources
 
+Define the application's output style from its audience and product requirements.
+Do not automatically copy the coding harness's editorial preferences into customer-facing model prompts.
 Shared [communication
 rules](/home/.agents/references/communication-rules.md#edit-for-the-actual-reader)
-own editorial defaults, including no prose em or en dashes and literal-content exceptions.
-Ghostwriter owns voice-specific drafting; `feedback-loop` evaluates mismatches and observed
-improvement without applying changes.
-We adapt selected Humanizer ideas rather than install a second overlapping rewriting skill.
-Style clues are not reliable authorship tests; no word blacklist or invented personality is
-required.
+govern the assistant authoring those prompts, not the application's output contract.
+The sources below inform useful editorial checks, not mandatory application style or authorship
+detection.
 
 - [What Do We Build Now That AI Can Do the Work?](https://www.youtube.com/watch?v=H2bYz5kIYk4)
   supplies the four-part lens and augmentation argument.

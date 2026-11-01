@@ -12,7 +12,7 @@ before changing ownership.
 | Maintained Markdown, including plans | [`docs`](/home/.agents/skills/docs/SKILL.md) |
 | Agent instruction files | `agents-md` |
 | Repository-owned skills | `custom-skills`, with `agent-skills-creator` for authoring |
-| Model prompts | [Prompting guide](/docs/prompting.md) |
+| Model prompts authored for apps and services | [Prompting guide](/docs/prompting.md) |
 | Retention, temporary agreements, and ADR gates | [Memory lifecycle](/home/.agents/references/memory.md) |
 | Original, generated, or frozen evidence | Its source, publisher, and retention rules |
 
