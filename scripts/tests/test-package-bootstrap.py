@@ -125,6 +125,12 @@ class BootstrapTest(unittest.TestCase):
     checkout = self.root / "checkout"
     (checkout / "scripts").mkdir(parents=True, exist_ok=True)
     shutil.copy2(ROOT / "scripts/install-dotfiles.sh", checkout / "scripts/install-dotfiles.sh")
+    updater = checkout / "scripts/update-coding-agents"
+    updater.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(ROOT / "scripts/update-coding-agents/sync-skills.py", updater / "sync-skills.py")
+    declared = checkout / "home/.agents"
+    declared.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(ROOT / "home/.agents/skills-manifest.json", declared / "skills-manifest.json")
     dotbot = checkout / "dotbot/bin/dotbot"
     dotbot.parent.mkdir(parents=True, exist_ok=True)
     dotbot.write_text('#!/bin/bash\nprintf "%s" "$PATH" > "$FIXTURE/dotbot-path"\n')

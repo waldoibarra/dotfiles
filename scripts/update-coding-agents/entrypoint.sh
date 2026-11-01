@@ -11,8 +11,6 @@ readonly ENTRYPOINT_DIR
 source "${ENTRYPOINT_DIR}/../lib/shell-helpers.sh"
 # shellcheck source=sync-managed-configs.sh
 source "${ENTRYPOINT_DIR}/sync-managed-configs.sh"
-# shellcheck source=sync-global-skills-from-lock.sh
-source "${ENTRYPOINT_DIR}/sync-global-skills-from-lock.sh"
 
 #######################################
 # Check whether a Herdr agent integration is installed and current.
@@ -174,7 +172,7 @@ main() {
   install_herdr_integration claude
   install_herdr_integration pi
   install_moshi_agent_extension pi
-  sync_global_skills_from_lock
+  python3 "${ENTRYPOINT_DIR}/sync-skills.py"
   python3 "${ENTRYPOINT_DIR}/sync-openspec.py"
 
   echo "Done updating. Restart Claude Code, Pi, and Cursor if they are open."

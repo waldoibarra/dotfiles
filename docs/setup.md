@@ -99,9 +99,9 @@ just update-ca
 just hooks
 ```
 
-**`just update-ca` can commit and push skill-lockfile changes**, including other unpushed commits
-on the branch. Run it only when publication is intended and your Git identity and remote access
-are ready.
+The installer only bootstraps tools and links authored configuration.
+Run `just update-ca` afterward to provision external and generated skills without Git publication.
+Alternatively, a later `dots` run completes that provisioning after its package and Dotbot stages.
 
 Mise installs Pi, Dotbot links its preferences and shared instructions, and `just update-ca`
 installs `pi-live-codex`. Pi discovers `~/.agents/skills` without another copy. A fresh

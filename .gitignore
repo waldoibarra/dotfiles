@@ -3,3 +3,8 @@
 id_rsa
 
 __pycache__/
+
+# Native skill resolution and OpenSpec generation stay local.
+home/.agents/.skill-lock.json
+.agents/skills/openspec-*/
+.agents/skills/.openspec-target

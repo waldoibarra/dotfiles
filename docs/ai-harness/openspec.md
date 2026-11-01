@@ -51,9 +51,9 @@ Routine changes do not require bulk migration.
 Mise owns `npm:@fission-ai/openspec` at `latest`.
 Dotbot links `home/.config/openspec/config.json` into the user's native OpenSpec configuration
 directory.
-Pi and Cursor discover the generated skills through `~/.agents/skills/`.
-Claude Code receives links to the same source through `~/.claude/skills/`.
-No separate Cursor skill copy or custom adapter is required.
+The updater generates repository-local skills before linking them into `~/.agents/skills/`.
+It also links them into `~/.claude/skills/` and `~/.cursor/skills/`.
+Pi reads the shared root; Claude Code and Cursor receive explicit discovery links.
 
 Dotbot also links the schema into `~/.local/share/openspec/schemas/session-workflow`.
 The session guide is linked as `~/.agents/references/session-workflow.md` for portable schema
@@ -62,9 +62,11 @@ Dotfiles selects this schema for new changes; existing changes retain their reco
 Other repositories require explicit adoption; a project-local schema takes precedence over the
 user-level copy.
 
-The updater runs the native preview before refreshing this checkout's generated skills.
-Matching output is a no-op; upstream version changes may modify tracked generated files.
-Review those changes before committing.
+The updater bootstraps absent skills with the native CLI before running its update preview.
+For one missing document, it generates output in isolation and restores only that document.
+It preserves healthy files when isolated native output matches their bytes.
+Other native changes follow the update preview; invalid existing documents require manual recovery.
+Generated skills remain local and untracked; authored OpenSpec configuration remains tracked.
 The updater does not initialize or update unrelated repositories.
 
 Run `dots` under the existing [workstation-sync boundaries](/docs/tooling.md#sync-the-workstation).

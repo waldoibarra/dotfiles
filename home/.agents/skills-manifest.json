@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "clients": [
+    "pi",
+    "claude-code",
+    "cursor"
+  ],
+  "skills": [
+    {
+      "name": "agent-skills-creator",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "agents-md",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "animate",
+      "source": "https://github.com/emilkowalski/skills.git"
+    },
+    {
+      "name": "animation-vocabulary",
+      "source": "https://github.com/emilkowalski/skills.git"
+    },
+    {
+      "name": "apple-design",
+      "source": "https://github.com/emilkowalski/skills.git"
+    },
+    {
+      "name": "ask-matt",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "ask-sonner",
+      "source": "https://github.com/emilkowalski/skills.git"
+    },
+    {
+      "name": "autoship",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "ax-audit",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "chief-of-staff",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "claude-handoff",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "code-review",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "codebase-architecture",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "codebase-design",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "diagnosing-bugs",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "domain-modeling",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "dx-audit",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "eli5",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "emil-design-eng",
+      "source": "https://github.com/emilkowalski/skills.git"
+    },
+    {
+      "name": "find-animation-opportunities",
+      "source": "https://github.com/emilkowalski/skills.git"
+    },
+    {
+      "name": "find-skills",
+      "source": "https://github.com/vercel-labs/skills.git"
+    },
+    {
+      "name": "ghostwriter",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "git-guardrails-claude-code",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "grill-me",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "grill-with-docs",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "grilling",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "handoff",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "implement",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "implement-spec",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "improve-animations",
+      "source": "https://github.com/emilkowalski/skills.git"
+    },
+    {
+      "name": "improve-codebase-architecture",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "loop-me",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "marketing-psychology",
+      "source": "https://github.com/coreyhaines31/marketingskills.git"
+    },
+    {
+      "name": "migrate-to-shoehorn",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "multi-tenant-architecture",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "pick-ui-library",
+      "source": "https://github.com/emilkowalski/skills.git"
+    },
+    {
+      "name": "planning",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "pr",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "pr-babysitter",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "pr-creator",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "prd",
+      "source": "https://github.com/github/awesome-copilot.git"
+    },
+    {
+      "name": "presentation-creator",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "product-design",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "prototype",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "research",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "retro",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "review-animations",
+      "source": "https://github.com/emilkowalski/skills.git"
+    },
+    {
+      "name": "save-md",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "scaffold-cli",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "scaffold-exercises",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "scaffold-nextjs",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "setup-matt-pocock-skills",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "setup-pre-commit",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "setup-ts-deep-modules",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "skill-creator",
+      "source": "https://github.com/anthropics/skills.git"
+    },
+    {
+      "name": "tdd",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "teach",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "tidy",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "to-questionnaire",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "to-spec",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "to-tickets",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "triage",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "typography-audit",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "ui-animation",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "ui-design",
+      "source": "https://github.com/mblode/agent-skills.git"
+    },
+    {
+      "name": "wait-what",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "wayfinder",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "wizard",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "workout-program-designer",
+      "source": "https://github.com/onewave-ai/claude-skills.git"
+    },
+    {
+      "name": "writing-beats",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "writing-for-agents",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "writing-fragments",
+      "source": "https://github.com/mattpocock/skills.git"
+    },
+    {
+      "name": "writing-shape",
+      "source": "https://github.com/mattpocock/skills.git"
+    }
+  ]
+}

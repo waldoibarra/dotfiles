@@ -101,18 +101,19 @@ Run `python3 scripts/tests/test-life-profile.py` for isolated linking and preser
 4. Refresh RTK's Pi extension when its dry run lists changes.
 5. Refresh Herdr's Claude and Pi integrations unless status reports them current.
 6. Install Moshi's Pi extension non-interactively with its native target-specific installer.
-7. Install missing lockfile skills, update global skills, then **commit and push** a changed
-lockfile.
-8. Refresh upstream-generated OpenSpec skills when the native update preview reports changes.
+7. Reconcile declared external skills and client links, then update installed global skills.
+  The native lockfile stays local; reconciliation does not commit or push.
+8. Bootstrap missing OpenSpec skills, use the native preview, then repair client links.
   `sync-openspec.py` fails visibly on unavailable tools, invalid previews, or native update errors.
-  Run `python3 scripts/tests/test-openspec-sync.py` for isolated no-op, update, and failure checks.
+  Run `python3 scripts/tests/test-openspec-sync.py` for isolated bootstrap and failure checks.
+  Run `python3 scripts/tests/test-skill-sync.py` for migration and client-link checks.
 
 RTK, Herdr and Moshi steps skip their integrations when the respective binary is missing. Their Pi
 steps also require the `pi` binary. Herdr's native installer requires an extension directory;
 the updater creates it when needed. Generated extensions stay outside Git.
 Read [Coding agents](../docs/ai-harness/README.md) before editing copied configs or running
 updates.
-It lists ownership and publication risks.
+It lists ownership and sync boundaries.
 Read [Agent integrations](/docs/agent-integrations.md) before diagnosing hooks or plugins.
 Moshi's Pi hook file is refreshed on each run.
 Pairing and daemon/service setup remain outside this updater.

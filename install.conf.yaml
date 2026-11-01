@@ -48,7 +48,6 @@
     ~/.zshenv: home/.zshenv
     ~/.zshrc: home/.zshrc
     # Files.
-    ~/.agents/.skill-lock.json: home/.agents/.skill-lock.json
     ~/.agents/AGENTS.md: home/.agents/AGENTS.md
     ~/.claude/CLAUDE.md: home/.agents/AGENTS.md
     ~/.codex/AGENTS.md: home/.agents/AGENTS.md
@@ -112,19 +111,6 @@
         - home/.claude/RTK.md
         - home/.claude/output-styles
         - home/.claude/settings.json
-    # OpenSpec owns these generated skills; all three harnesses share their source.
-    ~/.agents/skills/openspec-apply-change: .agents/skills/openspec-apply-change
-    ~/.claude/skills/openspec-apply-change: .agents/skills/openspec-apply-change
-    ~/.agents/skills/openspec-explore: .agents/skills/openspec-explore
-    ~/.claude/skills/openspec-explore: .agents/skills/openspec-explore
-    ~/.agents/skills/openspec-update-change: .agents/skills/openspec-update-change
-    ~/.claude/skills/openspec-update-change: .agents/skills/openspec-update-change
-    ~/.agents/skills/openspec-archive-change: .agents/skills/openspec-archive-change
-    ~/.claude/skills/openspec-archive-change: .agents/skills/openspec-archive-change
-    ~/.agents/skills/openspec-propose: .agents/skills/openspec-propose
-    ~/.claude/skills/openspec-propose: .agents/skills/openspec-propose
-    ~/.agents/skills/openspec-sync-specs: .agents/skills/openspec-sync-specs
-    ~/.claude/skills/openspec-sync-specs: .agents/skills/openspec-sync-specs
     # Link agents per file, like output styles below.
     ~/.claude/agents/:
       glob: true
@@ -135,6 +121,9 @@
       glob: true
       path: home/.claude/output-styles/*
     ~/.claude/skills/:
+      glob: true
+      path: home/.agents/skills/*
+    ~/.cursor/skills/:
       glob: true
       path: home/.agents/skills/*
     ~/.config/ghostty: home/.config/ghostty/

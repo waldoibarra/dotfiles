@@ -24,9 +24,8 @@ ruler.
 5. The [coding-agent updater](ai-harness/README.md).
 6. Repository Git-hook installation.
 
-**Sync changes the machine and can publish commits.** Review local changes and package lists first.
-The agent updater commits and pushes changed skill lockfiles.
-That push can include other unpushed commits, which is accepted.
+**Sync changes the machine and pulls remote commits.** Review local changes and package lists first.
+Skill reconciliation does not commit or push local resolution state.
 
 Agents run `dots` only when a change must reach `$HOME` or targets the sync path.
 Prefer `just mise-sync`, `just update-ca`, or `just hooks` for narrower changes.
@@ -109,7 +108,7 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 | `just brew` | Install/upgrade Brewfile packages, then uninstall unlisted packages. |
 | `just brew-dump` | Overwrite the global Brewfile from installed packages; exclude VS Code extensions and npm packages. Review before committing. |
 | `just mise-sync` | Install, upgrade and prune Mise tools. |
-| `just update-ca` | Replace managed agent copies, reconcile Pi packages, refresh integrations and skills; may commit and push. |
+| `just update-ca` | Replace managed agent copies, reconcile Pi packages, refresh integrations and skills without Git publication. |
 | `just hooks` | Install this checkout's hooks with hk. |
 | `just obsidian-setup [VAULT]` | Install declared tools/plugins and apply owned settings/ruler; see [Obsidian](obsidian.md). |
 | `just obsidian-sync` | Same reconciliation for `~/life/`; skip when the vault is absent. |

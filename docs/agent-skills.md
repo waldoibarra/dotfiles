@@ -10,22 +10,34 @@ directories below.
 
 ## External skills
 
-[`sync-global-skills-from-lock.sh`](/scripts/update-coding-agents/sync-global-skills-from-lock.sh)
-updates external skills:
+[`sync-skills.py`](/scripts/update-coding-agents/sync-skills.py) reconciles the tracked
+[`skills-manifest.json`](/home/.agents/skills-manifest.json).
+The native `~/.agents/.skill-lock.json` records local resolution state and is not published.
+The updater installs missing declarations and repairs client links.
+It updates every installed global skill.
+Undeclared local skills remain installed and never enter the manifest automatically.
+OpenSpec generates local skills before its updater repairs their discovery links.
 
-- It installs missing entries from
-  [`home/.agents/.skill-lock.json`](/home/.agents/.skill-lock.json).
-- It then runs `npx -y skills update -g` for all installed global skills.
-- It updates skills rather than reinstalling frozen lockfile bytes.
-- A changed tracked lockfile triggers a commit and push.
+**Enroll a shared external skill only after approval:**
 
-**Publishing risk:** the updater can publish other unpushed commits on the branch too.
+1. Record its exact skill name and GitHub source URL in `home/.agents/skills-manifest.json`.
+    Keep version `1` and all three clients: `pi`, `claude-code`, and `cursor`.
+2. Run `just update-ca` after tool bootstrap, or run the existing `dots` alias.
+    Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before running `dots`.
+3. Verify installed content and source metadata in the local lockfile.
+    Check Pi, Claude Code, and Cursor discovery in fresh client sessions.
+    Invoke the skill harmlessly before claiming it works.
+4. Request an authorized commit and push of the manifest to share the declaration.
+    The other workstation installs it during its next successful `dots` run.
 
-Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before running the updater.
-
-- Keep `lastSelectedAgents` set to `pi` and `claude-code`; these become the installer's `-a` flags.
-- The `pi` target installs into `~/.agents/skills`.
-- Edit external skills in their owning source repository, not their installed copies.
+Install personal experiments locally without changing the manifest.
+Removing a declaration does not uninstall an existing skill.
+Edit external skills in their owning repository, never their installed copies.
+A missing lockfile with existing content requires native source verification before adoption.
+Conflicting content or unknown symlinks stop reconciliation without overwriting that installation.
+Missing or malformed `SKILL.md` also stops reconciliation, even with matching lock metadata.
+Preserve incomplete content and restore the skill manually before retrying.
+The installer checks broken repository skill links before Dotbot can clean them.
 
 ## Design interviews with documentation
 
@@ -54,7 +66,7 @@ automatic selection.
 
 ## Repo-managed skills
 
-Dotbot links these bundles individually; the external lockfile does not manage them.
+Dotbot links these bundles individually; the external manifest does not manage them.
 
 | Read before… | Tracked source |
 | --- | --- |
@@ -70,8 +82,8 @@ Dotbot links these bundles individually; the external lockfile does not manage t
 | Standards-first or frameworkless web work | [`web-standards`](/home/.agents/skills/web-standards/SKILL.md) |
 | Isolated layout, intrinsic reflow, spacing, or overflow work | [`css-layout`](/home/.agents/skills/css-layout/SKILL.md) |
 
-- The eleven `home/.agents/skills/` bundles link to both `~/.agents/skills/` and
-  `~/.claude/skills/`.
+- The eleven `home/.agents/skills/` bundles link to `~/.agents/skills/`,
+  `~/.claude/skills/`, and `~/.cursor/skills/`.
 - Editing an installed symlink edits this checkout; edit the tracked source.
 
 **New bundles:** they acquire links on the next Dotbot sync.

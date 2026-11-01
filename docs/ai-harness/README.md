@@ -48,9 +48,8 @@ Follow [configuration ownership](configuration.md#file-ownership) for links, man
 rendered files.
 Linked-file edits also change the repository; credentials and runtime state remain client-local.
 
-**Publication risk:** `just update-ca`, and therefore `just sync`, can commit and push a changed
-skill lockfile, publishing other unpushed commits on the branch too. Read
-[Sync the workstation](/docs/tooling.md#sync-the-workstation) before running either.
+Skill reconciliation keeps the native lockfile local and does not publish Git changes.
+Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before running `dots`.
 
 ## Copy-managed files
 

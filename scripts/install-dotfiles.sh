@@ -31,6 +31,9 @@ DOTBOT_BIN="bin/dotbot"
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BASEDIR="$(dirname "${SCRIPTS_DIR}")"
 
+# Check ownership before Dotbot clean can remove conflicting broken links.
+python3 "${BASEDIR}/scripts/update-coding-agents/sync-skills.py" --preflight
+
 cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"

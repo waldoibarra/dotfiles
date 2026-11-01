@@ -9,6 +9,7 @@ Dotbot links most files; the updater copies Claude settings and renders client a
 - **Edit tracked sources under `home/`, not installed copies.** Symlink edits affect this repository.
   Read [agent ownership](/docs/ai-harness/README.md#file-ownership) before changing copied or
   generated configuration.
+- Read [shared skill enrollment](/docs/agent-skills.md#external-skills) before adding a shared skill.
 - Keep credentials, identities, signing keys and machine-local overrides outside the repository.
   Use `$HOME`, supported `~` expansion or native path handling, never absolute personal home paths.
 - **Run `dots` only when a change must reach `$HOME` or targets the sync path, and announce it

@@ -24,11 +24,11 @@ installed paths replace `home/` with `~/` unless noted.
 | `home/.claude/.shellcheckrc` | Repository-only; ShellCheck configuration for the status-line scripts |
 | `home/.agents/RTK.md` | Linked to `~/.agents/RTK.md` and `~/.claude/RTK.md`; shared RTK reference |
 | `home/.config/rtk/*` | Linked to `~/Library/Application Support/rtk/` on macOS or `~/.config/rtk/` on Linux |
-| `home/.agents/.skill-lock.json` | Linked; external skill sources and installer targets |
+| `home/.agents/skills-manifest.json` | Tracked external skill declarations; local native lockfile remains untracked |
 | `home/.agents/AGENTS.md` | Linked to `~/.agents/AGENTS.md`, `~/.claude/CLAUDE.md`, `~/.pi/agent/AGENTS.md`, and `~/.codex/AGENTS.md`; global policy and reading map |
 | `home/.agents/references/*.md` | Linked individually to `~/.agents/references/`; shared on-demand detail |
 | `home/.config/openspec/config.json` | Linked native skills-only preferences; [OpenSpec integration](openspec.md) |
-| `.agents/skills/openspec-*/` | Upstream-generated skills linked into shared discovery roots for Pi, Claude Code, and Cursor |
+| `.agents/skills/openspec-*/` | Local upstream-generated skills linked after generation into Pi, Claude Code, and Cursor discovery roots |
 | `openspec/schemas/session-workflow/` | Linked native user-level schema; [workflow contract](session-workflow.md#choose-the-work-route) |
 | `docs/ai-harness/session-workflow.md` | Linked to `~/.agents/references/session-workflow.md` for portable schema instructions |
 | `home/.agents/mcp.json` | Shared personal MCP definitions; Pi and Cursor links, plus derived Claude user registrations |

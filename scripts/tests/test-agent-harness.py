@@ -286,17 +286,10 @@ class AgentHarnessTest(unittest.TestCase):
                     "openspec-apply-change", "openspec-explore", "openspec-update-change",
                     "openspec-archive-change", "openspec-propose", "openspec-sync-specs",
                 }
-                generated_skills = list((ROOT / ".agents/skills").glob("openspec-*"))
-                self.assertEqual({source.name for source in generated_skills}, expected_skills)
-                for source in generated_skills:
-                    for directory in (".agents/skills", ".claude/skills"):
-                        installed = home / directory / source.name
-                        self.assertTrue(installed.is_symlink(), str(installed))
-                        self.assertEqual(installed.resolve(), source)
-                        self.assertEqual(
-                            (installed / "SKILL.md").read_bytes(),
-                            (source / "SKILL.md").read_bytes(),
-                        )
+                for name in expected_skills:
+                    for directory in (".agents/skills", ".claude/skills", ".cursor/skills"):
+                        self.assertFalse((home / directory / name).is_symlink())
+                self.assertFalse((home / ".agents/.skill-lock.json").is_symlink())
                 roadmap = home / ".agents/harness-roadmap.md"
                 self.assertFalse(roadmap.exists())
                 self.assertFalse(roadmap.is_symlink())
@@ -323,7 +316,7 @@ class AgentHarnessTest(unittest.TestCase):
                 self.assertEqual(
                     legacy_communication.read_bytes(), communication_source.read_bytes()
                 )
-                for directory in (".agents/skills", ".claude/skills"):
+                for directory in (".agents/skills", ".claude/skills", ".cursor/skills"):
                     for required in (
                         "docs/SKILL.md",
                         "docs/references/structure.md",
@@ -345,7 +338,7 @@ class AgentHarnessTest(unittest.TestCase):
                                 self.assertEqual(delivered.read_bytes(), source.read_bytes())
                 current_links = {
                     str(link): link.lstat().st_mtime_ns
-                    for directory in (".agents/skills", ".claude/skills")
+                    for directory in (".agents/skills", ".claude/skills", ".cursor/skills")
                     for link in (home / directory).iterdir()
                 }
                 current_links[str(claude_instructions)] = instruction_mtime
