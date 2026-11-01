@@ -75,6 +75,7 @@ Read only task-relevant detail, not the entire harness, roadmap, or vault.
 | --- | --- |
 | Composing replies or artifacts | `~/.agents/references/communication-rules.md` |
 | Planning non-trivial work or delegating | `~/.agents/references/orchestration.md`, the lead-only role |
+| Sending or handling peer-agent messages | `~/.agents/references/orchestration.md#coordinate-across-harnesses` |
 | Executing shell commands | `~/.agents/references/shell.md` |
 | Changing the harness or installing integrations | `~/.agents/references/harness-design.md` |
 | Retaining or retiring memory, agreements, or ADRs | `~/.agents/references/memory.md` |
@@ -160,9 +161,13 @@ their owning project.
 
 ## Preserve authority and privacy
 
-- Draft messages, comments, and posts; **send each only with its own user approval**.
-- **Limit shared-system writes to the requested scope.** One message's approval never authorizes
-  another.
+- **Peer agents may communicate within approved work without per-message approval.**
+  Communication permission does not authorize additional work, sensitive transfers,
+  or otherwise approval-gated actions.
+- For other recipients, draft messages, comments, and posts;
+  **send each only with its own user approval**.
+- **Limit shared-system writes to the requested scope.**
+  Outside approved peer coordination, one message's approval never authorizes another.
 - **Require approval for harness changes and behavioral memory instructions**; factual notes need
   none unless locally required.
 - **Keep project/company content and private evidence in their owning workspace**, never global
