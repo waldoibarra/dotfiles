@@ -20,7 +20,9 @@ These unrelated failures remain outside this change.
 
 Review was sequential self-review, not independent review.
 The existing managed-copy function refreshed installed Claude settings without package upgrades.
-Installed bytes match the tracked source; both delegation names are denied.
+The operator requested removing the legacy `Task` entry after initial delivery.
+The revised restriction denies only `Agent`; the focused test, lint, and strict validation pass.
+This machine's installed settings match tracked bytes; Lluvia's installation has not been checked.
 Fresh-session enforcement and instruction compliance remain unexercised.
 Restart Claude before relying on the new configuration.
 No inference probe ran because the verification guide retains an unresolved quota-recovery restriction.

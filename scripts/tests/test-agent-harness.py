@@ -236,7 +236,7 @@ class AgentHarnessTest(unittest.TestCase):
                 self.assertEqual(delivered, expected)
                 self.assertEqual(
                     delivered["permissions"],
-                    {"defaultMode": "bypassPermissions", "deny": ["Agent", "Task"]},
+                    {"defaultMode": "bypassPermissions", "deny": ["Agent"]},
                 )
                 self.assertFalse((home / ".claude/settings.json").is_symlink())
 

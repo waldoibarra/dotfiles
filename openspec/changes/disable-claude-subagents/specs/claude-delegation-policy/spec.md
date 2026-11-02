@@ -8,12 +8,13 @@ Keep Claude worker delegation on the shared Herdr coordination path across proje
 
 ### Requirement: Native subagent denial
 
-Delivered Claude user settings SHALL deny native subagent spawning through `Agent` and legacy `Task`.
+Delivered Claude user settings SHALL deny native subagent spawning through `Agent` only.
 
 #### Scenario: Global delivery
 
 - **WHEN** the coding-agent updater delivers Claude settings
-- **THEN** both delegation names are denied without project-specific configuration
+- **THEN** `Agent` is denied without project-specific configuration
+- **AND** no legacy `Task` deny entry is installed
 - **AND** repeating delivery preserves the same denial
 
 #### Scenario: Unrelated task tools
