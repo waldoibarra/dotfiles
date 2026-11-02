@@ -38,6 +38,15 @@ Use Opus when review depth or risk warrants it and account access permits.
 Aliases can resolve differently across providers; verify the actual selected model and supported
 effort.
 
+**Observed fit, under evaluation since 2026-11-01.** Waldo's working notes, not settled routing.
+Revisit them with `feedback-loop` evidence before promoting any to a rule.
+
+| Task | Model that fit | Observation |
+| --- | --- | --- |
+| Refine a plan, review a plan | GPT-6 Astra (Pi) | Found real flaws in the progressive-disclosure plan: rollback scope, misclassified content, missing routes. |
+| Implement a bounded slice | Claude Opus or Sonnet | Expected fit for implementer work; not yet exercised as a Herdr worker. |
+| Review an implementation | GPT-6 Sol (Pi) | Earlier reviews completed; today's implementation review used Astra, which also fit. |
+
 **Cursor:** Its catalog can include Cursor and other providers' models; do not equate host with
 provider.
 Use the current model selector or authenticated catalog, not copied OpenAI or Anthropic aliases.
@@ -61,7 +70,7 @@ No Cursor worker availability, authentication, or execution is established by th
 
 ## Preserve control
 
-- Reserve Astra/Fable for main chat and auxiliary probes never use them. Astra may run an
+- Reserve Astra/Fable for main chat; auxiliary probes never use them. Astra may run an
   independent reviewer or a bounded worker only on the operator's explicit request per task.
   Main-model selection belongs to the user.
 - Select every worker model explicitly; never inherit the lead or change parent model, billing, or
