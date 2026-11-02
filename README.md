@@ -53,7 +53,7 @@ Choose the guide for your task; read [agent instructions](/AGENTS.md) before cha
 | Change shell startup | [Zsh configuration](/docs/zsh-configuration.md) |
 | Change Git defaults, identity, or signing | [Git configuration](/docs/git-configuration.md) |
 | Change installation or update behavior | [Scripts](/scripts/README.md) |
-| Use editable UI designs | [Design tooling](/docs/agent-ui-design-tools.md) |
+| Use editable UI designs | [Design tooling](/docs/ai-harness/design-tools.md) |
 | Restructure or retire maintained information | [Documentation maintenance](/docs/documentation.md) |
 
 Every guide is listed in the [documentation map](/docs/README.md).

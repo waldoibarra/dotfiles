@@ -31,7 +31,7 @@ The configuration updates submodules from their remotes, manages links and runs 
 | [configure-markdown-app.sh](/scripts/configure-markdown-app.sh) | After package installation, apply the user-wide Markdown handler with duti. Skip non-macOS or an unavailable app. |
 | [set-brew-zsh-as-default-shell.sh](/scripts/set-brew-zsh-as-default-shell.sh) | Register Homebrew Zsh in `/etc/shells` and select it with `chsh`, unless `$SHELL` already matches. |
 
-Read [default applications](/docs/tooling.md#default-applications-on-macos) before changing file
+Read [default applications](/docs/macos-defaults.md) before changing file
 associations or responding to OS approval prompts. Already-correct handlers are not changed again.
 The Markdown step receives Homebrew's Apple Silicon PATH explicitly;
 package subprocesses cannot update its parent.
@@ -113,12 +113,12 @@ the updater creates it when needed. Generated extensions stay outside Git.
 Read [Coding agents](../docs/ai-harness/README.md) before editing copied configs or running
 updates.
 It lists ownership and sync boundaries.
-Read [Agent integrations](/docs/agent-integrations.md) before diagnosing hooks or plugins.
+Read [Agent integrations](/docs/ai-harness/integrations.md) before diagnosing hooks or plugins.
 Moshi's Pi hook file is refreshed on each run.
 Pairing and daemon/service setup remain outside this updater.
 Redirecting installer stdin from `/dev/null` prevents first-run settings prompts during sync.
 The redirect saves no preferences.
-Read [Moshi's separate setup](../docs/agent-integrations.md#first-run-settings-during-sync)
+Read [Moshi's separate setup](../docs/ai-harness/integrations.md#first-run-settings-during-sync)
 for those machine-local preferences.
 
 [`sync-personal-mcp.py`](/scripts/update-coding-agents/sync-personal-mcp.py) can run separately
