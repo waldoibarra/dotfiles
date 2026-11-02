@@ -401,7 +401,7 @@ outcomes.
 
 - Read [shared roles](/docs/plans/pi-shared-roles.md) before reviewing historical discovery and
   dispatch evidence.
-- Read [delegation](/docs/ai-harness/pi/delegation.md) before selecting Pi roles and models.
+- Pi delegation was retired on 2026-11-01; Pi workers run through `/docs/ai-harness/agent-coordination.md`.
 - Read [harness verification](/docs/ai-harness/harness-verification.md) before defining acceptance
   or approving behavioral probes.
 

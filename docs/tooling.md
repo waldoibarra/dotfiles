@@ -192,7 +192,6 @@ just --justfile "$HOME/.dotfiles/justfile" pi-lens-dev --continue
 | --- | --- |
 | Compiled Pi host | `$HOME/projects/open-source/pi/packages/coding-agent/dist/bundle/cli.js` |
 | Pi Lens | `$HOME/projects/open-source/pi-lens/src/index.ts` |
-| Subagents | `$HOME/projects/open-source/pi-subagents/index.ts` |
 | Installed live voice | `$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts` |
 
 The recipe checks those files. Prepare missing checkouts and the compiled host separately.
@@ -319,12 +318,11 @@ Keep these backend choices unless the underlying constraint changes:
 Mise owns `npm:@earendil-works/pi-coding-agent = "latest"`, so `just mise-sync` and `dots` include
 Pi binary installation and upgrades.
 The `pi-live-codex` extension is a separate Pi-managed package.
-Dotbot links Pi's tracked JSON preferences and subagent configuration into `~/.pi/agent`.
-Pi UI changes can therefore modify the repository. `just update-ca` installs the configured
-subagent pin and updates declared packages. Shared instructions and roles are linked by Dotbot;
-Pi discovers shared skills natively.
-Read [Pi delegation](ai-harness/pi/delegation.md) before changing the runner or role/model
-selection.
+Dotbot links Pi's tracked JSON preferences into `~/.pi/agent`.
+Pi UI changes can therefore modify the repository. `just update-ca` updates declared packages.
+Shared instructions and roles are linked by Dotbot; Pi discovers shared skills natively.
+Pi has no native delegation runner; run Pi workers through
+[Agent coordination](ai-harness/agent-coordination.md).
 [Pi and live voice](ai-harness/pi/README.md) documents ownership, shortcuts, and accepted
 limitations.
 

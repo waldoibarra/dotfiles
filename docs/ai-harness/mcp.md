@@ -39,8 +39,7 @@ Review any such changes.
 Work roots, project `.mcp.json`, project `.pi/mcp.json`, and unrelated user entries are untouched.
 Project servers can shadow user servers.
 Verification outside work projects does not establish work parity.
-Subagents do not automatically receive every MCP tool. Read [Pi delegation](pi/delegation.md)
-before granting a role explicit MCP access.
+Workers started through Herdr load the same user MCP servers as any Pi session.
 
 ## Fireflies
 

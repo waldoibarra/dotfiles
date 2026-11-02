@@ -119,7 +119,7 @@ lint-yaml:
 lint-commit msg_file:
   committed --commit-file {{msg_file}}
 
-# Open local Pi, Lens and subagents with installed live voice; /reload refreshes extensions.
+# Open local Pi and Lens with installed live voice; /reload refreshes extensions.
 [group("Development")]
 [no-cd]
 [positional-arguments]
@@ -127,7 +127,6 @@ pi-lens-dev *PI_ARGS:
   @for source_file in \
     "$HOME/projects/open-source/pi/packages/coding-agent/dist/bundle/cli.js" \
     "$HOME/projects/open-source/pi-lens/src/index.ts" \
-    "$HOME/projects/open-source/pi-subagents/index.ts" \
     "$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts"; do \
     test -f "$source_file" || { \
       printf 'Missing development file: %s\n' "$source_file" >&2; exit 1; \
@@ -136,7 +135,6 @@ pi-lens-dev *PI_ARGS:
   node "$HOME/projects/open-source/pi/packages/coding-agent/dist/bundle/cli.js" \
     --no-extensions \
     -e "$HOME/projects/open-source/pi-lens/src/index.ts" \
-    -e "$HOME/projects/open-source/pi-subagents/index.ts" \
     -e "$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts" \
     "$@"
 

@@ -8,7 +8,7 @@ Read [configuration](configuration.md) before changing linked files or ownership
 ## Provisioning sequence
 
 [Dotbot](../../../install.conf.yaml) creates the real Pi directories and links `AGENTS.md`,
-`settings.json`, `models.json`, `keybindings.json`, `mcp.json`, and `extensions/subagent/config.json`.
+`settings.json`, `models.json`, `keybindings.json`, and `mcp.json`.
 It also links `APPEND_SYSTEM.md` for Pi-specific skill compatibility and installs shared roles individually.
 Credentials and sessions remain separate.
 Pi files do not use the managed-copy helper.
@@ -17,10 +17,7 @@ The updater reconciles shared personal MCP definitions with Claude's user regist
 Read [personal MCP setup](../mcp.md) before changing or verifying those registrations.
 
 The [agent updater](../../../scripts/update-coding-agents/entrypoint.sh) then runs
-`pi install <configured-runner-source> --no-approve`, then `pi update --extensions --no-approve`
-from `$HOME`. The runner source comes from linked settings and follows `npm:pi-subagents@latest`.
-Explicit installation resolves the tag and covers missing installations.
-The package filter object remains intact when installing the same source.
+`pi update --extensions --no-approve` from `$HOME` for every declared package.
 
 `pi update --extensions` reconciles the remaining declared packages, including the Pi Lens Git
 source, from the linked normal-profile settings. Its empty `skills` and `prompts` filters are part
@@ -88,7 +85,7 @@ to alter identity or attestation or switch billing routes.
 | `/live spruce` | A user-run spoken check of the selected voice. |
 
 The provisioning suite uses a disposable home, without a microphone or model call.
-Read [Pi delegation](delegation.md#install-and-verify) before testing role/model execution.
+Read [Agent coordination](../agent-coordination.md) before testing worker execution.
 The user performs the spoken check.
 `pi --continue` resumes coding context but does not repair the known [voice-context limitation](limitations.md).
 

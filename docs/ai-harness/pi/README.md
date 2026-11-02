@@ -15,14 +15,13 @@ repository.
 | --- | --- |
 | Install, update, authenticate, or verify Pi | [Installation and sync](installation.md) |
 | Change settings, context windows, shortcuts, or instruction loading | [Configuration](configuration.md) |
-| Select worker roles and models | [Delegation](delegation.md) |
 | Choose a voice or troubleshoot access | [Live voice](live-voice.md) |
 | Understand context loss, cancellation, and evidence limits | [Limitations and trial evidence](limitations.md) |
 
 ## Components and ownership
 
 Mise owns the Pi binary; Dotbot links configuration into the normal `~/.pi/agent` profile.
-The updater reconciles voice, delegation, and Lens packages from tracked settings.
+The updater reconciles voice and Lens packages from tracked settings.
 Login, microphone permission, credentials, and session data remain machine-local.
 
 [Configuration](configuration.md#managed-files) owns the file inventory and coding defaults.

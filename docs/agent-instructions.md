@@ -186,9 +186,6 @@ They contain no provider, model, or effort defaults.
 - The main session owns decisions, Git writes, shared processes, and user communication.
 - Role restrictions are policy, not a sandbox; shell-capable reviewers can still mutate files.
 
-Read [Pi delegation](/docs/ai-harness/pi/delegation.md) before changing discovery, inheritance,
-or dispatch controls.
-
 - Claude uses linked native agent definitions; dispatch must explicitly select an eligible worker
   model.
 - Without delegation, sequential self-review is not independent review.

@@ -30,8 +30,7 @@ If no pre-edit failure was captured, record that limitation rather than claiming
 cycle.
 Documentation-only changes need link and factual checks, not a fabricated failing runtime test.
 
-Read [Pi delegation](pi/delegation.md#bind-repository-work-before-dispatch)
-before launching repository-bound workers.
+Read [Agent coordination](agent-coordination.md#brief-a-worker) before launching repository-bound workers.
 Give each child only its acceptance target, required context, exact checks, and stop condition.
 Reuse focused context for follow-ups; do not repeatedly send the full historical plan.
 Choose model and effort using the existing shared routing policy; this guide adds no model defaults.
@@ -95,9 +94,8 @@ Read the [orchestration reference](/home/.agents/references/orchestration.md) be
 children.
 This guide checks policy; it does not define another delegation or improvement workflow.
 
-- **Pi:** pass an explicit provider/model and supported thinking suffix in the child model string.
-  Read [Pi delegation](/docs/ai-harness/pi/delegation.md) before dispatching
-  or checking available models.
+- **Pi:** no native delegation runner is installed. Start a Pi worker as a Herdr agent and pass
+  `--model` after `--`; read [Agent coordination](agent-coordination.md#spawn-a-worker-in-a-split).
 - **Claude Code:** use native per-invocation model selection, not Pi provider/model syntax.
   Available aliases include `fable`, `opus`, `sonnet`, and `haiku`; availability depends on the
   account.

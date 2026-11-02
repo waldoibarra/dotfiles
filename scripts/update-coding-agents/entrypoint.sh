@@ -147,16 +147,6 @@ install_pi_packages() (
   cd "${HOME}" || return 1
   export PI_CODING_AGENT_DIR="${HOME}/.pi/agent"
   unset OPENAI_API_KEY
-  # Explicit installation covers a fresh profile and resolves the configured npm tag.
-  local subagent_source
-  subagent_source="$(node -e '
-    const settings = require(process.argv[1]);
-    const source = settings.packages.map(p => typeof p === "string" ? p : p.source)
-      .find(p => p.startsWith("npm:pi-subagents@"));
-    if (!source) throw new Error("Missing pi-subagents package declaration");
-    console.log(source);
-  ' "${PI_CODING_AGENT_DIR}/settings.json")" || return 1
-  pi install "${subagent_source}" --no-approve || return 1
   pi update --extensions --no-approve
 )
 

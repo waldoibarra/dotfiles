@@ -27,6 +27,7 @@ The configuration updates submodules from their remotes, manages links and runs 
 | --- | --- |
 | [configure-touch-id-for-sudo.sh](/scripts/configure-touch-id-for-sudo.sh) | On macOS, build `/etc/pam.d/sudo_local` from Apple's template if Touch ID is not enabled; set mode `444`. Skip other systems; fail if the template is missing. |
 | [install-os-packages.sh](/scripts/install-os-packages.sh) | Install Homebrew if needed, check/install its global bundle with `--no-upgrade`, trust/install Mise tools, and install missing WezTerm terminfo on macOS when WezTerm is available. |
+| [list-agents.py](/scripts/list-agents.py) | Print every live Herdr agent as one table: workspace, tab, pane or name, harness and model, directory, last screen line. Rendered Markdown on a terminal, raw when piped; positional words and `--here` filter rows. Runs under `uv` for its `rich` dependency; requires a running Herdr server. |
 | [configure-markdown-app.sh](/scripts/configure-markdown-app.sh) | After package installation, apply the user-wide Markdown handler with duti. Skip non-macOS or an unavailable app. |
 | [set-brew-zsh-as-default-shell.sh](/scripts/set-brew-zsh-as-default-shell.sh) | Register Homebrew Zsh in `/etc/shells` and select it with `chsh`, unless `$SHELL` already matches. |
 
@@ -95,9 +96,7 @@ Run `python3 scripts/tests/test-life-profile.py` for isolated linking and preser
   Read [Cursor global instructions](../docs/ai-harness/README.md#cursor-global-instructions)
   before changing the template or refreshing only that rule.
 2. Register missing shared personal MCP servers through Claude's native user-scope command.
-3. Install the configured subagent runner from `latest`, then update declared Pi packages in the
-  normal
-  profile.
+3. Update declared Pi packages in the normal profile.
 4. Refresh RTK's Pi extension when its dry run lists changes.
 5. Refresh Herdr's Claude and Pi integrations unless status reports them current.
 6. Install Moshi's Pi extension non-interactively with its native target-specific installer.
