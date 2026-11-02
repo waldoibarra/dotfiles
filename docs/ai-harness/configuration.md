@@ -18,7 +18,7 @@ installed paths replace `home/` with `~/` unless noted.
 | --- | --- |
 | `home/.cursor/rules/global-instructions.mdc` | Template; updater renders a regular Cursor rule file |
 | `home/.claude/settings.json` | Copied; hooks, output style, permissions, plugins, status lines |
-| `home/.agents/roles/*.md` | Linked individually to `~/.agents/roles/` and `~/.claude/agents/`; [shared roles](/docs/agent-instructions.md#shared-role-agents) |
+| `home/.agents/roles/*.md` | Linked individually to `~/.agents/roles/` and `~/.claude/agents/`; [shared roles](/docs/ai-harness/instructions.md#shared-role-agents) |
 | `home/.claude/output-styles/*.md` | Linked individually; the directory stays real |
 | `home/.claude/*statusline*.sh` | Linked; main and subagent status lines |
 | `home/.claude/.shellcheckrc` | Repository-only; ShellCheck configuration for the status-line scripts |
@@ -32,7 +32,7 @@ installed paths replace `home/` with `~/` unless noted.
 | `openspec/schemas/session-workflow/` | Linked native user-level schema; [workflow contract](session-workflow.md#choose-the-work-route) |
 | `docs/ai-harness/session-workflow.md` | Linked to `~/.agents/references/session-workflow.md` for portable schema instructions |
 | `home/.agents/mcp.json` | Shared personal MCP definitions; Pi and Cursor links, plus derived Claude user registrations |
-| Repo-authored skill directories | Linked individually; [destinations](/docs/agent-skills.md#repo-managed-skills) |
+| Repo-authored skill directories | Linked individually; [destinations](/docs/ai-harness/skills.md#repo-managed-skills) |
 | `home/.pi/agent/` configuration files | Individually linked; [Pi managed files](pi/configuration.md#managed-files) owns the complete inventory |
 
 Keep shared installation directories real, with links to individual children.
@@ -85,4 +85,4 @@ Dotbot owns Claude's global instruction symlink; the updater does not replace it
 
 Herdr's installer can add a machine-specific hook after the managed copy is refreshed.
 The next refresh discards that local addition before integration reconciliation.
-Read [Herdr integration](/docs/agent-integrations.md#herdr) before changing that hook.
+Read [Herdr integration](/docs/ai-harness/integrations.md#herdr) before changing that hook.

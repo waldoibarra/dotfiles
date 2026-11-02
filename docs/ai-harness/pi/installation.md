@@ -54,7 +54,7 @@ None of their installers changes Pi's linked preferences.
 The updater uses RTK's dry run and Herdr's integration status to avoid rewriting current files.
 Moshi's installer is rerun because it exposes no equivalent per-target status check. Moshi pairing
 and daemon/service setup remain machine-local; hooks alone do not establish phone delivery.
-Restart Pi after changes. [Agent integrations](../../agent-integrations.md) documents the native
+Restart Pi after changes. [Agent integrations](../integrations.md) documents the native
 installers, data sent by Moshi, environment requirements, and verification limits.
 
 ## Authentication and billing

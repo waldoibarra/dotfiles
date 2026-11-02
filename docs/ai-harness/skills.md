@@ -1,9 +1,9 @@
 # Skill catalogue and delivery
 
 **Use skills for task-specific procedures, not as a mandatory session checklist.**
-Read [session workflow](ai-harness/session-workflow.md) for human checkpoints and example
-requests.
-Read [Coding agents](ai-harness/README.md) before changing agent files.
+Read [session workflow](/docs/ai-harness/session-workflow.md) for human checkpoints and example requests.
+Read [the AI harness](/docs/ai-harness/README.md) before changing agent files.
+Read [learning skills](/docs/ai-harness/learning.md) for guided learning and the feedback loop.
 
 External skills belong to their source repositories; repo-authored skills belong in the tracked
 directories below.
@@ -38,31 +38,6 @@ Conflicting content or unknown symlinks stop reconciliation without overwriting 
 Missing or malformed `SKILL.md` also stops reconciliation, even with matching lock metadata.
 Preserve incomplete content and restore the skill manually before retrying.
 The installer checks broken repository skill links before Dotbot can clean them.
-
-## Design interviews with documentation
-
-**Use when:** The shared planning gate requires task refinement before implementation, unless
-explicitly waived.
-Read [the session workflow](/docs/ai-harness/session-workflow.md) before starting a change.
-
-**Discovery:** The external skill sets `disable-model-invocation: true`.
-Shared instructions explicitly route agents to its installed `SKILL.md`; users need not type slash commands.
-A missing skill or dependency blocks dependent work until reported and resolved.
-
-**Portability:** Pi's tracked `APPEND_SYSTEM.md` handles requests for the unavailable `Skill` tool.
-Pi reads the named dependencies, `grilling` and `domain-modeling`, from their installed skill files.
-No separate adapter or modification of the external skill is needed.
-
-**Boundaries:** Confirm decisions before implementation; record accepted decisions in existing
-project documents.
-Glossary and ADR creation remain subject to task authority and local documentation rules.
-Do not create either merely because the wrapper mentions them.
-
-**Ownership:** Keep the external installation unchanged; upstream owns its metadata and
-tool-specific wording.
-Read [external skill maintenance](#external-skills) before proposing a source fix or updating it.
-Loader checks establish discovery and explicit command expansion, not interview quality or
-automatic selection.
 
 ## Repo-managed skills
 
@@ -99,17 +74,6 @@ Dotbot links these bundles individually; the external manifest does not manage t
 
 The `project-init` skill establishes maintained project tooling without choosing an application stack.
 Disposable prototypes and POCs use `prototype-selection` instead, without that linting or hook baseline.
-
-## Prototype selection and execution
-
-`prototype-selection` compares formats and bounds the experiment before execution.
-Its references cover capabilities and gamification evidence without loading the full menu at
-startup.
-Matt Pocock's external `prototype` skill remains unchanged and handles suitable logic or UI
-experiments.
-The [session workflow](ai-harness/session-workflow.md#prototype) owns disposable-work and
-production-promotion boundaries.
-Its no-tests/no-linters exception does not exempt maintained harness changes from verification.
 
 ## Custom skill maintenance
 
@@ -155,26 +119,6 @@ implicitly.
 **Rollback:** Restore scoped source changes and remove only verified new links when installed.
 Reload each host before checking discovery; a source rollback alone does not prove runtime recovery.
 
-## Documentation maintenance
-
-**Purpose:** `docs` maintains accurate Markdown and concern-based reading paths within the active
-task.
-Its [structure reference](/home/.agents/skills/docs/references/structure.md) owns documentation
-information architecture, including Diátaxis and progressive disclosure.
-Shared instructions and worker roles route documentation work through the same skill.
-
-**Use:** Read [documentation maintenance](/docs/documentation.md) for ownership, local checks, and
-invocation.
-The skill owns editing authority and preservation; instruction files and skill definitions retain
-their specialist workflows.
-`ghostwriter` handles prose under house conventions; `feedback-loop` remains proposal-only at
-closure.
-
-**Limits:** Discovery and model-followed routing are not file watchers or guaranteed execution
-hooks.
-The reference requires no generator; OpenWiki evaluation remains deferred in [tooling
-ideas](/to-do.md#agent-tools).
-
 ## Current names and migration
 
 Names describe each skill's job; clear existing names remain unchanged.
@@ -194,58 +138,10 @@ No legacy aliases are installed; update external references before invoking reti
 Dotbot removes obsolete managed links; unmanaged files remain untouched.
 Reload the client after migration and verify discovery separately from actual task behavior.
 
-## Learning and session improvement
-
-- Use `socratic-teaching` for guided learning.
-- Use `feedback-loop` to compare intended and observed outcomes, including follow-up evidence after
-  approved changes.
-- They share neither learner records nor project curricula.
-- Projects can require the teaching skill in their own instructions and keep local content
-  separately.
-
-| Task | Pi | Claude Code |
-| --- | --- | --- |
-| Start guided learning | `/skill:socratic-teaching` | `/socratic-teaching` |
-| Review session improvements | `/skill:feedback-loop` | `/feedback-loop` |
-
-- Natural-language requests can also select these skills through their descriptions.
-- A closure question requests review, not permission to edit or publish.
-- `feedback-loop` assesses evidence first, then loads its placement reference only for
-  warranted proposals.
-
-**Touched docs:** `feedback-loop` uses `docs` for read-only review of session-edited Markdown.
-It skips unrelated Git changes and read-only sources; any proposed corrections still require
-execution authority.
-
-**Voice feedback:** `feedback-loop` reads Ghostwriter and relevant profiles when the
-session supplies writing feedback.
-It proposes evidence-backed profile changes, checking whose voice and which co-users are affected.
-Explicit preferences can justify proposals without repeated corrections; profile changes still
-require approval.
-
-**Follow-up:** The skill assesses correction effort, repeated context, review burden, and decision
-clarity from available evidence.
-It diagnoses intent and audience mismatches through the canonical communication rules.
-Without comparable evidence, report improvement as unverified; static checks and installation do not
-prove reduced human effort.
-No monitoring, observation logs, automatic learning, or model experiments follow from invoking the
-skill.
-
-**Approved edits:** Use the owning specialist workflow and repository delivery rules.
-
-`ghostwriter` owns prose; it replaces the former `docs-writing` name.
-
-No shutdown hook runs `socratic-teaching` or `feedback-loop`; neither reconstructs
-inaccessible
-conversation history.
-
-Read [Claude skill loading](https://code.claude.com/docs/en/features-overview)
-before changing Claude invocation or discovery expectations.
-
 ## Pi discovery
 
 - Pi natively scans `~/.agents/skills`; no `~/.pi/agent/skills` copy is needed.
 - A fresh Pi session or `/reload` refreshes discovery.
 - Startup diagnostics and `/skill:<name>` check visibility, not skill execution.
 
-Read [Pi and live voice](ai-harness/pi/README.md) before provisioning Pi or using live voice.
+Read [Pi and live voice](/docs/ai-harness/pi/README.md) before provisioning Pi or using live voice.

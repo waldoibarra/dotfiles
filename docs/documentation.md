@@ -100,7 +100,7 @@ Report failures outside the task without changing protected sources to make lint
 
 Use `/skill:docs` in Pi or `/docs` in Claude Code.
 Reload Pi or start a fresh Claude session after installation.
-[Skill delivery](/docs/agent-skills.md#repo-managed-skills) owns installation and discovery checks.
+[Skill delivery](/docs/ai-harness/skills.md#repo-managed-skills) owns installation and discovery checks.
 Discovery proves availability, not automatic selection or successful documentation work.
 
 At closure, `feedback-loop` reviews session-edited Markdown and proposes warranted corrections

@@ -12,9 +12,9 @@ For a new workstation, follow [setup](/docs/setup.md) before configuring clients
 
 | Layer | Responsibility | Owner |
 | --- | --- | --- |
-| Global instructions | Shared boundaries and task-based reading routes | [Agent instructions](/docs/agent-instructions.md) |
+| Global instructions | Shared boundaries and task-based reading routes | [Instructions](instructions.md) |
 | References | On-demand communication, coordination, and integration guidance | [Shared references](/home/.agents/references) |
-| Skills | Specialist procedures and verification | [Agent skills](/docs/agent-skills.md) |
+| Skills | Specialist procedures and verification | [Skills](skills.md) |
 | Roles | Bounded worker responsibilities; the lead retains decisions and Git delivery | [Role selection](/home/.agents/references/delegation.md) |
 | Native configuration | Client mechanics, tools, and runtime state | [Configuration and delivery](configuration.md) |
 
@@ -25,23 +25,48 @@ installed reading routes.
 
 ## Choose a task
 
+### Start
+
 | Need | Guide |
 | --- | --- |
 | Start, direct, or close a session | [Session workflow](session-workflow.md) |
-| Author model prompts for apps and services | [Prompting](/docs/prompting.md) |
-| Explore ambitious outcomes or different approaches | [Ambition](/home/.agents/references/ambition.md) |
-| Choose a disposable prototype or POC | [Prototype selection](/home/.agents/skills/prototype-selection/SKILL.md) |
-| Change shared rules or personal instruction loading | [Agent instructions](/docs/agent-instructions.md) |
-| Configure Pi or use subscription voice | [Pi and live voice](pi/README.md) |
-| List, name, spawn, or brief agents across harnesses | [Agent coordination](agent-coordination/README.md) |
-| Configure personal MCP servers | [Personal MCP servers](mcp.md) |
-| Install or maintain skills | [Agent skills](/docs/agent-skills.md) |
 | Plan and deliver a durable change | [OpenSpec integration](openspec.md) |
-| Check delivery, loading, or behavior | [Harness verification](harness-verification.md) |
+| Choose a disposable prototype or POC | [Prototype selection](/home/.agents/skills/prototype-selection/SKILL.md) |
+| Explore ambitious outcomes or different approaches | [Ambition](/home/.agents/references/ambition.md) |
+
+### Configure
+
+| Need | Guide |
+| --- | --- |
+| Change shared rules or personal instruction loading | [Instructions](instructions.md) |
+| Configure Pi or use subscription voice | [Pi and live voice](pi/README.md) |
+| Configure personal MCP servers | [Personal MCP servers](mcp.md) |
+| Install or maintain skills | [Skills](skills.md) |
+| Configure design tools | [Design tools](design-tools.md) |
+| Choose where to spend a session | [Provider usage limits](quotas.md) |
+
+### Coordinate
+
+| Need | Guide |
+| --- | --- |
+| List, name, spawn, or brief agents across harnesses | [Agent coordination](agent-coordination/README.md) |
+| Author model prompts for apps and services | [Prompting](/docs/prompting.md) |
 | Maintain writing profiles | [Ghostwriter profiles](ghostwriter.md) |
-| Diagnose RTK, Herdr, Moshi, or Lens | [Agent integrations](/docs/agent-integrations.md) |
-| Configure design tools | [UI design tools](/docs/agent-ui-design-tools.md) |
+
+### Verify
+
+| Need | Guide |
+| --- | --- |
+| Check delivery, loading, or behavior | [Harness verification](harness-verification.md) |
 | Compare personal and work behavior | [Work harness parity](work-parity.md) |
+| Learn, or review a session's outcome | [Learning and session improvement](learning.md) |
+
+### Maintain
+
+| Need | Guide |
+| --- | --- |
+| Diagnose RTK, Herdr, Moshi, or Lens | [Integrations](integrations.md) |
+| Develop Lens from local sources | [Lens development](pi/lens-development.md) |
 
 ## File ownership
 

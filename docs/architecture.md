@@ -35,7 +35,7 @@ The lead checks worker results and retains decisions, shared processes, and Git 
 | Layer | Owner | Boundary |
 | --- | --- | --- |
 | Global behavior | [Shared instructions](/home/.agents/AGENTS.md) | Golden rules, authority, privacy, and task routing |
-| Procedures and responsibilities | [Skills](/docs/agent-skills.md) and [roles](/docs/agent-instructions.md#shared-role-agents) | Loaded for the task, not copied into startup |
+| Procedures and responsibilities | [Skills](/docs/ai-harness/skills.md) and [roles](/docs/ai-harness/instructions.md#shared-role-agents) | Loaded for the task, not copied into startup |
 | Client mechanics | [Coding-agent configuration](/docs/ai-harness/README.md) | Native models, tools, credentials, and runtime state |
 | Product knowledge | Each repository's overview, glossary, docs, and decisions | Technical facts remain with their product |
 | Shared personal memory | The Obsidian life vault | Profiles, shared goals, repository navigation, and coordination |
@@ -118,7 +118,7 @@ a record.
 
 - Read [setup](/docs/setup.md) before installing or applying machine-specific overrides.
 - Read [tooling](/docs/tooling.md) before syncing packages or changing hooks.
-- Read [instruction ownership](/docs/agent-instructions.md) before changing what loads into a
+- Read [instruction ownership](/docs/ai-harness/instructions.md) before changing what loads into a
   session.
 - Read [model and role selection](/home/.agents/references/delegation.md) before delegating across
   configured clients.

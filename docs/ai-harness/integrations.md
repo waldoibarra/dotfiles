@@ -1,6 +1,6 @@
 # Agent integrations
 
-Read [Coding agents](ai-harness/README.md) before editing tracked settings.
+Read [Coding agents](/docs/ai-harness/README.md) before editing tracked settings.
 Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before running the updater.
 Keep machine-local hooks, plugins and service configuration outside the repository.
 

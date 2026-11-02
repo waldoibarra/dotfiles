@@ -173,54 +173,7 @@ The fixtures use temporary directories and never rewrite retained source files.
 
 ## Develop Lens locally
 
-The recipe keeps the caller's working directory and forwards arguments without re-parsing them.
-It never builds, installs, or changes package declarations.
-
-From this checkout, run `just pi-lens-dev` to use the local sources shown below.
-The recipe uses Pi's normal session persistence by default.
-Pass Pi CLI arguments after the recipe name, including `--continue` or explicit `--no-session`.
-`--continue` selects the latest saved session for that directory, including ordinary Pi sessions.
-Use `--session` for a specific saved session; previous ephemeral sessions cannot be resumed.
-
-To keep another project's working directory, invoke it there with:
-
-```sh
-just --justfile "$HOME/.dotfiles/justfile" pi-lens-dev --continue
-```
-
-| Component | Required file |
-| --- | --- |
-| Compiled Pi host | `$HOME/projects/open-source/pi/packages/coding-agent/dist/bundle/cli.js` |
-| Pi Lens | `$HOME/projects/open-source/pi-lens/src/index.ts` |
-| Installed live voice | `$HOME/.pi/agent/npm/node_modules/pi-live-codex/index.ts` |
-
-The recipe checks those files. Prepare missing checkouts and the compiled host separately.
-It uses the local compiled host, not Mise's `latest` binary.
-Ordinary `pi` and `dots` remain unchanged.
-
-Only the three named extensions load; installed Lens and other auto-discovered extensions remain
-disabled.
-This prevents double rendering. Voice loads without opening the microphone or connecting
-automatically.
-Start voice with `/live spruce` or use Ctrl+L for the default voice.
-Read [live voice](ai-harness/pi/live-voice.md) before testing microphone and account access.
-Use `--no-session` only for disposable conversations that should not persist after exit.
-
-Sessions launched before voice was included need a new process.
-`/reload` retains their original extension paths.
-Keep the current conversation open and launch `just pi-lens-dev` in another terminal for voice
-testing.
-
-Edit Lens or subagent source, finish the active turn, then run `/reload` in the same Pi session.
-Reload replaces extensions without restarting the conversation.
-Host changes require rebuilding and restarting Pi.
-Use ordinary `pi` for the published package configuration.
-
-## Local audio transcription
-
-Read [audio transcription](/docs/audio-transcription.md) to transcribe recordings offline with Whisper
-on Apple Silicon.
-The guide covers prerequisites, model downloads, cache reuse, privacy, and uncertain speech.
+Read [Lens development](ai-harness/pi/lens-development.md) to run local Pi, Lens, and voice sources.
 
 ## Editor defaults
 
@@ -254,43 +207,7 @@ its current app list instead of treating Debian support as feature parity.
 
 ## Default applications on macOS
 
-Read this before changing which app opens local Markdown links.
-[`home/.config/duti/markdown.duti`](/home/.config/duti/markdown.duti) selects Cursor for the
-Markdown file type. Dotbot links the single mapping into `~/.config/duti/markdown.duti`.
-Homebrew owns `duti`; the installer applies the mapping after OS packages are installed.
-
-The [application script](/scripts/configure-markdown-app.sh) skips non-macOS systems and
-unavailable applications. It queries LaunchServices without launching the app.
-Missing configuration, missing `duti`, and query/setter errors fail visibly.
-If the current handler cannot be queried, the script stops without submitting a change.
-The installer supplies the supported Apple Silicon Homebrew PATH for fresh-machine setup.
-
-Apply only this setting from the repository root, then inspect the registered handler:
-
-```sh
-PATH="/opt/homebrew/bin:$PATH" ./scripts/configure-markdown-app.sh
-duti -x md
-```
-
-Expect Cursor's name, application path, and bundle ID.
-Already-correct state is a no-op: the script does not submit another change request.
-
-macOS may ask permission for Markdown files, including `.md` and `.markdown`.
-
-The script requests a change once.
-It checks the effective handler before reporting success.
-If the handler is not active, respond to any existing OS prompt before rerunning.
-Do not queue repeated requests.
-A successful duti exit alone does not prove the association changed.
-
-This changes the current user's Markdown association across applications, not just Pi.
-It does not change `EDITOR`, `VISUAL`, or Pi's external prompt editor.
-Terminal-specific editor overrides and per-file choices can still affect a click; test a real link.
-
-To choose another app, change the mapping's bundle ID and rerun the script.
-Use the same process to undo this preference.
-An OS-only manual change will be overwritten by the next installer run.
-Keep the desired mapping in Git; never copy the machine's LaunchServices database into dotfiles.
+Read [macOS default applications](macos-defaults.md) before changing which app opens Markdown.
 
 ## Mise
 
@@ -340,7 +257,7 @@ Homebrew owns the `openpencil` desktop cask. Mise owns `npm:@open-pencil/cli` an
 `npm:@open-pencil/mcp`, both at `latest`. They upgrade independently; there is no shared version
 pin.
 
-Read [Agent UI design tools](/docs/agent-ui-design-tools.md) before using the CLI or desktop bridge.
+Read [Agent UI design tools](/docs/ai-harness/design-tools.md) before using the CLI or desktop bridge.
 
 ## Git hooks
 
@@ -366,6 +283,6 @@ and the coding-agent updater maintains its Pi extension. Actual rewriting requir
 exist, and savings depend on the commands used.
 
 Read the [RTK command reference](/home/.agents/RTK.md) before inspecting RTK, and
-[Agent integrations](/docs/agent-integrations.md#rtk) before changing its hooks or plugins.
+[Agent integrations](/docs/ai-harness/integrations.md#rtk) before changing its hooks or plugins.
 Dotbot links RTK configuration to `~/Library/Application Support/rtk/` on macOS and
 `~/.config/rtk/` on Linux.

@@ -69,7 +69,7 @@ python3 tests/installed-smoke.py --profile "$HOME/.pi/agent" --expected-version 
 ```
 
 Native Claude `plugin list --json` establishes installation/enabled state, not physical TUI rendering.
-Read [development launch](/docs/tooling.md#develop-lens-locally) before testing resume or live voice.
+Read [development launch](/docs/ai-harness/pi/lens-development.md) before testing resume or live voice.
 Existing ephemeral processes are not retroactively persisted by changing the launcher.
 
 ## Archive integrity

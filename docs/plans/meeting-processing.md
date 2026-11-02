@@ -151,7 +151,7 @@ installed, loaded, and exercised states separately.
 
 Read [harness verification](/docs/ai-harness/harness-verification.md) before probes or installation.
 
-Read [skill delivery](/docs/agent-skills.md#repo-managed-skills) before changing installation
+Read [skill delivery](/docs/ai-harness/skills.md#repo-managed-skills) before changing installation
 tests or verifying either host.
 
 ```sh

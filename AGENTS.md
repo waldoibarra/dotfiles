@@ -9,7 +9,8 @@ Dotbot links most files; the updater copies Claude settings and renders client a
 - **Edit tracked sources under `home/`, not installed copies.** Symlink edits affect this repository.
   Read [agent ownership](/docs/ai-harness/README.md#file-ownership) before changing copied or
   generated configuration.
-- Read [shared skill enrollment](/docs/agent-skills.md#external-skills) before adding a shared skill.
+- Read [shared skill enrollment](/docs/ai-harness/skills.md#external-skills) before adding a shared
+  skill.
 - Keep credentials, identities, signing keys and machine-local overrides outside the repository.
   Use `$HOME`, supported `~` expansion or native path handling, never absolute personal home paths.
 - **Run `dots` only when a change must reach `$HOME` or targets the sync path, and announce it
@@ -34,7 +35,7 @@ Use the relevant guide below; read only sections needed for the task.
 | Installer or updater scripts | [Scripts](/scripts/README.md) |
 | Zsh startup | [Zsh configuration](/docs/zsh-configuration.md) |
 | Git defaults, identity, or signing | [Git configuration](/docs/git-configuration.md) |
-| Design tooling | [Agent UI design tools](/docs/agent-ui-design-tools.md) |
+| Design tooling | [Agent UI design tools](/docs/ai-harness/design-tools.md) |
 | Native OpenSpec changes and shared planning workflow | [OpenSpec integration](/docs/ai-harness/openspec.md) |
 | Existing plans, trial notes, spikes, or research evidence | [Workspace index](/docs/workspace.md) |
 

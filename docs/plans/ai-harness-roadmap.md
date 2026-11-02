@@ -659,7 +659,7 @@ the working environment.
 invocation.
 Its body assumes a `Skill` tool unavailable in this Pi setup.
 Both dependencies, `grilling` and `domain-modeling`, are installed and advertised.
-Read [design interviews](/docs/agent-skills.md#design-interviews-with-documentation) before
+Read [design interviews](/docs/ai-harness/session-workflow.md#let-the-task-select-the-skills) before
 invoking the workflow in Pi.
 
 **Verified:** All eleven harness tests and six Cursor tests pass, including fresh Pi context
@@ -789,7 +789,7 @@ profile ownership or delivery.
   model capability.
 - Later instruction refactors still need fresh-session loading and behavioral verification.
 
-**Owner:** Read [agent instructions](/docs/agent-instructions.md) before changing policy ownership,
+**Owner:** Read [agent instructions](/docs/ai-harness/instructions.md) before changing policy ownership,
 loading, or shared roles.
 
 ### Learning skills
@@ -810,7 +810,7 @@ Three authored scenarios cover explicit preferences, absent evidence, and confid
 The skill validator and isolated delivery suite pass; no comparative behavioral evaluation was run.
 Rollback restores the scoped skill, scenarios, and catalogue changes; existing skill links remain unchanged.
 
-**Owner:** Read [learning skills](/docs/agent-skills.md#learning-and-session-improvement) before
+**Owner:** Read [learning skills](/docs/ai-harness/learning.md) before
 changing either skill's responsibilities.
 
 ### Separate delivery records
@@ -874,7 +874,7 @@ before revisiting H1–H17, G1–G12, or S1–S8.
   publication approval.
 - Keep current updater behavior unchanged until a scoped proposal is approved.
 
-**Owner:** Read [skill delivery](/docs/agent-skills.md#external-skills) before investigating this
+**Owner:** Read [skill delivery](/docs/ai-harness/skills.md#external-skills) before investigating this
 debt.
 
 ### Communication lint

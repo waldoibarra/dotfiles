@@ -31,7 +31,7 @@ skills.
 | Configuration ownership and integration acceptance | [Harness-design reference](/home/.agents/references/harness-design.md) |
 | General ambition and cross-disciplinary approaches | [Ambition reference](/home/.agents/references/ambition.md) |
 | Model prompts authored for apps and services | [Prompting guide](/docs/prompting.md), installed as `~/.agents/references/prompting.md` |
-| Specialist procedures | [Skills](/docs/agent-skills.md) |
+| Specialist procedures | [Skills](/docs/ai-harness/skills.md) |
 | Worker responsibilities | [Shared roles](#shared-role-agents) |
 
 **On demand:** Read [model selection](/home/.agents/references/delegation.md) before dispatching
@@ -114,7 +114,7 @@ execution authority.
 Set exported `LIFE_PROFILE` in untracked `~/.zprofile.local`; never infer identity from the OS
 username.
 
-Read [local shell configuration](zsh-configuration.md#machine-local-configuration)
+Read [local shell configuration](/docs/zsh-configuration.md#machine-local-configuration)
 before selecting a profile.
 
 `dots` and `just update-ca` run

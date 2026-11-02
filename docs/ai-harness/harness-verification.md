@@ -5,7 +5,7 @@ explicitly approved behavioral probes.
 Company workflow adaptation remains outside this guide.
 For everyday human checkpoints, read [session workflow](session-workflow.md) instead.
 
-Read [Agent instructions](/docs/agent-instructions.md) before changing policy or loading behavior.
+Read [Agent instructions](/docs/ai-harness/instructions.md) before changing policy or loading behavior.
 The [orchestration reference](/home/.agents/references/orchestration.md) owns planning and
 delegation procedure.
 The [improvement skill](/home/.agents/skills/feedback-loop/SKILL.md) owns proposals and

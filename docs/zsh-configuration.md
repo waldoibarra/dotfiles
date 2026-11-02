@@ -57,7 +57,7 @@ empty or unset. The warning does not stop updates. The updater does not source `
 it inherits exported values from the calling shell.
 
 Agent updates use `LIFE_PROFILE` to provision two local links into your vault profile.
-Read [profile routing](agent-instructions.md#personal-profile-routing) before provisioning or
+Read [profile routing](ai-harness/instructions.md#personal-profile-routing) before provisioning or
 changing them.
 
 For a custom greeting name:

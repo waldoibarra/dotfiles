@@ -36,7 +36,7 @@ Keep secrets and machine-specific values out of linked files.
 There is no Pi merge layer or managed-copy step.
 Dotbot's normal backup behavior applies when it replaces existing local files with links.
 
-Read [Lens compatibility](/docs/agent-integrations.md#pi-lens) before relying on Lens after a Pi
+Read [Lens compatibility](/docs/ai-harness/integrations.md#pi-lens) before relying on Lens after a Pi
 upgrade.
 
 Authentication, sessions, caches, native binaries, and voice locks stay outside Git.
@@ -134,7 +134,7 @@ After editing, run `/reload` and inspect `/hotkeys` for effective bindings.
 Pi natively discovers `~/.agents/skills`; there is no second skill copy or new Skills CLI target.
 Its global `AGENTS.md` supplies shared policy and directs sessions to the vault and machine-local
 profile links.
-Read [personal profile routing](/docs/agent-instructions.md#personal-profile-routing) before
+Read [personal profile routing](/docs/ai-harness/instructions.md#personal-profile-routing) before
 provisioning those links or removing an obsolete `~/AGENTS.md` selector.
 Coding context does not replace the extension's separate hardcoded voice prompt.
 

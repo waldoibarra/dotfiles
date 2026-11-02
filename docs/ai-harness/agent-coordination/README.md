@@ -6,7 +6,7 @@ These pages own the procedures and conventions.
 The [shared orchestration
 reference](/home/.agents/references/orchestration.md#coordinate-across-harnesses)
 owns the coordination rules and approval boundaries; nothing here restates them.
-[Agent integrations](/docs/agent-integrations.md#herdr) owns installation and state-reporting
+[Agent integrations](/docs/ai-harness/integrations.md#herdr) owns installation and state-reporting
 diagnosis.
 
 Read `herdr --skill` before any control command. The skill file is Herdr's own contract.
@@ -19,7 +19,7 @@ Read `herdr --skill` before any control command. The skill file is Herdr's own c
 | Pick or change an agent's name, or label a tab or workspace | [Name agents, tabs, and workspaces](naming.md) |
 | Start a worker in a disposable workspace, or close one | [Spawn and close a worker](spawning.md) |
 | Write the first message a worker receives | [Brief a worker](briefing.md) |
-| Fix state reporting or hooks | [Agent integrations](/docs/agent-integrations.md#herdr) |
+| Fix state reporting or hooks | [Agent integrations](/docs/ai-harness/integrations.md#herdr) |
 
 ## How it fits
 

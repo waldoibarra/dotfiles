@@ -130,7 +130,8 @@ Agent updates link `~/.agents/personal-context.md` and `~/.agents/agent-identity
 into the selected profile.
 Pi and Claude Code read these alongside `~/life/README.md`.
 Cursor receives those reading instructions through its rendered global rule. Read
-[personal profile routing](agent-instructions.md#personal-profile-routing) before provisioning links
+[personal profile routing](ai-harness/instructions.md#personal-profile-routing) before
+provisioning links
 or removing an old `~/AGENTS.md` selector.
 Agent note edits are Markdown-only, with approved exceptions for declared plugins, lint
 configuration, and the ruler.

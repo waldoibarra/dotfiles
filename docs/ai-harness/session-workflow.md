@@ -6,7 +6,7 @@ session.
 Planning depth scales with the task; implementation still requires approval unless you explicitly
 waive planning.
 
-Read the [skill catalogue](/docs/agent-skills.md#repo-managed-skills) when choosing a specialist
+Read the [skill catalogue](skills.md#repo-managed-skills) when choosing a specialist
 workflow.
 Read [harness verification](harness-verification.md) when testing instruction delivery or loading,
 rather than ordinary task outcomes.
@@ -112,9 +112,17 @@ For prototypes, use the bounded conversational agreement above instead of the du
 format.
 Use natural-language requests by default; name a skill when you want an explicit workflow.
 
-Use the [skill catalogue](/docs/agent-skills.md#repo-managed-skills) to find the procedure for the
-task.
+Use the [skill catalogue](skills.md#repo-managed-skills) to find the procedure for the task.
 It owns installation and invocation details; individual skills own their procedures.
+
+| Task | Skill | Boundary |
+| --- | --- | --- |
+| Refine a durable change before implementation | `grill-with-docs`, which calls `grilling` and `domain-modeling` | Confirm decisions first; glossary and ADR work stays under task authority. |
+| Choose and bound a disposable prototype | `prototype-selection`, then the external `prototype` | The [prototype route](#prototype) owns disposable-work boundaries. |
+| Maintain Markdown within the task | `docs`; `ghostwriter` for prose | [Documentation maintenance](/docs/documentation.md) owns ownership and checks. |
+
+Pi reads `grill-with-docs` dependencies from their installed skill files; its tracked
+`APPEND_SYSTEM.md` handles the unavailable `Skill` tool.
 Skill names do not grant authority, install dependencies, or guarantee automatic selection.
 Roles assign bounded worker responsibilities; tools perform actions under the applicable approval
 boundaries.
