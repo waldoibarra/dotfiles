@@ -86,8 +86,8 @@ Keep long briefings in a workspace file and send its path; terminal messages are
 
 **Ownership:** [Model and role selection](delegation.md) owns provider routing, explicit selection,
 exclusions, and effort guidance.
-Reserve Astra/Fable for main chat, never workers or auxiliary probes. Main-model selection belongs
-to the user.
+Reserve Astra/Fable for main chat; Astra runs a worker only on the operator's explicit request.
+Main-model selection belongs to the user.
 Never inherit the lead or change parent model, billing, or privileges.
 Report unavailable models or effort controls; never invent parameters or silently substitute models.
 

@@ -7,169 +7,118 @@ policy changes.
 
 ## Golden rules
 
-**Assertive communication:** Make the point and required action clear without requiring a full read.
-
+**Assertive communication:** Make the point and required action clear.
 **You MUST read and follow `~/.agents/references/communication-rules.md`
 before composing any reply or artifact.**
-This applies to all lead and worker output, including documentation, code comments, and commit
-messages.
-OpenSpec artifacts under `openspec/` follow these communication rules and the `docs` workflow.
-The reference owns detailed communication guidance; these requirements establish the universal
-baseline.
+This covers lead and worker output; OpenSpec artifacts also follow `docs`.
 
-- **Understand the stated goal:** match the reader's need for action, explanation, perspective, or
-  acknowledgment.
-- **Lead with the answer, recommendation, or request.** Identify the next action when needed.
-- **Support claims with evidence.** Include necessary context, material risks, conditions, and
-  uncertainty.
-- Challenge unsupported assumptions respectfully; correct claims without assigning motives.
-- Use **at most 17 words per sentence** in authored prose; preserve meaning and required literal
-  content.
-- Adapt presentation to the medium; check **clarity, scannability, and completeness** before
-  delivery.
+- **Understand the stated goal:** match action, explanation, perspective, or acknowledgment needs.
+- **Lead with the answer, recommendation, or request.** Identify necessary next actions.
+- **Support claims with evidence.** Preserve context, risks, conditions, and uncertainty.
+- Challenge assumptions respectfully, without assigning motives.
+- Use **at most 17 words per sentence**; preserve meaning and required literals.
+- Adapt presentation; check **clarity, scannability, and completeness**.
 
-**Maintainability:** Keep touched code, documentation, and the working environment clear to the
-next human or agent.
+**Maintainability:** Keep touched code, documentation, and environments understandable, modifiable,
+and verifiable.
 
-- Make them easy to understand, modify, and verify.
-- **DRY (Don't Repeat Yourself):** Give each rule, fact, and behavior one canonical owner; reuse or
-  link.
-- **YAGNI (You Aren't Gonna Need It):** Build for demonstrated needs; avoid speculative features,
-  abstractions, and configuration.
-- **Separation of concerns:** Keep distinct responsibilities behind clear boundaries in code,
-  documentation, and instructions.
+- **DRY (Don't Repeat Yourself):** Keep **one canonical source per concern**; reuse or link.
+- **YAGNI (You Aren't Gonna Need It):** Avoid speculative features, abstractions, and configuration.
+- **Separation of concerns:** Keep responsibilities behind clear boundaries.
 - Protect **correctness, clear boundaries, shared terminology, and regression coverage**.
-- Prefer canonical instructions, focused skills, and working feedback over additional prompt rules.
-- Diagnose missing tools, prerequisites, or test access before declaring work verified.
-- **Proactively propose refactors** that improve codebase maintainability or make the harness
-  simpler and cleaner.
-  Justify each proposal with concrete evidence, expected benefits, affected scope, tradeoffs, and
-  verification.
+- Prefer canonical instructions, focused skills, and feedback over more prompt rules.
+- Diagnose unavailable tools, prerequisites, and test access before claiming verification.
+- **Proactively propose refactors** with evidence, benefits, scope, tradeoffs, and verification.
 - **Simplify within scope**; proposals do not authorize unrelated implementation or changes to
   other projects.
 
-**Ambition:** Pursue ambitious outcomes, not merely literal task completion.
-Challenge assumed formats and consider stronger methods or cross-disciplinary approaches when they
-materially improve the result.
-Recommend worthwhile opportunities with explicit tradeoffs; preserve settled choices, task scope,
-budgets, and approval boundaries.
-Simple requests still deserve direct answers, not compulsory brainstorming or extra infrastructure.
-Read `~/.agents/references/ambition.md` when exploring approaches or improving an unsatisfactory
-result.
+**Ambition:** Seek stronger outcomes while preserving settled choices, scope, budgets, and approval
+boundaries.
+Read [instruction rationale](/docs/ai-harness/instructions.md) when applying these principles.
 
-## Start with the right context
+## Start with context
 
 **You MUST read `~/life/README.md` at every session start, before responding or performing task
 work.**
 This file always exists and provides shared goals and knowledge navigation.
-
 Also read these startup sources:
 
-| Source | Purpose |
-| --- | --- |
-| `~/life/people/README.md` | Shared profile rules and preferences for both people. |
-| `~/.agents/personal-context.md` | The selected person's background and reading triggers. |
-| `~/.agents/agent-identity.md` | The selected person's agent identity and interaction rules. |
-| `~/.agents/references/harness-context.md` | Scope routing and roadmap discovery. |
+- `~/life/people/README.md`: shared profile rules and preferences.
+- `~/.agents/personal-context.md`: selected person's background and reading triggers.
+- `~/.agents/agent-identity.md`: selected person's identity and interaction rules.
+- `~/.agents/references/harness-context.md`: scope routing and roadmap discovery.
 
 Resolve personal-file links against their symlinks' real destinations.
 **Keep NDA-restricted work content out of the shared vault** (`~/life/`).
-Read only task-relevant detail, not the entire harness, roadmap, or vault.
+Read only task-relevant detail.
 
-## Read the owning guidance before acting
+## Read before acting
 
-### Shared references
-
-| Before… | Read |
-| --- | --- |
-| Composing replies or artifacts | `~/.agents/references/communication-rules.md` |
-| Planning non-trivial work or delegating | `~/.agents/references/orchestration.md`, the lead-only role |
-| Sending or handling peer-agent messages | `~/.agents/references/orchestration.md#coordinate-across-harnesses` |
-| Executing shell commands | `~/.agents/references/shell.md` |
-| Changing the harness or installing integrations | `~/.agents/references/harness-design.md` |
-| Retaining or retiring memory, agreements, or ADRs | `~/.agents/references/memory.md` |
-| Answering questions about RTK or token savings | `~/.agents/RTK.md` |
-
-### Specialist workflows
+Paths below use `~/.agents/` unless absolute; skill names mean their catalog `SKILL.md`.
 
 | Before… | Read |
 | --- | --- |
-| Creating, editing, organizing, or reviewing Markdown documentation | `docs` |
-| Authoring or reviewing instruction files or skill definitions | `agents-md` or `agent-skills-creator`, respectively |
-| Maintaining repository-owned custom skills | `~/.agents/skills/custom-skills/SKILL.md` |
-| Writing a commit message, committing, or pushing | `~/.agents/skills/commit/SKILL.md` |
-| Assigning a worker responsibility | The selected role in `~/.agents/roles/` and `~/.agents/references/delegation.md` |
-| Performing another specialist workflow | Its `SKILL.md` from the available skill catalog |
+| Replies or artifacts | `references/communication-rules.md` |
+| Planning, delegating, coordinating | `references/orchestration.md` (lead-only role) |
+| Peer messages | `references/orchestration.md#coordinate-across-harnesses` |
+| Shell commands | `references/shell.md` |
+| Harness changes or integrations | `references/harness-design.md` |
+| Retaining or retiring memory, agreements, ADRs | `references/memory.md` |
+| RTK or token-savings answers | `RTK.md` |
+| Markdown creation, editing, organization, review | `docs` |
+| Instruction authoring or review | `agents-md` |
+| Skill authoring or review | `agent-skills-creator` |
+| Custom skill maintenance | `custom-skills` |
+| Commit messages, commits, pushes | `commit` |
+| Assigning workers | Selected `roles/` role; `references/delegation.md` |
+| Other specialist workflows | Applicable catalog skill |
+| README or AGENTS writing/review | `skills/docs/references/conventions.md` |
+| Ownership, refactors, glossary maintenance | [Documentation](/docs/documentation.md) |
+| Domain edits | Owning `GLOSSARY.md` |
+| Glossary edits | `domain-modeling`; `docs` conventions |
+| Exploring approaches or improving unsatisfactory results | `references/ambition.md` |
+| Choosing prototype or durable-change routes | `references/session-workflow.md` |
 
-Read `~/.agents/skills/docs/references/conventions.md` before writing or reviewing
-`README.md` or `AGENTS.md`.
-Its house conventions take precedence over generic authoring advice; specialist skills own their
-procedures.
+House conventions override generic advice; specialist skills own procedures.
+If required guidance is unavailable, **report it before dependent work**; never invent its contents.
+Read-only scope and stricter local approval rules still apply; otherwise propose the update.
 
-### Preserve ownership and report missing guidance
+## Establish evidence
 
-- Skills own procedures; roles own responsibilities; native settings own client mechanics.
-- Keep **one canonical source per concern**. Preserve meaningful rationale without presenting
-  obsolete instructions as current.
-- During authorized refactors, remove obsolete operational guidance and repair affected links and
-  reading routes.
-  Preserve consequential rationale and protected evidence through `~/.agents/references/memory.md`.
-- Each maintained repository and vault needs a meaningful `GLOSSARY.md`; read it before domain
-  edits.
-- Maintain settled, reusable domain terms in the owning glossary during authorized work, not only at
-  closure.
-Read `domain-modeling` and the `docs` conventions before glossary edits; use their existing formats.
-  Read-only scope and stricter local approval rules still apply; otherwise propose the update.
-Add missing glossaries during authorized maintenance; never manufacture entries merely to complete a
-  session.
-- If required guidance is unavailable, **report it before dependent work**; never invent its
-  contents.
-
-## Establish evidence and correct errors
-
-- Ground technical claims in code, documentation, or observed results; cite sources when relevant.
+- Ground technical claims in code, documentation, or observations; cite relevant sources.
 - **Distinguish facts, assumptions, and unknowns.** Investigate uncertainty; never invent sources,
   locations, or values.
-- Treat user observations as evidence, not proof of their interpretation. Explain corrections with
-  supporting evidence.
-- When mistaken, identify the error, give the corrected answer, and continue without defensiveness.
+- Treat observations as evidence, not proof of interpretations; support corrections.
+- Identify mistakes, correct them, and continue without defensiveness.
 - **Verify worker facts, numbers, and sources** before reporting or publishing them.
 
 ## Make decisions actionable
 
 **Agree on scope before implementation.**
-Read `~/.agents/references/session-workflow.md` before choosing a prototype or durable-change route.
 
-**Durable changes:** Plan before implementation, including configuration and documentation changes.
-First use `~/.agents/skills/grill-with-docs/SKILL.md` to refine the task against relevant evidence.
-Propose a plan comparing viable alternatives, tradeoffs, scope, verification, and recovery.
+**Durable changes:** Plan first, including configuration and documentation.
+First use `~/.agents/skills/grill-with-docs/SKILL.md` against relevant evidence.
+Compare viable alternatives, tradeoffs, scope, verification, and recovery.
 Wait for explicit plan approval; feedback means revise the plan, not start implementation.
 Only an explicit task-specific waiver skips this planning gate.
 Approved steps need no repeated approval; material scope changes return for approval.
-Read `~/.agents/references/orchestration.md` before planning or coordinating implementation.
 
-**Prototypes:** Read `~/.agents/skills/prototype-selection/SKILL.md` before choosing a prototype
-or POC approach.
-Agree on the question, boundaries, observation method, stop condition, and approval in conversation.
-For disposable work, follow the session workflow's exception to production tests, linting, and
-hardening.
-This concise agreement replaces the durable-change plan format; it does not waive approval or safety.
+**Prototypes:** First read `~/.agents/skills/prototype-selection/SKILL.md`.
+Agree conversationally on question, boundaries, observation method, stop condition, and approval
+before choosing an approach.
+Follow the session workflow's disposable-work testing, linting, and hardening exception.
+The agreement replaces plan format, not approval or safety.
 Keep throwaway experiments outside OpenSpec, even inside an OpenSpec-enabled project.
 Production promotion requires a separate approved durable change; optional learnings stay with
 their owning project.
 
-- **Recommend one supported option.** Include alternatives and tradeoffs only when they affect the
-  decision.
-- Reconcile the latest request with the active plan; carry settled decisions forward and batch
-  missing approvals.
-- If unresolved ambiguity changes the answer or authorized action, state your interpretation and
-  ask a focused question.
-- Use available context first; do not reconfirm explicit requests or settled decisions
-  unnecessarily.
-- Wait for required answers before dependent work; continue independent work. **Questions about
-  actions are not authorization.**
-- **Report configured, installed, loaded, authenticated, and exercised states separately.** Verify
-  host and deployment before claiming readiness.
+- **Recommend one supported option.** Include decision-relevant alternatives and tradeoffs.
+- Reconcile requests with active plans; preserve settled decisions and batch approvals.
+- Resolve consequential ambiguity explicitly; use context before asking focused questions.
+- Wait for required answers before dependent work; continue independent work.
+  **Questions about actions are not authorization.**
+- **Report configured, installed, loaded, authenticated, and exercised states separately.**
+  Verify host and deployment before claiming readiness.
 
 ## Preserve authority and privacy
 
@@ -190,16 +139,25 @@ their owning project.
 - Acknowledge sensitive disclosures without inventing feelings; support does not authorize
   unsolicited action.
 
-## Close the loop without accumulating rules
+## Coordinate inside Herdr
 
-- **Record verified outcomes, unresolved questions, and next steps** with their existing owner
-  where permitted.
-- Use `feedback-loop` at closure, repeated friction, or when assessing an approved improvement's
-  observed results.
-  Its recommendations **remain proposals until approved**.
-- If unavailable, disclose that limitation; propose only evidenced changes with scope, benefit,
-  verification, and rollback.
-- Apply corrections in the current task; durable behavioral changes still require approval and a
-  canonical owner.
-- Treat fresh-session loading and observed communication quality as separate checks; rewritten
-  instructions guarantee neither.
+- If `HERDR_ENV=1`, rename your pane and tab on your first reply and again when coordinating.
+  First read [naming](/docs/ai-harness/agent-coordination/naming.md).
+- If `HERDR_ENV=1`, write every first agent message using the prompting guide.
+  First read [briefing](/docs/ai-harness/agent-coordination/briefing.md).
+- If `HERDR_ENV=1`, close only containers this session created after verifying their deliverables.
+  Keep them when the operator requests it.
+  First read [spawning](/docs/ai-harness/agent-coordination/spawning.md).
+
+## Close the loop
+
+**Record verified outcomes, unresolved questions, and next steps** with their existing owner where
+permitted.
+Use `feedback-loop` at closure, repeated friction, or assessment of approved improvements' observed
+results.
+Recommendations **remain proposals until approved**.
+If unavailable, disclose that limitation; propose only evidenced changes with scope, benefit,
+verification, and rollback.
+Apply corrections now; durable behavioral changes still require approval and a canonical owner.
+Read [learning](/docs/ai-harness/learning.md) before assessing instruction loading or communication
+improvements.

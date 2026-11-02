@@ -5,6 +5,25 @@ Shared instructions orient every session; references, skills, and roles supply d
 Read [Coding agents](/docs/ai-harness/README.md) before editing tracked configuration or choosing
 a maintenance guide.
 
+## Rationale behind the golden rules
+
+The [global contract](/home/.agents/AGENTS.md) states each rule in one line. This section keeps
+the reasoning the contract no longer carries.
+
+- **Assertive communication** means the reader gets the point and the required action without a
+  full read. The communication rules apply to every lead and worker output, including
+  documentation, code comments, commit messages, and OpenSpec artifacts.
+- **Maintainability** means the next human or agent can understand, modify, and verify what was
+  touched. DRY gives each rule, fact, and behavior one owner. YAGNI builds for demonstrated needs.
+  Separation of concerns keeps responsibilities behind clear boundaries in code, docs, and
+  instructions.
+- **Refactor proposals** need concrete evidence, expected benefits, affected scope, tradeoffs, and
+  verification. They never authorize unrelated implementation or changes to other projects.
+- **Ambition** means pursuing the outcome, not literal task completion. Challenge assumed formats
+  and consider stronger or cross-disciplinary methods when they materially improve the result.
+  Simple requests still deserve direct answers, not compulsory brainstorming or extra
+  infrastructure. Read [ambition](/home/.agents/references/ambition.md) when exploring approaches.
+
 ## Policy ownership
 
 [`AGENTS.md`](/home/.agents/AGENTS.md) owns universal boundaries and the task-based reading map.

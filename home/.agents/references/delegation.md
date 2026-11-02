@@ -61,8 +61,9 @@ No Cursor worker availability, authentication, or execution is established by th
 
 ## Preserve control
 
-- Reserve Astra/Fable for main chat, never workers or auxiliary probes. Main-model selection belongs
-  to the user.
+- Reserve Astra/Fable for main chat and auxiliary probes never use them. Astra may run an
+  independent reviewer or a bounded worker only on the operator's explicit request per task.
+  Main-model selection belongs to the user.
 - Select every worker model explicitly; never inherit the lead or change parent model, billing, or
   privileges.
 - Report unavailable models before selecting a replacement; never silently substitute a model or

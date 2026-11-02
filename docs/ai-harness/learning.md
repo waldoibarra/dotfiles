@@ -48,3 +48,9 @@ conversation history.
 
 Read [Claude skill loading](https://code.claude.com/docs/en/features-overview)
 before changing Claude invocation or discovery expectations.
+
+## Loading is not behavior
+
+Treat fresh-session loading and observed communication quality as separate checks.
+Rewritten instructions guarantee neither; `feedback-loop` compares intent with observed outcomes
+and proposes evidenced changes with scope, benefit, verification, and rollback.

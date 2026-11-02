@@ -16,6 +16,17 @@ before changing ownership.
 | Retention, temporary agreements, and ADR gates | [Memory lifecycle](/home/.agents/references/memory.md) |
 | Original, generated, or frozen evidence | Its source, publisher, and retention rules |
 
+Skills own procedures; roles own responsibilities; native settings own client mechanics.
+Preserve meaningful rationale without presenting obsolete instructions as current.
+During authorized refactors, remove obsolete operational guidance and repair affected links and
+reading routes; preserve consequential rationale through the
+[memory lifecycle](/home/.agents/references/memory.md).
+Each maintained repository and vault needs a meaningful `GLOSSARY.md`; read it before domain edits.
+Maintain settled, reusable domain terms in the owning glossary during authorized work, not only at
+closure. Read `domain-modeling` and the `docs` conventions before glossary edits.
+Add missing glossaries during authorized maintenance; never manufacture entries to complete a
+session.
+
 **Read `docs` before creating, editing, organizing, or reviewing maintained Markdown.**
 It owns scope, evidence, preservation, affected-document discovery, and verification.
 The other workflows retain their specialist responsibilities; reading a file never grants edit
