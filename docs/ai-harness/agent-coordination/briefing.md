@@ -39,8 +39,16 @@ Support each major claim with a source the lead can open.
 
 ## Reply and stop
 Reply with `herdr agent prompt <lead-name> "<text>"` without `--wait`; chat output reaches nobody.
+Start every reply with `[<name>]` so the lead can tell it from the operator's messages.
 When `<path>` exists, send one reply naming the path and the <n> most contested choices. Then stop.
 ```
+
+**Worker replies look like operator messages.** In Claude Code they surface mid-turn as "the
+user sent a new message", with no sender field. The `[<name>]` prefix is the only reliable
+sender mark; without it the lead must infer the sender from the content. Learned on 2026-11-02.
+
+**A worker in a fresh worktree has no dependencies.** Say in Actions that it may install them
+there, or it stops at the first test run.
 
 - Mission, Output, and Stop condition are mandatory. Prune fields that cannot change the result.
 - The lead closes the worker's workspace after verification; the stop condition ends the worker's
