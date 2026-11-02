@@ -177,7 +177,9 @@ Read [Lens development](ai-harness/pi/lens-development.md) to run local Pi, Lens
 
 ## Local audio transcription
 
-Read [audio transcription](audio-transcription.md) to transcribe recordings offline with Whisper.
+Read [local media transcription](audio-transcription.md) for YouTube acquisition and offline
+transcription of recordings.
+The guide separates media acquisition from Qwen inference and retains the Whisper alternative.
 
 ## Editor defaults
 

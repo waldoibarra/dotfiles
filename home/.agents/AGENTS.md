@@ -72,6 +72,7 @@ Paths starting with `/docs/` resolve inside the dotfiles checkout, `~/.dotfiles`
 | Custom skill maintenance | `custom-skills` |
 | Commit messages, commits, pushes | `commit` |
 | Assigning workers | Selected `roles/` role; `references/delegation.md` |
+| Transcribing video URLs or recordings | [Local media transcription](/docs/audio-transcription.md) before acquisition or transcription |
 | Other specialist workflows | Applicable catalog skill |
 | README or AGENTS writing/review | `skills/docs/references/conventions.md` |
 | Ownership, refactors, glossary maintenance | [Documentation](/docs/documentation.md) |

@@ -25,7 +25,7 @@ These guides describe this workstation and its AI harness. Current guides own pr
 | Author prompts for apps and services | [Prompting](prompting.md) |
 | Change shell, Git, or editor defaults | [Zsh](zsh-configuration.md), [Git](git-configuration.md), [Tooling](tooling.md#editor-defaults) |
 | Provision the shared vault's tools | [Obsidian](obsidian.md) |
-| Transcribe audio locally | [Audio transcription](audio-transcription.md) |
+| Transcribe YouTube videos or local recordings | [Local media transcription](audio-transcription.md) |
 | Change which app opens Markdown | [macOS default applications](macos-defaults.md) |
 | Restructure or retire documentation | [Documentation maintenance](documentation.md) |
 | Find plans, spikes, and evidence | [Workspace](workspace.md) |
