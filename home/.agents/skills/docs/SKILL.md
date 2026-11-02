@@ -138,7 +138,10 @@ Never shorten safety content, including destructive-action confirmations, to fit
     completeness.
     Preserve required literals and safety wording; formatting alone does not establish communication
     quality.
-5. Report applied changes, remaining proposals, failed checks, and uncertainties without claiming
+5. For structural work, hand steps 1 to 4 to an independent reviewer as its brief before delivery.
+    Read `/docs/ai-harness/agent-coordination/briefing.md` for the brief format; the reviewer
+    reports coherence, reader routes, and communication-rule findings with file and line evidence.
+6. Report applied changes, remaining proposals, failed checks, and uncertainties without claiming
     universal reliability.
 
 Never execute destructive or shared-system commands merely to validate documentation.
