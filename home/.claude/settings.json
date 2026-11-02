@@ -121,7 +121,8 @@
     ]
   },
   "permissions": {
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "bypassPermissions",
+    "deny": ["Agent", "Task"]
   },
   "skipDangerousModePermissionPrompt": true,
   "statusLine": {

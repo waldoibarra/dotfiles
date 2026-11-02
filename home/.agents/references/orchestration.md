@@ -51,6 +51,11 @@ A plan is context, not permission to execute its backlog.
 
 ## Coordinate across harnesses
 
+**Claude Code:** Delegate through Herdr, not native subagents.
+User settings deny the native delegation tool.
+Read `/docs/ai-harness/agent-coordination/README.md` before delegation.
+Outside Herdr, report delegation unavailable; do not bypass the restriction through another launcher.
+
 Read the delegation reference before assigning workers, whether through native subagents or
 terminal-controlled agents.
 Use one lead for the approved change, approvals, canonical task updates, and integration.

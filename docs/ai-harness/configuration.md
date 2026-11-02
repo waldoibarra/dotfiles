@@ -76,6 +76,21 @@ Read [Claude effort settings](https://code.claude.com/docs/en/settings-reference
 before changing these defaults.
 The managed-config sync below delivers the tracked settings to the installed user copy.
 
+## Claude delegation restriction
+
+Claude user settings deny `Agent` and its former name, `Task`, across projects.
+This blocks built-in and custom native subagents.
+Checklist tools such as `TaskCreate` and `TaskUpdate` remain available.
+Claude renamed `Task` to `Agent` in version 2.1.63; both entries cover older clients.
+See [Claude subagents](https://code.claude.com/docs/en/sub-agents) for the alias and permission contract.
+
+[Orchestration guidance](/home/.agents/references/orchestration.md#coordinate-across-harnesses)
+owns the Herdr delegation route and unavailable-backend behavior.
+The existing updater delivers this restriction during `dots`; restart Claude after refreshing settings.
+Rollback removes these deny entries and the routing restriction.
+Then refresh settings and restart Claude.
+Firstmate remains uninstalled and outside this change.
+
 ## Copy-managed files
 
 [`sync-managed-configs.sh`](/scripts/update-coding-agents/sync-managed-configs.sh) overwrites the

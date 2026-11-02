@@ -96,22 +96,20 @@ This guide checks policy; it does not define another delegation or improvement w
 
 - **Pi:** no native delegation runner is installed. Start a Pi worker as a Herdr agent and pass
   `--model` after `--`; read [Agent coordination](agent-coordination/spawning.md).
-- **Claude Code:** use native per-invocation model selection, not Pi provider/model syntax.
-  Available aliases include `fable`, `opus`, `sonnet`, and `haiku`; availability depends on the
-  account.
-  Native agent definitions support effort; do not presume the Agent tool exposes per-call effort.
-  Report inherited/default effort when independent selection is unavailable. Do not rewrite shared
-  roles to force a task-specific choice.
+- **Claude Code:** native subagent invocation is disabled by
+  [user settings](configuration.md#claude-delegation-restriction).
+  Start workers through [Herdr](agent-coordination/spawning.md), selecting their model explicitly.
+  Pass Claude's session-level model and effort flags after Herdr's `--` separator.
+  Verify fresh-session tool availability separately from settings delivery.
+  Checklist tools should remain available.
 
 Pi's existing model-scope mechanism provides a runtime worker allowlist; see the delegation guide.
 Claude's leader-only restriction is shared instruction policy, not a verified runtime model block.
 Do not run inference-based smoke checks while quota recovery remains unresolved.
 
-Read [Claude subagents](https://code.claude.com/docs/en/sub-agents) before changing native model
-dispatch.
-Read [Claude SDK subagents](https://code.claude.com/docs/en/agent-sdk/subagents)
-before using definition-level effort.
-The CLI's `--effort` configures its session; it does not prove independently selected child effort.
+Read [Claude subagents](https://code.claude.com/docs/en/sub-agents) before changing
+native delegation restrictions.
+The CLI's `--effort` configures the worker session, not an independently spawned child.
 
 ## Activation and recovery
 

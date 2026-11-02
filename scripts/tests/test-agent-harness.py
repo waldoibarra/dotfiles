@@ -218,6 +218,28 @@ class AgentHarnessTest(unittest.TestCase):
                     self.assertEqual(state, previous_state)
                 previous_state = state
 
+    def test_claude_delegation_denial_survives_repeated_delivery(self):
+        with tempfile.TemporaryDirectory(prefix="dotfiles-claude-deny-") as scratch:
+            home = Path(scratch)
+            driver = home / "sync-managed.sh"
+            driver.write_text(
+                f"source '{ROOT}/scripts/update-coding-agents/entrypoint.sh'\n"
+                "sync_managed_configs\n"
+            )
+            expected = json.loads((ROOT / "home/.claude/settings.json").read_text())
+            for _ in range(2):
+                subprocess.run(
+                    ["bash", str(driver)], env=dict(os.environ, HOME=str(home)),
+                    check=True, capture_output=True, text=True, timeout=10,
+                )
+                delivered = json.loads((home / ".claude/settings.json").read_text())
+                self.assertEqual(delivered, expected)
+                self.assertEqual(
+                    delivered["permissions"],
+                    {"defaultMode": "bypassPermissions", "deny": ["Agent", "Task"]},
+                )
+                self.assertFalse((home / ".claude/settings.json").is_symlink())
+
     def test_dotbot_links_shared_bytes_idempotently(self):
         with tempfile.TemporaryDirectory(prefix="dotfiles-harness-") as scratch:
             home = Path(scratch)

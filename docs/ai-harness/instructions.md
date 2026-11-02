@@ -205,8 +205,9 @@ They contain no provider, model, or effort defaults.
 - The main session owns decisions, Git writes, shared processes, and user communication.
 - Role restrictions are policy, not a sandbox; shell-capable reviewers can still mutate files.
 
-- Claude uses linked native agent definitions; dispatch must explicitly select an eligible worker
-  model.
+- Claude's linked role definitions remain available as references; native subagent invocation is disabled.
+  Use the [Herdr delegation route](/home/.agents/references/orchestration.md#coordinate-across-harnesses)
+  and explicitly select an eligible worker model.
 - Without delegation, sequential self-review is not independent review.
 
 ## Claude response styles
