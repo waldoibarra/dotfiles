@@ -1,6 +1,6 @@
 # Progressive disclosure for the docs and the global contract
 
-**Status:** Reworked after independent review on 2026-11-01; awaiting operator approval.
+**Status:** Approved and implemented on 2026-11-01; review findings applied. Read [results](#results).
 Read [decisions](#decisions) for the structure. Read [verification](#verification) for the checks.
 Read [open decisions](#open-decisions) for what only the operator can settle.
 
@@ -124,4 +124,7 @@ Implemented on 2026-11-01 in commits `3b02310` through `d352d57`, plus the fixes
   on the first reply; built its own table instead of running the script.
 - Fixes from the tests: the contract gained a listing trigger, and the naming page gained a rule
   for a session's own tab label.
-- Independent implementation review (Astra): see the follow-up entry once received.
+- Independent implementation review (Astra): ship with fixes. Eight findings, all applied in the
+  follow-up commit: two missing direct routes, `/docs` path resolution in the contract, label rules
+  moved to one owner, stale Lens claims, two long sentences, the audio pointer, and this index entry.
+- Not independently rerun by the reviewer: lint recipes and fresh-session behavior; both ran here.

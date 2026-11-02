@@ -117,7 +117,7 @@ Run recipes from the repository root. `just --list` lists them; `just` does the 
 | `just lint-ec`, `just lint-md`, `just lint-yaml`, `just lint-sh` | Run one check. |
 | `just lint-commit MESSAGE_FILE` | Validate the message in `MESSAGE_FILE`. |
 | `just check-hooks` | Run the pre-commit hook against all files. |
-| `just pi-lens-dev [ARGS]` | Open local Pi, Lens and subagents with installed live voice; saves a session unless `--no-session` is passed. |
+| `just pi-lens-dev [ARGS]` | Open local Pi and Lens with installed live voice; saves a session unless `--no-session` is passed. |
 
 Use the narrow recipe for the changed domain. Link changes require the Dotbot installer; they do
 not inherently require package upgrades or publication. Review its
@@ -174,6 +174,10 @@ The fixtures use temporary directories and never rewrite retained source files.
 ## Develop Lens locally
 
 Read [Lens development](ai-harness/pi/lens-development.md) to run local Pi, Lens, and voice sources.
+
+## Local audio transcription
+
+Read [audio transcription](audio-transcription.md) to transcribe recordings offline with Whisper.
 
 ## Editor defaults
 

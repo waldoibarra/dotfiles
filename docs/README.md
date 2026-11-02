@@ -21,6 +21,7 @@ These guides describe this workstation and its AI harness. Current guides own pr
 | Start, direct, or close an agent session | [Session workflow](ai-harness/session-workflow.md) |
 | List, name, spawn, or brief agents across harnesses | [Agent coordination](ai-harness/agent-coordination/README.md) |
 | Configure Pi, Claude Code, or Cursor | [AI harness](ai-harness/README.md) |
+| Change Claude's model defaults | [Claude model defaults](ai-harness/configuration.md#claude-model-defaults) |
 | Author prompts for apps and services | [Prompting](prompting.md) |
 | Change shell, Git, or editor defaults | [Zsh](zsh-configuration.md), [Git](git-configuration.md), [Tooling](tooling.md#editor-defaults) |
 | Provision the shared vault's tools | [Obsidian](obsidian.md) |

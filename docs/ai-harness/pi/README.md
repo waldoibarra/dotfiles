@@ -16,6 +16,7 @@ repository.
 | Install, update, authenticate, or verify Pi | [Installation and sync](installation.md) |
 | Change settings, context windows, shortcuts, or instruction loading | [Configuration](configuration.md) |
 | Choose a voice or troubleshoot access | [Live voice](live-voice.md) |
+| Run Pi from local Pi, Lens, and voice sources | [Lens development](lens-development.md) |
 | Understand context loss, cancellation, and evidence limits | [Limitations and trial evidence](limitations.md) |
 
 ## Components and ownership

@@ -10,13 +10,7 @@ the harness. Without a harness, use Pi, because a different model gives a more i
 firstmate's one-task container, so adopting it later changes nothing. Split the lead's tab only
 when the operator says "split", "beside me", or "in this tab".
 
-Each layer answers one question, so the sidebar identifies the work without opening it:
-
-| Layer | Question | Label | Example |
-| --- | --- | --- | --- |
-| Workspace | What task? | Task in two to four words, Title case | `Glossary proposal` |
-| Tab | What role? | The glossary role, plus the deliverable when several | `Independent reviewer` |
-| Agent and pane | Who? | The [agent name](naming.md) | `harness-glossary-astra` |
+Label the workspace, tab, and pane by the [layer rules](naming.md#label-the-layers).
 
 1. Resolve the lead's own pane and name with `herdr agent list`.
 2. Write the [brief](briefing.md) to a file before starting the worker.

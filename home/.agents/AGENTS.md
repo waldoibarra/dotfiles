@@ -55,6 +55,7 @@ Read only task-relevant detail.
 ## Read before acting
 
 Paths below use `~/.agents/` unless absolute; skill names mean their catalog `SKILL.md`.
+Paths starting with `/docs/` resolve inside the dotfiles checkout, `~/.dotfiles`, from any project.
 
 | Before… | Read |
 | --- | --- |

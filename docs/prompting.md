@@ -68,8 +68,9 @@ detection.
 ## Prompt template
 
 **AIM:** Define the actor, input, and mission; include only fields relevant to your task.
-Write the prompt as a short Markdown document with one header per field, so a reader scans it
-the way the [communication rules](/home/.agents/references/communication-rules.md) ask.
+Write the prompt as a short Markdown document with one header per field.
+A reader then scans it the way the
+[communication rules](/home/.agents/references/communication-rules.md) ask.
 Keep sentences within 17 words and lead each section with its point.
 
 ```markdown

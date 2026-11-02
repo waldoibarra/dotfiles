@@ -22,6 +22,16 @@ herdr agent rename <pane-or-name> roy-92-astra
 herdr agent list   # the `name` field confirms it
 ```
 
+## Label the layers
+
+Each layer answers one question, so the sidebar identifies the work without opening it:
+
+| Layer | Question | Label | Example |
+| --- | --- | --- | --- |
+| Workspace | What task? | Task in two to four words, Title case | `Glossary proposal` |
+| Tab | What role? | The glossary role, plus the deliverable when several | `Independent reviewer` |
+| Agent and pane | Who? | The agent name above | `harness-glossary-astra` |
+
 ## Label your own session
 
 A session renames its own pane and tab on its first reply, and again when it starts coordinating.

@@ -62,6 +62,7 @@ Size alone does not replace the publication review above.
 | Evaluating evidence-aware meeting processing without duplicating retrieval or planning | [Meeting processing plan](/docs/plans/meeting-processing.md) |
 | Continuing personal MCP parity or reviewing retired Sheets integration lessons | [Personal MCP plan](/docs/plans/personal-mcp.md) |
 | Continuing the shared-role migration and Pi delegation verification | [Shared roles plan](/docs/plans/pi-shared-roles.md) |
+| Reviewing the docs and global-contract restructure, its reviews, and fresh-session tests | [Progressive disclosure plan](/docs/plans/docs-progressive-disclosure.md) |
 | Refactoring shared instructions, memory lifecycle, and cross-repository documentation | [Harness information architecture](/docs/plans/harness-information-architecture.md) |
 | Continuing reusable setup direction, Cursor trial planning, or current harness priorities | [AI harness roadmap](/docs/plans/ai-harness-roadmap.md) |
 | Revisiting harness decisions, historical verification, or superseded proposals | [Harness roadmap archive](/docs/plans/history/ai-harness-roadmap-2026-10-13.md) |

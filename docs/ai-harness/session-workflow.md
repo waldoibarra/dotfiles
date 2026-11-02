@@ -130,8 +130,9 @@ boundaries.
 ## Resolve decisions that change the work
 
 The [global contract](/home/.agents/AGENTS.md#make-decisions-actionable) states the decision rules.
-Their reasoning: one recommended option saves the reader a survey; alternatives appear only when
-they change the decision. Reconciling the latest request with the active plan carries settled
+Their reasoning: one recommended option saves the reader a survey.
+Alternatives appear only when they change the decision.
+Reconciling the latest request with the active plan carries settled
 decisions forward and batches missing approvals. When unresolved ambiguity changes the answer,
 state the interpretation and ask one focused question. A question about an action is never
 authorization for it.

@@ -29,7 +29,8 @@ The recipe checks those files. Prepare missing checkouts and the compiled host s
 It uses the local compiled host, not Mise's `latest` binary.
 Ordinary `pi` and `dots` remain unchanged.
 
-Only the three named extensions load; installed Lens and other auto-discovered extensions remain
+Only the two named extensions, Lens and voice, load.
+Installed Lens and other auto-discovered extensions remain
 disabled.
 This prevents double rendering. Voice loads without opening the microphone or connecting
 automatically.
@@ -42,7 +43,7 @@ Sessions launched before voice was included need a new process.
 Keep the current conversation open and launch `just pi-lens-dev` in another terminal for voice
 testing.
 
-Edit Lens or subagent source, finish the active turn, then run `/reload` in the same Pi session.
+Edit Lens source, finish the active turn, then run `/reload` in the same Pi session.
 Reload replaces extensions without restarting the conversation.
 Host changes require rebuilding and restarting Pi.
 Use ordinary `pi` for the published package configuration.
