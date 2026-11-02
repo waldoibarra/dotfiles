@@ -117,7 +117,7 @@ Keep the shared schema available while any existing change still references it.
 The [shared orchestration
 reference](/home/.agents/references/orchestration.md#coordinate-across-harnesses)
 owns lead and worker responsibilities.
-Read [Agent coordination](/docs/ai-harness/agent-coordination.md) before
+Read [Agent coordination](/docs/ai-harness/agent-coordination/README.md) before
 terminal-controlled handoffs.
 
 One lead reconciles worker results and owns canonical task updates, spec synchronization, and

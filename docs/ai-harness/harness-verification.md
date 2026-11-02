@@ -30,7 +30,7 @@ If no pre-edit failure was captured, record that limitation rather than claiming
 cycle.
 Documentation-only changes need link and factual checks, not a fabricated failing runtime test.
 
-Read [Agent coordination](agent-coordination.md#brief-a-worker) before launching repository-bound workers.
+Read [Agent coordination](agent-coordination/briefing.md) before launching repository-bound workers.
 Give each child only its acceptance target, required context, exact checks, and stop condition.
 Reuse focused context for follow-ups; do not repeatedly send the full historical plan.
 Choose model and effort using the existing shared routing policy; this guide adds no model defaults.
@@ -95,7 +95,7 @@ children.
 This guide checks policy; it does not define another delegation or improvement workflow.
 
 - **Pi:** no native delegation runner is installed. Start a Pi worker as a Herdr agent and pass
-  `--model` after `--`; read [Agent coordination](agent-coordination.md#spawn-a-worker-in-a-split).
+  `--model` after `--`; read [Agent coordination](agent-coordination/spawning.md).
 - **Claude Code:** use native per-invocation model selection, not Pi provider/model syntax.
   Available aliases include `fable`, `opus`, `sonnet`, and `haiku`; availability depends on the
   account.

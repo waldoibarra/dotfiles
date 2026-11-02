@@ -171,7 +171,7 @@ The check covers repeated linking, shared-policy preservation, and trusted proje
 precedence.
 It does not prove model compliance; exercise `/skill:grill-with-docs` separately in a fresh session.
 
-Read [Agent coordination](../agent-coordination.md) before starting Pi workers.
+Read [Agent coordination](../agent-coordination/spawning.md) before starting Pi workers.
 Read [personal MCP setup](../mcp.md) before changing servers or testing shared client access.
 
 ## Upstream references

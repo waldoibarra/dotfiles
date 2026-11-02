@@ -322,7 +322,7 @@ Dotbot links Pi's tracked JSON preferences into `~/.pi/agent`.
 Pi UI changes can therefore modify the repository. `just update-ca` updates declared packages.
 Shared instructions and roles are linked by Dotbot; Pi discovers shared skills natively.
 Pi has no native delegation runner; run Pi workers through
-[Agent coordination](ai-harness/agent-coordination.md).
+[Agent coordination](ai-harness/agent-coordination/spawning.md).
 [Pi and live voice](ai-harness/pi/README.md) documents ownership, shortcuts, and accepted
 limitations.
 

@@ -29,7 +29,7 @@ and can reorder it. Homebrew paths are fixed to `/opt/homebrew` on macOS and
   [full sync](/docs/tooling.md#sync-the-workstation) without changing the current directory.
 - `agents [words] [--here]` prints every live Herdr agent as one table, rendered on a terminal and
   raw Markdown when piped; see
-  [Agent coordination](ai-harness/agent-coordination.md#list-agents).
+  [Agent coordination](ai-harness/agent-coordination/listing.md).
 - On macOS, `claude` and `pi` aliases run under `caffeinate -i`.
 - `.zlogin` returns immediately in non-interactive shells, before loading `~/.zlogin.local` or
   defining welcome helpers. Automated login-shell commands do not run the greeting setup.

@@ -55,7 +55,8 @@ See [Herdr's integrations reference](https://herdr.dev/docs/integrations/) for u
 
 ### Coordinate agents
 
-Read [Agent coordination](/docs/ai-harness/agent-coordination.md) to list, name, spawn, and brief agents.
+Read [Agent coordination](/docs/ai-harness/agent-coordination/README.md) to list, name, spawn,
+and brief agents.
 The [shared orchestration reference](/home/.agents/references/orchestration.md#coordinate-across-harnesses)
 owns the rules. This page owns only installation and state reporting.
 

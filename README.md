@@ -56,5 +56,6 @@ Choose the guide for your task; read [agent instructions](/AGENTS.md) before cha
 | Use editable UI designs | [Design tooling](/docs/agent-ui-design-tools.md) |
 | Restructure or retire maintained information | [Documentation maintenance](/docs/documentation.md) |
 
+Every guide is listed in the [documentation map](/docs/README.md).
 Plans and evidence live in [the plans and research index](/docs/workspace.md).
 They explain prior work; **current guides and verified configuration own present behavior**.

@@ -85,7 +85,7 @@ to alter identity or attestation or switch billing routes.
 | `/live spruce` | A user-run spoken check of the selected voice. |
 
 The provisioning suite uses a disposable home, without a microphone or model call.
-Read [Agent coordination](../agent-coordination.md) before testing worker execution.
+Read [Agent coordination](../agent-coordination/spawning.md) before testing worker execution.
 The user performs the spoken check.
 `pi --continue` resumes coding context but does not repair the known [voice-context limitation](limitations.md).
 

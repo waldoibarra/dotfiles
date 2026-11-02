@@ -68,17 +68,41 @@ detection.
 ## Prompt template
 
 **AIM:** Define the actor, input, and mission; include only fields relevant to your task.
+Write the prompt as a short Markdown document with one header per field, so a reader scans it
+the way the [communication rules](/home/.agents/references/communication-rules.md) ask.
+Keep sentences within 17 words and lead each section with its point.
 
-```text
-Actor: Act as [ROLE OR PERSPECTIVE].
-Input: Use [RELEVANT CONTEXT, DATA, FILES, AND SOURCES].
-Mission: Produce [OUTCOME] for [AUDIENCE].
-Actions: Use [AVAILABLE, AUTHORIZED OPERATIONS].
-Constraints: Respect [SCOPE, LIMITS, AND REQUIREMENTS].
-Output: Return [FORMAT AND LENGTH], with the answer first.
-Clarification: Ask about missing information that would change the answer.
-Verification: Identify assumptions, support major claims, and flag uncertainty.
+```markdown
+# <Mission in one line>
+
+## Actor
+Act as [ROLE OR PERSPECTIVE].
+
+## Input
+Use [RELEVANT CONTEXT, DATA, FILES, AND SOURCES].
+
+## Mission
+Produce [OUTCOME] for [AUDIENCE].
+
+## Actions
+Use [AVAILABLE, AUTHORIZED OPERATIONS].
+
+## Constraints
+Respect [SCOPE, LIMITS, AND REQUIREMENTS].
+
+## Output
+Return [FORMAT AND LENGTH], with the answer first.
+
+## Clarification
+Ask about missing information that would change the answer.
+
+## Verification
+Identify assumptions, support major claims, and flag uncertainty.
 ```
+
+Agents briefing other agents use the same template; read
+[brief a worker](/docs/ai-harness/agent-coordination/briefing.md) for the reply and stop fields
+that a Herdr worker also needs.
 
 **Prune:** Keep saved prompt rules only when their removal could change a correct output.
 

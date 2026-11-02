@@ -137,7 +137,7 @@ Source: [Building Evolutionary Architectures](https://evolutionaryarchitecture.c
 ## Agent coordination
 
 Terms for coordinating agents across harnesses; the
-[agent coordination manual](/docs/ai-harness/agent-coordination.md) owns the procedures.
+[agent coordination manual](/docs/ai-harness/agent-coordination/README.md) owns the procedures.
 
 **Operator**:
 The human directing agent work and granting its authority.
