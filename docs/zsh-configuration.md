@@ -27,6 +27,9 @@ and can reorder it. Homebrew paths are fixed to `/opt/homebrew` on macOS and
 - `.zshrc` assumes Homebrew Antigen is installed and activates oh-my-zsh bundles.
 - `lso` runs `eza -aal --octal-permissions`; `dots` runs the
   [full sync](/docs/tooling.md#sync-the-workstation) without changing the current directory.
+- `agents [words] [--here]` prints every live Herdr agent as one table, rendered on a terminal and
+  raw Markdown when piped; see
+  [Agent coordination](ai-harness/agent-coordination.md#list-agents).
 - On macOS, `claude` and `pi` aliases run under `caffeinate -i`.
 - `.zlogin` returns immediately in non-interactive shells, before loading `~/.zlogin.local` or
   defining welcome helpers. Automated login-shell commands do not run the greeting setup.

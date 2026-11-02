@@ -133,3 +133,82 @@ changes.
 Examples include checks of security, performance, modularity, and data integrity.
 
 Source: [Building Evolutionary Architectures](https://evolutionaryarchitecture.com/precis.html).
+
+## Agent coordination
+
+Terms for coordinating agents across harnesses; the
+[agent coordination manual](/docs/ai-harness/agent-coordination.md) owns the procedures.
+
+**Operator**:
+The human directing agent work and granting its authority.
+_Avoid_: Captain; administrator, when referring to task authority rather than system administration.
+
+**Lead**:
+The agent responsible for coordinating an approved scope and returning its outcome to the operator.
+_Avoid_: First mate, primary, orchestrator worker.
+
+**Worker**:
+An agent assigned a bounded task, with explicit authority and completion criteria, reporting to a
+lead.
+_Avoid_: Crewmate; subagent, unless describing the actual runtime relationship.
+
+**Delegated lead**:
+A persistent worker assigned responsibility for coordinating its own team within a parent lead's
+authorized scope.
+_Avoid_: Secondmate; remote lead, unless its location is specifically relevant.
+
+**Team**:
+A lead and the workers coordinated within its assigned scope.
+_Avoid_: Crew, fleet, swarm.
+
+**Delivery task**:
+An assignment whose required outcome is an authorized change delivered through the project's
+agreed delivery process.
+_Avoid_: Ship task; implementation task, when delivery includes documentation or configuration.
+
+**Investigation task**:
+An assignment whose required outcome is a standalone findings report, not a delivered project
+change.
+_Avoid_: Scout task; read-only task, because producing the report itself requires writing.
+
+**Peer agent**:
+An agent collaborating with another agent without reporting to it for the relevant scope.
+_Avoid_: Teammate, when used to imply equal authority; worker, when no reporting relationship
+exists.
+
+**Independent reviewer**:
+An agent assessing a plan or result without having produced the material being reviewed.
+_Avoid_: Peer reviewer, when equal authority is neither required nor established.
+
+**Subagent**:
+An agent invoked through a harness's native delegation mechanism to perform work for a calling
+agent.
+_Avoid_: Worker, when the distinction concerns runtime rather than responsibility.
+
+**Task brief**:
+The contract defining an assignment's goal, boundaries, authority, expected deliverable, and
+completion criteria.
+_Avoid_: Prompt, when referring to the complete assignment contract rather than its transmission.
+
+**Task record**:
+The durable account of an assignment's brief, ownership, state, evidence, and unresolved
+obligations.
+_Avoid_: Chat history; task brief, when referring to execution state.
+
+**Supervision**:
+The continuing oversight that reconciles task records with observed execution and identifies
+required intervention.
+_Avoid_: Monitoring, when oversight also includes decisions and recovery.
+
+**Escalation**:
+A request to the responsible authority for a decision outside the requesting agent's granted
+authority.
+_Avoid_: Progress update; human escalation, unless the required authority is the operator.
+
+**Task worktree**:
+A separate Git working tree assigned to a task to isolate its file edits from concurrent work.
+_Avoid_: Sandbox, when implying isolation of credentials, processes, or external side effects.
+
+Sources: [firstmate vision](https://github.com/kunchenguid/firstmate/blob/main/VISION.md) and
+[Claude Code agent teams](https://code.claude.com/docs/en/agent-teams), with the sailing metaphor
+replaced by role names.

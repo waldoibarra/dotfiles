@@ -67,6 +67,7 @@ Terminal access never extends approval, model, privacy, or publication authority
 
 **Peer agents in Herdr.**
 Read `herdr --skill`, then `herdr agent` for the command list, before any control command.
+Read `/docs/ai-harness/agent-coordination.md` before listing, naming, spawning, or briefing Herdr agents.
 Resolve recipients and return addresses with `herdr agent list`; never persist pane IDs as addresses.
 Include the sender's live name or pane ID, approved task scope, requested response, and stopping condition.
 Explicitly request a Herdr reply to that return address.

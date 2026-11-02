@@ -33,7 +33,7 @@ installed reading routes.
 | Choose a disposable prototype or POC | [Prototype selection](/home/.agents/skills/prototype-selection/SKILL.md) |
 | Change shared rules or personal instruction loading | [Agent instructions](/docs/agent-instructions.md) |
 | Configure Pi or use subscription voice | [Pi and live voice](pi/README.md) |
-| Delegate with an explicit role and model | [Pi delegation](pi/delegation.md) |
+| List, name, spawn, or brief agents across harnesses | [Agent coordination](agent-coordination.md) |
 | Configure personal MCP servers | [Personal MCP servers](mcp.md) |
 | Install or maintain skills | [Agent skills](/docs/agent-skills.md) |
 | Plan and deliver a durable change | [OpenSpec integration](openspec.md) |

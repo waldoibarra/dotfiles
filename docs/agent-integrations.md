@@ -53,32 +53,11 @@ Port it into the tracked `$HOME` form.
 
 See [Herdr's integrations reference](https://herdr.dev/docs/integrations/) for upstream behavior.
 
-### Cross-harness coordination
+### Coordinate agents
 
-Waldo reports testing Herdr's CLI to coordinate agents across terminal tabs and harnesses.
-The installed CLI exposes tab creation, agent startup, prompting, output reading, and lifecycle
-waiting.
-Command availability does not prove a successful end-to-end collaboration.
-
-Read [shared orchestration](/home/.agents/references/orchestration.md#coordinate-across-harnesses)
-before assigning work through Herdr.
-Read Herdr's native skill with `herdr --skill` before controlling panes or agents.
-Keep one lead and one approved OpenSpec change; terminal messages carry bounded assignments and
-evidence.
-
-Prefer agent-targeted prompting over raw pane input when addressing a running agent.
-Resolve the live target and repository before sending input; a pane can change occupants.
-Never treat an idle or blocked state as proof of task success or permission to accept a dialog.
-Read returned output and verify the resulting files and tests.
-
-Starting agents, sending prompts, and responding to permission dialogs retain their existing
-approval boundaries.
-Separate worktrees isolate concurrent writers; explicitly exchange revisions before integrating
-results.
-Do not copy private terminal output across project or company boundaries.
-
-Read [Herdr automation](https://herdr.dev/docs/agent-automation/) for native control surfaces.
-Same-harness subagents and cross-harness handoffs require separate behavioral verification.
+Read [Agent coordination](/docs/ai-harness/agent-coordination.md) to list, name, spawn, and brief agents.
+The [shared orchestration reference](/home/.agents/references/orchestration.md#coordinate-across-harnesses)
+owns the rules. This page owns only installation and state reporting.
 
 ## Moshi
 
