@@ -21,3 +21,18 @@ Pane IDs change occupants; a name follows the agent until it exits.
 herdr agent rename <pane-or-name> roy-92-astra
 herdr agent list   # the `name` field confirms it
 ```
+
+## Label your own session
+
+A session renames its own pane and tab on its first reply, and again when it starts coordinating.
+
+| Layer | Label | Example |
+| --- | --- | --- |
+| Pane and agent | Your name from the convention above | `dotfiles-fable` |
+| Tab | The current task in two to four words, never the directory | `Docs restructure` |
+| Workspace | Leave it; the operator owns workspaces they created | |
+
+```sh
+herdr agent rename "$HERDR_PANE_ID" dotfiles-fable
+herdr tab rename <own-tab-id> "Docs restructure"   # tab id from `herdr pane get "$HERDR_PANE_ID"`
+```

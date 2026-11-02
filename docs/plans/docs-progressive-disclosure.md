@@ -115,4 +115,13 @@ Before commit 0, no reset or clean is permitted; the tree holds approved uncommi
 
 ## Results
 
-Pending.
+Implemented on 2026-11-01 in commits `3b02310` through `d352d57`, plus the fixes below.
+
+- Independent plan review (Astra): rework. All findings folded into the decisions above.
+- Fresh Claude Code session under Herdr: renamed its pane to `dotfiles-fable` and its tab on the
+  first reply; listed agents with the script. Tab label was the directory, not the task.
+- Fresh Pi session under Herdr: renamed its pane to `roster-astra` and its tab to "Live agents"
+  on the first reply; built its own table instead of running the script.
+- Fixes from the tests: the contract gained a listing trigger, and the naming page gained a rule
+  for a session's own tab label.
+- Independent implementation review (Astra): see the follow-up entry once received.

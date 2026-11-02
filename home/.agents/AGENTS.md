@@ -143,6 +143,8 @@ their owning project.
 
 - If `HERDR_ENV=1`, rename your pane and tab on your first reply and again when coordinating.
   First read [naming](/docs/ai-harness/agent-coordination/naming.md).
+- If `HERDR_ENV=1`, answer "list the agents" with the `agents` script, never a hand-built table.
+  First read [listing](/docs/ai-harness/agent-coordination/listing.md).
 - If `HERDR_ENV=1`, write every first agent message using the prompting guide.
   First read [briefing](/docs/ai-harness/agent-coordination/briefing.md).
 - If `HERDR_ENV=1`, close only containers this session created after verifying their deliverables.
