@@ -25,6 +25,8 @@ herdr agent list   # the `name` field confirms it
 ## Label your own session
 
 A session renames its own pane and tab on its first reply, and again when it starts coordinating.
+**A worker started by a lead keeps the labels the lead set** and renames nothing; its name was
+assigned at start.
 
 | Layer | Label | Example |
 | --- | --- | --- |
