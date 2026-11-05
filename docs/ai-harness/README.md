@@ -82,6 +82,8 @@ Read [Sync the workstation](/docs/tooling.md#sync-the-workstation) before runnin
 
 [Claude settings delivery](configuration.md#copy-managed-files) explains replacement behavior and
 machine-local hooks.
+[Pi settings delivery](pi/configuration.md#edit-persistent-settings) explains tracked defaults and
+preserved local runtime state.
 
 ## Cursor global instructions
 

@@ -51,7 +51,7 @@ The vault connects people and projects without duplicating authoritative technic
 ```mermaid
 flowchart LR
     Source[Tracked home sources] --> Links[Dotbot links]
-    Source --> Copies[Managed Claude settings]
+    Source --> Copies[Managed Claude and Pi settings]
     Source --> Render[Cursor rule renderer]
     Links --> Clients[Configured clients]
     Copies --> Clients

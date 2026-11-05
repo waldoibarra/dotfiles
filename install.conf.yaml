@@ -69,7 +69,7 @@
     ~/.config/ghostwriter/social-media.md: home/.config/ghostwriter/social-media.md
     ~/.pi/agent/AGENTS.md: home/.agents/AGENTS.md
     ~/.pi/agent/APPEND_SYSTEM.md: home/.pi/agent/APPEND_SYSTEM.md
-    ~/.pi/agent/settings.json: home/.pi/agent/settings.json
+    # Pi settings are merged by scripts/update-coding-agents/sync-pi-settings.py.
     ~/.pi/agent/models.json: home/.pi/agent/models.json
     ~/.pi/agent/mcp.json: home/.agents/mcp.json
     ~/.pi/agent/keybindings.json: home/.pi/agent/keybindings.json
@@ -133,6 +133,10 @@
       path: home/.config/duti/markdown.duti
       if: '[[ "$(uname)" == "Darwin" ]]'
 - shell:
+    - command: python3 scripts/update-coding-agents/sync-pi-settings.py
+      description: Merge tracked Pi defaults into local settings
+      stdout: true
+      stderr: true
     - command: ./scripts/configure-touch-id-for-sudo.sh
       description: Enable Touch ID for sudo (/etc/pam.d/sudo_local) —
       stdout: true

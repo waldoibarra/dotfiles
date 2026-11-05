@@ -133,7 +133,7 @@ install_moshi_agent_extension() {
 }
 
 #######################################
-# Reconcile packages declared in Pi's linked settings using the normal profile.
+# Reconcile packages declared in Pi's local settings using the normal profile.
 # Globals:
 #   HOME
 # Outputs:
@@ -155,6 +155,7 @@ main() {
   # First: it resets ~/.claude/settings.json to the tracked bytes, which would
   # otherwise discard whatever the Herdr steps below write into that file.
   sync_managed_configs
+  python3 "${ENTRYPOINT_DIR}/sync-pi-settings.py"
   bash "${ENTRYPOINT_DIR}/sync-cursor-rule.sh"
   python3 "${ENTRYPOINT_DIR}/sync-personal-mcp.py"
   install_pi_packages

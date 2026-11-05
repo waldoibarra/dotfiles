@@ -1,17 +1,19 @@
 # Pi installation and sync
 
 **Ownership:** Pi provisioning runs through `dots`.
-Mise owns the binary; Dotbot links instructions, roles, and preferences.
-The coding-agent updater reconciles declared packages.
-Read [configuration](configuration.md) before changing linked files or ownership boundaries.
+Mise owns the binary; Dotbot links instructions, roles, and most preferences.
+Settings delivery merges tracked defaults into a local writable file before package reconciliation.
+Read [editing settings](configuration.md#edit-persistent-settings) before changing Pi defaults.
 
 ## Provisioning sequence
 
 [Dotbot](../../../install.conf.yaml) creates the real Pi directories and links `AGENTS.md`,
-`settings.json`, `models.json`, `keybindings.json`, and `mcp.json`.
+`models.json`, `keybindings.json`, and `mcp.json`.
 It also links `APPEND_SYSTEM.md` for Pi-specific skill compatibility and installs shared roles individually.
 Credentials and sessions remain separate.
-Pi files do not use the managed-copy helper.
+Dotbot runs the targeted settings sync instead of linking `settings.json`.
+The updater repeats that idempotent step before package reconciliation.
+[Settings ownership](configuration.md#merge-ownership) defines merge, migration, and recovery behavior.
 
 The updater reconciles shared personal MCP definitions with Claude's user registry first.
 Read [personal MCP setup](../mcp.md) before changing or verifying those registrations.
@@ -20,22 +22,22 @@ The [agent updater](../../../scripts/update-coding-agents/entrypoint.sh) then ru
 `pi update --extensions --no-approve` from `$HOME` for every declared package.
 
 `pi update --extensions` reconciles the remaining declared packages, including the Pi Lens Git
-source, from the linked normal-profile settings. Its empty `skills` and `prompts` filters are part
+source, from the local normal-profile settings. Its empty `skills` and `prompts` filters are part
 of the tracked package declaration and should be preserved.
 
-Both commands use `PI_CODING_AGENT_DIR="$HOME/.pi/agent"` without `OPENAI_API_KEY`.
+The command uses `PI_CODING_AGENT_DIR="$HOME/.pi/agent"` without `OPENAI_API_KEY`.
 Inherited trial profiles and project-local packages do not change this target.
 Only packages are reconciled; Mise remains responsible for the Pi binary and remains on `latest`.
 
-Both operations use Pi's [package mechanism](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md).
+Reconciliation uses Pi's [package mechanism](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md).
 Homebrew does not own another Pi installation.
 The shell alias `pi='caffeinate -i pi'` keeps the workstation awake during interactive use.
 An install/update failure stops the updater with an error. Configuration may already be linked;
-a later successful run reconciles the packages. Neither operation starts a model conversation or
+a later successful run reconciles the packages. Reconciliation never starts a model conversation or
 opens the microphone.
 
 The `dots` alias runs `just sync`, which can remove undeclared packages.
-The skill updater can commit and push changes, including earlier unpushed commits.
+The updater does not commit or push local changes.
 Do not use `dots` as a validation command.
 Read [sync boundaries](../../tooling.md#sync-the-workstation) before applying workstation
 changes, and [workstation setup](../../setup.md) for the complete fresh-machine sequence.
@@ -43,7 +45,7 @@ changes, and [workstation setup](../../setup.md) for the complete fresh-machine 
 ## RTK, Herdr and Moshi extensions
 
 The same agent updater installs these native extensions in `~/.pi/agent/extensions`, outside Git.
-None of their installers changes Pi's linked preferences.
+Generated extensions remain separate from tracked Pi defaults.
 
 | Integration | Installer | Purpose |
 | --- | --- | --- |
@@ -77,6 +79,7 @@ to alter identity or attestation or switch billing routes.
 | Check | What it establishes |
 | --- | --- |
 | `just lint` | Repository formatting and source checks. |
+| `python3 scripts/tests/test-pi-settings.py` | Isolated settings migration, preservation, idempotency, and failure recovery. |
 | `python3 scripts/tests/test-agent-harness.py` | Isolated links, role settings, and updater success/failure behavior. |
 | `pi --version` | Installed Pi resolution and version. |
 | `pi list --no-approve` | Configured package declarations. |

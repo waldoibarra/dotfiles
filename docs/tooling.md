@@ -241,8 +241,10 @@ Keep these backend choices unless the underlying constraint changes:
 Mise owns `npm:@earendil-works/pi-coding-agent = "latest"`, so `just mise-sync` and `dots` include
 Pi binary installation and upgrades.
 The `pi-live-codex` extension is a separate Pi-managed package.
-Dotbot links Pi's tracked JSON preferences into `~/.pi/agent`.
-Pi UI changes can therefore modify the repository. `just update-ca` updates declared packages.
+Pi settings are merged into a local writable file; other managed JSON files remain linked.
+Read [editing Pi settings](ai-harness/pi/configuration.md#edit-persistent-settings) before
+changing or delivering defaults.
+`just update-ca` delivers settings before updating declared packages.
 Shared instructions and roles are linked by Dotbot; Pi discovers shared skills natively.
 Pi has no native delegation runner; run Pi workers through
 [Agent coordination](ai-harness/agent-coordination/spawning.md).
@@ -263,7 +265,8 @@ Homebrew owns the `openpencil` desktop cask. Mise owns `npm:@open-pencil/cli` an
 `npm:@open-pencil/mcp`, both at `latest`. They upgrade independently; there is no shared version
 pin.
 
-Read [Agent UI design tools](/docs/ai-harness/design-tools.md) before using the CLI or desktop bridge.
+Read [Agent UI design tools](/docs/ai-harness/design-tools.md) before using the CLI or desktop
+bridge.
 
 ## Git hooks
 

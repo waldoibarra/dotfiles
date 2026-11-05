@@ -1,7 +1,8 @@
 # Harness configuration and delivery
 
 **Edit tracked sources, not installed copies or generated files.**
-Dotbot links most configuration; the updater copies Claude settings and renders Cursor instructions.
+Dotbot links most configuration; the updater copies Claude settings, merges Pi settings, and
+renders Cursor instructions.
 Credentials, identities, signing keys, sessions, and machine-local overrides stay outside this
 repository.
 
@@ -33,11 +34,12 @@ installed paths replace `home/` with `~/` unless noted.
 | `docs/ai-harness/session-workflow.md` | Linked to `~/.agents/references/session-workflow.md` for portable schema instructions |
 | `home/.agents/mcp.json` | Shared personal MCP definitions; Pi and Cursor links, plus derived Claude user registrations |
 | Repo-authored skill directories | Linked individually; [destinations](/docs/ai-harness/skills.md#repo-managed-skills) |
-| `home/.pi/agent/` configuration files | Individually linked; [Pi managed files](pi/configuration.md#managed-files) owns the complete inventory |
+| `home/.pi/agent/` configuration files | Settings are merged locally; other files remain linked; [Pi managed files](pi/configuration.md#managed-files) owns the inventory |
 
 Keep shared installation directories real, with links to individual children.
-Pi's [managed-file reference](pi/configuration.md#managed-files) separates linked preferences from
-private runtime files.
+Read [editing Pi settings](pi/configuration.md#edit-persistent-settings) before changing
+persistent Pi defaults.
+Pi's managed-file reference separates tracked preferences from local runtime state.
 
 ## Cursor global instructions
 
@@ -86,7 +88,8 @@ See [Claude subagents](https://code.claude.com/docs/en/sub-agents) for the permi
 
 [Orchestration guidance](/home/.agents/references/orchestration.md#coordinate-across-harnesses)
 owns the Herdr delegation route and unavailable-backend behavior.
-The existing updater delivers this restriction during `dots`; restart Claude after refreshing settings.
+The existing updater delivers this restriction during `dots`; restart Claude after refreshing
+settings.
 Rollback removes this deny entry and the routing restriction.
 Then refresh settings and restart Claude.
 Firstmate remains uninstalled and outside this change.

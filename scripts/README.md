@@ -89,7 +89,10 @@ If the vault exists without a profile, it warns without changing links or blocki
 Invalid selections, missing source files, or ordinary files at link destinations stop updates.
 Run `python3 scripts/tests/test-life-profile.py` for isolated linking and preservation checks.
 
-1. Copy managed Claude settings and render Cursor's global instruction template.
+1. Copy managed Claude settings, merge Pi settings, and render Cursor's global instruction template.
+  [Pi settings delivery](/docs/ai-harness/pi/configuration.md#edit-persistent-settings) owns its
+  editing and recovery procedure.
+  Dotbot installation invokes the same idempotent Pi settings sync.
   Dotbot links `~/.claude/CLAUDE.md` to shared instructions; the updater leaves that link intact.
   Claude's global instructions need no import adapter.
   The Cursor renderer expands `@~/.agents/AGENTS.md` into a regular file.
@@ -125,13 +128,13 @@ for those machine-local preferences.
 with `python3`, without package upgrades or publication. It preserves matching registrations and
 fails on conflicts; read [personal MCP setup](/docs/ai-harness/mcp.md) before applying changes.
 
-Pi binary installation belongs to Mise. Package reconciliation reads the runner source from linked
-settings, explicitly installs it, then runs `pi update --extensions --no-approve` from `$HOME`.
-Explicit installation resolves `latest` and covers missing installations.
-Both calls use the normal profile, exclude project packages, and omit `OPENAI_API_KEY`.
+Pi binary installation belongs to Mise.
+Package reconciliation runs `pi update --extensions --no-approve` from `$HOME` after settings
+delivery.
+The call uses the normal profile, excludes project packages, and omits `OPENAI_API_KEY`.
 Failures stop the updater. No model, microphone, or authentication call is requested.
 
-Pi's preferences and subagent configuration are Dotbot links, not managed copies.
+Pi settings are merged into a local file; other managed Pi files remain Dotbot links.
 Credentials, sessions, and locks are separate and untouched.
 [Pi configuration](../docs/ai-harness/pi/configuration.md) lists the ownership boundaries.
 
@@ -158,6 +161,7 @@ Run `just lint-sh` after shell changes. It checks selected entrypoints and follo
 where configured; it does not execute installation behavior. Exercise changed behavior in an
 isolated environment, never by running a real machine sync as a test.
 
+Run `python3 scripts/tests/test-pi-settings.py` for isolated settings delivery and recovery checks.
 Run `python3 scripts/tests/test-agent-harness.py` to check shared-role links, Pi settings, and
 package reconciliation. It uses temporary homes and a fake Pi executable; no inference or sync runs.
 Set `PI_PACKAGE_DIR` to the installed Pi package root to include compiled-host checks.

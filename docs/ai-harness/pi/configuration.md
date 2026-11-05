@@ -1,15 +1,14 @@
 # Pi configuration
 
 **Ownership:** Tracked preferences live under [`home/.pi/agent`](../../../home/.pi/agent).
-Dotbot links preferences, shared policy, and Pi-specific compatibility instructions into the normal
-profile.
+The settings sync merges defaults into a local file; Dotbot links the other managed files.
 The profile directory stays real; credentials and runtime data stay outside the repository.
 
 ## Managed files
 
 | Path | Purpose and current state |
 | --- | --- |
-| `~/.pi/agent/settings.json` | Linked to [settings.json](../../../home/.pi/agent/settings.json): coding defaults, packages, role overrides, compaction and reserves. |
+| `~/.pi/agent/settings.json` | Local writable file merged from [tracked defaults](/home/.pi/agent/settings.json); see [editing settings](#edit-persistent-settings). |
 | `~/.pi/agent/models.json` | Linked to [models.json](../../../home/.pi/agent/models.json): per-model context-window overrides. |
 | `~/.pi/agent/keybindings.json` | Linked to [keybindings.json](../../../home/.pi/agent/keybindings.json): Ctrl+L for voice, Option+L for the tree filter. |
 | `~/.pi/agent/AGENTS.md` | Dotbot link to [shared agent instructions](../../../home/.agents/AGENTS.md). |
@@ -29,19 +28,81 @@ The coding defaults are `defaultProvider: "openai-codex"` and `defaultModel: "gp
 Automatic compaction is enabled through `compaction.enabled: true`.
 Packages declare voice and `git:github.com/waldoibarra/pi-lens@latest`.
 The Lens declaration disables package skills and prompts with empty filters.
-Edit tracked sources for persistent preferences and package declarations.
-Pi's settings writer follows the symlink; UI or package commands can change the repository.
-Review those diffs before committing.
-Keep secrets and machine-specific values out of linked files.
-There is no Pi merge layer or managed-copy step.
-Dotbot's normal backup behavior applies when it replaces existing local files with links.
+Use [editing settings](#edit-persistent-settings) for persistent preferences and package
+declarations.
+Pi UI changes remain local; sync restores values managed by tracked defaults.
+Keep secrets and machine-specific values outside tracked files.
 
-Read [Lens compatibility](/docs/ai-harness/integrations.md#pi-lens) before relying on Lens after a Pi
-upgrade.
+Read [Lens compatibility](/docs/ai-harness/integrations.md#pi-lens) before relying on Lens after
+upgrading Pi.
 
 Authentication, sessions, caches, native binaries, and voice locks stay outside Git.
 This configuration step does not link, copy, or remove them.
 Read [installation and sync](installation.md) before reconciling packages.
+
+## Edit persistent settings
+
+**Edit `home/.pi/agent/settings.json`, then deliver it with the targeted sync command.**
+Do not edit the installed copy for portable changes or copy its runtime fields into Git.
+
+1. Read this guide and the installed Pi settings reference for the requested setting.
+2. Edit the tracked source, preserving unrelated defaults.
+3. Run `python3 scripts/update-coding-agents/sync-pi-settings.py` from the repository root.
+4. Wait for the current response to finish, then run `/reload` or start a fresh Pi session.
+5. Inspect the requested setting in the installed file and verify its relevant Pi behavior.
+
+The command changes only normal-profile settings; it does not update packages, authenticate, or
+run a model.
+It ignores inherited `PI_CODING_AGENT_DIR` trial profiles.
+Package changes also need [reconciliation](installation.md#provisioning-sequence).
+`models.json` and `keybindings.json` remain linked; editing their tracked sources needs no
+settings sync.
+
+### Merge ownership
+
+Every top-level key present in tracked settings owns its entire installed value.
+Objects and arrays are replaced, not recursively combined.
+For example, removing a nested compaction override or package entry removes it on the next sync.
+Unspecified top-level keys remain local, including `lastChangelogVersion` and extension changelog
+markers.
+
+Removing an entire tracked key relinquishes ownership; it does not delete the installed value.
+To restore an upstream default, remove that specific key from both files within the approved change.
+Never replace the whole installed file with tracked defaults; that would discard local state.
+UI changes to managed keys last until the next sync.
+Promote intended portable preferences by editing their tracked counterparts.
+
+### Migration, verification, and recovery
+
+Dotbot installation and the coding-agent updater invoke the same
+[settings sync](/scripts/update-coding-agents/sync-pi-settings.py).
+It atomically replaces the old tracked-source symlink with a regular file, preserving existing
+local values.
+The source remains unchanged.
+New files use mode `0600`; existing regular files retain their permissions.
+Semantically matching regular files retain their bytes and timestamps.
+
+Malformed JSON, unrelated symlinks, and active settings locks stop delivery without replacing
+settings.
+Retry after the writer finishes.
+For an abandoned `settings.json.lock`, verify no writer remains before removing that lock directory.
+Avoid changing settings concurrently during migration or delivery.
+
+Run isolated regression checks without touching the workstation:
+
+```sh
+python3 scripts/tests/test-pi-settings.py
+```
+
+After delivery, confirm `~/.pi/agent/settings.json` is not a symlink.
+Check the requested values and preserved local state without printing unrelated private settings.
+Run the targeted sync again; unchanged settings should report `Pi settings already current.`
+These checks establish delivery, not fresh-session model compliance.
+
+To undo a preference change, revert its tracked value and rerun the targeted sync.
+To reverse this delivery architecture, first save the installed settings outside Git.
+Restore the previous installer and updater together before restoring the symlink.
+That rollback reintroduces runtime writes into Git.
 
 ## Laptop image rendering
 
@@ -64,11 +125,12 @@ Lens keeps tool results collapsed until opened.
 Pasted-image tokens require compatible host metadata; installing Lens does not add that host
 support.
 
-This preference applies to every terminal using the linked profile, not only this laptop.
+This preference applies to every terminal using the normal profile, not only this laptop.
 Moshi and other terminal stacks remain unverified.
 Use `"auto"` or remove `terminal.images` to restore detection.
 Use `false` to disable inline image protocols.
-No `dots`, package installation, or terminal restart is required.
+Deliver settings using [editing settings](#edit-persistent-settings); no full `dots` or package
+installation is required.
 
 ## Queued messages
 
@@ -78,7 +140,8 @@ Enter uses steering while Pi works; Alt+Enter requests a follow-up after the cur
 This does not interrupt an active model response or an unfinished tool batch.
 A Codemode call remains one outer tool call, even when it contains several operations.
 
-Run `/reload` after changing the preference, once the current response finishes.
+Deliver the preference using [editing settings](#edit-persistent-settings), then run `/reload`
+after the response finishes.
 This setting does not provide an immediate background handoff.
 Read [Claude's queue behavior](https://code.claude.com/docs/en/interactive-mode#when-claude-code-sends-what-you-queued)
 before comparing messages with queued slash or shell commands.
