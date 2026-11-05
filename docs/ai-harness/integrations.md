@@ -32,6 +32,7 @@ no custom hook implementation or checked-in extension copy is needed.
 | --- | --- |
 | Claude Code | `~/.claude/hooks/herdr-agent-state.sh`; tracked `SessionStart` hook uses the `$HOME` path. |
 | Pi | `~/.pi/agent/extensions/herdr-agent-state.ts`. |
+| Cursor Agent CLI | `~/.cursor/herdr-agent-state.sh` and a native `sessionStart` entry in `hooks.json`. |
 
 Pi's integration is installed only when `pi` exists. Its native installer requires the extension
 directory to exist, so the updater creates it when needed.
@@ -52,6 +53,36 @@ If Herdr changes Claude's hook command, review the installed entry.
 Port it into the tracked `$HOME` form.
 
 See [Herdr's integrations reference](https://herdr.dev/docs/integrations/) for upstream behavior.
+
+### Cursor Agent CLI
+
+Mise owns `cursor-agent = "latest"` in `home/.config/mise/config.toml`.
+Homebrew continues owning the Cursor editor, which is separate from the agent CLI.
+The updater installs missing or outdated Cursor hooks only when `cursor-agent` and Herdr are available.
+It creates the Cursor configuration directory when needed, honoring `CURSOR_CONFIG_DIR`.
+Generated hooks and authentication remain machine-local; do not track `hooks.json` or credentials.
+Current integrations are left unchanged on repeat runs.
+
+For targeted installation without a full workstation sync:
+
+```sh
+mise install cursor-agent
+mkdir -p "${CURSOR_CONFIG_DIR:-${HOME}/.cursor}"
+herdr integration install cursor
+```
+
+Authenticate interactively with `cursor-agent login`, then inspect `cursor-agent status`.
+Start `cursor-agent` inside a Herdr pane and check `herdr agent get <name-or-pane>`.
+Confirm state transitions and a native session reference before claiming live integration works.
+The hook reports session identity; Herdr derives lifecycle state from terminal output.
+Session restoration requires `cursor-agent` on `PATH`, not the generic `agent` executable.
+
+Run `python3 scripts/tests/test-cursor-herdr.py` for isolated prerequisite, retry, and repeat-run checks.
+Rollback removes the Mise declaration and runs `herdr integration uninstall cursor`.
+That removes Herdr's hook without deleting Cursor credentials or sessions.
+
+Sources: [Mise registry](https://github.com/jdx/mise/blob/main/registry/cursor-agent.toml)
+and [Herdr's Cursor integration](https://herdr.dev/tui/docs/integrations/#cursor-agent-cli).
 
 ### Coordinate agents
 

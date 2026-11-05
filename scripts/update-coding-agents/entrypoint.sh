@@ -32,7 +32,7 @@ herdr_integration_is_current() {
 # Claude's installer may add a machine-local hook to its copied settings;
 # Pi's installer writes only an extension and requires the directory to exist.
 # Arguments:
-#   Integration target: claude or pi.
+#   Integration target: claude, pi, or cursor.
 # Outputs:
 #   Writes progress to STDOUT and installation failures to STDERR.
 #######################################
@@ -43,6 +43,12 @@ install_herdr_integration() {
     return
   fi
   case "${agent}" in
+    cursor)
+      if ! command -v cursor-agent >/dev/null 2>&1; then
+        echo "cursor-agent not found, skipping Herdr integration."
+        return
+      fi
+      ;;
     pi)
       if ! command -v "${agent}" >/dev/null 2>&1; then
         echo "${agent} not found, skipping Herdr integration."
@@ -56,6 +62,7 @@ install_herdr_integration() {
   fi
   case "${agent}" in
     pi) mkdir -p "${HOME}/.${agent}/agent/extensions" || return 1 ;;
+    cursor) mkdir -p "${CURSOR_CONFIG_DIR:-${HOME}/.cursor}" || return 1 ;;
   esac
   herdr integration install "${agent}" || return 1
   echo "Herdr ${agent} integration installed."
@@ -162,6 +169,7 @@ main() {
   install_rtk_agent_extension pi
   install_herdr_integration claude
   install_herdr_integration pi
+  install_herdr_integration cursor
   install_moshi_agent_extension pi
   python3 "${ENTRYPOINT_DIR}/sync-skills.py"
   python3 "${ENTRYPOINT_DIR}/sync-openspec.py"

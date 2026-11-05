@@ -54,6 +54,7 @@ Size alone does not replace the publication review above.
 
 | Read before… | Record |
 | --- | --- |
+| Maintaining Cursor CLI and Herdr provisioning | [Approved change](/openspec/changes/integrate-cursor-herdr/proposal.md) and [checks](/openspec/changes/integrate-cursor-herdr/tasks.md) |
 | Continuing shared ambition and disposable prototype selection | [Approved scope and verification](/docs/plans/ai-harness-roadmap.md#shared-ambition-and-disposable-prototype-selection) |
 | Reviewing Claude native delegation denial and Herdr routing | [Approved change](/openspec/changes/disable-claude-subagents/proposal.md) and [checks](/openspec/changes/disable-claude-subagents/tasks.md) |
 | Separating Pi defaults from writable settings state | [Approved change](/openspec/changes/separate-pi-settings-state/proposal.md) and [checks](/openspec/changes/separate-pi-settings-state/tasks.md) |
