@@ -24,13 +24,13 @@ availability.
 
 | Host | Authorized model family | Selection guidance |
 | --- | --- | --- |
-| Pi | OpenAI through the configured provider | Inspect the active registry and worker allowlist; pass an exact eligible provider/model ID. |
+| Pi | GPT models through `openai-codex` | Select an available `openai-codex/<model>` ID; never select the `amazon-bedrock` rows. |
 | Claude Code | Anthropic | Choose explicit `haiku`, `sonnet`, or `opus`, or an available exact ID. |
-| Cursor | Cursor's available catalog | Prefer an available Composer model for bounded work; select an explicit supported ID. |
+| Cursor | Grok through Cursor's catalog | Select an available Grok ID with medium effort, such as `grok-4.7-medium`. |
 
-**Pi:** Configuration is not availability. GPT-5.5 was allowlisted but absent during this refactor.
-GPT-6 Sol completed a review; that observation is not a permanent availability or cost guarantee.
-Inspect native model discovery before dispatch; do not derive rankings from model names.
+**Pi:** Configuration is not availability. Inspect `pi --list-models` before dispatch.
+Select GPT models from `openai-codex`, even when another provider lists the same model.
+Do not derive rankings from model names.
 
 **Claude Code:** Haiku is the starting candidate for factual lookups; Sonnet for bounded
 implementation.
@@ -38,35 +38,32 @@ Use Opus when review depth or risk warrants it and account access permits.
 Aliases can resolve differently across providers; verify the actual selected model and supported
 effort.
 
-**Observed fit, under evaluation since 2026-11-01.** Waldo's working notes, not settled routing.
-Revisit them with `feedback-loop` evidence before promoting any to a rule.
-
-| Task | Model that fit | Observation |
-| --- | --- | --- |
-| Refine a plan, review a plan | GPT-6 Astra (Pi) | Found real flaws in the progressive-disclosure plan: rollback scope, misclassified content, missing routes. |
-| Implement a bounded slice | Claude Opus or Sonnet | Expected fit for implementer work; not yet exercised as a Herdr worker. |
-| Review an implementation | GPT-6 Sol (Pi) | Earlier reviews completed; today's implementation review used Astra, which also fit. |
-
 **Cursor:** Its catalog can include Cursor and other providers' models; do not equate host with
 provider.
 Use the current model selector or authenticated catalog, not copied OpenAI or Anthropic aliases.
 Custom subagents support specific model IDs; the native `inherit` default violates our
 explicit-selection policy.
-No Cursor worker availability, authentication, or execution is established by this guide.
+Inspect `cursor-agent --list-models` for current Grok IDs before dispatch.
 
-## Match effort to evidence
+## Select models with medium effort
+
+**Current policy:** Explicitly select medium reasoning effort for every model, across all hosts
+and roles.
+Use the host's supported control or a model variant that explicitly selects medium effort.
+If medium is unsupported or cannot be verified, report the limitation before dispatch.
+Never silently substitute another effort level or rely on an inherited default.
 
 - For personal/open-source work, choose the least expensive capable eligible model within the
   authorized provider.
 - Start lookups and mechanical edits with a smaller available model and bounded context.
-- Use stronger reasoning for architecture, security, contradictory evidence, or independent review.
+- Choose more capable eligible models for architecture, security, contradictory evidence, or
+  independent review.
+  Keep reasoning effort at medium.
 - Consider tools, context, reliability, latency, quota, and observed outcomes; record the selection
   rationale briefly.
 - For company work, use the strongest eligible reviewer, mid-tier implementer, and smallest factual
   lookup worker.
 - Company routing does not authorize company configuration changes or access to personal plans.
-- Effort is separate from model selection; use supported controls and report inherited or
-  unavailable settings.
 
 ## Preserve control
 
