@@ -21,6 +21,7 @@ through `claude mcp add-json --scope user`. It never replaces that file or impor
 | --- | --- | --- |
 | `context7` | `npx -y --package=@upstash/context7-mcp@2.2.5 -- context7-mcp` | Resolve library IDs and retrieve public documentation. |
 | `fireflies` | `https://api.fireflies.ai/mcp` (HTTP) | Retrieve personal meeting summaries and full transcripts through OAuth. |
+| `higgsfield` | `https://mcp.higgsfield.ai/mcp` (HTTP) | Generate and edit media, manage assets, and inspect account credits through OAuth. |
 
 Context7's stdio package version is pinned in the shared manifest.
 Node/npm and network access are required; `npx` downloads the pinned package if absent.
@@ -70,10 +71,67 @@ That result does not establish current authentication or availability.
 Claude and Cursor retrieval, plus local exports, remain unverified in the
 [personal MCP record](/docs/plans/personal-mcp.md#progress).
 
+## Higgsfield
+
+**Use Pi first, then authenticate Claude Code and Cursor separately.**
+The shared manifest configures Higgsfield through native HTTP support; no adapter package is required.
+Follow [Apply configuration](#apply-configuration) to install links and register the server with
+Claude Code.
+
+Higgsfield's [protected resource metadata](https://mcp.higgsfield.ai/.well-known/oauth-protected-resource/mcp)
+advertises browser OAuth through Clerk.
+Its [authorization metadata](https://clerk.higgsfield.ai/.well-known/oauth-authorization-server)
+advertises PKCE and client registration mechanisms supported by Pi.
+Keep credentials in each client's native storage, outside the shared manifest.
+Pi stores its tokens in `~/.pi/agent/mcp-auth.json`.
+
+### Sign in and verify
+
+1. In Pi, run `/reload`, then `/mcp login higgsfield`, and complete browser authorization.
+2. Run `/mcp` to inspect the connection and available tools.
+3. Ask Pi to call Higgsfield's `balance` tool to verify an authenticated, read-only request.
+4. Restart Claude Code, then use `/mcp` to authenticate Higgsfield.
+5. Restart Cursor, then authorize Higgsfield through its MCP settings.
+
+Repeat the balance check in each client before assuming account access works there.
+A useful discovery prompt is:
+
+> Inspect Higgsfield's available tools and explain their capabilities.
+> Do not generate media, upload files, publish content, or spend credits.
+
+Pi exposes these tools through codemode by default.
+Discover tools with `searchTools()` or inspect the server with `describeNamespace("mcp__higgsfield")`.
+**Pi does not render embedded MCP App widgets.** Prefer direct tool workflows when available.
+Widget-dependent workflows may require another client; their compatibility remains unverified.
+
+### Capabilities and spending
+
+The server advertises these capabilities; discovery does not establish successful execution:
+
+- Generate images, videos, audio, and 3D meshes from images.
+- Edit media through upscaling, background removal, outpainting, reframing, dubbing, and motion transfer.
+- Explore models and presets for AI influencers, character sheets, product shots, and ads.
+- Upload media, organize projects and folders, retrieve results, and inspect generation progress.
+- Process files in Higgsfield's cloud sandbox; those operations do not run on the local workstation.
+- Inspect credits and subscriptions, and access supported publication workflows.
+
+**Generation can spend credits.**
+Inspect available pricing and agree on a budget before submitting jobs.
+Account access, plan limits, and model availability apply; configuration does not guarantee eligibility.
+Discovery and authentication do not authorize uploads, paid operations, destructive changes, or
+publication.
+Keep private assets local unless their transfer is explicitly approved.
+Require explicit approval before publishing content or purchasing credits.
+
+**Recorded verification:** Pi loaded Higgsfield's tools and completed an authenticated `balance` call.
+That read-only check spent no credits; generation and publication remain untested.
+Shared configuration and Claude Code registration were verified separately.
+Claude Code and Cursor authentication and tool execution remain unverified.
+
 ## Cursor
 
-Restart Cursor after installing the link, then inspect its MCP settings for Context7 and Fireflies.
-Authorize Fireflies through Cursor's native OAuth flow; credentials remain client-local.
+Restart Cursor after installing the link, then inspect its MCP settings for the configured servers.
+Authorize Fireflies and Higgsfield through Cursor's native OAuth flow; credentials remain client-local.
 Verify a Context7 tool call in a fresh chat using the prompt below.
 The installed link alone proves neither loading, authentication, nor successful tool calls.
 Global instruction rules are separate from MCP setup.
