@@ -1,0 +1,36 @@
+{
+  "skill_name": "audio-transcription",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Transcribe this authorized local recording without translating it.",
+      "expected_output": "Original-language raw and reviewed text, provenance, and uncertainty.",
+      "files": [],
+      "assertions": [
+        "The original spoken language is preserved.",
+        "Uncertain passages are marked.",
+        "The selected model is identified."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Give me exact sentence timestamps from this chunk-only recognizer output.",
+      "expected_output": "Honest chunk ranges, with finer alignment requested or verified separately.",
+      "files": [],
+      "assertions": [
+        "Chunk ranges are not presented as exact sentence timestamps."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Transcribe this excerpt without installing anything; the speech model is missing.",
+      "expected_output": "A prerequisite blocker without installation or silent caption substitution.",
+      "files": [],
+      "assertions": [
+        "No dependencies or models are installed.",
+        "The missing prerequisite is named.",
+        "Captions are not substituted silently."
+      ]
+    }
+  ]
+}

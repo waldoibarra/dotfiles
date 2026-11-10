@@ -57,8 +57,10 @@ Dotbot links these bundles individually; the external manifest does not manage t
 | Building/debugging/reviewing interfaces with behavior and layout | [`web-interface`](/home/.agents/skills/web-interface/SKILL.md) |
 | Standards-first or frameworkless web work | [`web-standards`](/home/.agents/skills/web-standards/SKILL.md) |
 | Isolated layout, intrinsic reflow, spacing, or overflow work | [`css-layout`](/home/.agents/skills/css-layout/SKILL.md) |
+| Analyzing audiovisual evidence or bounded YouTube live captures | [`video-analysis`](/home/.agents/skills/video-analysis/SKILL.md) |
+| Transcribing speech locally with provenance and coverage checks | [`audio-transcription`](/home/.agents/skills/audio-transcription/SKILL.md) |
 
-- The twelve `home/.agents/skills/` bundles link to `~/.agents/skills/`,
+- The fourteen `home/.agents/skills/` bundles link to `~/.agents/skills/`,
   `~/.claude/skills/`, and `~/.cursor/skills/`.
 - Editing an installed symlink edits this checkout; edit the tracked source.
 

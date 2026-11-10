@@ -1,0 +1,37 @@
+{
+  "skill_name": "video-analysis",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Analyze three minutes of an authorized YouTube lecture for its argument and supporting visual evidence.",
+      "expected_output": "A focused brief with source ranges, visual evidence, and inspection gaps.",
+      "files": [],
+      "assertions": [
+        "The brief identifies the inspected source interval.",
+        "Visual claims link to inspected frames.",
+        "Uninspected modalities are disclosed."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Capture three minutes of an authorized YouTube live stream and analyze completed segments while capture continues.",
+      "expected_output": "Bounded capture, retained segments, measured processing delay, and provisional findings.",
+      "files": [],
+      "assertions": [
+        "The source state is recorded before capture.",
+        "Unresolved original-track provenance is reported without a false original-track claim.",
+        "Near-live overlap is reported only when supported by observed processing times."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Explain only the music and editing in this silent-text video excerpt.",
+      "expected_output": "Direct modality inspection or explicit capability limits, without invented speech evidence.",
+      "files": [],
+      "assertions": [
+        "Unavailable direct audio inspection is disclosed.",
+        "No transcript is presented as evidence of music or editing."
+      ]
+    }
+  ]
+}

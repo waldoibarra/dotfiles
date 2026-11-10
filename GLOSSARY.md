@@ -134,6 +134,36 @@ Examples include checks of security, performance, modularity, and data integrity
 
 Source: [Building Evolutionary Architectures](https://evolutionaryarchitecture.com/precis.html).
 
+## Media analysis
+
+**Video analysis**:
+Goal-directed interpretation of relevant spoken, visual, and non-speech audio content.
+_Avoid_: Intelligence extraction, when implying independently verified truth.
+
+**Evidence item**:
+A source-linked observation supporting or challenging an analytical finding.
+
+**Finding**:
+A conclusion drawn from identified evidence, with its uncertainty stated.
+
+**Analysis brief**:
+The reader-facing synthesis answering an agreed question through findings, evidence, and limitations.
+
+**Capture coverage**:
+The source intervals and modalities successfully retained as usable media.
+_Avoid_: Analysis coverage, when only acquisition is established.
+
+**Analysis coverage**:
+The intervals and modalities actually inspected for the agreed question.
+_Avoid_: Full viewing, when only sampled frames or speech were inspected.
+
+**Coverage record**:
+An account of capture, processing, and inspection coverage, including omissions and failures.
+
+**Near-live analysis**:
+Interpretation of completed media segments while a broadcast continues.
+_Avoid_: Real-time analysis, when processing introduces material delay.
+
 ## Agent coordination
 
 Terms for coordinating agents across harnesses; the

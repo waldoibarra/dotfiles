@@ -1,21 +1,19 @@
-# Transcribe YouTube videos and recordings locally
+# Set up and run local speech recognition
 
-**Select a local speech model for the current machine before transcribing spoken words.**
-Acquire the media first, then transcribe its audio locally without uploading the recording.
-YouTube URLs and local recordings are the current scope, including downloaded WhatsApp `.opus` messages.
-Other video hosts are future work, not verified support.
-Transcription does not capture silent demonstrations, diagrams, or on-screen text.
+**This guide owns local model selection, runtime recipes, and observed workstation evidence.**
+The [audio-transcription skill](/home/.agents/skills/audio-transcription/SKILL.md) owns the
+reusable speech-transcription procedure.
+Read it before interpreting recognition output or claiming transcript completeness.
+[Media acquisition](/home/.agents/references/media-acquisition.md) owns YouTube downloads, live
+capture, and acquisition permissions.
 
 Qwen3-ASR through MLX is the tested Apple Silicon baseline, not a fixed choice for every laptop.
 Retain Whisper Small as a lightweight alternative.
 Neither model produces verified verbatim speech without review against the recording.
-Caption extraction through `save-md` is a separate operation, not independent speech recognition.
-Use captions when explicitly requested; never substitute them silently for audio-based transcription.
-A bare URL does not authorize downloads or establish whether transcription or visual analysis is wanted.
 
-Download dependencies and model weights first; subsequent transcription can run offline.
+Download authorized missing dependencies and model weights first; subsequent transcription can run
+offline.
 This workflow needs no Ollama server, cloud transcription subscription, or API key.
-
 Read [workstation tooling](/docs/tooling.md) for package ownership and installation guidance.
 
 ## Select a model for this machine
@@ -45,19 +43,24 @@ Do not rank transcription accuracy using `llmfit` fit scores or generic token-sp
 A missing catalog entry does not prove incompatibility.
 
 1. Establish the current machine's available resources and cached speech models.
-2. Compare the tested Qwen baseline with suitable alternatives, including Whisper large-v3 when available.
-3. Recommend one candidate using word-fidelity evidence, language coverage, and measured resource needs.
+2. Compare the tested Qwen baseline with suitable alternatives, including Whisper large-v3 when
+  available.
+3. Recommend one candidate using word-fidelity evidence, language coverage, and measured resource
+  needs.
 4. Ask before installing missing runtimes or downloading new weights.
 5. Run a representative audio excerpt without captions, previous transcripts, or vocabulary hints.
 6. Measure runtime and memory, checking omissions, repetitions, numbers, names, and token limits.
-7. Compare disputed words against listening or a human-checked reference before claiming improved accuracy.
+7. Compare disputed words against listening or a human-checked reference before claiming improved
+  accuracy.
 
 When approval or access prevents comparison, report the limit.
 Use a verified fitting baseline if authorized.
 Record hardware, model identity, precision, runtime, and sample limitations with the result.
 `uv run --offline --with` can still install cached packages into a new environment.
-When installations are forbidden, inspect existing environments without invoking dependency resolution.
-Use a verified existing interpreter directly; if none is available, stop and report the prerequisite.
+When installations are forbidden, inspect existing environments without invoking dependency
+resolution.
+Use a verified existing interpreter directly; if none is available, stop and report the
+prerequisite.
 Do not describe a laptop as tested from a simulated `llmfit` profile or another machine's results.
 
 The recipes below implement the tested Qwen baseline and Whisper Small alternative.
@@ -90,39 +93,16 @@ Kokoro voice models generate speech from text; they cannot replace a transcripti
 
 ## Acquire and decode the source
 
-Keep downloads and transcripts in the task's authorized output directory, outside unrelated repositories.
-For YouTube, quote the URL and disable playlists so one request cannot expand into many videos.
-Select the original audio track, not an automatically dubbed version.
-An English-language selector does not establish that the speaker originally spoke English.
-First inspect the video's formats:
-
-```sh
-VIDEO_URL='https://www.youtube.com/watch?v=LlhTEttKcwQ'
-yt-dlp --ignore-config --js-runtimes node --no-playlist --list-formats "$VIDEO_URL"
-```
-
-Identify an audio-only format marked original, checking language and track metadata.
-If original-track provenance is unclear, resolve it before downloading.
-Do not silently choose a language fallback.
-Replace `ORIGINAL_AUDIO_FORMAT_ID` below with that format's ID.
-Run from the authorized output directory; the example creates a new child directory there.
-
-```sh
-RUN_DIR="$(mktemp -d ./transcription.XXXXXX)"
-AUDIO_FORMAT='ORIGINAL_AUDIO_FORMAT_ID'
-yt-dlp --ignore-config --js-runtimes node --no-playlist \
-  -f "$AUDIO_FORMAT" -o "$RUN_DIR/source.%(ext)s" "$VIDEO_URL"
-printf 'source_url=%s\naudio_format=%s\n' "$VIDEO_URL" "$AUDIO_FORMAT" \
-  > "$RUN_DIR/source.txt"
-printf 'Output directory: %s\n' "$RUN_DIR"
-```
-
-Retain `source.txt` beside the transcript and decoded audio.
-For local recordings, skip downloading and use the supplied file directly.
+Read [media acquisition](/home/.agents/references/media-acquisition.md) before downloading or
+capturing source media.
+That reference owns original-track selection, output directories, source provenance, and
+acquisition commands.
+For supplied local files, skip acquisition.
+Set `RUN_DIR` to the authorized run directory.
 
 Read yt-dlp's destination output for the downloaded filename and extension.
 Set `SOURCE_FILE` to that file or a local recording, preserving quotes around paths.
-Decode the entire source, without a sample-duration limit:
+Decode the entire authorized source or excerpt; preserve its original source offset:
 
 ```sh
 SOURCE_FILE="$RUN_DIR/source.webm" # Replace with the actual file, including its extension.
@@ -132,11 +112,11 @@ ffprobe -v error -show_entries format=duration:stream=codec_name,sample_rate,cha
   -of json "$RUN_DIR/audio.wav"
 ```
 
-Create `RUN_DIR` for local files too; preserve existing sources and never overwrite another task's output.
+Create `RUN_DIR` for local files too; preserve existing sources and never overwrite another task's
+output.
 Check the selected stream when a video contains multiple audio tracks.
-Stop on login walls, DRM, or bot challenges; do not automatically extract browser cookies.
-Obtain authorization before credential use, additional downloads, paid APIs, or external uploads.
-Future host support belongs in acquisition; the local transcription procedure can reuse decoded audio.
+Future host support belongs in acquisition; the local transcription procedure can reuse decoded
+audio.
 
 ## Prepare Qwen
 
@@ -227,7 +207,8 @@ PY
 
 Set `language=None` for automatic detection when the spoken language is unknown.
 The English hint is appropriate only when English has been established.
-Do not supply captions, previous transcripts, or inferred vocabulary during an independent comparison.
+Do not supply captions, previous transcripts, or inferred vocabulary during an independent
+comparison.
 
 **Long recordings need explicit coverage checks.**
 MLX Audio 0.6.4 shares `max_tokens` across internal chunks within one call.
@@ -239,7 +220,8 @@ Check that chunk ranges cover the entire decoded duration without gaps or unexpe
 Inspect the beginning, ending, repeated passages, and every token-limit warning.
 Coverage proves processing, not correctness; silence may legitimately produce empty text.
 Keep source URL, selected track, runtime versions, and limitations alongside output metadata.
-If a run fails, retain completed chunks and report partial status instead of publishing a complete transcript.
+If a run fails, retain completed chunks and report partial status instead of publishing a complete
+transcript.
 
 ## Whisper Small alternative
 
@@ -300,27 +282,24 @@ The command prints original-language text and segment timestamps, measured in se
 It does not translate, modify the recording, or create a transcript file.
 Language detection is automatic; add `language="es"` only when Spanish is already established.
 
-`--offline` prevents `uv` downloads; `HF_HUB_OFFLINE=1` and `local_files_only=True` prevent model downloads.
+`--offline` prevents `uv` downloads; `HF_HUB_OFFLINE=1` and `local_files_only=True` prevent model
+downloads.
 These settings control dependency and model retrieval, not system-wide network access.
 Missing caches cause failure rather than an online fallback.
 Complete the download step before retrying offline.
 
 **Local inference does not upload audio.**
 Returning its transcript through an agent exposes text to that session.
-Keep sensitive recordings and transcripts outside repositories unless their storage is explicitly authorized.
+Keep sensitive recordings and transcripts outside repositories unless their storage is explicitly
+authorized.
 
 ## Review uncertain passages
 
-**Treat the output as an automated draft, not verified verbatim speech.**
-Successful execution proves the model ran, not that every word is correct.
-Names, acronyms, numbers, background noise, and unclear speech can produce mistakes or invented words.
-
-- Preserve the original language unless translation is requested.
-- Mark uncertain passages with brackets and timestamps instead of guessing.
-- Recheck consequential names, compensation, dates, and benefits against the audio.
-- A second pass can expose disagreement but cannot establish which version is correct.
-- Context prompts can bias recognition; never treat supplied vocabulary as independent evidence.
-- Consider larger models only when accuracy needs justify additional downloads and resource usage.
+Follow [transcription review and
+completeness](/home/.agents/skills/audio-transcription/SKILL.md#timing-and-completeness).
+That skill owns original-language preservation, uncertainty marking, source review, and
+partial-delivery requirements.
+Consider larger models only when accuracy needs justify additional downloads and resource usage.
 
 ## Verification and troubleshooting
 
@@ -340,7 +319,8 @@ They establish no accuracy percentage or universal winner.
 ### Fresh-session YouTube verification
 
 A fresh Pi worker started outside dotfiles with no model, command, or guide hints.
-It discovered this guide through global instructions and transcribed video `LlhTEttKcwQ` without captions.
+It discovered this guide through global instructions and transcribed video `LlhTEttKcwQ` without
+captions.
 It processed all 1999.019 decoded seconds through 17 contiguous, nonempty chunks.
 No chunk reached its token limit.
 Inference took 355.7 seconds; model loading took 2.2 seconds, with 5.72 GB peak MLX allocations.
@@ -356,7 +336,8 @@ Processing coverage and successful discovery do not establish word accuracy.
 Other video hosts remain unverified.
 
 `llmfit` detected the hardware and rated a quantized Qwen variant “Perfect.”
-Its quantization assumptions and generic scores do not establish BF16 memory use or transcription accuracy.
+Its quantization assumptions and generic scores do not establish BF16 memory use or transcription
+accuracy.
 Use measured inference and audio review when selecting a model.
 
 ### Machine-selection retest
@@ -375,7 +356,8 @@ The selection guidance now distinguishes offline retrieval from installation-fre
 
 ### Observed Whisper suitability
 
-This workflow processed Spanish WhatsApp `.opus` recordings locally using the cached Whisper Small model.
+This workflow processed Spanish WhatsApp `.opus` recordings locally using the cached Whisper Small
+model.
 Both offline dependency resolution and cached model loading succeeded.
 Some names and phrases remained uncertain; transcription accuracy was not independently verified.
 
@@ -388,5 +370,6 @@ Some names and phrases remained uncertain; transcription accuracy was not indepe
 | Poor transcription | Review the audio, mark uncertainty, and assess whether another model is warranted. |
 
 [MLX Audio](https://github.com/Blaizzy/mlx-audio) owns Qwen's runtime interfaces.
-[MLX Whisper](https://github.com/ml-explore/mlx-examples/tree/main/whisper) owns the alternative API.
+[MLX Whisper](https://github.com/ml-explore/mlx-examples/tree/main/whisper) owns the alternative
+API.
 [yt-dlp](https://github.com/yt-dlp/yt-dlp#readme) documents acquisition and track selection.
