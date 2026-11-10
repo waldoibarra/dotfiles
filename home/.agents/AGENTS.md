@@ -81,6 +81,7 @@ Paths starting with `/docs/` resolve inside the dotfiles checkout, `~/.dotfiles`
 | Glossary edits | `domain-modeling`; `docs` conventions |
 | Exploring approaches or improving unsatisfactory results | `references/ambition.md` |
 | Choosing prototype or durable-change routes | `references/session-workflow.md` |
+| Starting a project or MVP, or a prototype with multiple workflows, persistent data, integrations, or deployment | [Project delivery](/docs/project-delivery/README.md); small disposable experiments use `prototype-selection` and `references/session-workflow.md` |
 
 House conventions override generic advice; specialist skills own procedures.
 If required guidance is unavailable, **report it before dependent work**; never invent its contents.

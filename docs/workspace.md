@@ -73,6 +73,8 @@ Size alone does not replace the publication review above.
 | Continuing Pi setup or reviewing the integration outcome | [Integration summary](/docs/plans/pi-dotfiles-integration-summary.md) |
 | Reviewing live-chat close errors, Pi trial feedback, or transcript handoffs | [Trial notes](/docs/plans/pi-live-codex-trial.notes.md) |
 | Reusing the original Pi voice test scenarios; later notes supersede trial decisions | [Trial plan](/docs/plans/pi-live-codex-trial.md) |
+| Evaluating `.agents/` discovery and ownership of reusable client-delivery guidance | [Directory conventions research](/docs/spikes/agents-directory-conventions.md) |
+| Reviewing dated evidence and limits behind client-delivery recommendations | [AI-assisted client-delivery research](/docs/spikes/ai-assisted-client-delivery.md) |
 | Choosing browser access, studying authenticated media, or comparing Google sign-in options | [Browser and OAuth investigation](/docs/spikes/browser-access-and-google-oauth.md) |
 | Continuing media-learning, transcription, browser, or voice-option research | [Research spike](/docs/spikes/pi-media-learning-and-live-voice.md) |
 | Inspecting saved transcript, metric, or public-video frame evidence | [Evidence manifest](/docs/spikes/pi-media-learning-and-live-voice-evidence/evidence-manifest.json) |
