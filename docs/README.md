@@ -1,7 +1,8 @@
 # Documentation map
 
 **Find the one page that answers your question without reading the others.**
-These guides describe this workstation and its AI harness. Current guides own present behavior.
+These guides describe this workstation, its AI harness, and reusable project-delivery practices.
+Current guides own present behavior.
 [Plans and evidence](workspace.md) explain prior work and never override a current guide.
 
 ## Reading layers
@@ -23,6 +24,7 @@ These guides describe this workstation and its AI harness. Current guides own pr
 | Configure Pi, Claude Code, or Cursor | [AI harness](ai-harness/README.md) |
 | Change Claude's model defaults | [Claude model defaults](ai-harness/configuration.md#claude-model-defaults) |
 | Author prompts for apps and services | [Prompting](prompting.md) |
+| Start a project, MVP, or substantial prototype | [Project delivery](project-delivery/README.md) |
 | Change shell, Git, or editor defaults | [Zsh](zsh-configuration.md), [Git](git-configuration.md), [Tooling](tooling.md#editor-defaults) |
 | Provision the shared vault's tools | [Obsidian](obsidian.md) |
 | Transcribe YouTube videos or local recordings | [Local media transcription](audio-transcription.md) |

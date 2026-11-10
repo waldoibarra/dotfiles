@@ -16,7 +16,8 @@ before changing ownership.
 | Retention, temporary agreements, and ADR gates | [Memory lifecycle](/home/.agents/references/memory.md) |
 | Original, generated, or frozen evidence | Its source, publisher, and retention rules |
 
-Skills own procedures; roles own responsibilities; native settings own client mechanics.
+Skills own agent task procedures; roles own responsibilities; native settings own client mechanics.
+Human-facing procedures belong with their owning documentation concern.
 Preserve meaningful rationale without presenting obsolete instructions as current.
 During authorized refactors, remove obsolete operational guidance and repair affected links and
 reading routes; preserve consequential rationale through the
@@ -49,8 +50,11 @@ owns human orientation; its
 guidance](/home/.agents/skills/docs/references/conventions.md#agentsmd-define-the-working-contract)
 owns instruction content conventions.
 
-**Dotfiles ownership:** Shared procedures live under `home/.agents/`; workstation maintenance guides
-live under `docs/`.
+**Dotfiles ownership:** Human-facing reusable guides belong under their owning `docs/` concern.
+Shared agent instructions, skills, and harness-selected references may remain under `home/.agents/`.
+Source ownership differs from installed access paths: individual guides may be linked into `~/.agents/references/`.
+Agents can read ordinary documentation without making it agent configuration.
+Discovery or a symlink does not prove automatic loading or use.
 [Plans and research](/docs/workspace.md) own project records, outside shared harness configuration.
 The root glossary defines existing domain concepts; implementation details belong with their
 maintained guides.
