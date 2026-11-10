@@ -126,7 +126,19 @@ Bound individual network attempts too; retries cannot compensate for a hung requ
 Reset the interruption window only after verifying resumed media, not merely successful metadata
 retrieval.
 
-Preserve completed segments and resume into a new uniquely named segment.
+Preserve completed segments, partial tracks, and downloader checkpoint files before recovery.
+Inspect the last retained fragment and media timestamp for each track.
+First check whether the installed downloader can safely resume those files and checkpoints.
+Verify that resumption advances beyond retained media rather than downloading the beginning again.
+When checkpoint resumption is unavailable, start a uniquely named segment from the last verified boundary.
+Record any gap or overlap; current-position capture cannot recover an earlier missing interval.
+If neither method is supported, stop and report the recovery limitation.
+
+**A new output directory is not a resume strategy.**
+Do not automatically restart with `--live-from-start` after interruption.
+A full redownload requires explicit approval covering duplicated storage and transfer.
+An initial request to capture everything from the beginning does not authorize repeated full downloads.
+Validate recovery behavior before unattended capture; retained progress must survive a simulated interruption.
 Record missing and potentially duplicated intervals; reconnecting does not establish continuous
 capture.
 Finalize on a confirmed broadcast ending.
@@ -139,6 +151,25 @@ children.
 If forced termination is needed, retain partial files and report which outputs remain unverified.
 Probe output duration, streams, and decodability before declaring capture successful.
 No network request success, process exit, or file presence alone establishes complete recording.
+
+### Remove verified duplicates
+
+Delete duplicate media only with explicit user authorization.
+Keep active capture files and files still needed by running consumers.
+Compare source identity, selected tracks, timestamps, coverage, and decodability before choosing
+retained media.
+A longer duration or larger file alone does not prove that earlier content is preserved.
+For byte-identical overlap, hash each old track against the same-length prefix of its retained
+counterpart.
+For remuxed or re-encoded copies, require equivalent content and coverage checks instead of byte
+equality.
+If equivalence remains uncertain, retain both copies and report the unresolved difference.
+
+Before deletion, record hashes, checks, and old-to-retained path mappings beside the capture logs.
+Verify that removed files have no active writers or readers; recheck file identities before deleting.
+Remove only verified redundant media, preserving logs, provenance, checkpoints, and unique intervals.
+Verify that retained media remains readable and recording continues afterward.
+Sample decoding does not establish full-stream integrity; report its inspected intervals.
 
 ## Continue with analysis
 
