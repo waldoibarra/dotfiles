@@ -79,6 +79,13 @@ Include the sender's live name or pane ID, approved task scope, requested respon
 Explicitly request a Herdr reply to that return address.
 Send briefings and replies with `herdr agent prompt <pane-or-name> "<text>"`, without `--wait`,
 avoiding reciprocal waits.
+**After delegating, a lead never waits for a worker in a foreground command.**
+That excludes polling loops, `sleep`, `herdr agent wait`, and any script that blocks on a worker.
+Finish work that does not depend on the worker, then end the turn.
+Worker replies arrive as messages and reopen it.
+Run any needed fallback check in the background or as a scheduled wake-up.
+A foreground wait holds the turn open, so worker replies and operator messages cannot arrive.
+One blocked forwarding script once delayed four finished reviews by ten minutes.
 **Reply through Herdr to the verified sender; local chat output alone does not deliver the reply.**
 If the sender or return address is unclear, ask the user rather than guessing a recipient.
 A successful submission is not acknowledgment; inspect the recipient with `herdr agent read <pane-or-name>`.

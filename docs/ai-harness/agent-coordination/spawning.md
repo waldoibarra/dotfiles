@@ -33,8 +33,9 @@ Label the workspace, tab, and pane by the [layer rules](naming.md#label-the-laye
 6. Wait for idle once, after start. Then send the first message, written with the
   [AIM template](/docs/prompting.md#prompt-template); a bare "read the brief at a path" is not a
   prompt. Never add `--wait`.
-7. Do not wait again. The reply arrives as a prompt in the lead's session; a second wait blocks
-  the lead while that message is already queued. Verify the reply's claims against files.
+7. Do not wait again: end the turn, as the
+  [no foreground waits rule](/home/.agents/references/orchestration.md#coordinate-across-harnesses)
+  requires. The reply arrives as a prompt in the lead's session. Verify its claims against files.
 8. Close the worker's tab once its deliverable is verified, and the workspace when its last tab
   closes, unless the operator asked to keep them. Close only containers this lead created.
   Closing ends the agent; say so in the reply.
