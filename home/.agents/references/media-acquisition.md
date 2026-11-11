@@ -95,6 +95,9 @@ Segment boundaries may follow keyframes; record measured durations instead of as
 five-minute chunks.
 Validate the recorder on a short sample before an unattended long run.
 This reference defines an operating contract, not a preinstalled capture supervisor.
+A bounded companion lives at `skills/video-analysis/scripts/record_livestream.py`.
+It defaults to retained partial output when live checkpoint recovery is unverified.
+Before use, read [recorder limits](../skills/video-analysis/references/livestream-recorder.md).
 
 | Installed option | Meaning and limit |
 | --- | --- |

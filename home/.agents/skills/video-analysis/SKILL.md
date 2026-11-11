@@ -28,6 +28,7 @@ Read only references needed for the authorized task.
 | Transcribing spoken words | [Audio transcription](../audio-transcription/SKILL.md) |
 | Inspecting visuals, movement, editing, or non-speech audio | [Audiovisual inspection](references/visual-analysis.md) |
 | Processing a continuing broadcast | [Near-live analysis](references/near-live-analysis.md) |
+| Recording a bounded livestream | [Recorder limits](references/livestream-recorder.md) |
 | Organizing evidence and delivering findings | [Evidence and outputs](references/evidence-and-outputs.md) |
 
 ## Establish the question and limits
